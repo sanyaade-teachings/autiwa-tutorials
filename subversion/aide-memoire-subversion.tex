@@ -31,7 +31,7 @@ Il est possible que le serveur soit lui aussi client, dans le cas où il n'y aur
 \section{Subversion sur internet}
 Je vais prendre l'exemple de google code, qui est celui que j'ai choisi et que je suis en train d'apprendre.
 
-\subsection{Récupérer le contenu du projet}
+\subsection{Récupérer le contenu du projet}\label{sec:checkout}
 Une fois le projet créé (sur la page \url{http://code.google.com/hosting/createProject}), il faut faire : 
 \begin{verbatim}
 svn checkout --username autiwa@gmail.com --password "passwd" \
@@ -45,8 +45,45 @@ Opération d'extraction d'une version d'un projet du repository vers un réperto
 \end{definition}
 
 
-\subsection{}
+\subsection{Appliquer les changements qu'on vient de faire localement : commit}\label{sec:commit}\index{commit}\index{mise à jour local -> serveur}
 
+Pour mettre à jour les versions sur serveur à partir des modifications effectuées localement, il faut : 
+\begin{verbatim}
+svn commit -m "initialisation" --username autiwa@gmail.com --password passwd
+\end{verbatim}
+où \texttt{"initialisation"} est le commentaire qui décrit la mise à jour et les modifications effectuées, \texttt{passwd} étant le mot de passe associé à votre identifiant (ici \texttt{autiwa@gmail.com} pour moi).
+
+\begin{remarque}
+
+\end{remarque}
+
+
+
+\subsection{Ajouter des fichiers ou dossiers au projet}\index{add}
+Pour ajouter des fichiers il faut faire :
+\begin{verbatim}
+svn add latex/ vim/ 
+\end{verbatim}
+où \texttt{latex/} et \texttt{vim/} sont deux dossiers existant dans le dossier local de référence
+
+\begin{remarque}
+Au cas où ça serait pas clair. J'ai créé un dossier \texttt{/home/autiwa/Formulaires} grâce à \refsec{sec:checkout}. Dans ce dossier, j'ai créé et rempli à la main les sous-dossiers \texttt{latex/} et \texttt{vim/}. Maintenant, grâce à la commande ci-dessus, je définis ces sous-dossiers comme étant rattachés au projet. En faisant ainsi le contenu est rajouté récursivement.
+\end{remarque}
+
+\begin{attention}
+Cette commande n'agit que sur le répertoire local (la \emph{working copy}). Il faut ensuite faire un \texttt{commit} (voir \refsec{sec:commit}) pour valider les changements sur le serveur.
+\end{attention}
+
+\subsection{Supprimer des fichiers ou dossiers au projet}\index{delete}
+Pour supprimer des fichiers il faut faire :
+\begin{verbatim}
+svn delete latex/ vim/ 
+\end{verbatim}
+où \texttt{latex/} et \texttt{vim/} sont deux dossiers existant dans le dossier local de référence. 
+
+\begin{attention}
+Cette commande n'agit que sur le répertoire local (la \emph{working copy}). Il faut ensuite faire un \texttt{commit} (voir \refsec{sec:commit}) pour valider les changements sur le serveur.
+\end{attention}
 
 
 
