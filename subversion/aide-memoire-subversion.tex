@@ -1,0 +1,53 @@
+\documentclass[a4paper,twoside]{article}
+\usepackage{autiwa}
+\usepackage{listings}
+\lstset{language=IDL,
+basicstyle=\ttfamily\small,
+columns=flexible,
+escapechar=+}
+\lstset{keywordstyle=\color{blue}\bfseries}
+
+\title{Aide mémoire Subversion (svn)}
+\author{Autiwa}
+
+\newcommand{\raccourci}[1]{{\bfseries #1}}
+
+\makeindex
+\begin{document}
+
+\tableofcontents
+
+\clearpage
+
+\section{Préambule}
+Subversion permet de gérer un projet (de programmation généralement) et de garder en mémoire l'historique de toutes les versions d'un ensemble de fichiers. Il permet de gérer un projet à plusieurs, de programmer afin de pouvoir revenir en arrière, comparer avec d'anciennes versions et cie. 
+
+Le principe est d'avoir un serveur subversion (un seul possible) qui va garder en mémoire l'historique de toutes les versions et un client subversion (plusieurs possibles) qui vont se connecter au serveur pour mettre à jour la version des fichiers ou en récupérer les dernières versions.
+
+\begin{remarque}
+Il est possible que le serveur soit lui aussi client, dans le cas où il n'y aurait qu'un seul développeur et qu'on ne souhaite pas passer par internet.
+\end{remarque}
+
+\section{Subversion sur internet}
+Je vais prendre l'exemple de google code, qui est celui que j'ai choisi et que je suis en train d'apprendre.
+
+\subsection{Récupérer le contenu du projet}
+Une fois le projet créé (sur la page \url{http://code.google.com/hosting/createProject}), il faut faire : 
+\begin{verbatim}
+svn checkout --username autiwa@gmail.com --password "passwd" \
+https://autiwa-tutorials.googlecode.com/svn/trunk/ Formulaires
+\end{verbatim}
+
+Cette commande permet de récupérer le contenu du projet et de le copier dans un dossier \texttt{Formulaires} qui sera créé dans le dossier courant.
+
+\begin{definition}[Checkout]
+Opération d'extraction d'une version d'un projet du repository vers un répertoire de travail local.
+\end{definition}
+
+
+\subsection{}
+
+
+
+
+\end{document}

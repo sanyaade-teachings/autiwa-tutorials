@@ -1,0 +1,24 @@
+\begin{theindex}
+
+  \item commande-objet, \hyperpage{3}
+
+  \indexspace
+
+  \item expression r\IeC {\'e}guli\IeC {\`e}re, \hyperpage{3}
+
+  \indexspace
+
+  \item mode
+    \subitem Append, \hyperpage{3}
+    \subitem Commande, \hyperpage{4}
+    \subitem Insertion, \hyperpage{3}
+    \subitem Normal, \hyperpage{2--4}
+    \subitem Remplacement, \hyperpage{3}
+    \subitem Remplacer Caract\IeC {\`e}re, \hyperpage{3}
+    \subitem Supprimer Caract\IeC {\`e}re, \hyperpage{3}
+
+  \indexspace
+
+  \item vim, \hyperpage{2}
+
+\end{theindex}

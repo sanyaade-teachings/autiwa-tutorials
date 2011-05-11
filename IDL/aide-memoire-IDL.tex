@@ -1,0 +1,485 @@
+\documentclass[a4paper,twoside]{article}
+\usepackage{autiwa}
+\usepackage{listings}
+\lstset{language=IDL,
+basicstyle=\ttfamily\small,
+columns=flexible,
+escapechar=+}
+\lstset{keywordstyle=\color{blue}\bfseries}
+
+\title{Aide mémoire IDL}
+\author{Christophe \textsc{Cossou}}
+
+\newcommand{\raccourci}[1]{{\bfseries #1}}
+
+\makeindex
+\begin{document}
+
+\tableofcontents
+
+\clearpage
+
+\section{Préambule}
+IDL ne fait pas de distinction entre les lettres majuscules et minuscules. En conséquence, si on fait
+\begin{lstlisting}[language=IDL]
+q = 2
+Q = 3
+print,q
+\end{lstlisting}
+On obtiendra la valeur $3$. Il faut donc faire extrêmement attention.
+
+
+\section{Les bases}
+\subsection{Les boucles}
+\subsubsection{case}
+\begin{lstlisting}[language=IDL]
+  case nplots of
+     1: begin
+        !p.multi=0
+     end
+
+     2: begin
+        !p.multi=0
+     end
+
+     3: begin
+        !p.multi=[0,1,2]
+     end
+  endcase
+\end{lstlisting}
+
+\subsubsection{if}
+\begin{lstlisting}[language=IDL]
+if [boolean] then begin
+  [code]
+endif
+\end{lstlisting}
+
+\begin{lstlisting}[language=IDL]
+if [boolean] then begin
+  [code]
+endif else begin
+  [code]
+endelse
+\end{lstlisting}
+
+Pour de multiples valeurs d'une même variable, préférer une boucle \texttt{case}.
+
+\subsubsection{for}
+\begin{lstlisting}[language=IDL]
+for i=0,n_elements(a)-1 do begin
+  [code]
+endfor
+\end{lstlisting}
+
+\subsubsection{where}
+\begin{verbatim}
+a=indgen(10)
+ind=where(a lt 5,count)
+print,a[ind]
+\end{verbatim}
+grâce à la commande \textbf{where}, on stocke dans \texttt{ind} les indices des valeurs de $a$ qui vérifient $a < 5$. Ça permet de sélectionner rapidement et efficacement certaines données pour les isoler.
+
+\texttt{count}, quant à lui, est une variable qui va stocker le nombre d'éléments vérifiant la condition que l'on a donné. En particulier, ça permet de ne faire des opérations que si \texttt{count} est différent de 0.
+
+\subsection{Les booléens}
+\subsubsection{Comparateurs}
+Pour comparer deux entiers $a$ et $b$ on a un certain nombre d'opérateurs binaires listés dans \reftab{tab:boolean-comparator}
+\begin{table}[htb]
+\centering
+\begin{tabular}{|r@{ : }>{$}l<{$}|}
+\hline
+Commande & \text{Signification}\\\hline
+\verb|a eq b| & a = b\\
+\verb|a ne b| &  a \neq b\\
+\verb|a lt b| & a < b\\
+\verb|a le b| & a \leqslant b\\
+\verb|a gt b| & a > b\\
+\verb|a ge b| & a \geqslant b\\\hline
+\end{tabular}
+\caption{Liste des comparateurs mathématiques les plus usuels, notamment pour les tests.}\label{tab:boolean-comparator}
+\end{table}
+
+\subsubsection{Opérateurs booléens}
+\begin{table}[htb]
+\centering
+\begin{tabular}{|r@{ : }l|}
+\hline
+Opérateur & Signification\\\hline
+\verb|~| & non\\
+\verb|&&| & et\\
+\verb#||# &  ou\\\hline
+\end{tabular}
+\caption{Liste des operateurs sur booléens}\label{tab:boolean-operator}
+\end{table}
+
+Sur \reftab{tab:boolean-operator} sont représentés les opérateurs sur booléens disponibles. On les utilise de la façon suivante :
+\begin{lstlisting}[language=IDL]
+if (~(a lt c) && (a eq b)) then begin
+     [code]
+  endif
+\end{lstlisting}
+signifie qu'on ne veut pas que $a$ soit inférieur strictement à $c$ et on veut que $a$ soit égal à $b$.
+
+\subsection{fonctions mathématiques standard}
+\begin{tabular}{>{\bfseries}r<{}@{ : }p{11cm}}
+nom &	fonction\\
+alog & logarithme népérien (ou naturel)\\
+alog10 & logarithme décimal\\
+exp & exponentiel\\
+factorial & factoriel (n!)\\
+abs & valeur absolue\\
+sqrt & racine carrée (pour l'anglais square root)\\
+cos & cosinus (attention, tous les angles sont en radians : p radians = 180\degre)\\
+sin & sinus\\
+tan & tangente (rappelons que cotangente = 1/tangente)\\
+acos & arc cosinus (fonction inverse de cosinus)\\
+asin & arc sinus (fonction inverse de sinus)\\
+atan & arc tangente (fonction inverse de tangente)\\
+sinh & sinus hyperbolique (sinh(x) = [exp(x)-exp(-x)]/2)\\
+cosh & cosinus hyperbolique cosh(x) = [exp(x)+exp(-x)]/2)\\
+tanh & tangente hyperbolique (tanh(x)=sinh(x)/cosh(x))
+\end{tabular}
+
+
+\subsection{Les tableaux}
+Il existe plusieurs types de tableaux, celui que j'utilise le plus est :
+\begin{verbatim}
+a=dblarr(12,3)
+b=dblarr(10)
+\end{verbatim}
+qui définit $a$ comme un tableau de $12$ colonnes et $3$ lignes et $b$ comme une liste de $10$ éléments, les éléments de ces deux tableaux étant des réels double précision.
+
+\begin{attention}
+La numérotation commence à $0$, ainsi, \verb|b[0]| est le premier élément de $b$, et \verb|b[9]| est le dernier élément
+\end{attention}
+
+\bigskip
+
+Il existe un moyen très pratique de générer des listes, notamment quand on veut tracer des courbes, c'est à l'aide de la fonction suivante :
+\begin{verbatim}
+f=indgen(10)
+dx=1.d-2
+x=dx*indgen(10)
+\end{verbatim}
+
+Ceci définit $f$ comme une liste contenant les entiers de $0$ à $9$, et x comme la même chose, sauf qu'on a définit un pas, $\dif x$ qui nous permet de resserrer les points. On peut ainsi rajouter une valeur minimale, faire une échelle logarithmique et plein de choses très pratique.
+
+\begin{remarque}
+À noter que si on exécute :
+\begin{verbatim}
+a=0.1*!dpi*indgen(10)
+b=sin(a)
+\end{verbatim}
+alors on va faire le sinus de chaque élement de $a$ et le stocker dans $b$ qui sera un tableau de même taille que $a$. \verb|!dpi| est la variable qui contient la valeur de $\pi$ en réel double précision.
+\end{remarque}
+
+
+\bigskip
+
+Il existe des commandes spéciales pour manipuler des tableaux, qu'il ne faut surtout pas reprogrammer soit même, vu que le temps de calcul serait plus long :
+\begin{verbatim}
+total(a)
+max(a)
+min(a)
+n_elements(a)
+size(a)
+\end{verbatim}
+qui définissent respectivement la somme, le maximum, le minimum, le nombre d'éléments et les dimensions (je ne connais pas le détail de cette dernière commande, vu que je ne l'utilise jamais). À noter que ce sont des fonctions, donc on les définit de la façon suivante :
+\begin{verbatim}
+somme=total(a)
+\end{verbatim}
+
+\begin{remarque}
+On peut aussi récupérer l'indice de l'élément le plus grand ou le plus petit du tableau. Pour celà, il suffit d'écrire :
+\begin{verbatim}
+energie_max=max(energie,indice_max)
+energie_min=min(energie,indice_min)
+print,energie[indice_max],energie[indice_min]
+\end{verbatim}
+
+Dans le cas présent, ce n'est pas très utile, mais ça permet, dans d'autres cas, quand on a plusieurs tableaux, de récupérer cet indice, et d'afficher les autres caractéristiques correspondant à ce même indice, c'est à dire rayon, masse et vitesse d'un objet dont l'énergie est maximale, par exemple.
+\end{remarque}
+
+
+\bigskip
+
+La commande sort(a) permet de sortir une liste d'indice qui permet de trier la liste dans l'ordre croissant. Ainsi
+\begin{verbatim}
+print,a[sort(a)]
+\end{verbatim}
+affiche la liste a avec les éléments triées.
+
+\subsection{Les variables aléatoires}
+Il existe au moins deux types de variables aléatoires implémentées dans GDL
+\begin{enuminline}
+\item distribution uniforme
+\item distribution normale
+\end{enuminline}
+que l'on appelle respectivement par :
+\begin{verbatim}
+a=randomu(seed,10)
+b=randomn(seed,10)
+\end{verbatim}
+où $10$ est le nombre de valeurs que l'on veut, et \texttt{seed} le nombre qui sert à générer la séquence aléatoire. On peut tout à fait (et c'est conseillé si on veut des résultats reproductible pour vérification) spécifier la valeur de seed, du style :
+\begin{verbatim}
+a=randomu(182751824562,10)
+\end{verbatim}
+
+\begin{remarque}
+Pour un \texttt{seed} donné, la séquence de nombre aléatoire générée est toujours la même.
+\end{remarque}
+
+Pour éviter les correlations entre les générations de nombres aléatoires, il faut en fait utiliser le même seed quand on fait plusieurs tirages, et les nombres générés sont à la suite (quand les générations se font au sein du même programme, sans réinitialisation du seed.
+
+\begin{exemple}
+\begin{verbatim}
+seed=1001L
+print,randomu(seed,10)
+print,randomu(seed,10)
+\end{verbatim}
+les deux suites de nombres seront différentes.
+
+\bigskip
+
+\begin{verbatim}
+seed=1001L
+print,randomu(seed,10)
+seed=1001L
+print,randomu(seed,10)
+\end{verbatim}
+les deux suites de nombres seront les mêmes.
+\end{exemple}
+
+
+
+
+
+
+
+
+\section{Les plots}
+\subsection{Rendu correct des textes}\label{sec:rendu_texte}
+Dans les plots, pour avoir un rendu agréable et propre des polices, il faut mettre l'option
+\begin{lstlisting}[language=IDL]
+!p.font = 0
+\end{lstlisting}
+
+\subsection{Multi plots}
+Pour celà il faut définir une grille (ligne et colonne) afin de déterminer le nombre de plots que l'on pourra faire dans la même fenêtre.
+\begin{lstlisting}[language=IDL]
+!p.multi = [0,2,3]
+\end{lstlisting}
+
+Avec la ligne précédente, on définit 3 lignes et 2 colonnes pour une fenêtre graphique\footnote{Je ne sais pas à quoi correspond le 0, mais je le laisse}. Ensuite, chaque commande \texttt{plot} qui suivra occupera une cellule de cette grille, la grille étant remplir à partir du coin en haut à gauche, ligne par ligne.
+
+\subsection{Forcer le recadrage d'une figure}
+Avec les options \texttt{xrange=[\emph{xmin},\emph{xmax}]} et \texttt{yrange=[\emph{ymin},\emph{ymax}]} on peut recadrer la figure, mais IDL n'en fait parfois qu'à sa tête et ne limite pas exactement le graphique aux bornes qu'on lui soumet. Afin de le forcer à obéir, il suffit de rajouter \texttt{/xstyle} et/ou \texttt{/ystyle} pour respectivement forcer les bornes horizontales ou verticales qu'on lui entre via \texttt{xrange} et \texttt{yrange}.
+
+\subsection{Enlever les axes}
+Il faut utiliser les mots clés \verb|xstyle| et \verb|ystyle|. Par exemple :
+\begin{lstlisting}[language=IDL]
+plot,x,y,xstyle=4,ystyle=4
+\end{lstlisting}
+
+C'est quelque chose que j'utilise pour faire des contours de disque de gaz et ne pas avoir les axes afin d'avoir une image plus présentable.
+
+Les options sont :
+\begin{table}[htb]
+\centering
+\begin{center}
+\begin{tabular}{|c|p{5cm}|}\hline
+Valeur & Description\\\hline
+1 & force l'étendue de l'axe à être exacte\\\hline
+2 & étendre le \emph{range} de l'axe\\\hline
+4 & Supprimer l'axe\\\hline
+8 & Supprimer le style en boite (l'axe ne sera affiché que d'un seul coté du graphique)\\\hline
+16 & empêcher la valeur minimale 0 pour l'axe Y (uniquement pour l'axe Y)\\\hline
+\end{tabular}
+\end{center}
+
+\caption{Valeurs possibles pour les mots clés \texttt{[XYZ]STYLE}. À noter que l'on peut superposer plusieurs options. Par exemple si on veut que l'étendue de l'axe soit exacte ET supprimer le style en boite, on peut mettre le mot clé à $8+1=9$}
+\end{table}
+
+\subsection{Exporter en .png}
+Il faut pour cela spécifier la taille de l'image. L'autre problème peut venir des couleurs. Quand je veux des .png avec des couleurs assez différentes (pour afficher les orbites de plusieurs planètes par exemple), je fais :
+\begin{lstlisting}[language=IDL]
+filename = "plot.png"
+image_width = 640
+image_height = 640
+
+loadct,39,/silent
+
+set_plot,'z'
+device,set_resolution=[image_width,image_height],set_pixel_depth=24,decomposed=0
+!p.background = 255
+!p.color = 0
+
+plot,x,y
+
+write_png,filename,tvrd(/true)
+device,/close
+\end{lstlisting}
+
+C'est utile quand on veut ensuite utiliser les .png pour faire une vidéo, avec \textbf{avidemux} par exemple.
+
+\subsection{Exporter en postscript}
+Le plus simple à faire, mais quelques adaptations me semblent quand même indispensables. La première est d'utiliser l'astuce pour avoir un rendu correct des textes \refsec{sec:rendu_texte}. La deuxième est d'exporter en .eps et non pas en .ps. L'eps est un postscript encapsulé, c'est à dire, grossièrement (de ce que j'en comprends), qu'il stocke aussi l'information sur la taille de la figure et le cadre qu'il faut utiliser pour avoir la figure, et rien que la figure. En postscript simple, il arrivera souvent qu'on ait une figure de taille A4 avec d'énormes blancs sur les cotés.
+
+La 3\ieme et dernière astuce n'est pas indispensable mais je la trouve pratique. Elle consiste à rajouter systématiquement à mes scripts une option \texttt{/write} qui permet d'écrire la figure dans un fichier ou non. L'affichage graphique à l'écran se faisant dans tous les cas.
+
+J'ai alors quelque chose du style :
+\begin{lstlisting}[language=IDL]
+pro test,write=write
+  filename = "plot.eps"
+
+  if keyword_set(write) then begin
+    isps = 1
+  endif else begin
+    isps = 0
+  endelse
+
+  for j=0,isps do begin
+    if (keyword_set(write) and (j eq 0)) then begin
+      set_plot,'PS'
+      device,/encaps,xsise=20,ysize=20*5./6.,$
+	     /color,bits=24,file=filename
+    endif
+
+    plot,1,2
+
+    if (keyword_set(write) and (j eq 0)) then begin
+      device,/close
+      set_plot,'X'
+    endif
+  endfor
+end
+\end{lstlisting}
+
+
+\section{Manipuler des fichiers}
+\subsection{Tester l'existence d'un fichier}
+\begin{lstlisting}[language=IDL]
+if file_test("toto.txt") then begin
+  print,"'toto.txt' existe"
+endif
+\end{lstlisting}
+
+
+\section{Astuces}
+\subsection{Commandes bash}
+Pour appeler une commande du shell, du style pour lister les fichiers, il faut utiliser un \$ devant la commande. Ainsi, pour lister les fichiers, on utilisera la commande :
+\begin{verbatim}
+GDL> $ls
+back	     cooling.pro~  energy.pro~	lhb.pro~	   tutos     warm.pro~
+cooling.pro  energy.pro    lhb.pro	LHB_temp_ocean.ps  warm.pro
+\end{verbatim}
+
+\subsection{Les mots clés et comment les tester}
+\begin{lstlisting}[language=IDL]
+pro ma_fonction,option=option
+
+if keyword_set(option) then begin
+  print,"'/option' est active"
+endif
+
+end
+\end{lstlisting}
+
+\subsection{Lecture de fichiers de paramètres}
+Il est pratique, pour lire un fichier de paramètre, de créer une fonction qui s'occupe de ça, afin de pouvoir facilement réutiliser et modifier le code. Il est encore plus pratique que cette fonction retourne non pas une liste de valeurs, mais une structure. Pour ceux qui sont familier avec la programmation objet, ça correspond plus ou moins à une instance de classe, l'appel des valeurs ce faisant par \texttt{nom\_variable.valeur}.
+
+Un exemple concret. Voici le code de ma fonction permettant de récupérer les valeurs du fichier de paramètres \texttt{genesis.out} :
+\begin{lstlisting}[language=IDL]
+function getGenesisOut
+	nProcAzim=0
+	nProcRad=0
+	radialRes_p=long(0)
+	azimRes_p=long(0)
+	npl=0
+	nstar=0
+	rmin=0.
+	rmax=0.
+	nOutput=0
+
+	openr,lun,"genesis.out",/get_lun
+	readf,lun, nProcAzim
+	readf,lun, nProcRad
+	readf,lun, radialRes_p
+	readf,lun, azimRes_p
+	readf,lun, npl
+	readf,lun, nstar
+	readf,lun, rmin, rmax
+	readf,lun, nOutput
+	free_lun,lun
+
+	radialRes = nProcRad * radialRes_p
+	azimRes = nProcAzim * azimRes_p
+
+	parameters = {nrad:uint(radialRes), nazim:uint(azimRes), npl:uint(npl),
+	nstar:uint(nstar), rmin:rmin, rmax:rmax, nout:nOutput}
+
+	return, parameters
+end
+\end{lstlisting}
+
+Ensuite, pour utiliser et récupérer les informations, il suffit de faire :
+\begin{lstlisting}[language=IDL]
+genesis = getGenesisOut()
+print,genesis.rmin,genesis.rmax
+print,genesis.npl
+\end{lstlisting}
+
+L'avantage de cette méthode est qu'on peut modifier le fichier de paramètres, modifier la fonction, on pourra toujours appeler les anciens paramètres de la même manière, sans avoir à modifier les scripts.
+
+\subsection{Variables globales}
+Au lieu de s'embêter, dans une fonction ou une procédure, à rajouter des paramètres à n'en plus finir. On peut, comme en fortran, définir un \emph{common block}, c'est à dire un ensemble de variables qui seront définies dans ce block et auxquelles on pourra accéder dans n'importe quelle fonction ou procédure à condition d'y définir, le même block.
+
+\begin{exemple}
+Je définis un block nommé \emph{parameters} dans lequel j'inclue les variables \texttt{rmin} et \texttt{rmax} :
+\begin{lstlisting}[language=IDL]
+common parameters, rmin, rmax
+\end{lstlisting}
+
+Pour accéder à ces variables dans n'importe quelles fonctions ou procédures, il me suffit de rajouter la déclaration du block :
+\begin{lstlisting}[language=IDL]
+pro testation
+  common parameters, rmin, rmax
+  x = 3.
+  rmin = 0.6
+  rmax = 1.8
+
+  printvar(x)
+end
+
+function printvar,x
+  common parameters
+
+  print,x,rmin,rmax
+end
+\end{lstlisting}
+\end{exemple}
+
+
+\section{FAQ}
+\subsection{Impossible de lire un fichier}
+Il refusait catégoriquement de lire mon fichier, quoi que je fasse. Après plusieurs heures de recherches éfrenées, il s'est avéré que ça venait du fait que la fin de ligne de mon fichier était une fin de ligne mac. Après avoir changé et mis une fin de ligne Unix/windows, tout est rentré dans l'ordre.
+
+\subsection{Min ou Max changé sans crier gare}
+Les fonctions \texttt{min()} et \texttt{max()} sont des fonctions qui s'appliquent sur des listes et non sur des éléments.
+
+J'avais un maximum \emph{xmax} qui était changé sans que je comprenne pourquoi. En cours de script, j'avais la ligne
+\begin{lstlisting}[language=IDL]
+prefactor = max(ymax,xmax)
+\end{lstlisting}
+
+C'est cette ligne qui posait problème et même si je ne comprends pas le détail, j'ai résolu le soucis en remplaçant cette ligne par :
+\begin{lstlisting}[language=IDL]
+prefactor = max([ymax,xmax])
+\end{lstlisting}
+
+
+
+
+
+\end{document}
