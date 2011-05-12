@@ -28,62 +28,106 @@ Le principe est d'avoir un serveur subversion (un seul possible) qui va garder e
 Il est possible que le serveur soit lui aussi client, dans le cas où il n'y aurait qu'un seul développeur et qu'on ne souhaite pas passer par internet.
 \end{remarque}
 
+\section{commandes universelles subversion}
+Ici, je note les commandes qui sont valables à la fois pour svn installé sur un serveur internet, ou sur une machine locale pour un usage personnel
+
+\subsection{Mettre à jour sa copie locale}
+\begin{verbatim}
+svn update
+\end{verbatim}
+
+Pour celà, il faut que le dossier dans lequel on se trouve ait déjà été défini comme un dossier svn via un \gras{checkout} (voir \refsec{sec:checkout})
+
+\subsection{Ajouter des fichiers ou dossiers au projet}\index{commande svn!add}
+Pour ajouter des fichiers il faut faire :
+\begin{verbatim}
+svn add latex/ vim/ 
+\end{verbatim}
+où \textbf{latex/} et \textbf{vim/} sont deux dossiers existant dans le dossier local de référence
+
+\begin{remarque}
+Au cas où ça serait pas clair. J'ai créé un dossier \textbf{/home/autiwa/Formulaires} grâce à \refsec{sec:checkout}. Dans ce dossier, j'ai créé et rempli à la main les sous-dossiers \textbf{latex/} et \textbf{vim/}. Maintenant, grâce à la commande ci-dessus, je définis ces sous-dossiers comme étant rattachés au projet. En faisant ainsi le contenu est rajouté récursivement.
+\end{remarque}
+
+\begin{attention}
+Cette commande n'agit que sur le répertoire local (la \emph{working copy}). Il faut ensuite faire un \textbf{commit} (voir \refsec{sec:commit}) pour valider les changements sur le serveur.
+\end{attention}
+
+\subsection{Supprimer des fichiers ou dossiers au projet}\index{commande svn!delete}
+Pour supprimer des fichiers il faut faire :
+\begin{verbatim}
+svn delete latex/ vim/ 
+\end{verbatim}
+où \textbf{latex/} et \textbf{vim/} sont deux dossiers existant dans le dossier local de référence. 
+
+\begin{attention}
+Cette commande n'agit que sur le répertoire local (la \emph{working copy}). Il faut ensuite faire un \textbf{commit} (voir \refsec{sec:commit}) pour valider les changements sur le serveur.
+\end{attention}
+
 \section{Subversion sur internet}
 Je vais prendre l'exemple de google code, qui est celui que j'ai choisi et que je suis en train d'apprendre.
 
-\subsection{Récupérer le contenu du projet}\label{sec:checkout}
+\subsection{Récupérer le contenu du projet}\label{sec:checkout}\index{commande svn!checkout}
 Une fois le projet créé (sur la page \url{http://code.google.com/hosting/createProject}), il faut faire : 
 \begin{verbatim}
 svn checkout --username autiwa@gmail.com --password "passwd" \
 https://autiwa-tutorials.googlecode.com/svn/trunk/ Formulaires
 \end{verbatim}
 
-Cette commande permet de récupérer le contenu du projet et de le copier dans un dossier \texttt{Formulaires} qui sera créé dans le dossier courant.
+Cette commande permet de récupérer le contenu du projet et de le copier dans un dossier \textbf{Formulaires} qui sera créé dans le dossier courant.
 
 \begin{definition}[Checkout]
 Opération d'extraction d'une version d'un projet du repository vers un répertoire de travail local.
 \end{definition}
 
 
-\subsection{Appliquer les changements qu'on vient de faire localement : commit}\label{sec:commit}\index{commit}\index{mise à jour local -> serveur}
+\subsection{Appliquer les changements qu'on vient de faire localement : commit}\label{sec:commit}\index{commande svn!commit}\index{mise à jour local -> serveur}
 
 Pour mettre à jour les versions sur serveur à partir des modifications effectuées localement, il faut : 
 \begin{verbatim}
 svn commit -m "initialisation" --username autiwa@gmail.com --password passwd
 \end{verbatim}
-où \texttt{"initialisation"} est le commentaire qui décrit la mise à jour et les modifications effectuées, \texttt{passwd} étant le mot de passe associé à votre identifiant (ici \texttt{autiwa@gmail.com} pour moi).
+où \textbf{"initialisation"} est le commentaire qui décrit la mise à jour et les modifications effectuées, \textbf{passwd} étant le mot de passe associé à votre identifiant (ici \textbf{autiwa@gmail.com} pour moi).
 
 \begin{remarque}
-
+Je n'ai eu besoin d'entrer le mot de passe que la première fois.
 \end{remarque}
 
+\section{Subversion localement}
+Le serveur ET le client seront alors sur la même machine.
 
-
-\subsection{Ajouter des fichiers ou dossiers au projet}\index{add}
-Pour ajouter des fichiers il faut faire :
+\subsection{Création du projet}
+J'ai créé un dossier \textbf{svn} dans mon \textbf{\$HOME}, puis je fais, dans mon répertoire utilisateur : 
 \begin{verbatim}
-svn add latex/ vim/ 
+svnadmin create svn/mercury
 \end{verbatim}
-où \texttt{latex/} et \texttt{vim/} sont deux dossiers existant dans le dossier local de référence
+pour un projet que j'appelle \textbf{mercury}.
 
-\begin{remarque}
-Au cas où ça serait pas clair. J'ai créé un dossier \texttt{/home/autiwa/Formulaires} grâce à \refsec{sec:checkout}. Dans ce dossier, j'ai créé et rempli à la main les sous-dossiers \texttt{latex/} et \texttt{vim/}. Maintenant, grâce à la commande ci-dessus, je définis ces sous-dossiers comme étant rattachés au projet. En faisant ainsi le contenu est rajouté récursivement.
-\end{remarque}
-
-\begin{attention}
-Cette commande n'agit que sur le répertoire local (la \emph{working copy}). Il faut ensuite faire un \texttt{commit} (voir \refsec{sec:commit}) pour valider les changements sur le serveur.
-\end{attention}
-
-\subsection{Supprimer des fichiers ou dossiers au projet}\index{delete}
-Pour supprimer des fichiers il faut faire :
+\subsection{Récupérer le contenu du projet}
+Une fois le projet créé (sur la page \url{http://code.google.com/hosting/createProject}), il faut faire : 
 \begin{verbatim}
-svn delete latex/ vim/ 
+svn checkout file:///home/cossou/svn/mercury
 \end{verbatim}
-où \texttt{latex/} et \texttt{vim/} sont deux dossiers existant dans le dossier local de référence. 
+où \textbf{file:///home/cossou/svn/mercury} est une URL qui désigne le dossier \textbf{/home/cossou/svn/mercury}. La présente de \textbf{file://} est à ma connaissance indispensable.
 
-\begin{attention}
-Cette commande n'agit que sur le répertoire local (la \emph{working copy}). Il faut ensuite faire un \texttt{commit} (voir \refsec{sec:commit}) pour valider les changements sur le serveur.
-\end{attention}
+Cette commande permet de récupérer le contenu du projet et de le copier dans un dossier \textbf{Formulaires} qui sera créé dans le dossier courant.
+
+\begin{definition}[Checkout]
+Opération d'extraction d'une version d'un projet du repository vers un répertoire de travail local.
+\end{definition}
+
+
+\subsection{Appliquer les changements qu'on vient de faire localement : commit}\index{commande svn!commit}\index{mise à jour local -> serveur}
+
+Pour mettre à jour les versions sur serveur à partir des modifications effectuées localement, il faut : 
+\begin{verbatim}
+svn commit -m "initialisation"
+\end{verbatim}
+où \textbf{"initialisation"} est le commentaire qui décrit la mise à jour et les modifications effectuées, \textbf{passwd} étant le mot de passe associé à votre identifiant (ici \textbf{autiwa@gmail.com} pour moi).
+
+
+
+
 
 
 
