@@ -20,8 +20,28 @@ escapechar=+}
 \clearpage
 
 \section{Préambule}
+Ceci est un tutoriel fortran 90, il a pour but de donner des astuces de programmations, des bonnes pratiques, présenter ce qui se faisait en fortran 77 et qu'il ne faut plus faire. 
 
+\section{Transition fortran 77/fortran 90}
+\subsection{Instructions obsolètes ou dépréciées}
 
+\begin{center}
+\begin{tabular}{ll}
+Obsolètes & Déprécié\\
+IF arithmétique & format fixe\\
+GO TO assigné & COMMON\\
+RETURN multiple & DATA au milieu des inst.\\
+FORMAT assigné & BLOCK DATA\\
+DO sur une même instruc. & EQUIVALENCE\\
+Index réel de boucle DO & GO TO calculé\\
+branchement sur END IF & INCLUDE\\
+PAUSE & ENTRY\\
+descripteur H & DOUBLE PRECISION\\
+ & Instructions Fonction\\
+ & SEQUENCE\\
+ & DO WHILE
+\end{tabular}
+\end{center}
 
 
 \end{document}
