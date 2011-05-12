@@ -1,0 +1,2755 @@
+\documentclass[a4paper,twoside]{article}
+\usepackage{autiwa}
+\title{Guide succint de \textsc{gnu}/Linux pour le débutant}
+\author{Autiwa}
+\makeindex
+
+\begin{document}
+\begin{titlepage}
+
+\begin{center}
+
+\vfill
+% Upper part of the page
+\includegraphics[width=0.15\textwidth]{pdf/logo-ubuntu.pdf}\hfill\includegraphics[width=0.15\textwidth]{pdf/logo-GNU.pdf}\hfill\includegraphics[width=0.15\textwidth]{pdf/logo-debian.pdf}\\[1cm]
+
+% Title
+\HRule \\[0.4cm]
+{ \huge \bfseries \makeatletter\@title\makeatother}\\[0.4cm]
+
+\HRule \\[0.75cm]
+{\large \today}\\[0.75cm]
+\makeatletter
+\@author
+\makeatother
+\vfill
+\abstract{Recueil des commandes et astuces que j'ai glané à droite à gauche au fil de mon apprentissage de Linux. Ceci s'adresse plutôt aux utilisateurs d'Ubuntu étant donné que ces astuces et commandes ont étés faites  et trouvées sous Ubuntu, mais certaines choses s'appliquent de manière générale.}
+\vfill
+
+% Bottom of the page
+
+
+\end{center}
+
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+
+
+\section{Astuces Générales}
+
+\subsection{Booter et installer GNU/Linux à partir d'une clé USB}
+Système>Administration>Créateur de disque de démarrage USB
+
+Sélectionnez l'.iso que vous souhaitez, et voilà !
+
+\subsection{Booter et installer GNU/Linux à partir d'une partition}\label{sec:hd-media}
+{\red Ne marche plus avec grub2}
+
+Le tutoriel utilisé est le suivant : \url{http://doc.ubuntu-fr.org/installation/sans_cd}
+
+Pour ma part, voici ce que j'ai fait :
+\begin{itemize}
+\item J'ai créé une partition de 5Gio formaté en ext3. (j'ai mis 5Gio pour que je puisse aussi booter sur une image DVD).
+\item Il faut copier l'image .iso à la racine de la partition.
+\item Il vous faut télécharger les fichiers \textbf{vmlinuz} et \textbf{initrd.gz} \texttt{hd-media} correspondant à votre architecture
+
+\begin{remarque}
+Actuellement, j'ai trouvé les deux fichiers à l'adresse suivante \url{http://archive.ubuntu.com/ubuntu/dists/intrepid/main/installer-i386/current/images/hd-media/}. À adapter suivant la version bien entendu.
+\end{remarque}
+\item Il faut créer le dossier \textbf{/boot} dans lequel on mettra les deux fichiers téléchargés plus haut.
+\item Ensuite, il faut éditer le menu de \gras{grub} et rajouter ceci :
+
+\begin{verbatim}
+title	Installation depuis Disque Dur
+uuid	2dac4c9f-4225-448b-926d-6001482d7af3
+kernel	/boot/vmlinuz root=/dev/ram0 ramdisk_size=13000
+initrd	/boot/initrd.gz
+\end{verbatim}
+
+où l'uuid est celle de la partition que j'ai créé à cet effet. Pensez à adapter selon votre cas.
+\end{itemize}
+
+\subsection{Cacher les icônes des partitions sur le bureau}
+Il faut utiliser pour celà \gras{gconf-editor}, installé par défaut. Si vous ne le voyez pas, il faut afficher l'icône \og editeur de configuration \fg   qui se trouve dans \og outils systèmes \fg.
+
+Pour ne pas afficher les icônes, il faut aller dans apps>nautilus>desktop et décocher \texttt{volumes\_visible}.
+
+\subsection{Cacher des fichiers sous Nautilus}
+
+Pour cacher un fichier sous \gras{GNU/Linux}, vous le savez probablement, il faut précéder son nom par un point. L'ennui, c'est qu'il arrive parfois qu'on ait besoin de cacher des fichiers dans notre gestionnaire de fichiers, sans pour autant avoir l'envie ou la possibilité de les précéder par un point (par exemple, car une application a besoin précisément de ce fichier ou répertoire, comme \textbf{VMWare}, qui vous crée le répertoire \textbf{vmware} dans votre répertoire utilisateur).
+
+Cacher des fichiers est parfois franchement utile pour gagner du temps lorsque vous naviguez dans vos différents dossiers. Qu'est-ce que c'est bien d'ouvrir son \textbf{HOME} (par exemple) et de ne voir que les fichiers et répertoires importants !
+
+Il existe dans \gras{Nautilus} une petite astuce permettant de cacher très facilement des fichiers !
+
+En gros, il suffit d'ouvrir le fichier \textbf{.hidden}, qui doit se trouver dans le répertoire contenant les fichiers que vous souhaitez cacher, puis d'y mettre la liste des fichiers qui vous intéressent !
+
+Supposons que vous souhaitez cacher le répertoire \textbf{Test} et le fichier \textbf{Hello.txt}, qui se trouvent dans le répertoire \textbf{/home/Documents/}.
+
+Éditez le fichier \textbf{/home/Documents/.hidden} pour y ajouter les lignes :
+\begin{verbatim}
+Hello.txt
+Test
+\end{verbatim}
+
+Ensuite, sauvegardez le contenu du fichier et ouvrez le répertoire \textbf{/home/Documents/} avec \gras{Nautilus} pour vérifier !
+
+\subsection{Connection distante (XDMCP)}
+Il m'est venu la lubie de me connecter à mon ordinateur fixe depuis l'extérieur, via son adresse IP. j'ai mis du temps à comprendre ce qu'il fallait faire, vu qu'au début, j'ai cherché du coté de vnc.
+
+Ce qui suit permet d'arriver à l'écran de connection et de s'authentifier sur la machine distante. Ceci de deux manières d'ailleurs, soit en session complète (la session du client va être une session distante), soit dans une fenêtre (la session distante sera simplement une fenêtre de la session locale du client.
+
+\bigskip
+
+Pour pouvoir se connecter à distance, il faut dans un premier temps activer la connexion à distance sur le serveur.
+
+\begin{remarque}
+J'appelle \textbf{serveur} l'ordinateur fixe sur lequel on souhaite se connecter, et \textbf{client} l'ordinateur sur depuis lequel on veut accéder à l'ordinateur distant.
+\end{remarque}
+
+Pour celà, il faut aller dans Système > Administration > Fenêtre de connexion et activer la connection à distance dans l'onglet prévu à cet effet. Choisissez l'option qui permet d'avoir une connection distante identique à la connection locale.
+
+Si vous êtes derrière un routeur comme c'est de plus en plus le cas avec les box, vous devez créer une règle qui va router le port 177 (UDP) du routeur vers le port 177 du serveur. Il se peut qu'il soit pratique de donner une IP locale fixe au serveur.
+
+\bigskip
+
+Ensuite, coté client, il suffit, à l'écran de connexion de sélectionner ``connexion distante via XDMCP'' et de donner l'IP locale ou distante du serveur.
+
+\begin{attention}
+Activer la connexion distante présente un sérieux risque de sécurité, en effet, n'importe qui connaissant l'IP du serveur peu accéder à l'écran de connexion. C'est pour celà que j'ai désactivé ça en attendant de savoir le faire passer via ssh.
+\end{attention}
+
+Pour se connecter au serveur dans une simple fenêtre, il faut installer \gras[programme!xnest]{Xnest}. Ensuite, il faut sélectionner le protocole XDMCP dans l'application \gras[programme!tsclient]{tsclient}. Si vous n'installez pas \gras[programme!xnest]{Xnest}, le protocole XDMCP ne sera tout simplement pas disponible dans la liste déroulante. Pour lancer \gras[programme!tsclient]{tsclient}, il faut généralement aller dans Applications > Internet > Terminal Server Client
+
+\bigskip
+
+Apparemment, il semble possible de lancer une application en particulier, et ce simplement avec ssh. Je n'ai pas encore testé, mais ça pourrait être intéressant.
+
+\subsection{Créer un .iso en ligne de commande}\index{Créer un .iso}
+\begin{verbatim}
+mkisofs -v -r -J -o image.iso path_of_your_file
+\end{verbatim}
+
+\begin{remarque}
+La ligne que j'utilise est celle-ci (en me plaçant dans le répertoire où je veux que l'iso soit enregistrée) :
+\begin{verbatim}
+mkisofs -v -r -J -o mon_fichier.iso /media/cdrom0
+\end{verbatim}
+\end{remarque}
+
+
+
+
+\subsection{Le Copier-coller sous GNU/Linux}
+Il existe, sous GNU/Linux, deux sortes de copier-coller. Le premier est celui que tout le monde connait avec \touche{Ctrl}+\touche{C} et \touche{Ctrl}+\touche{V} ou le menu contextuel.\par
+L'autre sorte est plus subtile. Elle autorise via un clic du milieu de la souris à coller le dernier texte à avoir été sélectionné. C'est pas forcément évident au début mais après une période d'apprentissage, on peut vite ne plus s'en passer.\par
+
+\subsection{Créer des modèles de documents}
+Pour créer des modèles de documents, il suffit de créer un dossier \textbf{Modèles} dans le répertoire utilisateur, le chemin de ce dossier sera donc \textbf{\texttildelow/Modèles/}
+
+Dans ce dossier, il suffit de créer des fichiers, ceux-ci seront considérés comme des modèles et s'ajouteront dans la liste déroulante lors de la création d'un nouveau fichier (par le clic droit par exemple).
+
+\begin{remarque}
+La première fois que j'ai fait cette manipulation, je n'ai eu besoin de rien modifier. Toutefois, j'ai dû le faire la deuxième fois. Il faut pour celà éditer le fichier \textbf{\texttildelow/.config/user-dirs.dirs} et modifier la variable \textbf{XDG\_TEMPLATES\_DIR} pour avoir la ligne suivante : \textbf{XDG\_TEMPLATES\_DIR="\$HOME/Modèles"}
+\end{remarque}
+
+\subsection{Dossiers Utiles}
+Il y a certains dossiers où il devient utile de connaître le chemin tant ils sont utilisés.
+
+\begin{tabular}{>{\bfseries}r<{}@{ : }p{9cm}}
+/usr/share/pixmaps & contient les images des icônes des programmes\\
+/usr/bin & contient des exécutables (ce qu'on lance dans la console) et vous pouvez en rajouter d'autres manuellement ici.\\
+/var/www & est le répertoire qui contient tout les dossiers et pages web du serveur web (apache ou autre)\\
+/usr/share/icons & contient à peu près tout les icones du systèmes. Les sous dossiers \textbf{scalables} contiennent les versions vectorielles en \textbf{.svg}. J'avoue que j'ai mis ça dans un coin pour aller me servir quand je veux certains trucs pour mes dessins vectoriels.
+\end{tabular}
+
+Les dossiers les plus utiles généralement, ce sont les dossiers de configuration des programmes, qui sont habituellement des dossiers cachés au nom relativement explicite dans votre dossier utilisateur. Seulement voilà, la norme, ou du moins la recommendation, c'est de mettre ces dossiers dans le dossier \textbf{/home/nom\_utilisateur/.config}. Donc il arrive qu'on ne puisse pas trouver certains dossiers de configuration. Pensez donc à regarder dans \textbf{.config}, ou dans les dossiers pour gnome. Voici maintenant une liste de dossier et programme pour lesquels le nom du dossier n'est pas le nom du programme :
+
+\begin{description}
+\item[Pidgin] \verb|.purple|
+\end{description}
+
+\subsection{Exécuter des tâches de manière périodique}
+\subsubsection{cron et anacron}\label{sec:cron}\index{programme!cron}\index{programme!anacron}
+
+Il existe pour cela \gras[programme!cron]{cron}, que l'on peut éditer en ligne de commande via \gras{crontab}. Il existe une interface graphique à ce programme que l'on peut installer :
+
+\begin{verbatim}
+sudo apt-get install gnome-schedule
+\end{verbatim}
+
+L'interface graphique étant suffisament explicite, et la documentation étant accessible en tapant
+
+\begin{verbatim}
+man crontab
+\end{verbatim}
+
+je ne détaille pas plus son fonctionnement. À noter tout de même que je n'ai pas réussi à lancer une tâche journalièrement. En effet, \textbf{@daily} permet de lancer une tâche tout les jours, mais celle-ci est lancée à heure fixe, c'est à dire 00h00. Dans mon cas, il arrive que mon ordinateur soit éteint à minuit, et donc la tâche ne se lance pas.
+
+Pour remédier à celà, il existe une \og sur-couche \fg nommée \gras[programme!anacron]{anacron}. Celle-ci se base sur les tâche \gras[programme!cron]{cron}, et les lances si leur lancement était à un instant où l'ordinateur n'était pas allumé.
+
+Pour éditer les lignes de lancement de tâches, il faut faire :
+
+\begin{verbatim}
+crontab -e
+\end{verbatim}
+
+\begin{remarque}
+On peut aussi utiliser \textbf{sudo crontab -e}, les tâches seront alors exécutées en tant que root. Celà dit, le répertoire par défaut sera le répertoire root, et le home \~ sera /root. Penser donc à ne pas utiliser \~ mais des chemins absolus pour avoir des fichiers accessibles. Si les deux disques gèrent les droits utilisateurs, \gras{rsync} permet de copier des fichiers root même en tant que simple utilisateur (j'en suis presque sur, mais pas totalement certain non plus. Après test, il se trouve qu'\gras[programme!rsync]{rsync} ne le fait pas chez moi.)
+\end{remarque}
+
+Les lignes sont de la forme suivante :
+
+\begin{verbatim}
+mm hh jj MMM JJJ tâche > log
+\end{verbatim}
+
+\begin{tabular}{>{\bfseries}r<{}@{ : }p{11cm}}
+mm & représente les minutes (de 0 à 59)\\
+hh & représente l'heure (de 0 à 23)\\
+jj & représente le numéro du jour du mois (de 1 à 31)\\
+MMM & représente le numéro du mois (de 1 à 12) ou l'abréviation du nom du mois (jan, feb, mar, apr, ...)\\
+JJJ & représente l'abréviation du nom du jour ou le chiffre correspondant au jour de la semaine (0 représente le dimanche, 1 représente le lundi, ...)\\
+tâche & représente la commande ou le script shell à exécuter\\
+log & représente le nom d'un fichier dans lequel stocker le journal des opérations. Si la clause \textbf{> log} n'est pas spécifiée, \gras{cron} enverra automatiquement un courriel de confirmation. Pour éviter cela il suffit de spécifier \textbf{> /dev/null}
+\end{tabular}
+
+\bigskip
+
+Pour chaque unité de temps (minute/heure/...) les notations sont possibles:
+
+\begin{tabular}{>{\bfseries}r<{}@{ : }p{11cm}}
+* & a chaque unité de temps\\
+2-5 & les unités de temps (2,3,4,5)\\
+*/3 & toutes les 3 unités de temps (0,3,6, \dots)\\
+5,8 & les unités de temps 5 et 8
+\end{tabular}
+
+\bigskip
+
+J'utilise cette ligne de commande, qui me lance le backup à 12h et à 19h tout les jours, et anacron s'occupera de la lancer si le lancement prévu était durant une période où l'ordinateur était éteint :
+
+\begin{footnotesize}\verb|00 12,19 * * *  /home/autiwa/scripts/backup_journalier.sh >/home/autiwa/backup_journalier.log|\end{footnotesize}
+
+Pour rajouter cette tâche en ligne de commande, il faut faire :
+\begin{footnotesize}
+\begin{verbatim}
+echo "00 */5 * * * autiwa /home/autiwa/scripts/cron/backup_journalier_desktop.sh"|sudo tee -a /etc/crontab
+\end{verbatim}
+\end{footnotesize}
+
+\begin{remarque}
+Notez la présence supplémentaire de ``autiwa'' qui signifie que le script sera lancé par moi. On peut aussi mettre ``root'' si on veut.
+\end{remarque}
+
+
+
+\subsubsection{fcron}\index{fcron}
+
+Il existe aussi \gras{fcron} qui semble convenir parfaitement à ce que je souhaite et semble être une évolution de \gras{cron} en paliant ses défauts. À tester donc.
+
+\begin{footnotesize}\verb|%daily * 6-23 /home/autiwa/scripts/backup_journalier.sh>/home/autiwa/log_backup_journalier.txt|\end{footnotesize}
+
+
+Cette ligne lance journalièrement la tache voulue. C'est à dire qu'il lancera la commande entre 6h et 23h59 (l'astérisque spécifie que le nombre de minutes est quelconque). En pratique, j'ai laissé tomber cette ligne parce qu'elle lançait la commande au démarrage, et ce avant même que mon disque dur externe sur lequel je souhaite faire le backup soit monté. Ce qui en pratique est fort fâcheux.
+
+Voici la ligne que j'utilise :
+
+\begin{footnotesize}\verb|&bootrun 0 12,19 * * * /home/autiwa/scripts/backup_journalier.sh>/home/autiwa/log_backup_journalier.txt|\end{footnotesize}
+
+Cette ligne permet l'exécution de la commande à 12h et à 19h, et elle lancera la commande au démarrage si celle-ci n'a pas pu être exécutée à l'heure prévue (en clair, si l'ordi est éteint à 19h, elle lancera la commande dès que l'ordinateur sera à nouveau allumé)
+
+
+\subsubsection{anacron}
+\gras[programme!anacron]{anacron} est une surcouche à \gras[programme!cron]{cron} si j'ai bien compris. En clair, pour définir les programmes à lancer, on utilise toujours cron, mais anacron va les gérer. En effet, un problème de cron est qu'il considère que l'ordinateur est lancé 24 heures sur 24, et donc si l'ordinateur est éteint au moment où aurait due être lancée la tâche, il ne l'aura purement et simplement pas lancée, alors qu'anacron va savoir qu'elle n'a pas été lancée et la lancera dès que l'ordinateur sera à nouveau sous tension.
+
+\begin{remarque}
+\gras[programme!anacron]{anacron} est installé de base dans Ubuntu.
+\end{remarque}
+
+Voir la section \refsec{sec:cron} pour plus de détails.
+
+\subsection{Fichiers Utiles}\index{fstab}\index{grub}
+
+\begin{tabular}{>{\bfseries}r<{}@{ : }p{9cm}}
+/ect/fstab & contient la table des partitions, avec les options de mount (dont celle qui les fait apparaitre au boot de l'ordi) \\
+/boot/grub/menu.lst & est le fichier qui contient les options de grub, le programme qui gère le multi boot. Entre autre, on peut rajouter des OS qui n'apparaissent pas encore ou modifier le temps d'attente avant le boot de l'OS par défaut.\\
+/etc/X11/xorg.conf & contient la configuration du serveur X et en particulier la config et le nom du pilote graphique utilisé.\\
+/etc/apt/sources.list & contient la liste des dépots pour l'installation et la mise à jour des programmes.\\
+\end{tabular}
+
+\subsection{Flasher un BIOS}
+Apparemment il est possible de flasher un bios directement depuis linux. Il suffit pour celà d'utiliser l'utilitaire \gras{flashrom}
+
+\url{http://doc.ubuntu-fr.org/flasher_le_bios}
+
+\subsection{Forcer la suppression des fichiers de la corbeille}\index{corbeille}
+Je me suis retrouvé avec un dossier que je n'arrivais pas à supprimer. Avec les droits root en mode graphique, j'ai fait planter mon ordi plusieurs fois. Alors qu'avec une petite ligne de commande bien choisie, ça m'a pris 3 secondes.
+
+J'ai d'abord mis du temps à trouver où était la corbeille. La corbeille du dossier home se trouve dans le dossier \textbf{\texttildelow/.local/share/Trash/files}
+
+\begin{verbatim}
+rm -r -f ~/.local/share/Trash/files/*
+\end{verbatim}
+
+\begin{remarque}
+Il est possible de mettre \textbf{sudo} devant, en cas de réticence du système à supprimer. Mais il faut bien faire attention, on peut facilement faire des bêtises avec un \textbf{sudo} mal placé.
+\end{remarque}
+
+
+
+\subsection{Installer les man-pages en français}
+Même le méta paquet pour mettre le système en français ne l'installe pas, alors pour le faire, il faut installer le paquet suivant, par exemple par la ligne de commande ci-dessous :
+
+\begin{verbatim}
+sudo apt-get install manpages-fr
+\end{verbatim}
+
+
+
+
+
+
+\subsection{La stégano pour les nuls}
+La stéganographie est un procédé qui permet de cacher un message \og secret \fg   dans un autre message sans éveiller les soupçons d'autrui. L'avantage de la stégano sur la crypto et qu'avec la crypto tout le monde voit que c'est crypté, ce qui va encore plus attirer l'\oe il. Si on cache le message crypté dans une image anodine cela devient parfait.
+
+Pour cela on peut jouer sur une propriété intéressante des fichiers ZIP. Leur \og header \fg  se trouve à la fin du fichier. Ainsi si on ouvre un \textbf{.zip} il va commencer par aller lire la fin du fichier, regarder la taille qu'indique le header et ignorer tout ce qui se trouve avant. La plus part des autres formats fonctionnent à l'opposé : le header est au début et tout ce qui se trouve après est ignoré. C'est le cas des \textbf{jpeg}, \textbf{png} et \textbf{gif}. La solution est donc simple :
+
+pour \og cacher \fg   : \verb|cat image_anodine.png secret_data.zip > image_avec_code.png|
+
+si vous \og lancez \fg   l'image, vous verrez votre bête image et rien d'autre.
+
+Pour récupérer vos données, faites simplement : \verb|unzip image_avec_code.png|
+
+\begin{remarque}
+Veillez à ce que la taille de vos données reste assez petite par rapport à la taille de l'image. Car une image de $300$x$200$ pixels qui fait $10$ Mio ça passe pas inaperçu.
+\end{remarque}
+
+
+
+
+\subsection{Raccourcis}
+\begin{tabular}{|>{\bfseries}r<{}|p{10cm}|}
+\hline
+\hline \touche{Ctrl}+\touche{Alt}+\touche{Del} & quitte le serveur X (il faut rester appuyé sur \touche{Ctrl}+\touche{Alt} et appuyer deux fois successivement sur \touche{Del}\\
+\hline \touche{Ctrl}+\touche{Alt}+\touche{F2} & Passe en mode console (donc plus de serveur X)\\
+\hline \touche{Ctrl}+\touche{Alt}+\touche{F7} & Repasse en mode graphique quand on est en mode console.\\
+\hline \touche{Alt}+\touche{F2} & Affiche une fenêtre pour lancer un programme soit préenregistré soit personnel. D'une manière générale, ça permet de lancer une commande.\\
+\hline
+\end{tabular}
+
+\subsubsection{Les raccourcis standards sous gnome}
+Si vous allez ensuite faire un tour dans \textbf{Système/Préférences/Raccourcis clavier}, vous allez pouvoir modifier le comportement standard du clavier Gnome. La manipulation est très simple, par exemple pour ouvrir une boite de dialogue de lancement d'exécutable sur la combinaison \touche{Ctrl}+\touche{Alt}+\touche{R}, il suffit d'aller sur la bonne ligne, de cliquer sur la colonne de droite, et de presser les touches correspondantes.
+
+En revanche, cela se corse pour la fameuse touche \touche{Win}. Si vous faites la même manipulation, seul le premier appui sur cette touche est mémorisé. Du coup, si vous vouliez que ce soit finalement \touche{Win}+\touche{R} qui lance votre boite d'exécution, elle va être lancée dés que vous appuyez sur \touche{Win}\dots La solution est donc :
+\begin{enumerate}
+\item Sélectionnez la ligne voulue (ex. Lancer une application).
+\item Cliquez sur la colonne de gauche.
+\item Pressez la touche \touche{Win}, ne relâchez pas.
+\item Cliquez une seconde fois sur la colonne de gauche.
+\item Pressez la seconde touche (ici \touche{e}), relâchez !!
+\end{enumerate}
+
+\subsection{Rajouter des polices de caractères}\index{police de caractère}
+On peut les rajouter pour tout les utilisateurs, mais l'inconvénient majeur, pour moi qui réinstalle relativement souvent mon système, c'est qu'il faut le refaire à chaque fois. Un moyen de contourner, c'est de mettre les fichiers au format \textbf{.ttf} dans le dossier \textbf{.fonts} du répertoire utilisateur (à savoir /home/login)
+
+\begin{remarque}
+S'il n'existe pas, créez le.
+\end{remarque}
+
+\subsection{Supprimer la boîte de dialogue de confirmation pour la fin de session, l'extinction et le redémarrage}
+Si vous en avez marre des 60 secondes à attendre quand vous demandez à éteindre l'ordinateur (ou devoir recliquer pour \og vraiment\fg éteindre, lancez \textbf{gconf-editor}. Allez dans \textbf{/Apps/indicator-session} et cochez la seule option disponible, qui est \texttt{suppress\_logout\_restart\_shutdown}.
+
+\subsection{Sélectionner des fichiers avec motif (dans Nautilus)}
+en rentrant des expressions du style \verb|*.gif| on sélectionne tout les fichiers avec l'extension \textbf{.gif}
+\begin{itemize}
+ \item \verb|"ac*"| : Tous les fichiers qui commencent avec "ac"
+\item \verb|"a*.txt"| : Tous les fichiers qui commencent avec "a" et qui finissent avec ".txt"
+\item \verb|"*a*x"| : Tous les fichiers qui contiennent le caractère "a" n'importe où, et qui finissent avec "x"
+\end{itemize}
+
+\subsection{Wifi capricieux}
+Si la connection se coupe et qu'il refuse de vous reconnecter au réseau ou des soucis de ce genre, il suffit dans la plupart des cas de redémarrer le service via :
+\begin{verbatim}
+sudo /etc/init.d/NetworkManager  restart
+\end{verbatim}
+
+\subsection{freeWifi}\index{freeWifi}
+Ce réseau est capricieux, parfois on ne peut pas se connecter au réseau (sans avoir l'occasion de rentrer ses identifiants donc), il faut être patient et réessayer régulièrement. Je met parfois plus de 2 ou 3 heures avant que la connection au réseau se fasse.
+
+Une fois connecté, vous vous rendrez sans doute compte que par défaut, vous ne pouvez pas poster de messages dans les forums, répondre à vos mails et des choses de ce genre, fort embêtantes. La solution est au final très simple, il faut que vous repériez le nom de votre carte wifi dans \verb|ifconfig|, puis faites
+\begin{verbatim}
+sudo ifconfig wlan0 mtu 1460
+\end{verbatim}
+où \texttt{wlan0} est le nom de MA carte wifi, ce qui est normalement le nom par défaut.
+
+\bigskip
+
+Pour remettre les choses comme avant, il suffit de faire
+\begin{verbatim}
+sudo ifconfig wlan0 mtu 1500
+\end{verbatim}
+
+
+\section{Configuration du système}
+\subsection{Remettre son système en l'état à partir d'une réinstallation fraiche}
+\begin{enumerate}
+\item modification du menu de grub pour mettre le temps à 3 secondes et modifier les autres systèmes si besoin (dans mon cas, j'ai aussi Kubuntu, et je renomme donc Ubuntu en Kubuntu dans mon menu pour que ce soit plus clair.
+\item Rajouter l'item pour \textbf{hd-media} :
+\begin{verbatim}
+title Autres Options
+root
+
+title  Installation depuis Disque Dur
+kernel (hd0,1)/boot/hd-media/vmlinuz root=/dev/ram0 ramdisk_size=13000
+initrd (hd0,1)/boot/hd-media/initrd.gz
+\end{verbatim}
+
+\item rajout des dépots dans mon sources.list. soit manuellement, soit en rentrant les informations depuis synaptics (medibuntu, wine HQ. Opéra en particulier, tant qu'il n'est pas dans le dépot partner)
+\begin{verbatim}
+deb http://deb.opera.com/opera/ stable non-free #Dépôt d'Opera
+\end{verbatim}
+\item dans synaptics :
+\begin{enumerate}
+\item cocher dans un même temps "installer les mises à jours de sécurité sans le demander". sélectionner aussi "mise à jour des versions normales au lieu de ne mettre à jours uniquement les LTS
+\item Dans l'onglet statistique, cocher la case qui permet de soumettre des informations à but statistique sur l'utilisation des programmes
+\end{enumerate}
+%\item clé médibuntu : wget -q http://packages.medibuntu.org/medibuntu-key.gpg -O- | sudo apt-key add -
+%\item clé wine HQ : wget -q http ://wine.budgetdedicated.com/apt/387EE263.gpg -O- | sudo apt-key add -
+\item clé opéra : wget -O - http://deb.opera.com/archive.key | sudo apt-key add -
+\item Système>Administration>fenêtre de connection dans l'onglet "sécurité" activer "connection automatique" (préciser l'utilisateur souhaité)
+\item clic droit sur l'icone du wifi. Et dans les propriétés de la connection wifi, activer le mode itinérant (ça permet de pouvoir se connecter à plusieurs réseaux wifi)
+\item on réinstalle les applications qu'on avait avant (que l'on aura préalablement sauvegardé sous forme de liste)
+
+% \begin{center}
+% \texttt{sudo apt-get install alltray audacity  evolution-plugins exfalso ffmpeg firefox flashplugin-nonfree gimp gftp geany gnudatalanguage gnumeric grace grisbi gstreamer0.10-alsa gstreamer0.10-ffmpeg gstreamer0.10-fluendo-mp3 gstreamer0.10-gnomevfs gstreamer0.10-pitfdll gstreamer0.10-plugins-bad gstreamer0.10-plugins-bad-multiverse gstreamer0.10-plugins-base gstreamer0.10-plugins-base-apps gstreamer0.10-plugins-good gstreamer0.10-plugins-ugly gstreamer0.10-plugins-ugly-multiverse gstreamer0.10-pulseaudio gstreamer0.10-sdl gstreamer0.10-tools gstreamer0.10-x gthumb imagemagick inkscape kate kate-plugins kile okular ksnapshot lame lame-extras
+% language-pack-fr language-pack-fr-base language-pack-gnome-fr language-pack-gnome-fr-base language-pack-kde-fr language-pack-kde-fr-base mail-notification mail-notification-evolution manpages-fr mplayer
+% nautilus-actions nautilus-cd-burner nautilus-data nautilus-gksu nautilus-image-converter nautilus-open-terminal nautilus-script-audio-convert nautilus-script-manager
+%  nautilus-sendto nautilus-share oggconvert opera quodlibet quodlibet-ext quodlibet-plugins smplayer smplayer-translations tex-common texlive-base texlive-base-bin texlive-common texlive-doc-base texlive-fonts-extra texlive-fonts-recommended texlive-generic-recommended texlive-lang-cyrillic texlive-lang-french texlive-latex-base texlive-latex-extra texlive-latex-recommended texlive-math-extra texlive-pictures texlive-pstricks
+% unrar vlc vorbis-tools w32codecs wine wxmaxima latex-beamer pdftk plplot9-driver-xwin python-numarray python-matplotlib python-lxml libflashsupport gparted digikam kipi-plugins emesene gajim anacron rawstudio lmodern qtpfsgui msn-pecan}
+% \end{center}
+
+\texttt{sudo apt-get install alltray geany avidemux quodlibet msn-pecan gftp qtoctave octave-signal gnumeric grace gthumb imagemagick inkscape kate okular ksnapshot smplayer nautilus-actions nautilus-cd-burner nautilus-data nautilus-gksu nautilus-image-converter nautilus-open-terminal nautilus-script-audio-convert opera pidgin unrar vlc wine latex-beamer pdftk digikam lmodern htop xcftools ecryptfs-utils pstoedit p7zip}
+%ecryptfs-utils c'est pour monter le dossier ~/Private
+%pstoedit pour avoir latex dans inkscape
+%p7zip permet de décompresser les archives au format .7z. Cette fonctionnalité est rajoutée automatiquement au file-roller ce qui fait qu'une fois installé, c'est totalement transparent pour l'utilisateur.
+
+\texttt{sudo apt-get install texlive-fonts-extra texlive-fonts-recommended texlive-latex-extra texlive-math-extra texlive-lang-french}
+% texlive-fonts-extra pour bbm.sty entre autre
+% texlive-fonts-recommended pour eurosym.sty entre autre
+% texlive-latex-extra pour tocbibind entre autre
+% texlive-math-extra pour mathtools entre autre
+% texlive-lang-french pour enlever le warning de babel sur les hyphénations entre autre.
+%TODO désactiver "traiter les paquets recommandés comme dépendance" pour installer kile, mais réussir à le faire via une ligne apt-get install, pour que ça soit plus pratique. Poser la question sur le forum s'il faut.
+\texttt{sudo apt-get install kile grisbi --no-install-recommends}
+
+% plplot9-driver-xwin permet d'afficher dans un terminal un plot de gdl (marche pas sans, et parait que ça marche avec. Apparament, il s'installe maintenant automatiquement à l'installation de gnudatalanguage. Peut-être une dépendance ou un paquet conseillé. )
+%python-lxml permet d'avoir des fonctionnalités en plus pour inkscape, je pense en particulier aux effets de niveau de gris et cie
+%libflashsupport pour le support de flash au niveau de pulseaudio.
+%
+%kipi-plugins rajoute des plugins de traitement par lot pour digikam, notament pour renommer en masse des fichiers.
+%gajim : client jabber
+%anacron : cron en version améliorée.
+%lmodern : des fontes pour latex, améliorations de celles par défaut qui est computer modern.
+%qtpfsgui : pour faire des images hdr
+%rawstudio : pour développer des RAW
+%gnumeric-gtk : j'avais installé ça à la place de gnumeric parce que je ne pouvais pas tracer de courbes, mais je l'ai pas remis, au cas où gnumeric suffise.
+%msn-pecan : pour rajouter le protocole (WLM), qui apparemment marche mieux que le protocole MSN pour pidgin. Je viens de l'installer, donc je sais pas pour l'instant. Il se trouve dans le dépot universe apparemment.
+%screenlets : pour rajouter des screnlet sur le bureau, et donc pouvoir utiliser le truc des notes.
+%htop est un ``top'' amélioré
+%xcftools contient xcf2png qui permet de convertir du gimp en png (en particulier pour mon script)
+\item on installe le paquet \textbf{autiwa.sty} et comme je prévoie, je ne met qu'un lien virtuel dans le répertoire root et je garde le fichier dans le dossier \verb|~/.latex|
+
+\begin{verbatim}
+cd /usr/share/texmf-texlive/tex/latex/
+sudo ln -s -d ~/.latex autiwa
+sudo texhash
+\end{verbatim}
+
+\begin{remarque}
+Je fais un lien vers le dossier tout entier finalement, ça me permet de rajouter des fichiers dans le dossiers et qu'ils soient automatiquement dans le dossier latex. Tels des fichiers de styles ou autres, ou pourquoi pas s'il me vient à l'idée de créer plusieurs paquets.
+\end{remarque}
+\item installer métamorphose via le \textbf{.deb} qui se trouve dans \texttt{downloads/programmes} puis exécuter les lignes suivantes pour avoir les anciens fichiers de configuration.
+\begin{verbatim}
+cd /usr/share/metamorphose2/configs
+sudo ln -s -d ~/.metamorphose2/configs config
+\end{verbatim}
+\item préparer la sauvegarde automatique des fichiers importants et configurations des programmes critiques (evolution, kile et cie). Pour celà, il faut lancer journalièrement le script créé qui s'appelle \texttt{backup\_journalier.sh}. On doit donc lancer ce script. Par défaut, il existe sous Ubuntu un démon, \gras{cron}. On doit lancer ce script en tant que root. En effet, on sauvegarde des fichiers ayant les droits root. On fait donc dans une console :
+
+% \begin{verbatim}
+% sudo crontab -e
+% \end{verbatim}
+%
+% Ceci lance dans l'éditeur vim le fichier permettant de configurer les lancements automatiques. On ajoute la ligne suivante :\\
+% \verb|00 19 * * *  /home/autiwa/scripts/backup_journalier.sh >log_backup_journalier.txt|. \\Une fois fait, on fait \verb|Ctrl+X|, on appuie sur \verb|O| pour confirmer qu'on veut enregistrer les changements et voilà! De plus, on lance crontab en tant que root, donc prudence en utilisant les variables telles que \texttt{\texttildelow} qui renvoient peut-être à \verb|/root|. En fait, on peut peut-être faire des backups de fichiers \textbf{root} en étant utilisateur normal, mais il faut que le disque d'arrivée soit aussi en \textbf{ext3}, histoire que les droits soient conservés. %suis en train de tester.
+
+\begin{verbatim}
+echo "00 */5 * * * autiwa /home/autiwa/scripts/cron/backup_journalier_desktop.sh"|sudo tee -a /etc/crontab
+\end{verbatim}
+
+
+\begin{remarque}
+Pour vérifier si ça marche, regarder dans votre home que le log existe.
+\end{remarque}
+%TODO j'utilise fcron maintenant je crois...
+
+\item réactiver la combinaison de touche \touche{Ctrl}+\touche{Alt}+\touche{Backspace} en faisant
+\begin{verbatim}
+utilisateur@machine:~$ echo "setxkbmap -option terminate:ctrl_alt_bksp" >> ~/.xinitrc
+\end{verbatim}
+
+Fermez votre session, puis ouvrez-la à nouveau pour que votre nouvelle configuration soit prise en compte.
+
+% Sous GNOME (Ubuntu)
+%
+%    1.
+%       Rendez-vous dans Système → Préférences → Clavier ;
+%    2.
+%       Sélectionnez l'onglet Agencements et appuyez sur le bouton Options de l'agencement ;
+%    3.
+%       Déroulez la liste Séquence de touches pour fermer le serveur X et cochez la case Control + Alt + Eff. arrière ;
+%    4.
+%       Fermez l'outil de configuration de l'agencement du clavier.
+
+
+\item rajouter les polices qu'on veut dans le dossier \texttt{.fonts} du répertoire utilisateur que vous pouvez créer s'il n'existe pas.
+
+\item créer un lien symbolique pour les scripts dans le dossier nautilus-scripts
+\begin{verbatim}
+cd ~/.gnome2
+ln -s -d ~/scripts nautilus-scripts
+\end{verbatim}
+
+\item modifier le thème root pour nautilus de sorte à savoir quand nautilus est lancé en session root. Pour celà, avec nautilus lancé en mode root, allez dans Édition> Arrière plan et emblèmes. Puis sélectionnez, par exemple, une couleur rouge (j'ai pris rubis pour ma part) et faites la glisser sur le répertoire courant. Et voilà, maintenant vous savez différencier les deux de manière visuelle et très rapide (au lieu de regarder si le nom du home est root).
+
+\end{enumerate}
+
+\subsection{Nettoyer son système}
+
+\begin{verbatim}
+sudo apt-get autoclean
+sudo apt-get clean
+\end{verbatim}
+
+
+\subsection{Pilote de Carte Graphique}
+\verb|sudo dpkg-reconfigure -phigh xserver-xorg|
+
+Permet de générer à nouveau \textbf{xorg.conf}. Utile quand changement de pilote ou modif manuelles en cas de plantage du serveur X
+
+\subsection{Regénérer le menu de multiboot de Grub}
+\verb|sudo update-grub| génère un nouveau fichier \verb|/boot/grub/menu.lst|.
+
+\subsection{Reconfigurer les paquets défectueux}
+\verb|sudo dpkg-reconfigure wine| reconfigure wine. \`A la place, on peut mettre n'importe quel paquet déjà installé, et on peut en mettre plusieurs séparés par un espace.
+
+\subsection{Relancer nautilus}
+Quand on a modifié les scripts nautilus, voire les actions, ou autre chose qui nécessite de le relancer, on peut utiliser la commande suivante :
+\begin{verbatim}
+nautilus --restart
+\end{verbatim}
+
+\subsection{Relancer le serveur apache2}
+Pour appliquer les modifications aux fichiers de configuration, il faut relancer le serveur, pour celà :
+\begin{verbatim}
+sudo /etc/init.d/apache2 reload
+\end{verbatim}
+
+
+
+\subsection{Sauver et Restaurer la liste des paquets}
+\subsubsection{Sauvegarde}
+
+Récupérez la liste des paquets installés sur le système :\\
+\verb#dpkg --get-selections | grep -v deinstall > ubuntu-files#
+
+Cela crée un fichier \textbf{ubuntu-files} dans le répertoire courant. Il contient la liste des paquets installés. Copiez ce fichier et le fichier \verb|/etc/apt/sources.list| sur une disquette, un CD ou une clé USB.
+\subsubsection{Restauration}
+
+Après une nouvelle installation, vous configurerez votre connexion Internet. Puis, vous copiez votre \textbf{ubuntu-files} dans votre dossier d'utilisateur courant ainsi que le \textbf{sources.list} dans \verb|/etc/apt|
+
+Vous récupérez et installez vos paquets avec les commandes suivantes dans une console :
+
+\begin{verbatim}
+sudo apt-get update
+sudo apt-get dist-upgrade
+dpkg --set-selections < ubuntu-files
+sudo dselect
+\end{verbatim}
+
+Voilà, tout est récupéré et installé, il ne vous reste qu'à configurer et paramétrer vos différentes applications.
+
+\subsection{Mise à Jour Vers une Version Ultérieure}
+Ceci concerne \gras{Ubuntu} qui se trouve être la distribution de \gras{GNU/Linux} que j'utilise. Pour mettre à jour, par exemple la version 7.04 Feisty Fawn, vers la version 7.10 Gutsy Gibbon, il suffit de taper dans un terminal la commande suivante :
+
+\verb|update-manager -d|
+
+\subsection{Redémarrer nautilus}
+C'est pratique quand on a modifié les actions nautilus ou d'autres choses du style, il suffit de taper la commande suivante en console :
+
+\begin{verbatim}
+nautilus --restart
+\end{verbatim}
+
+\subsection{Quelques commandes pour débloquer le système}
+Ce petit guide explique quelques combinaisons de touches à utiliser lorsqu'un système Linux est completement bloqué.
+
+
+La plupart des commandes citées ci-dessous utilisent la touche \touche{Magic SysRq Key}. Cette dernière correspond à la touche \touche{Impr écran} de votre clavier :
+
+\subsubsection{Activation / Désactivation de SysRq}
+
+Il faudra absolument que le noyau de votre Linux soit compilé avec l'option "Magic SysRq Key" pour que cette touche fonctionne. La plupart des distributions récentes font cela par défaut aujourd'hui.
+
+On pourra ensuite vérifier l'activation de cette touche via la commande suivante :
+\begin{verbatim}
+    # cat /proc/sys/kernel/sysrq
+    0
+\end{verbatim}
+
+Ici, zéro signifie que cette dernière n'a pas été activée\footnote{dans la plus part des distributions, l'utilisation de la touche SysRq n'est pas activée par défaut pour des raisons de sécurité. En effet, quelqu'un qui aurait un accès physique à la machine, pourrait facilement la redémarrer via une combinaison de touches et compromettre cette dernière ensuite.}. On pourra changer dynamiquement cette valeur comme ceci :
+\begin{verbatim}
+    # echo "1" > /proc/sys/kernel/sysrq
+\end{verbatim}
+
+Si l'on veut activer l'utilisation du SysRq automatiquement au démarrage de la machine, on pourra éditer le fichier /etc/sysctl.conf et mettre l'option sysrq à 1 :
+\begin{verbatim}
+    kernel.sysrq = 1
+\end{verbatim}
+
+\subsubsection{Les commandes}
+
+\touche{Alt} + \touche{SysRq} + \touche{r} : met le clavier en mode 'raw'. Ceci est pratique notamment lorsque le clavier et la souris sont complètement bloqués. En passant sur ce mode, on peut de nouveau utiliser les touches pour saisir des commandes.
+
+\touche{Ctrl} + \touche{Alt} + \touche{F1} à \touche{F7} : permet de naviguer à travers les consoles en mode texte (appelées aussi tty)\\
+\touche{Ctrl} + \touche{Alt} + \touche{Backspace} : arrête l'interface graphique, on pourra la relancer ensuite avec la commande startx
+
+\touche{Alt} + \touche{SysRq} + \touche{s} : écrit toutes les données en cours sur le disque dur afin d'éviter les pertes ou les corruptions de fichiers\\
+\touche{Alt} + \touche{SysRq} + \touche{u} : permet de remonter tous les systèmes de fichiers en lecture seule pour éviter la corruption de données
+
+\touche{Alt} + \touche{SysRq} + \touche{e} : tue tous les processus normalement (le processus init n'est pas concerné)\\
+\touche{Alt} + \touche{SysRq} + \touche{i} : force le kill de tous les processus (le processus init n'est pas concerné)\\
+\touche{Alt} + \touche{SysRq} + \touche{l} : même chose que la précédente, sauf que le processus init est concerné ici
+
+\touche{Alt} + \touche{SysRq} + \touche{b} : redémarre le système\\
+\touche{Alt} + \touche{SysRq} + \touche{o} : arrête le système
+
+\section{Gestions des disques dur et partitions}
+\subsection{Nommer automatiquement certains périphériques montés}
+\subsubsection{Première technique : marche pas?}
+Il est possible, par exemple, de monter dans \texttt{/media/backup} un disque dur de sauvegarde en créant des règles. Ces règles sont gérées par un programme nommé \texttt{udev} (la documentation de celui-ci donnera de plus ample précision sur ce que je m'apprête à décrire. Les règles sont contenues dans les fichiers du dossier \texttt{/etc/udev/rules.d/}. Comme les fichiers sont triés dans l'ordre alphabétique et que l'ordre des règles peut avoir une importance, il est souhaitable que notre fichier dans lequel seront nos règles soit vu en premier. Donc, dans mon exemple, je reprends le nom de la documentation qui se trouve être \texttt{/etc/udev/rules.d/10-local.rules}
+
+Dans ce fichier, je souhaite mettre les règles nécessaires au nommage de mon disque dur de sauvegarde dans un premier temps, puis dans la suite, peut-être mon appareil photo et ma clé usb.
+
+Il y a plusieurs règles de bases que je ne détaille pas plus. Je m'intéresse ici aux informations acquises grâce à la commande \verb|udevinfo -a -p /sys/block/sda|. Celle-ci nous donne directement les informations liées au disque \texttt{/dev/sda}.
+
+Dans mon exemple, mon disque de sauvegarde était alors monté en troisième (\texttt{sdc} donc). J'ai extrait deux informations pour avoir la ligne de règle suivante :
+\begin{verbatim}
+BUS=="scsi", ATTRS{model}=="HD501LJ", NAME="backup"
+\end{verbatim}
+\subsubsection{Directement dans les propriétées}
+Après avoir testé sans succès la première méthode en utilisant \texttt{udev}, j'ai trouvé un peu par hasard une deuxième méthode qui a le mérite d'être très simple et de marcher.
+
+Il suffit de lancer le \texttt{Poste de Travail} qui se situe dans le menu \textbf{Raccourcis} de la barre de tâches. Il faut au préalable connecter le disque externe (disque dur, appareil photo ou clé usb). Il faut faire clic droit sur le disque concerné et lancer les propriétés. Dans l'onglet \textbf{Volume}, dans les options avancées, on peut spécifier le point de montage. Pour mon cas, j'ai spécifié \texttt{backup}. En effet, j'ai eu un message d'erreur quand j'ai voulu spécifier \texttt{/media/backup} et après vérification, en spécifiant uniquement \textbf{backup} le disque se monte bien dans le dossier \textbf{/media/backup}
+
+\subsubsection{En utilisant les labels}
+Marche pour les partitions ext3. En utilisant la commande suivante :
+
+\begin{verbatim}
+sudo e2label /dev/sdb1 stockage
+\end{verbatim}
+
+Pour vérifier que le label a marché, on tape :
+
+\begin{verbatim}
+sudo vol_id /dev/sdb1
+\end{verbatim}
+
+\begin{remarque}
+\texttt{/dev/sdb1} fait référence à la première partition du deuxième disque dur (1 pour la première partition, et b pour le deuxième disque. Si ça ne vous évoque rien, renseignez vous sur ça avant de faire quoi que ce soit.)
+\end{remarque}
+
+\subsubsection{Nommer une partition FAT}
+Il faut pour celà le paquet \gras{mtools}, et on tape la commande :
+
+\begin{verbatim}
+sudo mlabel -i /dev/sdc1 : :cle_autiwa
+\end{verbatim}
+
+\texttt{/dev/sdc1} identifie la partition à laquelle on souhaite attribuer le nom \texttt{cle\_autiwa}
+
+\subsection{UUID des partitions}
+Il y a plusieurs méthodes, la première est très simple, et liste les partitions ainsi que leur \gras{UUID} :\\
+\verb|ls -l /dev/disk/by-uuid/|
+
+La première commande retourne ça pour moi :
+
+\begin{small}\begin{verbatim}
+total 0
+lrwxrwxrwx 1 root root 10 2008-03-05 10 :00 36ee0e1f-0dc3-4add-a1b0-b618a038a97e -> ../../sda8
+lrwxrwxrwx 1 root root 10 2008-03-05 10 :00 76fa693b-393c-416e-8f88-43012c4d393b -> ../../sda7
+lrwxrwxrwx 1 root root 10 2008-03-05 10 :00 7f909eab-3f95-4b90-b353-7ca94322a1cf -> ../../sda4
+lrwxrwxrwx 1 root root 10 2008-03-05 10 :00 8c193936-b29c-4c05-a0b7-e95615443edf -> ../../sda5
+lrwxrwxrwx 1 root root 10 2008-03-05 09 :00 BE70D32570D2E367 -> ../../sdb1
+lrwxrwxrwx 1 root root 10 2008-03-05 10 :00 fcfda05c-581e-40cb-9a1b-1201e8f8eada -> ../../sda6
+\end{verbatim}\end{small}
+
+Les deuxièmes et troisièmes permettent de déterminer l'\gras{UUID} d'une partition :
+
+\begin{verbatim}
+sudo vol_id -u /dev/sdc1
+sudo blkid /dev/sda6
+\end{verbatim}
+
+
+\subsection{Modification des Partitions}
+Chaque fois que l'on modifie les partitions, par exemple changer \verb|/dev/sda6| de FAT32 à ext3, l'UUID de la partition change. Il faut donc mettre à jour le fichier \verb|/ect/fstab|.Pour connaître l'UUID d'une partition, il faut taper :\\
+\verb|sudo blkid /dev/sda6|
+
+\begin{remarque}
+Le \textbf{sudo} n'est pas obligatoire, mais sans lui, il se contente d'afficher le résultat de la dernière fois que la commande a été lancée avec les droits administrateurs.
+\end{remarque}
+
+Si la partition est une partition bootable, il faut aussi mettre à jour le fichier \verb|/boot/grub/menu.lst|.
+
+Par exemple pour un disque dur externe que l'on souhaite monter à chaque démarrage, voici la commande que j'ai utilisé :\\
+\verb|UUID=BE70D32570D2E367 /media/stockage ntfs-3g silent,umask=0,locale=fr_FR.UTF-8 0 0|
+
+\subsection{Cacher certaines icônes de partition dans nautilus}
+Je trouve ennuyeux de toujours avoir toutes les icônes de mes partitions dans nautilus. La solution ci-dessous permet de spécifier des partitions que l'on va ignorer lors de l'affichage des icônes pour nautilus. (et plus généralement pour n'importe qu'elle navigateur de dossier je crois) Pour ne plus qu'elle apparaisse du tout, il faut dire à hal de l'ignorer dans sa phase d'auto détection. Pour cela :
+
+
+\begin{verbatim}
+sudo mkdir /usr/share/hal/fdi/preprobe/95userpolicy
+sudo gedit /usr/share/hal/fdi/preprobe/95userpolicy/10ignore-disks.fdi
+\end{verbatim}
+
+et insérer dans le fichier ainsi créé :
+
+\begin{verbatim}
+<?xml version="1.0" encoding="UTF-8"?>
+<deviceinfo version="0.2">
+<device>
+<match key="block.device" string="/dev/hda5">
+<merge key="info.ignore" type="bool">true</merge>
+</match>
+</device>
+<device>
+<match key="block.device" string="/dev/hdb3">
+<merge key="info.ignore" type="bool">true</merge>
+</match>
+</device>
+</deviceinfo>
+\end{verbatim}
+
+\begin{remarque}
+J'ai testé cette ligne récemment :
+
+\texttt{<merge key="volume.ignore" type="bool">true</merge>}
+\end{remarque}
+
+(en remplaçant \texttt{/dev/hda5} et \texttt{hdb3} par les partitions que vous ne voulez pas voir. Ou peut bien sûr supprimer la deuxième section \texttt{<device>...</device>} ou en ajouter d'autres au besoin)
+
+Pour prendre ce changement en compte, il suffit de redémarrer (on est pas obligé, mais le reste est un peu lourd, je préfère redémarrer pour ma part.)
+
+Pour le fichier xml, on peut aussi gérer ça par UUID ce qui donne pour une partition, les lignes suivantes :
+\begin{verbatim}
+<device>
+<match key="volume.uuid" string="76fa693b-393c-416e-8f88-43012c4d393b">
+<merge key="info.ignore" type="bool">true</merge>
+</match>
+</device>
+\end{verbatim}
+
+\begin{remarque}
+Pour moi, ça ne change rien pour le nautilus classique, les choses ne changent que pour nautilus quand je le lance en mode root.
+\end{remarque}
+
+Pour prendre ce changement en compte :
+
+\begin{verbatim}
+sudo /etc/init.d/dbus restart
+\end{verbatim}
+
+puis fermer sa session et la réouvrir.
+
+\subsection{Tester et réparer ses partitions}
+Par expérience, je me suis rendu compte que c'était beaucoup plus pratique de faire ça depuis un live CD. Pour ma part, vu que j'aime pas graver, j'ai une option dans grub qui me permet d'émuler un CD via une partition \textbf{hd-media} crée pour ça (voir \refsec{sec:hd-media} pour plus de détails).
+
+%TODO mettre la commande de la feuille imprimée à montpouillan
+
+\section{\'Equivalents windows}
+En fait, rigoureusement, j'aurais pu nommer la section autrement. Vu que je vais regrouper les programmes par catégorie et dire lesquels je préfère. Mais ça sera plus utiles pour ceux qui cherchent des équivalents windows que pour les autres.
+{\red La liste ne concerne que mes choix, je ne parle pas de tout, le meilleur moyen de trouver ses préférences est de tester soi même et de choisir en fonction de ses propres exigences}
+
+\subsection{Accélérateur de Téléchargement : ?}
+Là aussi, j'en ai essayé un bon paquet, je voulait un équivalent à flashget, et j'ai donc logiquement essayé \gras[logiciel!kget]{Kget}, \gras[logiciel!kwget]{Kwget} et toute la clique, aucun ne me plaisait. Je voulais utiliser l'extension \gras{Flashgot} pour firefox et donc avoir la compatibilité, mais ça marchait véritablement avec aucun, je veux dire que j'arrivais pas à télécharger une sélection de lien convenablement.
+
+Puis j'ai essayé \gras[logiciel!aria]{Aria}, autant le dire de suite, ce programme est super moche graphiquement, mais il a au moins l'avantage d'avoir une interface graphique ce qui n'est pas le cas de tout les programmes cité ci dessus. Un seul inconvénient pour moi c'est que j'ai parfois du mal à cliquer sur la confirmation dans le pop-up pour choisir où enregistrer les fichiers quand je viens de \gras{Flashgot}, je suis obligé d'aller dans le répertoire parent, et de double cliquer sur le dossier que je souhaite pour pouvoir confirmer par la suite, en fait, il faut faire un clic de souris dans le lieu ou les dossiers s'affichent, mais si on n'a pas de fichiers dans ce répertoire là, on doit revenir en arrière pour pouvoir cliquer (je sais pas si je suis très clair\dots)
+
+\subsection{Calcul formel : Xcas}
+\subsubsection{Xcas}
+\gras[logiciel!maple]{Maple} est un logiciel de calcul formel qui n'est plus à présenter, mais malheureusement payant (et peut-être non disponible sous \bsc{gnu}/Linux, en tout cas je ne me suis pas posé la question). \gras[logiciel!xcas]{Xcas} semble être une sorte d'alternative libre  et disponible notamment sous \bsc{gnu}/Linux. Pour l'installer, on peut ajouter un dépot :
+
+\begin{verbatim}
+deb http://www-fourier.ujf-grenoble.fr/~parisse/debian/ stable main
+\end{verbatim}
+
+puis taper la commande dans une console :
+
+\begin{verbatim}
+sudo apt-get update
+sudo apt-get install giac
+\end{verbatim}
+
+\source{http://www-fourier.ujf-grenoble.fr/\~parisse/install\_fr\#packages}
+
+\subsubsection{Wxmaxima}\index{logiciel!wxmaxima}
+C'est le logiciel que j'utilise pour l'instant, j'ai mis un peu de temps à comprendre, vu qu'à force d'utiliser 50 logiciels différents pour les mêmes fonctions, on finit par confondre les syntaxes. Voici quelques exemples de bases d'utilisation, que ce soit affectation de variables, utilisation de variable, ou tracé de courbe 2D et 3D.
+
+\paragraph{Constantes préféfinies}\label{maxima:constantes}
+Il existe dans maxima des constantes prédéfinies. Elles se distinguent des autres variables par le fait qu'on les utilise avec le signe \og \% \fg devant.
+
+
+
+\begin{tabular}{rl}
+$\pi$&\%pi\\
+$e$ (nombre de néper)&\%e\\
+$i$ tel que $i^2=-1$&\%i
+\end{tabular}
+
+\paragraph{Définir une variable et l'utiliser}
+
+Pour définir une variable $x$, il suffit de taper :
+
+\begin{verbatim}
+x:3.5e-9
+\end{verbatim}
+
+\begin{remarque}
+Par exemple, si ici $x$ représente pour nous une longueur, on aurait donc $x$ qui vaut $3,5\unit{nm}$.
+\end{remarque}
+
+Pour utiliser $x$ dans une expression, il suffit de rentrer :
+
+\begin{verbatim}
+cos(x*%pi)
+\end{verbatim}
+
+\begin{remarque}
+Ici, \%pi est la variable $\pi$. Certaines constantes sont directement définies dans maxima, voir partie (\ref{maxima:constantes}).
+\end{remarque}
+
+\paragraph{Définir une fonction}
+Pour définir $f(x)$ :
+\begin{verbatim}
+f(x):=x^2
+\end{verbatim}
+
+
+\paragraph{Pour tracer une courbe en 2D}
+
+Voici un exemple de commandes à taper pour avoir une courbe en 2D :
+
+\begin{verbatim}
+plot2d (sin(x), [x, -5, 5])
+plot2d (sec(x), [x, -2, 2], [y, -20, 20], [nticks, 200])
+\end{verbatim}
+
+\paragraph{Pour tracer une courbe en 3D}
+
+Voici un exemple de commandes à taper pour avoir une courbe en 3D :
+
+\begin{verbatim}
+expr_1: cos(y)*(10.0+6*cos(x));
+expr_2: sin(y)*(10.0+6*cos(x));
+expr_3: -6*sin(x);
+plot3d ([expr_1, expr_2, expr_3], [x, 0, 2*%pi],
+[y, 0, 2*%pi], ['grid, 40, 40]);
+\end{verbatim}
+
+Pour enregistrer cette courbe dans un fichier, il faut taper :
+
+\begin{verbatim}
+expr_1: cos(y)*(10.0+6*cos(x));
+expr_2: sin(y)*(10.0+6*cos(x));
+expr_3: -6*sin(x);
+plot3d ([expr_1, expr_2, expr_3], [x, 0, 2*%pi],
+[y, 0, 2*%pi], ['grid, 40, 40], [gnuplot_term, ps],
+[gnuplot_out_file, "/home/autiwa/plot3d.eps"]);
+\end{verbatim}
+
+\begin{remarque}
+J'ai essayé de tracer directement dans un \textbf{.svg}, mais il semble que le \textbf{.svg} soit corrompu. À confirmer donc.
+
+J'avais utilisé les options suivantes :
+
+\texttt{[gnuplot\_term, svg], [gnuplot\_out\_file, "/home/autiwa/plot3d.svg"]}
+\end{remarque}
+
+\subsubsection{Octave/scilab}\index{logiciel!octave}\index{logiciel!scilab}
+Voir la section \refsec{sec:matlab}
+
+\subsection{Client Mail : Evolution}
+\gras[logiciel!thunderbird]{Thunderbird} me plait beaucoup. Celà dit, tout comme firefox, certaines extensions ne marchent pas sous GNU/Linux, notament \gras{minimize to tray}. Il existe aussi \gras[logiciel!evolution]{evolution} et après l'avoir testé, je le trouve beaucoup mieux intégré à gnome que thunderbird. Je le conseille sous gnome. Mais je suis passé récement à \gras{KDE}, et j'ai préféré prendre un client mail KDE (\gras[logiciel!kmail]{Kmail}) pour une question de rapidité et d'intégration, et depuis quelques temps, j'en viens presque à le préférer qu'\gras[logiciel!evolution]{evolution}. Finalement repassé sous gnome, ayant été déçu par KDE que je trouve trop compliqué et fouilli, et buguant (surtout KDE4 à sa sortie stable), je reprends evolution.
+
+\begin{remarque}
+Pour faire une sauvegarde complète vous devez copier ces répertoires :
+\begin{itemize}
+\item  \verb|~/.evolution/|
+\item  \verb|~/.gconf/apps/evolution/|
+\item  \verb|~/.gnome2_private/Evolution|
+\end{itemize}
+\end{remarque}
+
+
+\subsection{Comptabilité : Grisbi}
+J'utilisais \gras[logiciel!money]{Money} dans le temps sous windows, puis un logiciel libre dont j'ai oublié le nom, et quand je suis passé sous GNU/Linux, j'ai parcouru les logiciels disponibles, et j'ai opté pour \gras[logiciel!grisbi]{Grisbi}. Je l'avais essayé sous windows dans le temps et il ne m'avait pas plu du tout. Sous GNU/Linux, le courage et le sens de l'effort sous le bras, je m'y suis mis plus sérieusement, et j'ai bien fait, passé une semaine pour comprendre comment ça fonctionne et que sans faire les rapprochement tout les mois avec les relevés, le logiciel n'est pratiquement pas utilisé, je suis content d'avoir insisté.
+
+\subsection{Dessin Vectoriel : Inkscape}\index{logiciel!inkscape}
+J'utilisais pas de logiciel de dessin vectoriel sous windows, mais petit à petit, pour les besoins de \LaTeX, j'ai voulu faire des schémas propres, et je me suis mis à \gras[logiciel!inkscape]{Inkscape} pour exporter ensuite mes schémas en .pdf
+
+\subsubsection{Indices et exposants (subscript, superscript)}
+À première vue, il n'y a rien dans Inkscape qui permet de faire cela. Il existe un moyen un peu détourner de le réaliser cependant. Il suffit d'écrire normalement, puis de sélectionner la partie que l'on souhaite mettre en indice ou en exposant. Ensuite, à l'aide de \touche{Alt}+\touche{\textuparrow} et \touche{Alt}+\touche{\textdownarrow}, on peut mettre en indice ou exposant en appuyant plusieurs fois (pour ma part, je mets une police plus petite de 4 points, et je descend ou monte de 7 ou 8 \og coups\fg (comprendre que je fais 7 fois le raccourci précédemment évoqué).
+
+\subsubsection[LaTeX avec Inkscape]{\LaTeX avec Inkscape}
+Pour avoir l'option Effet>Rendu>Formule LaTeX... il faut installer \gras[logiciel!pstoedit]{pstoedit} en plus d'inkscape. L'option apparaît automatique au démarrage suivant.
+
+\subsubsection{Astuces pour les motifs}
+Généralement, les motifs n'ont pas d'espaces entre leurs répétitions. Qu'à celà ne tienne, il suffit de définir l'espace à même le motif. Par exemple, au lieu de faire un cercle tout bête. Faites en un petit, qui sera la taille nominale du cercle, puis un plus grand qui déterminera l'espace autour dudit cercle. Le cercle le plus grand, dupliquez le (\touche{Ctrl}+D), puis fusionnez les trois chemins en un seul (\touche{Ctrl}+K après les avoir sélectionnés tout les trois). Ensuite, vous remplissez le motif, en sélectionnant qu'un chevauchement rend la somme transparente (et trois sera de nouveau opaque), puis vous enlevez le contour (couleur transparente), et vous avez votre espace.
+
+\begin{remarque}
+C'est une technique que j'ai utilisée pour \og motif suivant un chemin\fg, et ainsi pouvoir définir un espace entre les cercles, mais ça doit être utile pour autre chose je pense. Ce que je n'avais pas compris de suite, c'est qu'une fois le chemin rempli des motifs, modifier le contour ou le remplissage du chemin agissait directement sur le contour et le remplissage des motifs, ce qui change tout.
+\end{remarque}
+
+\subsubsection{Astuces pour les clones}
+Pour sélectionner l'original d'une série de clones rapidement, il suffit de sélectionner un clone, et de faire \touche{Maj}+D.
+
+\subsubsection{Astuces pour les chemins}
+Il m'arrivait souvent d'avoir des flèches dans le mauvais sens. C'est à dire qu'en définissant une flèche au n\oe ud final, la flèche n'était pas à l'endroit voulu. Il est possible d'inverser le sens d'un chemin (basiquement, inverser le n\oe ud de départ et le n\oe ud d'arrivé, sans que ça ne change rien à la forme du chemin) via le menu Chemin>Inverser.
+
+\subsubsection{Masques d'objets}
+Disponible via Objet>Masque>Définir. Cette fonction permet de \og découper\fg un ou plusieurs chemins. En effet, si on sélectionne plusieurs chemins, le masque sera défini à partir du chemin le plus au-dessus (avec le z le plus élevé), et s'appliquera à tout les autres chemins sélectionnés. Les caractéristiques du chemin le plus au-dessus sont importantes, c'est à dire la couleur de remplissage, son opacité et cie. Ceci seront autant de caractéristiques qui s'appliqueront en tant que masque aux autres chemins. En clair, pour simplement tronquer ce qui va apparaître à l'écran, sans rien modifier d'autre, on fera attention à ce que le chemin du dessus aie un remplissage blanc, opacité maximale et sans contour. C'est un procédé non destructif, c'est à dire qu'on peut retirer le masque par la suite et récupérer les chemins tels qu'ils étaient avant.
+
+Voici à quoi celà peut servir concrêtement : celà permet de tronquer les flous. Vous avez surement remarqué qu'en mettant un flou de 4\%, la couleur dépassait un peu de la taille de chemin initiale. Il peut arriver que l'on veuille que la couleur s'arrête exactement aux bords, y compris le flou. Pour celà, on duplique le chemin, et le chemin dupliqué, mis blanc, est ensuite appliqué en tant que masque par la méthode expliquée ci-dessus.
+
+Essayez par exemple de faire ça avec un cercle tout bête, sans remplissage, mais simplement avec un contour, que vous floutez à 5\%. Dupliquez ensuite ce même cercle, enlevez le contour, mettez un remplissage blanc opaque, sélectionnez le cercle normal et le cercle blanc (le cercle blanc doit être au dessus du cercle normal), puis appliquez le masque. Vous pouvez maintenant supprimer le cercle blanc et regarder le résultat obtenu.
+
+\begin{remarque}
+Pour l'exemple du cercle, il sert juste à montrer ce que ça donne, de manière simple. En effet, il est tout à fait possible d'obtenir le même résultat avec un dégradé radial approprié, ce qui rend la méthode du masque inutile dans ce cas là. Pour d'autres cas par contre, l'emploi du masque se révèlera irremplaçable.
+\end{remarque}
+
+\subsubsection{Éroder et Dilater}
+Inkscape peut étendre et contracter des objets par une modification de leurs dimensions, mais aussi par offset du chemin, c'est-à-dire par un déplacement perpendiculaire en tout point du chemin. Les commandes correspondantes sont Éroder (\touche{Ctrl}+\touche{(}) et Dilater (\touche{Ctrl}+\touche{)}).
+
+Les commandes éroder et dilater produisent des chemins (si nécessaire en convertissant l'objet original en chemin). Un offset dynamique (\touche{Ctrl}+\touche{J}) sera souvent plus pratique : il crée un objet avec une poignée déplaçable qui contrôle le rayon d'offset.
+
+Un tel objet offset dynamique retient le chemin d'origine, et ainsi ne se \og dégrade\fg pas quand vous modifiez un grand nombre de fois la distance d'offset. Quand vous n'avez plus besoin de l'ajuster, vous pouvez toujours le convertir de nouveau en chemin.
+
+Encore plus pratique : l'offset lié (\touche{Ctrl}+\touche{Alt}+\touche{J}), similaire à un offset dynamique mais connecté au chemin qui reste éditable. Vous pouvez en créer autant que vous voulez à partir d'un chemin source. En éditant les n\oe uds du chemin original, celà modifiera automatiquement les offset liés. Vous pouvez aussi redimensionner ou appliquer une rotation au chemin original, ça sera automatiquement appliqué à l'offset lié. En déplaçant l'offset lié, vous pouvez ainsi faire une ombre portée, et un déplacement du chemin original déplacera automatiquement l'offset lié pour que leurs positions relatives ne changent pas.
+
+\subsubsection{Effets de chemin}
+Ces trois paragraphes d'explications ont étés pris sur le site \\
+\url{http://www.pixenjoy.com/inkscape-046-live-path-effects}
+\paragraph{Courber un chemin}
+
+Cet effet permet de courber un chemin le long d'un autre chemin. Lorsque l'effet \og Courber un chemin\fg  est appliqué à un chemin A, ce chemin peut être courbé le long d'un autre chemin B (que l'on appellera \og chemin courbé\fg ). Avec l'éditeur de n\oe uds, le chemin A et le chemin courbé B peuvent être modifié sur le canevas et le résultat se met à jour instantanément.
+
+Dans la fenêtre de dialogue des \og Effets de chemin\fg  (\touche{Maj}+\touche{Ctrl}+7), après avoir cliqué sur le bouton \og Appliquer\fg , vous trouverez à côté du libellé \og Chemin de courbure\fg  trois boutons. Un bouton vous permettant d'éditer sur le canevas le chemin courbé (Editer sur la zone de travail), un bouton vous permettant de coller un nouveau chemin courbé enregistré dans le presse papier et un bouton vous permettant de le coller.
+
+Cas pratique :
+\begin{enumerate}
+\item Tracer votre chemin B qui servira de modèle et le long duquel viendra se déformer le chemin A.
+\begin{exemple}
+Prenez par exemple un rectangle pour le chemin A, et pour le chemin B deux points reliés par une courbe simple que vous aurez tout le loisir de faire varier par la suite.
+\end{exemple}
+\item Sélectionnez et copier dans le presse-papier le chemin B.
+\item Sélectionnez le chemin A que vous voulez déformer. Il doit bien s'agir d'un chemin et non d'un groupe de forme ou d'une forme. Transformez vos formes en un chemin unique pour pouvoir appliquer les \og effets de chemins\fg . Pour cela, si vous travaillez sur une seule forme, sélectionnez la puis : Chemin > Objet en chemin. Si vous avez un groupement de formes, dégroupez les (Objet > Dégrouper), sélectionnez-les tous puis unifiez-les : Chemin > Union.
+\item Ouvrez la boite de dialogue des effets de chemin : (\touche{Maj}+\touche{Ctrl}+7) ou Chemin > Effets de chemin
+\item Appliquer l'effet \og Courber un chemin\fg
+\item Collez le chemin courbé en cliquant sur le bouton (représenté par une icône) \og Coller le chemin\fg  qui se trouve à côté du libellé \og Chemin de courbure\fg
+\item Pour éditer les chemins, cliquez sur le bouton (représenté par une icône) \og Editer sur la zone de travail\fg
+\end{enumerate}
+
+
+
+\paragraph{Motif suivant un chemin}
+Cet effet permet de courber un chemin le long d'un autre chemin. Quand cet effet est appliqué à un chemin A (appelé squelette) un autre chemin B (appelé motif) peut être passé en paramètre. Le résultat est que le chemin B est courbé le long du chemin A. Avec l'outil d'édition des n\oe uds, le chemin peut être modifié sur l'espace de travail et le résultat est mis à jour en temps réel.
+
+Vous pouvez choisir le motif pour le squelette sélectionné en le collant dans l'espace de travail à partir du presse-papier (c'est-à-dire que vous sélectionnez et vous copiez dans le presse-papier le motif (ou le chemin), ensuite vous sélectionnez le squelette, vous appliquez l'effet \og Motif suivant un chemin\fg, et vous cliquez sur \og collez le motif\fg). Dans la fenêtre de dialogue des \og Effets de chemin\fg  (\touche{Ctrl}+\touche{Shift}+7), le paramètre \og Largeur\fg  vous permet de changer la largeur du motif appliqué au chemin.
+
+Cas pratique :
+\begin{enumerate}
+\item Choisissez un motif (chemin B) qui viendra se positionner sur un squelette (chemin A). N'oubliez pas de le transformer en un chemin unique si ce n'est pas déjà le cas.
+\item Sélectionnez et copiez le motif, chemin B, dans le presse-papier.
+\item Dessinez le squelette, chemin A, sur lequel le motif viendra se positionner et sélectionnez le.
+\item Ouvrez la boite de dialogue des effets de chemin : (\touche{Maj}+\touche{Ctrl}+7) ou Chemin > Effets de chemin
+\item Appliquer l'effet \og Motif suivant un chemin\fg
+\item Vous pouvez choisir de répéter ou pas le motif en sélectionnant une des options proposée dans le menu déroulant \og Copies du motif\fg
+\item Collez le motif en cliquant sur le bouton (représenté par une icône) \og Coller le chemin\fg  qui se trouve à côté du libellé \og Chemin de courbure\fg
+\item Vous pouvez éditer le motif pour modifier sa forme, cliquez sur le bouton (représenté par une icône) \og Editer sur la zone de travail\fg
+\end{enumerate}
+
+\paragraph{Relier les sous-chemins}
+
+
+L'effet \og Relier les sous-chemins\fg  relie les points de deux sous-chemins d'un chemin avec des lignes droites ou des segments courbés. Le résultat obtenu ressemble à du \og String Art\fg.
+
+La forme des chemins connectés peut être contrôlé par le paramètre \og Editer sur la zone de travail\fg . Ce procédé peut être utilisé pour dessiner une chevelure en reliant les chemins au niveau de la pointe. D'autres contrôles concernent le nombre de chemins, la variation de l'espace entre les chemins connectés (faisceau) et aussi si le début et la fin des pointes de la maille doit être exactement sur la sous-courbe d'origine ou peut dévier aléatoirement autour d'elle. Enfin la largeur des traits peut être modifié.
+
+Notez que cet effet ne peut être appliqué uniquement que sur un chemin composé de deux sous-chemins. Utilisez Chemin > Combiner (\touche{Ctrl} + K) pour créer un tel chemin à partir de deux chemins séparés.
+
+Cas pratique :
+\begin{enumerate}
+\item Tracer deux chemins A et B.
+\item Combinez les deux chemins pour ne former qu'un seul chemin : sélectionnez A et B et cliquez sur \touche{Ctrl}+K.
+\begin{exemple}
+ça marche bien avec deux lignes, l'une horizontale, et l'autre vecticale.
+\end{exemple}
+\item Sélectionnez la combinaison obtenu.
+\item Ouvrez la boite de dialogue des effets de chemin : (\touche{Maj}+\touche{Ctrl}+7) ou Chemin > Effets de chemin
+\item Appliquez l'effet \og Relier les sous-chemins\fg
+\item Dans la partie \og Effet courant\fg , vous disposez d'un contrôle sur plusieurs paramètres pour transformer votre maillage : nombre de chemins \dots
+\item En cliquant sur l'icône \og Editer sur la zone de travail\fg , vous éditez un chemin sur la zone de travail qui vous permet de modifier l'orientation du maillage.
+\end{enumerate}
+
+\subsubsection{Sélection avancée}
+Un moyen très pratique pour sélectionner des objets est d'utiliser la fonction \og Rechercher\fg (\touche{Ctrl}+\touche{F}). En effet, une des fonctions très utile est de pouvoir sélectionner les objets par type. Ainsi, sélectionner tous les chemins, ou tous les textes, en un seul coup, sans devoir tout sélectionner à la main.
+
+D'autres champs sont disponibles qui parlent d'eux mêmes et permettent d'affiner les recherches.
+
+\subsubsection{Système de Lindenmayer}
+Ceci permet de réaliser des fractales relativement complexes. En guise d'exemple, je vais expliquer comment faire un flocon de neige à partir d'une étoile avec cet effet.
+
+\begin{tabular}{>{\bfseries}r<{}@{ : }p{11cm}}
+caractère &	Effet dans la règle\\
+A, B, C, D, E, F & dessine un trait vers l'avant de la longueur déterminée par la \textbf{longueur d'incrément}\\
+G, H, I, J, K, L & déplace vers l'avant de la longueur déterminée par la \textbf{longueur d'incrément}\\
++ &	Effectue une rotation vers la droite de l'angle déterminée par \textbf{angle droit}\\
+- &	Effectue une rotation vers la droite de l'angle déterminée par \textbf{rotation à gauche}\\
+| &	Effectue une rotation de 180\degre\\
+\verb|[| &	Mémorise le point actuel\\
+\verb|]| &	se rend au point mémorisé précédemment
+\end{tabular}
+
+Déjà, autant le préciser de suite, je ne sais pas à quoi sert la partie \og Axiome\fg. Je ne sais pas non plus pourquoi il y a plusieurs lettres pour symboliser les traits. L'ordre détermine le nombre d'itération que l'on va effectuer. Concrêtement, chaque itération remplace les segments de l'itération précédente par la ou les règles que l'on a donné (quand il y a plusieurs règles, je sais pas comment ça marche)
+
+\begin{remarque}
+Après avoir essayé sur un segment simple et avoir trituré l'axiome, il semble que l'axiome représente la forme de base que l'on va ensuite modifier. C'est à dire qu'avec \texttt{F++F++F}, ça signifie que la forme de base sera un triangle équilatéral. J'ai même pu faire un flocon de neige sans sélectionner de chemin à la base, donc je me demande si c'est très utile de sélectionner un chemin.
+
+En conséquence, les différentes lettres permettraient de particulariser différents types de segments.
+\end{remarque}
+
+Je ne vais pas recopier les différents styles que j'ai pu rencontrer, voici le lien où j'ai trouvé ce que j'ai pu apprendre :
+\url{http://inkscape.osuosl.org/screenshots/gallery/inkscape-0.44-lindenmayer.png}
+
+\paragraph{Flocon de Neige}
+\begin{tabular}{>{\bfseries}r<{}@{ : }p{6cm}}
+option &	valeur\\
+Axiome & F++F++F\\
+Règles & F=F-F++F-F\\
+Ordre & 5\\
+Longueur d'incrément (px) & 5,0\\
+Rendre les incréments aléatoires (\%) & 0,0\\
+Rotation à gauche & 60\\
+Angle droit & 60 \\
+Rendre l'angle aléatoire & 0
+\end{tabular}
+
+\begin{remarque}
+Vous remarquerez que la règle donnée pour les flocons de neige s'explicite relativement bien. Il est facile de voir que pour chaque segment, elle va faire un trait, puis tourner de 60 degrés vers la gauche, autre trait, puis tourner de 60 degrés vers la droit par rapport à la direction initiale (c'est à dire 120\degre vers la droite depuis le segment précédent), puis nouveau trait, et enfin, on trace un trait dans la même direction que la direction initiale, c'est à dire qu'on retourne de 60\degre vers la gauche. (une sorte de chapeau quoi.
+
+Pour visualiser très simplement ce que fait la règle, faire un essai à l'ordre 1 sur un segment simple, et vous verrez la forme de la règle.
+\end{remarque}
+
+\subsection{Digitizer : Engauge}
+Logiciel permettant de digitaliser des courbes (utiles pour les études scientifiques parfois. Pour l'installer :
+\begin{verbatim}
+sudo apt-get install engauge-digitizer
+\end{verbatim}
+
+
+\subsection{\'Editeur \LaTeX{} : Kile}
+Pour \LaTeX{} j'utilise \gras[logiciel!kile]{Kile} qui est celui qui me plait le plus de tout ceux que j'ai essayé (il existe \gras[logiciel!texmaker@TeXmaker]{TeXmaker} que j'utilisais sous windows).
+
+\subsection{\'Editeur de Texte : Kate}
+Il en existe vraiment énormément, il y en a pour tous les gouts, toutes les utilisations et je ne vais pas tous les énumérer. Certains ne jurent que par emacs. Un éditeur pratique pour moi est \gras[logiciel!gedit]{gedit} mais pour mes textes, j'ai retenu \gras[logiciel!kate]{Kate} que je trouve excellent, bourré de fonctionnalitées, très pratique et très complet.
+
+\gras[logiciel!kwrite]{Kwrite} est aussi très bien, mais souffre de l'inconvénient majeur de ne pas gérer les onglets, on aura donc autant de fenêtres que de fichiers, ce qui est tout sauf pratique je trouve.
+
+\gras[logiciel!geany]{geany} est aussi pas mal, mais a quelques désavantages qui me l'ont fait abandonner. Le premier est que quand une fenêtre est déjà ouverte et qu'on lance un fichier de plus, il apparait une fenêtre bizarre, comme si le lancement du fichier buguait, et il faut cliquer sur la fenêtre geany pour d'une part se rendre compte que le fichier est lancé, et d'autre part qu'il n'y a pas eu de problèmes.
+
+\gras[logiciel!gedit]{gedit} est trop simple à mon gout. Pas assez de fonctionnalitées (il n'y a qu'à comparer le nombre de choses que l'on peut faire avec kate, comme fusionner les lignes, modifier la casse et cie).
+
+% Un éditeur de texte collaboratif incroyable : Gobby
+% http://www.generation-linux.fr/index.php?post/2009/02/18/Un-editeur-de-texte-collaboratif-incroyable-%3A-Gobby
+\subsection{Encodeur Vidéo : Avidemux}
+Sous windows, c'était \gras[logiciel!virtual dub]{virtual dub}, ici j'ai testé \gras[logiciel!avidemux]{avidemux} et je le trouve très simple à utiliser.
+
+Pour réencoder une vidéo, il suffit de l'ouvrir. Ensuite, pour ma part, je prend le codec vidéo x264 (qualité à 22\footnote{Si je met la qualité à 20, le fichier prendra plus de place et la qualité sera meilleure. Inversement, la qualité par défaut, 26, est moins bonne que la qualité que je prend moi}) et le codec audio AAC. Puis, ça dépend de ma vidéo, mais maintenant, j'aime bien sélectionner une taille préférentielle, et en double passe.
+
+\bigskip
+
+Puis j'ajoute des filtres. Le premier, \texttt{crop} (que l'on trouve dans la rubrique \og transform \fg    pour rogner s'il y a des bandes noires ou des logos qui dépassent.
+
+Ensuite, dans la rubrique \og noise \fg,  je prend le filtre \texttt{hqdn3d} et je laisse les valeurs par défauts.
+
+Puis dans la rubrique \og sharpness \fg, je prend le filtre \texttt{sharpen}.
+
+Et enfin, si la vidéo est en noir et blanc, je prend dans la rubrique \og couleur \fg   le filtre \texttt{luma only} qui encode en niveau de gris.
+
+Si j'encode un anime, je n'utilise pas le même filtre. À la place de \texttt{hqdn3d}, j'utilise \texttt{MSmooth par Donald Graft} qui est fait exprès pour les anime, et je le trouve très efficace.
+
+\subsubsection{Options de montage et de rognage}
+J'utilisais depuis longtemps les fonctions A et B qui permettent de sélectionner le début et la fin de la vidéo à encoder. En gros, j'étais persuadé qu'on ne pouvait rogner que le début ou la fin de la vidéo ajoutée.
+
+En fait, c'est beaucoup plus général que ça. On sélectionne un passage en prenant le début et la fin grâce à A et B. Une fois fait, on peut, soit encoder juste ce passage en sélectionannt \og enregistrer la vidéo\fg, soit on peut couper, copier, coller ou supprimer la sélection. Ainsi, on peut modifier beaucoup plus que ce que je croyais.
+
+Pour rogner certains passages au milieu de la vidéo, on sélectionne donc grâce à A et B uniquement le passage qu'on veut virer, puis on fait Edition>Supprimer.
+
+\subsubsection{Encoder un DVD}\label{sec:encoder_DVD}
+À partir d'un .vob préalablement extrait, on peut encoder un DVD, mais il y a pour la plupart d'entre eux une manipulation à effectuer. En effet, la forme des pixels n'est pas forcément standard. Je sais que je vais mal l'expliquer mais en gros, il faut redimensionner la vidéo pour que le ratio à l'écran soit correct.
+
+Pour celà, il faut sélectionner le filtre vidéo \textbf{Mplayer Resize}. Sélectionner \emph{source} 16:9 et \emph{destination} 1:1 puis cocher l'option \textbf{16 round up} (arrondir le nombre de pixels à un multiple de 16). Puis sur cliquez sur le curseur qui permet de sélectionner le ratio, déplacez le un peu à gauche et revenez tout à droite. Vous aurez ainsi la taille en pixel maximum possible et respectant les conditions qu'on vient d'imposer. Pour ma vidéo qui est en 720*576, la vidéo finale devient en 720*400
+
+
+% \subsubsection{acidrip}
+% Pour le moment, j'ai installé \gras[logiciel!acidrip]{acidrip} et \gras[logiciel!dvdrip]{dvdrip}. J'ai testé \gras[logiciel!acidrip]{acidrip}, mais il ne m'a pas plus parce que je voulais que le conteneur soit \textbf{.mp4}. Il s'avère que non seulement \gras[logiciel!dvdrip]{dvdrip} ne propose pas le conteneur \textbf{.mp4}, mais il ne propose pas non plus le codec \textbf{x264}, donc il a fini désinstallé quelques secondes après. Il ne me reste plus qu'à tester \gras[logiciel!acidrip]{acidrip}.
+
+\subsection{Gestionnaire de photo : Digikam}\index{logiciel!digikam}
+J'ai pas trouvé mieux. Pourtant, je crois que je les ai quasiment tous essayés.
+
+Pour renommer mes photos, j'applique le schéma suivant :
+\begin{verbatim}
+%Y-%m-%d_%H:%M:%S.[e-]
+\end{verbatim}
+je coche ``ajouter la date'', ``date format'' et enfin ``use extra symbol''.
+
+
+\subsection{IDL : GDL}
+L'équivalent libre sous GNU/Linux d'\gras[logiciel!idl@IDL]{IDL}, c'est \gras[logiciel!gdl@GDL]{GDL}. Une petite recherche sur internet vous en dira plus. Ce que par contre j'ai mis du temps à comprendre, c'est qu'on peut l'installer automatiquement de la façon suivante :
+
+\verb|sudo apt-get install gnudatalanguage|
+
+Ensuite, il faut définir les variables d'environnements de GDL. J'ai mis du temps à comprendre et trouver comment il fallait faire, ma méthode n'est en aucun cas la meilleure vu qu'apparemment je définit à chaque démarrage d'une console les variables au lieu qu'elles soient créées une bonne fois pour toute, mais ça a le mérite de marcher.
+
+J'ai donc créé un répertoire \texttt{.gdl} dans mon répertoire utilisateur. Dans ce répertoire, j'ai créé un fichier startup qui me sert à définir les commandes à exécuter au démarrage de GDL. Pour le moment, le fichier est vide, mais quand je saurais quoi mettre dedans, je pourrais le faire facilement (peut-être qu'il faut les droits d'exécutions au fichier).
+
+J'ai créé dans ce dossier deux autres dossiers, \texttt{lib} et \texttt{routines} dans lesquels je stocke les .pro que j'ai récupéré ici et là et qui me permettent de compléter mon utilisation de GDL.
+
+Maintenant, pour créer les variables d'environnements, j'ai rajouté les lignes suivantes à mon fichier \texttt{~/.bashrc} :
+\begin{verbatim}
+######### Variables d'environnements pour GDL ############
+export GDL_PATH=~/.gdl/lib :~/.gdl/routines
+export GDL_STARTUP=~/.gdl/startup
+\end{verbatim}
+
+J'ai aussi eu besoin d'installer un paquet de plus pour pouvoir utiliser un plot dans une console. Sinon, je suis obligé de me limiter à l'exportation en .ps, c'est un peu réducteur comme utilisation.
+
+\begin{verbatim}
+sudo apt-get install plplot9-driver-xwin python-numarray python-matplotlib
+\end{verbatim}
+
+% \subsubsection{Pour commencer}
+%TODO mettre ça. Ou pas...
+
+\subsubsection{fonctions mathématiques standard}
+\begin{tabular}{>{\bfseries}r<{}@{ : }p{11cm}}
+nom &	fonction\\
+alog & logarithme népérien (ou naturel)\\
+alog10 & logarithme décimal\\
+exp & exponentiel\\
+factorial & factoriel (n!)\\
+abs & valeur absolue\\
+sqrt & racine carrée (pour l'anglais square root)\\
+cos & cosinus (attention, tous les angles sont en radians : p radians = 180\degre)\\
+sin & sinus\\
+tan & tangente (rappelons que cotangente = 1/tangente)\\
+acos & arc cosinus (fonction inverse de cosinus)\\
+asin & arc sinus (fonction inverse de sinus)\\
+atan & arc tangente (fonction inverse de tangente)\\
+sinh & sinus hyperbolique (sinh(x) = [exp(x)-exp(-x)]/2)\\
+cosh & cosinus hyperbolique cosh(x) = [exp(x)+exp(-x)]/2)\\
+tanh & tangente hyperbolique (tanh(x)=sinh(x)/cosh(x))
+\end{tabular}
+
+
+\subsubsection{Les tableaux}
+Il existe plusieurs types de tableaux, celui que j'utilise le plus est :
+\begin{verbatim}
+a=dblarr(12,3)
+b=dblarr(10)
+\end{verbatim}
+qui définit $a$ comme un tableau de $12$ colonnes et $3$ lignes et $b$ comme une liste de $10$ éléments, les éléments de ces deux tableaux étant des réels double précision.
+
+\begin{attention}
+La numérotation commence à $0$, ainsi, \verb|b[0]| est le premier élément de $b$, et \verb|b[9]| est le dernier élément
+\end{attention}
+
+\bigskip
+
+Il existe un moyen très pratique de générer des listes, notamment quand on veut tracer des courbes, c'est à l'aide de la fonction suivante :
+\begin{verbatim}
+f=indgen(10)
+dx=1.d-2
+x=dx*indgen(10)
+\end{verbatim}
+
+Ceci définit $f$ comme une liste contenant les entiers de $0$ à $9$, et x comme la même chose, sauf qu'on a définit un pas, $\dif x$ qui nous permet de resserrer les points. On peut ainsi rajouter une valeur minimale, faire une échelle logarithmique et plein de choses très pratique.
+
+\begin{remarque}
+À noter que si on exécute :
+\begin{verbatim}
+a=0.1*!dpi*indgen(10)
+b=sin(a)
+\end{verbatim}
+alors on va faire le sinus de chaque élement de $a$ et le stocker dans $b$ qui sera un tableau de même taille que $a$. \verb|!dpi| est la variable qui contient la valeur de $\pi$ en réel double précision.
+\end{remarque}
+
+
+\bigskip
+
+Il existe des commandes spéciales pour manipuler des tableaux, qu'il ne faut surtout pas reprogrammer soit même, vu que le temps de calcul serait plus long :
+\begin{verbatim}
+total(a)
+max(a)
+min(a)
+n_elements(a)
+size(a)
+\end{verbatim}
+qui définissent respectivement la somme, le maximum, le minimum, le nombre d'éléments et les dimensions (je ne connais pas le détail de cette dernière commande, vu que je ne l'utilise jamais). À noter que ce sont des fonctions, donc on les définit de la façon suivante :
+\begin{verbatim}
+somme=total(a)
+\end{verbatim}
+
+\begin{remarque}
+On peut aussi récupérer l'indice de l'élément le plus grand ou le plus petit du tableau. Pour celà, il suffit d'écrire :
+\begin{verbatim}
+energie_max=max(energie,indice_max)
+energie_min=min(energie,indice_min)
+print,energie[indice_max],energie[indice_min]
+\end{verbatim}
+
+Dans le cas présent, ce n'est pas très utile, mais ça permet, dans d'autres cas, quand on a plusieurs tableaux, de récupérer cet indice, et d'afficher les autres caractéristiques correspondant à ce même indice, c'est à dire rayon, masse et vitesse d'un objet dont l'énergie est maximale, par exemple.
+\end{remarque}
+
+
+\bigskip
+
+La commande sort(a) permet de sortir une liste d'indice qui permet de trier la liste dans l'ordre croissant. Ainsi
+\begin{verbatim}
+print,a[sort(a)]
+\end{verbatim}
+affiche la liste a avec les éléments triées.
+
+\subsubsection{les boucles}
+\paragraph{for}
+\begin{verbatim}
+for i=0,n_elements(a)-1 do begin
+  a[i]=3*i+1
+endfor
+\end{verbatim}
+
+
+\paragraph{if}
+\begin{verbatim}
+if (a lt b) then begin
+  print,"a est inférieur à b"
+endif
+\end{verbatim}
+
+ou encore, si on veut faire un else :
+\begin{verbatim}
+if (a lt b) then begin
+  print,"a est inférieur à b"
+endif else begin
+  print,"a est supérieur ou égal à b"
+endelse
+\end{verbatim}
+
+On a comme ça plusieurs paramètres de test :
+
+\begin{tabular}{>{\bfseries}r<{}@{ : }p{11cm}}
+Commande &	relation\\
+lt & inférieur strictement\\
+le & inférieur ou égal\\
+gt & supérieur strictement\\
+ge & supérieur ou égal\\
+eq & égal\\
+ne & différent\\
+and & permet de faire deux conditions. Par exemple (a lt 5 and a gt 4)
+\end{tabular}
+
+\paragraph{where}
+\begin{verbatim}
+a=indgen(10)
+ind=where(a lt 5,count)
+print,a[ind]
+\end{verbatim}
+grâce à la commande \textbf{where}, on stocke dans \texttt{ind} les indices des valeurs de $a$ qui vérifient $a < 5$. Ça permet de sélectionner rapidement et efficacement certaines données pour les isoler.
+
+\texttt{count}, quant à lui, est une variable qui va stocker le nombre d'éléments vérifiant la condition que l'on a donné. En particulier, ça permet de ne faire des opérations que si \texttt{count} est différent de 0.
+
+\subsubsection{Les variables aléatoires}
+Il existe au moins deux types de variables aléatoires implémentées dans GDL
+\begin{enuminline}
+\item distribution uniforme
+\item distribution normale
+\end{enuminline}
+que l'on appelle respectivement par :
+\begin{verbatim}
+a=randomu(seed,10)
+b=randomn(seed,10)
+\end{verbatim}
+où $10$ est le nombre de valeurs que l'on veut, et \texttt{seed} le nombre qui sert à générer la séquence aléatoire. On peut tout à fait (et c'est conseillé si on veut des résultats reproductible pour vérification) spécifier la valeur de seed, du style :
+\begin{verbatim}
+a=randomu(182751824562,10)
+\end{verbatim}
+
+\begin{remarque}
+Pour un \texttt{seed} donné, la séquence de nombre aléatoire générée est toujours la même.
+\end{remarque}
+
+Pour éviter les correlations entre les générations de nombres aléatoires, il faut en fait utiliser le même seed quand on fait plusieurs tirages, et les nombres générés sont à la suite (quand les générations se font au sein du même programme, sans réinitialisation du seed.
+
+\begin{exemple}
+\begin{verbatim}
+seed=1001L
+print,randomu(seed,10)
+print,randomu(seed,10)
+\end{verbatim}
+les deux suites de nombres seront différentes.
+
+\bigskip
+
+\begin{verbatim}
+seed=1001L
+print,randomu(seed,10)
+seed=1001L
+print,randomu(seed,10)
+\end{verbatim}
+les deux suites de nombres seront les mêmes.
+\end{exemple}
+
+
+
+\subsubsection{Astuces}
+\begin{itemize}
+\item En tout cas dans GDL, je ne sais pas si c'est le cas pour IDL, on n'appelle pas le nom du fichier, mais du programme. C'est à dire le nom qu'il y a dans la première ligne de définition, du style :
+\begin{verbatim}
+pro transit
+\end{verbatim}
+le nom du programme est \verb|transit|.
+\item Pour appeler une commande du shell, du style pour lister les fichiers, il faut utiliser un \$ devant la commande. Ainsi, pour lister les fichiers, on utilisera la commande :
+\begin{verbatim}
+GDL> $ls
+back	     cooling.pro~  energy.pro~	lhb.pro~	   tutos     warm.pro~
+cooling.pro  energy.pro    lhb.pro	LHB_temp_ocean.ps  warm.pro
+\end{verbatim}
+\end{itemize}
+
+\subsubsection{Erreurs}
+Il refusait catégoriquement de lire mon fichier, quoi que je fasse. Après plusieurs heures de recherches éfrenées, il s'est avéré que ça venait du fait que la fin de ligne de mon fichier était une fin de ligne mac. Après avoir changé et mis une fin de ligne Unix/windows, tout est rentré dans l'ordre.
+
+
+
+
+
+\subsection{Lecteur de musique : Quod Libet}
+J'en ai essayé vraiment beaucoup, j'utilisais \gras[logiciel!iTunes]{iTunes} sous windows et je voulais à peu près un équivalent, je n'en ai pas trouvé. Je voulais retrouver la possiblité d'avoir des listes de lecture intelligentes, de pouvoir modifier dans les propriétées d'une chanson la position du début et de la fin de celle ci, je n'ai pas retrouvé. J'ai essayé \gras[logiciel!amarok]{Amarok}, \gras[logiciel!song bird]{Song Bird} et bien d'autres. \gras[logiciel!song bird]{Song Bird} n'est pas encore assez abouti à mon gout même si il se rapprochait beaucoup d'\gras[logiciel!iTunes]{iTunes}. J'ai finalement opté pour \gras[logiciel!quod libet]{Quod Libet} Je ne fais pas de liste de lecture avec lui car je suis obligé de changer d'affichage, mais l'affichage de la bibliothèque est tellement personnalisable que je n'en ai plus besoin.
+
+\subsection{Lecteur PDF : Okular}\index{logiciel!okular}\index{logiciel!kpdf|see{okular}}
+\begin{remarque}
+Anciennement, Okular s'appelait Kpdf.
+\end{remarque}
+
+Il existe un visualiseur par défaut des fichiers PDF, mais je trouvait que le rendu était vraiment moche, ok il affichait tout les fichiers, tels que PDF, PS et cie, mais pour les PDF, les caractères étaient très mal affichés je trouvait, donc j'ai cherché un remplaçant et j'ai opté pour \gras[logiciel!okular]{Okular} qui affiche très bien les PDF et me convient tout à fait, pour moi l'équivalent de \gras[logiciel!foxit reader]{Foxit Reader} que j'utilisais sous windows.
+
+\bigskip
+
+Petite astuce, on peut ajouter dans la barre d'outils les très pratiques \og Back in the document\fg et \og Forward in the document\fg. Pourquoi c'est pratique?
+
+Prenons un exemple : Je clique sur un lien interne qui m'amène à une équation sur une autre page du document. Je clique sur \og Back in the document\fg et ça me ramène à la page où j'avais cliqué sur le lien vers l'équation, ainsi je reviens à mon calcul du départ sans devoir m'embêter à retrouver la page.
+
+\subsection{Lecteur Vidéo : SMPlayer}
+J'ai mis beaucoup de temps à en trouver un. On m'a conseillé \gras[logiciel!totem]{Totem} que j'ai conservé un moment, mais pour certaines vidéos, le rendu n'est pas top. \gras[logiciel!mplayer]{MPlayer} n'est pas pratique je trouve, tout comme \gras[logiciel!vlc]{VLC}. Puis j'ai essayé \gras[logiciel!kaffeine]{Kaffeine} au début, je n'arrivait carrément pas à lire de vidéos, mais après quelques manip via un tutoriel, ça marchait et j'aime bien. ça se rapproche un peu de \gras[logiciel!windows media player]{Window Media Player}. Mais en dernier lieu, celui que je préfère c'est \gras[logiciel!smplayer]{SMPlayer} un lecteur basé sur \gras[logiciel!mplayer]{MPlayer} mais avec une interface graphique plus pratique. Autant le dire aussi, je n'ai pas trouvé d'équivalent à \gras[logiciel!windows media player]{Windows Media Player} avec la liste de lecture sur le coté et un bon rendu des vidéos. En clair, je jongle entre \gras[logiciel!kaffeine]{Kaffeine} et \gras[logiciel!smplayer]{SMPlayer}.
+
+Étant passé sous KDE, j'ai voulu essayé \gras[logiciel!kmplayer]{KMPlayer}, mais je le trouve bizarre, et moins pratique qu'\gras[logiciel!smplayer]{SMPlayer}.
+
+\subsection{Manipulateur de Fichiers : Métamorphose}
+Sous windows, j'utilisais le couple \gras[logiciel!antrenamer]{Antrenamer} et \gras[logiciel!mp3 tag]{mp3 tag} pour renommer mes fichiers et mes musiques. Sous GNU/Linux j'ai eu le besoin d'avoir la même chose. Il en existe plusieurs, mais j'ai réussi à en faire fonctionner un seul, nommé \gras[logiciel!metamorphose@métamorphose]{Métamorphose}. Je l'avais essayé sous windows et il ne m'avait pas plu, sous GNU/Linux, je l'ai réessayé et j'ai appris à l'aimer. Il permet de renommer à la fois des fichiers et des dossiers, possède des fonctions très complètes même si j'ai mis du temps à comprendre qu'il fallait non seulement les configurer via par exemple l'onglet \textbf{numérotation} mais ensuite il fallait les appeler en tant que variable dans le nom à renommer via par exemple \verb| :numr :| pour la numérotation. Il ne lui manque pour moi qu'une seule fonction, celle de pouvoir renommer les fichiers à partir d'une liste chose que j'appréciais avec mes précédents programmes (par exemple la liste des noms de chansons d'un album, et vous renommez d'un coup les 10 chansons nommées track 1 à 10 de la bonne façon.
+
+Sous KDE, il existe \gras[logiciel!krename]{KRename} qui a l'air pas mal, avec une système étape par étape pour les débutants : À tester donc.
+
+\subsection{Matlab : Octave}\label{sec:matlab}
+Il existe deux logiciels à ma connaissance qui sont susceptible de remplacer \gras[logiciel!matlab]{matlab} : \gras[logiciel!octave]{Octave} et \gras[logiciel!scilab]{Scilab}. La version que j'ai testé de scilab ne m'a pas plu du tout, sans doute en GTK2. De plus, la syntaxe scilab n'est pas la même que celle de matlab, ne serait-ce que pour le caractère permettant d'écrire des commentaires, et j'ai trouvé ça un peu osé que pour un programme censé être un \og équivalent\fg de matlab, il n'aie même pas la même manière d'écrire les commentaires.
+
+Bref, j'ai rapidement laissé tomber scilab, et je me suis tourné avec octave qui lui s'évertue beaucoup plus à être compatible avec matlab. Par défaut, c'est un programme en ligne de commande, mais il existe un front-end, et il existe pléthore de paquets pour rajouter des fonctions, et à première vue, ça a l'air assez complet. Pour installer le minimum, je conseille de faire :
+
+\begin{verbatim}
+sudo apt-get install octave octave-general qtoctave
+\end{verbatim}
+
+\subsubsection{Ajouter des fichiers .m dans octave}
+Pour celà, il suffit, dans une session octave, de taper les commandes suivantes :
+\begin{verbatim}
+addpath(genpath("~/.octave/"));
+savepath;
+\end{verbatim}
+où \verb|~/.octave/| est le chemin absolu du dossier où vous souhaitez stocker vos fichiers \textbf{.m}.
+
+\subsubsection{Indexage logique}
+Il existe une troisième forme d'indexage basée sur les conditions logiques. On la désigne par indexage logique et
+on l'utilise principalement avec les opérateurs relationnels et les opérateurs logiques. Ce type d'indexage permet
+d'améliorer l'efficacité des codes en évitant l'utilisation de fonctions supplémentaires (principalement \textbf{find}).
+
+\bigskip
+
+L'indexage logique est souvent utilisé avec les fonctions \textbf{any} et \textbf{all}.
+
+Par exemple, on souhaite trouver toutes les valeurs supérieures à 3 (soit 8 et 7) dans la matrice suivante :
+\begin{verbatim}
+>>X=[8 1 ; 2 7]
+X =
+8	1
+2	7
+\end{verbatim}
+
+La méthode classique consiste à utiliser \textbf{find} comme ceci :
+\begin{verbatim}
+>> X=[8 1 ; 2 7]
+X =
+8	1
+2	7
+>> idx=find(X>3) % Indexage linéaire
+idx =
+1
+4
+>> X(idx)
+ans =
+8
+7
+\end{verbatim}
+
+On remarque que idx correspond aux indices linéaires de $X>3$
+
+L'indexage logique consiste simplement à se passer de la fonction \textbf{find} :
+\begin{verbatim}
+>> X=[8 1 ; 2 7]
+X =
+8	1
+2	7
+>> idx = (X>3) % Indexage logique
+idx =
+1	0
+0	1
+>> X(idx)
+ans =
+8
+7
+
+\end{verbatim}
+On remarque maintenant que idx est une matrice contenant des valeurs logiques (0 ou 1).
+
+J'avoue ne pas encore avoir bien saisi la différente entre les deux et surtout dans quels cas les utiliser, mais ça a l'air pratique, donc faut garder ça en mémoire.
+
+\subsubsection{Tracer un damier}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.4\textwidth]{pdf/matlab_damier.pdf}
+\caption{Rendu du damier tracé par matlab}
+\end{figure}
+
+\begin{verbatim}
+l=20;b=zeros(l,l);
+b(1:2:end, 1:2:end)=255;
+b(2:2:end, 2:2:end)=255;
+imshow(b);
+\end{verbatim}
+
+\subsubsection{Lettre grecques dans les labels}
+Il est possible d'afficher des lettres grecques et d'utiliser la syntaxe \LaTeX dans les labels et titres d'un plot. Sous matlab, on peut utiliser directement \verb|\pi|, \verb|\sigma| etc\dots Par contre, sous octave, il faut utiliser une syntaxe différente. Pour faire $\pi$ il faut rentrer le code suivant : \verb|{/Symbol p}|.
+
+Ensuite, sous matlab comme sous octave, on peut mettre des indices et des exposants à l'aide de \verb|^| et \verb|_|. Il convient d'utiliser les groupes si on veut mettre plusieurs caractères en indices et exposants, exemple :
+
+\begin{verbatim}
+title("{/Symbol s} section efficace (cm^{-2})")
+\end{verbatim}
+
+\subsubsection{Changer les symboles et styles de ligne}
+
+Le type de ligne ou de symbole pour les plots peut être changé en ajoutant un troisième argument optionnel dans la commande plot. Par exemple :
+\begin{verbatim}
+>> plot(x,y,'o');
+\end{verbatim}
+affiche les données dans les vecteurs $x$ et $y$ en utilisant des cercles dans la couleur par défaut (jaune) et
+\begin{verbatim}
+>> plot(x,y,'r:');
+\end{verbatim}
+affiche les données dans les vecteurs $x$ et $y$ en reliant les points entre eux par une ligne pointillée rouge.
+
+Le 3\ieme argument de la commande plot est une chaîne de caractères composé de un, deux ou trois simboles de la forme ``cs'' où ``c'' est un caractère unique indiquant la couleur, et ``s'' une chaîne de un ou deux caractères qui indique le type de symbole ou de ligne. Les couleurs et types de ligne ou symboles sont repertoriés dans le tableau \reftab{tab:matlab_symbole}.
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{rp{4cm}||rp{4cm}}
+``c'' & couleur du symbole ou de la ligne & ``s'' & type de ligne ou de symbole\\\hline
+y & jaune & . & point\\
+m & magenta & o & cercle\\
+c & cyan & x & croix\\
+r & rouge & + & plus\\
+g & vert & - & ligne continue\\
+b & bleu & * & étoile\\
+w & blanc & : & ligne pointillée\\
+k & noir & -. & ligne (tiret-point)
+\end{tabular}
+\caption{Couleur, symbole et type de ligne pour les graphiques 2D}\label{tab:matlab_symbole}
+\end{table}
+
+\source{\url{http://web.cecs.pdx.edu/\~gerry/MATLAB/plotting/symbolPlots.html}}
+
+\subsubsection{Exporter des figures en .svg}
+Il suffit pour celà de rentrer la commande suivante :
+\begin{verbatim}
+plot(x,x)
+title("premiere bissectrice")
+grid on
+axis on
+print('-dsvg','figure.svg')
+\end{verbatim}
+
+\begin{remarque}
+Après ouverture du .svg, je me suis rendu compte que la grille et les axes n'apparaissaient pas. Pourtant ils sont bien là, mais ils sont transparents. Soit vous pouvez faire \touche{Ctrl}+\touche{A} et mettre un contour noir, soit le faire à la main.
+\end{remarque}
+
+\subsubsection{subplot}
+\begin{verbatim}
+x=0:0.01:2*pi;
+
+figure(1)
+subplot(2,2,1)
+plot(x,sin(x))
+title("sinus")
+
+subplot(2,2,2)
+plot(x,cos(x))
+title("cosinus")
+
+subplot(2,2,3)
+plot(x,tan(x))
+title("tangente")
+
+subplot(2,2,4)
+plot(x,x)
+grid on
+\end{verbatim}
+
+Pour celà, on a donc la fonction \verb|subplot(L,C,N)| où $L$ est le nombre de ligne, $C$ le nombre de colonnes, et $N$ le numéro de la figure qu'on s'apprête à afficher. En clair, Dans l'exemple ci-dessus, on a 2 lignes et 2 colonnes, ce qui nous permettra d'afficher au maximum 4 plots différents.
+
+\begin{attention}
+Il faut faire attention à mettre le même nombre de ligne et de colonnes pour les subplots d'une même figure, sous peine d'effacer certaines figures.
+\end{attention}
+
+\subsubsection{Options avancées de plot}
+\texttt{xlabel}, \texttt{ylabel} et \texttt{title} permettent de définir les titres des axes et du graphique.
+
+On peut définir des graphiques en échelle log, ou semi-log en remplacant \texttt{plot} par \texttt{semilogx}, \texttt{semilogy} ou \texttt{loglog}.
+
+On peut afficher une grille et une sous-grille via les options suivantes
+\begin{verbatim}
+grid on
+grid("minor")
+\end{verbatim}
+
+Un exemple un peu plus élaboré :
+\begin{verbatim}
+figure(2)
+subplot(2,2,1)
+title("fluence en sortie du laser")
+xlabel('temps (ns)')
+ylabel ("fluence J/cm^2")
+hold off
+
+subplot(2,2,2)
+title('Energie en sortie de fibre laser')
+xlabel('temps (ns)')
+ylabel ('Energie')
+hold off
+
+subplot(2,2,3)
+plot(liste_longueur_fibre_1,dt)
+title("evolution de la duree de l'impulsion")
+xlabel('longueur de la fibre (cm)')
+ylabel ('duree (ns)')
+grid on
+
+subplot(2,2,4)
+plot(lambda*1e9,fpompe)
+title("spectre gaussien de la pompe")
+xlabel("\lambda (nm)")
+ylabel("intensite")
+axis([970 980 1e7 3.2e8])
+grid on
+print('-deps','figure2.eps')
+\end{verbatim}
+
+
+
+\subsection{Messagerie Instantanée : ?}
+Il existe ici pléthore de logiciels tous plus variés les uns que les autres pour se connecter, entre autre, au réseau \gras{msn}. Entre autre, il y a \gras[logiciel!amsn]{a-msn}, \gras[logiciel!kopete]{Kopete}, \gras[logiciel!pidgin]{Pidgin} (anciennement Gaim\index{logiciel!gaim|see{logiciel!pidgin}}), \gras[logiciel!emesene]{emesene} que j'ai découvert récemment et d'autres que je n'utilise pas. Ce sujet est pour moi le point faible de GNU/Linux. Aucun de ces programmes ne me satisfait complètement, et par période, je les réessaye pour voir si mes gouts n'ont pas changés, mais je dois avouer que je regrette windows pour ça. Que ce soit \gras[logiciel!msn messenger]{msn messenger} avec le plugin \textbf{msn plus} ou encore \gras[logiciel!trillian]{Trillian}.
+
+Pour moi, un programme msn doit savoir faire :
+\begin{enumerate}
+ \item afficher les avatars dans la liste de contact
+\item afficher le pseudo ainsi que la phrase de statut pour chaque contact
+\item autoriser la configuration de raccourcis globaux pour changer rapidement de statut (exemple : \touche{Ctrl}+\touche{1} pour se mettre en statut absent, et \touche{Ctrl}+\touche{Espace} pour se mettre en statut \og En Ligne \fg.
+\item permettre de classer la liste de contacts soit par statut, soit par groupe, soit les deux
+\item \^Etre hautement personnalisable tant au niveau des notifications que du comportement général du programme
+\item Avoir les statuts classique \og Parti Manger \fg   \og Au téléphone \fg  et autres.
+\item Gérer sans aucun problème les déconnections intempestives (en clair, ne pas m'afficher en ligne alors que les autres me voient déconnectés)
+\item[Bonus] permettre l'utilisation de web cam, mais c'est pas ce que je demande en priorité.
+\end{enumerate}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|m{3cm}|m{2cm}|m{1.5cm}|m{2.5cm}|m{3cm}|m{1.5cm}|}
+\hline
+ & WLM & Pidgin & a-msn & Kopete & Emesene \\\hline
+Message de statut des contacts & {\green Oui} & {\green Oui} & {\green Oui} & {\green Oui} & {\green Oui}\\\hline
+Avatar des contacts & {\red Non} & {\green Oui} & {\green Oui} \begin{footnotesize}(très petit)\end{footnotesize} & {\green Oui} & {\green Oui} \\\hline
+Tri complet de la liste des contacts & {\green Oui} & {\red Non} & {\green Oui} & {\green Oui} & {\green Oui}\\\hline
+Statuts personnalisables & {\green Oui} & {\green Oui} & {\green Oui} & {\red Non} & {\red Non}\\\hline
+Raccourcis pour statuts & {\red Non} & {\red Non} & {\red Non} & {\green Oui}\begin{footnotesize}(uniquement \textbf{Absent} et \textbf{En Ligne})                                                                             \end{footnotesize}  & {\red Non}\\\hline
+\'Emoticones personnalisables & {\green Oui} & {\green Oui} & {\green Oui} & {\red Non}  & {\green Oui}\\\hline
+Webcam & {\green Oui} & {\red Non} & {\green Oui} & {\green Oui} & {\red Non}\\\hline
+Défauts & \begin{footnotesize}Publicité\end{footnotesize} & & \begin{footnotesize}pas agréable visuellement, menu du programme qui ne change pas au déplacement de la souris\end{footnotesize} &\begin{footnotesize}changement de statut n'apparaissent pas dans les historiques\end{footnotesize} & \\\hline
+Bonne gestion des coupures Internet & {\green Oui} & {\red Non} & {\red Non} & {\red Non} & {\red Non}\\\hline
+\end{tabular}\end{center}
+\caption{comparaison des principaux logiciels pour se connecter à msn sous GNU/Linux (avec en plus WLM)}
+\end{table}
+
+\bigskip
+
+Msn n'est clairement pas le protocole le mieux adapté à un système non windows, et ça se comprend facilement, vu que se protocole n'est pas libre et documenté, il est donc difficile de savoir comme il fonctionne, et donc de faire des logiciels qui permettent de se connecter dessus.
+
+Il existe une alternative libre à msn nommée \gras{jabber}, basé sur le protocole XMPP. Jabber est entièrement libre et gratuit. Je conseille donc à ceux qui en ont l'envie, de passer à jabber. Il existe de plus, suivant le serveur sur lequel vous vous connectez, des passerelles vers msn qui vous permettent d'ajouter vos contacts msn à jabber. Mais je donnerais sur ça de très mauvaises explications, je vous conseille de chercher des tutoriels sur le net, il y en a de très bien détaillés.
+
+\subsection{Navigateur Web : Firefox}
+\gras[logiciel!firefox]{Firefox} Il reste mon préféré car hautement personnalisable.
+
+\gras[logiciel!opera@opéra]{Opéra} existe sous \bsc{gnu}/Linux, une bonne alternative à firefox, même si j'ai a déplorer quelques plantages, notamment lors de l'affichage de la fenêtre \textbf{enregistrer sous} quand je clique sur un fichier à télécharger.
+
+\gras[logiciel!epiphany]{Epiphany} est un navigateur très léger et bien intégré à gnome. Celà dit, je lui reproche, tout comme à opéra, de planter un peu trop facilement, chose qui sera peut-être réglée dans quelques temps.
+
+\gras[logiciel!konqueror]{Konqueror} est LE navigateur de l'environnement KDE. Il est très réputé, et je compte le re-tester sous peu, vu qu'à mon premier test il y a de ça quelques mois, je n'avais pas du tout aimé.
+
+\subsubsection{Reprendre un téléchargement interrompu sous Firefox avec wget}\index{logiciel!wget}\index{logiciel!firefox}
+
+\begin{attention}
+Si vous supprimez le téléchargement dans la liste de firefox, ça supprimera les fichiers qu'il avait créé, donc il ne faut surtout pas le faire ; ou alors renommez le .part autrement ou copiez le ailleurs pour qu'il ne le supprime pas !
+\end{attention}
+
+
+Renommez le fichier \textbf{.part} en le nom exact du fichier semi-téléchargé :
+
+\begin{verbatim}
+mv ubuntustudio.iso.part ubuntustudio.iso
+\end{verbatim}
+
+Puis, utilisez \gras[programme!wget]{wget} avec l'option \textbf{-c} pour calculer la taille du fichier et reprendre le téléchargement interrompu :
+
+\begin{verbatim}
+wget -c http://www.truc.net/ubuntustudio.iso
+\end{verbatim}
+
+(voir la section \refsec{sec:wget} pour plus de détails
+
+
+\subsection{Retouche Photo : The Gimp}
+\gras[logiciel!gimp]{The Gimp} apparait comme la meilleure alternative sous GNU/Linux pour photoshop qui reste une référence sous windows. Seulement, il faut avouer que de ma propre expérience, je trouve \gras[logiciel!gimp]{The Gimp} beaucoup moins intuitif que photoshop, et qui plus est moins puissant. Sur le traitement de CMJN ou des formats photos. \gras[logiciel!gimp]{The Gimp} traite très mal les formats RAW je trouve, du moins celui qui me concerne, alors que photoshop les gère très bien. Il existe une version de Gimp, \gras{gimpshop}\index{gimpshop|see{logiciel!gimp}}, dont l'interface est copiée sur photoshop, mais je n'ai pas testé
+
+\subsubsection{Retouche d'Élements gênants avec Gimp}
+\paragraph{Installation}
+
+Cette astuce utilise le plugin \gras{resynthesizer} the Gimp. Assurez-vous donc qu'il est installé avant d'aller plus loin. Avec Ubuntu, comme souvent, il suffit d'installer le paquet \textbf{gimp-resynthesizer} qui se trouve dans les dépots \gras{universe}.
+
+\begin{verbatim}
+sudo apt-get install gimp-resynthesizer
+\end{verbatim}
+
+\paragraph{Utilisation}
+Niveau utilisation, c'est assez simple. Il suffit de faire une sélection des éléments à faire disparaître avant d'appeler le script.
+
+Pour faire la sélection plus facilement, nous allons utiliser un nouveau calque. Créez donc un nouveau claque. Mettez la transparence de celui-ci à 80\% pour voir ce que vous faites.
+
+Peignez alors avec une couleur les parties de l'image que vous voudriez voir disparaître.
+
+Puis sur le calque, faites un clic droit, suivi de \og Alpha vers sélection \fg. Sélectionnez le calque avec votre photo, puis rendez vous dans le menu \textbf{Script Fu} > \textbf{Enhance} > \textbf{Smart remove selection}, puis cliquez sur Suivant.
+
+\subsubsection{Brosse dynamique}
+Rien de plus ennuyeux que de devoir changer de taille de brosse toutes les 3 secondes. La solution à ce problème épineux consiste à aller dans les préférences, ``Périphérique d'entrée > Contrôleur d'entrée''. Sélectionnez la molette de la souris (en anglais ``main mouse wheel'') puis cliquez sur ``configurer le contrôleur sélectionné'' (une petite icône avec une clé d'outillage). Il ne reste plus qu'à assigner à \textbf{défilement haut (Maj)} et \textbf{défilement bas (Maj)} les actions \textbf{context-brush-radius-increase}, \textbf{context-brush-radius-decrease} ou des actions s'y apparentant.
+
+\begin{remarque}
+Pour ma part, j'ai une petite astuce. Je n'assigne pas les mêmes actions. C'est à dire que j'assigne \textbf{context-brush-radius-decrease-percent} et \textbf{context-brush-radius-increase}. Ainsi, la diminution du rayon de la brosse se fera en pourcentage du rayon actuel, ce qui a un effet énorme pour des rayons énormes, et un très petit effet pour des petits rayons. Ceci a pour conséquence qu'avec une énorme brosse, on lui fait reprendre une taille normale assez rapidement, et on est plus précis sur les petits rayons quand on diminue. À l'inverse, quand on va augmenter le rayon, l'augmentation sera toujours la même quelle que soit le rayon, ceci évitant un manque de précision dans la taille du rayon pour des gros rayons et une augmentation rapide du rayon quand celui-ci est tout petit (alors qu'en pourcentage, ça prend un temps fou)
+\end{remarque}
+
+\subsubsection{Créer sa propre brosse}
+Pour cela, il suffit de créer une image (la brosse supporte le RVB et le niveau de gris mais pas l'indexation. Cela dit, si vous indexez, il vous proposera l'une ou l'autre des solutions) et de l'enregistrer sous le format .gbr dans le dossier qui contient les brosses. Ce dossier se situe dans le répertoire utilisateur. Pour moi c'est \textbf{~/.gimp-2.6/brushes}.
+
+
+\subsection{Tableur : Gnumeric}
+Je dois avouer que le tableur d'\gras[logiciel!openoffice]{OpenOffice} m'a déçu. Vraiment en dessous d'excel pour moi. Ou de kaleidagraph (mais payant aussi celui là, donc pas un bon exemple. En clair, j'ai été agréablement surpris par \gras[logiciel!gnumeric]{gnumeric} et il m'a bien aidé. Je n'ai pas encore tout testé, mais c'est le programme que je recommande pour faire des traitements de données sous GNU/Linux.
+
+\subsection{Visionneur D'Images : gThumb}
+J'utilise pour cela \gras[logiciel!gthumb]{gThumb} qui est relativement léger, permet de renommer les images en masse, et d'autres fonctionnalitées pratiques. Il y en a bien sur d'autres tels que \gras[logiciel!f-Spot]{F-Spot}.
+
+\section{\LaTeX{} sous GNU/Linux}
+\subsection{Installation}
+Pour installer \LaTeX{} sous GNU/Linux, il faut tout d'abord installer les commandes qui serviront à compiler vos code source. Pour celà, il y a \gras{tetex}, et \gras{tex-live} qui sont les deux principaux. Tetex n'étant plus mis à jour, je conseille tex-live. Vous pouvez l'installer via \gras{synaptic}, ce qui vous permettra de compléter les 3 paquets que j'installe ici par des modules plus spécifiques.
+
+Sinon, en ligne de commande, ceci devrait suffire à avoir ses premiers textes :
+
+\begin{verbatim}
+ sudo apt-get install texlive texlive-lang-french texlive-latex-extra
+\end{verbatim}
+
+Une fois fait, il faut maintenant un éditeur pour nous faciliter la vie. Il y en a pas mal, comme \gras[logiciel!texmaker@TeXmaker]{TeXmaker} qui existe aussi sous windows. Il y a aussi \gras[logiciel!winefish]{Winefish}, un éditeur \LaTeX{} basé sur \gras[logiciel!bluefish]{Bluefish} qui est pas mal. Mais j'ai opté pour ma part pour \gras[logiciel!kile]{Kile} que je trouve très bien fait, très complet et que l'on peut installer comme ceci :
+\begin{verbatim}
+ sudo apt-get install kile
+\end{verbatim}
+
+\subsection{Astuces}
+
+Pour mettre à jour la base de donnée des packages quand on a rajouté manuellement un \textbf{.sty}, il suffit de taper en console \textbf{sudo texhash}
+
+À noter que le chemin où se trouvent les packages, et donc, là où on en rajoute manuellement est : \textbf{/usr/share/texmf-texlive/tex/latex/}
+
+\section{La ligne de commande}
+\subsection{Astuces générales pour la console}
+\subsubsection{Arrêter une commande en cours d'exécution}
+Pour arrêter la commande en cours du terminal ouvert, il suffit d'appuyer sur \touche{Ctrl}+ \touche{C}
+
+Pour quitter une page de manuel ou une documentation quelconque, il suffit bien souvent d'appuyer sur la touche \touche{Q}
+
+\subsubsection{Raccourcis claviers}
+\touche{Ctrl} + \touche{A} pour aller au début de la ligne.
+
+\touche{Ctrl} + \touche{E} pour aller à  la fin de la ligne.
+
+\touche{Ctrl} + \touche{U} pour effacer tout ce qu'il y a avant le curseur.
+
+\touche{Ctrl} + \touche{K} pour effacer tout ce qu'il y a après le curseur.
+
+\touche{Ctrl} + \touche{W} pour effacer un mot à gauche de la position du curseur (n'efface que la partie gauche du mot si le curseur est au milieu).
+
+\subsubsection{!}
+Qui se souvient de la commande longue de 40m super pratique tapé il y a une heure? ! vous permet de la retrouver avec un peu de chance, ! rappelera la dernière commande commençant par le texte tapé.
+
+Utilisation :
+
+\verb|!sudo|
+
+\subsubsection{\$(( ))}
+Besoin de faire des maths? \verb|\$(( ))| vous permettra de faire une petite opération vite fait.\\
+Utilisation :
+
+\verb|echo $(( 5 + 7 ))|
+
+\subsubsection{>}
+\verb|commande > fichier.txt| : permet de stocker le résultat de la commande placée avant ceci dans le fichier \texttt{fichier.txt}. Celui-ci sera créé s'il n'existe pas, ou remplacé s'il existe.
+
+\subsubsection{>>}
+\verb|commande >> fichier.txt| : permet de stocker le résultat de la commande placée avant ceci à la fin du fichier \texttt{fichier.txt}. Le résultat sera placé à la suite du contenu déjà existant du fichier.
+
+\subsubsection{\&}
+\verb|commande &| : permet de créer un processus dans lequel le programme va s'exécuter et de pouvoir dans le même temps continuer d'utiliser le terminal.
+
+\subsubsection{|}
+\verb#commande1|commande2# : permet d'exécuter plusieurs commandes à la suite. En fait, permet aussi de passer l'argument de sortie de la commande précédente dans la commande suivante, mais j'ai pas encore réellement compris le fonctionnement.
+
+\subsubsection{!\$}
+
+Qui n'a jamais rêvé de reprendre l'argument précédemment fourni pour le réutiliser dans la commande actuelle? \verb|!$| le permet.
+
+\begin{verbatim}
+ls Desktop
+cd !$
+\end{verbatim}
+
+
+et vous voici arrivé dans le répertoire \textbf{Desktop}
+
+\subsubsection{Rechercher une commande}
+Il est possible de rechercher dans l'historique avec le raccourcis \touche{Ctrl}+\touche{R}. Cette recherche est incrémentale, cela signifie qu'au fur et à mesure de la frappe les résultats correspondant apparaissent, une fois la bonne commande trouvée, il suffit de taper sur Entrée pour l'éxécuter ou sur la flèche droite pour copier cette commande sur la ligne courante si on veut y ajouter des paramètres.
+
+\begin{remarque}
+En appuyant de nouveau sur \touche{Ctrl}+\touche{R}, on se déplace dans la liste des différentes commandes qui correspondent à la recherche effectuée.
+\end{remarque}
+
+
+\subsubsection{Substitution de Commande}
+Vous pouvez utiliser le résultat d'une commande comme paramètre d'entrée pour une autre ; en d'autres termes pour une substitution de commande. Une substitution de commande a lieu lorsque vous encadrez une commande avec des apostrophes inversées. Par exemple :
+
+\begin{verbatim}
+cat `find . -name aaa.txt`
+\end{verbatim}
+
+va afficher à l'écran le contenu de tout les fichiers nommés \textbf{aaa.txt} dans le dossier de travail courant ou ses sous-dossiers.
+
+\subsubsection{Le bash \{\} expansion}
+
+Petite fonction sympa de bash qui va nous éviter de réecrire certaines info. Par exemple, vous voulez faire un backup de votre \textbf{/etc/postgresql/8.3/main/postgresql.conf} mais vous êtes dans votre \textbf{/home}.
+
+utilisez alors le \textbf{/chemin/du/fichier\{,votreajout\}}
+
+donc en gros :
+
+\begin{verbatim}
+cp /etc/postgresql/8.3/main/postgresql.conf{,.bak}
+\end{verbatim}
+
+va en faite faire un
+\begin{small}\begin{verbatim}
+cp /etc/postgresql/8.3/main/postgresql.conf /etc/postgresql/8.3/main/postgresql.conf.bak
+\end{verbatim}\end{small}
+
+
+
+Et ca marche aussi pour \gras{mv} ou \gras{diff} par exemple :
+
+\begin{verbatim}
+diff fichiermodifie{,.old}
+\end{verbatim}
+
+
+
+\subsection{Présentation des commandes usuelles}
+
+\subsubsection{cd}
+\verb|cd| : permet de changer le répertoire courant
+
+\textbf{cd} tout court est équivalent à \verb|cd ~|  qui nous place dans le dossier de l'utilisateur local
+
+\textbf{cd ..} répertoire parent
+
+\textbf{cd -} répertoire précédent
+
+\subsubsection{chmod}
+\paragraph{Méthode alphabétique}
+\verb|chmod [1] [2] [3] fichier|
+\subparagraph{[1]}
+Prend les valeurs suivantes :
+\begin{center}
+% use packages : array
+\begin{tabular}{rl}
+u & user : définit les permissions pour le propriétaire du fichier\\
+g & group : définit les permissions pour le groupe auquel appartient le fichier\\
+o & other : définit les permissions pour tout les autres
+\end{tabular}
+\end{center}
+
+\subparagraph{[2]}
+\begin{tabular}{rl}
+$+$ & signifie qu'on va ajouter les permissions définies après ce signe\\
+$-$ & signifie qu'on va enlever les permissions définies après ce signe\\
+$=$ & signifie qu'on définie exactement les permissions à celles citées après ce signe
+\end{tabular}
+
+\subparagraph{[3]}
+
+\begin{tabular}{rl}
+r & read : permission de lecture du fichier ou dossier\\
+w & write : permission d'écriture (modification/suppression/création) du fichier ou dossier\\
+x & execute : permet d'exécuter le fichier
+\end{tabular}
+
+\subparagraph{Exemples}
+
+\begin{verbatim}
+chmod go-wx fichier
+chmod u+x fichier
+\end{verbatim}
+
+La première commande enlève les droit d'écriture et d'exécution sur \texttt{fichier} pour le groupe et les autres. La deuxième commande ajoute les droit d'éxécution sur \texttt{fichier} au propriétaire de celui-ci (user)
+
+\paragraph{Méthode numérique}
+On définit une suite de 3 chiffres définissant les droits sur le fichier dans l'ordre \textbf{propriétaire / groupe / autres}.
+
+Au chiffre $1$ correspond le droit d'exécution
+
+Au chiffre $2$ correspond le droit d'écriture
+
+Au chiffre $4$ correspond le droit de lecture
+
+Il suffit pour définir plusieurs droits d'additionner les chiffres. On peut expliquer ces chiffres d'une manières binaire qui explique relativement bien les choses.
+
+Considérons les droits dans l'ordre suivant \textbf{lecture/écriture/exécution}. Si on donne à chaque droit une valeur binaire ($1$ pour oui, et $0$ pour non), on retrouve la valeur décimale que l'on doit donner pour associer les droits. Exemple :
+
+Je veux donner lecture, écriture et exécution au propriétaire, seulement lecture et écriture au groupe, et uniquement lecture aux autres.
+
+Pour le propriétaire : \texttt{lecture/écriture/exécution}$=111_{\text{(binaire)}}\Rightarrow 7_{\text{(décimal)}}$
+
+Pour le groupe : \texttt{lecture/écriture/exécution}$=110_{\text{(binaire)}}\Rightarrow 6_{\text{(décimal)}}$
+
+Pour les autres : \texttt{lecture/écriture/exécution}$=100_{\text{(binaire)}}\Rightarrow 4_{\text{(décimal)}}$
+
+
+Ainsi, on entrera la commande suivante :
+
+\begin{verbatim}
+chmod 764 fichier
+\end{verbatim}
+
+\subsubsection{dir}
+\verb|dir| liste les fichiers du répertoire courant.
+
+\subsubsection{du}
+Commande que j'ai retrouvé par hasard suite à un besoin de copier un gros répertoire, il vous affiche la taille mémoire utilisé du répertoire et des sous répertoires.
+
+Utilisation :
+
+\verb|du -h /repertoire|
+
+\subsubsection{find}
+\verb|find -type d >Musiques.txt|
+Permet de lister les répertoires et sous répertoires d'un dossier
+
+\verb|find >Films.txt|
+Permet de lister les fichiers, répertoires et sous répertoires (et fichiers inclus) d'un dossier
+
+\subsubsection{finger}
+Affiche les informations sur les utilisateurs
+
+\subsubsection{htop}\label{sec:htop}
+htop est une version de \og top\fg améliorée. Il y a de la couleurs, on peut se déplacer sur les processus via les flèches du claviers, et effectuer des actions via les touches \og F1-10\fg
+
+\subsubsection{kill}
+\verb|kill -9 PID| : Permet de tuer le processus avec le PID fourni
+
+\subsubsection{killall}
+\verb|killall irssi|\\
+Tue les processus à partir de leur nom.
+
+\subsubsection{locate}
+\verb|locate fichier.txt|
+
+Recherche toutes les copies de \textbf{fichier.txt} sur le disque dur. Pratique pour retrouver un fichier dont on connait le nom mais pas l'emplacement.
+
+\subsubsection{ln}
+La commande ci-dessous permet de créer un lien symbolique dans le dossier dans lequel on est placé actuellement. Par exemple, en ce plaçant dans \verb|/var/www| ça permet de faire un lien symbolique vers le dossier des fichiers d'un site web, et de pouvoir les modifier facilement. \'A noter que dans le cas du site web, il faut une permission 755 sur le dossier du site web. De plus, dans le localhost, il n'apparaitra pas, il faudra taper manuellement le dossier pour se retrouver dans celui-ci.
+
+\verb|sudo ln -s /home/votre_identifiant/répertoire_pour_votre_site mon_site|
+
+\subsubsection{ls}
+\verb|ls| : liste les fichiers et dossiers du répertoire courant
+\begin{description}
+ \item[-a] affiche aussi les fichiers cachés
+\item[-l] liste en affichant en tableaux les permissions propriétaires et cie
+\item[-F] affiche les fichiers uniquement
+\item[-R] affiche récursivement le contenu des sous répertoires
+\end{description}
+
+\subsubsection{man}
+
+\verb|man| permet de donner une aide sur une commande.
+
+\begin{exemple}
+\texttt{man wine}
+\end{exemple}
+
+
+Pour quitter l'aide de la console et pouvoir à nouveau taper des commandes, il faut appuyer sur "\touche{Q}"
+
+\subsubsection{mkdir}
+\verb|mkdir| : crée un répertoire
+\begin{description}
+ \item[-p] permet de créer aussi les répertoires parents qui n'existent pas non plus et donc de créer plusieurs répertoires imbriquées en une seule fois à l'aide de "/"
+\end{description}
+
+\subsubsection{pidof}
+Trouve l'\texttt{ID} d'un programme en cours d'exécution\\
+\verb|pidof fetchmail|
+
+\subsubsection{ps}
+\verb|ps -A| : permet de lister les processus
+
+\subsubsection{pwd}
+\verb|pwd| : affiche le chemin du répertoire courant
+
+\subsubsection{qui}
+Affiche le plan des salles (souligné = tuteur)
+
+\subsubsection{rm}
+\verb|rm| : permet d'effacer des fichiers
+\begin{description}
+ \item[-r] permet de supprimer aussi des dossiers
+\end{description}
+
+\subsubsection{rwho}
+Affiche personnes loguées ur une machine de la salle
+
+\subsubsection{rwrite}
+\verb|rwrite personne@machine| envoie un message
+
+\subsubsection{shutdown}
+Permet d'éteindre l'ordinateur en ligne de commande.
+\begin{description}
+\item[\texttt{shutdown -h now}] \'Eteint l'ordinateur immédiatement
+\item[\texttt{shutdown -r now}] Redémarre l'ordinateur immédiatement
+\item[\texttt{shutdown -h 10 :00}] programme l'extinction à $10h00$ du matin (donné en format $24h$)
+\item[\texttt{shutdown -h +10}] Programme l'extinction de l'ordinateur dans $10$ minutes
+\item[\texttt{shutdown -t 30}]Programme l'extinction de l'ordinateur dans $30$ secondes
+
+\end{description}
+
+\subsubsection{sort}
+Permet de trier. Je ne sais pas dans quelle mesure il trie, mais je sais l'utiliser pour qu'il me trie dans l'ordre alphabétique les lignes d'un fichier, et ça, c'est super pratique :
+
+\begin{verbatim}
+sort -d ~/autiwa.cwl>autiwa2.cwl
+\end{verbatim}
+
+
+\subsubsection{top}
+la commande \verb|top| permet de lister les processus les plus gourmands. Cette commande affiche un tableau qui est mis à jour régulièrement, la commande ne se termine donc pas toute seule comme \verb|ps|. Voir aussi \refsec{sec:htop}
+
+\subsubsection{uniq}
+Pour enlever les doublons de lignes, pratique quand vous faites une liste rapidement par copier coller ou par redirection de fichiers.
+
+Utilisation :
+
+\verb|uniq fichier_source > fichier_destination|
+
+\subsubsection{vim}
+\verb|vim| : permet d'éditer un fichier dans la console.\par
+Vim possède plusieurs mode, au départ, on est dans le mode commande. Pour rentrer dans le mode édition, il faut taper sur 'i', et sur \textbf{Echap} pour en sortir.
+Dans le mode commande voici les raccourcis usuels :
+\begin{description}
+ \item[ :w] pour enregistrer
+\item[ :q] pour quitter
+\item[ :q!] pour quitter sans enregistrer (si des modifications ont été faites, la commande :q ne marchera pas si vous n'avez pas enregistré au préalable.
+\item[ :x] pour sauvegarder et quitter.
+\end{description}
+
+\begin{remarque}
+Pour ma part, je préfère nano que je trouve plus simple à utiliser quand on a besoin d'un éditeur en console.
+\end{remarque}
+
+\subsubsection{wget}\label{sec:wget}\index{logiciel!wget}
+Permet de télécharger en ligne de commande.
+
+\begin{verbatim}
+wget http://lesite.com/lefichier.pdf
+\end{verbatim}
+
+Pour reprendre un téléchargement interrompu :
+\begin{verbatim}
+wget -c http://lesite.com/lefichier.pdf
+\end{verbatim}
+
+Pour spécifier le nom du fichier que l'on veut
+\begin{verbatim}
+wget -c http://lesite.com/lefichier.pdf -O "lenomquejeveux.pdf"
+\end{verbatim}
+
+\subsubsection{ytalk}
+\verb|ytalk personne@machine| propose une discussion à la personne considérée
+
+
+\subsection{Présentations de programmes plus spécifiques}
+\subsubsection{alltray}
+Programme qui permet de réduire dans le systray n'importe quelle application. Pour automatiser ce processus par exemple avec des icones\footnote{ceci marche aussi pour le démarrage automatique en début de session}, il suffit de rajouter le préfixe \verb|alltray| avant le nom du programme.
+
+\begin{exemple}
+\texttt{thunderbird} devient \texttt{alltray thunderbird}
+\end{exemple}
+
+\subsubsection{Mencoder}
+\paragraph{Découper une vidéo sans encoder}
+\begin{verbatim}
+mencoder fichier_trop_long.wmv -oac copy -ovc copy -ss 00 :00 :00 -endpos 00 :xx :xx \
+-o fichier_de_la_bonne_longueur.wmv
+\end{verbatim}
+
+\paragraph{Joindre des vidéos sans ré-encoder}
+Avant tout, il faut que les vidéos utilisent les mêmes codecs, aient la même taille, bref, semblables.
+Pour les joindres, et ce, (à priori) quel que soit les codecs :
+
+\begin{small}\begin{verbatim}
+mencoder fichier1.wmv fichier2.wmv fichier3.wmv -oac copy -ovc copy -o fichier_joint.wmv
+\end{verbatim}\end{small}
+
+\begin{remarque}
+Sur le papier, c'est censé joindre parfaitement, mais pour une raison que j'ignore, le test que j'ai effectué donnait une qualité d'image moindre au fichier de sortie\ldots
+\end{remarque}
+
+\paragraph{Convertir .rm en .avi}
+\begin{verbatim}
+mencoder toto.rm -ovc lavc -lavcopts vcodec=mpeg4 :vbitrate=384
+-vf scale=640 :480 -oac mp3lame -o toto.avi
+\end{verbatim}
+
+\paragraph{Extraire les frames en tant qu'images}
+\begin{verbatim}
+mplayer -vo gif89a -vf scale=640 :480 in.mpg
+\end{verbatim}
+où \textbf{gif89a} peut être remplacé par \textbf{jpg} ou \textbf{png}. et où \verb|in.mpg| désigne bien entendu la vidéo d'entrée.
+PS : à noter qu'on utilise \gras[logiciel!mplayer]{MPlayer} et non \gras{Mencoder}.
+
+\paragraph{Reconstruire l'index d'un .avi de façon permanente}
+\begin{verbatim}
+mencoder -forceidx -oac copy -ovc copy -o out.avi in.avi
+\end{verbatim}
+
+\subsubsection{ffmpeg}
+Fait en gros la même chose que \gras{Mencoder}
+\paragraph{Extraire le son d'une vidéo .flv}
+\begin{verbatim}
+ffmpeg -i flashvideo.flv -ar 44100 -ac 2 -ab 128k output.mp3
+\end{verbatim}
+
+\paragraph{Extraire un morceau de la bande son d'une vidéo}
+La commande ci-dessous permet d'extraire, à partir de 18 minutes et 33 secondes de film, la bande son des 15 prochaines secondes et d'enregistrer le tout dans un fichier mp3. Bien entendu, on peut spécifier le début en secondes, et inversement, la durée en heure :minutes :secondes.\par
+
+\verb| ffmpeg -i "video.avi" -f mp3 -ss 00 :18 :33 -t 15 audio.mp3|
+\paragraph{Convertir .rm en .avi}
+\begin{verbatim}
+ ffmpeg -i toto.rm -acodec aac -ab 128 -vcodec \
+ mpeg4 -b 384kb -mbd 2 -flags +4mv+trell -aic 2 -cmp 2 -subcmp 2 -s \
+ 320x180 -title "Toto" toto.avi
+\end{verbatim}
+
+\subsubsection{pdftk : Manipuler les fichiers .pdf}
+\paragraph{Fusionner des pdf}
+\begin{verbatim}
+pdftk fichier1.pdf fichier2.pdf fichier3.pdf cat output fichier.pdf
+\end{verbatim}
+
+\paragraph{Fusionner des parties de pdf}
+\begin{verbatim}
+pdftk A=fichier1.pdf B=fichier2.pdf C=fichier3.pdf cat A1-2 B5 C output fichier.pdf
+\end{verbatim}
+
+Dans cet exemple, on prend les pages 1 et 2 du premier pdf, la page 5 du 2\ieme{} pdf, et tout le 3\ieme{} pdf.
+
+\paragraph{Pivoter des pdf}
+\verb|pdftk A=entree.pdf cat A-W output sortie.pdf|
+
+Ici, on applique une rotation à tout le pdf \textbf{A}. Pour désigner la rotation à effectuer on utilise la première lettre du point cardinal en anglais :
+
+\begin{itemize}
+ \item North : $0$\degre
+\item East : $90$\degre
+\item South : $180$\degre
+\item West : $270$\degre
+\end{itemize}
+
+\paragraph{Résumé des 3 parties précédentes}
+On peut combiner les commandes précédentes comme dans l'exemple qui suit :
+\begin{verbatim}
+ pdftk A=entree.pdf cat A1-4 A5-S A6-47 output sortie.pdf
+\end{verbatim}
+
+Dans cet exemple, on ne prend qu'un pdf, mais on peut bien entendu en prendre plusieurs. Cet exemple recopie les 4 premières pages de l'entrée, puis effectue une rotation de $180$\degre à la 5\ieme{} page (en gros, elle la renverse), et enfin recopie les autres pages (mon exemple possedait 47 pages). Ceci m'a permis de remettre à l'endroit une page qui avait son texte dans le mauvais sens.\par
+
+\paragraph{Protéger un .pdf par mot de passe}
+\begin{verbatim}
+pdftk mondocument.pdf output mondocument.128.pdf owner_pw foo user_pw monmotdepasse
+\end{verbatim}
+Il suffit de remplacer \textbf{monmotdepasse} parce le mot de passe souhaité, \textbf{mondocument.pdf} par le nom du pdf en entrée et de remplacer \textbf{mondocument.128.pdf} par le nom du nouveau \textbf{.pdf} avec mot de passe qui sera créé. Il faut cependant comme d'habitude se placer dans le répertoire où se trouve le \textbf{.pdf}.
+
+\subsubsection{record : enregistrer des sons}
+J'ai voulu récemment enregistrer des sons via l'entrée micro de mon PC. j'ai essayé audacity, celui-ci me propose enregistrement, enregistrement1 et digital comme entrée audio, mais ne me propose pas mic (microphone) qui se trouve être la bonne entrée, c'est assez facheux. Même soucis du coté du coté de l'enregistreur de son par défaut.
+
+Et puis il y a \gras{record}. Alors bien entendu, c'est un programme en ligne de commande, on a pas trop le choix pour le nom du fichier voire l'encodage du son (\textbf{record.wav} et \textbf{wave} respectivement). Et encore que, je dis qu'on ne peut pas parce que je ne sais pas le faire, si ça se trouve ces configurations sont possibles. Quoi qu'il en soit, je lance le programme dans la console via :
+
+\begin{verbatim}
+record -i mic
+\end{verbatim}
+
+C'est à dire que je peux spécifier le périphérique d'entrée, très pratique. L'interface est dans la console et toutes les commandes sont expliquées, j'active le réglage automatique du volume (\touche{A}), et hop, un coup d'\touche{Espace} et ça enregistre. Pour information, le fichier s'enregistre par défaut dans le répertoire utilisateur, c'est à dire \verb|/home/login/| mais si ça se trouve, c'est simplement dans le répertoire courant, mais j'ai pas testé.
+
+\subsubsection{sed : manipuler les chaînes de caractères}
+La syntaxe de la commande substitution est la suivante :\\
+{\footnotesize\verb|sed -e 's|{\red \verb|<séparateur>|}{\blue \verb|<chaîne à  remplacer>|}{\red \verb|<séparateur>|}{\blue \verb|<chaîne remplaçante>|}{\red \verb|<séparateur>|}{\blue \verb|<options>|}\verb|'|}
+
+{\red \verb|<séparateur>|} : ici j'ai utilisé le caractère \verb|/| par habitude, ça fonctionnerait tout aussi bien avec \verb|,| ou \verb|;| etc\ldots
+
+{\blue \verb|<chaîne à  remplacer>|} : ici j'ai utilisé \verb|\.mp3$|
+\begin{description}
+\item \verb|.mp3| c'est l'extension que l'on veut enlever.
+\item \$ permet de dire que je ne veux enlever que le .mp3 final ce qui évite de supprimer autre chose que l'extension. Imaginons un fichier nommé \verb|coucou.mp3| par \verb|titi.mp3| si tu ne mets pas le \$ tu vas remplacer par \verb|coucou par titi.mp3| au lieu de \verb|coucou.mp3 par titi|
+\item dans sed, le caractère \verb|.| étant un caractère joker, il faut annuler son interprétation avec un \verb|\|
+\end{description}
+
+% \verb|.mp3| c'est l'extension que l'on veut enlever.
+% \$ permet de dire que je ne veux enlever que le .mp3 final ce qui évite de supprimer autre chose que l'extension. Imaginons un fichier nommé \verb|coucou.mp3| par \verb|titi.mp3| si tu ne mets pas le \$ tu vas remplacer par \verb|coucou par titi.mp3| au lieu de \verb|coucou.mp3 par titi|
+% dans sed, le caractère \verb|.| étant un caractère joker, il faut annuler son interprétation avec un \verb|\|
+
+{\blue \verb|<chaîne remplaçante>|} : ici on veut effacer donc je n'ai rien mis
+
+{\blue \verb|<options>|} : ici on n'en a pas besoin donc je n'en ai pas mis.
+
+Pour d'autres utilisation à  venir, les options que j'utilise le plus souvent sont :
+
+\begin{itemize}
+\item[un chiffre] : pour dire je veux remplacer l'occurrence x
+\item[g] : pour dire je veux remplacer toutes les occurrences
+\item[I] : permet de rendre le remplacement insensible à la casse.
+\end{itemize}
+
+\paragraph{Exemples}
+
+\verb|sed -r 's/\<./\U&/g'| : Permet de mettre en majuscule la première lettre de chaque mot de la chaîne de caractère qu'on lui passe en paramètre. Si on spécifie le nom d'un fichier après cette commande, alors il remplacera dans tout le fichier. En rajoutant \verb|>nom_dun_fichier.txt|, il stockera le résultat dans ce fichier.
+
+
+
+\subsubsection{convert : Convertir un .pdf en .png}
+\paragraph{En ligne de commande}
+Convertir un fichier PDF en image avec \gras{convert}   fourni avec \gras{ImageMagick}. La commande suivante permet de convertir un fichier pdf au format png.
+
+\verb|convert MonFichier.pdf MonFichier.png|
+
+\paragraph{À l'aide de Gimp}
+Je rajoute cette section parce que je viens de me rendre compte que convert ne faisait pas un \textbf{.png} très propre. J'ai voulu avoir une image \textbf{.png} d'un tableau excel (open office, mais \textbf{.xls}) et la conversion \textbf{.pdf} en \textbf{.png} ne me permet pas de lire les caractères proprement quand je zoome sur l'image alors que dans le \textbf{.pdf} original (choisi en 1200 dpi dans open office) je pouvais zoomer sans que les caractères ne pixellisent.
+
+J'ai donc voulu chercher une autre méthode. J'en ai trouvé une avec Gimp.
+Dans un premier temps, il faut ouvrir le \textbf{.pdf} avec \gras[logiciel!gimp]{The Gimp}, dans la fenêtre qui s'affiche, vous pouvez choisir les pages qui vous intéressent. Au niveau des réglages, j'ai pris \textbf{900 dpi} qui me permet d'avoir les traits bien propres.
+
+Ensuite, je converti mon image en couleurs indexées vu que des fichiers textes ont peu de couleurs, on gagne de la place.
+réduire la taille de l'image est aussi une option\footnote{Attention cependant, si vous réduisez trop l'image, pour que celle-ci reste propre, il peut être nécessaire de repasser en RVB, de réduire la taille aux dimensions voulues et ensuite de repasser aux couleurs indexées, sinon les écritures pourraient être moches...} vu qu'en mettant 900 dpi, je me suis retrouvé, dans mon exemple, avec une image de 8000px par 5000px
+
+\subsubsection{inkscape en ligne de commande}
+\paragraph{Nettoyer les définitions}
+Ça permet de nettoyer les définitions inutilisées d'un fichier \textbf{.svg}. Je le fais généralement en lançant l'interface graphique, mais cette ligne va me permettre de faire un script pour automatiser tout ça dans un dossier, bref, c'est super pratique :
+
+\begin{verbatim}
+inkscape fichier.svg --vacuum-defs
+\end{verbatim}
+
+\begin{attention}
+Je ne sais pas si ça a été résolu, mais cette fonction, au moment où je l'ai utilisée, avait le facheux défaut de supprimer tout les marqueurs des chemins. En gros, mes flèches devenaient des simples traits.
+\end{attention}
+
+
+\paragraph{Exporter en .png}
+\begin{verbatim}
+inkscape fichier.svg -e fichier.png -w 300 -h 500
+\end{verbatim}
+
+-e indique qu'il s'agit d'un export png
+-w largeur du bitmap à exporter
+-h hauteur du bitmap à exporter
+
+\begin{remarque}
+Je ne sais pas encore comment on fait pour spécifier de garder les proportions, peut-être en ne spécifiant qu'une seule dimension.
+\end{remarque}
+
+\subsubsection{zenity}\label{sec:zenity}
+\gras{zenity} permet d'avoir facilement une interface graphique, et donc d'afficher des informations à l'écran pour des scripts.
+
+Pour afficher du texte à l'écran, on utilise la syntaxe suivante :
+
+\begin{verbatim}
+zenity --info --text="Le Backup a été effectué avec succès." --title="Informations"
+\end{verbatim}
+
+On peut mettre en forme ce texte pour mettre de la couleur ou des mises en formes basiques :
+\begin{verbatim}
+zenity --info --text "
+<span color=\"red\">red</span>
+<span color=\"green\">green</span>
+<span color=\"blue\">blue</span>
+<span color=\"yellow\">yellow</span>
+<span color=\"magenta\">magenta</span>
+<span color=\"white\">white</span>
+<span color=\"black\">black</span>
+<span color=\"gray\">gray</span>
+<span color=\"lightblue\">lightblue</span>
+<span color=\"lightgray\">lightgray</span>
+ <b><big>ETC...</big></b>
+ <b>style</b>
+ <big>style</big>
+ <i>style</i>
+ <s>style</s>
+ <sub>style</sub>
+ <sup>style</sup>
+ <small>style</small>
+ <tt>style</tt>
+ <u>style</u>
+"
+\end{verbatim}
+
+D'autres exemples d'utilisation ci dessous :
+\begin{itemize}
+\item En rajoutant \verb#| zenity progress pulsate# à droite d'une commande, on peut avoir une barre de \og progression\fg tant que la commande s'exécute.
+\item \verb|zenity question title "Alert" text  "Êtes-vous sur?"| affiche une alerte. Si on valide, alors ça retourne 0, si on annule, ça retourne 1. (en gros, 0 pour oui, et 1 pour non)
+\item \verb|zenity title="Select a file to remove" fileselection| permet de sélectionner un fichier, et son chemin complet sera retourné.
+\end{itemize}
+
+\begin{remarque}
+Pour stocker le résultat dans une variable, on procède comme suit : \texttt{variable=`zenity ***`}, ça permet d'exécuter la commande et stocker son argument.
+\end{remarque}
+
+\subsection{Actions faciles à faire en ligne de commande}
+\subsubsection{Effacer des fichiers en masse}
+À l'aide de la commande \gras{find} on peut créer en ligne de commande la recherche de fichiers que l'on efface par la suite :
+
+\verb|find . -name "*.db" -exec rm -f {} \;|
+
+
+Dans cet exemple, on recherche les fichiers de type \textbf{.db} (\verb|-name "*.db"|, ce qui permet, en pratique, de supprimer les fichiers \textbf{Thumbs.db}, en supprimant tout les fichiers avec cette extension --- pour palier les éventuels renommage ---) du répertoire courant (\verb|.|) que l'on va effacer. le \textbf{-f} permet d'enlever la confirmation de suppression. \par
+
+\subsubsection{Déplacer des fichiers dans le répertoire parent}
+On se place dans le répertoire contenant les différents dossiers qui contiennent les images. Celles-ci seront déplacées et misent dans le répertoire courant. Il est aussi possible de spécifier un autre répertoire en donnant son emplacement, relatif ou absolu. À noter qu'on peut aussi garder cette ligne de commande et se placer dans le bon répertoire via le \textbf{cd} approprié
+
+\verb|find . -name "* - Page*" -exec mv {} "`pwd`" \;|
+
+\subsubsection{Changer l'encodage d'un texte}
+\begin{verbatim}
+iconv -f iso-8859-1 -t utf-8 entree.txt>sortie.txt    # vers UTF-8
+iconv -f utf-8 -t iso-8859-1 entree.txt>sortie.txt    # vers latin-1
+\end{verbatim}
+
+\subsubsection{Inverser l'ordre des lignes}
+
+Si on a un fichier texte dont on souhaite inverser l'ordre des lignes, il suffit de faire en ligne de commande :
+
+\begin{verbatim}
+tac texte.txt>texte2.txt
+\end{verbatim}
+ainsi, un texte comme le suivant :
+\begin{quote}
+ligne 01\\
+ligne 02\\
+ligne 03
+\end{quote}
+
+sera stocké dans le fichier \texttt{texte2.txt} sous la forme suivante :
+
+\begin{quote}
+ligne 03\\
+ligne 02\\
+ligne 01
+\end{quote}
+
+\subsubsection{Extraire un DVD avec mplayer}
+Tout d'abord, il faut trouver le bon titre. En effet, sur un DVD il y a parfois, voire même souvent, plusieurs titres, ne serait-ce que pour une introduction ou autre. On a donc, en plus du découpage en chapitres, une divisions en titre.
+
+Pour cela, rien de plus simple, il suffit de tester les titres pour trouver celui qui nous intéresse via
+\begin{verbatim}
+mplayer dvd://1
+\end{verbatim}
+en faisant varier le chiffre (dans mon cas, c'était \verb|mplayer dvd://4| par exemple).
+
+\bigskip
+
+Si on souhaite extraire chaque chapitre séparément, on a besoin d'une étape intermédiaire qui est
+\begin{verbatim}
+dvdxchap -t 4 /dev/dvd > chapters.txt
+\end{verbatim}
+où $4$ est le numéro du titre qui nous intéresse. Ceci permet de connaître le nombre de chapitres.
+
+Ensuite, pour extraire le DVD en .vob
+\begin{verbatim}
+mplayer -dumpstream dvd://4 -dumpfile video.vob
+\end{verbatim}
+
+Pour extraire chapitre par chapitre, voir le script \textbf{dvdchapter2vob.sh} (section \refsec{sec:dvdchapter2vob}
+
+Pour encoder, voir l'astuce \refsec{sec:encoder_DVD}.
+
+\subsection{Mettre de la couleur dans la console}
+Pour ajouter de la couleur à votre terminal, éditez votre fichier \verb|~/.bashrc| (\verb|gedit ~/.bashrc|) :
+\begin{itemize}
+\item ajoutez un \# au début des lignes 26 à 33 (les 8 lignes sous \# set a fancy prompt (non-color, unless we know we "want" color)
+\item en dessous de la ligne 36 :
+
+\begin{verbatim}
+#PS1='${debian_chroot :+(debian_chroot)}\[\033[01;32m\]
+\u@\h\[\033[00m\] :\[033[01;34m\]\w\[\033[00m\]\$ '\end{verbatim}
+
+ajoutez cette ligne :
+
+\begin{verbatim}
+PS1='${debian_chroot :+($debian_chroot)}\[\033[0;31m\]
+\u@\h\[\033[0;0m\] :\[\033[0;33m\]\w\[\033[0;0m\]\$ '
+\end{verbatim}
+\end{itemize}
+
+\subsubsection{Trier les lignes d'un fichier par ordre alphabétique}
+
+\begin{verbatim}
+sort -d ~/autiwa.cwl>autiwa2.cwl
+\end{verbatim}
+
+
+\subsection{Manipuler un fichier texte}
+\subsubsection{Expressions régulières \texttt{regexp}}
+Grâce à la commande \texttt{Rechercher/Remplacer} on peut manipuler très précisément les textes, pour peu qu'on pense à rechercher dans tout le texte, manipuler toutes les occurences et activer les expressions régulières. Ces commandes marchent avec Geany et Kate, j'ai supposé que ça marchait pour les autres éditeurs de textes.
+\begin{center}
+% use packages : array
+\begin{tabular}[c]{|c|p{14cm}|}
+\hline
+\verb|.| & correspond à n'importe quel caractère \\ \hline
+\verb|(| & La parenthèse ouvrante marque le début d'une zone de \og tag\fg. C'est à dire que le contenu de cette région sera mémorisé, et pourra être réutilisé dans la section remplacement (cf la partie sur \verb|\n| pour plus de détails au sujet du remplacement par des zones taggées) \\ \hline
+\verb|)| & Marque la fin d'une zone taggée \\ \hline
+\verb|\n| & Ici, \textbf{n} représente un nombre entier allant de 1 à 9. On utilise cette commande dans la section remplacement. donc \verb|\1| fera référence à la première zone taggée. Prenons un exemple. Voici un exemple d'expression régulière : \verb|Fred([1-9])XXX|. Ainsi, la zone entre parenthèse est la zone taggée numéro 1 (ici il n'y en a qu'une, mais s'il y en avait d'autres, elles auraient un numéro affecté en fonction de leur ordre d'apparition dans l'expression régulière. Supposons qu'on applique cette expression sur la phrase \verb|Fred2XXX|. Le \og 2 \fg correpond à la zone taggée numéro 1. Ainsi, si dans la section de remplacement, on écrit \verb|Sam\1YYY|; la phrase précédente sera remplacée par : \verb|Sam2YYY|\\ \hline
+\verb|\<| &  correspond au début d'un mot\\ \hline
+\verb|\>| & correspond à la fin d'un mot \\ \hline
+\verb|\x| & permet d'utiliser le caractère \textbf{x} (où \textbf{x} est un caractère non définit ici, mais qui correspond à un caractère \og protégé\fg, c'est à dire qui est utilisé pour des commandes) comme un caractère normal alors que celui-ci aurait été considéré comme une commande pour une expression régulière. Par exemple pour rechercher un crochet, il faut utiliser \verb|\[| \\ \hline
+\verb|[...]| &  permet de rechercher un caractère parmis une liste. Par exemple \verb|[abc]| recherchera l'un des trois caractères. \verb|[a-zA-Z]| recherchera une lettre majuscule ou minuscule.\\ \hline
+\verb|[^...]| & recherche un caractère parmi le complètement aux caractères dans les crochets. \verb|[^a-z]| recherche tout caractère qui n'est pas une lettre minuscule. \\ \hline
+\verb|^| &  recherche le début d'une ligne\\ \hline
+\verb|$| &  recherche la fin d'une ligne\\ \hline
+\verb|*| &  Permet de rechercher un nombre compris entre 0 et l'infini du caractère précédent immédiatement \textbf{*}. Par exemple \verb|Sa*m| permet de trouver Sm, Sam, Saam, Saaam et ainsi de suite. Si juste avant \textbf{*} on a une liste de caractère (via les crochets), alors ça s'appliquera à la liste complète des caractères. (\textbf{[ab]*} recherchera une séquence de \textbf{a} et \textbf{b} dont le nombre de caractère sera compris entre 0 et l'infini.\\ \hline
+\verb|+| & Ce caractère fonctionne comme \textbf{*}, à la différence près que le nombre d'occurence doit être compris entre 1 et l'infini. Par exemple \verb|Sa+m| permet de trouver Sam, Saam, Saaam et ainsi de suite\\\hline
+\end{tabular}
+\end{center}
+
+
+\begin{verbatim}
+!.*$
+\end{verbatim}
+
+La commande ci dessus permet de sélectionner toute suite de caractère qui se trouve entre un point d'exclamation et la fin d'une ligne.
+
+\begin{verbatim}
+\([ a-zA-Z?!]*\)
+\end{verbatim}
+
+La commande ci-dessus permet de rechercher toute suite de caractère minuscule ou majuscule incluant point d'exclamation, point d'interrogation ainsi que l'espace qui se trouve dans deux parenthèses
+
+\subsubsection{Rechercher-remplacer regexp}
+
+Ci-dessous un exemple d'expressions à rentrer et de ce qu'il fait. l'exemple est assez complet et permet de voir pas mal de commande. Il est à noter qu'en pratique, j'ai eu un problème avec cette expression et pour les doubles pages, il ne me mettait que le numéro de la dernière page.
+
+\begin{tabular}{|r|l|}
+\hline
+expression à rechercher & \verb|.*v([0-9]+) p.*([0-9-]+)\.([a-z]+)|\\\hline
+expression à remplacer & \verb|T\1 - Page \2.\3|\\\hline
+\end{tabular}
+
+Exemple de nom de fichier initial et final :
+\begin{verbatim}
+SAO v02c03 p008.png
+T02 - Page 008.png
+\end{verbatim}
+
+Pour les explications sur les commandes, la plupart sont expliquées dans la paragraphe précédent sur les expressions régulières. Le point principal que je voulais expliquer ici, c'est le principe des régions "taggées" c'est à dire que les parties entre parenthèses sont sélectionnées et qu'on les appelle dans la section de remplacement via \verb|\1| jusqu'à \verb|\9| dans l'ordre d'apparition.
+
+\subsubsection{Supprimer des lignes vides}
+\gras{sed} permet de le faire via la commande suivante (qui utilise les expressions régulières en fait)
+
+\begin{verbatim}
+sed '/^$/d' mon_fichier.txt
+\end{verbatim}
+
+
+\section{Faire des scripts Bash}
+Un script Bash doit commencer par cette ligne
+\begin{verbatim}
+#! /bin/bash
+\end{verbatim}
+et en dessous, on met les commandes. ensuite, il faut penser à donner les droits d'exécutions à ce fichier.
+
+Voir la section \ref{sec:zenity} pour des détails sur \gras{zenity} qui permet de rajouter des interfaces graphiques aux scripts.
+
+Les variables sont précédées du signe \$. Pour \og protéger \fg une variable, il faut écrire \\ \verb|${nom_de_la_variable}|. En effet, si on utilise la variable dans des chaines de caractères, il arrive bien souvent que bash ne sache pas où s'arrête le nom de la variable et où commence la suite de la chaîne de caractère.
+
+\subsection{Boucle for}
+\verb|for i in `seq 2 7`; do convert "TP0".$i.".png" "TP0".$i.".pdf" ; done|\\
+La commande ci-dessus permet de convertir les fichiers \texttt{TP01.png} à \texttt{TP07.png} en .pdf en une seule commande. Les points virgules permettent de simuler une mise à la ligne pour ne pas avoir à revenir à la ligne réellement.
+
+La commande \texttt{seq 2 7} renvoie la liste des entiers compris entre $2$ et $7$, ce qui permet de faire l'itération.
+
+Ou encore :
+
+\begin{exemple}
+\begin{verbatim}
+for ((i=1;i<5;i++)) do {
+echo $i;
+}
+done
+\end{verbatim}
+\end{exemple}
+
+\subsubsection{Boucle sur des fichiers}
+\begin{verbatim}
+for file in *.f
+do
+   mv $file `basename $file .f`.f90
+done
+\end{verbatim}
+
+Cette boucle for va chercher tous les fichiers ayant l'extension \texttt{.f} dans le dossier courant et les renommer pour leur donner l'extension \texttt{.f90}.
+
+\begin{remarque}
+La partie \verb|basename $file .f| permet d'enlever l'extension \texttt{.f} du nom de fichier contenu dans la variable \verb|$file|
+\end{remarque}
+
+
+\subsection{Manipuler les chaînes de caractères}
+\subsubsection{\$\{chaine\#souschaine\}}
+Supprime la correspondance la plus petite de \verb|$souschaine| à partir du début de \verb|$chaine|.
+
+\begin{exemple}
+\begin{verbatim}
+chaineZ=abcABC123ABCabc
+echo ${chaineZ#a*C}      # 123ABCabc
+# Supprime la plus petite correspondance entre 'a' et 'C'
+# à partir du début de $chaineZ.
+\end{verbatim}
+\end{exemple}
+
+\subsubsection{\$\{chaine\#\#souschaine\}}
+Supprime la correspondance la plus grande de \verb|$souschaine| à partir du début de \verb|$chaine|.
+
+\begin{exemple}
+\begin{verbatim}
+chaineZ=abcABC123ABCabc
+echo ${chaineZ##a*C}      # abc
+# Supprime la plus grande correspondance entre 'a' et 'C'
+# à partir du début de $chaineZ.
+\end{verbatim}
+\end{exemple}
+
+\subsubsection{\$\{chaine\%souschaine\}}
+Supprime la plus petite correspondance de \verb|$souschaine| à partir de la fin de \verb|$chaine|.
+
+\begin{exemple}
+\begin{verbatim}
+chaineZ=abcABC123ABCabc
+echo ${chaineZ%b*c}      # abcABC123ABCa
+# Supprime la plus petite correspondance entre 'b' et 'c'
+# à partir de la fin de $chaineZ.
+\end{verbatim}
+\end{exemple}
+
+
+\begin{remarque}
+Pour supprimer l'extension (pour un script par exemple). Soit la variable \texttt{\$file}. Voici la commande à exécuter :
+
+\verb| name=${file%.*}|
+\end{remarque}
+
+
+\subsubsection{\$\{chaine\%\%souschaine\}}
+Supprime la plus grande correspondance de \verb|$souschaine| à partir de la fin de \verb|$chaine|.
+
+\begin{exemple}
+\begin{verbatim}
+chaineZ=abcABC123ABCabc
+echo ${chaineZ%%b*c}      # a
+# Supprime la plus grande correspondance entre 'b' et 'c'
+# à partir de la fin de $chaineZ.
+\end{verbatim}
+\end{exemple}
+
+\subsection{Faire une pause dans un script bash}
+\begin{verbatim}
+#! /bin/bash
+# pause2.sh : appuyer sur une touche pour continuer un script
+
+echo "Appuyer la touche <Entrée> pour continuer..."
+read touche
+case $touche in
+*)	echo "Reprise du script..."
+	;;
+esac
+\end{verbatim}
+
+\begin{verbatim}
+#! /bin/bash
+# pause.sh : continuer oui ou non un script
+
+echo "Voulez-vous continuer ? [O/N]"
+read mot
+while
+[ "$mot" = "O" ]
+do
+echo "Voulez-vous continuer ? [O/N]"
+read mot
+done
+echo "Programme achevé..."
+\end{verbatim}
+
+\subsection{Découpage des chemins}
+Les scripts shell manipulent souvent chemins (pathnames) et noms de fichiers. Les commandes basename et dirname sont très commodes pour découper un chemin en deux partie (répertoires, nom de fichier) :
+\begin{verbatim}
+$ dirname /un/long/chemin/vers/toto.txt
+/un/long/chemin/vers
+$ basename /un/long/chemin/vers/toto.txt
+toto.txt
+\end{verbatim}
+
+\source{http://www-gtr.iutv.univ-paris13.fr/Cours/Mat/Systeme/TDTP2003/tp03.html}
+
+\subsection{Tester si un fichier existe}
+\begin{verbatim}
+ if [ -e /media/stockage ]; then
+   echo "On le tient"
+ else
+   echo "Il est où ?"
+ fi
+\end{verbatim}
+
+\subsection{Tester si un binaire existe}
+\begin{verbatim}
+which xcf2png 2>/dev/null
+if [ $? != 0 ]
+then
+zenity --error --title="Attention" --text="Le programme <b>xcf2png</b> n'existe pas. Installez le paquet <b>xcftools</b>"
+exit 0
+fi
+\end{verbatim}
+
+
+\subsection{jpg en png (script compact)}
+\begin{verbatim}
+#!/bin/bash
+
+for file in *.jpg; do convert "${file}" "${file%.jpg}.png"; done
+\end{verbatim}
+
+
+\subsection{jpg2pdf.sh}
+\begin{verbatim}
+ #!/bin/bash
+
+prefix=$1
+
+for i in $prefix*.jpg
+do
+  i=${i%.jpg}      #on vire l'extension
+  list="$list $i"
+  z="mogrify -page A4+0+0 -format pdf $i.jpg"
+  echo $z
+  $z
+done
+z="pdftk $(for i in $list ; do echo $i.pdf ; done) cat output $prefix.pdf"
+echo $z
+$z
+\end{verbatim}
+Il suffit de recopier ce code dans un fichier que l'on appelle \textbf{jpgs2pdf.sh}, sans oublier de lui donner les droits d'exécution. Ensuite pour l'utiliser, on procède comme suit :
+
+Si on a deux pages fichier1.jpg et fichier2.jpg, on crée fichier.pdf avec \verb|./jpgs2pdf.sh fichier| dans le bon répertoire.
+Il faut avoir le script dans le même dossier que les images, et il faut que les images aient le même nom avec le numéro accolé, commençant à 1 (et non à 01).
+
+\subsection{flv2mp3}
+\begin{verbatim}
+#!/bin/bash
+#pour convertir un fichier .flv en .mp3
+#version 0.45
+#Script à utiliser via nautilus, en
+#faisant clic droit sur une sélection de fichiers .flv
+
+while [ $# -gt 0 ]; do
+	video=$1
+	mp3_file=`echo "$video" | sed 's/\.\w*$/.mp3/'`
+	ffmpeg -i "$video" -ar 44100 -ac 2 -ab 128k "$mp3_file"
+	shift
+done
+\end{verbatim}
+
+Il faut avoir installé nautilus-scripts pour pouvoir lancer le script après avoir sélectionné les fichiers .flv que l'on veut convertir.
+
+\subsection{dvdchapter2vob}\label{sec:dvdchapter2vob}
+Voici un script pour extraire les chapitres d'un DVD dans des fichiers séparés.
+
+Il faut tout d'abord trouver la piste à extraire. On procède par tatonnement en lançant
+\begin{verbatim}
+mplayer dvd://i
+\end{verbatim}
+où $i$ est un chiffre, généralement entre 1 et 4.
+
+Ensuite, pour vérifier si le nombre de chapitres de la piste $i$ correspond, on tape
+\begin{verbatim}
+dvdxchap -t i /dev/dvd
+\end{verbatim}
+
+En clair, s'il n'y a qu'un ou deux chapitres, c'est surement un menu ou un truc du style, donc c'est pas bon.
+
+
+\begin{verbatim}
+ #!/bin/bash
+ #pour extraire les épisodes d'un dvd en .vob
+ #version 0.1alpha
+
+dossier="/media/video/temp"
+for ((i=1 ; 11 - $i ; i++)) do {
+	echo $i
+	mplayer dvd://4 -chapter $i-$i -dumpstream -dumpfile "$dossier/episode_$i.vob"
+
+
+}
+done
+\end{verbatim}
+
+Dans cet exemple, il y a 10 chapitres à extraire (de 1 à 10) et on a préalablement trouvé dans quel titre du DVD il se trouvaient, ici le numéro 4).
+
+Pour encoder, voir l'astuce \refsec{sec:encoder_DVD}.
+
+\begin{leglossaire}
+\glossaire{Antivirus}{Un antivirus -- anti-virus -- est un logiciel censé protéger un micro-ordinateur contre les programmes néfastes appelés virus, vers, troyens, macrovirus, etc.}
+\glossaire{Avahi}{Avahi est une implémentation de ZéroConf permettant la découverte de services offerts par le réseau comme les imprimantes disponibles, partager de la musique et l'écouter à distance, parler par messagerie Internet aux autres ordinateurs hôtes de votre réseau, et tout cela sans configuration préalable.}
+\glossaire{BIOS}{Le Basic Input Output System -- système élémentaire d'entrée/sortie -- est un ensemble de fonctions, contenues dans la mémoire morte -- ROM -- de la carte mère servant à faire des opérations basiques. Celui-ci émet notamment les premières commandes au système durant la phase de démarrage, pour indiquer par exemple sur quel disque et à quel endroit se trouve le MBR.}
+\glossaire{Boot loader}{Terme anglais de \og Chargeur d'amorçage \fg . Se référer à la définition de ce dernier.}
+\glossaire{Chargeur d'amorçage}{Également appelé \og Boot loader \fg, ce programme permet de choisir quel système d'exploitation doit être lancé. Dans le cas de Windows, il s'agit du programme NTLDR, dans le cas d'un système en multiboot -- possibilité de démarrer plusieurs systèmes d'exploitation sur un même ordinateur -- Lilo dans les cas simples -- Windows et Linux -- ou GRUB dans les cas plus sophistiqués --- tous systèmes supportés.}
+\glossaire{Codec}{Le mot-valise \og Codec \fg  est construit d'après les mots \og codeur \fg  et \og décodeur \fg . Il s'agit d'un procédé permettant de compresser et/ou de décompresser un signal audio ou vidéo, le plus souvent en temps réel. Les codecs peuvent être partagés entre plusieurs logiciels de lecture audio ou vidéo.}
+\glossaire{Console}{Le mot console est un synonyme de \og terminal \fg . Se référer à la définition de ce dernier.}
+\glossaire{Défragmentation}{La défragmentation réorganise physiquement le contenu du disque pour remettre ensemble et dans l'ordre les fragments ou morceaux éparpillés d'un fichier. Ce processus d'élimination essaye également de créer une grande région d'espace libre pour retarder à nouveau la fragmentation du système de fichiers.}
+\glossaire{Démon}{Le terme démon -- ou daemon en anglais -- désigne un type de programme. Le terme a été créé par les inventeurs d'Unix pour se référer à un processus qui s'exécute en arrière-plan plutôt que sous le contrôle direct d'un utilisateur. Les démons sont souvent démarrés lors du chargement du système d'exploitation, et servent en général à répondre à des requêtes du réseau, à l'activité du matériel ou à d'autres programmes en exécutant certaines tâches.}
+\glossaire{DHCP}{Le Dynamic Host Configuration Protocol est un terme anglais désignant un protocole réseau dont le rôle est d'assurer la configuration automatique des paramètres TCP/IP d'une station, notamment en lui assignant automatiquement une adresse IP, une passerelle et un masque de sous-réseau.}
+\glossaire{DNS}{Le Domain Name System -- ou système de noms de domaine -- est un système permettant d'établir une correspondance entre une adresse IP -- exemple : 80.82.17.133 -- et un nom de domaine -- exemple : \url{http ://www.framabook.org} -- et, plus généralement, de trouver une information à partir d'un nom de domaine.}
+\glossaire{Drag'n'Drop}{Terme anglais de glisser-déposer, voir la définition de ce dernier.}
+\glossaire{Driver}{Terme anglais de \og pilote \fg . Se référer à sa définition.}
+\glossaire{DRM}{Les Digital Rights Management, terme anglais de Gestion des Droits Numériques -- GDN -- a pour objectif de contrôler par des mesures techniques de protection, très restrictives et contraignantes, l'utilisation qui est faite des \oe{}uvres numériques.}
+\glossaire{Ethernet (câble)}{Le câble ethernet le plus connu est certainement le câble RJ11, équipant la plupart des téléphones. Cette interface physique est souvent utilisée pour terminer les câbles de type paire torsadée, et sa version RJ45 est celle choisie pour équiper la plupart des cartes réseaux actuelles d'ordinateur.}
+\glossaire{Firewall}{Terme anglais de \og pare-feu \fg . Se référer à la définition de ce dernier.}
+\glossaire{Fork}{Mot anglais signifiant \og fourche \fg  ou \og fourchette \fg, un fork correspond à un nouveau projet créé à partir d'un autre à l'identique, sans détruire ce dernier. Cela implique que les droits accordés par les auteurs le permettent : ils doivent autoriser la modification, l'utilisation et la redistribution du code source. C'est pour cette raison que les embranchements se produisent facilement dans le domaine des logiciels libres.}
+\glossaire{GDN}{Terme français de DRM, largement plus utilisé. Voir la définition plus haut.}
+\glossaire{Geek}{Terme anglais se prononçant [gi :k], un geek est une personne passionnée, voire obsédée, par un domaine précis (la plupart du temps rapporté à l'informatique et aux nouvelles technologies). À l'origine, en anglais le terme signifiait \og fada \fg, soit une variation argotique de \og fou \fg .}
+\glossaire{Glisser-déposer}{Pour réaliser un glisser-déposer, il faut d'abord sélectionner un ou plusieurs éléments, puis maintenir appuyé, lors du déplacement, le bouton gauche de la souris et enfin le relâcher sur le point d'arrivée.}
+\glossaire{Icône}{Petit pictogramme représentant une action, un objet, un logiciel, un type de fichier, etc. Les icônes ont dans un premier temps servi d'outils pour rendre les environnements graphiques informatiques plus simple d'utilisation aux novices.}
+\glossaire{Identifiant}{Appelé également \og nom d'utilisateur \fg  et \og login \fg  en anglais.}
+\glossaire{L'Internet --- et non internet}{Un internet est un réseau, l'Internet -- ne pas oublier le \og l' \fg  et la majuscule -- est \og le réseau des réseaux \fg . L'adjectif, lui, est cependant bien \og Internet \fg, comme dans site Internet. Ce  réseau informatique à l'échelle du monde, reposant sur le protocole de communication IP, rend accessible au public des services comme le courrier électronique et le web. Vous pourrez reprendre un grand nombre de présentateurs télévisés --- qui a dit que ce n'est pas la première fois ? :-)}
+\glossaire{IP (adresse)}{Une adresse IP -- IP pour Internet Protocol -- est le numéro qui identifie chaque ordinateur sur l'Internet, et plus généralement, l'interface avec le réseau de tout matériel informatique -- routeur, imprimante -- connecté à un réseau informatique utilisant le protocole Internet.}
+\glossaire{Kernel}{Terme anglais de \og noyau \fg . Voir plus bas la définition de ce dernier.}
+\glossaire{Logiciels libres}{Un logiciel libre se dit d'un logiciel qui donne le droit à toute personne possédant une copie, de l'utiliser, de l'étudier, de le modifier et de le redistribuer. Ce droit est souvent donné par une Licence Libre. Tout ceci se réfère directement au mouvement du Libre.}
+\glossaire{Logiciels propriétaires}{Ce sont des logiciels dont l'utilisation est limitée --- notion opposée à celle des \og logiciels libres \fg --- d'une manière très précise par un con\-trat de licence. }
+\glossaire{Masque de sous-réseau}{Un masque de sous-réseau permet d'identifier un sous-réseau. En l'appliquant sur l'adresse IP de la machine, il permet de déterminer si certaines machines appartiennent, ou non, au même réseau alors qu'elles sont connectées physiquement.}
+\glossaire{MBR}{Le Master Boot Record, également appelé \og Zone d'amorcage \fg, est le nom donné par le BIOS au premier secteur adressable d'un disque dur. Ce dernier peut contenir le \og Chargeur d'amorçage \fg  ou encore \og Boot loader \fg  ou une adresse pour l'atteindre.}
+\glossaire{Mémoire vive}{La mémoire vive, dite mémoire système ou encore mémoire volatile est la mémoire dans laquelle un ordinateur place les données lors de leur traitement. C'est donc cette mémoire d'un accès très rapide qui est utilisée lorsque l'ordinateur est allumé. Celle-ci est complètement vidée à l'extinction de l'ordinateur. Cette notion est à opposer à la mémoire morte.}
+\glossaire{Mémoire morte}{Une mémoire morte est une mémoire non volatile, c'est-à-dire une mémoire qui ne s'efface pas lorsque l'appareil qui la contient n'est plus alimenté en électricité. Le type le plus connu du grand public est, notamment, le disque dur.}
+\glossaire{Menu contextuel}{Ce menu s'obtient en cliquant avec le bouton droit de la souris sur un objet. Il contient un choix de fonctions variant selon l'objet et son contexte.}
+\glossaire{Noyau}{En informatique, un noyau de système d'exploitation abrégé en noyau -- kernel en anglais -- est la partie fondamentale de tous les systèmes d'exploitation. Elle gère les ressources de l'ordinateur et permet aux différents composants - matériels et logiciels - de communiquer entre eux.}
+\glossaire{Operating System}{Souvent appelé OS. Terme anglais de Système d'exploitation. Voir cette définition.}
+\glossaire{Pare-feu}{Un pare-feu est un élément du réseau informatique, logiciel et/ou matériel, qui a pour fonction de faire respecter la politique de sécurité du réseau, celle-ci définissant les types de communication autorisés ou interdits. Il a pour principale tâche de contrôler le trafic entre différentes zones de confiance, en filtrant les flux de données qui y transitent. Généralement, les zones de confiance incluent l'Internet -- une zone dont la confiance est nulle -- et au moins un réseau interne --- une zone dont la confiance est plus importante.}
+\glossaire{Passerelle}{En informatique, une passerelle -- en anglais, gateway -- est un dispositif permettant de relier deux réseaux informatiques différents, comme par exemple un réseau local et l'Internet. Ainsi, plusieurs ordinateurs ou l'ensemble du réseau local peuvent accéder à l'Internet par l'intermédiaire de la passerelle. Le plus souvent, elle sert aussi de pare-feu, ce qui permet de contrôler tous les transferts de données entre le local et l'extérieur.}
+\glossaire{Phishing}{Contraction des mots anglais \og PHreaking \fg, signifiant le détournement d'un système téléphonique, et de \og fISHING \fg  qui est la pêche à la ligne. Le phishing, appelé hameçonnage en français, correspond à une technique utilisée par des fraudeurs pour obtenir des renseignements personnels dans le but de perpétrer une usurpation d'identité. La technique consiste à faire croire à la victime qu'elle s'adresse à un tiers de confiance -- banque, administration, etc. -- afin de lui soutirer des renseignements personnels : mot de passe, numéro de carte de crédit, date de naissance, etc.}
+\glossaire{Pilote}{Un pilote informatique souvent abrégé en pilote et quelquefois nommé driver est un programme, souvent accompagné de fichiers ASCII -- ou fichiers \og texte brut \fg  -- de configuration, destiné à permettre à un autre programme -- souvent un système d'exploitation -- d'interagir avec un périphérique. En général, chaque périphérique a son propre pilote. Sans pilote, l'imprimante ou la carte graphique ne pourraient fonctionner.}
+\glossaire{Port}{Il s'agit d'un port logiciel mettant en \oe{}uvre un service. Il existe divers numéros de ports : par exemple 25 pour le SMTP, 110 pour le POP, 80 pour le HTTP, etc. Ce terme peut également correspondre à une prise physique permettant de connecter un périphérique.}
+\glossaire{Protocole}{Dans les réseaux informatiques et les télécommunications, un protocole de communication est une spécification de plusieurs règles pour un type de communication particulier.}
+\glossaire{RAM}{Random Access Memory : mémoire à accès aléatoire. Type de mémoire vive. Se référer à la définition de cette dernière.}
+\glossaire{ROM}{Read-Only Memory : mémoire à lecture seule. Type de mémoire morte. Se reporter à la définition de celui-ci.}
+\glossaire{RSS} {Pouvant porter les noms de Rich Site Summary, Really Simple Syndication ou encore RDF Site Summary, RSS est un format de description et de publication pour les contenus des sites Internet.}
+\glossaire{Secteur d'amorce}{Zone particulière d'un disque dur ou d'une disquette permettant de démarrer le système d'exploitation d'un ordinateur. Le démarrage de l'ordinateur est appelé \og boot \fg  en anglais, d'où le terme \og secteur de boot \fg .}
+\glossaire{Services}{Terme utilisé sur Microsoft Windows. Équivalent de démon ; voir cette définition.}
+\glossaire{Système d'exploitation}{Désigné par ses initiales -- SE -- ou, plus communément encore, par le terme anglais OS. Ensemble de logiciels permettant d'utiliser un ordinateur et ses divers périphériques. Les systèmes d'exploitation les plus connus sont Windows, Mac OS et les distributions GNU/Linux.}
+\glossaire{Terminal}{Un terminal, ou \og text teletype \fg  -- TTY -- est une fenêtre de texte dans laquelle on peut entrer des instructions en mode texte. Ils présentent les \og sorties \fg  -- c'est à dire ses réponses -- uniquement sous forme textuelle et disposent simplement d'un clavier pour les \og entrées \fg  --- terme utilisé pour exprimer la manière dont laquelle vous pouvez communiquer avec lui. Un exemple de terminal texte qui fut répandu en France est le Minitel, lequel est relié aux serveurs par l'intermédiaire de la ligne téléphonique.}
+\glossaire{Texte brut}{Texte sans mise en forme c'est-à-dire, par exemple, sans gras, sans italique ou sans couleur.}
+\glossaire{Thème}{Habillages ou thèmes d'une application, appelés \og skins \fg  --- des peaux en anglais. Il s'agit de la définition de l'apparence graphique --- couleurs choisies, forme des boutons, icônes...}
+\glossaire{Troll}{Le terme troll est utilisé pour désigner une personne, ou un groupe de personnes, participant à un espace de discussion -- de type forum par exemple -- cherchant à détourner insidieusement le sujet d'une discussion pour générer des conflits en incitant à la polémique et à la provocation.}
+\glossaire{Wi-Fi}{Le Wi-Fi -- également orthographié WiFi, Wifi ou encore wifi -- est une technologie de réseau informatique sans fil mise en place pour fonctionner en réseau interne et, depuis, devenue un moyen d'accès à haut débit à l'Internet.}
+\glossaire{ZéroConf}{Zero Configuration Networking est le nom d'un ensemble de technologies permettant à plusieurs ordinateurs de communiquer sans configuration. Le but est d'obtenir un réseau IP fonctionnel sans dépendance d'une infrastructure -- serveur DHCP, serveur DNS, etc. -- ou d'une expertise réseau.}
+\glossaire{Zone d'amorçage}{Synonyme de \og MBR \fg . Se reporter, plus haut, à cette définition.}
+\end{leglossaire}
+
+
+\printindex
+
+\end{document}
