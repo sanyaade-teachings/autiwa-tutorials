@@ -1,0 +1,302 @@
+\NeedsTeXFormat{LaTeX2e}[1999/01/01]
+\ProvidesPackage{autiwa-beamer}[2010/06/20 Extension personnelle, V0.21]%aaaa/mm/dd
+%voir le fichier change.log pour l'historique des modifications
+
+%%% polices %%%
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}  % OT2 c'est pour le cyrillique
+\RequirePackage[frenchb]{babel}%russian est là pour la commande qui se trouve dans la macro \peigne
+\RequirePackage{bbm}%permet d'utiliser une nouvelle police via l'appel \mathbbm{ABC123}. Je l'ai rajouté pour faire l'identité via \mathbbm{1} pour la quantique.
+\RequirePackage{eurosym}%pour écrire le caractère euro avec la macro \officialeuro{}
+\RequirePackage{mathrsfs}
+% \RequirePackage{textcomp}%rajoute des caractères et macros, en particulier \texttildelow pour faire une tilde dans le texte.
+
+% \usepackage[utf8x]{inputenc}%À noter que utf8x charge automatiquement le paquet ucs, donc le rajouter à coté est superflu
+%
+% \usepackage{lmodern}
+
+
+%%% mise en page %%%
+\RequirePackage{natbib}%améliore la bibliographie, surtout pour citer les publications scientifiques.
+\RequirePackage{frbib}%pour mettre la bibliographie en français
+% \RequirePackage[nottoc]{tocbibind}%pour que la bibliographie  et l'index apparaissent dans la table des matières. l'option permet de ne pas afficher la table des matières. (notlof, notlot pour table des figures et ou des tableaux)
+\RequirePackage{xspace}%Permet à babel d'utiliser la macro xspace  partout où c'est nécessaire. (Voir la doc de babel pour de plus amples explications.)
+\RequirePackage{acronym}%pour gérer les acronymes. Description du paquet dans mon pdf, ou dans la description du paquet acronym.sty
+% \RequirePackage{alltt}            % Pour les reference en mieux ; pose peut-être problème
+% \RequirePackage[pdfpagelabels=false,linkcolor= refcolor,urlcolor= blue]{hyperref}%l'option pagebackref permet d'afficher les pages dans lesquelles sont citées les références (en gros, la position des labels je pense)
+% \hypersetup{
+%   colorlinks=true, %colorise les liens
+%   breaklinks=true, %permet le retour à la ligne dans les liens trop longs
+%   urlcolor= blue,  %couleur des hyperliens
+%   linkcolor= refcolor, %couleur des liens internes
+% }
+
+%%% graphiques et images %%%
+
+\RequirePackage{graphicx}
+\RequirePackage{pstricks}
+% \RequirePackage[justification=centerfirst]{subfig}%pour pouvoir mettre plusieurs figures dans le même environnement de figure, avec plusieurs caption
+
+
+
+%%% environnements et tableaux %%%
+% \RequirePackage{multirow}%permet d'utiliser la commande \multirow{numb}*{contenu} pour fusionner des lignes. "*" est un argument optionnel que l'on peut spécifier et qui concerne la largeur de la colonne. \multirow{numb}{2.5cm}{contenu}
+\RequirePackage{array}%permet de rajouter des commandes de définition dans les tableaux, notamment m{2cm} pour une colonne de texte avec le texte centré verticalement.
+% \RequirePackage{theorem}
+%     \theoremheaderfont{\scshape} \theoremstyle{break} % style des entêtes
+%     \theorembodyfont{\normalfont} % style de police
+%     \newtheorem{theoreme}{Théorème}
+%     \newtheorem{definition}{Définition}
+%     \newtheorem{demonstration}{Démonstration}
+% %     \theoremstyle{plain}
+% %     \theoremheaderfont{\rmfamily \bfseries}
+% %     \theoremseparator{:}
+\RequirePackage{cancel}%pour barrer des expressions ou du texte.
+
+%%% maths %%%
+\RequirePackage{amsmath}
+% \RequirePackage{commath}%je l'ai viré parce qu'avec ce paquet, un deux point en mode math fait buguer la compilation. $:$
+\RequirePackage{subeqnarray}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage{esint}% Permet de faire des intégrales doubles à contour fermé entre autre, via \oiint
+\RequirePackage{mathtools}%rajoute la commande prescript pour faire les notations de noyaux par exemple.
+
+
+%###############################################
+%définition des commandes beamer en elles mêmes
+
+% Setup appearance:
+
+\usetheme{Darmstadt}
+\usefonttheme[onlylarge]{structurebold}
+\setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
+\setbeamertemplate{navigation symbols}{}
+
+% Setup TikZ
+
+\RequirePackage{tikz}
+\usetikzlibrary{arrows}
+% \tikzstyle{block}=[draw opacity=0.7,line width=1.4cm]
+%\beamertemplatetransparentcovered
+%#######################################################
+
+\RequirePackage{multimedia}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Nouvelles couleurs pour pstricks
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newrgbcolor{marron}{0.698 0.047 0.047}
+\newrgbcolor{marou}{0.71 0.31 0.09}
+\newrgbcolor{refcolor}{0.71372549 0.145098039 0.109803922}
+\newrgbcolor{vertf}{0.22 0.50 0.20}
+\newgray{darkgray}{.25}
+\newgray{lightgray}{.9}%je définis cette couleur pour \rmq{}
+\newrgbcolor{vertexemple}{0.6 1 0.6}%je définis cette couleur pour les exemples
+\newrgbcolor{rougeattention}{1 0.6 0.6}%je définis cette couleur pour les mises en gardes "\begin{attention}"
+% \newgray{shadecolor}{.9}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Nouvelles fonctions et macros pour texte normal
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\source}[1]{\textit{source} : #1}
+\newcommand{\reference}[1]{\textit{Référence :} #1}
+
+\renewcommand{\refeq}[1]{(\ref{#1})}
+\newcommand{\reffig}[1]{[\figurename~\ref{#1}]}
+\newcommand{\reftab}[1]{[\tablename~\ref{#1}]}
+\newcommand{\refsec}[1]{[\S~\ref{#1}]}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Nouvelles fonctions pour le mode mathématique
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\unit}[1]{\ensuremath{\mathrm{\thinspace #1}}}%permet d'écrire proprement les unités de mesures telles que le Hz ou autre, dans le mode mathématique qui, par défaut, considère tout les caractères comme des variables
+%\newcommand{\sfrac}[2]{\raisebox{.3ex}{$#1$}/ \raisebox{-.3ex}{$#2$}}%version qui ne marche pas très bien vis à vis du mode math, obligé de rentrer du mode math dans la commande
+% \newcommand{\unit*}[1]{\mathrm{#1}}%version pour le texte, quand on parle des unités et qu'on a pas besoin de l'espace juste avant.
+\newcommand{\sfrac}[2]{^{#1\!\!}/ _{\!#2}}%pour faire des fractions a/b proprement
+	% Touche clavier
+\newcommand{\touche}[1]{\Ovalbox{#1}}%permet d'encadrer un texte pour signifier que ça correspond à une touche sur le clavier
+\newcommand{\cte}{\mathrm{c^{te}}}%pour écrire "constante" dans une équation, avec une écriture propre, et rapidement.
+% \newcommand{\binom}[2]{\genfrac{(}{)}{0pt}{}{#1}{#2}}%pour écrire le binome de newton (i.e le nombre de combinaison) ; apparemment, cette commande existe déjà.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Redéfinitions des commandes du paquet commath (en effet, celui-ci empêche l'utilisation d'un ":" dans un mode math, sans que je sache pourquoi, alors je vais le faire moi même
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareMathOperator{\dif}{d \!}
+% Command for partial derivatives. The first argument denotes the function and the second argument denotes the variable with respect to which the derivative is taken. The optional argument denotes the order of differentiation. The style (text style/display style) is determined automatically
+\providecommand{\pd}[3][]{\ensuremath{
+\ifinner
+\tfrac{\partial{^{#1}}#2}{\partial{#3^{#1}}}
+\else
+\dfrac{\partial{^{#1}}#2}{\partial{#3^{#1}}}
+\fi
+}}
+
+% \tpd[2]{f}{k} denotes the second partial derivative of f with respect to k
+% The first letter t means "text style"
+\providecommand{\tpd}[3][]{\ensuremath{\mathinner{
+\tfrac{\partial{^{#1}}#2}{\partial{#3^{#1}}}
+}}}
+% \dpd[2]{f}{k} denotes the second partial derivative of f with respect to k
+% The first letter d means "display style"
+\providecommand{\dpd}[3][]{\ensuremath{\mathinner{
+\dfrac{\partial{^{#1}}#2}{\partial{#3^{#1}}}
+}}}
+
+% mixed derivative - analogous to the partial derivative command
+% \md{f}{5}{x}{2}{y}{3}
+\providecommand{\md}[6]{\ensuremath{
+\ifinner
+\tfrac{\partial{^{#2}}#1}{\partial{#3^{#4}}\partial{#5^{#6}}}
+\else
+\dfrac{\partial{^{#2}}#1}{\partial{#3^{#4}}\partial{#5^{#6}}}
+\fi
+}}
+
+% \tpd[2]{f}{k} denotes the second partial derivative of f with respect to k
+% The first letter t means "text style"
+\providecommand{\tmd}[6]{\ensuremath{\mathinner{
+\tfrac{\partial{^{#2}}#1}{\partial{#3^{#4}}\partial{#5^{#6}}}
+}}}
+% \dpd[2]{f}{k} denotes the second partial derivative of f with respect to k
+% The first letter d means "display style"
+\providecommand{\dmd}[6]{\ensuremath{\mathinner{
+\dfrac{\partial{^{#2}}#1}{\partial{#3^{#4}}\partial{#5^{#6}}}
+}}}
+
+
+% ordinary derivative - analogous to the partial derivative command
+\providecommand{\od}[3][]{\ensuremath{
+\ifinner
+\tfrac{\dif{^{#1}}#2}{\dif{#3^{#1}}}
+\else
+\dfrac{\dif{^{#1}}#2}{\dif{#3^{#1}}}
+\fi
+}}
+
+\providecommand{\tod}[3][]{\ensuremath{\mathinner{
+\tfrac{\dif{^{#1}}#2}{\dif{#3^{#1}}}
+}}}
+\providecommand{\dod}[3][]{\ensuremath{\mathinner{
+\dfrac{\dif{^{#1}}#2}{\dif{#3^{#1}}}
+}}}
+
+% Notation for an expression evaluated at a particular condition:
+% the value for the optional argument ranges from -1 to 4 with higher values resulting in larger delimiters
+\providecommand{\eval}[2][-1]{
+\ensuremath{\mathinner{
+\ifthenelse{\equal{#1}{-1}}{ % if
+#2\Biggr\rvert}{}
+\ifthenelse{\equal{#1}{0}}{ % if
+#2\rvert}{}
+\ifthenelse{\equal{#1}{1}}{ % if
+#2\bigr\rvert}{}
+\ifthenelse{\equal{#1}{2}}{ % if
+#2\Bigr\rvert}{}
+\ifthenelse{\equal{#1}{3}}{ % if
+#2\biggr\rvert}{}
+\ifthenelse{\equal{#1}{4}}{ % if
+#2\Biggr\rvert}{}
+}} % \ensuremath{\mathinner{
+}
+
+\providecommand{\sVert}[1][0]{
+\ensuremath{\mathinner{
+\ifthenelse{\equal{#1}{0}}{ % if
+\rvert}{}
+\ifthenelse{\equal{#1}{1}}{ % if
+\bigr\rvert}{}
+\ifthenelse{\equal{#1}{2}}{ % if
+\Bigr\rvert}{}
+\ifthenelse{\equal{#1}{3}}{ % if
+\biggr\rvert}{}
+\ifthenelse{\equal{#1}{4}}{ % if
+\Biggr\rvert}{}
+}} % \ensuremath{\mathinner{
+}
+
+
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Nouvelles fonctions et macros pour les formules mathématiques
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareMathOperator{\pdif}{\delta \!}%pour les différentielles non exactes (je crois, enfin, avec le petit delta quoi)
+
+%notations et lettres
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it} %pour pouvoir utiliser \mathpzc fait peut-être de jolies lettres, je le voulais pour un V pour un torseur...
+\newcommand{\trigo}{\circlearrowleft}%les deux commandes qui suivent permettent d'afficher des flèches renseignant, lors d'intégrales, du sens de parcours des courbes.
+\newcommand{\horaire}{\circlearrowright}
+
+%commandes qui simplifient les écritures
+\newcommand{\vect}[1]{\overrightarrow{#1}} % m'évite de devoir recopier à chaque fois la macro pour faire une flèche sur mes vecteurs ; la commande \mathstrut permet d'aligner des symboles, notament la hauteur des flèches quand on inclue \mathstrut dans l'argument de \vect{} (à la fin, juste avant \})
+% \newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\vectcomp}[1]{\begin{pmatrix}#1\end{pmatrix}} %pour noter des les composantes d'un vecteur.
+\newcommand{\inv}[1]{\frac{1}{#1}}
+\newcommand{\comp}[1]{\overline{#1}} %complémentaire de quelque chose.
+
+%opérateurs mathématiques
+\newcommand{\lap}{\mathscr{L}}
+% \DeclareMathOperator{\opgrad}{grad}
+\DeclareMathOperator{\opgrad}{grad}
+\DeclareMathOperator{\oprot}{rot}
+\DeclareMathOperator{\opdiv}{div}
+\newcommand{\rot}[1]{\vect{\nabla} \wedge \left( #1\right) }%j'ai enlevé le vecteur sur l'argument, donc faire attention pour les anciennes occurrences, faut rajouter le vecteur à la main.
+\newcommand{\grad}[1]{\vect{\nabla} \left( #1\right) }
+\renewcommand{\div}[1]{\vect{\nabla} \cdot\left( #1\right) }
+\newcommand{\res}[1]{\text{Rés}\left(#1\right)}%le résidus au point #1 d'une fonction
+\newcommand{\laplacien}[1]{\Delta \left( #1\right) }
+%definition du symbole parallèle (issu d'un paquet, j'ai recopié les lignes ne concernant QUE ce symbole, vu que c'était ça qui m'intéressait.
+% \RequirePackage{stmaryrd}%pour faire le symbole parallèle via \sslash
+\DeclareSymbolFont{stmry}{U}{stmry}{m}{n}
+\SetSymbolFont{stmry}{bold}{U}{stmry}{b}{n}
+\DeclareMathSymbol\sslash\mathbin{stmry}{"0C}
+
+%algèbre linéaire et théorie des groupes
+\DeclareMathOperator{\im}{Im}%pour écrire l'image d'une application
+\renewcommand{\Re}[1]{\text{Re}\!\left[#1\right]}
+\DeclareMathOperator{\id}{Id} %matrice identité
+\DeclareMathOperator{\cof}{cof}%pour noter le cofacteur d'un élément d'une matrice
+\newcommand{\transposee}[1]{{\vphantom{#1}}^{\mathit t}{#1}} %permet de faire la transposée d'une matrice
+\DeclareMathOperator{\trace}{trace}%permet d'écrire la trace d'une application
+\DeclareMathOperator{\card}{card}%permet d'écrire le cardinal d'un ensemble
+\newcommand{\M}[1]{\mathscr{M}_{#1}(\mathbb{K})} %ensemble des matrices carrées (ou classique en précisant deux nombres) d'ordre #1 avec valeurs dans K
+\DeclareMathOperator{\ch}{ch} %cosinus hyperbolique
+\DeclareMathOperator{\sh}{sh} %sinus hyperbolique
+\renewcommand{\th}{\mathrm{th}} %tangente hyperbolique; je ne sais pas pourquoi, mais il semble que je ne puisse pas définir la commande \th. Obligé de la définir avec un \renewcommand{}{}, ce qui n'est pas très propre... (à la place, il y avait un symbole bizarre dont je ne me sers pas. possibilité de définir une nouvelle commande à ce symbole juste avant le renew pour ceux qui en ont besoin.
+
+\DeclareMathOperator{\erf}{erf}% fonction erreur
+\DeclareMathOperator{\erfc}{erf_c}% fonction erreur complémentaire
+
+\DeclareMathOperator{\si}{Si} %sinus intégral
+\DeclareMathOperator{\ci}{Ci} %cosinus intégral
+\DeclareMathOperator{\ei}{Ei} %exponentielle intégrale
+
+\DeclareMathOperator{\sinc}{sin_c} %sinus cardinal
+
+
+\newcommand{\ldbrack}{[\negthinspace [} %double crochet gauche pour ensemble de nombres entiers
+\newcommand{\rdbrack}{]\negthinspace ]} %double crochet droit pour ensemble de nombres entiers
+% \newcommand{\ldbrack}{\textlbrackdbl}% il existe \textrbrackdbl, mais il ne semble pas marcher...
+% \newcommand{\rdbrack}{\textrbrackdbl} %double crochet droit pour ensemble de nombres entiers
+% \newcommand{\°}{\text{\degre}}%le package babel fourni deux macros, \degre pour les angles, et \degres pour les températures, ma macro devient obsolète. L'ancienne commande nécessitait d'être utilisé en mode math, d'où la présence de commande inutiles dans la définition.
+
+
+%Physique en général
+\newcommand{\moy}[1]{\left\langle #1\right\rangle}%pour noter la moyenne de quelque chose
+
+
+%Physique Nucléaire
+% \newcommand{\noyau}[3]{{\vphantom{#1}}^{#2}_{#3}{\mathrm{#1}}}
+\newcommand{\noyau}[3]{\prescript{#2}{#3}{\mathrm{#1}}}
+
+
+
+\endinput

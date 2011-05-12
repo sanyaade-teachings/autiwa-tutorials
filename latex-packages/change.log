@@ -1,0 +1,86 @@
+Concerne le paquet autiwa.sty
+%09/09/2008 rajout de la commande \pdif pour les différentielles "non exactes" avec le petit delta, et rajoute en fin de package de la liste des modifs
+%11/09/08 rajout de la commande \attention{}, modification de \ex{}, rajout du paquet framed, refonte des commande attention, ex, et rmq. Organisation des inclusions de paquets. rajout d'une section environnements
+
+%11/09/08 rajout de la commande \cropoi{}{} pour les crochets de poisson
+
+%20/09/08 rajout du paquet textcomp, qui rajoute en particulier une tilde.
+%modification de la commande attention{} pour l'ajout de la figure qui modifier l'indentation de tout les paragraphes suivants (rmq et attention compris...)
+
+%03/10/08 rajout du paquet acronym
+
+%04/10/08 rajout du paquet alltt
+
+%03/11/08 nouvelle définition du header et footer avec retrait du paquet pour numéro de la dernière page.
+
+%18/11/08 rajout de la commande pour le symbole parallèle. (\sslash) ; rajout de la commande \cte
+
+%23/11/08 modification de la commande \attention{}, maintenant, elle ne génère pas d'avertissement overfull hbox.
+
+%30/11/08 rajout du \renewcommand{} pour \captionformat juste en dessous de babel qui ne semble pas fonctionner en fait.
+
+%06/12/08 mise des couleurs pour les liens (bleu pour url et rouge pour lien interne)
+
+%08/12/08 changement des commandes pour gradient, rotationnel et divergence, en utilisant nabla.
+%modification du peigne de dirac pour enlever l'inclusion du language russe. Et ainsi supprimer l'avertissement sur l'encodage pour russian.
+%rajout du paquet theorem et des commandes qui s'y rapportent (\begin{theoreme} et \begin{definition})
+
+%09/12/08 rajout de \RequirePackage[small]{caption} pour que les captions des figures soient écrits plus petit que le texte normal.
+
+%12/12/08 remplacement de \rmq{}, \ex{} et \attention{} par des environnements \begin{remarque}, \begin{attention} et \begin{exemple}. Pour ceux qui ont encore des commande \rmq{} par exemple, il est possible de définir une commande \rmq utilisant l'environnement correspondant.
+%rajout du paquet mathtools qui me permet de définir enfin proprement la commande \noyau{}{}{} qui aligne proprement A et Z à droite  quand ils n'ont pas la même longueur. Faut que je regarde dans le paquet pour définir à même le .sty au lieu d'ajouter le paquet.
+
+%20/12/08 suppression du paquet float pour la raison suivante :
+% \RequirePackage{float} %permet de placer la figure à l'endroit du code source en utilisant \begin{figure}[H]
+%le package float induit un avertissement du style "destination with the same identifier (name{table.1}) hasbeen already used, duplicate ignored\endgroup \set@typeset@protectl.381 \end{document}pdfTeX warning (ext4): destination with the same identifier"
+%suppression du paquet commath, et rajout dans mon .sty des commandes que j'utilise de ce paquet. j'ai donc rajouté le paquet ifthen qui était requis pour commath. En fait, je pouvais plus inclure de ":" en mode math. Ainsi, $:$ m'empêchait de compiler. Ce n'est pas commath qui empêche ça, puisqu'avec commath tout seul ça marche, mais ça doit être une incompatibilité entre commath et un autre paquet.
+%modification de la commande \unit en rajoutant le \ensuremath qui permet de s'assurer que l'argument sera affiché en mode mathématique. En clair, ça me permet d'utiliser \unit en mode math ou directement dans du texte. 3\unit{m} et $3\unit{m}$ donneront la même chose. à noter qu'il ne faut pas mettre d'espace entre la valeur et l'unité, en effet, pour le mode math, il y a un espace insécable, et ça ferait donc deux espaces si écrit directement dans du texte.
+%modification de la commande \gras{} avec rajout d'une commande optionnelle qui permet de préciser des choses sur l'indexation
+
+17/01/09 rajout du paquet cancel pour pouvoir "simplifier" des expressions mathématiques en barrant des termes.
+
+23/02/2009 modification des headers pour inverser les positions, et mettre les numéros de pages à l'extérieur de celles-ci, ce qui est beaucoup plus logique.
+
+26/02/2009 Rajout du paquet tocbibind qui permet de rajouter dans la table des matières la bibliographie et l'index quand ils sont présents dans le fichier .tex
+
+22/03/2009 Modification des environnements exemple et attention, pour enlever la couleur de fond (too much), mais mettre en couleur le \vrule à la place. En passant, j'ai foncé les couleurs correspondantes.
+
+23/03/2009 v2.2 Rajout d'un test pour savoir si c'est un article ou un report, et ainsi modifier la mise en page en conséquence. En particulier, le paquet pour la mise en page des chapitre n'est rajouté que si on est en classe report. Et la numérotation des équations est adapté selon qu'on est en article ou report. La syntaxe est là, le contenu sera affiné au fur et à mesure.
+
+25/03/2009 v2.22 mise en commentaire de la modification de l'espacement entre les paragraphes. Ainsi, l'espacement redevient celui par défaut, et pour faire de grands espacements entre certains paragraphes, il faut utiliser \bigskip
+
+06/04/2009 v2.3 rajout de l'option 'print' qui modifie certaines commandes pour consommer moins d'encre.
+
+08/04/2009 v2.31 modification des entêtes pour que \rightmark soit en minuscule.
+
+14/04/2009 Rajout du paquet paralist pour pouvoir utiliser des listes inline, c'est à dire sans retour à la ligne entre les item (penser au point virgule à la fin des items)
+
+25/04/2009 je suis enfin passé en utf8 pour tout mes fichiers. Mon paquet est donc fait (et sera petit à petit optimisé pour) les fichiers en UTF-8
+
+14/09/2009 J'ai modifié la partie "commmath" (que j'ai d'inclue dans mon paquet donc) pour pouvoir utiliser des variables plus longues que la normale. En fait, ça me permet de faire ça "\pd{\varphi}{x^a}", chose impossible avec la version normale de commath
+
+v2.33 : modification de la commande sfrac pour rendre correctement la séquence suivante : e^{-iE_2 \sfrac{t}{\hbar}}
+
+18/01/2010 v2.34 : rajout de l'opérateur \cov pour la covariance. 
+
+07/02/10 v2.35 : rajout de l'opérateur \sumint pour l'atomistique. Pour l'instant, il ne me convient pas, parce que c'est pas propre si je veux lui mettre des indices de départ et d'arrivées pour la somme, il faudrait définir proprement un opérateur avec des propriétés de mises en page similaires à \sum.
+
+31/05/10 v2.36 : Rajout de \RequirePackage[autolanguage]{numprint} pour permettre l'utilisation de \nombre{} qui a changé de package récemment (il faisait partie de babel avant je crois)
+
+21/06/10 v2.37 : rajout du paquet aas_macro pour les noms des journaux dans les entrées Bibtex de ADS
+
+09/11/10 v2.38 : pour l'inclusion de attention.pdf, retrait du lien absolu vers l'image. En effet, en incluant directement attention.pdf, ça fonctionne vu que le fichier se trouve dans un dossier de l'arborescence texlive. (doit dont être fourni avec le package)
+11/11/10 v2.39 : modification de l'environnement "attention" où j'ai retiré le wrapfig pour laisser simplement l'inclusion de l'image, qui au final fait exactement ce que je voulais.
+
+09/05/11 v2.40 : Rajout de l'environnement 'myquote' qui possède une option pour mettre le nom de l'auteur. L'environnement 'citation' sert pour la bibliographie, donc j'ai pas pu utiliser ce nom là.
+
+Exemples : 
+\begin{myquote}[John Powell]
+Si entre deux personnes doivent grandir et mûrir l’amitié et l’amour humain, il est nécessaire que se produise une extériorisation sincère et sans réserves (de ce que chacun pense et ressent).
+\end{myquote}
+
+ou 
+
+\begin{myquote}
+Si entre deux personnes doivent grandir et mûrir l’amitié et l’amour humain, il est nécessaire que se produise une extériorisation sincère et sans réserves (de ce que chacun pense et ressent).
+\end{myquote}

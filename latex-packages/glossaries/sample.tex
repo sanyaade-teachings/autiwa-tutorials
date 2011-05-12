@@ -1,0 +1,75 @@
+\documentclass[a4paper]{report}
+
+\usepackage[plainpages=false,colorlinks]{hyperref}
+\usepackage[style=altlist]{glossaries}
+
+\makeglossaries
+
+\newglossaryentry{glossary}{name=glossary,
+description={1) list of technical words, 2) collection of
+glosses},
+plural={glossaries}}
+
+\newglossaryentry{Perl}{name=\texttt{Perl},
+sort=Perl, % need a sort key because name contains a command
+description=A scripting language}
+
+\newglossaryentry{pagelist}{name=page list,
+ % description value has to be enclosed in braces
+ % because it contains commas
+description={a list of individual pages or page ranges
+(e.g.\ 1,2,4,7-9)}}
+
+\newglossaryentry{mtrx}{name=matrix,
+description={rectangular array of quantities},
+ % plural is not simply obtained by appending an s, so specify
+plural=matrices}
+
+\newcommand{\pardescription}{distinct section of piece of
+writing.\par Beginning on new, usually indented, line}
+\newglossaryentry{par}{name=paragraph,
+description=\pardescription}
+
+\begin{document}
+
+\title{Sample Document Using glossary Package}
+\author{Nicola Talbot}
+\pagenumbering{alph}% prevent duplicate page link names if using PDF
+\maketitle
+
+\pagenumbering{roman}
+\tableofcontents
+
+\chapter{Introduction}
+\pagenumbering{arabic}
+
+A \gls{glossary} is a very useful addition to any
+technical document, although a \gls{glossary} can
+also simply be a collection of glosses, which is
+another thing entirely. Some documents have
+multiple \glspl{glossary}.
+
+Once you have run your document through \LaTeX, you
+will then need to run the \texttt{.glo} file through
+\texttt{makeindex}.  You will need to set the output
+file so that it creates a \texttt{.gls} file instead
+of an \texttt{.ind} file, and change the name of
+the log file so that it doesn't overwrite the index
+log file (if you have an index for your document).
+Rather than having to remember all the command line
+switches, you can call the \gls{Perl} script
+\texttt{makeglossaries} which provides a convenient
+wrapper.
+
+If a comma appears within the name or description, grouping
+must be used, e.g.\ in the description of \gls{pagelist}.
+
+Plurals are assumed to have the letter s appended, but if
+this is not the case, as in \glspl{mtrx}, then you need
+to specify the plural when you define the entry.
+
+\Glspl{par} can cause a problem in commands.
+
+\printglossaries
+
+\end{document}
