@@ -463,11 +463,18 @@ deb http://deb.opera.com/opera/ stable non-free #Dépôt d'Opera
 %xcftools contient xcf2png qui permet de convertir du gimp en png (en particulier pour mon script)
 \item on installe le paquet \textbf{autiwa.sty} et comme je prévoie, je ne met qu'un lien virtuel dans le répertoire root et je garde le fichier dans le dossier \verb|~/.latex|
 
+% \begin{verbatim}
+% cd /usr/share/texmf-texlive/tex/latex/
+% sudo ln -s -d ~/.latex autiwa
+% sudo texhash
+% \end{verbatim}
+
 \begin{verbatim}
 cd /usr/share/texmf-texlive/tex/latex/
-sudo ln -s -d ~/.latex autiwa
+sudo ln -s -d ~/Documents/Formulaires/latex-packages autiwa
 sudo texhash
 \end{verbatim}
+% où ~/Documents/Formulaires est le dossier où il y a le svn
 
 \begin{remarque}
 Je fais un lien vers le dossier tout entier finalement, ça me permet de rajouter des fichiers dans le dossiers et qu'ils soient automatiquement dans le dossier latex. Tels des fichiers de styles ou autres, ou pourquoi pas s'il me vient à l'idée de créer plusieurs paquets.
