@@ -1,0 +1,361 @@
+\documentclass[a4paper,twoside]{report}
+\usepackage[print]{autiwa}
+% \usepackage{amssymb}
+\setcounter{secnumdepth}{2}
+\usepackage{minitoc}
+\setcounter{minitocdepth}{1}
+\usepackage{hyperref}
+\fancyhead[LE]{}
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{\z@}%
+             {-3.5ex \@plus -1ex \@minus -.2ex}%
+             {2.3ex \@plus 2ex}%
+             {\normalfont\Large\scshape\bfseries\marou}}
+
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
+             {-3.25ex\@plus -1ex \@minus -.2ex}%
+             {1.5ex \@plus .2ex}%
+             {\normalfont\large\sffamily\bfseries\vertf}}
+\makeatother
+
+\renewcommand \thesection {}%pour ne pas avoir les numéro devant les recettes
+\renewcommand \thesubsection {}%pour ne pas avoir les numéro devant les recettes
+%TODO rajouter une commande \notation{} pour classer les recettes en fonction de mes préférences. style \notation{4} afficherais 4 étoiles à la suite.
+\newcommand{\note}[1]
+{
+  \ifthenelse{\equal{#1}{0}}{non testé}{}
+  \ifthenelse{\equal{#1}{1}}{\ensuremath{\bigstar}}{}
+  \ifthenelse{\equal{#1}{2}}{\ensuremath{\bigstar\bigstar}}{}
+  \ifthenelse{\equal{#1}{3}}{\ensuremath{\bigstar\bigstar\bigstar}}{}
+  \ifthenelse{\equal{#1}{4}}{\ensuremath{\bigstar\bigstar\bigstar\bigstar}}{}
+  \ifthenelse{\equal{#1}{5}}{\ensuremath{\bigstar\bigstar\bigstar\bigstar\bigstar}}{}
+}
+
+\title{Recettes de Cuisine non utilisées/testées}
+\author{Autiwa}
+\begin{document}
+\input{title.tex}
+
+% \newpage
+% \section{Canard à la Solognote}
+% \note{0}
+%
+% \subsection*{Ingrédients}
+% \begin{itemize}
+% \item un gros canard de Barbarie bien tendre
+% \item $6$ tomates
+% \item $6$ oignons
+% \item $60$ g de beurre
+% \end{itemize}
+%
+% Pour la farce :
+% \begin{itemize}
+% \item un \oe uf
+% \item une tasse de mie de pain rassis
+% \item thym et romarin
+% \item cannelle
+% \item une gousse d'ail
+% \item 2 oignons
+% \item sel, poivre
+% \item un verre d'armagnac
+% \end{itemize}
+%
+%
+% \subsection*{Préparation}
+% \begin{enumerate}
+% \item Préparez la farce en mélangeant soigneusement la tasse de mie de pain trempée dans du lait et bien pressée, les oignons finement hachées, l'ail écrasé, le foie du canard haché.
+% \item Ajoutez le thym et le romarin, salez et poivrez, liez le tout avec l'oeuf battu.
+% \item Parfumez avec la cannelle.
+% \item Farcissez le canard avec cette farce et laissez le jusqu'au lendemain s'imprégner du parfum.
+% \item Au moment de la cuisson disposez le canard dans un plat allant au four entourez-le avec les oignons finement émincés et les tomates pelées, épépinées et concassées.
+% \item Arrosez-le de beurre fondu, salez, poivrez.
+% \item Faites rôtir à four chaud.
+% \item Le canard étant cuit sortez la farce et mettez-la dans une casserole.
+% \item Passez le jus de cuisson avec tomates et oignons au tamis.
+% \item Ajoutez-le à la farce, laissez cuire le tout 5 min en remuant le mélange, après avoir rectifié l'assaisonnement.
+% \item Découpez le canard et présentez la sauce en saucière.
+% \end{enumerate}
+
+
+
+
+% \newpage
+% \section{Canard au vin rouge}
+% \note{0}
+%
+% \subsection*{Ingrédients}
+% \begin{itemize}
+% \item $1$ canard
+% \item beurre ou graisse de canard
+% \item $150$ g de jambon de Bayonne
+% \item $150$ g de lardons
+% \item $6-7$ carottes
+% \item $1$ branche de céleri
+% \item $1$ bouteille de vin rouge
+% \item $3$ oignons
+% \item $1$ bouquet garni
+% \item $2$ cuillères à soupe de farine
+% \item $100$ g de champignons
+% \item $1$ verre de porto
+% \item sel, poivre
+% \end{itemize}
+%
+% \subsection*{Préparation}
+%
+% \begin{enumerate}
+% \item Découper le canard en morceaux et garder les aiguillettes pour faire une salade.
+% \item Faire revenir ailes, cuisses et blanc dans de la graisse bien chaude, saler, poivrer.
+% \item Ajouter $3$ oignons et $5$ échalotes hachés.
+% \item Laisser cuire $20$ min à petit feu.
+% \item Retirer le canard.
+% \item Mettre alors $150$ g de lardons (lard frais) et $150$ g de jambon de Bayonne coupé en morceaux et $6$ à $7$ carottes et une branche de céleri coupés en petits dés.
+% \item Laisser cuire $10$ min à couvert doucement.
+% \item Ajouter $1$ bouquet garni et remettre le canard sur le lit de légumes.
+% \item Mettre le vin à chauffer, lorsqu'il bout vider à hauteur. Couvrir et cuire $1$ h.
+% \item Faire fondre de la graisse de canard et y faire fondre $3$ oignons et y verser $2$ cuillères à soupe de
+% \item farine et $100$ g de champignons et 1 verre de porto.
+% \item Bien mélanger, faire réduire à découvert.
+% \item Mélanger la sauce dans la cocotte du canard.
+% \item Servir.
+% \end{enumerate}
+
+% \newpage
+% \section{Canard aux navets}
+% \note{0}
+% \subsection*{Ingrédients}
+% \begin{itemize}
+% \item $1$ canard de Barbarie
+% \item $150$ g de lard fumé
+% \item $75$ g de beurre
+% \item sel, poivre
+% \item $1$ carotte
+% \item $1$ oignon
+% \item $1$ bouquet garni
+% \item $1$ verre de vin blanc sec
+% \item $\nombre{1,200}$ kg de gros navets
+% \item une dizaine de petits oignons
+% \end{itemize}
+%
+% \subsection*{Préparation}
+% \begin{enumerate}
+% \item Bridez et flambez les canards, assaisonnez-les à l'intérieur.
+% \item Coupez le lard en lardons, faites les blanchir à l'eau bouillante pendant $2$ min.
+% \item Egouttez et séchez-les.
+% \item Faites revenir les lardons dans la matière grasse.
+% \item Retirez-les et faites dorer les canards à leur place de tous côtés pendant $10$ à $15$ min.
+% \item Quand ils ont pris une belle couleur, assaisonnez-les, remettez les lardons, ajoutez la carotte, l'oignon émincés et le bouquet garni.
+% \item Mouillez de vin blanc.
+% \item Couvrez et laissez mijoter pendant $45$ min environ.
+% \item D'autre part, épluchez les navets et les petits oignons, ajoutez-les dans la cocotte au bout de $15$ min de cuisson pour qu'ils cuisent en même temps.
+% \item Au moment de servir, retirez les canards et les légumes, dégraissez la sauce et laissez-la réduire, elle doit être très courte.
+% \item Vous pouvez aussi faire dorer les navets et les petits oignons séparément au beurre et les ajouter autour du canard $10$ min avant la fin de la cuisson.
+% \end{enumerate}
+
+
+% \newpage
+% \section{Canard paquet aux herbes de Provence}
+% \note{0}
+%
+% \subsection*{Ingrédients}
+% \begin{itemize}
+% \item $4$ cuisses de canard
+% \item $16$ tranches de lard fumé
+% \item $1$ cuillères à soupe d'herbes de provence
+% \item $10$ cl de vin blanc sec
+% \item $10$ cl de bouillon de volaille
+% \item Sel, poivre
+% \end{itemize}
+%
+% \subsection*{Préparation}
+% \begin{enumerate}
+% \item Coupez les cuisses de canard en deux.
+% \item Roulez les huit morceaux de canard dans deux tranches de lard et placez-les dans un plat allant au four.
+% \item Saupoudrez d'herbes de Provence et poivrez fortement. Arrosez de bouillon de volaille et de vin blanc.
+% \end{enumerate}
+%
+% \subsection*{Cuisson}
+% Enfournez $1\mathrm{h}30$ dans un four chaud à $200\degres$ (thermostat $7$). Servez chaud et dégustez.
+
+% \newpage
+% \section{Magret de canard aux pommes et au miel (6 personnes)}
+% \note{0}
+% \subsection*{Ingrédients}
+% \begin{itemize}
+% \item $2$ magrets de canard
+% \item $1$ cuillère à soupe de vinaigre balsamique
+% \item $2$ cuillères à soupe de miel liquide
+% \item $2$ échalotes
+% \item $4$ pommes
+% \item $1$ citron
+% \item poivre mignonnette
+% \item sel fin
+% \end{itemize}
+%
+% \subsection*{Préparation}
+% \begin{enumerate}
+% \item Retirez la peau grasse des magrets et posez-lez dans un plat creux.
+% \item Enduisez-les de miel, puis poivrez-les assez abondamment sur les deux faces.
+% \item Arrosez-les ensuite de vinaigre balsamique et ajoutez l'échalote.
+% \item Laissez reposer à couvert pendant au moins 1 heure.
+% \item Pelez les pommes, retirez les c\oe urs et les pépins. Coupez-les en tranches dans une poêle à revêtement anti-adhésif. Arrosez-les de jus de citron et ajoutez $15\unit{g}$ de beurre en parcelle.
+% \item Faites chauffer sur feu moyen pendant $20\unit{min}$ en retournant les pommes de temps en temps. Salez et poivrez en fin de cuisson.
+% \item Préchauffez le gril du four.
+% \item Rangez les magrets dans un plat au four, avec leur marinade. Glissez-les sous le gril, à $15\unit{cm}$ de distance, et compte $7$ à $8\unit{min}$. Retournez-les et comptez encore $7\unit{min}$ de cuisson.
+% \item Garnissez les assiettes de pommes cuites. Découpez les magrets en tranches et posez-les sur les pommes avec le jus qu'ils ont rendu. Donnez un tour de moulin à poivre et servez.
+% \end{enumerate}
+
+% \newpage
+% \section{Moules marinières}
+% \note{0}
+% \subsection*{Ingrédients}
+% \begin{itemize}
+% \item 3 litres de moules de bouchot
+% \item 1/2 l de vin blanc sec
+% \item un bouquet de persil de première fraîcheur
+% \item 4 grosses échalotes ciselées
+% \item 2 oignons ciselés
+% \item une belle branche de thym
+% \item une feuille de laurier
+% \item une gousse d'ail écrasée
+% \item une très belle branche de céleri avec ses feuilles (ou de livèche)
+% \item 100 g de beurre
+% \end{itemize}
+%
+% \subsection*{Préparation}
+% \begin{enumerate}
+% \item Préparer les ingrédients. Les éléments de la garniture sont taillés finement. Gratter et laver les moules
+% \item Fondre le beurre sans coloration. Ajouter les echalotes et les oignons ciselés...
+% \item puis le bouquet garni
+% \item et enfin les moules préalablement grattées et nettoyées.
+% \item placer la branche de céleri et les queues de persil.
+% \item Mouiller avec le vin blanc
+% \item Mélanger
+% \item et couvrir
+% \item Mélanger les moules dès l'apparition des premières vapeurs.
+% \item et recommencer. Les moules s'ouvrent très rapidement.
+% \item Pendant la braderie de Lille, les moules se servent avec de bonnes pommes frites et une bière (à consommer avec modération )
+% \end{enumerate}
+
+% \newpage
+% \section{Pâtes à la bolognaise}
+% \note{0}
+% \subsection*{Ingrédients}
+% \begin{itemize}
+% \item 500 g de spaghetti
+% \item 1 oignon
+% \item 2 gousses d'ail
+% \item 1 carotte
+% \item 850 g de tomates (fraîches ou en boîte selon la saison)
+% \item 25cl de vin rouge
+% \item 500 g de boeuf haché (steack en vrac)
+% \item 25cl de bouillon
+% \item persil
+% \item 1 cuillère à café de sucre
+% \item 2 cuillères à soupe d'huile
+% \end{itemize}
+%
+% \subsection*{Préparation}
+% \begin{enumerate}
+% \item Hachez l'ail, l'oignon, puis coupez la carotte en petits dés.
+% \item Faites chauffer l'huile dans une casserole assez grande. Faites revenir l'ail, l'oignon et la carotte à feu doux pendant 5 mn en remuant.
+% \item Augmenter la flamme, puis rajoutez le boeuf. Faites brunir et remuez de façon à ce que la viande ne fasse pas de gros paquets.
+% \item Rajoutez le bouillon, le vin rouge, les tomates préalablement coupées assez grossièrement, le sucre et le persil haché. Portez à ébullition.
+% \item Baisser ensuite le feu et laissez mijoter à couvert 1h à 1h30, de façon à ce que le vin s'évapore.
+% \item Faites cuire les spaghetti, puis mettez-les dans un plat. Rajoutez la sauce bolognaise.
+% \end{enumerate}
+
+% \newpage
+% \section{Roti de Porc au lait}
+% \note{0}
+% \subsection*{Ingrédients}
+% \begin{itemize}
+% \item $35 \unit{g}$ huile d'olive
+% \item $2$ oignons ($200 \unit{g}$)
+% \item $800 \unit{g}$ rôti de porc
+% \item $1$ litre de lait entier
+% \item Sel, poivre
+% \item $1$ feuille de laurier
+% \item $10$ Pommes de terre ($650 \unit{g}$)
+% \end{itemize}
+%
+% \subsection*{Préparation}
+% \begin{enumerate}
+% \item Oignons : Couper la tige et la racine, puis couper en moitié dans le sens tige-racine, éplucher, attention, il pique les yeux.
+% Couper en demi-rondelles. Réserver sur votre plan de travail.
+% \item Pommes de terres :  Pour éplucher, utiliser un couteau économe, plonger aussitôt dans l'eau, car elle noircit à l'air, ni trop longtemps dans l'eau, car elle durcit.
+% Couper en en gros dés.
+% \item Dans l'autocuiseur, ajouter l'huile d'olive.
+% Faire revenir, les oignons et le rôti dans la graisse.
+% \item Dès que l'ensemble est bien doré\dots
+% Verser le lait avec sel et poivre, le laurier.
+% Fermer l'autocuiseur en plaçant la soupape et cuire pendant 1 heure à partir du chuchotement de la soupape.
+% \item Ouvrir, faire tomber la crème collée aux parois dans le lait.
+% \item  Ajouter les pommes de terre, rectifier l'assaisonnement.
+% Remettre éventuellement du lait.
+% \end{enumerate}
+%
+% \subsection*{Cuisson}
+% Fermer et cuire pendant $45$ minutes. Placer dans un plat de service et servir chaud.
+
+% \newpage
+% \section{Spaghetti Sauce Magret de Canard}
+% \note{2}
+% \subsection*{Ingrédients}
+% \begin{itemize}
+% \item $500$ g de spaghetti
+% \item $2$ magrets de canard d'un total de $500$ g
+% \item $1$ bel oignon frais
+% \item $1$ échalotte
+% \item $3$ carottes
+% \item $1$ belle branche de céleri
+% \item $5$ cl de vin blanc
+% \item $1$ feuille de laurier
+% \item $5$ belles tomates bien mûres
+% \item Sel, poivre, huile d'olive
+% \item Parmesan râpé
+% \end{itemize}
+%
+% \subsection*{Préparation}
+% \begin{enumerate}
+% \item Découpez les magrets en fines tranches en conservant le gras sur chacune d'entre elles.
+% \item Préparez les légumes : coupez oignon, échalotte, céleri et carottes en julienne.
+% \item Mondez les tomates : plongez-les $10$ s dans de l'eau bouillantes avant de les peler, de les épépiner et de les détailler en tous petits morceaux.
+% \item Dans une sauteuse à peine huilée, faire revenir oignon, échalotte, carottes et céleris.
+% \item Ajoutez les tranches de magret de canard.
+% \item Laissez-les cuire $5$ min à feu doux.
+% \item Salez et poivrez.
+% \item Ajoutez $5$ cl de vin blanc.
+% \item Ajoutez les tomates et une feuille de laurier.
+% \item Laissez mijoter à feu doux quelques instant le temps que les tomates fondent.
+% \item Servez cette sauce pour accompagner les spaghettis.
+% \end{enumerate}
+%
+% Proposez du parmesan rapé en accompagnement.
+
+\chapter{Desserts}
+% \newpage
+% \section{Cookies irlandais}%recette à momo%J'aime pas trop pour ma part, donc je la met en commentaire.
+% \note{0}
+% \subsection*{Ingrédients}
+% \begin{itemize}
+% \item 200g de pépites de chocolat (ou 100g)
+% \item 100 g de beurre fondu froid
+% \item 75g de sucre roux
+% \item 1 œuf
+% \item 100g de farine
+% \item 50g de poudre d'amande
+% \end{itemize}
+%
+% \subsection*{Préparation}
+% \begin{enumerate}
+% \item Préchauffez le four à 200\degres C
+% \item Fouettez le beurre fondu avec le sucre jusqu'à ce que le mélange mousse
+% \item Ajoutez l'œuf, la farine, la poudre d'amande et les pépites de chocolat.
+% \item Mélangez
+% \item Disposez de petits tas de pâte sur du papier sulfurisé et étalez les avec une cuillère.
+% \end{enumerate}
+%
+% \subsection*{Cuisson}
+% Enfournez-les et laissez-les cuire 5 à 10 minutes. Quand le bord du cookies commence à dorer, arrêtez les (je les ait fait cuire plus longtemps et je les ai trouvé moins bon. Mais j'ai pas testé ce que je suis en train de dire vu que je n'en ai fait qu'une seule fois.
+
+\end{document}

@@ -1,0 +1,390 @@
+\documentclass[a4paper,twoside]{report}
+\usepackage[print]{autiwa}
+% \usepackage{amssymb}
+\setcounter{secnumdepth}{2}
+\usepackage{minitoc}
+\setcounter{minitocdepth}{1}
+% \usepackage{hyperref}
+\fancyhead[LE]{}
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{\z@}%
+             {-3.5ex \@plus -1ex \@minus -.2ex}%
+             {2.3ex \@plus 2ex}%
+             {\normalfont\Large\scshape\bfseries\marou}}
+
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
+             {-3.25ex\@plus -1ex \@minus -.2ex}%
+             {1.5ex \@plus .2ex}%
+             {\normalfont\large\sffamily\bfseries\vertf}}
+\makeatother
+
+\renewcommand \thesection {}%pour ne pas avoir les numéro devant les recettes
+\renewcommand \thesubsection {}%pour ne pas avoir les numéro devant les recettes
+%TODO rajouter une commande \notation{} pour classer les recettes en fonction de mes préférences. style \notation{4} afficherais 4 étoiles à la suite.
+\newcommand{\note}[1]
+{
+  \ifthenelse{\equal{#1}{0}}{non testé}{}
+  \ifthenelse{\equal{#1}{1}}{\ensuremath{\bigstar}}{}
+  \ifthenelse{\equal{#1}{2}}{\ensuremath{\bigstar\bigstar}}{}
+  \ifthenelse{\equal{#1}{3}}{\ensuremath{\bigstar\bigstar\bigstar}}{}
+  \ifthenelse{\equal{#1}{4}}{\ensuremath{\bigstar\bigstar\bigstar\bigstar}}{}
+  \ifthenelse{\equal{#1}{5}}{\ensuremath{\bigstar\bigstar\bigstar\bigstar\bigstar}}{}
+}
+
+\hypersetup{
+  colorlinks=true, %colorise les liens
+  breaklinks=true, %permet le retour à la ligne dans les liens trop longs
+  urlcolor= blue,  %couleur des hyperliens
+  linkcolor= refcolor, %couleur des liens internes
+  plainpages=false,  %pour palier à "Bookmark problems can occur when you have duplicate page numbers, for example, if you have a page i and a page 1."
+  citecolor=refcolor % pour définir la couleur des liens de bibliographie
+}
+\title{Recettes de Cuisine}
+\author{Autiwa}
+\begin{document}
+\input{title.tex}
+\dominitoc
+\tableofcontents
+\chapter{Plat Principal}
+\minitoc
+
+\input{chapitres/01_plat_principal}
+
+
+
+\chapter{Grillades}
+\minitoc
+
+\input{chapitres/02_grillades}
+
+\chapter{Accompagnements}\label{sec:accompagnement}
+\minitoc
+
+\input{chapitres/03_accompagnements}
+
+\chapter{Sauces}
+\minitoc
+
+\newpage
+\section{Sauce maison}
+\subsection*{Ingrédients}
+\begin{itemize}
+\item 150g de champignons de Paris
+\item 100g de lardons
+\item 2 oignons
+\item 25cl de bouillon de volaille
+\item 20cl de floc de gascogne
+\item 1 cuillère à soupe de farine
+\item sel, poivre, herbes de provence
+\end{itemize}
+
+\subsection*{Préparation}
+\begin{enumerate}
+\item Faites revenir les lardons
+\item Réservez-les puis faites revenir les lardons
+\item Réservez l'oignon et faites revenir les champignons en rajoutant de l'huile au besoin.
+\begin{remarque}
+Ne couvrez pas pendant la cuisson des champignons afin d'éviter qu'il y ait trop de jus dans la sauteuse
+\end{remarque}
+\item Rajoutez les oignons et lardons, réchauffez un peu la mixture et ajoutez la farine en saupoudrant. Mélangez bien le tout avant de rajouter le floc puis le bouillon de volaille.
+\item Mélangez bien le tout, couvrez et laissez cuire à feu doux jusqu'à ce que la sauce soit bien liée. Typiquement, c'était bon au bout de 5 à 10 minutes pour moi, mais ça dépend de la quantité de sauce que vous voulez. Si vous faites cuire longtemps, vous risquez de devoir mélanger de temps en temps pour ne pas que ça accroche.
+\end{enumerate}
+
+\chapter{Dessert}
+\minitoc
+
+
+\input{chapitres/05_desserts}
+
+
+\chapter{Confitures}
+\minitoc
+
+\newpage
+\section{Confiture de Fraise traditionnelle québécoise}
+\subsection*{Ingrédients}
+\begin{itemize}
+\item $1$ kg de fraises
+\item $750$ mL de sucre
+\item $95$ mL d'eau
+\end{itemize}
+\subsection*{Préparation}
+Laver, équeuter et couper les fraises en morceaux
+
+
+\subsection*{Cuisson}
+\begin{enumerate}
+ \item Dans un chaudron assez grand pour contenir tout les ingredients, verser l'eau et le sucre. Chauffer sur feu moyen-vif jusqu'à ce que le sucre soit dissous.
+
+\item Enlever l'écume à l'aide d'une écumoire.
+
+\item Ajouter les fraises. Poursuivre la cuisson pendant 20 min en écumant la mousse rougeâtre qui se forme.
+\item Verser dans des pots stérilisés.
+\end{enumerate}
+
+\newpage
+\section{Confiture de pomme au citron}
+\note{5}
+\subsection*{Ingrédients}
+\begin{itemize}
+\item $3\unit{kg}$ de pommes vertes
+\item $3\unit{kg}$ de sucre
+\item $1\unit{L}$ d'eau
+\item $4$ citrons (zeste et jus)
+\end{itemize}
+\subsection*{Préparation}
+\begin{enumerate}
+\item Épluchez et sortez les trognons des pommes. Mettez les épluchures et les trognons dans un sac de mousseline.
+\item Coupez les pommes et mettez les dans une casserole avec l'eau, le sac de mousseline, le zeste rapé et le jus du citron.
+\item Faire cuire jusqu'à ce que les pommes soient tendres.
+\item Laissez refroidir un peu, puis sortez le sac et tordez le pour extraire le jus et le rajouter dans la casserole.
+\item Ajoutez le sucre et remuez. Continuez comme pour toutes les confitures (c'est à dire?)
+\end{enumerate}
+
+
+\newpage
+\section{Marmelade de Fraise}
+\subsection*{Ingrédients}
+\begin{itemize}
+\item $1$ kg de fraises
+\item Le poids en sucre des fruits épluchés
+\end{itemize}
+\subsection*{Préparation}
+La veille:
+\begin{enumerate}
+ \item laver les fraises avec soin, les égoutter et les équeuter. Peser les fruits.
+\item Déposer par couche dans une grande terrine en alternant fruit et sucre
+\item Laisser macérer 24h (au bout de ce temps, le sucre est fondu et les fraises baignent dans le sirop)
+\end{enumerate}
+
+
+\subsection*{Cuisson}
+\begin{enumerate}
+ \item Faire chauffer le tout dans une grande bassine en remuant de temps en temps pour empêcher d'attacher, jusqu'à ce que l'ébullition soit obtenue
+
+\item Cuire à ébullition vive 15 à 20 minutes selon les fruits
+
+\item Vérifier la cuisson en faisant couler quelques gouttes de confiture sur une assiette froide, le sirop doit être assez épais et s'écouler lentement
+\end{enumerate}
+
+\chapter{Confiseries}
+\minitoc
+\newpage
+\section{Crème de Marron}
+\subsection*{Ingrédients}
+\begin{itemize}
+\item $1$ kg de châtaignes
+
+\item $600$ g de sucre
+
+\item $20$ cl d'eau
+\end{itemize}
+\subsection*{Préparation}
+\begin{enumerate}
+\item Faire une incision sur le dessus de chaque fruit.
+
+\item Mettre les châtaignes dans une casserole d'eau froide.
+
+\item Faire boullir les fruits pendant 7/8 minutes.
+
+\item Les égoutter et retirer l'écorce des fruits.
+
+\item A la fin de cette opération, remettre les châtaignes a cuire dans un volume d'eau tiède pendant 5 minutes environ (vérifier la cuisson).
+
+\item Les égoutter et les passer au moulin à légume (grille fine) ou les réduire en purée au robot.
+
+\item Faire cuire pendant 3 minutes (montre en main) le sucre et l'eau.
+
+\item Ajouter cette préparation sur la purée de châtaignes et remuer.
+\end{enumerate}
+
+
+\subsection*{Cuisson}
+\begin{enumerate}
+\item Chauffer doucement la purée et laisser mijoter 10 à 15 minutes en remuant souvent.
+\item La préparation doit être bien épaisse.
+\end{enumerate}
+
+\newpage
+\section{tranches d'oranges confite}
+\subsection*{Ingrédients}
+\begin{itemize}
+\item 2 oranges
+\item $400$ g de sucre
+\item 400mL d'eau
+\end{itemize}
+
+\begin{remarque}
+Ceci est une recette à ma façon, qui ne nécessite pas d'avoir des oranges bios et qui plaira à ceux qui n'aiment pas le zeste. On doit pouvoir mettre plus de tranches d'oranges que je ne l'ai fait mais pas beaucoup. J'avais 12 tranches quand j'ai fait cuire dans la casserole.
+\end{remarque}
+
+
+\subsection*{Préparation}
+\begin{enumerate}
+\item Pelez les oranges dans les ouvrir en deux.
+\begin{remarque}
+Lors de la découpe de la tête de l'orange, tranchez le pourtour, décollez délicatement le tour avec le dos du couteau puis soulevez le couvercle. En faisant ainsi vous enlèverez une bonne partie de la tige blanche de l'intérieur de l'orange.
+\end{remarque}
+\item Coupez les oranges en tranches assez épaisse, environ 5mm (trop fin et les tranches ne résisteront pas à la cuisson. Elles seront bonnes mais en lambeaux.
+\item Préparez le sirop avec le sucre et l'eau et portez à ébullition
+\item Plongez les tranches dans le sirop, et faites frémir pendant 1h30 environ (sans couvrir).
+\item À l'issue de la cuisson, sortez délicatement les tranches à l'aide d'une spatule (ça permet de ne pas les abîmer et de les égoutter en même temps) puis déposez-les sur du papier sulfurisé afin de les laisser sécher et refroidir
+\end{enumerate}
+
+\subsection*{Conseils}
+\begin{itemize}
+\item On peut enrober les tranches d'orange de chocolat. Il faut alors les laisser sécher sur une grille pendant 4 heures avant de les enrober.
+\item Une fois les tranches cuites, on peut récupérer le sirop et le transformer en caramel pour ne pas le gâcher. Vous obtiendrez alors un caramel parfumé à l'orange.
+\end{itemize}
+
+\newpage
+\section{Truffes au chocolat}
+\subsection*{Ingrédients}
+\begin{itemize}
+\item 2 jaunes d'œufs
+\item $250$ g de chocolat
+\item $75$ g de beurre
+\item 2 cuillères à soupe de lait
+\end{itemize}
+
+\subsection*{Préparation}
+\begin{enumerate}
+\item Faire fondre a feu très doux ou au bain-marie, le chocolat en petit morceaux et le lait.
+\item Remuer à l'aide d'une spatule pour obtenir une creme lisse; retirer du feu.
+\item Ajouter les jaunes d'œufs, mélanger, puis le beurre en petit morceaux.
+\item Bien travailler cette préparation (on peut la parfumer avec une pointe de café ou de l'écorce d'orange).
+\item Laisser refroidir dans le réfrigérateur.
+\item Former les truffes et les rouler dans du cacao en poudre, puis les disposer dans des godets\dots
+\end{enumerate}
+
+La même recette peut être réalisée avec du chocolat blanc ( de marque de préférence). Les truffes seront alors roulées dans de la noix de coco rapée.
+
+\chapter{Techniques}
+\minitoc
+
+\section{Couteaux de cuisine}
+Il existe beaucoup de couteaux différents, avec chacun une fonction précise. Voici un récapitulatif de certains d'entre eux.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.6\linewidth]{figures/couteaux.pdf}
+\caption{Nom et forme de quelques couteaux de cuisine. À noter que le couteau de chef est un couteau multi-usage aussi.}
+\end{figure}
+
+\begin{remarque}
+Pour une utilisation optimale, il convient d'aiguiser le couteau avant chaque utilisation à l'aide d'un fusil. Pas besoin d'y passer des heures, quelques mouvements suffisent.
+
+Il faut poser le couteau (près de la garde) sur le fusil, avec une inclinaison d'environ 30\degre, le coté tranchant vers l'avant. Poussez ainsi la lame pour que le fusil rencontre la totalité du fil du couteau. Le mouvement doit être régulier afin de ne pas changer l'angle. Faites ensuite de même en passant sur le dessous du fusil pour l'autre coté du couteau.
+
+Il est important de faire un mouvement pour chaque tranchant du couteau à chaque fois afin que l'affûtage soit homogène.
+\end{remarque}
+
+
+\section{Cuire une volaille au four}
+Pour que votre volaille cuite au four soit moëlleuse et fondante, il suffit de placer 2 petits suisses à l'intérieur de votre poulet ou pintade, et de cuire à température et temps habituels !
+
+\section{Épaissir une sauce}
+Il suffit \emph{avant} de rajouter du liquide, de rajouter une cuillère à soupe rase de farine que vous mélangez avec les ingrédients (oignons, champignons, lardon, ou autre). Puis vous rajoutez le liquide en suivant la recette normale. Ça a le double avantage de permettre d'avoir plus de sauce et de l'épaissir (sinon, avoir plus de sauce implique qu'elle soit très très liquide ce qui n'est pas forcément agréable).
+
+
+\section{Ne pas rater les oignons}
+Si les oignons commencent à accrocher et à cramer pendant que vous les faites revenir, rajoutez un peu d'eau et remuez afin de les récupérer. Bien entendu, s'ils sont totalement cramés, l'eau ne changera rien au problème (du goût en particulier). Ne pas oublier que sans matière grasse, les oignons vont cramer de toute façon.
+
+\section{Faire revenir des morceaux de viandes}
+Quand on les fait revenir, c'est juste pour faire dorer l'extérieur, pas besoin que l'intérieur soit cuit, ça sera fait quand la sauce mijotera.
+
+\section{Faire cuire de la viande}
+\begin{itemize}
+\item La poële doit être bien chaude avant de mettre la viande
+\item Ne pas piquer la viande en cours de cuisson, ça laisse échapper le sang et ça fait durcir la viande
+\item Ne jamais couvrir.
+\end{itemize}
+
+\section{Herbes aromatiques}
+\begin{itemize}
+\item Aneth : Son goût anisé est très utilisé pour les recettes à base de poissons et d’œufs. On l’utilise en petite quantité pour agrémenter le plat et on ne soumet pas l’aneth à une cuisson trop forte, pour ne pas en perdre les qualités gustatives.
+
+\item Basilic : Riche en arômes s’accommode parfaitement avec les plats ensoleillés. Avec des légumes, des pâtes ou en salade, le basilic relève vos recettes d’un parfum à la fois doux et intense. On retiendra qu’il est l’élément principal de la fameuse sauce pistou.
+
+\item Ciboulette : les feuilles de ciboulette sont souvent utilisées ciselées dans les sauces et les salades pour les agrémenter d’un goût proche de l’oignon doux. On l’appréciera notamment dans une sauce à la crème fraîche (légère de préférence !) et au poivre pour accompagner une pomme de terre au four.
+
+\item Cumin : Sa saveur chaude et piquante accompagne les fromages, le pain, les carottes et l’agneau.
+
+\item Estragon : les feuilles d’estragon, qu’elles soient utilisées fraîches, séchées ou en poudre s’accommodent particulièrement avec les viandes blanches, le poisson et les œufs.
+
+\item Laurier : originaire d’Europe, la feuille de laurier entre dans la composition des potages, marinades, et civets. Elle accompagne également la composition des bouquets garnis.
+
+\item Marjolaine : autrement nommée \og grand origan\fg, cette plante condimentaire relativement méconnue peut être incorporée à vos ragoûts ou accompagner vos tomates. Son goût étant assez prononcé, il est conseillé d’éviter de la cuire trop longtemps ou de la mélanger à d’autres herbes.
+
+\item Menthe : herbe aromatique phare des cuisines méditerranéennes, la menthe accompagne de nombreuses préparations traditionnelles, avec sa saveur douce et fraîche. Dans le thé ou le taboulé, avec des nems ou dans des desserts, la menthe apporte cette petite touche de vitalité à vos plats.
+
+\item Origan : indispensable sur la pizza napolitaine, très apprécié dans la sauce tomate, l’origan est reconnu pour son goût prononcé et ses vertus médicinales. Souvent confondu avec la marjolaine, dont le goût est plus délicat, les deux plantes ont cependant les mêmes usages.
+
+\item Oseille : avec sa saveur piquante et acidulée, l’oseille qui se cuisine comme les épinards, relève les œufs et les poissons.
+
+\item Persil : riches en vitamines A et C, les feuilles de persil sont utilisées dans les préparations de légumes, avec de la viande ou du poisson. Qu’elles soient plates ou frisées, leur odeur et leur goût sont prononcés.
+
+\item Romarin : son nom signifie en latin rosée de mer, et il pousse à l’état sauvage sur le pourtour méditerranéen. Son odeur camphrée accompagne viandes rôties, pommes de terre ainsi que le vinaigre.
+
+\item Thym : poussant en milieu aride et rocailleux, le thym possède une force olfactive méditerranéenne de caractère. Sa fraîcheur et sa profondeur parfument bouquets garnis, marinades, potages et grillades.
+\end{itemize}
+
+
+
+\section{Temps de cuisson}\index{temps de cuisson}
+\begin{table}[htb]
+\centering
+\begin{tabular}{|c|c|}\hline
+Préparation & Temps de cuisson\\\hline\hline
+\multicolumn{2}{|c|}{\bsc{Viandes}}\\\hline
+B\oe uf & $15\unit{min}/500\unit{g}$\\\hline
+Mouton (épaule, gigot) & $15$ à $20\unit{min}/500\unit{g}$\\\hline
+Porc,veau & $30$ à $35\unit{min}/500\unit{g}$\\\hline\hline
+\multicolumn{2}{|c|}{\bsc{Volailles}}\\\hline
+Poulet & $25$ à $30\unit{min}/500\unit{g}$\\\hline
+Caille & $20$ à $25\unit{min}$\\\hline
+\end{tabular}
+\caption{Cuisson Grill/rotissoire (Garder la porte entrouverte)}
+\end{table}
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{|c|c|c|c|}\hline
+Préparation & Thermostat \degres C & Temps de Cuisson & Remarques\\\hline\hline
+\multicolumn{4}{|c|}{\bsc{Entrées}}\\\hline
+Soufflé au fromage & 200 & 35\unit{min} & Plat en terre ou verre\\\hline
+Quiche lorraine & 240 & 45\unit{min} & Moule à tarte\\\hline
+Tomates farcies & 240 & 50\unit{min} & Plat en terre ou verre\\\hline
+Gratin Dauphinois & 240 & 50\unit{min} & Plat en terre ou verre\\\hline
+Pizza & 240 & 35\unit{min} & Plaque à pâtisserie\\\hline
+\OE ufs cocotte & 270 & 8 à 10\unit{min} & Ramequin et bain-marie\\\hline
+Allumettes fromage & 260 & 10\unit{min} & Plaque à pâtisserie\\\hline
+Croque-Monsieur & 220 & 20\unit{min} & Grille\\\hline\hline
+\multicolumn{4}{|c|}{\bsc{Viandes}}\\\hline
+B\oe uf & 270 & 15\unit{min}/500\unit{g} & Plat en terre\\\hline
+Mouton (épaule, gigot) & 270 & 15\unit{min}/500\unit{g} & Plat en terre\\\hline
+Porc,veau & 250 & 30 à 35\unit{min}/500\unit{g} & Plat en terre\\\hline
+Agneau & 210 & 12\unit{min}/500\unit{g} & Plat en terre\\\hline\hline
+\multicolumn{4}{|c|}{\bsc{Poissons}}\\\hline
+Truite (1\unit{kg}) & 240 & 35\unit{min} & Plat en terre ou verre\\\hline
+Maquereaux & 240 & 30\unit{min} & Plat en terre ou verre\\\hline\hline
+\multicolumn{4}{|c|}{\bsc{Volailles}}\\\hline
+Poulet & 260 & 25 à 30\unit{min}/500\unit{g} & Plat en terre\\\hline
+Lapin & 240 & 25 à 30\unit{min}/500\unit{g} & Plat en terre\\\hline\hline
+\multicolumn{4}{|c|}{\bsc{Pâtisseries}}\\\hline
+Biscuit de Savoie & 170 & 35\unit{min} & Moule à manqué\\\hline
+\multirow{3}*{Cake} & 220 & 15\unit{min} & \multirow{3}*{Moule à cake}\\
+&\multicolumn{2}{c|}{puis} &\\
+&180 & 55\unit{min} &\\\hline
+Clafoutis & 240 & 50\unit{min} & Moule à manqué\\\hline
+Quatre-quart & 160 & 60\unit{min} & Moule à cake\\\hline
+Sablés & 190 & 15\unit{min} & Plaque à pâtisserie\\\hline
+Pâte brisée garnie & 230 & 35\unit{min} & Moule\\\hline
+Pommes au four & 230 & 25 à 30\unit{min} & Plat en terre ou verre\\\hline
+Meringues & 110 & 120\unit{min} & Plaque à pâtisserie\\\hline
+\end{tabular}
+\caption{Cuisson Four}
+\end{table}
+
+
+\end{document}
