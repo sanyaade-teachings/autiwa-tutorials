@@ -1,7 +1,7 @@
 \documentclass[a4paper,twoside]{article}
 \usepackage{autiwa}
 \usepackage{listings}
-\lstset{language=IDL,
+\lstset{language=Fortran,
 basicstyle=\ttfamily\small,
 columns=flexible,
 escapechar=+}
@@ -21,6 +21,8 @@ escapechar=+}
 
 \section{Préambule}
 Ceci est un tutoriel fortran 90, il a pour but de donner des astuces de programmations, des bonnes pratiques, présenter ce qui se faisait en fortran 77 et qu'il ne faut plus faire. 
+
+Dans la suite on considèrera le format libre, c'est à dire que les lignes peuvent avoir jusqu'à 132 caractères.
 
 \section{Transition fortran 77/fortran 90}
 \subsection{Instructions obsolètes ou dépréciées}
@@ -43,5 +45,39 @@ descripteur H & DOUBLE PRECISION\\
 \end{tabular}
 \end{center}
 
+\section{Les bases}
+\subsection{Éléments de syntaxe}
+
+Pour continuer une ligne, en cas de ligne trop longue : 
+\begin{lstlisting}[language=Fortran]
+print *, 'Montant HT :', montant_ht, & '	TVA:',tva	,&
+'Montant TTC :', montant_ttc
+\end{lstlisting}
+
+\bigskip
+
+Pour continuer une chaîne de caractère par contre, il faut impérativement utiliser deux caractères \og \& \fg : 
+\begin{lstlisting}[language=Fortran]
+print *, 'Entrez un nombre entier & 
+	&compris entre 100 & 199'
+\end{lstlisting}
+
+\bigskip
+
+Les commentaires commencent par le symbole \og ! \fg : 
+\begin{lstlisting}[language=Fortran]
+if (n < 100 .or. n > 199) ! Test cas d'erreur
+! On lit l'exposant
+read *,x 
+! On lit la base
+read *,y 
+if (y <=0) then	! Test cas d'erreur 
+  print *,' La base doit être un nombre >0'
+else 
+  z = y**x	! On calcule la puissance
+end if
+\end{lstlisting}
+
+\bigskip
 
 \end{document}
