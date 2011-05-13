@@ -11,7 +11,7 @@
 
 \vfill
 % Upper part of the page
-\includegraphics[width=0.15\textwidth]{pdf/logo-ubuntu.pdf}\hfill\includegraphics[width=0.15\textwidth]{pdf/logo-GNU.pdf}\hfill\includegraphics[width=0.15\textwidth]{pdf/logo-debian.pdf}\\[1cm]
+\includegraphics[width=0.15\textwidth]{figure/logo-ubuntu.pdf}\hfill\includegraphics[width=0.15\textwidth]{figure/logo-GNU.pdf}\hfill\includegraphics[width=0.15\textwidth]{figure/logo-debian.pdf}\\[1cm]
 
 % Title
 \HRule \\[0.4cm]
@@ -2455,6 +2455,12 @@ Pour les explications sur les commandes, la plupart sont expliquées dans la par
 sed '/^$/d' mon_fichier.txt
 \end{verbatim}
 
+\subsubsection{Extraire certaines colonnes d'un fichier}
+\texttt{cut <colonnes> <fich>} : extrait certaines parties dans chaque ligne. Les parties à extraire sont spécifiées :
+\begin{itemize}
+\item soit en indiquant leur position avec l’option \textbf{-c} : \textbf{cut -c5-15,33,37-} :extraire dans chaque ligne les caractères 5 à 15 et 33 et de 37 jusqu’à la fin de la ligne ;
+\item soit en indiquant un numéro de champ (avec \textbf{-f} ) et un caractère délimiteur de champ (avec \textbf{-d}) : \textbf{cut -d"," -f3-5} :extraire les champs 3 à 5 de chaque ligne en utilisant le caractère \og,\fg comme délimiteur de champ.
+\end{itemize}
 
 \section{Faire des scripts Bash}
 Un script Bash doit commencer par cette ligne
