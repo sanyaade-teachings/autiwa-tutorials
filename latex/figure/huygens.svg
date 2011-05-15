@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="691.06317"
+   height="569.51978"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.45.1"
+   sodipodi:docbase="/home/autiwa/documents/Downloads/vectoriel/cours"
+   sodipodi:docname="huygens.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:export-filename="/home/autiwa/documents/Downloads/vectoriel/huygens.png"
+   inkscape:export-xdpi="370"
+   inkscape:export-ydpi="370"
+   version="1.0">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend"
+       style="overflow:visible">
+      <path
+         id="path10945"
+         d="M 0,0 L 5,-5 L -12.5,0 L 5,5 L 0,0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mstart"
+       style="overflow:visible">
+      <path
+         id="path10942"
+         d="M 0,0 L 5,-5 L -12.5,0 L 5,5 L 0,0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(0.4,0,0,0.4,4,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.95853675"
+     inkscape:cx="518.10614"
+     inkscape:cy="294.13626"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     showguides="false"
+     inkscape:window-width="1430"
+     inkscape:window-height="799"
+     inkscape:window-x="2"
+     inkscape:window-y="47" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-21.079447,-129.30804)">
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.52;stroke-dasharray:none;stroke-opacity:1"
+       d="M 22.262703,369.37467 L 710.95935,369.37467"
+       id="path2160"
+       inkscape:export-filename="/home/autiwa/documents/Downloads/vectoriel/path3185.png"
+       inkscape:export-xdpi="370"
+       inkscape:export-ydpi="370" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.51999998;stroke-dasharray:16,4,2,4;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 328.91717,130.39176 L 328.91717,697.74411"
+       id="path2162"
+       inkscape:export-filename="/home/autiwa/documents/Downloads/vectoriel/path3185.png"
+       inkscape:export-xdpi="370"
+       inkscape:export-ydpi="370" />
+    <path
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#fc0000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;marker-start:none;marker-mid:url(#Arrow1Mstart);marker-end:none;stroke-miterlimit:3.52;stroke-dasharray:none;stroke-opacity:1"
+       d="M 328.93441,369.98026 L 217.61299,260.23046 L 105.94579,150.46922"
+       id="path5096"
+       sodipodi:nodetypes="ccc"
+       inkscape:export-filename="/home/autiwa/documents/Downloads/vectoriel/path3185.png"
+       inkscape:export-xdpi="370"
+       inkscape:export-ydpi="370" />
+    <path
+       sodipodi:type="arc"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.24594653;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.52;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path6080"
+       sodipodi:cx="114.82143"
+       sodipodi:cy="187.00504"
+       sodipodi:rx="26.071428"
+       sodipodi:ry="26.071428"
+       d="M 140.89236,186.84373 A 26.071428,26.071428 0 1 1 88.750631,186.82335"
+       sodipodi:start="6.2769983"
+       sodipodi:end="9.4317467"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/autiwa/documents/Downloads/vectoriel/path3185.png"
+       inkscape:export-xdpi="370"
+       inkscape:export-ydpi="370"
+       transform="matrix(8.1318487,0,0,8.1318487,-606.24542,-1150.1604)" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.51999998;stroke-dasharray:8,2,1,2;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 328.97629,369.28874 L 579.39847,617.97081"
+       id="path6082"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/autiwa/documents/Downloads/vectoriel/path3185.png"
+       inkscape:export-xdpi="370"
+       inkscape:export-ydpi="370" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.52;stroke-dasharray:none;stroke-opacity:1"
+       d="M 645.84145,369.17502 L 367.38214,619.26825"
+       id="path8024"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/autiwa/documents/Downloads/vectoriel/path3185.png"
+       inkscape:export-xdpi="370"
+       inkscape:export-ydpi="370" />
+    <path
+       sodipodi:type="arc"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.24594653;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.52;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path13109"
+       sodipodi:cx="114.77858"
+       sodipodi:cy="187.04025"
+       sodipodi:rx="17.046324"
+       sodipodi:ry="17.046324"
+       d="M 131.82409,186.87395 A 17.046324,17.046324 0 1 1 97.733689,186.81921"
+       sodipodi:start="6.273429"
+       sodipodi:end="9.4377453"
+       inkscape:export-filename="/home/autiwa/documents/Downloads/vectoriel/path3185.png"
+       inkscape:export-xdpi="370"
+       inkscape:export-ydpi="370"
+       sodipodi:open="true"
+       transform="matrix(8.1318487,0,0,8.1318487,-606.24542,-1150.1604)" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.51999998;stroke-dasharray:4,4;stroke-opacity:1;stroke-dashoffset:0"
+       d="M 646.36099,369.25149 L 328.73568,524.11685"
+       id="path14080"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/autiwa/documents/Downloads/vectoriel/path3185.png"
+       inkscape:export-xdpi="370"
+       inkscape:export-ydpi="370" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;marker-mid:url(#Arrow1Mend);stroke-miterlimit:3.52;stroke-dasharray:none;stroke-opacity:1"
+       d="M 329.02266,369.96774 L 397.71394,521.27127 L 466.97396,673.3458"
+       id="path16020"
+       sodipodi:nodetypes="ccc"
+       inkscape:export-xdpi="370"
+       inkscape:export-ydpi="370"
+       inkscape:export-filename="/home/autiwa/documents/Downloads/vectoriel/path3185.png" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.52;stroke-dasharray:none;stroke-opacity:1"
+       d="M 463.74951,503.55018 L 479.12601,487.2865 L 495.82809,503.55018"
+       id="path2212"
+       inkscape:export-filename="/home/autiwa/documents/Downloads/vectoriel/path3185.png"
+       inkscape:export-xdpi="370"
+       inkscape:export-ydpi="370" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.52;stroke-dasharray:none;stroke-opacity:1"
+       d="M 377.70829,479.15463 L 393.97198,471.02277 L 402.10384,487.2865"
+       id="path3185"
+       inkscape:export-xdpi="370"
+       inkscape:export-ydpi="370" />
+  </g>
+</svg>
