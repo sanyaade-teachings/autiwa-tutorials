@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.4.30)  16 MAY 2011 09:40
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.4.30)  16 MAY 2011 09:42
 entering extended mode
  %&-line parsing enabled.
 **inkscape.tex
@@ -1225,9 +1225,9 @@ nts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/cossou/.texmf-var/fonts/pk/ljf
 our/jknappen/ec/ecrm1200.600pk> </home/cossou/.texmf-var/fonts/pk/ljfour/jknapp
 en/ec/ecbx2074.600pk></usr/share/texmf-texlive/fonts/type1/public/amsfonts/latx
 font/lcirclew.pfb>
-Output written on inkscape.pdf (7 pages, 141087 bytes).
+Output written on inkscape.pdf (7 pages, 143601 bytes).
 PDF statistics:
- 472 PDF objects out of 1000 (max. 8388607)
+ 479 PDF objects out of 1000 (max. 8388607)
  46 named destinations out of 1000 (max. 500000)
  123 words of extra memory for PDF output out of 10000 (max. 10000000)
 

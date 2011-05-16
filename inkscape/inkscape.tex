@@ -1,6 +1,6 @@
 \documentclass[a4paper,twoside]{article}
 \usepackage{autiwa}
-\title{Astuces Inkscape}
+\title{Astuces Inkscape\\version 1.1}
 \author{Autiwa}
 \makeindex
 \begin{document}
@@ -14,43 +14,29 @@
 \section[LaTeX avec Inkscape]{\LaTeX avec Inkscape}
 Pour avoir l'option Effet>Rendu>Formule LaTeX... il faut installer \gras[logiciel!pstoedit]{pstoedit} en plus d'inkscape. L'option apparaît automatique au démarrage suivant.
 
-\section{Astuces pour les motifs}
+\section{Général}
+\subsection{Sélection avancée d'objets}
+Un moyen très pratique pour sélectionner des objets est d'utiliser la fonction \og Rechercher\fg (\touche{Ctrl}+\touche{F}). En effet, une des fonctions très utile est de pouvoir sélectionner les objets par type. Ainsi, sélectionner tous les chemins, ou tous les textes, en un seul coup, sans devoir tout sélectionner à la main.
+
+D'autres champs sont disponibles qui parlent d'eux mêmes et permettent d'affiner les recherches.
+
+\section{Motifs}
+\subsection{Espacer des motifs}
 Généralement, les motifs n'ont pas d'espaces entre leurs répétitions. Qu'à celà ne tienne, il suffit de définir l'espace à même le motif. Par exemple, au lieu de faire un cercle tout bête. Faites en un petit, qui sera la taille nominale du cercle, puis un plus grand qui déterminera l'espace autour dudit cercle. Le cercle le plus grand, dupliquez le (\touche{Ctrl}+D), puis fusionnez les trois chemins en un seul (\touche{Ctrl}+K après les avoir sélectionnés tout les trois). Ensuite, vous remplissez le motif, en sélectionnant qu'un chevauchement rend la somme transparente (et trois sera de nouveau opaque), puis vous enlevez le contour (couleur transparente), et vous avez votre espace.
 
 \begin{remarque}
 C'est une technique que j'ai utilisée pour \og motif suivant un chemin\fg, et ainsi pouvoir définir un espace entre les cercles, mais ça doit être utile pour autre chose je pense. Ce que je n'avais pas compris de suite, c'est qu'une fois le chemin rempli des motifs, modifier le contour ou le remplissage du chemin agissait directement sur le contour et le remplissage des motifs, ce qui change tout.
 \end{remarque}
 
-\section{Astuces pour les clones}
+\section{Clones}
+\subsection{Sélectionner l'original}
 Pour sélectionner l'original d'une série de clones rapidement, il suffit de sélectionner un clone, et de faire \touche{Maj}+D.
 
-\section{Astuces pour les chemins}
+\section{Chemins}
+\subsection{Flèches dans le bon sens}
 Il m'arrivait souvent d'avoir des flèches dans le mauvais sens. C'est à dire qu'en définissant une flèche au n\oe ud final, la flèche n'était pas à l'endroit voulu. Il est possible d'inverser le sens d'un chemin (basiquement, inverser le n\oe ud de départ et le n\oe ud d'arrivé, sans que ça ne change rien à la forme du chemin) via le menu Chemin>Inverser.
 
-\section{Astuces pour les textes}
-On peut mettre un texte dans un cadre, ce qui permet des choses assez poussées. On peut par exemple répartir le texte dans plusieurs formes. 
-
-\begin{attention}
-Il faut définir le texte en faisant un glisser déposer pour y définir un cadre, il ne faut pas se contenter de définir un texte en cliquant dans un calque. C'est à dire qu'une fois l'outil texte activé, il faut faire un clic gauche, rester appuyé sur le clic gauche, définir un cadre en relachant le clic à l'endroit voulu pour le coin en bas à droite du cadre. 
-\end{attention}
-
-Une fois le texte défini, définissez vos formes, soit une seule, soit plusieurs. Une fois fait, sélectionnez le texte, puis, sélectionnez les formes dans l'ordre inverse de l'ordre dans lequel vous voulez que le texte les remplisse. C'est à dire que si vous avez trois formes A, B et C, que vous voulez que le texte remplisse A, puis B puis C, vous devez sélectionner le texte, puis la forme C, puis la forme B puis la forme A.
-
-Une fois les 4 objets sélectionnés, activez l'option Texte>Encadrer.
-
-
-\section{Masques d'objets}
-Disponible via Objet>Masque>Définir. Cette fonction permet de \og découper\fg un ou plusieurs chemins. En effet, si on sélectionne plusieurs chemins, le masque sera défini à partir du chemin le plus au-dessus (avec le z le plus élevé), et s'appliquera à tout les autres chemins sélectionnés. Les caractéristiques du chemin le plus au-dessus sont importantes, c'est à dire la couleur de remplissage, son opacité et cie. Ceci seront autant de caractéristiques qui s'appliqueront en tant que masque aux autres chemins. En clair, pour simplement tronquer ce qui va apparaître à l'écran, sans rien modifier d'autre, on fera attention à ce que le chemin du dessus aie un remplissage blanc, opacité maximale et sans contour. C'est un procédé non destructif, c'est à dire qu'on peut retirer le masque par la suite et récupérer les chemins tels qu'ils étaient avant.
-
-Voici à quoi celà peut servir concrêtement : celà permet de tronquer les flous. Vous avez surement remarqué qu'en mettant un flou de 4\%, la couleur dépassait un peu de la taille de chemin initiale. Il peut arriver que l'on veuille que la couleur s'arrête exactement aux bords, y compris le flou. Pour celà, on duplique le chemin, et le chemin dupliqué, mis blanc, est ensuite appliqué en tant que masque par la méthode expliquée ci-dessus.
-
-Essayez par exemple de faire ça avec un cercle tout bête, sans remplissage, mais simplement avec un contour, que vous floutez à 5\%. Dupliquez ensuite ce même cercle, enlevez le contour, mettez un remplissage blanc opaque, sélectionnez le cercle normal et le cercle blanc (le cercle blanc doit être au dessus du cercle normal), puis appliquez le masque. Vous pouvez maintenant supprimer le cercle blanc et regarder le résultat obtenu.
-
-\begin{remarque}
-Pour l'exemple du cercle, il sert juste à montrer ce que ça donne, de manière simple. En effet, il est tout à fait possible d'obtenir le même résultat avec un dégradé radial approprié, ce qui rend la méthode du masque inutile dans ce cas là. Pour d'autres cas par contre, l'emploi du masque se révèlera irremplaçable.
-\end{remarque}
-
-\section{Éroder et Dilater}
+\subsection{Éroder et Dilater}
 Inkscape peut étendre et contracter des objets par une modification de leurs dimensions, mais aussi par offset du chemin, c'est-à-dire par un déplacement perpendiculaire en tout point du chemin. Les commandes correspondantes sont Éroder (\touche{Ctrl}+\touche{(}) et Dilater (\touche{Ctrl}+\touche{)}).
 
 Les commandes éroder et dilater produisent des chemins (si nécessaire en convertissant l'objet original en chemin). Un offset dynamique (\touche{Ctrl}+\touche{J}) sera souvent plus pratique : il crée un objet avec une poignée déplaçable qui contrôle le rayon d'offset.
@@ -59,10 +45,10 @@ Un tel objet offset dynamique retient le chemin d'origine, et ainsi ne se \og d�
 
 Encore plus pratique : l'offset lié (\touche{Ctrl}+\touche{Alt}+\touche{J}), similaire à un offset dynamique mais connecté au chemin qui reste éditable. Vous pouvez en créer autant que vous voulez à partir d'un chemin source. En éditant les n\oe uds du chemin original, celà modifiera automatiquement les offset liés. Vous pouvez aussi redimensionner ou appliquer une rotation au chemin original, ça sera automatiquement appliqué à l'offset lié. En déplaçant l'offset lié, vous pouvez ainsi faire une ombre portée, et un déplacement du chemin original déplacera automatiquement l'offset lié pour que leurs positions relatives ne changent pas.
 
-\section{Effets de chemin}
-Ces trois subsectiones d'explications ont étés pris sur le site \\
+\subsection{Effets de chemin}
+Ces trois paragraphes d'explications ont étés pris sur le site \\
 \url{http://www.pixenjoy.com/inkscape-046-live-path-effects}
-\subsection{Courber un chemin}
+\subsubsection{Courber un chemin}
 
 Cet effet permet de courber un chemin le long d'un autre chemin. Lorsque l'effet \og Courber un chemin\fg  est appliqué à un chemin A, ce chemin peut être courbé le long d'un autre chemin B (que l'on appellera \og chemin courbé\fg ). Avec l'éditeur de n\oe uds, le chemin A et le chemin courbé B peuvent être modifié sur le canevas et le résultat se met à jour instantanément.
 
@@ -84,7 +70,7 @@ Prenez par exemple un rectangle pour le chemin A, et pour le chemin B deux point
 
 
 
-\subsection{Motif suivant un chemin}
+\subsubsection{Motif suivant un chemin}
 Cet effet permet de courber un chemin le long d'un autre chemin. Quand cet effet est appliqué à un chemin A (appelé squelette) un autre chemin B (appelé motif) peut être passé en paramètre. Le résultat est que le chemin B est courbé le long du chemin A. Avec l'outil d'édition des n\oe uds, le chemin peut être modifié sur l'espace de travail et le résultat est mis à jour en temps réel.
 
 Vous pouvez choisir le motif pour le squelette sélectionné en le collant dans l'espace de travail à partir du presse-papier (c'est-à-dire que vous sélectionnez et vous copiez dans le presse-papier le motif (ou le chemin), ensuite vous sélectionnez le squelette, vous appliquez l'effet \og Motif suivant un chemin\fg, et vous cliquez sur \og collez le motif\fg). Dans la fenêtre de dialogue des \og Effets de chemin\fg  (\touche{Ctrl}+\touche{Shift}+7), le paramètre \og Largeur\fg  vous permet de changer la largeur du motif appliqué au chemin.
@@ -101,7 +87,7 @@ Cas pratique :
 \item Vous pouvez éditer le motif pour modifier sa forme, cliquez sur le bouton (représenté par une icône) \og Editer sur la zone de travail\fg
 \end{enumerate}
 
-\subsection{Relier les sous-chemins}
+\subsubsection{Relier les sous-chemins}
 
 
 L'effet \og Relier les sous-chemins\fg  relie les points de deux sous-chemins d'un chemin avec des lignes droites ou des segments courbés. Le résultat obtenu ressemble à du \og String Art\fg.
@@ -124,10 +110,35 @@ Cas pratique :
 \item En cliquant sur l'icône \og Editer sur la zone de travail\fg , vous éditez un chemin sur la zone de travail qui vous permet de modifier l'orientation du maillage.
 \end{enumerate}
 
-\section{Sélection avancée}
-Un moyen très pratique pour sélectionner des objets est d'utiliser la fonction \og Rechercher\fg (\touche{Ctrl}+\touche{F}). En effet, une des fonctions très utile est de pouvoir sélectionner les objets par type. Ainsi, sélectionner tous les chemins, ou tous les textes, en un seul coup, sans devoir tout sélectionner à la main.
+\section{Textes}
+\subsection{Encadrer ou mettre en forme un texte}
+On peut mettre un texte dans un cadre, ce qui permet des choses assez poussées. On peut par exemple répartir le texte dans plusieurs formes. 
 
-D'autres champs sont disponibles qui parlent d'eux mêmes et permettent d'affiner les recherches.
+\begin{attention}
+Il faut définir le texte en faisant un glisser déposer pour y définir un cadre, il ne faut pas se contenter de définir un texte en cliquant dans un calque. C'est à dire qu'une fois l'outil texte activé, il faut faire un clic gauche, rester appuyé sur le clic gauche, définir un cadre en relachant le clic à l'endroit voulu pour le coin en bas à droite du cadre. 
+\end{attention}
+
+Une fois le texte défini, définissez vos formes, soit une seule, soit plusieurs. Une fois fait, sélectionnez le texte, puis, sélectionnez les formes dans l'ordre inverse de l'ordre dans lequel vous voulez que le texte les remplisse. C'est à dire que si vous avez trois formes A, B et C, que vous voulez que le texte remplisse A, puis B puis C, vous devez sélectionner le texte, puis la forme C, puis la forme B puis la forme A.
+
+Une fois les 4 objets sélectionnés, activez l'option Texte>Encadrer.
+
+
+\section{Masques d'objets}
+Disponible via Objet>Masque>Définir. Cette fonction permet de \og découper\fg un ou plusieurs chemins. En effet, si on sélectionne plusieurs chemins, le masque sera défini à partir du chemin le plus au-dessus (avec le z le plus élevé), et s'appliquera à tout les autres chemins sélectionnés. Les caractéristiques du chemin le plus au-dessus sont importantes, c'est à dire la couleur de remplissage, son opacité et cie. Ceci seront autant de caractéristiques qui s'appliqueront en tant que masque aux autres chemins. En clair, pour simplement tronquer ce qui va apparaître à l'écran, sans rien modifier d'autre, on fera attention à ce que le chemin du dessus aie un remplissage blanc, opacité maximale et sans contour. C'est un procédé non destructif, c'est à dire qu'on peut retirer le masque par la suite et récupérer les chemins tels qu'ils étaient avant.
+
+Voici à quoi celà peut servir concrêtement : celà permet de tronquer les flous. Vous avez surement remarqué qu'en mettant un flou de 4\%, la couleur dépassait un peu de la taille de chemin initiale. Il peut arriver que l'on veuille que la couleur s'arrête exactement aux bords, y compris le flou. Pour celà, on duplique le chemin, et le chemin dupliqué, mis blanc, est ensuite appliqué en tant que masque par la méthode expliquée ci-dessus.
+
+Essayez par exemple de faire ça avec un cercle tout bête, sans remplissage, mais simplement avec un contour, que vous floutez à 5\%. Dupliquez ensuite ce même cercle, enlevez le contour, mettez un remplissage blanc opaque, sélectionnez le cercle normal et le cercle blanc (le cercle blanc doit être au dessus du cercle normal), puis appliquez le masque. Vous pouvez maintenant supprimer le cercle blanc et regarder le résultat obtenu.
+
+\begin{remarque}
+Pour l'exemple du cercle, il sert juste à montrer ce que ça donne, de manière simple. En effet, il est tout à fait possible d'obtenir le même résultat avec un dégradé radial approprié, ce qui rend la méthode du masque inutile dans ce cas là. Pour d'autres cas par contre, l'emploi du masque se révèlera irremplaçable.
+\end{remarque}
+
+
+
+
+
+
 
 \section{Système de Lindenmayer}
 Ceci permet de réaliser des fractales relativement complexes. En guise d'exemple, je vais expliquer comment faire un flocon de neige à partir d'une étoile avec cet effet.
