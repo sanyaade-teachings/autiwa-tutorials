@@ -11,7 +11,7 @@
 
 \vfill
 % Upper part of the page
-\includegraphics[width=0.15\textwidth]{pdf/logo-ubuntu.pdf}\hfill\includegraphics[width=0.15\textwidth]{pdf/logo-GNU.pdf}\hfill\includegraphics[width=0.15\textwidth]{pdf/logo-debian.pdf}\\[1cm]
+\includegraphics[width=0.15\textwidth]{figure/logo-ubuntu.pdf}\hfill\includegraphics[width=0.15\textwidth]{figure/logo-GNU.pdf}\hfill\includegraphics[width=0.15\textwidth]{figure/logo-debian.pdf}\\[1cm]
 
 % Title
 \HRule \\[0.4cm]
@@ -377,6 +377,22 @@ Si la connection se coupe et qu'il refuse de vous reconnecter au réseau ou des 
 sudo /etc/init.d/NetworkManager  restart
 \end{verbatim}
 
+\subsection{freeWifi}\index{freeWifi}
+Ce réseau est capricieux, parfois on ne peut pas se connecter au réseau (sans avoir l'occasion de rentrer ses identifiants donc), il faut être patient et réessayer régulièrement. Je met parfois plus de 2 ou 3 heures avant que la connection au réseau se fasse.
+
+Une fois connecté, vous vous rendrez sans doute compte que par défaut, vous ne pouvez pas poster de messages dans les forums, répondre à vos mails et des choses de ce genre, fort embêtantes. La solution est au final très simple, il faut que vous repériez le nom de votre carte wifi dans \verb|ifconfig|, puis faites
+\begin{verbatim}
+sudo ifconfig wlan0 mtu 1460
+\end{verbatim}
+où \texttt{wlan0} est le nom de MA carte wifi, ce qui est normalement le nom par défaut.
+
+\bigskip
+
+Pour remettre les choses comme avant, il suffit de faire
+\begin{verbatim}
+sudo ifconfig wlan0 mtu 1500
+\end{verbatim}
+
 
 \section{Configuration du système}
 \subsection{Remettre son système en l'état à partir d'une réinstallation fraiche}
@@ -398,8 +414,8 @@ deb http://deb.opera.com/opera/ stable non-free #Dépôt d'Opera
 \end{verbatim}
 \item dans synaptics :
 \begin{enumerate}
-	\item cocher dans un même temps "installer les mises à jours de sécurité sans le demander". sélectionner aussi "mise à jour des versions normales au lieu de ne mettre à jours uniquement les LTS
-	\item Dans l'onglet statistique, cocher la case qui permet de soumettre des informations à but statistique sur l'utilisation des programmes
+\item cocher dans un même temps "installer les mises à jours de sécurité sans le demander". sélectionner aussi "mise à jour des versions normales au lieu de ne mettre à jours uniquement les LTS
+\item Dans l'onglet statistique, cocher la case qui permet de soumettre des informations à but statistique sur l'utilisation des programmes
 \end{enumerate}
 %\item clé médibuntu : wget -q http://packages.medibuntu.org/medibuntu-key.gpg -O- | sudo apt-key add -
 %\item clé wine HQ : wget -q http ://wine.budgetdedicated.com/apt/387EE263.gpg -O- | sudo apt-key add -
@@ -447,11 +463,18 @@ deb http://deb.opera.com/opera/ stable non-free #Dépôt d'Opera
 %xcftools contient xcf2png qui permet de convertir du gimp en png (en particulier pour mon script)
 \item on installe le paquet \textbf{autiwa.sty} et comme je prévoie, je ne met qu'un lien virtuel dans le répertoire root et je garde le fichier dans le dossier \verb|~/.latex|
 
+% \begin{verbatim}
+% cd /usr/share/texmf-texlive/tex/latex/
+% sudo ln -s -d ~/.latex autiwa
+% sudo texhash
+% \end{verbatim}
+
 \begin{verbatim}
 cd /usr/share/texmf-texlive/tex/latex/
-sudo ln -s -d ~/.latex autiwa
+sudo ln -s -d ~/Documents/Formulaires/latex-packages autiwa
 sudo texhash
 \end{verbatim}
+% où ~/Documents/Formulaires est le dossier où il y a le svn
 
 \begin{remarque}
 Je fais un lien vers le dossier tout entier finalement, ça me permet de rajouter des fichiers dans le dossiers et qu'ils soient automatiquement dans le dossier latex. Tels des fichiers de styles ou autres, ou pourquoi pas s'il me vient à l'idée de créer plusieurs paquets.
@@ -894,10 +917,12 @@ Pour faire une sauvegarde complète vous devez copier ces répertoires :
 J'utilisais \gras[logiciel!money]{Money} dans le temps sous windows, puis un logiciel libre dont j'ai oublié le nom, et quand je suis passé sous GNU/Linux, j'ai parcouru les logiciels disponibles, et j'ai opté pour \gras[logiciel!grisbi]{Grisbi}. Je l'avais essayé sous windows dans le temps et il ne m'avait pas plu du tout. Sous GNU/Linux, le courage et le sens de l'effort sous le bras, je m'y suis mis plus sérieusement, et j'ai bien fait, passé une semaine pour comprendre comment ça fonctionne et que sans faire les rapprochement tout les mois avec les relevés, le logiciel n'est pratiquement pas utilisé, je suis content d'avoir insisté.
 
 \subsection{Dessin Vectoriel : Inkscape}\index{logiciel!inkscape}
-J'utilisais pas de logiciel de dessin vectoriel sous windows, mais petit à petit, pour les besoins de \LaTeX, j'ai voulu faire des schémas propres, et je me suis mis à \gras[logiciel!inkscape]{Inkscape} pour exporter ensuite mes schémas en .pdf
+J'utilisais pas de logiciel de dessin vectoriel sous windows, mais petit à petit, pour les besoins de \LaTeX, j'ai voulu faire des schémas propres, et je me suis mis à \gras[logiciel!inkscape]{Inkscape} pour exporter ensuite mes schémas en .pdf. 
 
-\subsubsection{Indices et exposants (subscript, superscript)}
-À première vue, il n'y a rien dans Inkscape qui permet de faire cela. Il existe un moyen un peu détourner de le réaliser cependant. Il suffit d'écrire normalement, puis de sélectionner la partie que l'on souhaite mettre en indice ou en exposant. Ensuite, à l'aide de \touche{Alt}+\touche{\textuparrow} et \touche{Alt}+\touche{\textdownarrow}, on peut mettre en indice ou exposant en appuyant plusieurs fois (pour ma part, je mets une police plus petite de 4 points, et je descend ou monte de 7 ou 8 \og coups\fg (comprendre que je fais 7 fois le raccourci précédemment évoqué).
+Ses possibilités sont nombreuses et j'ai même dû faire un tutoriel à part tellement j'en avais rajouté.
+
+% \subsubsection{Indices et exposants (subscript, superscript)}
+% À première vue, il n'y a rien dans Inkscape qui permet de faire cela. Il existe un moyen un peu détourner de le réaliser cependant. Il suffit d'écrire normalement, puis de sélectionner la partie que l'on souhaite mettre en indice ou en exposant. Ensuite, à l'aide de \touche{Alt}+\touche{\textuparrow} et \touche{Alt}+\touche{\textdownarrow}, on peut mettre en indice ou exposant en appuyant plusieurs fois (pour ma part, je mets une police plus petite de 4 points, et je descend ou monte de 7 ou 8 \og coups\fg (comprendre que je fais 7 fois le raccourci précédemment évoqué).
 
 \subsubsection[LaTeX avec Inkscape]{\LaTeX avec Inkscape}
 Pour avoir l'option Effet>Rendu>Formule LaTeX... il faut installer \gras[logiciel!pstoedit]{pstoedit} en plus d'inkscape. L'option apparaît automatique au démarrage suivant.
@@ -914,6 +939,18 @@ Pour sélectionner l'original d'une série de clones rapidement, il suffit de s�
 
 \subsubsection{Astuces pour les chemins}
 Il m'arrivait souvent d'avoir des flèches dans le mauvais sens. C'est à dire qu'en définissant une flèche au n\oe ud final, la flèche n'était pas à l'endroit voulu. Il est possible d'inverser le sens d'un chemin (basiquement, inverser le n\oe ud de départ et le n\oe ud d'arrivé, sans que ça ne change rien à la forme du chemin) via le menu Chemin>Inverser.
+
+\subsubsection{Astuces pour les textes}
+On peut mettre un texte dans un cadre, ce qui permet des choses assez poussées. On peut par exemple répartir le texte dans plusieurs formes. 
+
+\begin{attention}
+Il faut définir le texte en faisant un glisser déposer pour y définir un cadre, il ne faut pas se contenter de définir un texte en cliquant dans un calque. C'est à dire qu'une fois l'outil texte activé, il faut faire un clic gauche, rester appuyé sur le clic gauche, définir un cadre en relachant le clic à l'endroit voulu pour le coin en bas à droite du cadre. 
+\end{attention}
+
+Une fois le texte défini, définissez vos formes, soit une seule, soit plusieurs. Une fois fait, sélectionnez le texte, puis, sélectionnez les formes dans l'ordre inverse de l'ordre dans lequel vous voulez que le texte les remplisse. C'est à dire que si vous avez trois formes A, B et C, que vous voulez que le texte remplisse A, puis B puis C, vous devez sélectionner le texte, puis la forme C, puis la forme B puis la forme A.
+
+Une fois les 4 objets sélectionnés, activez l'option Texte>Encadrer.
+
 
 \subsubsection{Masques d'objets}
 Disponible via Objet>Masque>Définir. Cette fonction permet de \og découper\fg un ou plusieurs chemins. En effet, si on sélectionne plusieurs chemins, le masque sera défini à partir du chemin le plus au-dessus (avec le z le plus élevé), et s'appliquera à tout les autres chemins sélectionnés. Les caractéristiques du chemin le plus au-dessus sont importantes, c'est à dire la couleur de remplissage, son opacité et cie. Ceci seront autant de caractéristiques qui s'appliqueront en tant que masque aux autres chemins. En clair, pour simplement tronquer ce qui va apparaître à l'écran, sans rien modifier d'autre, on fera attention à ce que le chemin du dessus aie un remplissage blanc, opacité maximale et sans contour. C'est un procédé non destructif, c'est à dire qu'on peut retirer le masque par la suite et récupérer les chemins tels qu'ils étaient avant.
@@ -1048,6 +1085,12 @@ Vous remarquerez que la règle donnée pour les flocons de neige s'explicite rel
 
 Pour visualiser très simplement ce que fait la règle, faire un essai à l'ordre 1 sur un segment simple, et vous verrez la forme de la règle.
 \end{remarque}
+
+\subsection{Digitizer : Engauge}
+Logiciel permettant de digitaliser des courbes (utiles pour les études scientifiques parfois. Pour l'installer :
+\begin{verbatim}
+sudo apt-get install engauge-digitizer
+\end{verbatim}
 
 
 \subsection{\'Editeur \LaTeX{} : Kile}
@@ -1437,7 +1480,7 @@ J'avoue ne pas encore avoir bien saisi la différente entre les deux et surtout 
 \subsubsection{Tracer un damier}
 \begin{figure}[htb]
 \centering
-\includegraphics[width=0.4\textwidth]{pdf/matlab_damier.pdf}
+\includegraphics[width=0.4\textwidth]{figure/matlab_damier.pdf}
 \caption{Rendu du damier tracé par matlab}
 \end{figure}
 
@@ -1712,6 +1755,17 @@ Pour arrêter la commande en cours du terminal ouvert, il suffit d'appuyer sur \
 
 Pour quitter une page de manuel ou une documentation quelconque, il suffit bien souvent d'appuyer sur la touche \touche{Q}
 
+\subsubsection{Raccourcis claviers}
+\touche{Ctrl} + \touche{A} pour aller au début de la ligne.
+
+\touche{Ctrl} + \touche{E} pour aller à  la fin de la ligne.
+
+\touche{Ctrl} + \touche{U} pour effacer tout ce qu'il y a avant le curseur.
+
+\touche{Ctrl} + \touche{K} pour effacer tout ce qu'il y a après le curseur.
+
+\touche{Ctrl} + \touche{W} pour effacer un mot à gauche de la position du curseur (n'efface que la partie gauche du mot si le curseur est au milieu).
+
 \subsubsection{!}
 Qui se souvient de la commande longue de 40m super pratique tapé il y a une heure? ! vous permet de la retrouver avec un peu de chance, ! rappelera la dernière commande commençant par le texte tapé.
 
@@ -1748,6 +1802,14 @@ cd !$
 
 
 et vous voici arrivé dans le répertoire \textbf{Desktop}
+
+\subsubsection{Rechercher une commande}
+Il est possible de rechercher dans l'historique avec le raccourcis \touche{Ctrl}+\touche{R}. Cette recherche est incrémentale, cela signifie qu'au fur et à mesure de la frappe les résultats correspondant apparaissent, une fois la bonne commande trouvée, il suffit de taper sur Entrée pour l'éxécuter ou sur la flèche droite pour copier cette commande sur la ligne courante si on veut y ajouter des paramètres.
+
+\begin{remarque}
+En appuyant de nouveau sur \touche{Ctrl}+\touche{R}, on se déplace dans la liste des différentes commandes qui correspondent à la recherche effectuée.
+\end{remarque}
+
 
 \subsubsection{Substitution de Commande}
 Vous pouvez utiliser le résultat d'une commande comme paramètre d'entrée pour une autre ; en d'autres termes pour une substitution de commande. Une substitution de commande a lieu lorsque vous encadrez une commande avec des apostrophes inversées. Par exemple :
@@ -2407,6 +2469,12 @@ Pour les explications sur les commandes, la plupart sont expliquées dans la par
 sed '/^$/d' mon_fichier.txt
 \end{verbatim}
 
+\subsubsection{Extraire certaines colonnes d'un fichier}
+\texttt{cut <colonnes> <fich>} : extrait certaines parties dans chaque ligne. Les parties à extraire sont spécifiées :
+\begin{itemize}
+\item soit en indiquant leur position avec l’option \textbf{-c} : \textbf{cut -c5-15,33,37-} :extraire dans chaque ligne les caractères 5 à 15 et 33 et de 37 jusqu’à la fin de la ligne ;
+\item soit en indiquant un numéro de champ (avec \textbf{-f} ) et un caractère délimiteur de champ (avec \textbf{-d}) : \textbf{cut -d"," -f3-5} :extraire les champs 3 à 5 de chaque ligne en utilisant le caractère \og,\fg comme délimiteur de champ.
+\end{itemize}
 
 \section{Faire des scripts Bash}
 Un script Bash doit commencer par cette ligne
@@ -2435,6 +2503,20 @@ echo $i;
 done
 \end{verbatim}
 \end{exemple}
+
+\subsubsection{Boucle sur des fichiers}
+\begin{verbatim}
+for file in *.f
+do
+   mv $file `basename $file .f`.f90
+done
+\end{verbatim}
+
+Cette boucle for va chercher tous les fichiers ayant l'extension \texttt{.f} dans le dossier courant et les renommer pour leur donner l'extension \texttt{.f90}.
+
+\begin{remarque}
+La partie \verb|basename $file .f| permet d'enlever l'extension \texttt{.f} du nom de fichier contenu dans la variable \verb|$file|
+\end{remarque}
 
 
 \subsection{Manipuler les chaînes de caractères}
@@ -2607,7 +2689,7 @@ Voici un script pour extraire les chapitres d'un DVD dans des fichiers séparés
 
 Il faut tout d'abord trouver la piste à extraire. On procède par tatonnement en lançant
 \begin{verbatim}
-maplyer dvd://i
+mplayer dvd://i
 \end{verbatim}
 où $i$ est un chiffre, généralement entre 1 et 4.
 

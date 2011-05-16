@@ -1,0 +1,16 @@
+\select@language {french}
+\select@language {french}
+\contentsline {section}{\numberline {1}LaTeX avec Inkscape}{3}{section.1}
+\contentsline {section}{\numberline {2}Astuces pour les motifs}{3}{section.2}
+\contentsline {section}{\numberline {3}Astuces pour les clones}{3}{section.3}
+\contentsline {section}{\numberline {4}Astuces pour les chemins}{3}{section.4}
+\contentsline {section}{\numberline {5}Astuces pour les textes}{3}{section.5}
+\contentsline {section}{\numberline {6}Masques d'objets}{3}{section.6}
+\contentsline {section}{\numberline {7}\IeC {\'E}roder et Dilater}{4}{section.7}
+\contentsline {section}{\numberline {8}Effets de chemin}{4}{section.8}
+\contentsline {subsection}{\numberline {8.1}Courber un chemin}{4}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}Motif suivant un chemin}{5}{subsection.8.2}
+\contentsline {subsection}{\numberline {8.3}Relier les sous-chemins}{5}{subsection.8.3}
+\contentsline {section}{\numberline {9}S\IeC {\'e}lection avanc\IeC {\'e}e}{6}{section.9}
+\contentsline {section}{\numberline {10}Syst\IeC {\`e}me de Lindenmayer}{6}{section.10}
+\contentsline {subsection}{\numberline {10.1}Flocon de Neige}{7}{subsection.10.1}
