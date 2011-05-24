@@ -81,6 +81,8 @@ end if
 \bigskip
 
 \subsection{Déclaration de variables}
+Le premier bloc d'instructions d'un programme source est composé de la suite de déclaration des types des différentes variables utilisées dans le programme. En fait, Fortran ne rend pas obligatoire les déclarations de type. Si une variable commence par i, j, k, l, m ou n, Fortran 90 considère par défaut que cette variable est entière. Nous déconseillons cependant fortement d'utiliser un typage implicite qui est source de nombreuses erreurs de calcul. Il est donc conseillé de commencer chaque programme par l'instruction \textbf{implicit none} qui rend obligatoire la déclaration du type de toutes les variables. Si une ou plusieurs variables ne sont pas déclarées, le compilateur retournera un message d'erreur.
+
 La syntaxe de déclaration des variables est la suivante : 
 \begin{lstlisting}[language=Fortran]
 type [,attribut] :: liste_variables
@@ -93,8 +95,8 @@ type [,attribut] :: liste_variables
 
 \begin{exemple}
 \begin{lstlisting}[language=Fortran]
-
 program declaration
+
 implicit none 
 integer :: 		i, j=5 		! type entier
 real :: 		var, x=2.5 	! type reel simple precision
@@ -103,9 +105,31 @@ logical :: 		reussite 	! type logique
 character (10) :: 	mot 		! type caractere
 complex :: 		z = (1.2, 20) 	! type complexe
 
-[...] end
+[...]  	! bloc d'instructions exécutables
+
+end
 \end{lstlisting}
 \end{exemple}
+
+Le type \texttt{logical} n'admet que deux valeurs \texttt{.true.} ou \texttt{.false.}
+
+\begin{remarque}
+Il est possible, voire recommande, d'écrire la déclaration des variables sur plusieurs lignes afin d'en faciliter la lisibilité et d'ajouter des commentaires.
+
+\begin{lstlisting}[language=Fortran]
+program commentaires
+
+implicit none 
+integer :: i, &	! indice de boucle sur le temps
+           j, &	! nombre de niveaux
+           k	! indice de boucle sur les niveaux
+
+[...] 	! bloc d'instructions exécutables
+
+end
+\end{lstlisting}
+\end{remarque}
+
 
 
 
