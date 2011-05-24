@@ -80,6 +80,35 @@ end if
 
 \bigskip
 
+\subsection{Déclaration de variables}
+La syntaxe de déclaration des variables est la suivante : 
+\begin{lstlisting}[language=Fortran]
+type [,attribut] :: liste_variables
+\end{lstlisting}
+\begin{itemize}
+\item \texttt{type} est le nom du type de variable (integer, real, double precision, complex, logical, character)
+\item \texttt{attribut} est une liste d'attributs optionnels (parameter, dimension, allocatable, intent,\dots)
+\item \texttt{liste\_variables} est la liste des variables que l'on déclare comme ayant ce type.
+\end{itemize}
+
+\begin{exemple}
+\begin{lstlisting}[language=Fortran]
+
+program declaration
+implicit none 
+integer :: 		i, j=5 		! type entier
+real :: 		var, x=2.5 	! type reel simple precision
+double precision :: 	plus_precis 	! type reel double precision
+logical :: 		reussite 	! type logique
+character (10) :: 	mot 		! type caractere
+complex :: 		z = (1.2, 20) 	! type complexe
+
+[...] end
+\end{lstlisting}
+\end{exemple}
+
+
+
 \section{Avancé}
 \subsection{les pointeurs}
 Un pointeur, ce n'est ni plus ni moins qu'une variable qui contient une adresse mémoire. 
