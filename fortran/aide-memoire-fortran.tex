@@ -1,16 +1,16 @@
 \documentclass[a4paper,twoside]{article}
 \usepackage{autiwa}
 \usepackage{listings}
-\lstset{language=Fortran,
-basicstyle=\ttfamily\small,
-columns=flexible,
-escapechar=+}
-\lstset{keywordstyle=\color{blue}\bfseries}
+% \lstset{language=Fortran,
+% basicstyle=\ttfamily\small,
+% columns=flexible}
+% \lstset{keywordstyle=\color{blue}\bfseries}
 
 \title{Aide mémoire Fortran 90}
 \author{Autiwa}
 
 \newcommand{\raccourci}[1]{{\bfseries #1}}
+
 
 \makeindex
 \begin{document}
@@ -47,11 +47,13 @@ descripteur H & DOUBLE PRECISION\\
 
 \section{Les bases}
 \subsection{Éléments de syntaxe}
+Une ligne ne peut dépasser 132 caractères. Il est possible cependant d'étendre une instruction de plus de 132 caractères sur plusieurs lignes.
 
 Pour continuer une ligne, en cas de ligne trop longue : 
 \begin{lstlisting}[language=Fortran]
-print *, 'Montant HT :', montant_ht, & '	TVA:',tva	,&
-'Montant TTC :', montant_ttc
+print *, 'Montant HT :', montant_ht, & 
+  'TVA:',tva	,&
+  'Montant TTC :', montant_ttc
 \end{lstlisting}
 
 \bigskip
@@ -71,14 +73,23 @@ if (n < 100 .or. n > 199) ! Test cas d'erreur
 read *,x 
 ! On lit la base
 read *,y 
-if (y <=0) then	! Test cas d'erreur 
-  print *,' La base doit être un nombre >0'
+if (y <=0) then ! Test cas d'erreur 
+  print *, 'La base doit etre un nombre > 0'
 else 
-  z = y**x	! On calcule la puissance
+  z = y**x ! On calcule la puissance
 end if
 \end{lstlisting}
 
 \bigskip
+
+\textbf{Les identificateurs.} On appelle identificateurs, les noms des variables, des fonctions, des
+sous-programmes... Ils obéissent aux règles suivantes :
+\begin{itemize}
+\item ils sont composés de lettres (les 26 lettres de l'alphabet) et de chiffres (de 0 à 9) dont la totalité ne peut dépasser 31 caractères.
+\item ils commencent obligatoirement par une lettre.
+\item le symbole \og souligné\fg (\_) est un caractère utilisable par les identificateurs (à ne pas confondre avec le signe moins : \og -\fg).
+\item il n'y a pas de distinction entre les minuscules et les majuscules.
+\end{itemize}
 
 \subsection{Déclaration de variables}
 Le premier bloc d'instructions d'un programme source est composé de la suite de déclaration des types des différentes variables utilisées dans le programme. En fait, Fortran ne rend pas obligatoire les déclarations de type. Si une variable commence par i, j, k, l, m ou n, Fortran 90 considère par défaut que cette variable est entière. Nous déconseillons cependant fortement d'utiliser un typage implicite qui est source de nombreuses erreurs de calcul. Il est donc conseillé de commencer chaque programme par l'instruction \textbf{implicit none} qui rend obligatoire la déclaration du type de toutes les variables. Si une ou plusieurs variables ne sont pas déclarées, le compilateur retournera un message d'erreur.
@@ -96,17 +107,17 @@ type [,attribut] :: liste_variables
 \begin{exemple}
 \begin{lstlisting}[language=Fortran]
 program declaration
-
-implicit none 
-integer :: 		i, j=5 		! type entier
-real :: 		var, x=2.5 	! type reel simple precision
-double precision :: 	plus_precis 	! type reel double precision
-logical :: 		reussite 	! type logique
-character (10) :: 	mot 		! type caractere
-complex :: 		z = (1.2, 20) 	! type complexe
-
-[...]  	! bloc d'instructions exécutables
-
+       
+implicit none          
+integer ::          i, j=5           ! type entier
+real ::             var, x=2.5       ! type reel simple precision 
+double precision :: plus_precis      ! type reel double precision 
+logical ::          reussite         ! type logique 
+character (10) ::   mot              ! type caractere
+complex ::          z = (1.2, 20)    ! type complexe
+   
+[...]                      ! bloc d'instructions executables
+      
 end
 \end{lstlisting}
 \end{exemple}
@@ -117,19 +128,611 @@ Le type \texttt{logical} n'admet que deux valeurs \texttt{.true.} ou \texttt{.fa
 Il est possible, voire recommande, d'écrire la déclaration des variables sur plusieurs lignes afin d'en faciliter la lisibilité et d'ajouter des commentaires.
 
 \begin{lstlisting}[language=Fortran]
-program commentaires
-
-implicit none 
-integer :: i, &	! indice de boucle sur le temps
-           j, &	! nombre de niveaux
-           k	! indice de boucle sur les niveaux
-
-[...] 	! bloc d'instructions exécutables
-
+program commentaires 
+ 
+implicit none
+integer :: i, &       ! indice de boucle sur le temps
+           j, &       ! nombre de niveaux  
+           k          ! indice de boucle sur les niveaux 
+    
+[...]            ! bloc d'instructions executables
+  
 end
 \end{lstlisting}
 \end{remarque}
 
+\subsection{Afficher et lire des informations (entrée et sortie standard)}
+Pour pouvoir écrire des informations à l'écran, c'est-à-dire des commentaires ou le contenu de certaines variables, on utilise l'instruction print. L'affectation d'une variable par l'intermédiaire du clavier se fait en utilisant l'instruction read. Si on ne veut pas imposer le format d'écriture (on laisse faire l'ordinateur), on utilise le format par défaut symbolisé par une * (voir l'exemple du programme ecriture-lecture). Tous les caractères compris entre ' ' (ou entre ” ”) sont écrits à l'écran.
+
+\begin{lstlisting}[language=Fortran]
+program ecriture_lecture
+implicit none
+real :: var, &
+	lu	! variable lue au clavier
+
+var = 2.5
+
+print*, 'La variable var vaut : ', var
+print*, 'Entrez une valeur au clavier'
+read*, lu
+print*, 'La valeur entree au clavier est', lu
+
+end
+\end{lstlisting}
+
+\subsection{Les expressions arithmétiques}
+On retrouve les opérateurs arithmétiques usuels : \og + \fg, \og - \fg, \og * \fg et \og / \fg. Ces opérandes ne sont définis à priori que lorsque les deux opérandes sont de même type. Le résultat est du même type que les opérandes. 
+
+Le compilateur convertit le type de l'un des opérandes, lorsque ces derniers sont différents, pour effectuer l'opération. Les conversions se font suivant la hiérarchie suivante : entier $\rightarrow$ réel $\rightarrow$ double précision. En présence d'un opérande entier et d'un opérande réel, l'entier est transformé en réel. 
+
+\subsubsection{Cas de la division}
+Ainsi le quotient de deux entiers et un entier : 
+\begin{align}
+\frac{5}{2} &= 2 & \frac{3}{5} &= 0
+\end{align}
+
+En revanche :
+\begin{align}
+\frac{5.0}{2.0} &= 2.5 \frac{5.0}{2} = \frac{5}{2.0} = 2.5
+\end{align}
+
+\subsubsection{L'opérateur d'élévation à la puissance}
+
+L'opérateur d'élévation à la puissance se note "**". L'expression \emph{a**b} correspond à la notation mathé\-ma\-tique $a^{b}$. 
+
+Le résultat de l'expression \emph{a**b} est entier si \emph{a} et \emph{b} sont entiers, sinon le résultat est réel.
+
+Soit \emph{b} un entier positif, 
+\begin{align}
+a**b &= a*a*\ldots*a \text{ (\emph{b} fois)}\\
+a**(-b) &= 1/(a**b)
+\end{align}
+
+Pour $b$ réel quelconque et $a$ positif,
+\begin{align}
+a**b &= exp(b*ln(a))
+\end{align}
+
+\subsection{Les expressions logiques}
+Pour comparer deux expressions, Fortran 90 dispose de 6 opérateurs de comparaison, \og $<$\fg, \og $<=$\fg, \og $>$\fg, \og $>=$\fg, \og $==$\fg, \og $/=$\fg qui signifient respectivement, inférieur à, inférieur ou égal à, supérieur à, supérieur ou égal à, égal à, différent de. 
+
+\begin{itemize}
+\item Lorsque les deux expressions à comparer ne sont pas du même type, Fortran convertit le résultat de l'une des expressions dans le type de l'autre suivant les règles décrites précédemment.
+
+\item Il faut éviter d'utiliser la comparaison entre expressions non 
+entières : l'expression logique ($a == 0.0$) avec $a$ réel n'a pas grande 
+signification ! 
+\end{itemize}
+
+Fortran dispose aussi d'opérateurs logiques permettant de 
+combiner des opérateurs de compa\-rai\-son qui sont, par ordre de 
+priorité décroissante : \og .not. \fg, \og .and. \fg, \og .or. \fg. Ils ont une 
+priorité inférieure aux opérateurs précédents. 
+
+Par exemple :
+\begin{align}
+y = (\mbox{.not.}(a<b)) &\equiv y = (a>=b) 
+\end{align}
+
+La variable $y$ est de type \emph{logical}. Les parenthèses ne sont 
+pas obligatoires mais facilitent la lecture (notez les points 
+obligatoires de part et d'autre de \emph{not},\emph{and} et \emph{or}).
+
+\subsection{Les expressions constantes}\label{sec:constantes}
+Lorsqu'une constante est utilisée plusieurs fois dans un programme (par exemple $\pi$), il est utile (et recommandé) de la définir une seule fois en début de programme pendant la déclaration des variables.
+ 
+Deux syntaxes sont possibles :
+\begin{lstlisting}[language=Fortran]
+integer :: nb = 5
+real :: PI = 3.141593
+\end{lstlisting}
+Dans ce cas les variable \emph{nb} et \emph{PI} peuvent être modifiées dans le programme.
+
+\begin{lstlisting}[language=Fortran]
+integer, parameter :: nb = 5
+real, parameter :: PI = 3.141593
+\end{lstlisting}
+\emph{nb} et \emph{PI} sont alors des constantes symboliques dont les valeurs ne peuvent pas être modi\-fiées durant le programme (le compilateur affiche un message d'erreur si il trouve dans le corps du programme l'instruction \emph{nb = 12} par exemple).
+
+Les déclarations de constante symbolique se font avant toute autre déclaration. On peut aussi utiliser une expression constante dans la mesure ou le compilateur peut la calculer. 
+
+\begin{lstlisting}[language=Fortran]
+implicit none
+  
+integer, parameter ::   nb = 5
+integer, parameter ::   nb_max = 2*nb+4
+integer, parameter ::   nb_min = 2*nb-4
+integer, parameter ::   nb_elem = nb_max - nb_min + 1
+
+[...]        ! bloc d'instructions executables 
+
+end
+\end{lstlisting}
+
+\subsection{Les instructions de contrôle}
+\subsubsection{L'instruction \emph{if} structuré}
+
+La forme la plus générale du \emph{if} structuré peut être 
+schématisée comme suit :
+\begin{lstlisting}[language=Fortran]
+if (exp_log1) then
+    bloc1     ! bloc d'instructions 
+[else if (exp_log2) then 
+    bloc2     ! bloc d'instructions 
+]...
+[else
+    blocn     ! bloc d'instructions 
+] 
+end if
+\end{lstlisting}
+où \emph{exp\_log} est une expression quelconque de type \emph{logical} (par exemple : \emph{if (a $>$= 0) then} ), \emph{bloc} est un bloc d'instruc\-tions, \mbox{[ ]} signifie que le contenu est facultatif, \mbox{[ ]\ldots} signifie que le contenu peut apparaître plusieurs fois. Dans l'exemple ci-dessus, si l'expression \emph{exp\_log1} est vraie alors la suite d'instruc\-tions \emph{bloc1} est exécutée. 
+
+Sinon, si l'expression \emph{exp\_log2} est vraie alors c'est la suite d'instruction \emph{bloc2} qui est exécutée (et ainsi de suite). Enfin, si toutes les expressions précédentes (\emph{exp\_log1}, \emph{exp\_log2}, \ldots) sont fausses et si l'instruction \emph{else} est présente, la suite d'instructions \emph{blocn} est exécutée. Si l'instruc\-tion \emph{else} est absente, il est possible qu'aucune instruction ne soit exécutée par un bloc \emph{if}.
+
+\begin{remarque}
+Il est recommandé d'indenter (décaler les blocs d'instructions vers la droite d'un certain nombre de caractères blancs) les différents \emph{if} afin d'assurer cette lisibilité. 
+\end{remarque}
+
+
+
+Un exemple d'utilisation du \emph{if} structuré est donné dans l'exemple ci-après. 
+\begin{lstlisting}[language=Fortran]
+program nom_if
+
+implicit none
+
+integer :: i, j
+
+read*, i, j
+
+if (i < 0) then
+  print*, 'i est negatif'
+else if (i > 0) then
+  print*, 'i est positif'
+else
+  if (j < 0) then
+      print*, 'j est negatif'
+  else if (j > 0) then
+      print*, 'j est positif'
+  else
+      print*, 'i et j sont nuls'
+  end if
+end if
+
+end
+\end{lstlisting}
+
+\subsubsection{L'instruction \emph{select case}}
+
+La syntaxe générale est la suivante : 
+\begin{lstlisting}[language=Fortran]
+select case (exp_scal) 
+[case (selecteur1)
+    bloc1     ! bloc d'instructions 
+[case (selecteur2)
+    bloc2     ! bloc d'instructions
+]... 
+end select [nom]
+\end{lstlisting}
+où \emph{exp\_scal} est une expression de type \emph{integer}, \emph{logical} ou \emph{character}. \emph{selecteur} est une valeur, un intervalle de valeurs ou une liste de valeurs de même type que \emph{exp\_scal}.
+
+Cette instruction permet d'exécuter la suite d'instructions \emph{bloc1} lorsque la valeur de l'expression \emph{exp\_scal} est égale au \emph{selecteur} (ou dans l'intervalle donné par le \emph{selecteur}). Les intervalles sont de la forme suivante : \emph{[valeur1]:valeur2} ou \emph{valeur1:[valeur2]} (par exemple \emph{case(1:)} signifie que l'on s'intéresse aux valeurs entières comprises entre 1 et 2147483647. Les sélecteurs peuvent faire appel à des expressions constantes. Les valeurs figurant dans les différents sélecteurs d'une même instruction \emph{select case} ne doivent pas se recouper (cela engendre une erreur à la compilation).
+
+\begin{lstlisting}[language=Fortran]
+program case
+
+implicit none
+
+character(3) :: reponse
+
+print*, 'Voulez-vous continuer le programme ?'
+read*, reponse
+
+select case (reponse)
+  case ('oui')
+    print*, 'OK, ca roule...'
+  case ('non')
+    print*, 'Au revoir !'
+    stop
+  case default
+    print*, 'Veuillez repondre par "oui" ou par "non"'
+end select
+
+end
+\end{lstlisting}
+
+\subsubsection{La boucle for}
+La syntaxe générale est la suivante :
+\begin{lstlisting}[language=Fortran]
+do var = debut, fin, [pas] 
+  bloc     ! bloc d'instructions 
+end do
+\end{lstlisting}
+
+La variable de contrôle \emph{var} est de type \emph{integer} ainsi que les expressions \emph{debut}, \emph{fin} et \emph{pas}.
+
+Cette instruction permet de répéter le bloc d'instructions \emph{bloc} en donnant successivement à la variable \emph{var} les valeurs \emph{debut}, \emph{debut+pas}, \ldots, \emph{fin}. Si \emph{pas} est absent, il est par défaut égal à 1. La valeur de \emph{pas} peut être négative. Il faut alors que \emph{debut} soit plus grand que \emph{fin} sinon aucune instruction de \emph{bloc} ne sera effectuée. 
+
+\begin{attention}
+Il n'est pas possible de modifier, dans le bloc d'instructions de la boucle, la valeur de \emph{var} (le compilateur envoie un message d'erreur) et les modifications éventuelles lors de l'exécution de la boucle de \emph{debut}, \emph{fin} et \emph{pas} ne sont pas prises en compte. 
+
+Il est imprudent de chercher à exploiter la valeur de \emph{var} après l'exécution de la boucle \emph{do}. En effet, celle-ci ne prend pas nécessairement la valeur \emph{fin} comme on pourrait le penser a priori.
+\end{attention}
+
+
+\subsubsection{La boucle tant que}
+
+La syntaxe générale est la suivante :
+\begin{lstlisting}[language=Fortran]
+do while (exp_log) 
+    bloc     ! bloc d'instructions 
+end do
+\end{lstlisting}
+
+Cette instruction permet de répéter le bloc d'instructions \emph{bloc} tant que l'expression logique \emph{exp\_log} est vraie. Si \emph{exp\_log} est fausse dès le début, le bloc n'est pas exécuté. Sinon, le bloc d'instructions doit modifier \emph{exp\_log} pour que la boucle puisse s'arrêter.
+
+\subsubsection{Les instructions \emph{exit} et \emph{cycle}}
+
+L'instruction \emph{exit} permet de sortir d'une boucle de façon anticipée. Dans l'exemple suivant, les blocs \emph{bloc1} et \emph{bloc2} sont exécutés pour \emph{var} allant de \emph{debut} à \emph{fin} tant que l'expression logique \emph{exp\_log} est fausse. 
+
+La boucle est interrompue si $var=fin$ ou si \emph{exp\_log} est vraie. Dans le premier cas on passe au \emph{bloc3}. Dans le second cas, \emph{bloc1} est exécuté mais pas \emph{bloc2}. Ensuite, on continue la boucle \emph{do while} tant que \emph{.not.fini} est vrai.
+
+Comme on le voit sur cet exemple, lorsqu'une instruction \emph{exit} appara\^{i}t dans une boucle qui est imbriquée dans une autre boucle, elle met fin à la boucle la plus interne.
+\begin{lstlisting}[language=Fortran]
+do while (.not.fini)
+    do var = debut, fin 
+        bloc1     ! bloc d'instructions 
+        if (exp_log) exit
+        bloc2     ! bloc d'instructions
+    end do
+    bloc3       ! bloc d'instructions
+end do
+\end{lstlisting}
+Lorsque \emph{exp\_log} est vraie, on sort de la boucle \emph{do var}
+
+
+Dans l'exemple suivant, l'instruction \emph{exit} s'applique à la boucle \emph{do while} gr\^ace à l'utilisation de l'identificateur \emph{boucle\_principale}. Ainsi, si \emph{exp\_log} est vraie, ni \emph{bloc2}, ni \emph{bloc3} ne sont exécutés et on sort de la boucle \emph{do while}.
+\begin{lstlisting}[language=Fortran]
+do while (.not.fini)
+         do var = debut, fin 
+           bloc1     ! bloc d'instructions 
+           if (exp_log) exit
+           bloc2     ! bloc d'instructions
+         end do
+         bloc3       ! bloc d'instructions
+end do
+\end{lstlisting}
+Lorsque \emph{exp\_log} est vraie, on sort de la boucle principale \emph{do 
+while}
+
+L'instruction \emph{cycle} permet de modifier le déroulement normal d'une boucle. Dans l'exemple suivant, \emph{bloc1} et \emph{bloc2} sont exécutés pour \emph{var} allant de \emph{debut} à \emph{fin} par pas de 1. 
+
+Si l'expression logique \emph{exp\_log} est vraie, on passe à la valeur suivante de \emph{var} sans exécuter le \emph{bloc2}. Si \emph{exp\_log} est toujours vraie, seul \emph{bloc1} est exécuté.
+\begin{lstlisting}[language=Fortran]
+do var = debut, fin 
+  bloc1      ! bloc d'instructions 
+  if (exp_log) cycle
+  bloc2       ! bloc d'instructions
+end do
+\end{lstlisting}
+
+\section{Les tableaux}
+\subsection{Déclaration des tableaux}
+Un tableau est un ensemble ordonné d'éléments de même type. Chaque élément du tableau est repéré par un indice qui précise sa position au sein du tableau. Cet indice est entier. La déclaration des tableaux s'effectue comme suit :
+\begin{lstlisting}[language=Fortran]
+implicit none 
+  
+integer, parameter ::   min = -5       
+integer, parameter ::   max = 12        
+integer, parameter ::   nb = 10       
+integer, parameter ::   nb1 = 5, nb2 = 3       
+real, dimension (nb) ::           vect_1    ! tableau de rang 1 
+integer, dimension (min:max) ::   vect_2    ! tableau de rang 1
+real, dimension (50) ::            vect_3   ! tableau de rang 1
+integer, dimension (nb1, nb2) ::  t         ! tableau de rang 2    
+real, dimension (min:max, nb2) :: tab       ! tableau de rang 2 
+
+[...]        ! bloc d'instructions executables
+ 
+end
+\end{lstlisting}
+
+\begin{remarque}
+Quand les bornes ne sont pas spécifiées, la borne inférieure est égale à 1. Dans l'un des exemples précédents, seul \emph{nb} est donné et les indices de \emph{vect\_1} vont de 1 à \emph{nb}. 
+
+On peut aussi écrire : \emph{real :: vect\_1(nb)}.
+\end{remarque}
+
+\begin{itemize}
+\item  le nombre de dimensions est le \textbf{rang} du tableau (\emph{vect\_1} est de rang 1 et \emph{tab} est de rang 2). Le nombre maximum de dimensions est égal à 7.
+
+\item  le nombre de valeurs possibles pour l'indice d'une dimension donnée est l'\textbf{étendue} du tableau suivant cette dimension (\emph{vect\_2} est d'étendue 18). L'indice est compris entre la \textbf{borne inférieure} (\emph{min} dans le cas de \emph{vect\_2}) et la \textbf{borne supérieure} (\emph{max} dans le cas de \emph{vect\_2}).
+
+\item  le nombre d'éléments du tableau est la \textbf{taille} du tableau ; c'est donc le produit des étendues de chaque dimension (\emph{tab} est de taille 54).
+
+\item  la liste des étendues est le \textbf{profil} du tableau (\emph{tab} est de profil (18, 3)).
+\end{itemize}
+
+\subsection{Les opérations relatives aux tableaux}
+
+\subsubsection{Affectation collective}
+
+Soit le tableau \emph{mat} de rang 3, si on désire affecter la valeur 1 à tous les éléments du tableau \emph{mat} on effectue, dans les principaux langages de programmation (\emph{Pascal}, \emph{C}, \emph{Fortran}), la suite d'instructions du programme suivant. En Fortran 90, il est possible d'obtenir le même résultat en écrivant l'instruction : \textbf{mat = 1}
+
+
+\begin{lstlisting}[language=Fortran]
+implicit none 
+  
+integer ::   i, j, k       
+integer, dimension (5, -3:2, 10) ::   mat       ! tableau de rang 3 
+
+do i = 1, 5 
+  do j = -3, 2 
+    do k = 1, 10 
+      mat(i, j, k) = 1 
+    end do 
+  end do 
+end do 
+
+! est equivalent a 
+mat = 1
+
+! ou mieux
+mat(:,:,:) = 1
+
+end
+\end{lstlisting}
+
+\begin{remarque}
+Par soucis de lisibilité, il est souhaitable d'expliciter les opérations sur tableaux en utilisant 
+\begin{lstlisting}[language=Fortran]
+mat(:,:,:) = 1
+\end{lstlisting}
+au lieu de 
+\begin{lstlisting}[language=Fortran]
+mat = 1
+\end{lstlisting}
+afin de pouvoir distinguer les opérations sur tableaux des opérations sur variables simples. Ça permet d'ailleurs de voir directement le nombre de dimensions du tableau.
+
+\end{remarque}
+
+
+
+\subsubsection{Les expressions tableaux}
+
+On peut affecter une expression à chaque élément d'un tableau. Par exemple, les deux blocs d'instructions du programme suivant sont équivalents.
+
+\begin{lstlisting}[language=Fortran]
+implicit none 
+  
+integer :: i
+integer, parameter ::         dim = 12
+
+! tableaux de rang 1
+integer, dimension (dim) ::   a,b
+integer, dimension (dim) ::   som, prod, racine
+
+! tableaux de type logique
+logical, dimension (dim) ::   compare
+
+do i = 1, dim 
+  som(i) = a(i) + b(i) 
+  prod(i) = a(i)*b(i)
+  prod(i) = 2*prod(i) + 1 
+  racine(i) = sqrt(real(a(i))) 
+  if (som(i) < prod(i)) then 
+    compare(i) = .true. 
+  else 
+    compare(i) = .false. 
+  endif 
+end do 
+
+! En Fortran 90, les instructions precedentes
+! se simplifient de la maniere suivante : 
+    
+! equivalent a : som = a + b
+som(:) = a(:) + b(:)
+prod(:) = a(:)*b(:)
+prod(:) = 2*prod(:) + 1 
+
+! Attention les elements de a sont entiers 
+racine(:) = sqrt( real(a(:)) )
+compare(:) = (som(:) < prod(:)) 
+
+end
+\end{lstlisting}
+
+\subsubsection{Initialisation des tableaux à une dimension}
+
+L'initialisation d'un tableau de rang 1 à \emph{n} éléments est possible en utilisant une liste de \emph{n} éléments définie par \emph{elem\_1,\ldots,elem\_n}. Le tableau correspondant s'écrit \emph{(/elem\_1,\ldots,elem\_n/)}. 
+
+Un tableau à plusieurs dimensions ne peut pas être initialisé directement. Il faut définir un tableau à une dimension et utiliser une fonction particulière qui n'est pas présentée dans ce cours : la fonction \emph{reshape}.
+ 
+\begin{lstlisting}[language=Fortran]
+program initialisation
+
+implicit none
+
+integer ::                  i
+integer, parameter ::       n = 5
+integer, dimension(n) ::    tab1, tab2, t         ! tableaux de rang 1
+integer, dimension(n) ::    tab3 = (/1,2,3,4,0/)
+real, dimension(0:9) ::     angle
+
+tab1(1) = 3 ; tab1(2) = 5 ; tab1(3) = -2 ; tab1(4) = 4 ; tab1(5) = 202
+
+tab2 = (/ 3, 5, -2, 4, 202/)
+
+! les affectations suivantes sont equivalentes
+do i = 0, 90, 10
+  angle(i/10) = i*0.5
+end do
+
+angle = (/(i*0.5, i=0, 90, 10)/)                ! boucle implicite
+
+end
+\end{lstlisting}
+
+\subsubsection{Les sections de tableau}
+
+\emph{Fortran 90} introduit une notion nouvelle par rapport aux langages tels 
+que \emph{C} ou \emph{Pascal} qui est la section de tableau. 
+L'écriture générale d'une section de tableau est la suivante :
+\begin{lstlisting}[language=Fortran]
+tab(borne_inf : borne_sup : pas [,...])
+\end{lstlisting}
+
+
+\begin{itemize}
+\item \emph{tab} est le nom d'un tableau,
+\item \emph{borne\_inf} est la borne inférieure de la section de tableau (c'est la borne inférieure de \emph{tab} si elle est omise), 
+\item \emph{borne\_sup} est la borne supérieure de la section de tableau (c'est la borne supérieure de \emph{tab} si elle est omise),
+\item \emph{pas} est le pas d'incrémentation (1 par défaut ; si le pas est négatif, la variation d'indice est rétrograde de \emph{borne\_sup} à \emph{borne\_inf}.
+\end{itemize}
+
+
+Dans le programme suivant,
+\begin{lstlisting}[language=Fortran]
+integer, dimension (n) ::   w
+integer, dimension (p) ::   v
+
+v(:) = (/(i,i=1,p)/)       ! boucle implicite
+
+! EXEMPLE 1
+
+w(2:4) = v(7:9)
+\end{lstlisting}
+les valeurs  \emph{v(7)}, \emph{v(8)}, \emph{v(9)} du tableau \emph{v} sont affectées respectivement aux éléments \emph{w(2)}, \emph{w(3)} et \emph{w(4)} du tableau \emph{w}. Ainsi, la notation \emph{w(i:j)} signifie que l'on s'intéresse aux éléments \emph{w(i), w(i+1), \ldots, w(j)} (\emph{j}$>$\emph{i}). 
+
+\begin{remarque}
+Si on écrit \emph{w(3:1) = 1}, aucune affectation ne sera effectuée.
+\end{remarque}
+
+Dans le second exemple, on remarque qu'il y a un recoupement, c'est à dire que le même terme apparait à gauche et à droite du signe égal puisqu'on a les deux affectations \og simultanées\fg :
+\begin{align*}
+v(2) &= (v(1)+v(3))/2\\
+v(3) &= (v(2)+v(4))/2
+\end{align*}
+Que vaut $v(2)$ dans la seconde affectation ?! 
+
+\begin{important}
+La règle adoptée par \emph{Fortran 90} est la suivante : la valeur d'une expression de type tableau est entièrement évaluée avant d'être affectée. 
+\end{important}
+
+\begin{lstlisting}[language=Fortran]
+integer, dimension (n) ::   w
+integer, dimension (p) ::   v, v1
+
+v(2:9) = (v(1:8) + v(3:10))/2
+
+! est equivalent a
+do i = 1, p
+  v1(i) = v(i)
+end do
+do i = 2, 9
+  v(i) = (v1(i-1) + v1(i+1))/2
+end do
+\end{lstlisting}
+
+Dans cet exemple, si on n'utilise pas les sections de tableau, on remarque qu'il est nécessaire d'utiliser un tableau tampon \emph{v1} pour effectuer les calculs intermédiaires. 
+
+\subsubsection{Les fonctions portant sur des tableaux}
+
+Il existe en \emph{Fortran 90} des fonctions spécifiques aux tableaux. Les plus usuelles sont \emph{sum} qui fournit la somme des éléments d'un tableau, \emph{maxval} qui donne la valeur maximale d'un tableau, \emph{minval} qui donne la valeur minimale et \emph{product} qui donne le produits des éléments. Les fonctions \emph{dot\_product} et \emph{matmul} permettent d'obtenir respectivement le produit scalaire et le produit matriciel de deux tableaux.
+
+\begin{exemple}
+Soit $A$ un tableau à $m$ ligne(s) et $n$ colonne(s). On cherche la valeur maximale de l'ensemble formé par les éléments se trouvant à la ligne $j$ pour les colonnes allant de $i$ à $n$. Il suffira pour cela d'écrire l'instruction suivante :
+\begin{lstlisting}[language=Fortran]
+maxval(A(j,i:n))
+\end{lstlisting}
+
+\bigskip
+
+Soit $A$ une matrice de rang 2 à $n$ colonnes. L'instruction 
+\begin{lstlisting}[language=Fortran]
+sum(A, dim=1)
+\end{lstlisting}
+permet d'obtenir un tableau de rang 1 et d'étendue $n$ dont chaque élément $i$ est le résultat de la somme des éléments de la colonne $i$ de $A$.
+\end{exemple}
+
+
+\subsection{L'instruction \emph{where}}
+
+Cette instruction permet de traiter les éléments d'un tableau vérifiant une certaine condition. La syntaxe est la suivante :
+
+\begin{lstlisting}[language=Fortran]
+where (inst_log_tab)
+  bloc1 
+[elsewhere 
+  bloc2 
+] 
+end where
+\end{lstlisting}
+\emph{inst\_log\_tab} est une instruction logique portant sur les éléments d'un tableau. Lorsque cette condition est vérifiée, le bloc d'instructions \emph{bloc1} est exécuté, sinon le bloc d'instructions \emph{bloc2} est exécuté. 
+
+Lorsque \emph{bloc1} ne contient qu'une seule instruction et que \emph{bloc2} est absent, on peut utiliser une forme simplifiée identique au \emph{if} logique. 
+
+Ainsi, dans l'exemple suivant, tous les éléments négatifs du tableau $A$ sont mis à zéro : 
+\begin{lstlisting}[language=Fortran]
+where (A < 0) A = 0.0
+\end{lstlisting}
+
+\subsection{Les tableaux dynamiques}
+
+Quand on ne connait pas à l'avance la taille des tableaux que l'on souhaite utiliser, on peut "surdimensionner" le tableaux en question au moment de la declaration mais la méthode la plus élégante consiste à utiliser les tableaux dynamiques (tableaux à allocation différée). L'allocation sera effectuée lorsque les étendues du tableau seront connues (après lecture dans un fichier, au clavier ou après des calculs).
+
+\bigskip
+
+La déclaration d'un tableau dynamique s'effectue en précisant le 
+rang du tableau et en utilisant l'attribut \emph{allocatable} 
+(allouable). 
+\begin{lstlisting}[language=Fortran]
+! declaration d'un tableau dynamique d'entiers de rang 2 
+real, dimension(:,:), allocatable :: matrice
+\end{lstlisting}
+
+\bigskip
+
+L'allocation d'un emplacement se fait en utilisant l'instruction \emph{allocate} en précisant chaque étendue :
+\begin{lstlisting}[language=Fortran]
+! declaration d'un tableau dynamique d'entiers de rang 2 
+real, dimension(:,:), allocatable :: matrice
+integer :: n, m, verif
+
+[...]                         ! bloc d'instructions executables
+
+! lecture au clavier des etendues
+read*, n                      ! suivant la premiere dimension
+read*, m                      ! suivant la seconde dimension
+
+allocate(matrice(n,m))
+\end{lstlisting}
+
+\begin{remarque}
+Pour vérifier que l'allocation (ou la désallocation) s'est bien effectuée, on peut utiliser l'option \emph{stat}. 
+\begin{lstlisting}[language=Fortran]
+allocate(matrice(n,m), stat=verif)
+\end{lstlisting}
+\emph{verif} est une variable entière. Si \emph{verif = 0}, l'allocation s'est bien effectuée, sinon une erreur s'est produite. 
+\end{remarque}
+
+Lorsqu'un tableau dynamique devient inutile, il est recommandé de libérer la place allouée à ce tableau. Pour cela, on utilise l'instruction \emph{deallocate} (désallouer).
+\begin{lstlisting}[language=Fortran]
+deallocate(matrice)           ! liberation
+\end{lstlisting}
+
+\bigskip
+
+Il est possible de transmettre un tableau dynamique en argument d'une procédure sous certaines conditions : 
+\begin{itemize}
+\item Le tableau dynamique devra être alloué et libéré dans le programme principal. 
+\item Le programme principal doit contenir l'interface de la procédure. Cette condition n'est pas obligatoire si on utilise un module! (voir par exemple le programme \emph{tableau\_dynamique}).
+\end{itemize}
+% Il y a un exemple par 43 du tutoriel de michel qui donne un exemple de ça. 
+%TODO 
+
+\section{modules et procédures}
+%TODO page 45
 
 
 

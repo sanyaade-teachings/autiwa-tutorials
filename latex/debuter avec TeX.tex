@@ -1586,6 +1586,11 @@ commentstyle=\color{darkgray},showstringspaces=false}
 \usepackage{moreverb}
 \end{verbatim}
 
+\begin{remarque}
+Il faut faire attention à ne pas trop modifier les choses. En particulier le caractère d'échappement pour pouvoir faire du \LaTeX. Ça peut donner des erreurs de compilation suivant les caractères qu'on met dans l'environnement \texttt{lstlisting}.
+\end{remarque}
+
+
 L'extension \gras[package!listings]{listings} permet de mettre du code source. On ne peut pas utiliser de caractères Unicode dans le code mise en forme par les commandes de cette extension.
 
 Le code source est placé dans un environnement \gras[environnement!lstlisting]{lstlisting} ; la mise en forme stricte (y compris les espaces et les retours de ligne) est respectée, et les commandes \LaTeX{} ne sont pas interprétées.
