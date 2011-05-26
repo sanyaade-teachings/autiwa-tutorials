@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.4.30)  16 MAY 2011 09:42
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.4.30)  26 MAY 2011 17:14
 entering extended mode
  %&-line parsing enabled.
 **inkscape.tex
@@ -1151,7 +1151,7 @@ LaTeX Info: Redefining \pageref on input line 6.
 )
 \c@lstlisting=\count182
  (/usr/share/texmf-texlive/tex/latex/autiwa/title.tex
-<logo-autiwa.pdf, id=59, 680.25572pt x 680.25572pt>
+<logo-autiwa.pdf, id=91, 680.25572pt x 680.25572pt>
 File: logo-autiwa.pdf Graphic file (type pdf)
  <use logo-autiwa.pdf>
 [1
@@ -1162,72 +1162,69 @@ Non-PDF special ignored!
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} </usr/share/texmf-texlive/t
 ex/latex/autiwa/figures/logo-autiwa.pdf>])
 (./inkscape.toc
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 11.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 5.
  (/usr/share/texmf-texlive/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 11.
+LaTeX Font Info:    Try loading font information for U+msa on input line 5.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 11.
+LaTeX Font Info:    Try loading font information for U+msb on input line 5.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+esint on input line 11.
+LaTeX Font Info:    Try loading font information for U+esint on input line 5.
 
 (/usr/share/texmf-texlive/tex/latex/esint/uesint.fd
 File: uesint.fd 
 )
-LaTeX Font Info:    Try loading font information for U+stmry on input line 11.
+LaTeX Font Info:    Try loading font information for U+stmry on input line 5.
 
 (/usr/share/texmf-texlive/tex/latex/stmaryrd/Ustmry.fd))
 \tf@toc=\write7
 \openout7 = `inkscape.toc'.
 
  [2]
-<attention.pdf, id=92, 462.52798pt x 406.318pt>
-File: attention.pdf Graphic file (type pdf)
- <use attention.pdf> [3 </usr/share/texmf-texlive/tex/latex/autiwa/figures/atte
-ntion.pdf>]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 64.
-
-(/usr/share/texmf-texlive/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-) [4] [5]
-Overfull \hbox (8.40555pt too wide) in paragraph at lines 128--129
+Overfull \hbox (8.40555pt too wide) in paragraph at lines 19--20
 []\T1/cmr/m/n/10 Un moyen très pra-tique pour sé-lec-tion-ner des ob-jets est d
 'uti-li-ser la fonc-tion ^^S Re-cher-cher ^^T ([]+[]).
  []
 
-
-Underfull \vbox (badness 1314) has occurred while \output is active []
-
- [6]
+[3]
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 71.
+ (/usr/share/texmf-texlive/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+) [4] [5]
+<attention.pdf, id=165, 462.52798pt x 406.318pt>
+File: attention.pdf Graphic file (type pdf)
+ <use attention.pdf> [6 </usr/share/texmf-texlive/tex/latex/autiwa/figures/atte
+ntion.pdf>] [7]
 No file inkscape.ind.
-[7] (./inkscape.aux) ) 
+[8] (./inkscape.aux) ) 
 Here is how much of TeX's memory you used:
- 13763 strings out of 495028
- 189799 string characters out of 1181229
- 324988 words of memory out of 3000000
- 16574 multiletter control sequences out of 15000+50000
- 18290 words of font info for 60 fonts, out of 3000000 for 9000
+ 13786 strings out of 495028
+ 190164 string characters out of 1181229
+ 326988 words of memory out of 3000000
+ 16587 multiletter control sequences out of 15000+50000
+ 18625 words of font info for 61 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 45i,11n,45p,915b,516s stack positions out of 5000i,500n,10000p,200000b,50000s
- </home/cossou/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecb
-x1200.600pk> </home/cossou/.texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600p
-k> </home/cossou/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecsl1000.600pk> </home/
-cossou/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/cossou/.te
-xmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/cossou/.texmf-var/fo
-nts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/cossou/.texmf-var/fonts/pk/ljf
-our/jknappen/ec/ecrm1200.600pk> </home/cossou/.texmf-var/fonts/pk/ljfour/jknapp
-en/ec/ecbx2074.600pk></usr/share/texmf-texlive/fonts/type1/public/amsfonts/latx
-font/lcirclew.pfb>
-Output written on inkscape.pdf (7 pages, 143601 bytes).
+ 45i,11n,45p,915b,475s stack positions out of 5000i,500n,10000p,200000b,50000s
+ </home/cossou/.texmf-var/fonts/pk/ljfour/jknappen/ec/tcr
+m1000.600pk> </home/cossou/.texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600p
+k> </home/cossou/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/
+cossou/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecsl1000.600pk> </home/cossou/.te
+xmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/cossou/.texmf-var/fo
+nts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/cossou/.texmf-var/fonts/pk/ljf
+our/jknappen/ec/ecrm1000.600pk> </home/cossou/.texmf-var/fonts/pk/ljfour/jknapp
+en/ec/ecrm1200.600pk> </home/cossou/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx
+2074.600pk></usr/share/texmf-texlive/fonts/type1/public/amsfonts/latxfont/lcirc
+lew.pfb>
+Output written on inkscape.pdf (8 pages, 159573 bytes).
 PDF statistics:
- 479 PDF objects out of 1000 (max. 8388607)
- 46 named destinations out of 1000 (max. 500000)
- 123 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 541 PDF objects out of 1000 (max. 8388607)
+ 55 named destinations out of 1000 (max. 500000)
+ 187 words of extra memory for PDF output out of 10000 (max. 10000000)
 

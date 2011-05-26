@@ -1,6 +1,6 @@
 \documentclass[a4paper,twoside]{article}
 \usepackage{autiwa}
-\title{Astuces Inkscape\\version 1.1}
+\title{Astuces Inkscape\\version 1.2}
 \author{Autiwa}
 \makeindex
 \begin{document}
@@ -15,10 +15,31 @@
 Pour avoir l'option Effet>Rendu>Formule LaTeX... il faut installer \gras[logiciel!pstoedit]{pstoedit} en plus d'inkscape. L'option apparaît automatique au démarrage suivant.
 
 \section{Général}
-\subsection{Sélection avancée d'objets}
+\subsection{Sélection à l'aide du dialogue Rechercher}
 Un moyen très pratique pour sélectionner des objets est d'utiliser la fonction \og Rechercher\fg (\touche{Ctrl}+\touche{F}). En effet, une des fonctions très utile est de pouvoir sélectionner les objets par type. Ainsi, sélectionner tous les chemins, ou tous les textes, en un seul coup, sans devoir tout sélectionner à la main.
 
 D'autres champs sont disponibles qui parlent d'eux mêmes et permettent d'affiner les recherches.
+
+\subsection{Sélection à la souris}
+Cette section couvre la sélection d'objets à la souris. En ajoutant \touche{Ctrl} à de nombreuses commandes ci-dessous. 
+
+\touche{Clic gauche} de la souris : sélectionner un objet. Sélectionne un objet en cliquant dessus.
+
+\touche{Maj}+\touche{Clic gauche} de la souris : alterner la sélection. Ajoute ou soustrait un objet d'une sélection . Ceci permet la sélection d'objets multiples. Si l'objet cliqué n'est pas déjà sélectionné, il le sera. S'il est déjà sélectionné, il sera désélectionné.
+
+\touche{Alt}+\touche{Clic gauche} de la souris : sélectionner dessous. Sélectionne l'objet suivant sous l'objet de la sélection courante sous le pointeur. Ceci permet de sélectionner des objets recouverts par d'autres. Répétez cette manipulation pour descendre dans l'Ordre-z. Si l'objet le plus bas est déjà sélectionné, cette manipulation sélectionnera l'objet le plus haut.
+
+Tirer avec le Bouton gauche de la souris : sélectionner de multiples objets. Lorsqu'on démarre d'un espace vide, cette manipulation sélectionne tous les objets compris entièrement à l'intérieur du rectangle formé entre le point de départ et le point d'arrêt de l'étirement. C'est ce qu'on appelle généralement une sélection par Étirement. La zone de sélection correspond à la ligne dessinée temporairement pendant l'étirement.
+
+Tirer avec \touche{Maj}+Bouton gauche de la souris : ajouter des objets à une sélection multiple. Ajoute des objets à une sélection par étirement pré-existante. Empêche de plus la sélection d'un objet situé sous le point de départ de l'étirement (sans la touche \touche{Maj}, un objet situé sous le point de départ de l'étirement est sélectionné et déplacé). Les objets précédemment sélectionnés par étirement ne sont pas désélectionnés.
+
+Tirer avec \touche{Alt}+Bouton gauche de la souris : sélectionner des objets multiples par contact. Ceci sélectionne tous les objets touchés par le curseur de la souris pendant l'étirement. Une ligne rouge indique le chemin emprunté par le curseur. Ceci est très utile lorsqu'on a besoin de sélectionner de multiples chemins comme on en trouve dans des gravures ou des cheveux. Le maintient de la touche \touche{Maj} enfoncée empêche la sélection d'un objet déjà sélectionné si l'étirement commence au-dessus de cet objet.
+Sélection par contact.
+Tirer avec \touche{Alt}+Bouton gauche de la souris pour « toucher » sélectionne les chemins un à un.
+
+Tirer avec \touche{Maj}+\touche{Alt}+Bouton gauche de la souris : ajouter à une sélection des objets multiples par contact. Ceci ajoute les objets touchés à la sélection. Elle peut également être utilisée lorsque l'étirement commence sur un objet déjà sélectionné. 
+
+Les objets à l'intérieur d'un Groupe peuvent être sélectionnés, voir \refsec{sec:groupes}
 
 \section{Motifs}
 \subsection{Espacer des motifs}
@@ -109,6 +130,27 @@ Cas pratique :
 \item Dans la partie \og Effet courant\fg , vous disposez d'un contrôle sur plusieurs paramètres pour transformer votre maillage : nombre de chemins \dots
 \item En cliquant sur l'icône \og Editer sur la zone de travail\fg , vous éditez un chemin sur la zone de travail qui vous permet de modifier l'orientation du maillage.
 \end{enumerate}
+
+\section{Groupes}\label{sec:groupes}
+\subsection{Sélection dans un groupe}
+Les objets des Groupes peuvent être édités et manipulés sans séparer le Groupe. Les commandes suivantes sélectionnent les objets à l'intérieur des Groupes :
+
+\touche{Ctrl}+Clic gauche de la souris : sélectionner à l'intérieur d'un groupe. Sélectionne un objet à l'intérieur d'un Groupe. Cette commande sélectionne les objets indépendamment du nombre de niveaux de Groupes auxquels ils sont intégrés.
+
+\touche{Ctrl}+\touche{Alt}+Clic gauche de la souris : sélectionner dessous à l'intérieur d'un groupe. Sélectionne un objet au sein d'un Groupe situé sous le curseur et juste en dessous, dans l'Ordre-z, de l'objet de la sélection courante. Si l'objet de la sélection courante est situé tout en bas dans l'Ordre-z, l'objet du haut est sélectionné. Cette commande sélectionne les objets indépendamment du nombre de niveaux de Groupes auxquels ils sont intégrés.
+
+\touche{Maj}+\touche{Ctrl}+\touche{Alt}+\touche{Clic gauche} de la souris : alterner à l'intérieur d'un groupe. Ajoute à une sélection un objet non sélectionné ou supprime d'une sélection un objet sélectionné appartenant à un Groupe. 
+
+On peut entrer dans un Groupe ou le transformer en Calque temporaire pour l'édition. Deux façons d'entrer dans un groupe et de sortir d'un groupe sont disponibles :
+
+\touche{Ctrl}+\touche{Entrée} à partir d'un Groupe sélectionné pour y entrer. Répétez cette manipulation pour entrer dans un groupe de niveau inférieur (sous-groupe). \touche{Ctrl}+\touche{Retour} pour sortir du Groupe. Vous sortez d'un niveau de groupe.
+
+\begin{remarque}
+Pour ajouter un objet existant à un Groupe existant, coupez l'objet (Édition → icône Couper (\touche{Ctrl}+\touche{X})), entrez dans le Groupe (Double-clic gauche de la souris) puis collez-le sur place (Édition → icône Coller sur place (\touche{Ctrl}+\touche{Alt}+\touche{V})). 
+\end{remarque}
+
+
+
 
 \section{Textes}
 \subsection{Encadrer ou mettre en forme un texte}

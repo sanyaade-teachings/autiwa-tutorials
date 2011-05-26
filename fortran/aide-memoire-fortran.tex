@@ -24,6 +24,32 @@ Ceci est un tutoriel fortran 90, il a pour but de donner des astuces de programm
 
 Dans la suite on considèrera le format libre, c'est à dire que les lignes peuvent avoir jusqu'à 132 caractères.
 
+\section{Compilation}
+Le compilateur traduit les instructions qui ont été tapées par le programmeur et produit, si aucune erreur n'a été faite, en langage machine. La traduction est placée dans un fichier objet dont le nom est identique à celui du fichier source, mais dont l'extension est cette fois .o sous UNIX. Ceci est schématisé sur \reffig{fig:compilation}
+
+\begin{attention}
+Dans certains cas, l'éditeur de liens est automatiquement appelé et rend le programme exécutable.
+\end{attention}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.65\linewidth]{figure/compilation.pdf}
+\caption{La compilation de tous les fichiers source doit se faire avant l'édition des liens pour créer le fichier exécutable.}\label{fig:compilation}
+\end{figure}
+
+L'application complète comportera tous les modules liés. Tout d'abord, il conviendra de compiler séparément sans édition des liens chaque module. À l'issue de cette opération, on obtiendra des modules objets, c'est à dire en langage machine, mais sans adresse d'implantation en mémoire. On les reliera tout en fixant les adresses à l'aide de l'éditeur de liens. Le fichier obtenu sera le programme exécutable. Ceci est schématisé sur \reffig{fig:compilation_modulaire}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.65\linewidth]{figure/compilation_modulaire.pdf}
+\caption{Dans le cas présent, on doit compiler le module point, puis compiler le module planète, puis compiler le module système, et enfin compiler le programme qui fait appel au module système. La compilation d'un fichier source doit se faire \emph{après} la compilation de tous les modules dont il dépend.}\label{fig:compilation_modulaire}
+\end{figure}
+
+\begin{attention}
+La compilation d'un fichier source doit se faire \emph{après} la compilation de tous les modules dont il dépend.
+\end{attention}
+
+
 \section{Transition fortran 77/fortran 90}
 \subsection{Instructions obsolètes ou dépréciées}
 
@@ -590,6 +616,11 @@ tab(borne_inf : borne_sup : pas [,...])
 \item \emph{pas} est le pas d'incrémentation (1 par défaut ; si le pas est négatif, la variation d'indice est rétrograde de \emph{borne\_sup} à \emph{borne\_inf}.
 \end{itemize}
 
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.65\linewidth]{figure/sections_de_tableaux.pdf}
+\caption{Représentation de différentes sections de tableaux afin de montrer les possibilités de sélections.}
+\end{figure}
 
 Dans le programme suivant,
 \begin{lstlisting}[language=Fortran]
@@ -731,10 +762,177 @@ Il est possible de transmettre un tableau dynamique en argument d'une procédure
 % Il y a un exemple par 43 du tutoriel de michel qui donne un exemple de ça. 
 %TODO 
 
-\section{modules et procédures}
-%TODO page 45
+\section{modules}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.65\linewidth]{figure/structure_programme.pdf}
+\caption{Structure générale d'un programme Fortran 90}\label{fig:structure_programme}
+\end{figure}
+
+\reffig{fig:structure_programme} présente la structure générale d'un programme \emph{Fortran 90}. Nous allons voir qu'un programme principal peut aussi faire des appels à un ou plusieurs modules. 
+
+\begin{definition}
+Le module se présente comme une unité de programme autonome permettant de mettre des informations en commun avec d'autres unités de programmes. 
+\end{definition}
 
 
+Ce programme est généralement écrit dans un fichier différent du fichier contenant le programme principal. Le module est compilé indépendamment des autres unités de programme mais ne peut pas être exécuté seul. Comme le montre \reffig{fig:structure_programme}, les modules peuvent contenir des procédures (sous-programmes et fonctions), des blocs de déclarations et des données. 
+
+Le module permet de fiabiliser les programmes en évitant la duplication des déclarations et des affectations utilisées par plusieurs unités de programme puisqu'il donne l'accès de son contenu à toutes les unités de programme qui en font l'appel.
+
+\subsection{Struture générale}
+Le module peut contenir un ensemble de déclarations et d'affectations et/ou une ou plusieurs procédure(s). Dans ce dernier cas, les procédures doivent être précédées par l'instruction \emph{contains}. Un module commence par l'instruction \emph{module} suivi du nom du module et se termine obligatoirement par \emph{end module}.
+
+\begin{lstlisting}[language=Fortran]
+module nom_module
+   
+   implicit none 
+   [...]         ! bloc de declarations 
+
+   contains      ! obligatoire si suivi de procedures
+   
+   [...]         ! suite de procedures
+ 
+end module nom_module
+\end{lstlisting}
+
+\subsection{Appel des modules depuis un programme principal}
+L'utilisation des modules est très simple ; depuis le programme principal, l'appel du module se fait par l'instruction \emph{use} suivi du nom du module. Il faut noter que le nom du module doit être différent de celui du programme principal. L'instruction \emph{use} doit précéder toute autre déclaration.
+
+\begin{lstlisting}[language=Fortran]
+program utilisation_module
+
+use nom_module 
+use module_constantes
+
+implicit none 
+[...]     ! bloc de declarations
+
+[call...
+ call...] ! appels des procedures contenues dans le module nom_module
+[...]     ! bloc d'instructions executables
+ 
+end 
+\end{lstlisting}
+
+\begin{remarque}
+Un module ne doit pas se référencer lui-même, même de manière indirecte. Par exemple, si le module \emph{module1} contient \emph{use module2}, ce dernier ne doit pas contenir l'instruction \emph{use module1}.
+\end{remarque}
+
+\subsection{Accès à tout ou partie d'un module}
+
+Une unité de programme qui appelle un module (via l'instruction \emph{use}) à accès à toutes les entités de ce module (variables, procédures). Il est possible cependant de contrôler l'accès à ces entités pour empêcher les conflits entre différentes unités de programme.
+
+\bigskip
+
+\begin{attention}
+Lorsqu'une unité de programme appelle un ou plusieurs modules, il peut y avoir un conflit entre les identificateurs (noms des variables et des procédures) de l'unité de programme et des modules. Si l'on ne souhaite pas modifier les identificateurs des modules (ce qui peut être laborieux si le module est long), il est possible de renommer ces identificateurs lors de l'appel des modules à partir de l'unité de programme.
+\begin{lstlisting}[language=Fortran]
+use nom_module, nom_id_local => nom_id_module
+\end{lstlisting}
+
+\begin{itemize}
+\item \emph{nom\_module} est le nom du module,
+\item \emph{nom\_id\_local} est le nom attribué à l'identificateur 
+dans l'unité de programme qui appelle le module,
+\item \emph{nom\_id\_module} est le nom de l'identificateur public du 
+module que l'on souhaite renommer.
+\end{itemize}
+\end{attention}
+
+
+\begin{exemple}
+\begin{lstlisting}[language=Fortran]
+use module_constantes, k_bol => k
+\end{lstlisting}
+va permettre d'utiliser la constante $k$ du module \emph{module\_constantes} sous le nom $k_\text{bol}$ dans le programme, afin de ne pas rentrer en conflit avec une variable $k$ qui existe aussi dans le programme.
+\end{exemple}
+
+
+\subsubsection{Protection interne}
+La première méthode pour contrôler l'accès à un module consiste à protéger certaines entités. Pour cela on utilise les instructions \emph{private} et \emph{public}. Par défaut, l'option d'accès au module est \emph{public}. Toutes les instructions du module se trouvant après l'instruction \emph{private} seront d'accès privé (et donc inaccessible par le programme qui appelle le module). Il est possible aussi d'ajouter l'attribut \emph{private} lors de la déclaration d'une variable pour protéger son accès.
+
+\begin{lstlisting}[language=Fortran]
+module module_atmosphere
+
+use module_constantes, only : k, Na
+
+real, private :: T = 300., &     ! temperature [K]
+                 m = 28.0e-3, &  ! masse mol. moy. [gmol-1]
+                 g = 9.81, &     ! pesanteur [ms-2]
+                 Po = 1.01325e5  ! pression standard [Pa]
+
+contains
+
+function pression(z)
+
+  real :: pression          ! pression a l'altitude z [Pa]
+  real, intent(in) :: z     ! altitude [km]
+  real :: h                 ! hauteur d'echelle [km]
+
+  h = (k*T*Na)/(m*g)/1.0e3
+  pression = Po*exp(-z/h)
+
+end function pression
+
+end module module_atmosphere
+\end{lstlisting}
+
+Et on accède au module de la façon suivante : 
+\begin{lstlisting}[language=Fortran]
+program acces
+
+use module_atmosphere
+
+implicit none
+
+real :: p, &    ! pression [Pa]
+        z       ! altitude [km]
+
+z = 10
+p = pression(z)
+
+print*, p, g, h
+
+end
+\end{lstlisting}
+
+Les variables \emph{T}, \emph{m}, \emph{g} et \emph{Po} ne sont pas accessibles par le programme \emph{acces} malgré l'appel du module \emph{module\_atmosphere}. Elles ont, en effet, l'attribut \emph{private} dans \emph{module\_atmosphere}. La variable \emph{h} de la fonction \emph{pression} n'est pas en conflit avec la variable \emph{h} de \emph{module\_constantes} gr\^ace à la restriction d'accès via l'instruction \emph{only}.
+
+\subsubsection{Protection interne}
+La seconde méthode de contrôle d'accès entre le module et l'unité de programme qui l'appelle consiste à restreindre l'accès à certaines entités depuis l'unité de programme. Cette restriction s'effectue en utilisant l'attribut \emph{only} lors de l'appel du module (voir le module \emph{module\_atmosphere}).
+\begin{lstlisting}[language=Fortran]
+use nom_module, only : liste_entites
+\end{lstlisting}
+où \emph{liste\_entites} est la liste des variables et procédures auxquelles on autorise l'accès lors de cet appel.
+
+
+
+\subsection{Partage de données et variables}
+Les modules peuvent être utilisés pour déclarer des variables susceptibles d'être communes à de nombreux programmes. Par exemple, un physicien est amené à utiliser, dans l'ensemble de ses programmes, les différentes constantes de la Physique. Plutôt que de déclarer ces constantes dans chaque programme, il suffit d'utiliser un module approprié dans lequel elles seront affectées une fois pour toute.
+
+\begin{footnotesize}
+\begin{lstlisting}[language=Fortran]
+module module_constantes
+
+implicit none
+
+! Constantes de la physique en unite S.I.
+
+real, parameter :: c = 2.99792458e8 ,  &        ! vitesse de la lumiere [ms-1]
+                   G = 6.6720e-11,     &        ! constante de la gravitation [Nm2kg-2]
+                   h = 6.626176e-34,   &        ! constante de planck [JHz-1]
+                   k = 1.380662e-23,   &        ! constante de Boltzmann [JK-1]
+                   Na = 6.022045e23,   &        ! constante d'Avogadro [mol-1]
+                   Rg = 8.3145                  ! constante des gaz parfaits [Jmol-1K-1]
+ 
+end module module_constantes
+\end{lstlisting}
+\end{footnotesize}
+
+\section{procédures (fonction et subroutine)}
+%TODO page 48
 
 \section{Avancé}
 \subsection{les pointeurs}
