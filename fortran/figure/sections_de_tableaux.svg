@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="548.96832"
+   height="498.85889"
+   id="svg7327"
+   version="1.1"
+   inkscape:version="0.48.1 r9760"
+   sodipodi:docname="sections_de_tableaux.svg">
+  <defs
+     id="defs7329" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="382.36545"
+     inkscape:cy="158.25124"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:object-nodes="true"
+     inkscape:object-paths="true"
+     inkscape:snap-intersection-paths="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata7332">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-152.15385,-197.83142)">
+    <path
+       id="path8148"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       d="m 152.65385,258.25628 30.43084,-30.17857 m 0,30.17857 -30.43084,-30.17857"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Courier;-inkscape-font-specification:Courier"
+       x="313.17609"
+       y="206.35942"
+       id="text8151"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan8153"
+         x="313.17609"
+         y="206.35942">real, dimension(6,8) :: tab</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Courier;-inkscape-font-specification:Courier"
+       x="274.48062"
+       y="432.12854"
+       id="text8155"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan8157"
+         x="274.48062"
+         y="432.12854">tab(1:3,1:4), tab(:3,:4)</tspan></text>
+    <g
+       id="g8159"
+       transform="translate(47.597986,0)">
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path7335"
+         d="m 105.05586,228.07771 0,181.0714"
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4, 4;stroke-dashoffset:0" />
+      <use
+         height="1052.3622"
+         width="744.09448"
+         transform="translate(213.01591,0)"
+         id="use7337"
+         xlink:href="#path7335"
+         y="0"
+         x="0" />
+      <use
+         x="0"
+         y="0"
+         xlink:href="#path7335"
+         id="use7339"
+         transform="translate(182.58506,0)"
+         width="744.09448"
+         height="1052.3622" />
+      <use
+         height="1052.3622"
+         width="744.09448"
+         transform="translate(152.15422,0)"
+         id="use7341"
+         xlink:href="#path7335"
+         y="0"
+         x="0" />
+      <use
+         x="0"
+         y="0"
+         xlink:href="#path7335"
+         id="use7343"
+         transform="translate(121.72337,0)"
+         width="744.09448"
+         height="1052.3622" />
+      <use
+         height="1052.3622"
+         width="744.09448"
+         transform="translate(91.292522,0)"
+         id="use7345"
+         xlink:href="#path7335"
+         y="0"
+         x="0" />
+      <use
+         x="0"
+         y="0"
+         xlink:href="#path7335"
+         id="use7347"
+         transform="translate(60.86169,0)"
+         width="744.09448"
+         height="1052.3622" />
+      <use
+         height="1052.3622"
+         width="744.09448"
+         transform="translate(30.430843,0)"
+         id="use7349"
+         xlink:href="#path7335"
+         y="0"
+         x="0" />
+      <use
+         x="0"
+         y="0"
+         xlink:href="#path7335"
+         id="use7351"
+         transform="translate(240.94676,0.71428572)"
+         width="744.09448"
+         height="1052.3622" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path7353"
+         d="m 105.05586,228.07771 241.12499,0"
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4, 4;stroke-dashoffset:0" />
+      <use
+         height="1052.3622"
+         width="744.09448"
+         transform="translate(0,30.17857)"
+         id="use7355"
+         xlink:href="#path7353"
+         y="0"
+         x="0" />
+      <use
+         x="0"
+         y="0"
+         xlink:href="#path7353"
+         id="use7357"
+         transform="translate(0,60.357097)"
+         width="744.09448"
+         height="1052.3622" />
+      <use
+         height="1052.3622"
+         width="744.09448"
+         transform="translate(0,90.535686)"
+         id="use7359"
+         xlink:href="#path7353"
+         y="0"
+         x="0" />
+      <use
+         x="0"
+         y="0"
+         xlink:href="#path7353"
+         id="use7361"
+         transform="translate(0,120.71428)"
+         width="744.09448"
+         height="1052.3622" />
+      <use
+         height="1052.3622"
+         width="744.09448"
+         transform="translate(0,150.89281)"
+         id="use7363"
+         xlink:href="#path7353"
+         y="0"
+         x="0" />
+      <use
+         x="0"
+         y="0"
+         xlink:href="#path7353"
+         id="use7365"
+         transform="translate(2.4267578e-6,181.0714)"
+         width="744.09448"
+         height="1052.3622" />
+      <rect
+         y="228.07771"
+         x="105.05586"
+         height="181.07141"
+         width="241.12498"
+         id="rect7369"
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+    </g>
+    <use
+       x="0"
+       y="0"
+       xlink:href="#g8159"
+       id="use8178"
+       transform="translate(306.84331,0)"
+       width="744.09448"
+       height="1052.3622" />
+    <use
+       height="1052.3622"
+       width="744.09448"
+       transform="translate(2.1630854e-8,260.71429)"
+       id="use8180"
+       xlink:href="#g8159"
+       y="0"
+       x="0" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#g8159"
+       id="use8182"
+       transform="translate(306.84331,260.71429)"
+       width="744.09448"
+       height="1052.3622" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Courier;-inkscape-font-specification:Courier"
+       x="581.32391"
+       y="432.12854"
+       id="text8188"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan8190"
+         x="581.32391"
+         y="432.12854">tab(2:6:2,1:7:3)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Courier;-inkscape-font-specification:Courier"
+       x="581.32391"
+       y="695.27332"
+       id="text8192"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan8194"
+         x="581.32391"
+         y="695.27332">tab(1:6:2,1:8:2), tab(::2,::2)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Courier;-inkscape-font-specification:Courier"
+       x="274.48062"
+       y="695.27332"
+       id="text8196"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan8198"
+         x="274.48062"
+         y="695.27332">tab(2:5,7), tab(2:5,7:7)</tspan></text>
+    <use
+       id="use8234"
+       xlink:href="#path8148"
+       y="0"
+       x="0"
+       transform="translate(30.430846,0)"
+       width="1"
+       height="1" />
+    <use
+       id="use8236"
+       xlink:href="#path8148"
+       y="0"
+       x="0"
+       transform="translate(60.861678,0)"
+       width="1"
+       height="1" />
+    <use
+       id="use8238"
+       xlink:href="#path8148"
+       y="0"
+       x="0"
+       transform="translate(91.292526,0)"
+       width="1"
+       height="1" />
+    <use
+       id="use8240"
+       xlink:href="#path8148"
+       y="0"
+       x="0"
+       transform="translate(91.292526,30.178527)"
+       width="1"
+       height="1" />
+    <use
+       id="use8242"
+       xlink:href="#path8148"
+       y="0"
+       x="0"
+       transform="translate(60.861686,30.178527)"
+       width="1"
+       height="1" />
+    <use
+       id="use8244"
+       xlink:href="#path8148"
+       y="0"
+       x="0"
+       transform="translate(30.430842,30.178566)"
+       width="1"
+       height="1" />
+    <use
+       id="use8246"
+       xlink:href="#path8148"
+       y="0"
+       x="0"
+       transform="translate(-1e-6,30.178569)"
+       width="1"
+       height="1" />
+    <use
+       id="use8248"
+       xlink:href="#path8148"
+       y="0"
+       x="0"
+       transform="translate(-1e-6,60.357116)"
+       width="1"
+       height="1" />
+    <use
+       id="use8250"
+       xlink:href="#path8148"
+       y="0"
+       x="0"
+       transform="translate(30.430846,60.357097)"
+       width="1"
+       height="1" />
+    <use
+       id="use8252"
+       xlink:href="#path8148"
+       y="0"
+       x="0"
+       transform="translate(60.861678,60.357089)"
+       width="1"
+       height="1" />
+    <use
+       id="use8254"
+       xlink:href="#path8148"
+       y="0"
+       x="0"
+       transform="translate(91.292526,60.357116)"
+       width="1"
+       height="1" />
+    <use
+       id="use8256"
+       xlink:href="#path8148"
+       y="0"
+       x="0"
+       transform="translate(306.84331,30.178527)"
+       width="1"
+       height="1" />
+    <use
+       id="use8258"
+       xlink:href="#path8148"
+       y="0"
+       x="0"
+       transform="translate(306.84331,90.53571)"
+       width="1"
+       height="1" />
+    <use
+       id="use8260"
+       xlink:href="#path8148"
+       y="0"
+       x="0"
+       transform="translate(306.84331,150.89283)"
+       width="1"
+       height="1" />
+    <use
+       id="use8262"
+       xlink:href="#path8148"
+       y="0"
+       x="0"
+       transform="translate(398.13585,30.178594)"
+       width="1"
+       height="1" />
+    <use
+       id="use8264"
+       xlink:href="#path8148"
+       y="0"
+       x="0"
+       transform="translate(398.13585,90.535777)"
+       width="1"
+       height="1" />
+    <use
+       id="use8266"
+       xlink:href="#path8148"
+       y="0"
+       x="0"
+       transform="translate(398.13585,150.89289)"
+       width="1"
+       height="1" />
+    <use
+       height="1052.3622"
+       width="744.09448"
+       transform="translate(182.58507,290.89286)"
+       id="use8350"
+       xlink:href="#path8148"
+       y="0"
+       x="0" />
+    <use
+       height="1052.3622"
+       width="744.09448"
+       transform="translate(182.58503,321.07139)"
+       id="use8352"
+       xlink:href="#path8148"
+       y="0"
+       x="0" />
+    <use
+       height="1052.3622"
+       width="744.09448"
+       transform="translate(182.58507,351.24998)"
+       id="use8354"
+       xlink:href="#path8148"
+       y="0"
+       x="0" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path8148"
+       id="use8232"
+       transform="translate(182.58507,381.42857)"
+       width="744.09448"
+       height="1052.3622" />
+    <use
+       height="1"
+       width="1"
+       transform="translate(489.42839,30.178661)"
+       x="0"
+       y="0"
+       xlink:href="#path8148"
+       id="use8274" />
+    <use
+       height="1"
+       width="1"
+       transform="translate(489.42839,90.535844)"
+       x="0"
+       y="0"
+       xlink:href="#path8148"
+       id="use8276" />
+    <use
+       height="1"
+       width="1"
+       transform="translate(489.42839,150.89296)"
+       x="0"
+       y="0"
+       xlink:href="#path8148"
+       id="use8278" />
+    <use
+       height="1"
+       width="1"
+       transform="translate(306.84331,260.71423)"
+       x="0"
+       y="0"
+       xlink:href="#path8148"
+       id="use8324" />
+    <use
+       height="1"
+       width="1"
+       transform="translate(306.84331,321.07141)"
+       x="0"
+       y="0"
+       xlink:href="#path8148"
+       id="use8326" />
+    <use
+       height="1"
+       width="1"
+       transform="translate(306.84331,381.42853)"
+       x="0"
+       y="0"
+       xlink:href="#path8148"
+       id="use8328" />
+    <use
+       height="1"
+       width="1"
+       transform="translate(428.56669,260.71422)"
+       x="0"
+       y="0"
+       xlink:href="#path8148"
+       id="use8330" />
+    <use
+       height="1"
+       width="1"
+       transform="translate(428.56669,321.0714)"
+       x="0"
+       y="0"
+       xlink:href="#path8148"
+       id="use8332" />
+    <use
+       height="1"
+       width="1"
+       transform="translate(428.56669,381.42851)"
+       x="0"
+       y="0"
+       xlink:href="#path8148"
+       id="use8334" />
+    <use
+       id="use8336"
+       xlink:href="#path8148"
+       y="0"
+       x="0"
+       transform="translate(489.42839,260.71436)"
+       width="1"
+       height="1" />
+    <use
+       id="use8338"
+       xlink:href="#path8148"
+       y="0"
+       x="0"
+       transform="translate(489.42839,321.07155)"
+       width="1"
+       height="1" />
+    <use
+       id="use8340"
+       xlink:href="#path8148"
+       y="0"
+       x="0"
+       transform="translate(489.42839,381.42866)"
+       width="1"
+       height="1" />
+    <use
+       id="use8342"
+       xlink:href="#path8148"
+       y="0"
+       x="0"
+       transform="translate(367.705,260.71423)"
+       width="1"
+       height="1" />
+    <use
+       id="use8344"
+       xlink:href="#path8148"
+       y="0"
+       x="0"
+       transform="translate(367.705,321.07141)"
+       width="1"
+       height="1" />
+    <use
+       id="use8346"
+       xlink:href="#path8148"
+       y="0"
+       x="0"
+       transform="translate(367.705,381.42852)"
+       width="1"
+       height="1" />
+  </g>
+</svg>
