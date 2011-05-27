@@ -204,11 +204,11 @@ En revanche :
 
 \subsubsection{L'opérateur d'élévation à la puissance}
 
-L'opérateur d'élévation à la puissance se note "**". L'expression \emph{a**b} correspond à la notation mathé\-ma\-tique $a^{b}$. 
+L'opérateur d'élévation à la puissance se note "**". L'expression \texttt{a**b} correspond à la notation mathé\-ma\-tique $a^{b}$. 
 
-Le résultat de l'expression \emph{a**b} est entier si \emph{a} et \emph{b} sont entiers, sinon le résultat est réel.
+Le résultat de l'expression \texttt{a**b} est entier si $a$ et $b$ sont entiers, sinon le résultat est réel.
 
-Soit \emph{b} un entier positif, 
+Soit $b$ un entier positif, 
 \begin{align}
 a**b &= a*a*\ldots*a \text{ (\emph{b} fois)}\\
 a**(-b) &= 1/(a**b)
@@ -240,9 +240,9 @@ Par exemple :
 y = (\mbox{.not.}(a<b)) &\equiv y = (a>=b) 
 \end{align}
 
-La variable $y$ est de type \emph{logical}. Les parenthèses ne sont 
+La variable $y$ est de type \texttt{logical}. Les parenthèses ne sont 
 pas obligatoires mais facilitent la lecture (notez les points 
-obligatoires de part et d'autre de \emph{not},\emph{and} et \emph{or}).
+obligatoires de part et d'autre de \texttt{not},\texttt{and} et \texttt{or}).
 
 \subsection{Les expressions constantes}\label{sec:constantes}
 Lorsqu'une constante est utilisée plusieurs fois dans un programme (par exemple $\pi$), il est utile (et recommandé) de la définir une seule fois en début de programme pendant la déclaration des variables.
@@ -258,7 +258,7 @@ Dans ce cas les variable \emph{nb} et \emph{PI} peuvent être modifiées dans le
 integer, parameter :: nb = 5
 real, parameter :: PI = 3.141593
 \end{lstlisting}
-\emph{nb} et \emph{PI} sont alors des constantes symboliques dont les valeurs ne peuvent pas être modi\-fiées durant le programme (le compilateur affiche un message d'erreur si il trouve dans le corps du programme l'instruction \emph{nb = 12} par exemple).
+\emph{nb} et \emph{PI} sont alors des constantes symboliques dont les valeurs ne peuvent pas être modi\-fiées durant le programme (le compilateur affiche un message d'erreur s'il trouve dans le corps du programme l'instruction \texttt{nb = 12} par exemple).
 
 Les déclarations de constante symbolique se font avant toute autre déclaration. On peut aussi utiliser une expression constante dans la mesure ou le compilateur peut la calculer. 
 
@@ -278,7 +278,7 @@ end
 \subsection{Les instructions de contrôle}
 \subsubsection{L'instruction \emph{if} structuré}
 
-La forme la plus générale du \emph{if} structuré peut être 
+La forme la plus générale du \texttt{if} structuré peut être 
 schématisée comme suit :
 \begin{lstlisting}[language=Fortran]
 if (exp_log1) then
@@ -291,17 +291,17 @@ if (exp_log1) then
 ] 
 end if
 \end{lstlisting}
-où \emph{exp\_log} est une expression quelconque de type \emph{logical} (par exemple : \emph{if (a $>$= 0) then} ), \emph{bloc} est un bloc d'instruc\-tions, \mbox{[ ]} signifie que le contenu est facultatif, \mbox{[ ]\ldots} signifie que le contenu peut apparaître plusieurs fois. Dans l'exemple ci-dessus, si l'expression \emph{exp\_log1} est vraie alors la suite d'instruc\-tions \emph{bloc1} est exécutée. 
+où \emph{exp\_log} est une expression quelconque de type \texttt{logical} (par exemple : \texttt{if (a $>$= 0) then} ), \emph{bloc} est un bloc d'instruc\-tions, \mbox{[ ]} signifie que le contenu est facultatif, \mbox{[ ]\ldots} signifie que le contenu peut apparaître plusieurs fois. Dans l'exemple ci-dessus, si l'expression \emph{exp\_log1} est vraie alors la suite d'instruc\-tions \emph{bloc1} est exécutée. 
 
-Sinon, si l'expression \emph{exp\_log2} est vraie alors c'est la suite d'instruction \emph{bloc2} qui est exécutée (et ainsi de suite). Enfin, si toutes les expressions précédentes (\emph{exp\_log1}, \emph{exp\_log2}, \ldots) sont fausses et si l'instruction \emph{else} est présente, la suite d'instructions \emph{blocn} est exécutée. Si l'instruc\-tion \emph{else} est absente, il est possible qu'aucune instruction ne soit exécutée par un bloc \emph{if}.
+Sinon, si l'expression \emph{exp\_log2} est vraie alors c'est la suite d'instruction \emph{bloc2} qui est exécutée (et ainsi de suite). Enfin, si toutes les expressions précédentes (\emph{exp\_log1}, \emph{exp\_log2}, \ldots) sont fausses et si l'instruction \texttt{else} est présente, la suite d'instructions \emph{blocn} est exécutée. Si l'instruc\-tion \texttt{else} est absente, il est possible qu'aucune instruction ne soit exécutée par un bloc \texttt{if}.
 
 \begin{remarque}
-Il est recommandé d'indenter (décaler les blocs d'instructions vers la droite d'un certain nombre de caractères blancs) les différents \emph{if} afin d'assurer cette lisibilité. 
+Il est recommandé d'indenter (décaler les blocs d'instructions vers la droite d'un certain nombre de caractères blancs) les différents \texttt{if} afin d'assurer cette lisibilité. 
 \end{remarque}
 
 
 
-Un exemple d'utilisation du \emph{if} structuré est donné dans l'exemple ci-après. 
+Un exemple d'utilisation du \texttt{if} structuré est donné dans l'exemple ci-après. 
 \begin{lstlisting}[language=Fortran]
 program nom_if
 
@@ -340,9 +340,9 @@ select case (exp_scal)
 ]... 
 end select [nom]
 \end{lstlisting}
-où \emph{exp\_scal} est une expression de type \emph{integer}, \emph{logical} ou \emph{character}. \emph{selecteur} est une valeur, un intervalle de valeurs ou une liste de valeurs de même type que \emph{exp\_scal}.
+où \emph{exp\_scal} est une expression de type \texttt{integer}, \texttt{logical} ou \texttt{character}. \emph{selecteur} est une valeur, un intervalle de valeurs ou une liste de valeurs de même type que \emph{exp\_scal}.
 
-Cette instruction permet d'exécuter la suite d'instructions \emph{bloc1} lorsque la valeur de l'expression \emph{exp\_scal} est égale au \emph{selecteur} (ou dans l'intervalle donné par le \emph{selecteur}). Les intervalles sont de la forme suivante : \emph{[valeur1]:valeur2} ou \emph{valeur1:[valeur2]} (par exemple \emph{case(1:)} signifie que l'on s'intéresse aux valeurs entières comprises entre 1 et 2147483647. Les sélecteurs peuvent faire appel à des expressions constantes. Les valeurs figurant dans les différents sélecteurs d'une même instruction \emph{select case} ne doivent pas se recouper (cela engendre une erreur à la compilation).
+Cette instruction permet d'exécuter la suite d'instructions \emph{bloc1} lorsque la valeur de l'expression \emph{exp\_scal} est égale au \emph{selecteur} (ou dans l'intervalle donné par le \emph{selecteur}). Les intervalles sont de la forme suivante : \texttt{[valeur1]:valeur2} ou \texttt{valeur1:[valeur2]} (par exemple \texttt{case(1:)} signifie que l'on s'intéresse aux valeurs entières comprises entre 1 et 2147483647. Les sélecteurs peuvent faire appel à des expressions constantes. Les valeurs figurant dans les différents sélecteurs d'une même instruction \texttt{select case} ne doivent pas se recouper (cela engendre une erreur à la compilation).
 
 \begin{lstlisting}[language=Fortran]
 program case
@@ -375,14 +375,14 @@ do var = debut, fin, [pas]
 end do
 \end{lstlisting}
 
-La variable de contrôle \emph{var} est de type \emph{integer} ainsi que les expressions \emph{debut}, \emph{fin} et \emph{pas}.
+La variable de contrôle \emph{var} est de type \texttt{integer} ainsi que les expressions \emph{debut}, \emph{fin} et \emph{pas}.
 
 Cette instruction permet de répéter le bloc d'instructions \emph{bloc} en donnant successivement à la variable \emph{var} les valeurs \emph{debut}, \emph{debut+pas}, \ldots, \emph{fin}. Si \emph{pas} est absent, il est par défaut égal à 1. La valeur de \emph{pas} peut être négative. Il faut alors que \emph{debut} soit plus grand que \emph{fin} sinon aucune instruction de \emph{bloc} ne sera effectuée. 
 
 \begin{attention}
 Il n'est pas possible de modifier, dans le bloc d'instructions de la boucle, la valeur de \emph{var} (le compilateur envoie un message d'erreur) et les modifications éventuelles lors de l'exécution de la boucle de \emph{debut}, \emph{fin} et \emph{pas} ne sont pas prises en compte. 
 
-Il est imprudent de chercher à exploiter la valeur de \emph{var} après l'exécution de la boucle \emph{do}. En effet, celle-ci ne prend pas nécessairement la valeur \emph{fin} comme on pourrait le penser a priori.
+Il est imprudent de chercher à exploiter la valeur de \emph{var} après l'exécution de la boucle \texttt{do}. En effet, celle-ci ne prend pas nécessairement la valeur \emph{fin} comme on pourrait le penser a priori.
 \end{attention}
 
 
@@ -399,11 +399,11 @@ Cette instruction permet de répéter le bloc d'instructions \emph{bloc} tant qu
 
 \subsubsection{Les instructions \emph{exit} et \emph{cycle}}
 
-L'instruction \emph{exit} permet de sortir d'une boucle de façon anticipée. Dans l'exemple suivant, les blocs \emph{bloc1} et \emph{bloc2} sont exécutés pour \emph{var} allant de \emph{debut} à \emph{fin} tant que l'expression logique \emph{exp\_log} est fausse. 
+L'instruction \texttt{exit} permet de sortir d'une boucle de façon anticipée. Dans l'exemple suivant, les blocs \emph{bloc1} et \emph{bloc2} sont exécutés pour \emph{var} allant de \emph{debut} à \emph{fin} tant que l'expression logique \emph{exp\_log} est fausse. 
 
-La boucle est interrompue si $var=fin$ ou si \emph{exp\_log} est vraie. Dans le premier cas on passe au \emph{bloc3}. Dans le second cas, \emph{bloc1} est exécuté mais pas \emph{bloc2}. Ensuite, on continue la boucle \emph{do while} tant que \emph{.not.fini} est vrai.
+La boucle est interrompue si $var=fin$ ou si \emph{exp\_log} est vraie. Dans le premier cas on passe au \emph{bloc3}. Dans le second cas, \emph{bloc1} est exécuté mais pas \emph{bloc2}. Ensuite, on continue la boucle \texttt{do while} tant que \texttt{.not.fini} est vrai.
 
-Comme on le voit sur cet exemple, lorsqu'une instruction \emph{exit} appara\^{i}t dans une boucle qui est imbriquée dans une autre boucle, elle met fin à la boucle la plus interne.
+Comme on le voit sur cet exemple, lorsqu'une instruction \texttt{exit} appara\^{i}t dans une boucle qui est imbriquée dans une autre boucle, elle met fin à la boucle la plus interne.
 \begin{lstlisting}[language=Fortran]
 do while (.not.fini)
     do var = debut, fin 
@@ -414,10 +414,10 @@ do while (.not.fini)
     bloc3       ! bloc d'instructions
 end do
 \end{lstlisting}
-Lorsque \emph{exp\_log} est vraie, on sort de la boucle \emph{do var}
+Lorsque \emph{exp\_log} est vraie, on sort de la boucle \texttt{do var}
 
 
-Dans l'exemple suivant, l'instruction \emph{exit} s'applique à la boucle \emph{do while} gr\^ace à l'utilisation de l'identificateur \emph{boucle\_principale}. Ainsi, si \emph{exp\_log} est vraie, ni \emph{bloc2}, ni \emph{bloc3} ne sont exécutés et on sort de la boucle \emph{do while}.
+Dans l'exemple suivant, l'instruction \texttt{exit} s'applique à la boucle \texttt{do while} grâce à l'utilisation de l'identificateur \emph{boucle\_principale}. Ainsi, si \emph{exp\_log} est vraie, ni \emph{bloc2}, ni \emph{bloc3} ne sont exécutés et on sort de la boucle \texttt{do while}.
 \begin{lstlisting}[language=Fortran]
 do while (.not.fini)
          do var = debut, fin 
@@ -428,10 +428,9 @@ do while (.not.fini)
          bloc3       ! bloc d'instructions
 end do
 \end{lstlisting}
-Lorsque \emph{exp\_log} est vraie, on sort de la boucle principale \emph{do 
-while}
+Lorsque \emph{exp\_log} est vraie, on sort de la boucle principale \texttt{do while}
 
-L'instruction \emph{cycle} permet de modifier le déroulement normal d'une boucle. Dans l'exemple suivant, \emph{bloc1} et \emph{bloc2} sont exécutés pour \emph{var} allant de \emph{debut} à \emph{fin} par pas de 1. 
+L'instruction \texttt{cycle} permet de modifier le déroulement normal d'une boucle. Dans l'exemple suivant, \emph{bloc1} et \emph{bloc2} sont exécutés pour \emph{var} allant de \emph{debut} à \emph{fin} par pas de 1. 
 
 Si l'expression logique \emph{exp\_log} est vraie, on passe à la valeur suivante de \emph{var} sans exécuter le \emph{bloc2}. Si \emph{exp\_log} est toujours vraie, seul \emph{bloc1} est exécuté.
 \begin{lstlisting}[language=Fortran]
@@ -466,7 +465,7 @@ end
 \begin{remarque}
 Quand les bornes ne sont pas spécifiées, la borne inférieure est égale à 1. Dans l'un des exemples précédents, seul \emph{nb} est donné et les indices de \emph{vect\_1} vont de 1 à \emph{nb}. 
 
-On peut aussi écrire : \emph{real :: vect\_1(nb)}.
+On peut aussi écrire : \texttt{real :: vect\_1(nb)}.
 \end{remarque}
 
 \begin{itemize}
@@ -570,9 +569,9 @@ end
 
 \subsubsection{Initialisation des tableaux à une dimension}
 
-L'initialisation d'un tableau de rang 1 à \emph{n} éléments est possible en utilisant une liste de \emph{n} éléments définie par \emph{elem\_1,\ldots,elem\_n}. Le tableau correspondant s'écrit \emph{(/elem\_1,\ldots,elem\_n/)}. 
+L'initialisation d'un tableau de rang 1 à $n$ éléments est possible en utilisant une liste de $n$ éléments définie par \emph{elem\_1,\ldots,elem\_n}. Le tableau correspondant s'écrit \texttt{(/elem\_1,\ldots,elem\_n/)}. 
 
-Un tableau à plusieurs dimensions ne peut pas être initialisé directement. Il faut définir un tableau à une dimension et utiliser une fonction particulière qui n'est pas présentée dans ce cours : la fonction \emph{reshape}.
+Un tableau à plusieurs dimensions ne peut pas être initialisé directement. Il faut définir un tableau à une dimension et utiliser une fonction particulière qui n'est pas présentée dans ce cours : la fonction \texttt{reshape}.
  
 \begin{lstlisting}[language=Fortran]
 program initialisation
@@ -633,10 +632,10 @@ v(:) = (/(i,i=1,p)/)       ! boucle implicite
 
 w(2:4) = v(7:9)
 \end{lstlisting}
-les valeurs  \emph{v(7)}, \emph{v(8)}, \emph{v(9)} du tableau \emph{v} sont affectées respectivement aux éléments \emph{w(2)}, \emph{w(3)} et \emph{w(4)} du tableau \emph{w}. Ainsi, la notation \emph{w(i:j)} signifie que l'on s'intéresse aux éléments \emph{w(i), w(i+1), \ldots, w(j)} (\emph{j}$>$\emph{i}). 
+les valeurs  \emph{v(7)}, \emph{v(8)}, \emph{v(9)} du tableau \emph{v} sont affectées respectivement aux éléments \emph{w(2)}, \emph{w(3)} et \emph{w(4)} du tableau \emph{w}. Ainsi, la notation \texttt{w(i:j)} signifie que l'on s'intéresse aux éléments \emph{w(i), w(i+1), \ldots, w(j)} ($j>i$). 
 
 \begin{remarque}
-Si on écrit \emph{w(3:1) = 1}, aucune affectation ne sera effectuée.
+Si on écrit \texttt{w(3:1) = 1}, aucune affectation ne sera effectuée.
 \end{remarque}
 
 Dans le second exemple, on remarque qu'il y a un recoupement, c'est à dire que le même terme apparait à gauche et à droite du signe égal puisqu'on a les deux affectations \og simultanées\fg :
@@ -669,7 +668,7 @@ Dans cet exemple, si on n'utilise pas les sections de tableau, on remarque qu'il
 
 \subsubsection{Les fonctions portant sur des tableaux}
 
-Il existe en \emph{Fortran 90} des fonctions spécifiques aux tableaux. Les plus usuelles sont \emph{sum} qui fournit la somme des éléments d'un tableau, \emph{maxval} qui donne la valeur maximale d'un tableau, \emph{minval} qui donne la valeur minimale et \emph{product} qui donne le produits des éléments. Les fonctions \emph{dot\_product} et \emph{matmul} permettent d'obtenir respectivement le produit scalaire et le produit matriciel de deux tableaux.
+Il existe en \emph{Fortran 90} des fonctions spécifiques aux tableaux. Les plus usuelles sont \texttt{sum} qui fournit la somme des éléments d'un tableau, \texttt{maxval} qui donne la valeur maximale d'un tableau, \texttt{minval} qui donne la valeur minimale et \texttt{product} qui donne le produits des éléments. Les fonctions \texttt{dot\_product} et \texttt{matmul} permettent d'obtenir respectivement le produit scalaire et le produit matriciel de deux tableaux.
 
 \begin{exemple}
 Soit $A$ un tableau à $m$ ligne(s) et $n$ colonne(s). On cherche la valeur maximale de l'ensemble formé par les éléments se trouvant à la ligne $j$ pour les colonnes allant de $i$ à $n$. Il suffira pour cela d'écrire l'instruction suivante :
@@ -701,7 +700,7 @@ end where
 \end{lstlisting}
 \emph{inst\_log\_tab} est une instruction logique portant sur les éléments d'un tableau. Lorsque cette condition est vérifiée, le bloc d'instructions \emph{bloc1} est exécuté, sinon le bloc d'instructions \emph{bloc2} est exécuté. 
 
-Lorsque \emph{bloc1} ne contient qu'une seule instruction et que \emph{bloc2} est absent, on peut utiliser une forme simplifiée identique au \emph{if} logique. 
+Lorsque \emph{bloc1} ne contient qu'une seule instruction et que \emph{bloc2} est absent, on peut utiliser une forme simplifiée identique au \texttt{if} logique. 
 
 Ainsi, dans l'exemple suivant, tous les éléments négatifs du tableau $A$ sont mis à zéro : 
 \begin{lstlisting}[language=Fortran]
@@ -715,7 +714,7 @@ Quand on ne connait pas à l'avance la taille des tableaux que l'on souhaite uti
 \bigskip
 
 La déclaration d'un tableau dynamique s'effectue en précisant le 
-rang du tableau et en utilisant l'attribut \emph{allocatable} 
+rang du tableau et en utilisant l'attribut \texttt{allocatable} 
 (allouable). 
 \begin{lstlisting}[language=Fortran]
 ! declaration d'un tableau dynamique d'entiers de rang 2 
@@ -724,7 +723,7 @@ real, dimension(:,:), allocatable :: matrice
 
 \bigskip
 
-L'allocation d'un emplacement se fait en utilisant l'instruction \emph{allocate} en précisant chaque étendue :
+L'allocation d'un emplacement se fait en utilisant l'instruction \texttt{allocate} en précisant chaque étendue :
 \begin{lstlisting}[language=Fortran]
 ! declaration d'un tableau dynamique d'entiers de rang 2 
 real, dimension(:,:), allocatable :: matrice
@@ -740,14 +739,14 @@ allocate(matrice(n,m))
 \end{lstlisting}
 
 \begin{remarque}
-Pour vérifier que l'allocation (ou la désallocation) s'est bien effectuée, on peut utiliser l'option \emph{stat}. 
+Pour vérifier que l'allocation (ou la désallocation) s'est bien effectuée, on peut utiliser l'option \texttt{stat}. 
 \begin{lstlisting}[language=Fortran]
 allocate(matrice(n,m), stat=verif)
 \end{lstlisting}
-\emph{verif} est une variable entière. Si \emph{verif = 0}, l'allocation s'est bien effectuée, sinon une erreur s'est produite. 
+\emph{verif} est une variable entière. Si \texttt{verif = 0}, l'allocation s'est bien effectuée, sinon une erreur s'est produite. 
 \end{remarque}
 
-Lorsqu'un tableau dynamique devient inutile, il est recommandé de libérer la place allouée à ce tableau. Pour cela, on utilise l'instruction \emph{deallocate} (désallouer).
+Lorsqu'un tableau dynamique devient inutile, il est recommandé de libérer la place allouée à ce tableau. Pour cela, on utilise l'instruction \texttt{deallocate} (désallouer).
 \begin{lstlisting}[language=Fortran]
 deallocate(matrice)           ! liberation
 \end{lstlisting}
@@ -762,7 +761,7 @@ Il est possible de transmettre un tableau dynamique en argument d'une procédure
 % Il y a un exemple par 43 du tutoriel de michel qui donne un exemple de ça. 
 %TODO 
 
-\section{modules}
+\section{Les Modules}
 
 \begin{figure}[htb]
 \centering
@@ -781,8 +780,20 @@ Ce programme est généralement écrit dans un fichier différent du fichier con
 
 Le module permet de fiabiliser les programmes en évitant la duplication des déclarations et des affectations utilisées par plusieurs unités de programme puisqu'il donne l'accès de son contenu à toutes les unités de programme qui en font l'appel.
 
+Ils permettent : 
+\begin{itemize}
+\item Une écriture des sources plus simples : en particulier ils évitent d'avoir à écrire des blocs \texttt{interface} qui sont assez lourds quand ils doivent être souvent répétés
+\item de remplacer avantageusement la notion de \texttt{COMMON}
+\item D'accéder à toutes les ressources du \emph{Fortran 90} avec un maximum d'efficacité et de cohérence : gestion dynamique de la mémoire, pointeurs, généricité, surdéfinition des opérateurs, encapsulation\dots
+\end{itemize}
+
+\begin{attention}
+Les unités \texttt{module} doivent être compilés \emph{avant} de pouvoir être utilisées. Si le fichier source est unique, elles doivent être placées en tête.
+\end{attention}
+
+
 \subsection{Struture générale}
-Le module peut contenir un ensemble de déclarations et d'affectations et/ou une ou plusieurs procédure(s). Dans ce dernier cas, les procédures doivent être précédées par l'instruction \emph{contains}. Un module commence par l'instruction \emph{module} suivi du nom du module et se termine obligatoirement par \emph{end module}.
+Le module peut contenir un ensemble de déclarations et d'affectations et/ou une ou plusieurs procédure(s). Dans ce dernier cas, les procédures doivent être précédées par l'instruction \texttt{contains}. Un module commence par l'instruction \texttt{module} suivi du nom du module et se termine obligatoirement par \texttt{end module}.
 
 \begin{lstlisting}[language=Fortran]
 module nom_module
@@ -798,7 +809,7 @@ end module nom_module
 \end{lstlisting}
 
 \subsection{Appel des modules depuis un programme principal}
-L'utilisation des modules est très simple ; depuis le programme principal, l'appel du module se fait par l'instruction \emph{use} suivi du nom du module. Il faut noter que le nom du module doit être différent de celui du programme principal. L'instruction \emph{use} doit précéder toute autre déclaration.
+L'utilisation des modules est très simple ; depuis le programme principal, l'appel du module se fait par l'instruction \texttt{use} suivi du nom du module. Il faut noter que le nom du module doit être différent de celui du programme principal. L'instruction \texttt{use} doit précéder toute autre déclaration.
 
 \begin{lstlisting}[language=Fortran]
 program utilisation_module
@@ -817,12 +828,12 @@ end
 \end{lstlisting}
 
 \begin{remarque}
-Un module ne doit pas se référencer lui-même, même de manière indirecte. Par exemple, si le module \emph{module1} contient \emph{use module2}, ce dernier ne doit pas contenir l'instruction \emph{use module1}.
+Un module ne doit pas se référencer lui-même, même de manière indirecte. Par exemple, si le module \emph{module1} contient \texttt{use module2}, ce dernier ne doit pas contenir l'instruction \texttt{use module1}.
 \end{remarque}
 
 \subsection{Accès à tout ou partie d'un module}
 
-Une unité de programme qui appelle un module (via l'instruction \emph{use}) à accès à toutes les entités de ce module (variables, procédures). Il est possible cependant de contrôler l'accès à ces entités pour empêcher les conflits entre différentes unités de programme.
+Une unité de programme qui appelle un module (via l'instruction \texttt{use}) à accès à toutes les entités de ce module (variables, procédures). Il est possible cependant de contrôler l'accès à ces entités pour empêcher les conflits entre différentes unités de programme.
 
 \bigskip
 
@@ -851,7 +862,7 @@ va permettre d'utiliser la constante $k$ du module \emph{module\_constantes} sou
 
 
 \subsubsection{Protection interne}
-La première méthode pour contrôler l'accès à un module consiste à protéger certaines entités. Pour cela on utilise les instructions \emph{private} et \emph{public}. Par défaut, l'option d'accès au module est \emph{public}. Toutes les instructions du module se trouvant après l'instruction \emph{private} seront d'accès privé (et donc inaccessible par le programme qui appelle le module). Il est possible aussi d'ajouter l'attribut \emph{private} lors de la déclaration d'une variable pour protéger son accès.
+La première méthode pour contrôler l'accès à un module consiste à protéger certaines entités. Pour cela on utilise les instructions \texttt{private} et \texttt{public}. Par défaut, l'option d'accès au module est \emph{public}. Toutes les instructions du module se trouvant après l'instruction \texttt{private} seront d'accès privé (et donc inaccessible par le programme qui appelle le module). Il est possible aussi d'ajouter l'attribut \texttt{private} lors de la déclaration d'une variable pour protéger son accès.
 
 \begin{lstlisting}[language=Fortran]
 module module_atmosphere
@@ -898,10 +909,10 @@ print*, p, g, h
 end
 \end{lstlisting}
 
-Les variables \emph{T}, \emph{m}, \emph{g} et \emph{Po} ne sont pas accessibles par le programme \emph{acces} malgré l'appel du module \emph{module\_atmosphere}. Elles ont, en effet, l'attribut \emph{private} dans \emph{module\_atmosphere}. La variable \emph{h} de la fonction \emph{pression} n'est pas en conflit avec la variable \emph{h} de \emph{module\_constantes} gr\^ace à la restriction d'accès via l'instruction \emph{only}.
+Les variables \emph{T}, \emph{m}, \emph{g} et \emph{Po} ne sont pas accessibles par le programme \emph{acces} malgré l'appel du module \emph{module\_atmosphere}. Elles ont, en effet, l'attribut \texttt{private} dans \emph{module\_atmosphere}. La variable \emph{h} de la fonction \emph{pression} n'est pas en conflit avec la variable \emph{h} de \emph{module\_constantes} grâce à la restriction d'accès via l'instruction \texttt{only}.
 
-\subsubsection{Protection interne}
-La seconde méthode de contrôle d'accès entre le module et l'unité de programme qui l'appelle consiste à restreindre l'accès à certaines entités depuis l'unité de programme. Cette restriction s'effectue en utilisant l'attribut \emph{only} lors de l'appel du module (voir le module \emph{module\_atmosphere}).
+\subsubsection{Protection externe}
+La seconde méthode de contrôle d'accès entre le module et l'unité de programme qui l'appelle consiste à restreindre l'accès à certaines entités depuis l'unité de programme. Cette restriction s'effectue en utilisant l'attribut \texttt{only} lors de l'appel du module (voir le module \emph{module\_atmosphere}).
 \begin{lstlisting}[language=Fortran]
 use nom_module, only : liste_entites
 \end{lstlisting}
@@ -931,9 +942,79 @@ end module module_constantes
 \end{lstlisting}
 \end{footnotesize}
 
-\section{procédures (fonction et subroutine)}
-%TODO page 48
+\section{Les Procédures (fonction et subroutine)}
+Il existe deux types de procédures~: les sous-programmes et les fonctions (respectivement \texttt{subroutine} et \texttt{function} en anglais). Nous étudierons les fonctions plus loin dans le chapitre. Parmi les procédures, on distingue les procé\-dures externes des procédures internes.
 
+\bigskip
+
+Les sous-programmes externes (\texttt{subroutine} ou \texttt{fonction}) sont des blocs de code en dehors du programme principal, soit après son instruction \texttt{end}, soit dans un fichier séparé qu'il faudra aussi compiler. 
+\begin{lstlisting}[language=Fortran]
+program nom_program
+ 
+implicit none 
+[...]         ! bloc de declaration
+ 
+[...]         ! bloc d'instructions executables
+ 
+call nom(liste_arguments)         ! appel du sous-programme
+ 
+[...]         ! bloc d'instructions executables
+ 
+end  
+
+subroutine nom(liste_arguments)
+
+implicit none 
+[...]         ! bloc de declaration (arguments et variables locales)
+
+[...]         ! bloc d'instructions executables
+ 
+end subroutine nom 
+\end{lstlisting}
+
+
+Les sous-programmes internes (\texttt{subroutine} ou \texttt{fonction}) sont des blocs de code qui vont être dans le corps du programme, à la suite de l'instruction \texttt{contains} et avant l'instruction \texttt{end}.
+\begin{lstlisting}[language=Fortran]
+program nom_program
+ 
+implicit none 
+[...]         ! bloc de declaration
+ 
+[...]         ! bloc d'instructions executables 
+call nom(liste_arguments)         ! appel du sous-programme 
+[...]         ! bloc d'instructions executables 
+
+contains 
+subroutine nom1(liste_arguments) 
+[...]         ! bloc de declaration 
+[...]         ! bloc d'instructions executables 
+end subroutine nom1 
+
+subroutine nom2(liste_arguments) 
+[...]         ! bloc de declaration 
+[...]         ! bloc d'instructions executables 
+end subroutine nom2 
+
+end
+\end{lstlisting}
+
+Dans le cas des procédures externes, on est en présence de domaines indépendants qui ne peuvent communiquer que par le biais des arguments. 
+
+Dans le cas des procédures internes, la procédure a accès à toutes les variables définies par son hôte. Ces variables sont dites \emph{globales} et n'ont plus besoin d'être transmises en arguments. En revanche, toutes les variables déclarées dans la procédure interne sont locales à la procédure. 
+
+Ainsi, la déclaration de deux variables, l'une dans le programme hôte et l'autre dans la procédure interne avec le même nom provoque la création de deux variables différentes (bien qu'ayant le même nom!). Bien que pouvant paraître attrayante, cette méthode d'utilisation des procédures est à utiliser avec circonspection. En effet, l'utilisation dans le programme principal et le sous-programme interne d'un même nom pour 2 variables a priori différentes, risque de provoquer des erreurs de programmation. 
+
+
+\begin{attention}
+Il est important de noter que les procédures internes ne peuvent être utilisées que par l'hôte qui les contiennent. 
+\end{attention}
+
+\subsection{fonctions}
+En \emph{Fortran 90}, les fonctions peuvent retourner n'importe quel type valide (tableau, type dérivé)
+
+
+
+%TODO parler des types dérivés, des fonctions et des subroutine pour présenter chacun des deux.
 \section{Avancé}
 \subsection{les pointeurs}
 Un pointeur, ce n'est ni plus ni moins qu'une variable qui contient une adresse mémoire. 
