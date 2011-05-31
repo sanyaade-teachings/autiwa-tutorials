@@ -1010,9 +1010,47 @@ Il est important de noter que les procédures internes ne peuvent être utilisé
 \end{attention}
 
 \subsection{fonctions}
-En \emph{Fortran 90}, les fonctions peuvent retourner n'importe quel type valide (tableau, type dérivé)
+En \emph{Fortran 90}, les fonctions peuvent retourner n'importe quel type valide (tableau, type dérivé), mais une seule variable, que l'on attribue via le nom de la fonction elle même. En définissant le type de la fonction, on définit le type de la variable que l'on va retourner.
 
+\begin{lstlisting}[language=Fortran]
+function nom(liste_arguments)
 
+implicit none 
+real :: nom 
+[...]         ! bloc de declaration
+ 
+[...]         ! bloc d'instructions executables
+nom = ...     ! expression arithmetique
+
+end function nom 
+\end{lstlisting}
+
+Ainsi, la fonction \texttt{nom} retourne un réel. Ce dernier est stocké comme donnée de retour via une ligne d'attribution
+\begin{lstlisting}[language=Fortran]
+nom = 3e43
+\end{lstlisting}
+où \texttt{nom} est le nom de la fonction.
+
+Pour appeler la fonction dans le programme principal, il suffit de faire :
+\begin{lstlisting}[language=Fortran]
+program nom_program 
+
+implicit none 
+real :: resultat
+[...]                                      ! bloc de declaration 
+
+[...]                                      ! bloc d'instructions executables 
+resultat = 1 + 3*nom(liste_arguments)      ! exemple d'appel de la fonction nom 
+[...]                                      ! bloc d'instructions executables 
+
+end 
+\end{lstlisting}
+
+\begin{remarque}
+La variable dans laquelle on stocke le résultat de la fonction doit bien évidemment avoir le même type que celui déclaré pour le nom de la fonction (et donc sa variable de retour).
+\end{remarque}
+
+%TODO parler des subroutines et fonctions. Expliquer la différence (ou les) entre les deux en dessous de la section ``procédures'' (c'est à dire pas dans une des deux sous sections.
 
 %TODO parler des types dérivés, des fonctions et des subroutine pour présenter chacun des deux.
 \section{Avancé}
