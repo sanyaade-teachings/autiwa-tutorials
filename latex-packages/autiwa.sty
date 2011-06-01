@@ -1,40 +1,26 @@
 \NeedsTeXFormat{LaTeX2e}[1999/01/01]
-\ProvidesPackage{autiwa}[2011/05/09 Extension personnelle, V2.40]%aaaa/mm/dd
+\ProvidesPackage{autiwa}[2011/06/01 Extension personnelle, V2.50]%aaaa/mm/dd
 %voir le fichier change.log pour l'historique des modifications
-
-%TODO créer un environnement subalign qui englobe subequations et align.
 
 %%% polices %%%
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}  % OT2 c'est pour le cyrillique
 \RequirePackage[frenchb]{babel}%russian est là pour la commande qui se trouve dans la macro \peigne
 \RequirePackage[autolanguage]{numprint}
-% semble ne pas marcher, il dit que c'est pas défini\renewcommand*{\captionformat}{~: }%pour rajouter un espace entre "fig" et le ":" dans les captions.
 \RequirePackage[font=small,format=plain,labelsep=endash]{caption}
-%TODO trouver comment redéfinir le figurename, et mettre Figure, et Table, à la place de Fig. et Tab.
-% \captionsetup[figure]{name=Figure}
-% \captionsetup[table]{name=Table}
-% \renewcommand*{\figurename}{Figure}
-% \renewcommand*{\captionformat}{~--~}
-% % Numérotation des figures avec une lettre Fig. I.1.a
-% \renewcommand{\thefigure}{\thechapter.\alph{figure}}
 
 %meta paquet qui regroupe des environnements, des commandes persos et cie. Permet de les ajouter plus simplement dans mon paquet pour du latex normal, des beamers ou des posters. Ainsi les commandes ne sont qu'à un seul endroit.
 \RequirePackage{autiwa-macros}
 
-% \usepackage[utf8x]{inputenc}%À noter que utf8x charge automatiquement le paquet ucs, donc le rajouter à coté est superflu
-%
-% \usepackage{lmodern}
-
 
 %%% mise en page %%%
+\RequirePackage{multicol}%permet de mettre du texte sur plusieurs colonnes sans changer de pages (très pratique pour deux colonnes, vu que par défaut, il change de page
 \RequirePackage{natbib}%améliore la bibliographie, surtout pour citer les publications scientifiques.
 \RequirePackage{aas_macros}% contient les macros pour la déifnition des noms de journaux des publications scientifiques utilses pour les enterées bibtex de ADS.
 \RequirePackage{frbib}%pour mettre la bibliographie en français
 \RequirePackage[nottoc]{tocbibind}%pour que la bibliographie  et l'index apparaissent dans la table des matières. l'option permet de ne pas afficher la table des matières. (notlof, notlot pour table des figures et ou des tableaux)
 \RequirePackage{xspace}%Permet à babel d'utiliser la macro xspace  partout où c'est nécessaire. (Voir la doc de babel pour de plus amples explications.)
 \RequirePackage{acronym}%pour gérer les acronymes. Description du paquet dans mon pdf, ou dans la description du paquet acronym.sty
-% \RequirePackage{alltt}            % Pour les reference en mieux ; pose peut-être problème
 \RequirePackage[pdftex]{geometry}
 \geometry{margin=2.5cm}%la redéfinition des marges doit se faire avant l'appel de fancyhdr. Sinon, les entêtes et pieds de pages auront les anciennes marges.
 \RequirePackage{fancyhdr}
@@ -46,8 +32,6 @@
 \fancyhead[LO,RE]{\thepage}
 \fancyhead[RO]{\nouppercase{\leftmark}}
 \fancyhead[LE]{\nouppercase{\rightmark}}
-% \renewcommand{\footrulewidth}{0.5pt}
-% \renewcommand{\headrulewidth}{0pt}
 \RequirePackage[pdftex]{hyperref}%l'option pagebackref permet d'afficher les pages dans lesquelles sont citées les références (en gros, la position des labels je pense)
 \hypersetup{
   colorlinks=true, %colorise les liens
@@ -63,7 +47,6 @@
 \RequirePackage{afterpage} % permet de placer des images plus intelligemment
 \RequirePackage{graphics}
 \RequirePackage[pdftex]{graphicx}
-\RequirePackage{pstricks}
 \usepackage[lflt]{floatflt}%Pour ajouter des graphiques dans des paragraphes, entourés de texte. L'option signifie que le graphique sera mis par défaut sur la gauche du paragraphe. Pour appeler un environnement : \begin{floatingfigure}[l]{0.5\linewidth}. Pour plus d'info, se reporter au pdf de latex que je fais ou à la doc du paquet.
 \RequirePackage[justification=centerfirst]{subfig}%pour pouvoir mettre plusieurs figures dans le même environnement de figure, avec plusieurs caption
 \RequirePackage{wrapfig}%pour ma commande \attention{} parce que floatflt marche, mais m'indente de la même manière tout les autres paragraphes...
@@ -76,27 +59,11 @@
 \RequirePackage{ifthen}%permet de faire des tests, utile pour les commandes de commath que j'ai redéfinies ici (à cause d'une incompatibilité expliquée dans le change.log ; va sans doute servir pour d'autres commandes, j'en ai besoin pour \gras{}
 
 %%% environnements et tableaux %%%
-\RequirePackage{slashbox}%permet de faire ue cellule scindé sur sa diagonale via la commande \backslashbox{titre de la colonne}{titre de la ligne}
-\RequirePackage{multicol}%permet de mettre du texte sur plusieurs colonnes sans changer de pages (très pratique pour deux colonnes, vu que par défaut, il change de page
-\RequirePackage{multirow}%permet d'utiliser la commande \multirow{numb}*{contenu} pour fusionner des lignes. "*" est un argument optionnel que l'on peut spécifier et qui concerne la largeur de la colonne. \multirow{numb}{2.5cm}{contenu}
-\RequirePackage{array}%permet de rajouter des commandes de définition dans les tableaux, notamment m{2cm} pour une colonne de texte avec le texte centré verticalement.
-\RequirePackage{framed}%pour les environnements qui dépassent, soient d'une ligne, soit d'une page, cf la doc pour plus d'infos.
 \RequirePackage{shapepar}%pour faire des paragraphes mis en formes selon des figures, par exemple une forme d'étoile, d'hexagone, de coeur et ainsi de suite.
-\RequirePackage{theorem}
-    \theoremheaderfont{\scshape} \theoremstyle{break} % style des entêtes
-    \theorembodyfont{\normalfont} % style de police
-    \newtheorem{theoreme}{Théorème}
-    \newtheorem{definition}{Définition}
-    \newtheorem{demonstration}{Démonstration}
-    \newtheorem{propriete}{Propriété}
-%     \theoremstyle{plain}
-%     \theoremheaderfont{\rmfamily \bfseries}
-%     \theoremseparator{:}
-\RequirePackage{cancel}%pour barrer des expressions ou du texte.
+
 
 %%% verbatim %%%
 \RequirePackage{example}%pour avoir, en un environnement, deux colonnes, la premières en verbatimn, et la 2e qui exécute le code.
-%\RequirePackage{moreverb}%pour utiliser d'autres version du mode verbatim telles que \begin{verbatimtab}; il y a un conflit entre "example" et "moreverb". Je n'ai pas trouvé le moyen d'ajouter les deux... La solution de rechange est d'utiliser example, et de rajouter dans les déclarations des packages, manuellement le paquet moreverb dans les fichiers qui le demandent, par contre, on ne peut pas utiliser ET example ET {verbatimtab ou listing} dans le même fichier apparement.
 \RequirePackage{listings}
 \lstnewenvironment{latex}[1][]{
 \lstset{language=TeX,
@@ -105,17 +72,6 @@
    escapechar=+}}{}
 
 \RequirePackage{paralist}%permet d'utiliser l'environnement inparaenum qui est une liste numérotée formatée dans un paragraphe (c'est à dire sans retour à la ligne) ; je l'utilise pour définir mon propre environnement de liste, à défaut de savoir le faire depuis la base.
-
-%%% maths %%%
-\RequirePackage{amsmath}
-% \RequirePackage{commath}%je l'ai viré parce qu'avec ce paquet, un deux point en mode math fait buguer la compilation. $:$
-\RequirePackage{subeqnarray}
-\RequirePackage{amsfonts}
-\RequirePackage{amssymb}
-\RequirePackage[electronic]{ifsym}%pour faire des symboles crantés, comme un signal carré. La commande \textifsym{} permet de coder relativement facilement des images styles crantées, regarder la doc pour plus de détail.
-\RequirePackage{esint}% Permet de faire des intégrales doubles à contour fermé entre autre, via \oiint
-\RequirePackage{mathtools}%rajoute la commande prescript pour faire les notations de noyaux par exemple.
-\RequirePackage{slashed}%pour pouvoir utiliser le slash de feynman via la commande \slashed{p}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%mise en page selon qu'on est en article, report, ou autre. (à voir)
@@ -141,24 +97,19 @@
 \DeclareMathSizes{12}{12}{7}{5}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-% Nouvelles couleurs pour pstricks
+% Nouveaux environnements basés sur le paquet theorem
 %%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{theorem}
+    \theoremheaderfont{\scshape} \theoremstyle{break} % style des entêtes
+    \theorembodyfont{\normalfont} % style de police
+    \newtheorem{theoreme}{Théorème}
+    \newtheorem{definition}{Définition}
+    \newtheorem{demonstration}{Démonstration}
+    \newtheorem{propriete}{Propriété}
 
-\newrgbcolor{marron}{0.698 0.047 0.047}
-\newrgbcolor{marou}{0.71 0.31 0.09}
-\newrgbcolor{refcolor}{0.71372549 0.145098039 0.109803922}
-\newrgbcolor{vertf}{0.22 0.50 0.20}
-\newgray{darkgray}{.25}
-\newgray{lightgray}{.9}%je définis cette couleur pour \rmq{}
-\newrgbcolor{vertexemple}{0.6 1 0.6}%je définis cette couleur pour les exemples
-\newrgbcolor{rougeattention}{1 0.6 0.6}%je définis cette couleur pour les mises en gardes "\begin{attention}"
-% \newgray{shadecolor}{.9}
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 % Macros diverses
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-%\newcommand{\latex}{\LaTeX{}}%facilite l'insertion du logo LaTeX avec l'espace immédiatement après.
-%\renewcommand{\arraystretch}{1.2}%augmente la hauteur des lignes des tableaux, ça sert surtout pour les formules dans les tableaux pour ne pas qu'elles soient supperposées aux traits horizontaux du tableau
-%\setlength{\extrarowheight}{0.3cm}
 \FrenchFootnotes % pour les notes de bas de page
 \AddThinSpaceBeforeFootnotes % pour les puristes (donc tout le monde!) qui veulent une espace fine entre le mot et l'appel de note
 
@@ -182,374 +133,6 @@
       \renewcommand{\makelabel}[1]{\boiteentreeglossaire{##1}}}}
 {\end{list}}
 %on utilise l'environnement 'leglossaire' pour commencer le glossaire, et dans cet environnement, on utilise la commande 'glossaire' avec pour premier argument le nom, et pour 2e argument la description. attention, il faut écrire les définition dans l'ordre où on veut qu'elles apparaissent. Je ne sais pas comment améliorer ça et faire qu'il les classe tout seul.
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-% macro et fonction pour la page de titre
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Nouveaux environnements
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-%framed, shaded et leftbar sont des environnements qui font partie du package "framed", je les ai recopié ici pour les modifier. En effet, j'ai modifié leftbar, et créé leftbarshaded. Penser à regarder framed.sty si on veut des infos sur les commandes que fourni ce paquet, en effet, il permet de définir des environnements qui peuvent être sur plusieurs pages assez facilement, la preuve en dessous.
-\renewenvironment{framed}% using default \FrameCommand
-  {\MakeFramed {\advance\hsize-\width \FrameRestore}}%
-  {\endMakeFramed}
-
-\renewenvironment{shaded}{%
-  \def\FrameCommand{\fboxsep=\FrameSep \colorbox{lightgray}}%
-  \MakeFramed {\FrameRestore}}%
- {\endMakeFramed}
-
-\renewenvironment{leftbar}{%
-  \def\FrameCommand{\vrule width 0.3mm \hspace{1mm}}%
-  \MakeFramed {\advance\hsize-\width \FrameRestore}}%
- {\endMakeFramed}
-
- \newenvironment{leftbarshaded}{%
-  \def\FrameCommand{\vrule width 0.4mm \colorbox{lightgray}}%
-  \MakeFramed {\advance\hsize-\width \FrameRestore}}%
- {\endMakeFramed}
-
- \newenvironment{leftbarvert}{%
-  \def\FrameCommand{{\vertexemple\vrule width 0.4mm} }%
-  \MakeFramed {\advance\hsize-\width \FrameRestore}}%
- {\endMakeFramed}
-
- \newenvironment{leftbarrouge}{%
-  \def\FrameCommand{{\rougeattention\vrule width 0.4mm} }%
-  \MakeFramed {\advance\hsize-\width \FrameRestore}}%
- {\endMakeFramed}
-
-\newenvironment{important}
-  {\MakeFramed {\advance\hsize-\width \FrameRestore}}%
-  {\endMakeFramed}
-
-% Je ne sais pas à quoi servait la version originale, mais comme elle n'est pas utile pour l'affichage des citations, j'ai effacé par la mienne. Le nom de l'auteur est un paramètre optionnel qu'il faut mettre entre crochets après le début de l'environnement si on souhaite qu'il apparaisse.
-\newenvironment{myquote}[1][]%
-  {\begin{quote}\gdef\citationauthor{#1}\begin{flushleft}\og}%
-{\fg\ifthenelse{\equal{\citationauthor}{}}{}{\\ \qquad  --- \emph{\citationauthor}}\end{flushleft}\end{quote}}
-
-\newenvironment{enuminline}{\begin{inparaenum}[(i)]}{\end{inparaenum}}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Nouvelles fonctions et macros pour texte normal
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\registered}{$^{\text{\textregistered}}$\xspace}%permet d'utiliser le symbole ``marque déposée'' qui sera automatiquement mis en exposant.
-\newcommand{\expo}[1]{\(^{\text{#1}}\)}
-\newcommand{\ind}[1]{\(_{\text{#1}}\)}
-\newcommand{\oldgras}[2]{{{\color{marou} \textsl{#2}}\black\index{#1}}}
-\newcommand{\gras}[2][]{\ifthenelse{\equal{#1}{}}%
-                               {\oldgras{#2}{#2}}%   % argument optionnel vide
-                               {\oldgras{#1}{#2}}}   % argument optionnel non-vide
-%si le premier argument n'est pas défini, le label sera le même que le nom affiché, sinon, on peut définir via le premier argument optionnel l'index, par exemple "commande!label" pour le nom "label" qui s'affiche.
-\newcommand{\mgras}[1]{\( \displaystyle \boldsymbol{#1}\)}
-\newcommand{\com}[1]{\begin{tabular}{c|c}#1 & \verbatim \input{#1}\endverbatim\end{tabular}}
-% \setlength{\parskip}{4pt plus 4pt minus 2pt} %pour modifier l'espacement des paragraphes (je veux qu'on voit un espace genre 0.5cm entre chaque paragraphe, pour que ça soit aéré.
-
-% %\newcommand{\TODO}[1]{\textbf{TODO} : #1}
-% \newcommand{\rmq}[1]{\begin{leftbarshaded}\noindent\textbf{Remarque} : #1\end{leftbarshaded}}
-\newenvironment{remarque}{\begin{leftbarshaded}\noindent\textbf{Remarque} : }{\end{leftbarshaded}}
-
-% \newcommand{\attention}[1]{\begin{leftbar}\begin{wrapfigure}{l}{6mm}%
-% \vspace{-4mm}%
-% \centering%
-% \includegraphics[width=6mm]{attention.pdf}%
-% \vspace{-3mm}%
-% \end{wrapfigure}\noindent #1\end{leftbar}}
-\newenvironment{attention}{\begin{leftbarrouge}%
-\noindent\includegraphics[width=6mm]{attention.pdf}%
-}{\end{leftbarrouge}}
-%\newcommand{\TODO}[1]{\textbf{TODO} : #1}
-% \newcommand{\ex}[1]{\begin{leftbar}\noindent\textbf{Exemple} : #1\end{leftbar}}
-\newenvironment{exemple}{\begin{leftbarvert}\noindent\textbf{Exemple} : }{\end{leftbarvert}}
-% Attention, il est possible qu'on ne puisse pas avoir ça sur plusieurs pages...
-% "Si le texte à encadrer s'étend sur plusieurs pages, on aura recours à l'environnement framed de l'extension du même nom, ou bien à l'environnement breakbox de l'extension eclbkbox" à tester si besoin
-% \newcounter{num}
-% \renewcommand{\thenum}{\Roman{num}}
-% \newcommand{\exo}{\addtocounter{num}{1}
-% {\noindent \textbf{Exercice~\thenum~:}}}
-\newcommand{\source}[1]{\textit{source} : #1}
-\newcommand{\reference}[1]{\textit{Référence :} #1}
-
-\renewcommand{\refeq}[1]{(\ref{#1})}
-\newcommand{\reffig}[1]{[\figurename~\ref{#1}]}
-\newcommand{\reftab}[1]{[\tablename~\ref{#1}]}
-\newcommand{\refsec}[1]{[\S~\ref{#1}]}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Nouvelles fonctions pour le mode mathématique
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\mathbox}[1]{\begin{array}{||c||}\hline \text{{\LARGE\strut }}\displaystyle #1\\\hline \end{array}}%permet d'encadrer une formule de math en étant en mode mathématique. C'est donc une commande qui ne marche qu'en mode mathématique, pour le texte normal, utiliser la commande \fbox{}. La partie \text{} avec la commande \strut permet d'augmenter les marges verticales en simulant un texte du changement de fonte juste avant. Le \displaystyle permet d'afficher les formules en mode hors texte, ce qui ne semble pas le cas autrement.
-\newcommand{\unit}[1]{\ensuremath{\mathrm{\thinspace #1}}}%permet d'écrire proprement les unités de mesures telles que le Hz ou autre, dans le mode mathématique qui, par défaut, considère tout les caractères comme des variables
-%\newcommand{\sfrac}[2]{\raisebox{.3ex}{$#1$}/ \raisebox{-.3ex}{$#2$}}%version qui ne marche pas très bien vis à vis du mode math, obligé de rentrer du mode math dans la commande
-% \newcommand{\unit*}[1]{\mathrm{#1}}%version pour le texte, quand on parle des unités et qu'on a pas besoin de l'espace juste avant.
-\newcommand{\sfrac}[2]{{{}^{#1\!\!}/ _{\!#2}}}%pour faire des fractions a/b proprement
-	% Touche clavier
-\newcommand{\touche}[1]{\Ovalbox{#1}}%permet d'encadrer un texte pour signifier que ça correspond à une touche sur le clavier
-\newcommand{\cte}{\mathrm{c^{te}}}%pour écrire "constante" dans une équation, avec une écriture propre, et rapidement.
-% \newcommand{\binom}[2]{\genfrac{(}{)}{0pt}{}{#1}{#2}}%pour écrire le binome de newton (i.e le nombre de combinaison) ; apparemment, cette commande existe déjà.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Redéfinitions des commandes du paquet commath (en effet, celui-ci empêche l'utilisation d'un ":" dans un mode math, sans que je sache pourquoi, alors je vais le faire moi même
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\DeclareMathOperator{\dif}{d \!}
-% Command for partial derivatives. The first argument denotes the function and the second argument denotes the variable with respect to which the derivative is taken. The optional argument denotes the order of differentiation. The style (text style/display style) is determined automatically
-\providecommand{\pd}[3][]{\ensuremath{
-\ifinner
-\tfrac{\partial{^{#1}}#2}{\partial{{#3}^{#1}}}
-\else
-\dfrac{\partial{^{#1}}#2}{\partial{{#3}^{#1}}}
-\fi
-}}
-
-% \tpd[2]{f}{k} denotes the second partial derivative of f with respect to k
-% The first letter t means "text style"
-\providecommand{\tpd}[3][]{\ensuremath{\mathinner{
-\tfrac{\partial{^{#1}}#2}{\partial{{#3}^{#1}}}
-}}}
-% \dpd[2]{f}{k} denotes the second partial derivative of f with respect to k
-% The first letter d means "display style"
-\providecommand{\dpd}[3][]{\ensuremath{\mathinner{
-\dfrac{\partial{^{#1}}#2}{\partial{{#3}^{#1}}}
-}}}
-
-% mixed derivative - analogous to the partial derivative command
-% \md{f}{5}{x}{2}{y}{3}
-\providecommand{\md}[6]{\ensuremath{
-\ifinner
-\tfrac{\partial{^{#2}}#1}{\partial{{#3}^{#4}}\partial{{#5}^{#6}}}
-\else
-\dfrac{\partial{^{#2}}#1}{\partial{{#3}^{#4}}\partial{{#5}^{#6}}}
-\fi
-}}
-
-% \tpd[2]{f}{k} denotes the second partial derivative of f with respect to k
-% The first letter t means "text style"
-\providecommand{\tmd}[6]{\ensuremath{\mathinner{
-\tfrac{\partial{^{#2}}#1}{\partial{{#3}^{#4}}\partial{{#5}^{#6}}}
-}}}
-% \dpd[2]{f}{k} denotes the second partial derivative of f with respect to k
-% The first letter d means "display style"
-\providecommand{\dmd}[6]{\ensuremath{\mathinner{
-\dfrac{\partial{^{#2}}#1}{\partial{{#3}^{#4}}\partial{{#5}^{#6}}}
-}}}
-
-
-% ordinary derivative - analogous to the partial derivative command
-\providecommand{\od}[3][]{\ensuremath{
-\ifinner
-\tfrac{\dif{^{#1}}#2}{\dif{{#3}^{#1}}}
-\else
-\dfrac{\dif{^{#1}}#2}{\dif{{#3}^{#1}}}
-\fi
-}}
-
-\providecommand{\tod}[3][]{\ensuremath{\mathinner{
-\tfrac{\dif{^{#1}}#2}{\dif{{#3}^{#1}}}
-}}}
-\providecommand{\dod}[3][]{\ensuremath{\mathinner{
-\dfrac{\dif{^{#1}}#2}{\dif{{#3}^{#1}}}
-}}}
-
-% Notation for an expression evaluated at a particular condition:
-% the value for the optional argument ranges from -1 to 4 with higher values resulting in larger delimiters
-\providecommand{\eval}[2][-1]{
-\ensuremath{\mathinner{
-\ifthenelse{\equal{#1}{-1}}{ % if
-#2\Biggr\rvert}{}
-\ifthenelse{\equal{#1}{0}}{ % if
-#2\rvert}{}
-\ifthenelse{\equal{#1}{1}}{ % if
-#2\bigr\rvert}{}
-\ifthenelse{\equal{#1}{2}}{ % if
-#2\Bigr\rvert}{}
-\ifthenelse{\equal{#1}{3}}{ % if
-#2\biggr\rvert}{}
-\ifthenelse{\equal{#1}{4}}{ % if
-#2\Biggr\rvert}{}
-}} % \ensuremath{\mathinner{
-}
-
-\providecommand{\sVert}[1][0]{
-\ensuremath{\mathinner{
-\ifthenelse{\equal{#1}{0}}{ % if
-\rvert}{}
-\ifthenelse{\equal{#1}{1}}{ % if
-\bigr\rvert}{}
-\ifthenelse{\equal{#1}{2}}{ % if
-\Bigr\rvert}{}
-\ifthenelse{\equal{#1}{3}}{ % if
-\biggr\rvert}{}
-\ifthenelse{\equal{#1}{4}}{ % if
-\Biggr\rvert}{}
-}} % \ensuremath{\mathinner{
-}
-
-
-\newcommand{\abs}[1]{\left|#1\right|}
-\newcommand{\norm}[1]{\left\|#1\right\|}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Nouvelles fonctions et macros pour les formules mathématiques
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\DeclareMathOperator{\pdif}{\delta \!}%pour les différentielles non exactes (je crois, enfin, avec le petit delta quoi)
-
-%notations et lettres
-\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it} %pour pouvoir utiliser \mathpzc fait peut-être de jolies lettres, je le voulais pour un V pour un torseur...
-\newcommand{\deff}[5]{$#1 \text{ : } \begin{matrix}   #2 &\longrightarrow & #3 \\  #4 &\longmapsto & #5 \\ \end{matrix}$} %Pour les définitions de fonctions, le premier étant le nom de la fonction, le 2 et 3 les ensemble de départ et d'arrivée, le 4 les variables de départ, la 5 le résultat après application de la fonction.
-\newcommand{\trigo}{\circlearrowleft}%les deux commandes qui suivent permettent d'afficher des flèches renseignant, lors d'intégrales, du sens de parcours des courbes.
-\newcommand{\horaire}{\circlearrowright}
-
-%commandes qui simplifient les écritures
-\newcommand{\vect}[1]{{\overrightarrow{#1}}} % m'évite de devoir recopier à chaque fois la macro pour faire une flèche sur mes vecteurs ; la commande \mathstrut permet d'aligner des symboles, notament la hauteur des flèches quand on inclue \mathstrut dans l'argument de \vect{} (à la fin, juste avant \}). On met tout dans un groupe. Ainsi, ça permet notamment de les mettre en indice ou en exposant directement
-% \newcommand{\vect}[1]{\mathbf{#1}}
-\newcommand{\vectcomp}[1]{\begin{pmatrix}#1\end{pmatrix}} %pour noter des les composantes d'un vecteur.
-\newcommand{\inv}[1]{\frac{1}{#1}}
-\newcommand{\comp}[1]{\overline{#1}} %complémentaire de quelque chose.
-
-%mécanique du solide
-\newcommand{\torseur}[1]{\left \lbrace \begin{matrix} #1 \end{matrix}\right \rbrace}
-
-%opérateurs mathématiques
-\newcommand{\lap}{\mathscr{L}}
-% \DeclareMathOperator{\opgrad}{grad}
-\DeclareMathOperator{\opgrad}{grad}
-\DeclareMathOperator{\oprot}{rot}
-\DeclareMathOperator{\opdiv}{div}
-\DeclareMathOperator{\cov}{cov}%pour la covariance cov(x,y) en statistique
-\newcommand{\rot}[1]{\vect{\nabla} \wedge \left( #1\right) }%j'ai enlevé le vecteur sur l'argument, donc faire attention pour les anciennes occurrences, faut rajouter le vecteur à la main.
-\newcommand{\grad}[1]{\vect{\nabla} \left( #1\right) }
-\renewcommand{\div}[1]{\vect{\nabla} \cdot\left( #1\right) }
-\newcommand{\res}[1]{\text{Rés}\left(#1\right)}%le résidus au point #1 d'une fonction
-\newcommand{\laplacien}[1]{\Delta \left( #1\right) }
-%definition du symbole parallèle (issu d'un paquet, j'ai recopié les lignes ne concernant QUE ce symbole, vu que c'était ça qui m'intéressait.
-% \RequirePackage{stmaryrd}%pour faire le symbole parallèle via \sslash
-\DeclareSymbolFont{stmry}{U}{stmry}{m}{n}
-\SetSymbolFont{stmry}{bold}{U}{stmry}{b}{n}
-\DeclareMathSymbol\sslash\mathbin{stmry}{"0C}
-
-%algèbre linéaire et théorie des groupes
-\DeclareMathOperator{\im}{\Im}%pour écrire l'image d'une application
-\renewcommand{\Re}[1]{\text{Re}\!\left(#1\right)}
-\renewcommand{\Im}[1]{\text{Im}\!\left(#1\right)}
-\DeclareMathOperator{\id}{Id} %matrice identité
-\DeclareMathOperator{\cof}{cof}%pour noter le cofacteur d'un élément d'une matrice
-\newcommand{\transposee}[1]{{\vphantom{#1}}^{\mathit t}{#1}} %permet de faire la transposée d'une matrice
-\DeclareMathOperator{\optrace}{Tr}%permet d'écrire la trace d'une application
-\newcommand{\trace}[1]{\optrace\left(#1\right)}
-\DeclareMathOperator{\card}{card}%permet d'écrire le cardinal d'un ensemble
-\newcommand{\M}[1]{\mathscr{M}_{#1}(\mathbb{K})} %ensemble des matrices carrées (ou classique en précisant deux nombres) d'ordre #1 avec valeurs dans K
-
-\newcommand{\pse}[2]{\left( #1 , #2\right)} %produit scalaire euclidien de #1 et #2
-% \newcommand{\psh}[2]{\left\langle\left. #1 \right\vert #2\right\rangle} %produit scalaire hermitien de #1 et #2
-
-%fonctions
-\newcommand{\porte}{\text{\PulseHigh}}
-\DeclareMathOperator{\stp}{stp}% fonction échelon
-\DeclareMathOperator{\ch}{ch} %cosinus hyperbolique
-\DeclareMathOperator{\sh}{sh} %sinus hyperbolique
-\renewcommand{\th}{\mathrm{th}} %tangente hyperbolique; je ne sais pas pourquoi, mais il semble que je ne puisse pas définir la commande \th. Obligé de la définir avec un \renewcommand{}{}, ce qui n'est pas très propre... (à la place, il y avait un symbole bizarre dont je ne me sers pas. possibilité de définir une nouvelle commande à ce symbole juste avant le renew pour ceux qui en ont besoin.
-
-\DeclareMathOperator{\erf}{erf}% fonction erreur
-\DeclareMathOperator{\erfc}{erf_c}% fonction erreur complémentaire
-
-\DeclareMathOperator{\si}{Si} %sinus intégral
-\DeclareMathOperator{\ci}{Ci} %cosinus intégral
-\DeclareMathOperator{\ei}{Ei} %exponentielle intégrale
-
-\DeclareMathOperator{\sinc}{sin_c} %sinus cardinal
-
-\input cyracc.def
-\font\tencyr=wncyr10
-\def\cyr{\tencyr\cyracc}
-\DeclareMathOperator{\peigne}{\mbox{\cyr sh}}%pour le peigne de dirac, penser aussi à mettre la période en indice. Nécessite l'affichage des caractères cyrilliques. rajouté grâce à \RequirePackage[russian]{babel}
-
-
-%Transformations mathématiques
-\newcommand{\fourier}[1]{\mathscr{F}\left \{ #1\right \}}%transformée de fourrier
-\newcommand{\fourierr}[1]{\mathscr{F}^{-1}\left \{ #1\right \}}%réciproque de la transformée de fourrier
-\newcommand{\laplace}[1]{\mathscr{L}\left \{ #1\right \}}%transformée de laplace
-\newcommand{\laplacer}[1]{\mathscr{L}^{-1}\left \{ #1\right \}}%réciproque de la transformée de laplace
-
-
-\newcommand{\ldbrack}{[\negthinspace [} %double crochet gauche pour ensemble de nombres entiers
-\newcommand{\rdbrack}{]\negthinspace ]} %double crochet droit pour ensemble de nombres entiers
-% \newcommand{\ldbrack}{\textlbrackdbl}% il existe \textrbrackdbl, mais il ne semble pas marcher...
-% \newcommand{\rdbrack}{\textrbrackdbl} %double crochet droit pour ensemble de nombres entiers
-% \newcommand{\°}{\text{\degre}}%le package babel fourni deux macros, \degre pour les angles, et \degres pour les températures, ma macro devient obsolète. L'ancienne commande nécessitait d'être utilisé en mode math, d'où la présence de commande inutiles dans la définition.
-
-
-%Physique en général
-\newcommand{\moy}[1]{\left\langle #1\right\rangle}%pour noter la moyenne de quelque chose
-\newcommand{\sumint}{\sum\!\!\!\!\!\!\!\!\int\: }%sert en atomistique, pour rendre compte du fait qu'on somme sur le spectre discret et continu
-\newcommand{\edim}[1]{\left[ \mathrm{#1}\right]}% à utiliser en mode math pour représenter les dimensions dans une équation aux dimensions
-
-%Mécanique Quantique
-\newcommand{\commutateur}[2]{\left[ #1 , #2 \right] }
-\newcommand{\bra}[1]{\left\langle #1\right\vert}
-\newcommand{\ket}[1]{\left\vert \mathrm{#1}\right\rangle}
-\newcommand{\qmoy}[1]{\left\langle #1\right\rangle_\Psi}
-\newcommand{\kmoy}[1]{\left\langle #1\right\rangle_{\ket{\Psi}}}
-\newcommand{\cropoi}[2]{\left\{ #1,#2\right\}}
-\newcommand{\psh}[2]{\left\langle #1 \middle\vert #2\right\rangle}%produit scalaire hermitien
-
-%Physique Nucléaire
-% \newcommand{\noyau}[3]{{\vphantom{#1}}^{#2}_{#3}{\mathrm{#1}}}
-\newcommand{\noyau}[3]{\prescript{#2}{#3}{\mathrm{#1}}}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Modifier les titres et sous-titres
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \renewcommand{\section}{\@startsection{section}{1}{\z@}%
-%              {-3.5ex \@plus -1ex \@minus -.2ex}%
-%              {2.3ex \@plus 2ex}%
-%              {\normalfont\Large\sffamily\bfseries\marou}}
-
-% \renewcommand{\section}{\@startsection{section}{1}{\z@}%
-%              {-3.5ex \@plus -1ex \@minus -.2ex}%
-%              {2.3ex \@plus 2ex}%
-%              {\normalfont\Large\scshape\bfseries\marou}}
-%
-% \renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
-%              {-3.25ex\@plus -1ex \@minus -.2ex}%
-%              {1.5ex \@plus .2ex}%
-%              {\normalfont\large\sffamily\bfseries\vertf}}
-%
-% \renewcommand{\subsubsection}{\@startsection{subsubsection}{3}%
-% 	     {\z@}%
-% 	     {-3.25ex\@plus -1ex \@minus -.2ex}%
-%              {1.5ex \@plus .2ex}%
-%              {\normalfont\normalsize\sffamily\bfseries}}
-%
-% \renewcommand{\paragraph}{\@startsection{paragraph}{4}{\z@}%
-%              {3.25ex \@plus 1ex \@minus .2ex}%
-%              {1em}%
-%              {\normalfont\normalsize\sffamily\bfseries}}
-% \renewcommand{\subparagraph}{\@startsection{subparagraph}{5}%
-% 	     {\parindent}%
-%              {3.25ex \@plus1ex \@minus .2ex}%
-%              {-1em}%
-%              {\normalfont\normalsize\sffamily\bfseries}}
-%
-% \setcounter{secnumdepth}{4}
-%
-% \renewcommand{\thesection}{\arabic{section}}
-%
-% \renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
-%
-% \renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
-%
-% \renewcommand{\theparagraph}{\alph{paragraph})}
-
-%\long\def\abstract#1{\gdef\@abstract{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % déclaration des options qui redéfinissent certaines fonctions
