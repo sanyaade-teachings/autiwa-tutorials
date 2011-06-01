@@ -84,3 +84,8 @@ ou
 \begin{myquote}
 Si entre deux personnes doivent grandir et mûrir l’amitié et l’amour humain, il est nécessaire que se produise une extériorisation sincère et sans réserves (de ce que chacun pense et ressent).
 \end{myquote}
+
+01/06/11 v2.50 : Création du paquet autiwa-macros qui contient la plupart de mes commandes persos avec pour objectif de les centraliser et de limiter au maximum l'inclusion de paquets externes dans ce paquet là. Il est ajouté dans mes trois autres paquets autiwa, autiwa-beamer et autiwa-beamerposter. 
+J'ai aussi essayé de créer un environnement subalign mais j'ai eu une erreur avec align dans la création du nouvel environnement. Comme j'ai pas trouvé comment résoudre, j'ai abandonné. 
+
+01/06/11 v2.51 : Suppression du paquet wrapfig vu que j'ai constaté que ça fait un petit moment qu'il n'est plus nécessaire pour l'environnement 'attention' (qui se trouve maintenant dans autiwa-macros d'ailleurs)
