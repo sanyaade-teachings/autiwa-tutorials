@@ -945,6 +945,17 @@ end module module_constantes
 \section{Les Procédures (fonction et subroutine)}
 Il existe deux types de procédures~: les sous-programmes et les fonctions (respectivement \texttt{subroutine} et \texttt{function} en anglais). Nous étudierons les fonctions plus loin dans le chapitre. Parmi les procédures, on distingue les procé\-dures externes des procédures internes.
 
+\begin{definition}{Fonction}
+Une fonction, à l'instar de son homologue en informatique, est une application qui, à partir de variable d'entrée retourne \emph{variable} de sortie qui peut être de n'importe quel type. La variable de retour est simplement une variable qui porte le même nom de la fonction et qui est retournée sans qu'on ait besoin de faire quelque chose en particulier.
+\end{definition}
+
+\begin{definition}{Subroutine}
+La subroutine, contrairement à la fonction, ne distingue pas, par défaut, les variables d'entrées et de sorties, une même variable peut à la fois être une entrée et une sortie (dans la pratique, avec l'attribut \texttt{intent()} lors de la déclaration des variables on peut faire des choses un peu plus propres). 
+
+De plus, on n'est pas limite à une variable de sortie. L'inconvénient est que, à part en regardant la déclaration ou le corps de la subroutine, on ne peut pas distinguer simplement les entrées et sorties qui sont simplement une suite de paramètres de la subroutine.
+\end{definition}
+
+
 \bigskip
 
 Les sous-programmes externes (\texttt{subroutine} ou \texttt{fonction}) sont des blocs de code en dehors du programme principal, soit après son instruction \texttt{end}, soit dans un fichier séparé qu'il faudra aussi compiler. 
@@ -1050,9 +1061,33 @@ end
 La variable dans laquelle on stocke le résultat de la fonction doit bien évidemment avoir le même type que celui déclaré pour le nom de la fonction (et donc sa variable de retour).
 \end{remarque}
 
-%TODO parler des subroutines et fonctions. Expliquer la différence (ou les) entre les deux en dessous de la section ``procédures'' (c'est à dire pas dans une des deux sous sections.
+\subsection{Subroutine}
+En Fortran 90, une subroutine est un bloc de programme avec des entrées et des sorties. Une subroutine \texttt{transfert} s'appelle de la façon suivante : 
+\begin{lstlisting}[language=Fortran]
+call transfert(a,b)
+\end{lstlisting}
 
-%TODO parler des types dérivés, des fonctions et des subroutine pour présenter chacun des deux.
+où transfert est une subroutine qui permet d'échanger les variables $a$ et $b$ via une variable temporaire définie dans la subroutine : 
+\begin{lstlisting}[language=Fortran]
+subroutine transfert(a,b)
+
+implicit none
+real, intent(inout) :: a,b
+real :: c
+
+c=a
+a=b
+b=c
+end subroutine transfert
+\end{lstlisting}
+
+Les attributs \texttt{intent(in)}, \texttt{intent(out)} ou \texttt{intent(inout)} permettent de spécifier si un argument d'une subroutine est un paramètre d'entrée, une variable de sortie ou les deux. Ce n'est pas obligatoire, mais c'est fortement conseillé de s'en servir. Sans ça, il est beaucoup plus difficile de comprendre le code, et de le sécuriser (pour savoir si on a modifié une variable alors qu'on n'aurait pas dû par exemple.
+
+
+
+%TODO 6.3.5 page 54
+
+%TODO parler des types dérivés
 \section{Avancé}
 \subsection{les pointeurs}
 Un pointeur, ce n'est ni plus ni moins qu'une variable qui contient une adresse mémoire. 
@@ -1064,6 +1099,56 @@ Ceci étant dit, on définit différents types de pointeurs, selon la nature des
 \includegraphics[width=0.65\linewidth]{figure/pointeurs.pdf}
 \caption{Représentation schématique du fonctionnement d'un pointeur avec représentation de la mémoire. Les numéros pour les cases mémoires ne représentent pas la réalité, c'est juste pour montrer comment on fait référence à une case mémoire. L'idée est de montrer qu'en manipulant des adresses au lieu de manipuler les contenus, on peut faire des choses beaucoup plus puissantes.}
 \end{figure}
+
+%TODO parler plus en détail des pointeurs. 
+
+\subsection{Attributs des variables lors de leur déclaration}
+Lors de leur déclaration, il existe divers attributs que l'on peut donner aux variables et qui permettent de préciser à quoi elles vont servir notamment. 
+
+\bigskip
+
+On peut ainsi définir une variable comme étant un paramètre, c'est à dire que cette dernière ne pourra pas être modifiée dans le reste du programme. C'est pratique pour définir des constantes comme la valeur de $\pi$ par exemple : 
+\begin{lstlisting}[language=Fortran]
+real, parameter :: pi = 3.14159
+\end{lstlisting}
+
+\bigskip
+
+Il est possible en Fortran 90 d'associer des attributs aux arguments des procédures pour fiabiliser les programmes. Les principaux attributs sont : 
+\begin{itemize}
+\item  \texttt{intent(in)}. Cet attribut signifie que la variable à laquelle il se rapporte est un argument d'entrée de la procédure ; sa valeur ne peut pas être modifiée par la procédure. 
+
+\item  \texttt{intent(out)}. L'argument de la procédure a l'attribut sortie ; la procédure ne peut pas utiliser sa valeur. Elle doit en revanche lui en attribuer une.
+
+\item  \texttt{intent(in/out)}. L'argument correspondant est à la fois un argument d'entrée (la procédure peut utiliser sa valeur) et un argument de sortie (la procédure doit lui en attribuer une nouvelle). 
+\end{itemize}
+Si les conditions précédentes ne sont pas respectées, une erreur surviendra à la compilation. La syntaxe des attributs est la suivante~: 
+\begin{lstlisting}[language=Fortran]
+subroutine nom(a, b, c)
+ 
+implicit none         
+integer, intent(in) ::   a       ! argument d'entree 
+real, intent(out) ::   b         ! argument de sortie 
+logical, intent(inout) ::   c    ! argument d'entree et de sortie
+ 
+[...]         ! bloc d'instructions
+ 
+end subroutine nom 
+\end{lstlisting}
+
+\bigskip
+
+On définit des pointeurs à l'aide d'attributs. Que ce soit pour définir les cibles que l'on pourra pointer
+\begin{lstlisting}[language=Fortran]
+real, target :: a, b(1000), c(10,10)
+\end{lstlisting}
+ou pour définir les pointeurs eux mêmes (qui devront bien évidemment avoir le même type que les cibles auxquelles ils seront associés ultérieurement)
+\begin{lstlisting}[language=Fortran]
+real, pointer :: pa, pb, pc
+\end{lstlisting}
+
+
+
 
 %TODO lire des trucs sur les pointeurs, les types dérivés et les procédures récursives.
 
