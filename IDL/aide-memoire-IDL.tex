@@ -301,6 +301,14 @@ Valeur & Description\\\hline
 \caption{Valeurs possibles pour les mots clés \texttt{[XYZ]STYLE}. À noter que l'on peut superposer plusieurs options. Par exemple si on veut que l'étendue de l'axe soit exacte ET supprimer le style en boite, on peut mettre le mot clé à $8+1=9$}
 \end{table}
 
+\begin{remarque}
+Ainsi, pour supprimer les axes, et afficher les données en forçant le zoom au range fixé, il faut utiliser : 
+\begin{lstlisting}[language=IDL]
+plot,x,y,xstyle=5,ystyle=5
+\end{lstlisting}
+\end{remarque}
+
+
 \subsection{Exporter en .png}
 Il faut pour cela spécifier la taille de l'image. L'autre problème peut venir des couleurs. Quand je veux des .png avec des couleurs assez différentes (pour afficher les orbites de plusieurs planètes par exemple), je fais :
 \begin{lstlisting}[language=IDL]

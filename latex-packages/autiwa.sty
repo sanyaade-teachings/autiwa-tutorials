@@ -18,10 +18,9 @@
 % \renewcommand*{\captionformat}{~--~}
 % % Numérotation des figures avec une lettre Fig. I.1.a
 % \renewcommand{\thefigure}{\thechapter.\alph{figure}}
-\RequirePackage{bbm}%permet d'utiliser une nouvelle police via l'appel \mathbbm{ABC123}. Je l'ai rajouté pour faire l'identité via \mathbbm{1} pour la quantique.
-\RequirePackage{eurosym}%pour écrire le caractère euro avec la macro \officialeuro{}
-\RequirePackage{mathrsfs}
-\RequirePackage{textcomp}%rajoute des caractères et macros, en particulier \texttildelow pour faire une tilde dans le texte.
+
+%meta paquet qui regroupe des environnements, des commandes persos et cie. Permet de les ajouter plus simplement dans mon paquet pour du latex normal, des beamers ou des posters. Ainsi les commandes ne sont qu'à un seul endroit.
+\RequirePackage{autiwa-macros}
 
 % \usepackage[utf8x]{inputenc}%À noter que utf8x charge automatiquement le paquet ucs, donc le rajouter à coté est superflu
 %

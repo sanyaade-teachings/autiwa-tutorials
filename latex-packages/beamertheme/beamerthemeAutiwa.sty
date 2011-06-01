@@ -20,7 +20,7 @@
 \setbeamercolor{author in head/foot}{fg=ta2orange, bg=black}
 \setbeamercolor{title in head/foot}{fg=ta2orange, bg=black}
 
-\setbeamercolor*{normal text}{fg=tachameleon, bg=ta3gray}
+\setbeamercolor*{normal text}{fg=white, bg=ta3gray}
 % \setbeamercolor*{block body}{bg=ta3aluminium,fg=black}
 \setbeamercolor*{block title}{fg=taorange,bg=ta2gray}
 \setbeamerfont{block title}{size=\large,series=\bf}
@@ -40,72 +40,68 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%pour arrondir les angles des blocs
+\setbeamertemplate{blocks}[rounded]%
+[shadow=false]
+
+% rajout pour essayer de définir un cadre autour des blocks
+% We define a new box, which is empty for the moment
+\newsavebox{\fmbox}
+
+% In the following environment, we define what will contain the new save box, and after, we can use this macro to reuse what we have stored in it. This way, we can box (with \fbox{}, \ovalbox{} or something) an environment, and here, we need it to box what will be in the block environment.
+\newenvironment{fmpage}[1]
+     {\begin{lrbox}{\fmbox}\begin{minipage}{#1}\vskip.25ex}
+     {\vskip.25ex\end{minipage}\end{lrbox}\fbox{\usebox{\fmbox}}}
+
+% modification du style des blocks pour pouvoir centrer le titre, encadrer le block et espacer un peu plus le titre et le contenu du bloc.
 \setbeamertemplate{block begin}{
   \vskip.75ex
   \begin{beamercolorbox}[rounded=true,shadow=true,leftskip=1cm,colsep*=.75ex]{block title}%
-    \usebeamerfont*{block title}\insertblocktitle
+    \usebeamerfont*{block title}\centering\insertblocktitle
   \end{beamercolorbox}%
   {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
-  \usebeamerfont{block body}%
-  \begin{beamercolorbox}[rounded=true,shadow=true,colsep*=.75ex,sep=.75ex,vmode]{block body}%
-    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+  \usebeamerfont{block body}\vskip.25ex%
+  \begin{beamercolorbox}[rounded=true,shadow=true,colsep*=.75ex,sep=.75ex,vmode]{block body}\begin{center}\begin{fmpage}{0.99\textwidth}\begin{flushleft}
   }
   \setbeamertemplate{block end}{
-  \end{beamercolorbox}
+  \end{flushleft}\end{fmpage}\end{center}\end{beamercolorbox}
 }
 
+\setbeamertemplate{background canvas}{\includegraphics
+   [width=\paperwidth,height=\paperheight]{bleu_noir.pdf}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \setbeamertemplate{headline}{  
-%   \leavevmode
-% 
-%   \begin{beamercolorbox}[wd=\paperwidth]{headline}
-%     \begin{columns}[T]
-%       \begin{column}{.02\paperwidth}
-%       \end{column}
-%       \begin{column}{.07\paperwidth}
-%         \begin{center}
-%           %\includegraphics[width=.6\linewidth]{logos/i6-hks44}
-%         \end{center}
-%         \vskip1ex
-%       \end{column}
-%       \begin{column}{.675\paperwidth}
-%         \vskip4ex
-%         \raggedleft
-%         \usebeamercolor{title in headline}{\color{fg}\textbf{\LARGE{\inserttitle}}\\[1ex]}
-%         \usebeamercolor{author in headline}{\color{fg}\large{\insertauthor}\\[1ex]}
-%         \usebeamercolor{institute in headline}{\color{fg}\large{\insertinstitute}\\[1ex]}     
-%       \end{column}
-%       \begin{column}{.25\paperwidth}
-%         \vskip1cm
-%         \begin{center}
-%           \includegraphics[width=.7\linewidth]{logo-CNRS}
-%         \end{center}
-%         \vskip1.5cm
-%       \end{column}
-%       \begin{column}{.03\paperwidth}
-%       \end{column}
-%     \end{columns}
-%   \end{beamercolorbox}
-% 
-%   \begin{beamercolorbox}[wd=\paperwidth]{lower separation line head}
-%     \rule{0pt}{2pt}
-%   \end{beamercolorbox}
-% }
+\setbeamertemplate{headline}{  
+\leavevmode
+\begin{beamercolorbox}[wd=\paperwidth]{headline}
 
-%  \setbeamertemplate{headline}{  
-%    \leavevmode
-%    \begin{beamercolorbox}[sep=0.5cm,wd=.8\paperwidth]{headline}
-%      \usebeamercolor{title in headline}{\raggedleft\color{fg}\textbf{\LARGE{\inserttitle}}\\[1ex]}
-%      \usebeamercolor{author in headline}{\raggedleft\color{fg}\large{\insertauthor}\\[1ex]}
-%      \usebeamercolor{institute in headline}{\raggedleft\color{fg}\large{\insertinstitute}\\[1ex]}     
-%    \end{beamercolorbox}%
-%    \begin{beamercolorbox}[wd=.2\paperwidth]{logo in headline}
-%      \centering
-%      \LARGE{LOGO}
-%    \end{beamercolorbox}  
+\begin{columns}[c]
+\begin{column}{.15\paperwidth}
+\centering\vskip1ex
+\includegraphics[width=0.6\linewidth]{logo/logo-lab}\\[1ex]
+\includegraphics[width=0.6\linewidth]{logo/logo-cnrsv2}
+\end{column}
 
+\begin{column}{.7\paperwidth}
+\begin{center}
+\usebeamercolor{title in headline}{\color{fg}\textbf{\LARGE{\inserttitle}}\\[1ex]}
+\usebeamercolor{author in headline}{\color{fg}\large{\insertauthor}\\[1ex]}
+\usebeamercolor{institute in headline}{\color{fg}\large{\insertinstitute}\\[1ex]}    
+\end{center}
+\end{column}
 
-%}
+\begin{column}{.15\paperwidth}
+\centering
+\includegraphics[width=0.6\linewidth]{logo/logo-bx1}
+\end{column}
+\end{columns}
+\vskip.75ex
+\end{beamercolorbox}
+
+\begin{beamercolorbox}[wd=\paperwidth]{lower separation line head}
+\rule{0pt}{2pt}
+\end{beamercolorbox}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \setbeamertemplate{footline}{
