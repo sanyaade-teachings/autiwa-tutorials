@@ -29,12 +29,15 @@
 \indexentry{corbeille|hyperpage}{10}
 \indexentry{police de caract\IeC {\`e}re|hyperpage}{11}
 \indexentry{freeWifi|hyperpage}{12}
+\indexentry{open office|hyperpage}{12}
+\indexentry{.odt|hyperpage}{12}
+\indexentry{.zip|hyperpage}{12}
 \indexentry{cron|hyperpage}{13}
 \indexentry{Ubuntu|hyperpage}{14}
 \indexentry{GNU/Linux|hyperpage}{14}
 \indexentry{mtools|hyperpage}{16}
-\indexentry{UUID|hyperpage}{16}
-\indexentry{UUID|hyperpage}{16}
+\indexentry{UUID|hyperpage}{17}
+\indexentry{UUID|hyperpage}{17}
 \indexentry{logiciel!kget|hyperpage}{18}
 \indexentry{logiciel!kwget|hyperpage}{18}
 \indexentry{Flashgot|hyperpage}{18}
@@ -42,15 +45,15 @@
 \indexentry{Flashgot|hyperpage}{18}
 \indexentry{logiciel!maple|hyperpage}{18}
 \indexentry{logiciel!xcas|hyperpage}{18}
-\indexentry{logiciel!wxmaxima|hyperpage}{18}
-\indexentry{logiciel!octave|hyperpage}{19}
-\indexentry{logiciel!scilab|hyperpage}{19}
-\indexentry{logiciel!thunderbird|hyperpage}{19}
-\indexentry{minimize to tray|hyperpage}{19}
-\indexentry{logiciel!evolution|hyperpage}{19}
-\indexentry{KDE|hyperpage}{19}
-\indexentry{logiciel!kmail|hyperpage}{19}
-\indexentry{logiciel!evolution|hyperpage}{19}
+\indexentry{logiciel!wxmaxima|hyperpage}{19}
+\indexentry{logiciel!octave|hyperpage}{20}
+\indexentry{logiciel!scilab|hyperpage}{20}
+\indexentry{logiciel!thunderbird|hyperpage}{20}
+\indexentry{minimize to tray|hyperpage}{20}
+\indexentry{logiciel!evolution|hyperpage}{20}
+\indexentry{KDE|hyperpage}{20}
+\indexentry{logiciel!kmail|hyperpage}{20}
+\indexentry{logiciel!evolution|hyperpage}{20}
 \indexentry{logiciel!money|hyperpage}{20}
 \indexentry{logiciel!grisbi|hyperpage}{20}
 \indexentry{logiciel!inkscape|hyperpage}{20}
@@ -59,14 +62,14 @@
 \indexentry{logiciel!texmaker@TeXmaker|hyperpage}{20}
 \indexentry{logiciel!gedit|hyperpage}{20}
 \indexentry{logiciel!kate|hyperpage}{20}
-\indexentry{logiciel!kwrite|hyperpage}{20}
-\indexentry{logiciel!geany|hyperpage}{20}
-\indexentry{logiciel!gedit|hyperpage}{20}
-\indexentry{logiciel!virtual dub|hyperpage}{20}
-\indexentry{logiciel!avidemux|hyperpage}{20}
+\indexentry{logiciel!kwrite|hyperpage}{21}
+\indexentry{logiciel!geany|hyperpage}{21}
+\indexentry{logiciel!gedit|hyperpage}{21}
+\indexentry{logiciel!virtual dub|hyperpage}{21}
+\indexentry{logiciel!avidemux|hyperpage}{21}
 \indexentry{logiciel!digikam|hyperpage}{21}
-\indexentry{logiciel!idl@IDL|hyperpage}{21}
-\indexentry{logiciel!gdl@GDL|hyperpage}{21}
+\indexentry{logiciel!idl@IDL|hyperpage}{22}
+\indexentry{logiciel!gdl@GDL|hyperpage}{22}
 \indexentry{logiciel!iTunes|hyperpage}{25}
 \indexentry{logiciel!amarok|hyperpage}{25}
 \indexentry{logiciel!song bird|hyperpage}{25}
@@ -84,26 +87,26 @@
 \indexentry{logiciel!windows media player|hyperpage}{25}
 \indexentry{logiciel!smplayer|hyperpage}{25}
 \indexentry{logiciel!mplayer|hyperpage}{25}
-\indexentry{logiciel!windows media player|hyperpage}{25}
-\indexentry{logiciel!kaffeine|hyperpage}{25}
-\indexentry{logiciel!smplayer|hyperpage}{25}
-\indexentry{logiciel!kmplayer|hyperpage}{25}
-\indexentry{logiciel!smplayer|hyperpage}{25}
-\indexentry{logiciel!antrenamer|hyperpage}{25}
-\indexentry{logiciel!mp3 tag|hyperpage}{25}
-\indexentry{logiciel!metamorphose@m\IeC {\'e}tamorphose|hyperpage}{25}
-\indexentry{logiciel!krename|hyperpage}{25}
-\indexentry{logiciel!matlab|hyperpage}{25}
-\indexentry{logiciel!octave|hyperpage}{25}
-\indexentry{logiciel!scilab|hyperpage}{25}
-\indexentry{msn|hyperpage}{29}
-\indexentry{logiciel!amsn|hyperpage}{29}
-\indexentry{logiciel!kopete|hyperpage}{29}
-\indexentry{logiciel!pidgin|hyperpage}{29}
-\indexentry{logiciel!gaim|see{logiciel!pidgin}}{29}
-\indexentry{logiciel!emesene|hyperpage}{29}
-\indexentry{logiciel!msn messenger|hyperpage}{29}
-\indexentry{logiciel!trillian|hyperpage}{29}
+\indexentry{logiciel!windows media player|hyperpage}{26}
+\indexentry{logiciel!kaffeine|hyperpage}{26}
+\indexentry{logiciel!smplayer|hyperpage}{26}
+\indexentry{logiciel!kmplayer|hyperpage}{26}
+\indexentry{logiciel!smplayer|hyperpage}{26}
+\indexentry{logiciel!antrenamer|hyperpage}{26}
+\indexentry{logiciel!mp3 tag|hyperpage}{26}
+\indexentry{logiciel!metamorphose@m\IeC {\'e}tamorphose|hyperpage}{26}
+\indexentry{logiciel!krename|hyperpage}{26}
+\indexentry{logiciel!matlab|hyperpage}{26}
+\indexentry{logiciel!octave|hyperpage}{26}
+\indexentry{logiciel!scilab|hyperpage}{26}
+\indexentry{msn|hyperpage}{30}
+\indexentry{logiciel!amsn|hyperpage}{30}
+\indexentry{logiciel!kopete|hyperpage}{30}
+\indexentry{logiciel!pidgin|hyperpage}{30}
+\indexentry{logiciel!gaim|see{logiciel!pidgin}}{30}
+\indexentry{logiciel!emesene|hyperpage}{30}
+\indexentry{logiciel!msn messenger|hyperpage}{30}
+\indexentry{logiciel!trillian|hyperpage}{30}
 \indexentry{jabber|hyperpage}{30}
 \indexentry{logiciel!firefox|hyperpage}{30}
 \indexentry{logiciel!opera@op\IeC {\'e}ra|hyperpage}{30}
@@ -111,36 +114,36 @@
 \indexentry{logiciel!konqueror|hyperpage}{30}
 \indexentry{logiciel!wget|hyperpage}{30}
 \indexentry{logiciel!firefox|hyperpage}{30}
-\indexentry{programme!wget|hyperpage}{30}
-\indexentry{logiciel!gimp|hyperpage}{30}
-\indexentry{logiciel!gimp|hyperpage}{30}
-\indexentry{logiciel!gimp|hyperpage}{30}
-\indexentry{gimpshop|hyperpage}{30}
-\indexentry{gimpshop|see{logiciel!gimp}}{30}
-\indexentry{resynthesizer|hyperpage}{30}
-\indexentry{universe|hyperpage}{30}
-\indexentry{logiciel!openoffice|hyperpage}{31}
-\indexentry{logiciel!gnumeric|hyperpage}{31}
-\indexentry{logiciel!gthumb|hyperpage}{31}
-\indexentry{logiciel!f-Spot|hyperpage}{31}
-\indexentry{tetex|hyperpage}{31}
-\indexentry{tex-live|hyperpage}{31}
-\indexentry{synaptic|hyperpage}{31}
+\indexentry{programme!wget|hyperpage}{31}
+\indexentry{logiciel!gimp|hyperpage}{31}
+\indexentry{logiciel!gimp|hyperpage}{31}
+\indexentry{logiciel!gimp|hyperpage}{31}
+\indexentry{gimpshop|hyperpage}{31}
+\indexentry{gimpshop|see{logiciel!gimp}}{31}
+\indexentry{resynthesizer|hyperpage}{31}
+\indexentry{universe|hyperpage}{31}
+\indexentry{logiciel!openoffice|hyperpage}{32}
+\indexentry{logiciel!gnumeric|hyperpage}{32}
+\indexentry{logiciel!gthumb|hyperpage}{32}
+\indexentry{logiciel!f-Spot|hyperpage}{32}
+\indexentry{tetex|hyperpage}{32}
+\indexentry{tex-live|hyperpage}{32}
+\indexentry{synaptic|hyperpage}{32}
 \indexentry{logiciel!texmaker@TeXmaker|hyperpage}{32}
 \indexentry{logiciel!winefish|hyperpage}{32}
 \indexentry{logiciel!bluefish|hyperpage}{32}
 \indexentry{logiciel!kile|hyperpage}{32}
-\indexentry{mv|hyperpage}{33}
-\indexentry{diff|hyperpage}{33}
+\indexentry{mv|hyperpage}{34}
+\indexentry{diff|hyperpage}{34}
 \indexentry{logiciel!wget|hyperpage}{37}
 \indexentry{logiciel!mplayer|hyperpage}{38}
 \indexentry{Mencoder|hyperpage}{38}
 \indexentry{Mencoder|hyperpage}{38}
 \indexentry{record|hyperpage}{39}
-\indexentry{convert|hyperpage}{39}
-\indexentry{ImageMagick|hyperpage}{39}
+\indexentry{convert|hyperpage}{40}
+\indexentry{ImageMagick|hyperpage}{40}
 \indexentry{logiciel!gimp|hyperpage}{40}
-\indexentry{zenity|hyperpage}{40}
+\indexentry{zenity|hyperpage}{41}
 \indexentry{find|hyperpage}{41}
 \indexentry{sed|hyperpage}{44}
 \indexentry{zenity|hyperpage}{44}

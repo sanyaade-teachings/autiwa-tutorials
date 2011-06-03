@@ -393,6 +393,18 @@ Pour remettre les choses comme avant, il suffit de faire
 sudo ifconfig wlan0 mtu 1500
 \end{verbatim}
 
+\subsection{Réaliser des opérations sur un fichier .odt à la main}\index{open office}\index{.odt}\index{.zip}
+Un fichier .odt est simplement un fichier .zip avec des choses dedans. À partir de là il est possible de modifier manuellement le fichier. 
+
+Un exemple : Je voulais redimensionner toutes les images d'un énorme fichier .odt parce que ce n'avait pas été fait. La solution est de 
+\begin{enumerate}
+\item renommer le fichier \textit{toto.odt} en \textit{toto.zip} puis le décompresser.
+\item dans le dossier \textit{toto}, cherchez le dossier \textit{Pictures}. 
+\item Sélectionnez toutes les images trop grosses, puis clic droit \textit{Redimensionner les images}. Dans la fenêtre qui s'ouvre, sélectionnez le format voulu (j'ai pris 800x600) et n'oubliez pas de cochez \textit{la case Ne pas changer le nom}.
+\item Une fois fait, il faut recompresser. Pour ça, attention, il ne faut pas compresser le dossier, mais bien les fichiers à l'intérieur. Pour faire plus clair, placez vous DANS le dossier \textit{toto}, sélectionnez tout, et compressez en .zip. 
+\item Renommez le .zip en .odt et ouvrez le, normalement c'est bon.
+\end{enumerate}
+
 
 \section{Configuration du système}
 \subsection{Remettre son système en l'état à partir d'une réinstallation fraiche}
@@ -2466,7 +2478,8 @@ toto.txt
 which xcf2png 2>/dev/null
 if [ $? != 0 ]
 then
-zenity --error --title="Attention" --text="Le programme <b>xcf2png</b> n'existe pas. Installez le paquet <b>xcftools</b>"
+zenity --error --title="Attention" --text="Le programme <b>xcf2png</b> \
+n'existe pas. Installez le paquet <b>xcftools</b>"
 exit 0
 fi
 \end{verbatim}
