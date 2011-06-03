@@ -1083,9 +1083,105 @@ end subroutine transfert
 
 Les attributs \texttt{intent(in)}, \texttt{intent(out)} ou \texttt{intent(inout)} permettent de spécifier si un argument d'une subroutine est un paramètre d'entrée, une variable de sortie ou les deux. Ce n'est pas obligatoire, mais c'est fortement conseillé de s'en servir. Sans ça, il est beaucoup plus difficile de comprendre le code, et de le sécuriser (pour savoir si on a modifié une variable alors qu'on n'aurait pas dû par exemple).
 
+\subsection{transmission d'une procédure en argument}
+Supposons que nous ayons écrit un sous programme dont l'un des arguments représente une fonction (le sous-programme utilise la fonction passée en argument). On suppose que le sous-programme est inclu dans un module. Lors de l'apparl du sous-programme depuis le programme principale, le compilateur ne pourra pas détecter que l'un des arguments est une fonction s'il n'a pas été déclaré comme tel. Pour résoudre ce problème, on utilise une interface contenant l'en-tête de la fonction ainsi que les déclarations relatives aux arguments. 
+\begin{lstlisting}[language=Fortran]
+program integration
+
+! Calcul numerique d'integrales a l'aide des methodes
+! composites des trapezes et de simpson
+
+use mod_integrale
+
+implicit none
+
+real :: res1, res2, Pi
+
+interface                     ! interface obligatoire
+  function f1 (x)
+    real, intent(in) :: x
+    real :: f1
+  end function
+  function f2 (x)
+    real, intent(in) :: x
+    real :: f2
+  end function
+end interface
+
+Pi = 4.0*atan(1.0)
+
+! Appels de la subroutine sans utiliser les noms cles
+! l'ordre des arguments est important
+print*, ' '
+call integrale (0.0, 1.0, 100, f1, res1, res2)
+print*, 'Resultat de la premiere integrale : '
+print*, 'Methode des trapezes : ',res1
+print*, 'Methode de simpson : ',res2
+
+! Appels de la subroutine en utilisant les noms cles
+! l'ordre des arguments n'est pas important
+print*, ' '
+call integrale (fonction=f2, trapeze=res1, simpson=res2, &
+                deb=-Pi/3.0, fin=Pi/3.0, nb_int=200)
+print*, 'Resultat de la seconde integrale : '
+print*, 'Methode des trapezes : ',res1
+print*, 'Methode de simpson : ',res2
+
+end program integration
+
+function f1 (x)                  ! premiere fonction a integrer
+  real, intent(in) :: x
+  real :: f1
+  f1 = x*x+1
+end function
+
+function f2 (x)                  ! seconde fonction a integrer
+  real, intent(in) :: x
+  real :: f2
+  f2 = sin(x)**2.
+end function
+\end{lstlisting}
+
+avec le module
+\begin{lstlisting}[language=Fortran]
+module mod_integrale
+
+implicit none
+
+contains
+
+subroutine integrale (deb, fin, nb_int, fonction, trapeze, simpson)
+
+  implicit none
+  real, intent(in) :: deb, fin               ! bornes d'integration
+  real, intent(out) :: trapeze, simpson      ! methodes d'integration
+  integer, intent(in) :: nb_int              ! nb d'intervalles    
+  real :: fonction
+
+  real :: pas                                ! pas d'integration
+  integer :: i
+
+  pas = (fin - deb)/nb_int
+
+! methode des trapezes
+  trapeze = pas * ( 0.5*(fonction(deb)+fonction(fin)) + &
+            sum( (/ (fonction(deb+i*pas), i = 1,nb_int-1) /) ) ) 
 
 
-%TODO 6.3.5 page 54
+! methode de simpson
+  simpson = pas/3.0 * ( fonction(deb) + fonction(fin) + &
+            2.0*sum( (/ (fonction(deb+i*pas), i = 2, nb_int-2, 2) /) ) + &
+            4.0*sum( (/ (fonction(deb+i*pas), i = 1, nb_int-1, 2) /) ) )
+
+end subroutine integrale
+
+end module mod_integrale
+\end{lstlisting}
+
+
+
+
+% %TODO page 61 les entrées et sorties standard
 
 %TODO parler des types dérivés
 \section{Avancé}
