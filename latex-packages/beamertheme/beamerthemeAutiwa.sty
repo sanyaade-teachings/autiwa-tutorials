@@ -21,7 +21,7 @@
 \setbeamercolor{title in head/foot}{fg=ta2orange, bg=black}
 
 \setbeamercolor*{normal text}{fg=white, bg=ta3gray}
-% \setbeamercolor*{block body}{bg=ta3aluminium,fg=black}
+% \setbeamercolor*{block body}{bg=ta3aluminium,fg=black}%
 \setbeamercolor*{block title}{fg=taorange,bg=ta2gray}
 \setbeamerfont{block title}{size=\large,series=\bf}
 \setbeamercolor{upper separation line head}{fg=ta2orange}
@@ -38,6 +38,10 @@
 \setbeamertemplate{itemize items}[triangle]
 \setbeamertemplate{navigation symbols}{}  % no navigation on a poster
 
+% We define the background of the poster
+\setbeamertemplate{background canvas}{\includegraphics
+   [width=\paperwidth,height=\paperheight]{bleu_noir.pdf}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %pour arrondir les angles des blocs
@@ -48,27 +52,25 @@
 % We define a new box, which is empty for the moment
 \newsavebox{\fmbox}
 
+\setlength\fboxsep{1em}
+% \addtolength{\textwidth}{-2em}
+
 % In the following environment, we define what will contain the new save box, and after, we can use this macro to reuse what we have stored in it. This way, we can box (with \fbox{}, \ovalbox{} or something) an environment, and here, we need it to box what will be in the block environment.
 \newenvironment{fmpage}[1]
-     {\begin{lrbox}{\fmbox}\begin{minipage}{#1}\vskip.25ex}
-     {\vskip.25ex\end{minipage}\end{lrbox}\fbox{\usebox{\fmbox}}}
+     {\begin{lrbox}{\fmbox}\begin{minipage}{#1}\addtolength{\textwidth}{-1em}}
+     {\end{minipage}\end{lrbox}\fbox{\usebox{\fmbox}}}
 
 % modification du style des blocks pour pouvoir centrer le titre, encadrer le block et espacer un peu plus le titre et le contenu du bloc.
 \setbeamertemplate{block begin}{
-  \vskip.75ex
-  \begin{beamercolorbox}[rounded=true,shadow=true,leftskip=1cm,colsep*=.75ex]{block title}%
-    \usebeamerfont*{block title}\centering\insertblocktitle
+  \begin{beamercolorbox}[rounded=true,shadow=true,leftskip=1cm,colsep*=.75ex,center]{block title}%
+    \usebeamerfont*{block title}\insertblocktitle
   \end{beamercolorbox}%
-  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
-  \usebeamerfont{block body}\vskip.25ex%
-  \begin{beamercolorbox}[rounded=true,shadow=true,colsep*=.75ex,sep=.75ex,vmode]{block body}\begin{center}\begin{fmpage}{0.99\textwidth}\begin{flushleft}
+  \usebeamerfont{block body}%
+  \begin{center}\begin{fmpage}{\textwidth}\begin{flushleft}\begin{beamercolorbox}[rounded=true,shadow=true,colsep*=.75ex,sep=1ex,vmode]{block body}
   }
   \setbeamertemplate{block end}{
-  \end{flushleft}\end{fmpage}\end{center}\end{beamercolorbox}
+  \end{beamercolorbox}\end{flushleft}\end{fmpage}\end{center}
 }
-
-\setbeamertemplate{background canvas}{\includegraphics
-   [width=\paperwidth,height=\paperheight]{bleu_noir.pdf}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setbeamertemplate{headline}{  
@@ -102,29 +104,6 @@
 \rule{0pt}{2pt}
 \end{beamercolorbox}
 }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \setbeamertemplate{footline}{
-%   \begin{beamercolorbox}[wd=\paperwidth]{upper separation line foot}
-%     \rule{0pt}{2pt}
-%   \end{beamercolorbox}
-%   
-%   \leavevmode%
-%   \begin{beamercolorbox}[ht=4ex,leftskip=1cm,rightskip=1cm]{author in head/foot}%
-%     \texttt{http://www-i6.informatik.rwth-aachen.de}
-%     \hfill
-%     \texttt{\{dreuw,deselaers\}@cs.rwth-aachen.de}
-%     \vskip1ex
-%   \end{beamercolorbox}
-%   \vskip0pt%
-%   \begin{beamercolorbox}[wd=\paperwidth]{lower separation line foot}
-%     \rule{0pt}{2pt}
-%   \end{beamercolorbox}
-% }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Display a grid to help align images ... and it looks nice with this color scheme
-%\beamertemplategridbackground[1cm]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \mode<all>

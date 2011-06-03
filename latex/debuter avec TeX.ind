@@ -1,156 +1,153 @@
 \begin{theindex}
 
-  \item [, \hyperpage{34}
+  \item beamer, \hyperpage{34}
+  \item bibliographie, \hyperpage{34}
+  \item bin\IeC {\^o}me de Newton, \hyperpage{37}
 
   \indexspace
 
-  \item beamer, \hyperpage{32}
-  \item bibliographie, \hyperpage{32}
-  \item bin\IeC {\^o}me de Newton, \hyperpage{35}
-
-  \indexspace
-
-  \item caption, \hyperpage{35}
-  \item caract\IeC {\`e}res sp\IeC {\'e}ciaux, \hyperpage{3}
+  \item caption, \hyperpage{37}
+  \item caract\IeC {\`e}res sp\IeC {\'e}ciaux, \hyperpage{5}
   \item classe
-    \subitem article, \hyperpage{26}
-    \subitem report, \hyperpage{26}
-  \item CV, \hyperpage{29}
+    \subitem article, \hyperpage{28}
+    \subitem report, \hyperpage{28}
+  \item CV, \hyperpage{31}
 
   \indexspace
 
   \item environnement
-    \subitem figure, \hyperpage{36}
-    \subitem figure*, \hyperpage{4}
-    \subitem inparaenum, \hyperpage{30}
-    \subitem lstlisting, \hyperpage{28, 29}
-    \subitem multicols, \hyperpage{4}
-    \subitem onecolumn, \hyperpage{4}
-    \subitem split, \hyperpage{17}
-    \subitem subfig, \hyperpage{36}
-    \subitem table*, \hyperpage{4}
-    \subitem twocolumn, \hyperpage{4}
-  \item exposant, \hyperpage{15}
+    \subitem figure, \hyperpage{38}
+    \subitem figure*, \hyperpage{6}
+    \subitem inparaenum, \hyperpage{32}
+    \subitem lstlisting, \hyperpage{30, 31}
+    \subitem multicols, \hyperpage{6}
+    \subitem onecolumn, \hyperpage{6}
+    \subitem split, \hyperpage{19}
+    \subitem subfig, \hyperpage{38}
+    \subitem table*, \hyperpage{6}
+    \subitem twocolumn, \hyperpage{6}
+  \item exposant, \hyperpage{17}
 
   \indexspace
 
-  \item figure, \hyperpage{12}
+  \item figure, \hyperpage{14}
 
   \indexspace
 
-  \item g\IeC {\'e}n\IeC {\'e}rer un index, \see{index}{7}
+  \item g\IeC {\'e}n\IeC {\'e}rer un index, \see{index}{9}
 
   \indexspace
 
-  \item include des figures, \see{figure}{12}
-  \item index, \hyperpage{7}
-  \item indice, \hyperpage{15}
-  \item Inkscape, \hyperpage{12}
-  \item inkscape, \hyperpage{34}
+  \item include des figures, \see{figure}{14}
+  \item index, \hyperpage{9}
+  \item indice, \hyperpage{17}
+  \item Inkscape, \hyperpage{14}
+  \item inkscape, \hyperpage{36}
 
   \indexspace
 
-  \item lettres, \hyperpage{26}
-  \item liste, \hyperpage{5}
+  \item lettres, \hyperpage{28}
+  \item liste, \hyperpage{7}
   \item logiciel
-    \subitem bluefish, \hyperpage{34}
-    \subitem kile, \hyperpage{34}
-    \subitem winefish, \hyperpage{34}
+    \subitem bluefish, \hyperpage{36}
+    \subitem kile, \hyperpage{36}
+    \subitem winefish, \hyperpage{36}
 
   \indexspace
 
   \item macro
-    \subitem acronym, \hyperpage{22}
-    \subitem align, \hyperpage{16}, \hyperpage{18}
-    \subitem alignat, \hyperpage{18}
-    \subitem bcancel, \hyperpage{23}
-    \subitem cancel, \hyperpage{23}
-    \subitem cancelto, \hyperpage{23}
-    \subitem caption, \hyperpage{13}, \hyperpage{35}
-    \subitem cr\IeC {\'e}er, \hyperpage{8}
-    \subitem displaymath, \hyperpage{20}
-    \subitem ensuremath, \hyperpage{8}
-    \subitem eqnarray, \hyperpage{20}
-    \subitem equation, \hyperpage{20}
-    \subitem equation*, \hyperpage{20}
-    \subitem footnote, \hyperpage{19}
-    \subitem footnotemark, \hyperpage{19}
-    \subitem footnotetext, \hyperpage{19}
-    \subitem index, \hyperpage{7}
-    \subitem intertext, \hyperpage{19}
-    \subitem label, \hyperpage{13}
-    \subitem list, \hyperpage{6}
-    \subitem multido, \hyperpage{9, 10}
-    \subitem parbox, \hyperpage{19}
-    \subitem subeqnarray, \hyperpage{20}
-    \subitem vphantom, \hyperpage{18}
-    \subitem whiledo, \hyperpage{9}
-    \subitem xcancel, \hyperpage{23}
+    \subitem acronym, \hyperpage{24}
+    \subitem align, \hyperpage{18}, \hyperpage{20}
+    \subitem alignat, \hyperpage{20}
+    \subitem bcancel, \hyperpage{25}
+    \subitem cancel, \hyperpage{25}
+    \subitem cancelto, \hyperpage{25}
+    \subitem caption, \hyperpage{15}, \hyperpage{37}
+    \subitem cr\IeC {\'e}er, \hyperpage{10}
+    \subitem displaymath, \hyperpage{22}
+    \subitem ensuremath, \hyperpage{10}
+    \subitem eqnarray, \hyperpage{22}
+    \subitem equation, \hyperpage{22}
+    \subitem equation*, \hyperpage{22}
+    \subitem footnote, \hyperpage{21}
+    \subitem footnotemark, \hyperpage{21}
+    \subitem footnotetext, \hyperpage{21}
+    \subitem index, \hyperpage{9}
+    \subitem intertext, \hyperpage{20}
+    \subitem label, \hyperpage{15}
+    \subitem list, \hyperpage{8}
+    \subitem multido, \hyperpage{11, 12}
+    \subitem parbox, \hyperpage{21}
+    \subitem subeqnarray, \hyperpage{22}
+    \subitem vphantom, \hyperpage{20}
+    \subitem whiledo, \hyperpage{11}
+    \subitem xcancel, \hyperpage{25}
   \item matlab
-    \subitem afficher du code source, \hyperpage{29}
-  \item matrice, \hyperpage{15}
+    \subitem afficher du code source, \hyperpage{31}
+  \item matrice, \hyperpage{17}
 
   \indexspace
 
   \item package
-    \subitem acronym, \hyperpage{22}
-    \subitem amsmath, \hyperpage{16}, \hyperpage{20}, \hyperpage{27}
-    \subitem array, \hyperpage{11, 12}
-    \subitem babel, \hyperpage{5}, \hyperpage{22, 23}
-    \subitem beamer, \hyperpage{31}, \hyperpage{34}
-    \subitem cancel, \hyperpage{20}, \hyperpage{23}
-    \subitem color, \hyperpage{24}
-    \subitem commath, \hyperpage{24}
-    \subitem example, \hyperpage{29}
-    \subitem fancybox, \hyperpage{25}
-    \subitem fancyhdr, \hyperpage{26}, \hyperpage{36}
-    \subitem floatflt, \hyperpage{14}
-    \subitem graphics, \hyperpage{4}
-    \subitem graphicx, \hyperpage{4}
-    \subitem hyperref, \hyperpage{26}
-    \subitem ifsym, \hyperpage{26}
-    \subitem ifthen, \hyperpage{8, 9}
-    \subitem index, \hyperpage{7}
-    \subitem lettre, \hyperpage{26}
-    \subitem listings, \hyperpage{27, 28}
-    \subitem mathrsfs, \hyperpage{29}
-    \subitem moreverb, \hyperpage{29}
-    \subitem multicol, \hyperpage{4}
-    \subitem multido, \hyperpage{9}
-    \subitem multirow, \hyperpage{11}
-    \subitem natbib, \hyperpage{30}, \hyperpage{33}
-    \subitem numprint, \hyperpage{23}, \hyperpage{27}
-    \subitem paralist, \hyperpage{30}
-    \subitem pstricks, \hyperpage{12}, \hyperpage{24}, \hyperpage{30}
-    \subitem shapepar, \hyperpage{31}
-    \subitem slashbox, \hyperpage{11}
-    \subitem slashed, \hyperpage{21}
-    \subitem subfig, \hyperpage{13}
-    \subitem tocbibind, \hyperpage{33}
-    \subitem xspace, \hyperpage{5}, \hyperpage{27}
-  \item paragraphe, \hyperpage{3}
-  \item pstoedit, \hyperpage{34}
-  \item PStricks, \hyperpage{12}
+    \subitem acronym, \hyperpage{24}
+    \subitem amsmath, \hyperpage{18}, \hyperpage{22}, \hyperpage{29}
+    \subitem array, \hyperpage{13, 14}
+    \subitem babel, \hyperpage{7}, \hyperpage{24, 25}
+    \subitem beamer, \hyperpage{33}, \hyperpage{36}
+    \subitem cancel, \hyperpage{22}, \hyperpage{25}
+    \subitem color, \hyperpage{26}
+    \subitem commath, \hyperpage{26}
+    \subitem example, \hyperpage{31}
+    \subitem fancybox, \hyperpage{27}
+    \subitem fancyhdr, \hyperpage{28}, \hyperpage{38}
+    \subitem floatflt, \hyperpage{16}
+    \subitem graphics, \hyperpage{6}
+    \subitem graphicx, \hyperpage{6}
+    \subitem hyperref, \hyperpage{28}
+    \subitem ifsym, \hyperpage{28}
+    \subitem ifthen, \hyperpage{10, 11}
+    \subitem index, \hyperpage{9}
+    \subitem lettre, \hyperpage{28}
+    \subitem listings, \hyperpage{29, 30}
+    \subitem mathrsfs, \hyperpage{31}
+    \subitem moreverb, \hyperpage{31}
+    \subitem multicol, \hyperpage{6}
+    \subitem multido, \hyperpage{11}
+    \subitem multirow, \hyperpage{13}
+    \subitem natbib, \hyperpage{32}, \hyperpage{35}
+    \subitem natbibnatbib, \hyperpage{36}
+    \subitem numprint, \hyperpage{25}, \hyperpage{29}
+    \subitem paralist, \hyperpage{32}
+    \subitem pstricks, \hyperpage{14}, \hyperpage{26}, \hyperpage{32}
+    \subitem shapepar, \hyperpage{33}
+    \subitem slashbox, \hyperpage{13}
+    \subitem slashed, \hyperpage{23}
+    \subitem subfig, \hyperpage{15}
+    \subitem tocbibind, \hyperpage{35}
+    \subitem xspace, \hyperpage{7}, \hyperpage{29}
+  \item paragraphe, \hyperpage{5}
+  \item pstoedit, \hyperpage{36}
+  \item PStricks, \hyperpage{14}
 
   \indexspace
 
-  \item slash de feynman, \hyperpage{21}
-  \item synaptic, \hyperpage{34}
+  \item slash de feynman, \hyperpage{23}
+  \item synaptic, \hyperpage{36}
 
   \indexspace
 
-  \item tableau, \hyperpage{10}
-  \item tetex, \hyperpage{34}
-  \item tex-live, \hyperpage{34}
+  \item tableau, \hyperpage{12}
+  \item tetex, \hyperpage{36}
+  \item tex-live, \hyperpage{36}
   \item texte
-    \subitem aligner, \hyperpage{5}
-    \subitem fonte, \hyperpage{5}
-    \subitem rotation, \hyperpage{4}
-  \item twoside, \hyperpage{26}
-  \item typographie fran\IeC {\c c}aise, \hyperpage{5}
+    \subitem aligner, \hyperpage{7}
+    \subitem fonte, \hyperpage{7}
+    \subitem rotation, \hyperpage{6}
+  \item twoside, \hyperpage{28}
+  \item typographie fran\IeC {\c c}aise, \hyperpage{7}
 
   \indexspace
 
-  \item Xfig, \hyperpage{12}, \hyperpage{31}
+  \item Xfig, \hyperpage{14}, \hyperpage{33}
 
 \end{theindex}

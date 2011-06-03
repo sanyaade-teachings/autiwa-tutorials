@@ -7,15 +7,21 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[orientation=portrait,size=a0,scale=1.4]{beamerposter}
 \RequirePackage{autiwa-macros}
+\RequirePackage{multicol}
 
+
+\RequirePackage{lmodern}
 %###############################################
-%définition des commandes beamer en elles mêmes
+% définition des commandes beamer en elles mêmes
 
 \mode<presentation>
 {
-  %  \usetheme{Berlin}
 \usetheme{Autiwa}
-% \usetheme{Darmstadt}
+
+
+% Pour avoir la numérotation des figures
+\setbeamertemplate{caption}[numbered]
+
 \usefonttheme[onlylarge]{structurebold}
 \setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
 \setbeamertemplate{navigation symbols}{}
@@ -23,7 +29,7 @@
 % \RequirePackage{times}
 % \RequirePackage{amsmath,amsthm, amssymb, latexsym}
 \boldmath
-\RequirePackage{multicol}
+
 %#######################################################
 
 

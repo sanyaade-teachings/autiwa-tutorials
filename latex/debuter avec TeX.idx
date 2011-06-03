@@ -61,7 +61,7 @@
 \indexentry{macro!alignat|hyperpage}{20}
 \indexentry{macro!alignat|hyperpage}{20}
 \indexentry{macro!align|hyperpage}{20}
-\indexentry{macro!intertext|hyperpage}{21}
+\indexentry{macro!intertext|hyperpage}{20}
 \indexentry{macro!parbox|hyperpage}{21}
 \indexentry{macro!footnote|hyperpage}{21}
 \indexentry{macro!footnotetext|hyperpage}{21}
@@ -137,7 +137,7 @@
 \indexentry{package!natbib|hyperpage}{35}
 \indexentry{package!beamer|hyperpage}{36}
 \indexentry{package!beamer|hyperpage}{36}
-\indexentry{[|hyperpage}{36}
+\indexentry{package!natbibnatbib|hyperpage}{36}
 \indexentry{tetex|hyperpage}{36}
 \indexentry{tex-live|hyperpage}{36}
 \indexentry{synaptic|hyperpage}{36}
