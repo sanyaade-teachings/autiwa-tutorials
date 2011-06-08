@@ -617,10 +617,10 @@ L'extension \gras[package!slashbox]{slashbox} permet de scinder une cellule en d
 
 
 \subsection{Définir une colonne en mode mathématique}
-Avec le package \gras[package!array]{array}, il suffit de déclarer \verb|\begin{tabular}{>{\)}c<{\)}cc}| pour avoir une colonne en mode mathématique et deux colonnes de texte.
+Avec le package \gras[package!array]{array}, il suffit de déclarer \verb|\begin{tabular}{>{$}c<{$}cc}| pour avoir une colonne en mode mathématique et deux colonnes de texte.
 
 \begin{example}
-\begin{tabular}{>{\(}c<{\)}cc}
+\begin{tabular}{>{$}c<{$}cc}
 2x+3=1 & equation difficile\\
 3x^2+y^2=3 & definition d'un cercle
 \end{tabular}

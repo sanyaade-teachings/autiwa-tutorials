@@ -1183,7 +1183,44 @@ end module mod_integrale
 
 % %TODO page 61 les entrées et sorties standard
 
-%TODO parler des types dérivés
+
+\section{Vers les objets : les types dérivés}\index{type dérivé}\index{structure}\index{programmation orienté objet}
+On appelle type dérivé la définition d'un nouveau type de variable, sorte d'objet contenant un nombre et un type de variable arbitraire. 
+
+\bigskip
+
+Pour utiliser des variables du type dérivé \textit{nom\_type} précédemment défini, on déclare simplement :
+\begin{lstlisting}[language=Fortran]
+type (nom_type) [,liste_attributs] :: nom_var
+\end{lstlisting}
+
+\begin{remarque}
+Pour accéder aux champs de l'objet que nous venons de définir, nous utiliserons le caractère pourcent \og \%\fg (équivalent du point pour Python par exemple). En supposant qu'un champ \textit{position} existe dans un objet \textit{planete}, on y fait appel via
+\begin{lstlisting}[language=Fortran]
+type (planete) :: terre
+
+terre%position = 0.0
+\end{lstlisting}
+\end{remarque}
+
+\bigskip
+
+\begin{exemple}
+Supposons qu'on veuille définir un nouveau type \textit{animal} dans lequel seraient recensés la race, l'âge, la couleur et l'état de vaccination.
+\begin{lstlisting}[language=Fortran]
+type animal
+  character (len=20) :: race
+  real :: age
+  character (len=15) :: couleur
+  logical, dimension(8) :: vaccination
+end type animal
+\end{lstlisting}
+
+On peut ensuite manipuler globalement l'objet animal ou accéder à chacun de ses champs grâce à l'opérateur \og \%\fg.
+
+\end{exemple}
+
+
 \section{Avancé}
 \subsection{les pointeurs}
 Un pointeur, ce n'est ni plus ni moins qu'une variable qui contient une adresse mémoire. 
@@ -1196,19 +1233,28 @@ Ceci étant dit, on définit différents types de pointeurs, selon la nature des
 \caption{Représentation schématique du fonctionnement d'un pointeur avec représentation de la mémoire. Les numéros pour les cases mémoires ne représentent pas la réalité, c'est juste pour montrer comment on fait référence à une case mémoire. L'idée est de montrer qu'en manipulant des adresses au lieu de manipuler les contenus, on peut faire des choses beaucoup plus puissantes.}
 \end{figure}
 
+On définit des pointeurs à l'aide d'attributs. Que ce soit pour définir les cibles que l'on pourra pointer
+\begin{lstlisting}[language=Fortran]
+real, target :: a, b(1000), c(10,10)
+\end{lstlisting}
+ou pour définir les pointeurs eux mêmes (qui devront bien évidemment avoir le même type que les cibles auxquelles ils seront associés ultérieurement)
+\begin{lstlisting}[language=Fortran]
+real, pointer :: pa, pb, pc
+\end{lstlisting}
+
 %TODO parler plus en détail des pointeurs. 
 
 \subsection{Attributs des variables lors de leur déclaration}
 Lors de leur déclaration, il existe divers attributs que l'on peut donner aux variables et qui permettent de préciser à quoi elles vont servir notamment. 
 
-\bigskip
+\subsubsection{Une constante : parameter}
 
 On peut ainsi définir une variable comme étant un paramètre, c'est à dire que cette dernière ne pourra pas être modifiée dans le reste du programme. C'est pratique pour définir des constantes comme la valeur de $\pi$ par exemple : 
 \begin{lstlisting}[language=Fortran]
 real, parameter :: pi = 3.14159
 \end{lstlisting}
 
-\bigskip
+\subsubsection{Entrée ou sortie : intent}
 
 Il est possible en Fortran 90 d'associer des attributs aux arguments des procédures pour fiabiliser les programmes. Les principaux attributs sont : 
 \begin{itemize}
@@ -1230,17 +1276,6 @@ logical, intent(inout) ::   c    ! argument d'entree et de sortie
 [...]         ! bloc d'instructions
  
 end subroutine nom 
-\end{lstlisting}
-
-\bigskip
-
-On définit des pointeurs à l'aide d'attributs. Que ce soit pour définir les cibles que l'on pourra pointer
-\begin{lstlisting}[language=Fortran]
-real, target :: a, b(1000), c(10,10)
-\end{lstlisting}
-ou pour définir les pointeurs eux mêmes (qui devront bien évidemment avoir le même type que les cibles auxquelles ils seront associés ultérieurement)
-\begin{lstlisting}[language=Fortran]
-real, pointer :: pa, pb, pc
 \end{lstlisting}
 
 

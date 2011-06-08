@@ -64,6 +64,23 @@ où \textbf{latex/} et \textbf{vim/} sont deux dossiers existant dans le dossier
 Cette commande n'agit que sur le répertoire local (la \emph{working copy}). Il faut ensuite faire un \textbf{commit} (voir \refsec{sec:commit}) pour valider les changements sur le serveur.
 \end{attention}
 
+\begin{remarque}
+Supprimer manuellement dans le dossier courant des fichiers n'aura aucune incidence sur le dépot subversion (je crois). Il faut faire avec \texttt{svn delete} si on veut modifier quelque chose.
+\end{remarque}
+
+\subsection{Lister les fichiers du dépot}
+\begin{verbatim}
+svn list
+\end{verbatim}
+va lister les fichiers présent dans le dépôt, mais par défaut, il fait les fichiers présent lors de la première révision. 
+
+Pour spécifier un numéro de révision (pour peu que les fichiers aient changés entre temps) : 
+\begin{verbatim}
+svn list -r 7
+\end{verbatim}
+pour afficher la liste des fichiers de la révision 7.
+
+
 \section{Subversion sur internet}
 Je vais prendre l'exemple de google code, qui est celui que j'ai choisi et que je suis en train d'apprendre.
 
