@@ -367,6 +367,15 @@ end select
 end
 \end{lstlisting}
 
+\begin{remarque}
+Pour écrire de \emph{bons} programmes fortran, il faut : 
+\begin{itemize}
+\item Que dans chaque \texttt{case} il y ait une seule valeur du paramètre
+\item \texttt{case default} est optionnel, mais il est conseillé de toujours en mettre un, comme ça on est sur que quelque chose sera exécuté.
+\item \texttt{case default} est optionnel mais il vaut mieux le placer à la fin du \texttt{select case}, c'est plus logique et naturel.
+\end{itemize}
+\end{remarque}
+
 \subsubsection{La boucle for}
 La syntaxe générale est la suivante :
 \begin{lstlisting}[language=Fortran]
