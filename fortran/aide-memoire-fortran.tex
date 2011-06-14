@@ -1287,6 +1287,42 @@ logical, intent(inout) ::   c    ! argument d'entree et de sortie
 end subroutine nom 
 \end{lstlisting}
 
+\subsection{Erreurs de compilation}
+\subsubsection{Utilisation de fonctions internes à un module}
+\begin{verbatim}
+kepler_equation.o: In function `__kepler_equation_MOD_orbel_fhybrid':
+kepler_equation.f90:(.text+0x25f): undefined reference to `orbel_flon_'
+collect2: ld a retourné 1 code d'état d'exécution
+\end{verbatim}
+
+Le problème vient de la fonction \verb|orbel_fhybrid| du module \verb|kepler_equation|. j'ai en effet pris des fonctions pour en faire un module, et avant, des variables étaient définies dans la fonction, puisque celle-ci faisait appel à d'autres fonctions. Toutes ces fonctions faisant maintenant partie du même module, on peut et on doit enlever ces définitions. 
+
+Pour résoudre le problème, j'ai donc supprimé la ligne : 
+\begin{verbatim}
+real*8 orbel_flon
+\end{verbatim}
+dans la définition de la fonction \verb|orbel_fhybrid|.
+
+\subsubsection{Utilisation de fonctions d'un module}
+\begin{verbatim}
+mercury.f90:1140.22:
+
+  character*8 mio_re2c, mio_fl2c
+                      1
+Error: Symbol 'mio_re2c' at (1) already has basic type of CHARACTER
+\end{verbatim}
+Il faut supprimer cette ligne parce que le type de la fonction est déjà défini dans le module, pas besoin de redéfinir le type de la fonction dans la subroutine qui importe le module.
+
+\subsubsection{Utilisation de subroutine en paramètre d'autres subroutines}
+\begin{verbatim}
+mercury.f90:137.19:
+
+  external mco_dh2h,mco_h2dh
+                   1
+Error: Cannot change attributes of USE-associated symbol at (1)
+\end{verbatim}
+
+En mettant ces subroutines (celles qu'on appelle en argument) dans un module, pas besoin de les définir via un \texttt{external}. Il faut donc supprimer cette ligne.
 
 
 
