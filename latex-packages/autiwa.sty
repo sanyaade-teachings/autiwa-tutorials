@@ -1,11 +1,40 @@
 \NeedsTeXFormat{LaTeX2e}[1999/01/01]
-\ProvidesPackage{autiwa}[2011/06/01 Extension personnelle, V2.51]%aaaa/mm/dd
-%voir le fichier change.log pour l'historique des modifications
+\ProvidesPackage{autiwa}[2011/06/16 Extension personnelle, V2.6]%aaaa/mm/dd
+%voir le fichier change.log pour l'historique des modification
+
+% On définit les variables de tests
+\newif\if@french \@frenchtrue
+\newif\if@print \@printfalse
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% déclaration des options qui redéfinissent certaines fonctions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Si on veut une version imprimable, on redéfinit certaines choses pour consommer moins d'encre
+\DeclareOption{print}{\@printtrue}
+
+% Si on souhaite faire un document en anglais.
+\DeclareOption{english}{\@frenchfalse}
+
+\DeclareOption*{}%% Ne rien faire quand une option est inconnue
+
+\ProcessOptions
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FIN DES OPTIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%% polices %%%
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}  % OT2 c'est pour le cyrillique
-\RequirePackage[frenchb]{babel}%russian est là pour la commande qui se trouve dans la macro \peigne
+
+\if@french
+  \RequirePackage[frenchb]{babel}
+  \FrenchFootnotes % pour les notes de bas de page
+  \AddThinSpaceBeforeFootnotes % pour les puristes (donc tout le monde!) qui veulent une espace fine entre le mot et l'appel de note
+\else
+  \RequirePackage[english]{babel}
+\fi
+
 \RequirePackage[autolanguage]{numprint}
 \RequirePackage[font=small,format=plain,labelsep=endash]{caption}
 
@@ -16,8 +45,12 @@
 %%% mise en page %%%
 \RequirePackage{multicol}%permet de mettre du texte sur plusieurs colonnes sans changer de pages (très pratique pour deux colonnes, vu que par défaut, il change de page
 \RequirePackage{natbib}%améliore la bibliographie, surtout pour citer les publications scientifiques.
+
+\if@french
+  \RequirePackage{frbib}%pour mettre la bibliographie en français
+\fi
+
 \RequirePackage{aas_macros}% contient les macros pour la déifnition des noms de journaux des publications scientifiques utilses pour les enterées bibtex de ADS.
-\RequirePackage{frbib}%pour mettre la bibliographie en français
 \RequirePackage[nottoc]{tocbibind}%pour que la bibliographie  et l'index apparaissent dans la table des matières. l'option permet de ne pas afficher la table des matières. (notlof, notlot pour table des figures et ou des tableaux)
 \RequirePackage{xspace}%Permet à babel d'utiliser la macro xspace  partout où c'est nécessaire. (Voir la doc de babel pour de plus amples explications.)
 \RequirePackage{acronym}%pour gérer les acronymes. Description du paquet dans mon pdf, ou dans la description du paquet acronym.sty
@@ -101,28 +134,40 @@
 \RequirePackage{theorem}
     \theoremheaderfont{\scshape} \theoremstyle{break} % style des entêtes
     \theorembodyfont{\normalfont} % style de police
-    \newtheorem{theoreme}{Théorème}
-    \newtheorem{definition}{Définition}
-    \newtheorem{demonstration}{Démonstration}
-    \newtheorem{propriete}{Propriété}
+    \newtheorem{theoreme}{\theoremname}
+    \newtheorem{definition}{\definitionname}
+    \newtheorem{demonstration}{\demonstrationname}
+    \newtheorem{propriete}{\proprietename}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Macros diverses
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-\FrenchFootnotes % pour les notes de bas de page
-\AddThinSpaceBeforeFootnotes % pour les puristes (donc tout le monde!) qui veulent une espace fine entre le mot et l'appel de note
+\if@french
+  \newcommand{\theoremname}{Théorème}
+  \newcommand{\definitionname}{Définition}
+  \newcommand{\demonstrationname}{Démonstration}
+  \newcommand{\proprietename}{Propriété}
+\else
+  \newcommand{\theoremname}{Theorem}
+  \newcommand{\definitionname}{Definition}
+  \newcommand{\demonstrationname}{Proof}
+  \newcommand{\proprietename}{Property}
+\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 % macro pour le glossaire
 %%%%%%%%%%%%%%%%%%%%%%%%%%
+\if@french
+  \newcommand{\glossaryname}{Glossaire}
+\else
+  \newcommand{\glossaryname}{Glossary}
+\fi
+
 \newcommand{\glossaire}[2]{\item[#1] #2}
 \newcommand{\boiteentreeglossaire}[1]{%
 	\parbox[b]{\labelwidth}{%
     \setlength{\fboxsep}{3pt}%
     \setlength{\fboxrule}{.4pt}%
     \shadowbox{\sffamily#1}\\\hfill\mbox{}}}
-	\newenvironment{leglossaire}{\newpage\section*{Glossaire}%
-\addcontentsline{toc}{section}{Glossaire}\begin{list}{}{%
+	\newenvironment{leglossaire}{\newpage\section*{\glossaryname}%
+\addcontentsline{toc}{section}{\glossaryname}\begin{list}{}{%
       \setlength{\labelwidth}{.5\textwidth}%
       \setlength{\labelsep}{-.8\labelwidth}%
       \setlength{\itemindent}{\parindent}%
@@ -136,19 +181,31 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % déclaration des options qui redéfinissent certaines fonctions
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\DeclareOption{print}{%
-\newgray{lightgray}{1}
-\hypersetup{
-  colorlinks=false, %colorise les liens
-  breaklinks=true, %permet le retour à la ligne dans les liens trop longs
-  urlcolor= dark,  %couleur des hyperliens
-  linkcolor= black, %couleur des liens internes
-  plainpages=false,  %pour palier à "Bookmark problems can occur when you have duplicate page numbers, for example, if you have a page i and a page 1."
-  citecolor=black % pour définir la couleur des liens de bibliographie
-}
-\newrgbcolor{marou}{0 0 0}%redéfinie cette couleur, pour notamment rendre les titres noirs, et aussi les résultats de la commande \gras{}
-}
+% \DeclareOption{print}{%
+% \newgray{lightgray}{1}
+% \hypersetup{
+%   colorlinks=false, %colorise les liens
+%   breaklinks=true, %permet le retour à la ligne dans les liens trop longs
+%   urlcolor= dark,  %couleur des hyperliens
+%   linkcolor= black, %couleur des liens internes
+%   plainpages=false,  %pour palier à "Bookmark problems can occur when you have duplicate page numbers, for example, if you have a page i and a page 1."
+%   citecolor=black % pour définir la couleur des liens de bibliographie
+% }
+% \newrgbcolor{marou}{0 0 0}%redéfinie cette couleur, pour notamment rendre les titres noirs, et aussi les résultats de la commande \gras{}
+% }
 
-\ProcessOptions
+% \DeclareOption{english}{%
+% \renewcommand{\glossaryname}{Glossary}
+% \RequirePackage[english]{babel}
+% }
+% 
+% \DeclareOption{french}{%
+% \renewcommand{\glossaryname}{Glossaire}
+% 
+% }
+% 
+% \DeclareOption*{}%% Ne rien faire quand une option est inconnue
+% 
+% \ProcessOptions
 
 \endinput

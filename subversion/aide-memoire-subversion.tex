@@ -80,6 +80,22 @@ svn list -r 7
 \end{verbatim}
 pour afficher la liste des fichiers de la révision 7.
 
+\subsection{Revenir à une version précédente}
+Afin de forcer la mise à jour vers une révision plus ancienne (en cas de bug) il suffit de préciser le numéro de la révision
+\begin{verbatim}
+svn update -r39
+\end{verbatim}
+pour revenir à la révision $39$.
+
+\bigskip
+
+On peut aussi supprimer les modifications de certaines révisions, à condition que celles-ci soient indépendantes des révisions plus récentes : 
+\begin{verbatim}
+svn merge -r2349:2345
+\end{verbatim}
+
+Cette commande, qui doit être suivie d'un \texttt{commit}, va créer une nouvelle révision qui annule les commit entre 2345 et 2349 pour créer une révision 2350. 
+
 
 \section{Subversion sur internet}
 Je vais prendre l'exemple de google code, qui est celui que j'ai choisi et que je suis en train d'apprendre.
