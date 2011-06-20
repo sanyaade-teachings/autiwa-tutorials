@@ -1229,9 +1229,34 @@ On peut ensuite manipuler globalement l'objet animal ou accéder à chacun de se
 
 \end{exemple}
 
+\section{Astuces et petits bouts de code}
+\subsection{Lire un fichier de longueur inconnue}
+Pour lire un fichier dont on ne connait pas le nombre de lignes : 
+\begin{lstlisting}[language=Fortran]
+implicit none
+
+integer, parameter :: NMAX = 200 ! max number of messages
+
+integer :: error
+integer, dimension(NMAX) :: length
+character(len=80), dimension(NMAX) :: message
+
+open(14, file='message.in', status=old)
+do
+  read (14,'(i3,1x,i2,1x,a80)', iostat=error) j, length(i), message(i)
+  if (error /= 0) exit
+end do
+close(14)
+\end{lstlisting}
+
+\begin{remarque}
+La fonction \texttt{trim()} permet de supprimer les espaces en trop, pratique pour affiche ou écrire du texte proprement.
+\end{remarque}
+
+
 
 \section{Avancé}
-\subsection{les pointeurs}
+\subsection{Les pointeurs}
 Un pointeur, ce n'est ni plus ni moins qu'une variable qui contient une adresse mémoire. 
 
 Ceci étant dit, on définit différents types de pointeurs, selon la nature des objets vers lesquels on pointe. L'utilité d'une telle chose est de pouvoir faire de l'arithmétique avec les pointeurs, vu que l'on connait la taille mémoire de chaque objet qu'on manipule. 

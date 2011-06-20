@@ -87,6 +87,16 @@ svn update -r39
 \end{verbatim}
 pour revenir à la révision $39$.
 
+\begin{remarque}
+Si la révision $39$ est la dernière et qu'elle a été envoyée depuis le répertoire local, il est fort probable que la commande ci-dessus ne change rien. Une solution un peu barbare consisterais à revenir à la version encore avant, puis revenir à la révision courante pour forcer l'application des changements, ou alors utiliser la commande 
+\begin{verbatim}
+svn revert *.f90
+\end{verbatim}
+qui va remettre en l'état tous les fichiers du svn qui sont présents dans le dossier courant.
+
+\end{remarque}
+
+
 \bigskip
 
 On peut aussi supprimer les modifications de certaines révisions, à condition que celles-ci soient indépendantes des révisions plus récentes : 
