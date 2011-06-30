@@ -857,6 +857,14 @@ liste = liste.split("\n")
 Préférer les méthodes décrites dans \refsec{sec:subprocess} plutôt que les méthodes du module \gras[module!os]{os}. Je sais plus pourquoi, mais parait que c'est mieux.
 \end{attention}
 
+\section{Erreurs}
+\subsection{Unindent}
+\begin{verbatim}
+IndentationError: unexpected indent
+\end{verbatim}
+
+C'est normalement dû au fait qu'il y a dans le code source des indentations avec tabulation et espaces. Un simple rechercher/remplacer permet de corriger l'erreur normalement.
+
 
 \section{Astuces}
 \subsection{Copier une liste (et non faire un lien virtuel)}
