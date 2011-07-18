@@ -1007,6 +1007,22 @@ PYTHONPATH=$HOME/python/modules
 export PATH PYTHONPATH
 \end{verbatim}
 
+\subsection{Optimisations}
+(J'ai eu la flemme de traduire, mais l'idée y est)
+
+If you feel the need for speed, go for built-in functions - you can't beat a loop written in C. Check the library manual for a built-in function that does what you want. If there isn't one, here are some guidelines for loop optimization:
+
+\begin{itemize}
+\item Rule number one: only optimize when there is a proven speed bottleneck. Only optimize the innermost loop. (This rule is independent of Python, but it doesn't hurt repeating it, since it can save a lot of work. :-)
+\item Small is beautiful. Given Python's hefty charges for bytecode instructions and variable look-up, it rarely pays off to add extra tests to save a little bit of work.
+\item Use intrinsic operations. An implied loop in map() is faster than an explicit for loop; a while loop with an explicit loop counter is even slower.
+\item Avoid calling functions written in Python in your inner loop. This includes lambdas. In-lining the inner loop can save a lot of time.
+\item Local variables are faster than globals; if you use a global constant in a loop, copy it to a local variable before the loop. And in Python, function names (global or built-in) are also global constants!
+\item Try to use map(), filter() or reduce() to replace an explicit for loop, but only if you can use a built-in function: map with a built-in function beats for loop, but a for loop with in-line code beats map with a lambda function!
+\item Check your algorithms for quadratic behavior. But notice that a more complex algorithm only pays off for large N - for small N, the complexity doesn't pay off. In our case, 256 turned out to be small enough that the simpler version was still a tad faster. Your mileage may vary - this is worth investigating.
+\item And last but not least: collect data. Python's excellent profile module can quickly show the bottleneck in your code. if you're considering different versions of an algorithm, test it in a tight loop using the time.clock() function. 
+\end{itemize}
+
 
 \printindex
 \end{document}
