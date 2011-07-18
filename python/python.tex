@@ -908,6 +908,13 @@ vars().has_key('x')
 globals().has_key('x')
 \end{verbatim}
 
+ou encore
+\begin{verbatim}
+if ('x' in locals()):
+  print("'x' est défini")
+\end{verbatim}
+
+
 \subsection{Tester le type d'une variable}
 \begin{verbatim}
 >>> liste=['test', 'test']
