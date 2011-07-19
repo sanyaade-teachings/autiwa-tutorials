@@ -163,7 +163,38 @@ svn commit -m "initialisation"
 où \textbf{"initialisation"} est le commentaire qui décrit la mise à jour et les modifications effectuées, \textbf{passwd} étant le mot de passe associé à votre identifiant (ici \textbf{autiwa@gmail.com} pour moi).
 
 
+\section{Importer un arbre subversion}
+À la création d'un dépot subversion (sur internet par exemple) on peut souhaiter importer un arbre subversion déjà existant (localement par exemple). Afin de l'importer, il suffit d'avoir le dépôt de destination entièrement vide (pas initialisé). Il peut donc être nécessaire de faire un \emph{reset}. Puis il faut faire 
+\begin{verbatim}
+svnsync init --username YOURUSERNAME \
+https://YOURPROJECT.googlecode.com/svn file:///path/to/localrepos
+  Copied properties for revision 0.
+\end{verbatim}
+pour initialiser le dépôt. Vous aurez alors un retour de cette forme : 
+\begin{verbatim}
+$ svnsync init --username YOURUSERNAME \
+https://mercury-90.googlecode.com/svn file:///home/login/svn/mercury
+  Copied properties for revision 0.
+\end{verbatim}
 
+Puis il faut synchroniser toutes les révisions locales sur le nouveau dépôt : 
+\begin{verbatim}
+svnsync sync --username YOURUSERNAME https://YOURPROJECT.googlecode.com/svn
+  Committed revision 1.
+  Copied properties for revision 1.
+  Committed revision 2.
+  Copied properties for revision 2.
+  [...]
+\end{verbatim}
+
+\begin{remarque}
+J'ai eu droit à un 
+\begin{verbatim}
+svnsync: Le serveur a envoyé une valeur inattendue (502 Bad Gateway)
+ en réponse à la requête PROPFIND pour '/svn/!svn/bln/21'
+\end{verbatim}
+J'ai re-exécuté la même commande de synchronisation quelques minutes après et j'ai pu synchroniser, je ne sais pas d'où le problème venait.
+\end{remarque}
 
 
 
@@ -173,6 +204,9 @@ Mes svn :
 URL : https://autiwa-tutorials.googlecode.com/svn/trunk/
 login : autiwa@gmail.com
 Description : SVN pour mes formulaires, recettes de cuisines et tutoriaux divers. Il contient même mes paquets LaTeX
+
+URL : https://mercury-90.googlecode.com/svn
+Description : SVN pour le code mercury en f90 que je développe.
 
 URL : https://pl3.projectlocker.com/autiwa_py_modules/svn
 login : autiwa@gmail.com
