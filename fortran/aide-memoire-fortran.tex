@@ -1312,6 +1312,102 @@ logical, intent(inout) ::   c    ! argument d'entree et de sortie
 end subroutine nom 
 \end{lstlisting}
 
+\subsection{Débuger des programmes fortran avec gdb}\index{gdb}\index{débugeur}
+Afin d'utiliser un débugeur comme \gras{gdb} pour suivre l'exécution d'un programme fortran, il est nécessaire de le compiler avec l'option \texttt{-g}, par exemple : 
+\begin{verbatim}
+f77 -g foo.f -o foo
+\end{verbatim}
+La commande suivante va créer un exécutable \textbf{foo} que vous pouvez exécuter normalement ou à travers \textbf{gdb} pour suivre ce qu'il fait au fur et à mesure.
+
+\bigskip
+
+Pour commencer l'exécution du programme \textbf{foo} avec \textbf{gdb} il faut : 
+\begin{enumerate}
+\item faire précéder le nom du programme par \textbf{gdb} : 
+\begin{verbatim}
+gdb foo
+\end{verbatim}
+Vous aurez alors une ligne de commande de la forme 
+\begin{verbatim}
+(gdb) 
+\end{verbatim}
+\item entrez ces commandes dans le prompt \texttt{(gdb)} :
+\begin{verbatim}
+break main
+run
+\end{verbatim}
+Ceci lancera l'exécution du programme, puis cette dernière sera mise en pause juste avant la première commande exécutable.
+\end{enumerate}
+
+\bigskip
+
+Une chose intéressante à connaître est la séquence exacte d'exécution du programme, en particulier à travers les boucles et les tests conditionnels. Si le programme n'est pas trop gros, vous pouvez suivre facilement ce chemin en exécutant les lignes de code une à une. 
+
+Pour exécuter la ligne suivante, il faut entrer dans le prompt \texttt{(gdb)} :
+\begin{verbatim}
+step
+\end{verbatim}
+
+À chaque fois que vous entrez la commande \texttt{step}, \textbf{gdb} va alors afficher la ligne qui est sur le point d'être exécuter, avec le numéro de ligne à gauche. Ceci permet de savoir ce qu'il va se passer, avant que ça ne se passe réellement.
+
+\bigskip
+
+Pour quitter \textbf{gdb}, entrez la commande suivante dans le prompt : 
+\begin{verbatim}
+quit
+\end{verbatim}
+Vous aurez alors le message suivant : 
+\begin{verbatim}
+The program is running.  Quit anyway (and kill it)? (y or n)
+\end{verbatim}
+Entrez '\texttt{y}' pour confirmez que vous souhaitez quitter \textbf{gdb}.
+
+\subsubsection{Savoir où on se trouve dans le programme}
+Pour savoir où on est, il suffit d'entrer dans le prompt \texttt{(gdb)} :
+\begin{verbatim}
+where
+\end{verbatim}
+Cette commande affiche alors le numéro de ligne de la ligne courante. par exemple quelque chose du genre : 
+\begin{verbatim}
+#0  foo () at foo.f:12
+\end{verbatim}
+indique que l'exécution du programme est actuellement au niveau de la ligne 12 du code source du fichier \textbf{foo.f}
+
+\bigskip
+
+Vous pouvez afficher quelques lignes du code source autour de la position actuelle via 
+\begin{verbatim}
+list
+\end{verbatim}
+
+Il est aussi possible, via cette commande, de spécifier une liste de lignes à afficher. Par exemple pour lister les lignes 10 à 24 du programme courant, vous devez entrer dans le prompt \texttt{(gdb)} :
+\begin{verbatim}
+list 10,24
+\end{verbatim}
+
+\subsubsection{Afficher le contenu d'une variable fortran avec gdb}
+À n'importe quel moment de l'exécution pas à pas du programme, vous pouvez connaître les valeurs courantes de vos variables en utilisant la commande \texttt{print}. Par exemple, si vous avez une variable \textbf{density}, vous pouvez entrer la commande suivante afin de connaître la valeur stockée : 
+\begin{verbatim}
+print density
+\end{verbatim}
+ 
+\begin{attention}
+Vous devez entrer les noms des variables en minuscules dans \textbf{gdb}, sans vous préoccuper de la casse de la variable dans votre code source.
+\end{attention}
+
+\subsubsection{Mettre le programme en pause à un endroit particulier}
+Au lieu d'entrer 
+\begin{verbatim}
+break main
+\end{verbatim}
+il faut entrer une commande du style
+\begin{verbatim}
+break [file:]function
+\end{verbatim}
+où \texttt{[file:]} est un argument optionnel qui permet de spécifier dans quel fichier se trouve la fonction considérée (s'il y a plusieurs fichiers) et \texttt{function} est le nom de la fonction au début de laquelle on veut mettre l'exécution en pause.
+
+
+
 \subsection{Erreurs de compilation}
 \subsubsection{Utilisation de fonctions internes à un module}
 \begin{verbatim}
