@@ -71,6 +71,51 @@ descripteur H & DOUBLE PRECISION\\
 \end{tabular}
 \end{center}
 
+\subsection{Comparaison f77/f90}
+En fortran 77, voici les temps d'exécution : 
+\begin{verbatim}
+arguin.cossou> gfortran -o timings timings.f
+arguin.cossou> ./timings 
+ \nInteger powers tests:
+ A**4 Duration=          1.3177989999999999     
+ A**N (N=4) Duration=    2.4546269999999994     
+ A*A*A*A Duration=       1.2278140000000004     
+ \nLook-up table tests:
+ Lookup table created, duration=       5.0052380000000003     
+ Repeated pi/4 & sine, duration=       6.3040409999999998     
+ Repeated sine, duration=       12.620081000000003     
+ All lookups, duration=       1.2658079999999998     
+ \nLarge array tests:
+ X outer, Y inner, duration=       14.059861999999995     
+ Y outer, X inner, duration=       5.0562309999999968   
+\end{verbatim}
+
+En fortran 90, en adaptant simplement le code :
+\begin{verbatim}
+arguin.cossou> gfortran -o timings timings.f90
+arguin.cossou> ./timings 
+ \nInteger powers tests:
+ A**4 Duration=          1.3827890000000000     
+ A**N (N=4) Duration=    2.9805470000000005     
+ A**pN (pointer) Duration=    2.9005589999999994     
+ A*A*A*A Duration=       1.2208150000000009     
+ \nLook-up table tests:
+ Lookup table created, duration=      9.99000000000194177E-004
+ Repeated pi/4 & sine, duration=       1.0698379999999990     
+ Repeated sine, duration=       12.619081000000000     
+ All lookups, duration=       1.1228300000000004     
+ \nLarge array tests:
+ X outer, Y inner, duration=       12.905039000000002     
+ Y outer, X inner, duration=       4.9852419999999995  
+\end{verbatim}
+Ce que j'ai fait : 
+\begin{itemize}
+\item enlever les labels dans les boucles \textbf{do}
+\item rajouter un test de plus où je défini un pointeur vers l'exposant. 
+\end{itemize}
+
+
+
 \section{Les bases}
 \subsection{Éléments de syntaxe}
 Une ligne ne peut dépasser 132 caractères. Il est possible cependant d'étendre une instruction de plus de 132 caractères sur plusieurs lignes.
@@ -1253,7 +1298,227 @@ close(14)
 La fonction \texttt{trim()} permet de supprimer les espaces en trop, pratique pour affiche ou écrire du texte proprement.
 \end{remarque}
 
+\section{Optimisation}
+\subsection{Comparaison f77/f90}
+\subsection{Profiling}
+Avant d'essayer de rendre le code plus rapide, il faut en premier lieu trouver quelles parties du code le ralentissent et dans lesquelles il va être rentable de passer le temps d'optimisation.
 
+Profiler le temps d'exécution d'un code fortran peut être fait en ajoutant l'option de compilation \texttt{-pg} : 
+\begin{verbatim}
+gfortran -g -pg -o myprog myprog.f90
+\end{verbatim}
+
+\begin{remarque}
+Certains compilateurs, en particulier les vieux, ne vont pas autoriser les options d'optimisation si l'option \texttt{-g} est présente, et même s'ils optimisent, ça pourrait donner des résultats de profiling flous et difficiles à interpréter. 
+
+Il vaut donc mieux éviter les options d'optimisation quand on compile pour profiler. 
+\end{remarque}
+
+Ensuite, exécutez normalement votre programme
+\begin{verbatim}
+./myprog
+\end{verbatim}
+mais il faut quand même faire attention à avoir les droits d'écriture dans le dossier d'exécution afin de pouvoir écrire le fichier de résultat du profiling, appelé \textbf{gmon.out}. 
+
+\bigskip
+
+Vous pouvez maintenant avoir les information de profiling en utilisant \textbf{gprof} :
+\begin{verbatim}
+gprof myprog gmon.out
+\end{verbatim}
+
+\begin{remarque}
+Si vous voulez une analyse ligne par ligne plutôt que fonction par fonction, il vous suffit (tant que vous avez compilé le programme avec l'option \texttt{-g}), d'utiliser l'option \texttt{--line} :
+\begin{verbatim}
+gprof --line myprog gmon.out
+\end{verbatim}
+\end{remarque}
+
+L'exécution de \textbf{gprof} va produire deux parties d'output, un \textit{flat profile} et un \textit{call graph}.
+\subsubsection{flat profile}
+Le flat profile ressemble à ça : 
+\begin{verbatim}
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+ 32.08      0.17     0.17     1488     0.11     0.14  __algo_mvs_MOD_mdt_mvs
+ 28.30      0.32     0.15        1   150.01   530.02  MAIN__
+ 16.98      0.41     0.09      477     0.19     0.34  __algo_radau_MOD_mdt_ra15
+ 13.21      0.48     0.07     7254     0.01     0.01  __forces_MOD_mfo_grav
+  7.55      0.52     0.04     1634     0.02     0.02  __algo_mvs_MOD_mfo_mvs
+  1.89      0.53     0.01     1428     0.01     0.01  __drift_MOD_drift_kepu_lag
+  0.00      0.53     0.00    61641     0.00     0.00  __drift_MOD_drift_kepu_stumpff
+\end{verbatim}
+
+Ce dernier liste les sections du programme (que ce soit les fonctions ou les lignes, selon que vous utilisez ou non l'option \texttt{--line}) par ordre du temps CPU utilisé, le premier étant celui qui en utilise le plus. Chaque ligne vous donne : 
+\begin{enumerate}
+\item le pourcentage de CPU utilisé par cette section
+\item le temps cumulé utilisé par cette section et toutes celles qui sont en dessous dans la liste
+\item le nombre de seconde passés dans cette section
+\item [si cette section est une fonction] : 
+\begin{enumerate}
+\item le nombre d'appel de cette fonction dans le programme
+\item le temps moyen passé dans la fonction, par appel
+\item le temps moyen passé dans la fonction, ou une des fonctions qu'elle appelle, par appel
+\end{enumerate}
+\item le nom de la fonction.
+\end{enumerate}
+
+\begin{remarque}
+Si vous avez compilé avec l'option \texttt{-g} et l'option \texttt{--line} pour \textbf{gprof}, alors le nom de la fonction incluera aussi le nom du fichier source et le numéro de ligne. 
+
+Le \textbf{flat profile} est suivi d'une explication de ce que signifie chaque champ.
+\end{remarque}
+
+\subsubsection{call graph}
+Le \textbf{call graph} fournit les mêmes informations que le \textbf{flat profile}, mais organisation de façon à ce qu'il reflète la structure du programme. 
+
+\begin{verbatim}
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 2 byte(s) for 1.89% of 0.53 seconds
+
+index % time    self  children    called     name
+                                   2             MAIN__ [1]
+                0.15    0.38       1/1           main [2]
+[1]    100.0    0.15    0.38       1+2       MAIN__ [1]
+                0.17    0.05    1488/1488        __algo_mvs_MOD_mdt_mvs [3]
+                0.00    0.16       1/1           mxx_sync.1545 [4]
+                0.00    0.00      35/35          __algo_mvs_MOD_mco_mvs2h [13]
+                0.00    0.00       1/1           __algo_mvs_MOD_mco_h2mvs [14]
+                0.00    0.00    1488/1488        __dynamic_MOD_mce_cent [28]
+                0.00    0.00      67/67          __mercury_outputs_MOD_mio_ce [35]
+                0.00    0.00      54/54          __utilities_MOD_mio_spl [36]
+                0.00    0.00      33/33          __mercury_outputs_MOD_mio_dump [37]
+                0.00    0.00      32/32          __mercury_outputs_MOD_mio_out [38]
+                0.00    0.00      14/15          __system_properties_MOD_mce_hill [41]
+                0.00    0.00      14/14          __system_properties_MOD_mxx_ejec [42]
+                0.00    0.00       6/6           __orbital_elements_MOD_mco_el2x [44]
+                0.00    0.00       4/18          __system_properties_MOD_mxx_en [40]
+                0.00    0.00       2/2           __mercury_outputs_MOD_mio_log [45]
+                0.00    0.00       1/1           __system_properties_MOD_mce_init [47]
+                                   2             MAIN__ [1]
+-----------------------------------------------
+                                                 <spontaneous>
+[2]    100.0    0.00    0.53                 main [2]
+                0.15    0.38       1/1           MAIN__ [1]
+-----------------------------------------------
+                0.17    0.05    1488/1488        MAIN__ [1]
+[3]     40.6    0.17    0.05    1488         __algo_mvs_MOD_mdt_mvs [3]
+                0.04    0.00    1490/1634        __algo_mvs_MOD_mfo_mvs [8]
+                0.00    0.01   22320/25560       __drift_MOD_drift_one [10]
+\end{verbatim}
+
+
+\subsection{Equivalent Operations Don't Necessarily Run in Equivalent Time}
+Dans l'exemple d'un programme qui fait $X$ à la puissance $Y$, pour un entier $Y$, utilisons trois façons différentes de coder :
+\begin{enumerate}
+\item en utilisant la fonction power avec un $Y$ constant
+\begin{lstlisting}[language=Fortran]
+A=PI
+
+call CPU_TIME(start_time)
+do I=1,MAXLOOPS
+    B=A**4
+end do
+call CPU_TIME(stop_time)
+write(*,*) "A**4 Duration=       ",stop_time - start_time
+\end{lstlisting}
+
+\item en utilisant la fonction power mais avec une variable comme exposant.
+\begin{lstlisting}[language=Fortran]
+A=PI
+N=4
+
+call CPU_TIME(start_time)
+do I=1,MAXLOOPS
+    B=A**N
+end do
+call CPU_TIME(stop_time)
+write(*,*) "A**N (N=4) Duration= ",stop_time - start_time
+\end{lstlisting}
+
+\item en multipliant $X$ par lui même $Y$ fois.
+\begin{lstlisting}[language=Fortran]
+A=PI
+
+call CPU_TIME(start_time)
+do I=1,MAXLOOPS
+    B=A*A*A*A
+end do
+call CPU_TIME(stop_time)
+write(*,*) "A*A*A*A Duration=    ",stop_time - start_time
+\end{lstlisting}
+
+\end{enumerate}
+
+\begin{verbatim}
+ \nInteger powers tests:
+ A**4 Duration=          1.3827890000000000     
+ A**N (N=4) Duration=    2.9805470000000005     
+ A**pN (pointer) Duration=    2.9005589999999994     
+ A*A*A*A Duration=       1.2208150000000009     
+\end{verbatim}
+
+\begin{important}
+\begin{align}
+A^n & \Rightarrow \underbrace{A * \cdots * A_{\text{$n$ fois}}
+\end{align}
+
+Il vaut donc mieux élever un nombre à une puissance entière par multiplication répétée (ou multiplication répétée suivie de division par 1.0 pour les puissances d'entiers négatifs.
+\end{important}
+
+\begin{remarque}
+D'autres opérations pour lesquelles il y a de multiples façon de programmer auront le même comportement. Si on a un doute sur la technique à utiliser, on peut toujours modifier les sources fournis pour créer un set de tests pour un autre type d'opération.
+\end{remarque}
+
+
+\subsection{Use Lookup Tables for Common Calculations}
+
+The second section of the example programs compares repeatedly using a calculated value of the sine of Pi over 4 within a loop, with getting a pre-calculated result from an array (a "lookup table").
+
+You should find that whether or not you pre-calculate Pi over 4 makes very little difference, but avoiding repeated evaluation of the more computationally expensive sine function gives a 40 times speed-up in FORTRAN, and over 150 times in C.
+
+In this example the time taken to construct the lookup table is considerably less than the amount of time saved through using it. In other cases the situation may not be as clear cut - however, you can always use another program to do all the calculations once and store the results in a file, which your main program can then read in as it starts. Where applicable you may also want to consider producing a lookup table for key points in a function, and interpolate (linearly, or otherwise) approximations to the intervening values.
+Minimise the Number of Large Jumps in Memory Address
+
+The third section of the example programs illustrates how the way a computer is constructed can interact with how you program.
+
+All modern computers have three types of memory:
+
+    on-die cache (typically 128KB to 8MB)
+    main RAM (typically 128MB to 4GB)
+    disk-based "swap" space (typically 2GB and up)
+
+Each of these can be considered to be an order of magnitude slower to access than the one above it in the list, so ideally you want to be operating on data that's held in the on-die cache as much as possible, and getting data from the swap space as little as possible. Unfortunately you won't normally have any control over what data is held where - the computer's operating system will move chunks ("pages" - typically 4KB on x86 Linux systems) of memory between the three depending on whether or not it thinks they are currently "in use".
+
+Because of this behaviour you do not want to be continually jumping between, apparently, arbitrary memory locations as the computer will need to keep swapping pages around the system in order to get the one containing the memory address you want into the cache. This is illustrated by the two pairs of nested loops in the example programs stepping through a large two dimensional array.
+
+Although C and FORTRAN allow us to have arrays with multi-dimensional indices, the computer's memory address space is only one dimensional. If we consider a simple 3x3 array in C (A[3][3]) then this is actually laid out in memory as:
+
+A[0][0] A[0][1] A[0][2] A[1][0] A[1][1] A[1][2] A[2][0] A[2][1] A[2][2]
+
+i.e. the rightmost index is the most rapidly varying.
+
+Whereas in FORTRAN the 3x3 array A(3,3) is laid out in memory as:
+
+A(1,1) A(2,1) A(3,1) A(1,2) A(2,2) A(3,2) A(1,3) A(2,3) A(3,3)
+
+i.e. the leftmost index is the most rapidly varying.
+
+If we have an array which is thousands of elements in each dimension then varying the first index by 1 in a C program, or the second index by 1 in a FORTRAN program, will take you into a different page which may not currently be readily accessible, thus causing a delay in processing. Consequently, it is important that loops are nested in the correct order to ensure that, wherever practical, you process all of the elemnents in the current page before going onto the next one, rather than continually processing a single element in a page and then jumping to a completely different one.
+
+In practice this isn't quite so important with C programs, as you'll see from the example program since memory access is fast and nesting the loops either way round results in a similar execution time. With FORTRAN however, nesting the loops the "wrong" way round (with the second index on the inner, more quickly varying, loop) slows the program down by about a factor of 3.
+Use the Compiler's Optimization Flags
+
+By far the simplest way of speeding up a program is to use the compiler's optimization flags (-O, -O2, or -O3). The higher the number used, the more optimization techniques carried out on the program and the faster the code should run (but there's no guarantee of this). N.B. the more optimization you turn on, the longer the program will take to compile, and the more the code that you execute will diverge from the code that you wrote, which may cause difficulties if you need to debug a problem.
+
+Try compiling the two example programs using the various levels of optimization. You should find that for the C version using any level of optimization gives you about a 7\% speed-up, but there's not much to choose between them. With the FORTRAN version there is also little to choose between the various optimization levels, but using any kind of compiler optimization speeds the program up by a factor of 7 to 10 times. The results for your own programs may well be different.
+
+Another optimization option that you may derive some, possibly small, benefit from is -funroll-loops 
 
 \section{Avancé}
 \subsection{Les pointeurs}
@@ -1275,6 +1540,38 @@ ou pour définir les pointeurs eux mêmes (qui devront bien évidemment avoir le
 \begin{lstlisting}[language=Fortran]
 real, pointer :: pa, pb, pc
 \end{lstlisting}
+
+Pour attribuer une adresse au pointeur, il suffit ensuite de faire
+\begin{verbatim}
+pa => a
+\end{verbatim}
+
+Après cette assignation, on peut alors faire 
+\begin{verbatim}
+b(i) = pa * c(i,i)
+\end{verbatim}
+qui est équivalent en terme de résultat avec
+\begin{verbatim}
+b(i) = a * c(i,i)
+\end{verbatim}
+
+\bigskip
+
+On peut aussi faire 
+\begin{verbatim}
+pa = 1.23456
+write(*,*) 'a = ',a
+\end{verbatim}
+et avoir ``1.23456'' comme résultat affiché parce que changer \textit{pa} change \textit{a}
+
+\bigskip
+
+Le pointeur peut être ré-associé à n'importe quel moment. Il peut aussi être forcé à ne pointer sur rien en faisant : 
+\begin{verbatim}
+nullify(pa)
+\end{verbatim}
+
+
 
 %TODO parler plus en détail des pointeurs. 
 
@@ -1405,6 +1702,21 @@ il faut entrer une commande du style
 break [file:]function
 \end{verbatim}
 où \texttt{[file:]} est un argument optionnel qui permet de spécifier dans quel fichier se trouve la fonction considérée (s'il y a plusieurs fichiers) et \texttt{function} est le nom de la fonction au début de laquelle on veut mettre l'exécution en pause.
+
+\subsubsection{Débuggage avancé}
+Pour exécuter le programme ligne à ligne, il existe \texttt{next} et \texttt{step}. 
+\begin{enumerate}
+\item \texttt{step} permet d'exécuter la ligne suivante du programme tout en passant \emph{au-dessus} de tout appel de fonction dans la ligne.
+\item \texttt{next} permet d'exécuter la ligne suivante du programme, en exécutant aussi tous les appels de fonctions de la ligne.
+\end{enumerate}
+
+
+\bigskip
+
+Pour continuer l'exécution (jusqu'au prochain breakpoint je suppose) il faut utiliser la commande suivante dans le prompt \textbf{(gdb)} :
+\begin{verbatim}
+c
+\end{verbatim}
 
 
 
