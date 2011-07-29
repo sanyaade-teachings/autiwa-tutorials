@@ -25,14 +25,14 @@ Il est possible que le serveur soit lui aussi client, dans le cas où il n'y aur
 \section{commandes universelles subversion}
 Ici, je note les commandes qui sont valables à la fois pour svn installé sur un serveur internet, ou sur une machine locale pour un usage personnel
 
-\subsection{Mettre à jour sa copie locale}
+\subsection{Mettre à jour sa copie locale : update}\index{commande svn!update} \index{Mise à jour du dépôt}
 \begin{verbatim}
 svn update
 \end{verbatim}
 
-Pour celà, il faut que le dossier dans lequel on se trouve ait déjà été défini comme un dossier svn via un \gras{checkout} (voir \refsec{sec:checkout})
+Pour celà, il faut que le dossier dans lequel on se trouve ait déjà été défini comme un dossier svn via un \gras[commande svn!checkout]{checkout} (voir \refsec{sec:checkout})
 
-\subsection{Ajouter des fichiers ou dossiers au projet}\index{commande svn!add}
+\subsection{Ajouter des fichiers ou dossiers au projet : add}\index{commande svn!add} \index{Ajouter des fichiers}
 Pour ajouter des fichiers il faut faire :
 \begin{verbatim}
 svn add latex/ vim/ 
@@ -47,7 +47,7 @@ Au cas où ça serait pas clair. J'ai créé un dossier \textbf{/home/autiwa/For
 Cette commande n'agit que sur le répertoire local (la \emph{working copy}). Il faut ensuite faire un \textbf{commit} (voir \refsec{sec:commit}) pour valider les changements sur le serveur.
 \end{attention}
 
-\subsection{Supprimer des fichiers ou dossiers au projet}\index{commande svn!delete}
+\subsection{Supprimer des fichiers ou dossiers au projet : delete}\index{commande svn!delete} \index{Supprimer des fichiers}
 Pour supprimer des fichiers il faut faire :
 \begin{verbatim}
 svn delete latex/ vim/ 
@@ -55,14 +55,14 @@ svn delete latex/ vim/
 où \textbf{latex/} et \textbf{vim/} sont deux dossiers existant dans le dossier local de référence. 
 
 \begin{attention}
-Cette commande n'agit que sur le répertoire local (la \emph{working copy}). Il faut ensuite faire un \textbf{commit} (voir \refsec{sec:commit}) pour valider les changements sur le serveur.
+Cette commande n'agit que sur le répertoire local (la \emph{working copy}). Il faut ensuite faire un \texttt{commit} (voir \refsec{sec:commit}) pour valider les changements sur le serveur.
 \end{attention}
 
 \begin{remarque}
 Supprimer manuellement dans le dossier courant des fichiers n'aura aucune incidence sur le dépot subversion (je crois). Il faut faire avec \texttt{svn delete} si on veut modifier quelque chose.
 \end{remarque}
 
-\subsection{Lister les fichiers du dépot}
+\subsection{Lister les fichiers du dépot : list}\index{commande svn!list} \index{Lister les fichiers du dépôt}
 \begin{verbatim}
 svn list
 \end{verbatim}
@@ -74,11 +74,11 @@ svn list -r 7
 \end{verbatim}
 pour afficher la liste des fichiers de la révision 7.
 
-\subsection{Revenir à une version précédente}
+\subsection{Revenir à une version précédente} \index{Revenir à une version précédente}
 Pour annuler les modifications locales et revenir à la dernière révision : 
 \begin{verbatim}
 svn revert *.f90
-\end{verbatim}
+\end{verbatim}\index{commande svn!revert}
 va remettre en l'état tous les fichiers du svn qui sont présents dans le dossier courant (on peut aussi ne préciser qu'un seul fichier).
 
 \bigskip
@@ -86,7 +86,7 @@ va remettre en l'état tous les fichiers du svn qui sont présents dans le dossi
 Si on souhaite forcer la mise à jour vers une révision plus ancienne (en cas de bug) il suffit de préciser le numéro de la révision
 \begin{verbatim}
 svn update --force -r39
-\end{verbatim}
+\end{verbatim}\index{commande svn!update}
 pour revenir à la révision $39$ ou 
 \begin{verbatim}
 svn update --force -r39 fichier.f90
@@ -105,7 +105,7 @@ Si la révision $39$ est la dernière et qu'elle a été envoyée depuis le rép
 On peut aussi supprimer les modifications de certaines révisions, à condition que celles-ci soient indépendantes des révisions plus récentes : 
 \begin{verbatim}
 svn merge -r2349:2345
-\end{verbatim}
+\end{verbatim}\index{commande svn!merge}
 ou
 \begin{verbatim}
 svn merge -r2349:2345 fichier.f90
@@ -114,12 +114,12 @@ pour ne modifier qu'un seul fichier (ou un ensemble de fichier restreint.
 
 Cette commande, qui doit être suivie d'un \texttt{commit}, va créer une nouvelle révision qui annule les commit entre 2345 et 2349 pour créer une révision 2350. 
 
-\subsection{Historique des modifications : log}\index{commande!log}\index{historique des modifications}
+\subsection{Historique des modifications : log}\index{historique des modifications}
 La commande \texttt{log} permet de voir un historique des commentaires de révision, soit de l'ensemble des fichiers, soit d'un fichier en particulier.
 
 \begin{verbatim}
 svn log
-\end{verbatim}
+\end{verbatim}\index{commande svn!log}
 affiche l'historique de toutes les révisions (il est possible de spécifier un nombre maximal de lignes que l'on souhaite (les 10 dernières révisions par exemple via l'option \texttt{-l 10}). 
 
 \begin{verbatim}
@@ -131,12 +131,12 @@ va afficher l'historique des modifications du fichier \textbf{main.f90}, c'est �
 \section{Subversion sur internet}
 Je vais prendre l'exemple de google code, qui est celui que j'ai choisi et que je suis en train d'apprendre.
 
-\subsection{Récupérer le contenu du projet}\label{sec:checkout}\index{commande svn!checkout}
+\subsection{Récupérer le contenu du projet}\label{sec:checkout}
 Une fois le projet créé (sur la page \url{http://code.google.com/hosting/createProject}), il faut faire : 
 \begin{verbatim}
 svn checkout --username autiwa@gmail.com --password "passwd" \
 https://autiwa-tutorials.googlecode.com/svn/trunk/ Formulaires
-\end{verbatim}
+\end{verbatim}\index{commande svn!checkout}
 
 Cette commande permet de récupérer le contenu du projet et de le copier dans un dossier \textbf{Formulaires} qui sera créé dans le dossier courant.
 
@@ -224,7 +224,7 @@ J'ai re-exécuté la même commande de synchronisation quelques minutes après e
 \end{remarque}
 
 
-
+\printindex
 \end{document}
 
 Mes svn : 
