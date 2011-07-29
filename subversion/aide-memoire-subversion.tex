@@ -75,19 +75,28 @@ svn list -r 7
 pour afficher la liste des fichiers de la révision 7.
 
 \subsection{Revenir à une version précédente}
-Afin de forcer la mise à jour vers une révision plus ancienne (en cas de bug) il suffit de préciser le numéro de la révision
-\begin{verbatim}
-svn update -r39
-\end{verbatim}
-pour revenir à la révision $39$.
-
-\begin{remarque}
-Si la révision $39$ est la dernière et qu'elle a été envoyée depuis le répertoire local, il est fort probable que la commande ci-dessus ne change rien. Une solution un peu barbare consisterais à revenir à la version encore avant, puis revenir à la révision courante pour forcer l'application des changements, ou alors utiliser la commande 
+Pour annuler les modifications locales et revenir à la dernière révision : 
 \begin{verbatim}
 svn revert *.f90
 \end{verbatim}
-qui va remettre en l'état tous les fichiers du svn qui sont présents dans le dossier courant.
+va remettre en l'état tous les fichiers du svn qui sont présents dans le dossier courant (on peut aussi ne préciser qu'un seul fichier).
 
+\bigskip
+
+Si on souhaite forcer la mise à jour vers une révision plus ancienne (en cas de bug) il suffit de préciser le numéro de la révision
+\begin{verbatim}
+svn update --force -r39
+\end{verbatim}
+pour revenir à la révision $39$ ou 
+\begin{verbatim}
+svn update --force -r39 fichier.f90
+\end{verbatim}
+Pour ne changer qu'un seul fichier en particulier.
+
+\begin{remarque}
+Si la révision $39$ est la dernière et qu'elle a été envoyée depuis le répertoire local, il est fort probable que la commande ci-dessus ne change rien. Il faut alors utiliser la commande \texttt{revert}
+
+\texttt{--force} permet de forcer les fichiers de la révision et d'écraser toute éventuelle modification locale. Dans le doute, tester sans cette option, quitte à la rajouter ensuite.
 \end{remarque}
 
 
@@ -97,8 +106,26 @@ On peut aussi supprimer les modifications de certaines révisions, à condition 
 \begin{verbatim}
 svn merge -r2349:2345
 \end{verbatim}
+ou
+\begin{verbatim}
+svn merge -r2349:2345 fichier.f90
+\end{verbatim}
+pour ne modifier qu'un seul fichier (ou un ensemble de fichier restreint.
 
 Cette commande, qui doit être suivie d'un \texttt{commit}, va créer une nouvelle révision qui annule les commit entre 2345 et 2349 pour créer une révision 2350. 
+
+\subsection{Historique des modifications : log}\index{commande!log}\index{historique des modifications}
+La commande \texttt{log} permet de voir un historique des commentaires de révision, soit de l'ensemble des fichiers, soit d'un fichier en particulier.
+
+\begin{verbatim}
+svn log
+\end{verbatim}
+affiche l'historique de toutes les révisions (il est possible de spécifier un nombre maximal de lignes que l'on souhaite (les 10 dernières révisions par exemple via l'option \texttt{-l 10}). 
+
+\begin{verbatim}
+svn log main.f90
+\end{verbatim}
+va afficher l'historique des modifications du fichier \textbf{main.f90}, c'est à dire que n'apparaitront que les commentaires des révisions où le fichier \textbf{main.f90} a été modifié.
 
 
 \section{Subversion sur internet}
