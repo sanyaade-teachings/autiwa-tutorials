@@ -38,6 +38,16 @@ plot 'plot.dat' using 1:2
 \end{verbatim}
 On va alors tracer la deuxième colonne en fonction de la première.
 
+\bigskip
+
+On peut aussi tracer plusieurs courbes :
+\begin{verbatim}
+plot 'plot.dat' using 1:2 title 'courbe1', '' using 1:3 title 'courbe2', \
+     '' using 1:4 title 'courbe3', 'plot2.dat' using 1:2 title 'courbe4'
+\end{verbatim}
+Pour tracer 4 courbes, 3 venant du fichier \textbf{plot.dat}, la 2\ieme, 3\ieme et 4\ieme colonne en fonction de la première et une courbe venant de \textbf{plot2.dat}.
+
+
 \subsection{Tracer une fonction à partir de la formule}
 On peut, au lieu de rentrer un tableau de points, tracer directement une fonction connue : 
 \begin{verbatim}
@@ -65,9 +75,79 @@ où $200$ est le nombre de points servant à tracer la fonction. Si vous êtes e
 replot
 \end{verbatim}
 
+\section{Exporter la courbe}\label{sec:terminal}
+Le principe de gnuplot est de sélectionner un terminal où envoyer les données du graphique. par défaut, ce terminal est \textbf{x11}. 
+
+Pour définir un terminal il suffit de rentrer
+\begin{verbatim}
+set terminal x11
+\end{verbatim}
+Cette dernière commande est la commande par défaut, celle qui permet d'afficher les graphiques à l'écran.
+
+Dans le mode interactif de gnuplot, on accède à la liste des terminaux via
+\begin{verbatim}
+help terminal
+\end{verbatim}
 
 
-\subsection{Les options}
+\subsection{Fichier pdf}
+\begin{verbatim}
+set terminal pdfcairo
+set output 'graphique.pdf'
+replot
+\end{verbatim}
+
+\begin{remarque}
+Le \texttt{replot} n'est utile que si la courbe a déjà été affichée (à l'écran par exemple).
+\end{remarque}
+
+\subsection{fichier svg}
+\begin{verbatim}
+set terminal svg rounded size 450,360
+set output 'graphique.svg'
+replot
+\end{verbatim}
+
+
+
+
+\section{Les options}
+\subsection{label}
+\begin{verbatim}
+set xlabel "axe des abscisses"
+set ylabel "axe des ordonnées"
+\end{verbatim}
+
+\subsection{échelle logarithmique}
+\begin{verbatim}
+set logscale x
+set logscale y
+\end{verbatim}
+
+\subsection{grille}
+\begin{verbatim}
+set grid
+\end{verbatim}
+
+\subsection{Forcer un zoom}
+\begin{verbatim}
+set xrange [0:5]
+\end{verbatim}
+
+\subsection{Texte avancé}
+Dans le terminal\footnote{Pour plus de détails sur la définition du terminal, voir \refsec{sec:terminal}} courant, lors de sa définition, il faut rajouter l'option \texttt{enhanced}
+
+\begin{verbatim}
+set terminal x11 enhanced
+\end{verbatim}
+
+Ceci permet de faire du texte en indice, en exposant et d'accéder aux lettres grecques par exemple. 
+
+%TODO rajouter la liste des lettres grecques et comment les afficher.
+
+
+
+
 
 \printindex
 \end{document}
