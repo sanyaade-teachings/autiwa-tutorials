@@ -1465,7 +1465,7 @@ write(*,*) "A*A*A*A Duration=    ",stop_time - start_time
 
 \begin{important}
 \begin{align}
-A^n & \Rightarrow \underbrace{A * \cdots * A_{\text{$n$ fois}}
+A^n & \Rightarrow \underbrace{A * \cdots * A_{\text{$n$ fois}}}
 \end{align}
 
 Il vaut donc mieux élever un nombre à une puissance entière par multiplication répétée (ou multiplication répétée suivie de division par 1.0 pour les puissances d'entiers négatifs.
@@ -1756,6 +1756,24 @@ Error: Cannot change attributes of USE-associated symbol at (1)
 \end{verbatim}
 
 En mettant ces subroutines (celles qu'on appelle en argument) dans un module, pas besoin de les définir via un \texttt{external}. Il faut donc supprimer cette ligne.
+
+\subsubsection{Function has no implicit type}
+\begin{verbatim}
+test_mfo_user.f90:35.12:
+
+      f_p = get_F(p)
+            1
+Error: Function 'get_f' at (1) has no IMPLICIT type
+\end{verbatim}
+
+J'ai eu cette erreur parce que je n'avais pas rajouté le module dans la ligne de compilation 
+\begin{verbatim}
+gfortran -o test test_mfo_user.f90 user_module.o
+\end{verbatim}
+
+\bigskip
+
+J'ai eu aussi cette erreur parce que dans le module \textbf{user\_module}, la fonction \textbf{get\_F} était une fonction privée.
 
 
 

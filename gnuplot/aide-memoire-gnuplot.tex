@@ -1,0 +1,73 @@
+\documentclass[a4paper,twoside]{article}
+\usepackage{autiwa}
+
+\title{Aide mémoire gnuplot}
+\author{Autiwa}
+
+\makeindex
+\begin{document}
+
+\tableofcontents
+
+\clearpage
+
+\section{Préambule}
+Gnuplot permet de tracer des courbes de manière plus ou moins complexes, en 2D ou en 3D. Ce formulaire est là pour donner des pistes et pouvoir faire rapidement des choses basiques. Il n'a pas la prétention d'être exhaustif, ce qui rendrait l'information plus difficile à retrouver et à séparer de l'essentiel que je m'efforce de mettre en valeur. 
+
+Gnuplot se présente sous la forme d'un logiciel en ligne de commande que l'on utilise en faisant : 
+\begin{verbatim}
+gnuplot
+\end{verbatim}
+
+Toutes les commandes que je présente peuvent être entrées de manière intéractives dans \textbf{gnuplot}. Je ne présenterais pas cette manière de faire, dans la suite je présenterais une suite d'instruction que j'enregistre dans un fichier (au nom quelconque, mais à qui je donne l'extension \textbf{.gnuplot} pour plus de lisibilité. Afin de s'en servir on fait alors :
+\begin{verbatim}
+gnuplot fichier.gnuplot
+\end{verbatim}
+
+\begin{remarque}
+La différence principale entre le script \textbf{*.gnuplot} et l'affichage interactif, c'est que le plot affiché à l'écran (terminal \texttt{x11}) ne reste pas par défaut, il faut ainsi mettre un \texttt{pause(-1)} en fin de script pour que le graphique reste, et un appui sur \touche{Entrée} continue l'exécution du script (et le termine s'il n'y a rien ensuite).
+\end{remarque}
+
+
+
+\section{Faire un plot 2D}
+\subsection{À partir d'un fichier}
+Admettons que le fichier \textbf{plot.dat} contienne deux colonnes dans lesquelles il y a respectivement les valeurs de $x$ et $y$ pour notre graphique. Afin d'afficher le graphique il suffit de faire : 
+\begin{verbatim}
+plot 'plot.dat' using 1:2
+\end{verbatim}
+On va alors tracer la deuxième colonne en fonction de la première.
+
+\subsection{Tracer une fonction à partir de la formule}
+On peut, au lieu de rentrer un tableau de points, tracer directement une fonction connue : 
+\begin{verbatim}
+plot sin(x)
+\end{verbatim}
+
+Les fonctions dans gnuplot sont les mêmes que les fonctions dans la librairie mathématique Unix à part que les fonctions acceptent des entier des réels ou des complexes comme argument. 
+
+\begin{remarque}
+Pour les fonctions qui acceptent ou retourne des angles qui pourraient être donnés en degrés ou en radian (sin(x), cos(x), tant(x), asin(x), acos(x), atan(x), \dots) l'unité peut être sélectionnée par \texttt{set angles} (par défaut, ce sont des radians).
+\end{remarque}
+
+On peut alors faire par exemple : 
+\begin{verbatim}
+plot (sin(x)/x)**2
+\end{verbatim}
+un sinus cardinal au carré.
+
+Si le nombre de points n'est pas assez élevé, on peut alors rajouter
+\begin{verbatim}
+set samples 200
+\end{verbatim}
+où $200$ est le nombre de points servant à tracer la fonction. Si vous êtes en interactif ou que l'option \texttt{samples} est utilisée après le \texttt{plot}, il faut aussi utiliser
+\begin{verbatim}
+replot
+\end{verbatim}
+
+
+
+\subsection{Les options}
+
+\printindex
+\end{document}
