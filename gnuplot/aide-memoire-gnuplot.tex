@@ -141,10 +141,51 @@ Dans le terminal\footnote{Pour plus de détails sur la définition du terminal, 
 set terminal x11 enhanced
 \end{verbatim}
 
+\begin{attention}
+Tous les terminaux ne supportent l'affichage de texte avancé (et donc l'option \textbf{enhanced})
+\end{attention}
+
+
 Ceci permet de faire du texte en indice, en exposant et d'accéder aux lettres grecques par exemple. 
 
-%TODO rajouter la liste des lettres grecques et comment les afficher.
+On peut alors écrire dans le graphique \verb|x_1 + y^2| qui apparaîtra comme $x_1 + y^2$.
 
+\begin{remarque}
+Pas besoin de mettre en mode mathématique, il suffit de l'écrire comme ça.
+\end{remarque}
+
+
+\bigskip
+
+Une différence importante a lieu pour l'affichage des lettres grecques : 
+\begin{center}
+\begin{tabular}{*{4}{|c|c|}}
+\hline
+ALPHABET  & SYMBOL  & ALPHABET  & SYMBOL  & alphabet  & symbol  & alphabet  & symbol \\\hline\hline
+A  & A  & N  & N  & a  & $\alpha$  & n  & $\nu$\\\hline
+B  & B  & O  & O  & b  & $\beta$  & o  & o\\\hline
+C  & X  & P  & $\Pi$  & c  & $\chi$  & p  & $\pi$\\\hline
+D  & $\Delta$  & Q  & $\Theta$  & d  & $\delta$  & q  & $\theta$\\\hline
+E  & E  & R  & P  & e  & $\epsilon$  & r  & $\rho$\\\hline
+F  & $\Phi$  & S  & $\Sigma$  & f  & $\phi$  & s  & $\sigma$\\\hline
+G  & $\Gamma$  & T  & T  & g  & $\gamma$  & t  & $\tau$\\\hline
+H  & H  & U  & Y  & h  & $\eta$  & u  & $\upsilon$\\\hline
+I  & I  & V  & $\varsigma$  & i  & $\iota$  & v & $\varpi$\\\hline
+J & $\vartheta$ & W  & $\Omega$ & j & $\varphi$ & w  & $\omega$\\\hline
+K  & K  & X  & $\Xi$  & k  & $\kappa$  & x  & $\xi$\\\hline
+L  & $\Lambda$  & Y  & $\Psi$  & l  & $\lambda$  & y  & $\psi$\\\hline
+M  & M  & Z  & Z  & m  & $\mu$  & z  & $\zeta $\\\hline
+\end{tabular}
+\end{center}
+
+Ainsi, pour faire la lettre minuscule $\alpha$ il faut faire : 
+\begin{verbatim}
+{/Symbol a}
+\end{verbatim}
+
+\begin{attention}
+Ce n'est pas un anti-slash comme les habitudes \LaTeX{} pourraient nous le faire croire.
+\end{attention}
 
 
 
