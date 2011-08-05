@@ -75,6 +75,53 @@ où $200$ est le nombre de points servant à tracer la fonction. Si vous êtes e
 replot
 \end{verbatim}
 
+\section{Faire un plot 3D}
+\subsection{Surface plot}
+Pour afficher un graphique sous la forme d'une surface (x,y) dont la couleur dépend de z, il faut d'une part préparer le fichier de données de manière spéciale. Les données doivent être sous la forme : 
+\begin{verbatim}
+# X     Y    Z
+  0.0   0.0  2.0
+  0.0   1.0  2.0
+  0.0   1.0  3.5
+  0.0   2.0  3.5
+
+  1.0   0.0  2.0
+  1.0   1.0  2.0
+  1.0   1.0  3.5
+  1.0   2.0  3.5
+
+  1.0   0.0  1.0
+  1.0   1.0  1.0
+  1.0   1.0  3.0
+  1.0   2.0  3.0
+
+  2.0   0.0  1.0
+  2.0   1.0  1.0
+  2.0   1.0  3.0
+  2.0   2.0  3.0
+\end{verbatim}
+
+\begin{attention}
+Il faut séparer les blocs de $X=\cte$ par une ligne blanche sans quoi \textbf{gnuplot} ne fonctionnera pas.
+\end{attention}
+
+
+Ensuite, il faut utiliser les commandes suivantes :
+\begin{verbatim}
+set terminal x11 enhanced
+set xlabel "semi major axis (AU)"
+set ylabel "Planet mass (m_{earth})"
+set title "Evolution of the total torque {/Symbol G}"
+set pm3d map
+splot 'test_total_torque.dat' title ''
+\end{verbatim}
+dans \texttt{splot}, le titre vide est là pour ne pas avoir le nom du fichier imprimé au milieu de la courbe. \texttt{map} est l'option qui permet d'avoir une carte au lieu d'avoir le graphique 3D. Il est aussi possible d'obtenir la même chose en utilisant l'option qui permet de changer l'angle de visée sous lequel regarder le graphe 3D \texttt{set view map; unset surface}
+
+\begin{remarque}
+Je n'ai pas réussi à imposer, via \verb#set {x|y}range# le zoom du graphique. Dans les bords, en particulier quand l'échantillonage est faible, ça peut ne pas être très joli. 
+\end{remarque}
+
+
 \section{Exporter la courbe}\label{sec:terminal}
 Le principe de gnuplot est de sélectionner un terminal où envoyer les données du graphique. par défaut, ce terminal est \textbf{x11}. 
 
@@ -108,7 +155,12 @@ set output 'graphique.svg'
 replot
 \end{verbatim}
 
-
+\subsection{fichier png}
+\begin{verbatim}
+set terminal pngcairo
+set output 'graphique.png'
+replot
+\end{verbatim}
 
 
 \section{Les options}
@@ -128,6 +180,15 @@ set logscale y
 \begin{verbatim}
 set grid
 \end{verbatim}
+affiche une grille sur les traits majeurs.
+
+Pour afficher aussi la grille mineure, il faut utiliser à la place 
+\begin{verbatim}
+set mxtics 5
+set mytics 5
+set grid xtics ytics mxtics mytics
+\end{verbatim}
+
 
 \subsection{Forcer un zoom}
 \begin{verbatim}
