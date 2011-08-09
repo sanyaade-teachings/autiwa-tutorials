@@ -1295,7 +1295,7 @@ close(14)
 \end{lstlisting}
 
 \begin{remarque}
-La fonction \texttt{trim()} permet de supprimer les espaces en trop, pratique pour affiche ou écrire du texte proprement.
+La fonction \texttt{trim()} permet de supprimer les espaces en trop, pratique pour afficher ou écrire du texte proprement.
 \end{remarque}
 
 \section{Optimisation}
@@ -1413,7 +1413,7 @@ index % time    self  children    called     name
 \end{verbatim}
 
 
-\subsection{Equivalent Operations Don't Necessarily Run in Equivalent Time}
+\subsection{Des opérations équivalentes ne s'exécutent pas forcément avec la même rapidité}
 Dans l'exemple d'un programme qui fait $X$ à la puissance $Y$, pour un entier $Y$, utilisons trois façons différentes de coder :
 \begin{enumerate}
 \item en utilisant la fonction power avec un $Y$ constant
@@ -1477,48 +1477,142 @@ D'autres opérations pour lesquelles il y a de multiples façon de programmer au
 
 
 \subsection{Use Lookup Tables for Common Calculations}
-%TODO finir
-The second section of the example programs compares repeatedly using a calculated value of the sine of Pi over 4 within a loop, with getting a pre-calculated result from an array (a "lookup table").
+Le code ci-dessous consiste à comparer de manière intensive une valeur calculée de $\sin\left(\frac{\pi}{4}\right)$ dans une boucle, en utilisant une valeur pré-calculée stockée dans un tableau ("lookup table").
 
-You should find that whether or not you pre-calculate Pi over 4 makes very little difference, but avoiding repeated evaluation of the more computationally expensive sine function gives a 40 times speed-up in FORTRAN, and over 150 times in C.
+Tout d'abord on crée les tables de données : 
+\begin{verbatim}
+do i=1,10
+    pi_table(i)=pi/i
+    sine_table(i)=sin(pi_table(i))
+end do
+\end{verbatim}
 
-In this example the time taken to construct the lookup table is considerably less than the amount of time saved through using it. In other cases the situation may not be as clear cut - however, you can always use another program to do all the calculations once and store the results in a file, which your main program can then read in as it starts. Where applicable you may also want to consider producing a lookup table for key points in a function, and interpolate (linearly, or otherwise) approximations to the intervening values.
-Minimise the Number of Large Jumps in Memory Address
+utilisons trois façons différentes de coder :
+\begin{enumerate}
+\item en calculant intégralement à chaque fois :
+\begin{lstlisting}[language=Fortran]
+call cpu_time(start_time)
+do i=1,maxloops
+    b=i*sin(pi/4.0)
+end do
+call cpu_time(stop_time)
+write(*,*) "Repeated pi/4 & sine, Duration=    ",stop_time - start_time
+\end{lstlisting}
 
-The third section of the example programs illustrates how the way a computer is constructed can interact with how you program.
+\item en utilisant la table d'arguments :
+\begin{lstlisting}[language=Fortran]
+call cpu_time(start_time)
+do  i=1,maxloops
+    b=i*sin(pi_table(4))
+end do
+call cpu_time(stop_time)
+write(*,*) "Repeated sine, Duration=    ",stop_time - start_time
+\end{lstlisting}
 
-All modern computers have three types of memory:
+\item en utilisant une table de sinus :
+\begin{lstlisting}[language=Fortran]
+call cpu_time(start_time)
+do i=1,maxloops
+    b=i*sine_table(4)
+end do
+call cpu_time(stop_time)
+write(*,*) "All lookups, Duration=    ",stop_time - start_time
+\end{lstlisting}
+\end{enumerate}
 
-    on-die cache (typically 128KB to 8MB)
-    main RAM (typically 128MB to 4GB)
-    disk-based "swap" space (typically 2GB and up)
+On peut constater que le pré-calcul de $\pi/4$ fait peu de différence, mais éviter l'évaluation répétée de la fonction sinus (très consommatrice en temps) entraine un temps de calcul 40 fois plus court. Dans cet exemple, le temps pris par la construction de la table de valeur est beaucoup moins grand que le temps économisé par le fait de se servir de la table.
 
-Each of these can be considered to be an order of magnitude slower to access than the one above it in the list, so ideally you want to be operating on data that's held in the on-die cache as much as possible, and getting data from the swap space as little as possible. Unfortunately you won't normally have any control over what data is held where - the computer's operating system will move chunks ("pages" - typically 4KB on x86 Linux systems) of memory between the three depending on whether or not it thinks they are currently "in use".
+\begin{verbatim}
+ Repeated pi/4 & sine, Duration=      2.99960000000000226E-002
+ Repeated sine, Duration=      0.16397499999999998     
+ All lookups, Duration=      1.29980000000000095E-002
+\end{verbatim}
 
-Because of this behaviour you do not want to be continually jumping between, apparently, arbitrary memory locations as the computer will need to keep swapping pages around the system in order to get the one containing the memory address you want into the cache. This is illustrated by the two pairs of nested loops in the example programs stepping through a large two dimensional array.
+\begin{remarque}
+Dans d'autres situation, la différence pourrait ne pas être aussi sensible. Cependant, il peut être parfois très intéressant de faire calculer à un autre programme une table de valeur que le programme pourra ensuite lire dans un fichier.
 
-Although C and FORTRAN allow us to have arrays with multi-dimensional indices, the computer's memory address space is only one dimensional. If we consider a simple 3x3 array in C (A[3][3]) then this is actually laid out in memory as:
+Quand c'est applicable, il peut être aussi intéressant de produire une table de valeur et ensuite d'interpoler la fonction entre deux valeurs tabulées pour calculer l'image par la fonction au lieu d'évaluer cette dernière à chaque fois.
+\end{remarque}
 
-A[0][0] A[0][1] A[0][2] A[1][0] A[1][1] A[1][2] A[2][0] A[2][1] A[2][2]
+\subsection{Minimiser les sauts dans l'adressage mémoire}\label{sec:indices_loops}
+Cette section a pour but d'illustrer comment la manière dont est construit l'ordinateur peut influencer l'exécution de votre programme.
 
-i.e. the rightmost index is the most rapidly varying.
+Tous les ordinateurs modernes ont trois types de mémoire :
+\begin{itemize}
+\item de la mémoire cache (quelques Mio)
+\item de la RAM (environ 4 Gio)
+\item de la mémoire tampon (\textit{swap}) écrite sur disque dur (quasiment autant qu'on veut)
+\end{itemize}
+Chacun de ces types de mémoire peut être considéré un ordre de magnitude plus lent en terme de temps d'accès par rapport au type indiqué au dessus de lui dans la liste. Idéalement on veut donc utiliser la mémoire cache au maximum, et éviter autant que possible d'avoir recours à la mémoire tampon (ou \textit{swap}). Malheureusement, vous n'avez aucun contrôle sur l'endroit où sont stockées les informations, c'est l'ordinateur qui gère les déplacements de fichiers de l'une à l'autre des types de mémoire. 
 
-Whereas in FORTRAN the 3x3 array A(3,3) is laid out in memory as:
+\begin{important}
+À cause de ce comportement, on ne veut pas continuellement être en train de transférer des informations dans la mémoire cache parce que des informations logiques se trouvent à des emplacements physiques éloignés dans la mémoire. Il est donc important de comprendre comment est agencée la mémoire en fortran, en particulier dans les tableaux. C'est ce qu'illustre l'exemple suivant, par l'utilisant d'un grand tableau à deux dimension où on fait des opérations sur les éléments.
+\end{important}
 
-A(1,1) A(2,1) A(3,1) A(1,2) A(2,2) A(3,2) A(1,3) A(2,3) A(3,3)
+Même si \textbf{fortran} autorise l'utilisation de tableaux multi-dimensionnels, l'espace mémoire de l'ordinateur n'a qu'une seule dimension. \reffig{fig:array_indices} montre comment est représenté un simple tableau 3x3 \texttt{a(i,j)}.
 
-i.e. the leftmost index is the most rapidly varying.
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.65\linewidth]{figure/array_indices.pdf}
+\caption{Représentation de l'agencement en mémoire des valeurs associées aux éléments d'une matrice. L'élément $a_{ij}$ (ligne $i$ et colonne $j$) est noté \texttt{a(i,j)} en \textbf{fortran 90}}\label{fig:array_indices}
+\end{figure}
 
-If we have an array which is thousands of elements in each dimension then varying the first index by 1 in a C program, or the second index by 1 in a FORTRAN program, will take you into a different page which may not currently be readily accessible, thus causing a delay in processing. Consequently, it is important that loops are nested in the correct order to ensure that, wherever practical, you process all of the elemnents in the current page before going onto the next one, rather than continually processing a single element in a page and then jumping to a completely different one.
+On constate alors que c'est l'indice $i$ qui varie le plus rapidement. 
 
-In practice this isn't quite so important with C programs, as you'll see from the example program since memory access is fast and nesting the loops either way round results in a similar execution time. With FORTRAN however, nesting the loops the "wrong" way round (with the second index on the inner, more quickly varying, loop) slows the program down by about a factor of 3.
-Use the Compiler's Optimization Flags
+Si on a un tableau de grande dimension, alors faire varier le deuxième indice de 1 va entrainer la mise en mémoire cache d'une autre page de données. Il est donc important de mettre les boucles dans le bon ordre sous peine de ralentir considérablement les calculs. 
 
-By far the simplest way of speeding up a program is to use the compiler's optimization flags (-O, -O2, or -O3). The higher the number used, the more optimization techniques carried out on the program and the faster the code should run (but there's no guarantee of this). N.B. the more optimization you turn on, the longer the program will take to compile, and the more the code that you execute will diverge from the code that you wrote, which may cause difficulties if you need to debug a problem.
+\begin{remarque}
+Dans la pratique, ce n'est pas si important que ça à partir du moment où on active les options d'optimisation qui vont se charger d'inverser l'ordre des boucles lors de la compilation. Mais c'est toujours bon de le savoir, ne serait-ce que pour certains cas particuliers.
+\end{remarque}
 
-Try compiling the two example programs using the various levels of optimization. You should find that for the C version using any level of optimization gives you about a 7\% speed-up, but there's not much to choose between them. With the FORTRAN version there is also little to choose between the various optimization levels, but using any kind of compiler optimization speeds the program up by a factor of 7 to 10 times. The results for your own programs may well be different.
+On a donc les deux cas de figure suivant : 
+\begin{itemize}
+\item on fait varier d'abord l'indice des lignes puis pour chaque ligne on parcours toutes les colonnes
+\begin{lstlisting}[language=Fortran]
+call cpu_time(start_time)
+do i=1,maxloops2
+    do x=1,2000
+      do y=1,2000
+	  matrix(x,y)=x*y
+      end do
+    end do
+end do
+call cpu_time(stop_time)
+write(*,*) "x outer, y inner, Duration=    ",stop_time - start_time
+\end{lstlisting}
 
-Another optimization option that you may derive some, possibly small, benefit from is -funroll-loops 
+\item on fait varier d'abord l'indice des colonnes puis pour chaque colonne on parcours toutes les lignes
+\begin{lstlisting}[language=Fortran]
+call cpu_time(start_time)
+do i=1,maxloops2
+    do y=1,2000
+      do x=1,2000
+	  matrix(x,y)=x*y
+      end do
+    end do
+end do
+call cpu_time(stop_time)
+write(*,*) "y outer, x inner, Duration=    ",stop_time - start_time
+\end{lstlisting}
+\end{itemize}
+
+\begin{verbatim}
+ x outer, y inner, Duration=      0.52391999999999994     
+ y outer, x inner, Duration=      0.14897799999999994     
+\end{verbatim}
+
+Imbriquer les boucles dans le mauvais ordre ralenti le code par un facteur 3 environ. Il faut donc que l'indice qui varie le plus vite soit l'indice des lignes. 
+
+\subsection{Utiliser les options d'optimisation du compilateur}
+L'astuce la plus simple pour augmenter la vitesse d'exécution d'un programme est de loin d'utiliser les options d'optimisation du compilateur. 
+
+L'option \texttt{-O2} est une sorte de meta option qui regroupe plein d'options, c'est celle qu'il faut activer en priorité. Dans mon cas, j'ai eu un gain de temps supérieur à 30\% (mais ça dépend fortement du programme).
+
+\begin{remarque}
+Avec l'option \texttt{-O2}, il n'y a plus de différence de temps entre les deux ordres de boucles pour \refsec{sec:indices_loops}.
+\end{remarque}
+
+Une autre option qui peut augmenter parfois la rapidité d'un programme est \texttt{-funroll-loops}
 
 \section{Avancé}
 \subsection{Les pointeurs}
@@ -1570,10 +1664,6 @@ Le pointeur peut être ré-associé à n'importe quel moment. Il peut aussi êtr
 \begin{verbatim}
 nullify(pa)
 \end{verbatim}
-
-
-
-%TODO parler plus en détail des pointeurs. 
 
 \subsection{Attributs des variables lors de leur déclaration}
 Lors de leur déclaration, il existe divers attributs que l'on peut donner aux variables et qui permettent de préciser à quoi elles vont servir notamment. 
@@ -1774,9 +1864,5 @@ gfortran -o test test_mfo_user.f90 user_module.o
 \bigskip
 
 J'ai eu aussi cette erreur parce que dans le module \textbf{user\_module}, la fonction \textbf{get\_F} était une fonction privée.
-
-
-
-%TODO lire des trucs sur les pointeurs, les types dérivés et les procédures récursives.
 
 \end{document}
