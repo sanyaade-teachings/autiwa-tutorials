@@ -1014,6 +1014,19 @@ PYTHONPATH=$HOME/python/modules
 export PATH PYTHONPATH
 \end{verbatim}
 
+\subsection{récupérer le nom ou l'extension d'un fichier}
+Il existe une méthode dans le module \gras{os}
+\begin{verbatim}
+ext = os.path.splitext(file_name)[1]
+name = os.path.splitext(file_name)[0]
+\end{verbatim}
+ou 
+\begin{verbatim}
+(name, ext) = os.path.splitext(file_name)
+\end{verbatim}
+
+
+
 \subsection{Optimisations}
 (J'ai eu la flemme de traduire, mais l'idée y est)
 

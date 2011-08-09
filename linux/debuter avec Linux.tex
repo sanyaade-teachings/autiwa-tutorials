@@ -2171,7 +2171,28 @@ Pour stocker le résultat dans une variable, on procède comme suit : \texttt{va
 \verb|find . -name "*.db" -exec rm -f {} \;|
 
 
-Dans cet exemple, on recherche les fichiers de type \textbf{.db} (\verb|-name "*.db"|, ce qui permet, en pratique, de supprimer les fichiers \textbf{Thumbs.db}, en supprimant tout les fichiers avec cette extension --- pour palier les éventuels renommage ---) du répertoire courant (\verb|.|) que l'on va effacer. le \textbf{-f} permet d'enlever la confirmation de suppression. \par
+Dans cet exemple, on recherche les fichiers de type \textbf{.db} (\verb|-name "*.db"|, ce qui permet, en pratique, de supprimer les fichiers \textbf{Thumbs.db}, en supprimant tout les fichiers avec cette extension --- pour palier les éventuels renommage ---) du répertoire courant (\verb|.|) que l'on va effacer. le \textbf{-f} permet d'enlever la confirmation de suppression. 
+
+\subsubsection{Changer les droits des dossiers de manière récursive}
+La commande 
+\begin{verbatim}
+find -type d -exec chmod 755 {} \;
+\end{verbatim}
+permet de modifier les droits des dossiers et sous-dossiers du répertoire courant. (le propriétaire a les droits d'écriture, lecture et exécution tandis que les autres ont les droits de lecture et exécution)
+
+\begin{attention}
+Il est nécessaire d'avoir les droits d'exécution sur un dossier pour pouvoir voir le contenu de ce dernier
+\end{attention}
+ 
+
+\begin{remarque}
+La même chose est possible pour les fichiers uniquement en faisant :
+\begin{verbatim}
+find -type f -exec chmod 644 {} \;
+\end{verbatim}
+\end{remarque}
+
+
 
 \subsubsection{Déplacer des fichiers dans le répertoire parent}
 On se place dans le répertoire contenant les différents dossiers qui contiennent les images. Celles-ci seront déplacées et misent dans le répertoire courant. Il est aussi possible de spécifier un autre répertoire en donnant son emplacement, relatif ou absolu. À noter qu'on peut aussi garder cette ligne de commande et se placer dans le bon répertoire via le \textbf{cd} approprié
