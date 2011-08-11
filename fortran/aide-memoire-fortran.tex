@@ -812,6 +812,58 @@ Il est possible de transmettre un tableau dynamique en argument d'une procédure
 \item Le tableau dynamique devra être alloué et libéré dans le programme principal. 
 \item Le programme principal doit contenir l'interface de la procédure. Cette condition n'est pas obligatoire si on utilise un module! (voir par exemple le programme \emph{tableau\_dynamique}).
 \end{itemize}
+
+\begin{lstlisting}[language=Fortran]
+program tableau_dynamique
+ 
+implicit none 
+! declaration d'un tableau dynamique d'entiers de rang 2 
+integer, dimension (:,:), allocatable ::   matrice
+
+integer ::   nb_lig, nb_col, i
+
+read*, nb_lig             ! lecture au clavier du nombre de lignes
+read*, nb_col             ! lecture au clavier du nombre de colonnes
+
+! allocation d'un emplacement de profil nb_lig, nb_col
+allocate (matrice(nb_lig, nb_col))    
+
+! affectations des elements de la matrice 
+do i = 1, nb_col
+  matrice(:,i) = i
+end do
+call affiche(matrice)
+
+! liberation de l'emplacement correspondant au tableau matrice 
+deallocate (matrice) 
+
+contains
+
+subroutine affiche(t)
+ 
+implicit none 
+integer, dimension(:,:), intent(in) :: t      ! dimensionnement automatique
+integer :: i, j 
+
+do i = 1, size(t,1) 
+  print*, (t(i,j), j=1,size(t,2))
+end do
+
+end subroutine
+
+end 
+
+\end{lstlisting}
+Que la subroutine soit inclue dans le programme principal ou dans un module que ce dernier appelle, ça revient au même, il n'y a plus besoin de définir explicitement l'interface. Autrement il faut le faire, et ajouter
+\begin{verbatim}
+interface 
+  subroutine affiche(t) 
+    integer, dimension(:,:), intent(in) :: t 
+  end subroutine affiche 
+end interface 
+\end{verbatim}
+à la fin des déclaration de variables dans le programme principal.
+
 % Il y a un exemple par 43 du tutoriel de michel qui donne un exemple de ça. 
 %TODO 
 

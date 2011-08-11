@@ -121,6 +121,113 @@ dans \texttt{splot}, le titre vide est là pour ne pas avoir le nom du fichier i
 Je n'ai pas réussi à imposer, via \verb#set {x|y}range# le zoom du graphique. Dans les bords, en particulier quand l'échantillonage est faible, ça peut ne pas être très joli. 
 \end{remarque}
 
+\subsubsection{Modifier la palette de couleurs}
+Afin de changer la palette de couleurs, et ainsi avoir de meilleurs contrastes avec les couleurs proches, on peut faire 
+\begin{verbatim}
+set palette rgbformulae 22,13,-31
+\end{verbatim}
+et avoir une sorte d'arc en ciel.
+
+\subsubsection{Ajouter des contours à une surface}
+Ci-dessous voici le contenu d'un script que j'utilise pour afficher un contour sur l'iso-ligne $z=0$ : 
+\begin{verbatim}
+set contour base; set cntrparam levels discret 0.
+set isosamples 100, 100
+unset surface
+set table "contour.dat"
+set dgrid3d
+splot 'test_total_torque.dat'
+unset table
+# Change single blank lines to double blank lines
+!awk "NF<2{printf\"\n\"}{print}" <contour.dat >contour1.dat
+# Draw the plot
+reset
+set terminal x11 enhanced
+set xlabel "semi major axis (AU)"
+set ylabel "Planet mass (m_{earth})" center
+set title "Evolution of the total torque {/Symbol G}_{tot} "
+set pm3d map
+set pm3d explicit
+set palette rgbformulae 22,13,-31
+splot 'test_total_torque.dat' with pm3d title '',\
+      'contour1.dat' with line lt -1 title ''
+pause -1 # wait until a carriage return is hit
+set terminal pngcairo enhanced
+set output 'total_torque.png'
+replot # pour générer le fichier d'output
+!rm contour.dat contour1.dat
+\end{verbatim}
+
+\bigskip
+\begin{verbatim}
+set contour base; set cntrparam levels discret 0.
+\end{verbatim}
+On défini les niveaux des contours (ici, uniquement une ligne pour $z=0$.
+
+\begin{verbatim}
+set isosamples 100, 100
+\end{verbatim}
+On défini l'échantillonnage, $100$ points pour $x$ et $y$ (sinon les lignes ne sont pas suffisamment bien résolues. On peut bien entendu encore augmenter ce nombre.
+
+\begin{verbatim}
+unset surface
+set table "contour.dat"
+set dgrid3d
+splot 'test_total_torque.dat'
+unset table
+# Change single blank lines to double blank lines
+!awk "NF<2{printf\"\n\"}{print}" <contour.dat >contour1.dat
+# Draw the plot
+reset
+\end{verbatim}
+Cette partie là est plus ou moins une boite noire. La ligne \texttt{set dgrid3d} dans le cas d'un fichier de données (contrairement à une fonction que l'on définierait directement dans gnuplot ($f(x,y) = x*x - y*y$ par exemple). On stocke alors les valeurs des contours dans un fichier \textbf{contour.dat}, puis \textbf{contour1.dat} (pour un fichier qui présente des doubles lignes, apparemment nécessaires à l'affichage correct des contours pour la suite).
+
+\begin{attention}
+Les contours seront ceux du fichier \textbf{test\_total\_torque.dat}, celui ci doit bien évidemment être le même que celui qui sera affiché en même temps que le contour dans la 2\ieme partie du script, sinon ça n'a pas de sens. 
+\end{attention}
+
+
+\begin{verbatim}
+set terminal x11 enhanced
+set xlabel "semi major axis (AU)"
+set ylabel "Planet mass (m_{earth})" center
+set title "Evolution of the total torque {/Symbol G}_{tot} "
+\end{verbatim}
+On définit le terminal et les titres. Les labels ne sont bien entendu pas obligatoire.
+
+\begin{verbatim}
+set pm3d map
+set pm3d explicit
+\end{verbatim}
+On définit le fait qu'on peut un plot 3D, affiché uniquement en 2D (avec le $z$ variant selon une palette de couleur. On veut que les plots soient explicitement spécifiés comme 3D, ceci nous permet d'afficher les contours simplement en 3D (des lignes noires quoi). 
+
+\begin{verbatim}
+set palette rgbformulae 22,13,-31
+\end{verbatim}
+On change la palette de couleur (c'est un arc en ciel, plus pratique pour discerner les couleurs, et donc les valeurs associées.
+
+\begin{verbatim}
+splot 'test_total_torque.dat' with pm3d title '',\
+      'contour1.dat' with line lt -1 title ''
+\end{verbatim}
+On affiche les données de \textbf{test\_total\_torque.dat} et le contour \textbf{contour1.dat} (qui est censé correspondre à \textbf{test\_total\_torque.dat} sinon ça n'a pas de sens). La partie \texttt{title ''} permet d'éviter l'affichage du nom du fichier sur la courbe.
+
+\begin{verbatim}
+pause -1 # wait until a carriage return is hit
+\end{verbatim}
+Le graphique restera affiché à l'écran tant qu'on n'a pas appuyé sur la touche \touche{Entrée} (et ainsi continuer le script)
+
+\begin{verbatim}
+set terminal pngcairo enhanced
+set output 'total_torque.png'
+replot # pour générer le fichier d'output
+\end{verbatim}
+On stocke le graphique dans un fichier \textbf{.png}
+
+\begin{verbatim}
+!rm contour.dat contour1.dat
+\end{verbatim}
+On efface les fichiers temporaires qui ont été créés pour les contours.
 
 \section{Exporter la courbe}\label{sec:terminal}
 Le principe de gnuplot est de sélectionner un terminal où envoyer les données du graphique. par défaut, ce terminal est \textbf{x11}. 
@@ -199,6 +306,13 @@ set grid xtics ytics mxtics mytics
 \begin{verbatim}
 set xrange [0:5]
 \end{verbatim}
+
+\subsection{Style de courbe}
+On peut forcer l'utilisation de lignes (par exemple) pour afficher les courbes : 
+\begin{verbatim}
+plot 'test_opacity.dat' using 1:2 with lines
+\end{verbatim}
+
 
 \subsection{Texte avancé}
 Dans le terminal\footnote{Pour plus de détails sur la définition du terminal, voir \refsec{sec:terminal}} courant, lors de sa définition, il faut rajouter l'option \texttt{enhanced}
