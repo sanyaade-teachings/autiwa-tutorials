@@ -132,10 +132,9 @@ et avoir une sorte d'arc en ciel.
 Ci-dessous voici le contenu d'un script que j'utilise pour afficher un contour sur l'iso-ligne $z=0$ : 
 \begin{verbatim}
 set contour base; set cntrparam levels discret 0.
-set isosamples 100, 100
 unset surface
 set table "contour.dat"
-set dgrid3d
+set dgrid3d 50, 50, 10
 splot 'test_total_torque.dat'
 unset table
 # Change single blank lines to double blank lines
@@ -172,7 +171,20 @@ On défini l'échantillonnage, $100$ points pour $x$ et $y$ (sinon les lignes ne
 \begin{verbatim}
 unset surface
 set table "contour.dat"
-set dgrid3d
+\end{verbatim}
+On enlève la surface et on définit un fichier dans lequel on va stocker les données de sortie.
+
+\begin{verbatim}
+set dgrid3d 50, 50, 10
+\end{verbatim}
+La ligne \texttt{set dgrid3d} est dans le cas d'un fichier de données (contrairement à une fonction que l'on définierait directement dans gnuplot ($f(x,y) = x*x - y*y$ par exemple). Comme on veut tracer et faire un contour d'un tableau de donnée, on a besoin de convertir ce tableau de donnée en grille dans un premier temps.
+
+\begin{attention}
+L'échantillonnage en $x$, $y$ et $z$ est crucial pour avoir un rendu correct des contours. Ce maillage est à adapter. J'ai eu des problèmes pendant 2 jours parce que je ne définissais pas du tout de maillage (il en fait un par défaut je suppose) et je pestais parce que je n'avais pas de contours du tout (alors que je savais qu'il existait une ligne $z=0$).
+\end{attention}
+
+
+\begin{verbatim}
 splot 'test_total_torque.dat'
 unset table
 # Change single blank lines to double blank lines
@@ -180,7 +192,11 @@ unset table
 # Draw the plot
 reset
 \end{verbatim}
-Cette partie là est plus ou moins une boite noire. La ligne \texttt{set dgrid3d} dans le cas d'un fichier de données (contrairement à une fonction que l'on définierait directement dans gnuplot ($f(x,y) = x*x - y*y$ par exemple). On stocke alors les valeurs des contours dans un fichier \textbf{contour.dat}, puis \textbf{contour1.dat} (pour un fichier qui présente des doubles lignes, apparemment nécessaires à l'affichage correct des contours pour la suite).
+On trace le tableau de donnée \textbf{test\_total\_torque.dat}, comme on a défini \texttt{unset surface}, le tableau de donnée ne sera pas affiché. Une grille 3D est alors effectuée (\texttt{set dgrid3d 50, 50, 10}) et un contour de cette grille pour les valeurs définies est recherché (\texttt{set cntrparam levels discret 0.}). Le résultat est alors stocké dans \textbf{contour.dat}.
+
+On désactive alors la table, et on double les lignes blanches (apparemment nécessaires à l'affichage correct des contours pour la suite. J'ai testé et ça semble fonctionner même sans ça), ces nouvelles données sont alors stockées dans \textbf{contour1.dat}.
+
+Un \texttt{reset} est alors effectué pour pouvoir tracer la courbe pour de bon. 
 
 \begin{attention}
 Les contours seront ceux du fichier \textbf{test\_total\_torque.dat}, celui ci doit bien évidemment être le même que celui qui sera affiché en même temps que le contour dans la 2\ieme partie du script, sinon ça n'a pas de sens. 
@@ -188,7 +204,7 @@ Les contours seront ceux du fichier \textbf{test\_total\_torque.dat}, celui ci d
 
 
 \begin{verbatim}
-set terminal x11 enhanced
+set terminal wxt enhanced
 set xlabel "semi major axis (AU)"
 set ylabel "Planet mass (m_{earth})" center
 set title "Evolution of the total torque {/Symbol G}_{tot} "
@@ -207,8 +223,8 @@ set palette rgbformulae 22,13,-31
 On change la palette de couleur (c'est un arc en ciel, plus pratique pour discerner les couleurs, et donc les valeurs associées.
 
 \begin{verbatim}
-splot 'test_total_torque.dat' with pm3d title '',\
-      'contour1.dat' with line lt -1 title ''
+splot 'test_total_torque.dat' with pm3d notitle,\
+      'contour1.dat' with line lt -1 title '{/Symbol G} = 0'
 \end{verbatim}
 On affiche les données de \textbf{test\_total\_torque.dat} et le contour \textbf{contour1.dat} (qui est censé correspondre à \textbf{test\_total\_torque.dat} sinon ça n'a pas de sens). La partie \texttt{title ''} permet d'éviter l'affichage du nom du fichier sur la courbe.
 
