@@ -145,7 +145,6 @@ set ylabel "Planet mass (m_{earth})" center
 set title "Evolution of the total torque {/Symbol G}_{tot}/{/Symbol G}_0 "
 set pm3d map
 set pm3d explicit
-set grid
 set palette rgbformulae 22,13,-31
 splot 'test_total_torque.dat' with pm3d notitle,\
  'contour.dat' with line linetype -1 title '{/Symbol G}=0'
@@ -155,6 +154,13 @@ set output 'total_torque.png'
 replot # pour générer le fichier d'output
 !rm contour.dat
 \end{verbatim}
+
+On obtient alors \reffig{fig:map_plus_contour}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.65\linewidth]{figures/pm3d-map_plus_contour.png}
+\caption{Affichage d'une carte 2D d'un fichier de donnée avec des contours en surimpression}\label{fig:map_plus_contour}
+\end{figure}
 
 \bigskip
 \begin{verbatim}
@@ -252,6 +258,18 @@ help terminal
 \end{verbatim}
 
 
+\subsection{Affichage avancé à l'écran}
+Voici un terminal que j'aime bien parce qu'il permet de zoomer sur la courbe notamment
+
+\begin{verbatim}
+set terminal wxt enhanced
+\end{verbatim}
+
+\begin{remarque}
+\texttt{enhanced} permet une gestion avancée des textes, notamment avec indice et exposant. Pour plus de détails voir \refsec{sec:enhanced}.
+\end{remarque}
+
+
 \subsection{Fichier pdf}
 \begin{verbatim}
 set terminal pdfcairo
@@ -326,7 +344,7 @@ plot 'test_opacity.dat' using 1:2 with lines
 \end{verbatim}
 
 
-\subsection{Texte avancé}
+\subsection{Texte avancé}\label{sec:enhanced}
 Dans le terminal\footnote{Pour plus de détails sur la définition du terminal, voir \refsec{sec:terminal}} courant, lors de sa définition, il faut rajouter l'option \texttt{enhanced}
 
 \begin{verbatim}
