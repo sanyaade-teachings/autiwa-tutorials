@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}[1999/01/01]
-\ProvidesPackage{autiwa}[2011/06/16 Extension personnelle, V2.6]%aaaa/mm/dd
+\ProvidesPackage{autiwa}[2011/08/18 Extension personnelle, V2.6.1]%aaaa/mm/dd
 %voir le fichier change.log pour l'historique des modification
 
 % On définit les variables de tests
@@ -181,6 +181,20 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % déclaration des options qui redéfinissent certaines fonctions
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\if@print
+  \newgray{lightgray}{1}
+  \hypersetup{
+    colorlinks=true, %colorise les liens
+    breaklinks=true, %permet le retour à la ligne dans les liens trop longs
+    urlcolor= dark,  %couleur des hyperliens
+    linkcolor= black, %couleur des liens internes
+    plainpages=false,  %pour palier à "Bookmark problems can occur when you have duplicate page numbers, for example, if you have a page i and a page 1."
+    citecolor=black % pour définir la couleur des liens de bibliographie
+  }
+  \newrgbcolor{marou}{0 0 0}%redéfinie cette couleur, pour notamment rendre les titres noirs, et aussi les résultats de la commande \gras{}
+
+\fi
 % \DeclareOption{print}{%
 % \newgray{lightgray}{1}
 % \hypersetup{

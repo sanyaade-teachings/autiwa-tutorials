@@ -8,6 +8,13 @@
 \fancyhead[LE]{}
 \makeatletter
 
+% macros qui servent à la mise en page, elles ne doivent pas être utilisées directement
+\newcommand{\preparationTopSep}{\vspace{.2cm} \hrule height0.25pt width\hsize \vspace{.3cm}}
+\newcommand{\statistiqueTopSep}{\vspace{.3cm} \hrule height1pt width\hsize \nobreak \vskip\parskip \vspace{.3cm}}
+\newcommand{\ingredientsTopSep}{\vspace{.4cm} \hrule height0.75pt width\hsize\vspace*{1\p@}\hrule height0.25pt width\hsize \vspace{.3cm}}
+\newcommand{\partStyle}{\bfseries \large}
+
+
 \usepackage{bbding}%to add \FiveStar and \FiveStarOpen
 \newcommand{\note}[1]
 {
@@ -19,39 +26,31 @@
   \ifthenelse{\equal{#1}{5}}{\FiveStar\FiveStar\FiveStar\FiveStar\FiveStar}{}
 }
 
-\hypersetup{
-  colorlinks=true, %colorise les liens
-  breaklinks=true, %permet le retour à la ligne dans les liens trop longs
-  urlcolor= blue,  %couleur des hyperliens
-  linkcolor= refcolor, %couleur des liens internes
-  plainpages=false,  %pour palier à "Bookmark problems can occur when you have duplicate page numbers, for example, if you have a page i and a page 1."
-  citecolor=refcolor % pour définir la couleur des liens de bibliographie
-}
-
+% macro qui est utilisée par l'environnement recette, ne doit pas être utilisé directement
 \newcommand{\nomRecette}[1]{{\begin{center}\Huge \bfseries #1\end{center}}\addcontentsline{toc}{section}{#1} }
 
 \newcommand{\ingredient}[1][]{\ifthenelse{\equal{#1}{}}{\item }{\item[\textbf{#1}]}}
 
 \newcommand{\etape}[1][]{\ifthenelse{\equal{#1}{}}{\item }{\item[\textbf{#1}]}}
 
+% Environnement qui crée une nouvelle recette. Ingrédients, étape, cuisson etc doivent être contenus dans un environnement recette.
 \newenvironment{recette}[1]{\newpage \nomRecette{#1}}{}
 
-\newcommand{\statistique}[3]{\vspace{.3cm}
-    \hrule height1pt width\hsize
-    \nobreak
-    \vskip\parskip \vspace{.3cm}\note{#1}\hfill\includegraphics[width=1em]{figures/logo_minuterie.pdf} \; \begin{itshape}\textbf{Préparation :} #2 \hfill \includegraphics[width=1em]{figures/logo_minuterie.pdf} \;\textbf{Cuisson :} #3\end{itshape}}
+% statistique de la recette, sa note, son temps de préparation et de cuisson.
+\newcommand{\statistique}[3]{\statistiqueTopSep\note{#1}\hfill\includegraphics[width=1em]{figures/logo_minuterie.pdf} \; \begin{itshape}\textbf{Préparation :} #2 \hfill \includegraphics[width=1em]{figures/logo_minuterie.pdf} \;\textbf{Cuisson :} #3\end{itshape}}
 
-\newenvironment{ingredients}{ \vspace{.4cm} \hrule height0.75pt width\hsize\vspace*{1\p@}%
-    \hrule height0.25pt width\hsize \vspace{.3cm} {\bfseries \large Ingrédients }\begin{multicols}{2}\begin{itemize}\renewcommand{\labelitemi}{$\bullet$}}{\end{itemize}\end{multicols}}
 
-\newenvironment{preparation}{\vspace{.2cm} \hrule height0.25pt width\hsize \vspace{.3cm}{\bfseries  \large Préparation }\begin{enumerate}}{\end{enumerate}}
+% Environnement pour la mise en page des ingrédients. Un argument optionnel de l'environnement permet de spécifier pour combien de personnes sont les doses. Les entrées de cet environnement doivent être ``\ingredient nom de l'ingrédient''. Si on veut séparer les ingrédients, pour dénoter deux sortes de choses, ingrédient pour une sauce et une pâte par exemple, il faut faire une ligne du style \ingredient[pour la sauce] afin de séparer.
+\newenvironment{ingredients}[1][]{\ingredientsTopSep{\partStyle Ingrédients\ifthenelse{\equal{#1}{}}{}{ (#1)}}\begin{multicols}{2}\begin{itemize}\renewcommand{\labelitemi}{$\bullet$}}{\end{itemize}\end{multicols}}
 
-\newenvironment{preparation*}{\vspace{.2cm} \hrule height0.25pt width\hsize \vspace{.3cm}{\bfseries  \large Préparation }\par}{}
+% Environnement pour mettre en page la préparation du plat. Les entrées sont de la forme ``\etape texte de l'étape``. Si on veut séparer les étapes, pour dénoter un groupement d'étape par exemple, il faut faire une ligne du style \etape[pour la sauce] afin de séparer.
+\newenvironment{preparation}{\preparationTopSep{\partStyle Préparation }\begin{enumerate}}{\end{enumerate}}
 
+% À utiliser si on souhaite faire une mise en page un peu plus évoluée, avec deux listes par exemples.
+\newenvironment{preparation*}{\preparationTopSep{\partStyle Préparation }\par}{}
+
+% Environnement pour mettre en page la cuisson du plat
 \newenvironment{cuisson}{\bigskip{\bfseries \large Cuisson }\par}{}
-
-%TODO modifier l'environnement ingredient pour pouvoir spécifier pour combien de personnes c'est prévu.
-%TODO séparer la mise en page des environnements dans des commandes séparées (notamment pour qu''ingredients' et 'ingredients*' n'aient pas de lignes bêtement recopiées
 
 \title{Recettes de Cuisine}
 \author{Autiwa}
