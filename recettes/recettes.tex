@@ -7,20 +7,6 @@
 % \usepackage{hyperref}
 \fancyhead[LE]{}
 \makeatletter
-% \renewcommand{\section}{\@startsection{section}{1}{\z@}%
-%              {-3.5ex \@plus -1ex \@minus -.2ex}%
-%              {2.3ex \@plus 2ex}%
-%              {\normalfont\Large\scshape\bfseries\marou}}
-% 
-% \renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
-%              {-3.25ex\@plus -1ex \@minus -.2ex}%
-%              {1.5ex \@plus .2ex}%
-%              {\normalfont\large\sffamily\bfseries\vertf}}
-% \makeatother
-% 
-% \renewcommand \thesection {}%pour ne pas avoir les numéro devant les recettes
-% \renewcommand \thesubsection {}%pour ne pas avoir les numéro devant les recettes
-%TODO chercher sur le net pour faire un style de recette avec latex (un truc qui mettrait en forme et placerait les ingrédients, la préparation, la cuisson, la note etc...
 
 \usepackage{bbding}%to add \FiveStar and \FiveStarOpen
 \newcommand{\note}[1]
@@ -42,17 +28,18 @@
   citecolor=refcolor % pour définir la couleur des liens de bibliographie
 }
 
-\newcommand{\nomRecette}[1]{\addcontentsline{toc}{section}{#1}{\begin{center}\Huge \bfseries #1\end{center}} }
-\newcommand{\ingredient}[1]{\item #1}
+\newcommand{\nomRecette}[1]{{\begin{center}\Huge \bfseries #1\end{center}}\addcontentsline{toc}{section}{#1} }
 
-\newcommand{\etape}[1]{\item #1}
+\newcommand{\ingredient}[1][]{\ifthenelse{\equal{#1}{}}{\item }{\item[\textbf{#1}]}}
 
-\newenvironment{recette}[1]{\newpage \nomRecette{#1}\vspace{.3cm}
+\newcommand{\etape}[1][]{\ifthenelse{\equal{#1}{}}{\item }{\item[\textbf{#1}]}}
+
+\newenvironment{recette}[1]{\newpage \nomRecette{#1}}{}
+
+\newcommand{\statistique}[3]{\vspace{.3cm}
     \hrule height1pt width\hsize
     \nobreak
-    \vskip\parskip \vspace{.3cm}}{}
-
-\newcommand{\statistique}[3]{\note{#1}\hfill\includegraphics[width=1em]{figures/logo_minuterie.pdf} \; \begin{itshape}\textbf{Préparation :} #2 \hfill \includegraphics[width=1em]{figures/logo_minuterie.pdf} \;\textbf{Cuisson :} #3\end{itshape}}
+    \vskip\parskip \vspace{.3cm}\note{#1}\hfill\includegraphics[width=1em]{figures/logo_minuterie.pdf} \; \begin{itshape}\textbf{Préparation :} #2 \hfill \includegraphics[width=1em]{figures/logo_minuterie.pdf} \;\textbf{Cuisson :} #3\end{itshape}}
 
 \newenvironment{ingredients}{ \vspace{.4cm} \hrule height0.75pt width\hsize\vspace*{1\p@}%
     \hrule height0.25pt width\hsize \vspace{.3cm} {\bfseries \large Ingrédients }\begin{multicols}{2}\begin{itemize}\renewcommand{\labelitemi}{$\bullet$}}{\end{itemize}\end{multicols}}
@@ -62,6 +49,8 @@
 \newenvironment{preparation*}{\vspace{.2cm} \hrule height0.25pt width\hsize \vspace{.3cm}{\bfseries  \large Préparation }\par}{}
 
 \newenvironment{cuisson}{\bigskip{\bfseries \large Cuisson }\par}{}
+
+%TODO modifier l'environnement ingredient pour pouvoir spécifier pour combien de personnes c'est prévu.
 
 \title{Recettes de Cuisine}
 \author{Autiwa}
@@ -79,7 +68,7 @@
 \chapter{Grillades}
 \minitoc
 
-% \input{chapitres/02_grillades}
+\input{chapitres/02_grillades}
 
 \chapter{Accompagnements}\label{sec:accompagnement}
 \minitoc
@@ -92,24 +81,24 @@
 \begin{recette}{Sauce maison}
 \statistique{2}{}{}
 \begin{ingredients}
-\item 150g de champignons de Paris
-\item 100g de lardons
-\item 2 oignons
-\item 25cl de bouillon de volaille
-\item 20cl de floc de gascogne
-\item 1 cuillère à soupe de farine
-\item sel, poivre, herbes de provence
+\ingredient 150g de champignons de Paris
+\ingredient 100g de lardons
+\ingredient 2 oignons
+\ingredient 25cl de bouillon de volaille
+\ingredient 20cl de floc de gascogne
+\ingredient 1 cuillère à soupe de farine
+\ingredient sel, poivre, herbes de provence
 \end{ingredients}
 
 \begin{preparation}
-\item Faites revenir les lardons
-\item Réservez-les puis faites revenir les lardons
-\item Réservez l'oignon et faites revenir les champignons en rajoutant de l'huile au besoin.
+\etape Faites revenir les lardons
+\etape Réservez-les puis faites revenir les lardons
+\etape Réservez l'oignon et faites revenir les champignons en rajoutant de l'huile au besoin.
 \begin{remarque}
 Ne couvrez pas pendant la cuisson des champignons afin d'éviter qu'il y ait trop de jus dans la sauteuse
 \end{remarque}
-\item Rajoutez les oignons et lardons, réchauffez un peu la mixture et ajoutez la farine en saupoudrant. Mélangez bien le tout avant de rajouter le floc puis le bouillon de volaille.
-\item Mélangez bien le tout, couvrez et laissez cuire à feu doux jusqu'à ce que la sauce soit bien liée. Typiquement, c'était bon au bout de 5 à 10 minutes pour moi, mais ça dépend de la quantité de sauce que vous voulez. Si vous faites cuire longtemps, vous risquez de devoir mélanger de temps en temps pour ne pas que ça accroche.
+\etape Rajoutez les oignons et lardons, réchauffez un peu la mixture et ajoutez la farine en saupoudrant. Mélangez bien le tout avant de rajouter le floc puis le bouillon de volaille.
+\etape Mélangez bien le tout, couvrez et laissez cuire à feu doux jusqu'à ce que la sauce soit bien liée. Typiquement, c'était bon au bout de 5 à 10 minutes pour moi, mais ça dépend de la quantité de sauce que vous voulez. Si vous faites cuire longtemps, vous risquez de devoir mélanger de temps en temps pour ne pas que ça accroche.
 \end{preparation}
 
 \end{recette}
@@ -117,18 +106,18 @@ Ne couvrez pas pendant la cuisson des champignons afin d'éviter qu'il y ait tro
 \begin{recette}{Vinaigrette classique}
 \statistique{1}{}{}
 \begin{ingredients}
-\item 6 cuillères à soupe d'huile
-\item 1 cuillère à soupe de vinaigre de vin de Xeres
-\item 1 cuillère à soupe de vinaigre balsamique
-\item 1 cuillère à café rase de sel
-\item 1 demi-cuillère à café rase de poivre
-\item Éventuellement des herbes
+\ingredient 6 cuillères à soupe d'huile
+\ingredient 1 cuillère à soupe de vinaigre de vin de Xeres
+\ingredient 1 cuillère à soupe de vinaigre balsamique
+\ingredient 1 cuillère à café rase de sel
+\ingredient 1 demi-cuillère à café rase de poivre
+\ingredient Éventuellement des herbes
 \end{ingredients}
 
 \begin{preparation}
-\item Mettre sel et poivre dans un bol. 
-\item Ajouter le vinaigre pour dissoudre le sel. 
-\item Incorporer ensuite l'huile
+\etape Mettre sel et poivre dans un bol. 
+\etape Ajouter le vinaigre pour dissoudre le sel. 
+\etape Incorporer ensuite l'huile
 \end{preparation}
 
 \begin{remarque}
@@ -142,16 +131,16 @@ On peut remplacer le vinaigre par du jus de citron.
 \begin{recette}{Vinaigrette à la moutarde}
 \statistique{1}{}{}
 \begin{ingredients}
-\item 6 cuillères à soupe d'huile
-\item 2 cuillères à soupe de vinaigre
-\item 1 cuillère à café de moutarde
-\item 1 cuillère à café rase de sel
-\item 1 demi-cuillère à café rase de poivre
-\item Éventuellement des herbes
+\ingredient 6 cuillères à soupe d'huile
+\ingredient 2 cuillères à soupe de vinaigre
+\ingredient 1 cuillère à café de moutarde
+\ingredient 1 cuillère à café rase de sel
+\ingredient 1 demi-cuillère à café rase de poivre
+\ingredient Éventuellement des herbes
 \end{ingredients}
 
 \begin{preparation}
-\item Mélanger la moutarde avec sel et poivre. Ajouter le vinaigre et dissoudre la moutarde. Incorporer l'huile ensuite
+\etape Mélanger la moutarde avec sel et poivre. Ajouter le vinaigre et dissoudre la moutarde. Incorporer l'huile ensuite
 \end{preparation}
 
 
@@ -169,14 +158,15 @@ On peut remplacer le vinaigre par du jus de citron.
 \minitoc
 
 \begin{recette}{Confiture de Fraise traditionnelle québécoise}
+\statistique{0}{}{}
 \begin{ingredients}
-\item $1$ kg de fraises
-\item $750$ mL de sucre
-\item $95$ mL d'eau
+\ingredient $1$ kg de fraises
+\ingredient $750$ mL de sucre
+\ingredient $95$ mL d'eau
 \end{ingredients}
 
 \begin{preparation}
-\item Laver, équeuter et couper les fraises en morceaux
+\etape Laver, équeuter et couper les fraises en morceaux
 \end{preparation}
 
 
@@ -197,18 +187,18 @@ On peut remplacer le vinaigre par du jus de citron.
 \begin{recette}{Confiture de pomme au citron}
 \statistique{5}{}{}
 \begin{ingredients}
-\item $3\unit{kg}$ de pommes vertes
-\item $3\unit{kg}$ de sucre
-\item $1\unit{L}$ d'eau
-\item $4$ citrons (zeste et jus)
+\ingredient $3\unit{kg}$ de pommes vertes
+\ingredient $3\unit{kg}$ de sucre
+\ingredient $1\unit{L}$ d'eau
+\ingredient $4$ citrons (zeste et jus)
 \end{ingredients}
 
 \begin{preparation}
-\item Épluchez et sortez les trognons des pommes. Mettez les épluchures et les trognons dans un sac de mousseline.
-\item Coupez les pommes et mettez les dans une casserole avec l'eau, le sac de mousseline, le zeste rapé et le jus du citron.
-\item Faire cuire jusqu'à ce que les pommes soient tendres.
-\item Laissez refroidir un peu, puis sortez le sac et tordez le pour extraire le jus et le rajouter dans la casserole.
-\item Ajoutez le sucre et remuez. Continuez comme pour toutes les confitures (c'est à dire?)
+\etape Épluchez et sortez les trognons des pommes. Mettez les épluchures et les trognons dans un sac de mousseline.
+\etape Coupez les pommes et mettez les dans une casserole avec l'eau, le sac de mousseline, le zeste rapé et le jus du citron.
+\etape Faire cuire jusqu'à ce que les pommes soient tendres.
+\etape Laissez refroidir un peu, puis sortez le sac et tordez le pour extraire le jus et le rajouter dans la casserole.
+\etape Ajoutez le sucre et remuez. Continuez comme pour toutes les confitures (c'est à dire?)
 \end{preparation}
 
 
@@ -218,21 +208,21 @@ On peut remplacer le vinaigre par du jus de citron.
 \begin{recette}{Marmelade de Fraise}
 \statistique{0}{}{}
 \begin{ingredients}
-\item $1$ kg de fraises
-\item Le poids en sucre des fruits épluchés
+\ingredient $1$ kg de fraises
+\ingredient Le poids en sucre des fruits épluchés
 \end{ingredients}
 
 \begin{preparation}
-\item La veille, laver les fraises avec soin, les égoutter et les équeuter. Peser les fruits.
-\item Déposer par couche dans une grande terrine en alternant fruit et sucre
-\item Laisser macérer 24h (au bout de ce temps, le sucre est fondu et les fraises baignent dans le sirop)
+\etape La veille, laver les fraises avec soin, les égoutter et les équeuter. Peser les fruits.
+\etape Déposer par couche dans une grande terrine en alternant fruit et sucre
+\etape Laisser macérer 24h (au bout de ce temps, le sucre est fondu et les fraises baignent dans le sirop)
 \end{preparation}
 
 
 
 \begin{cuisson}
 \begin{enumerate}
- \item Faire chauffer le tout dans une grande bassine en remuant de temps en temps pour empêcher d'attacher, jusqu'à ce que l'ébullition soit obtenue
+\item Faire chauffer le tout dans une grande bassine en remuant de temps en temps pour empêcher d'attacher, jusqu'à ce que l'ébullition soit obtenue
 
 \item Cuire à ébullition vive 15 à 20 minutes selon les fruits
 
@@ -250,29 +240,29 @@ On peut remplacer le vinaigre par du jus de citron.
 \begin{recette}{Crème de Marron}
 \statistique{0}{}{}
 \begin{ingredients}
-\item $1$ kg de châtaignes
+\ingredient $1$ kg de châtaignes
 
-\item $600$ g de sucre
+\ingredient $600$ g de sucre
 
-\item $20$ cl d'eau
+\ingredient $20$ cl d'eau
 \end{ingredients}
 
 \begin{preparation}
-\item Faire une incision sur le dessus de chaque fruit.
+\etape Faire une incision sur le dessus de chaque fruit.
 
-\item Mettre les châtaignes dans une casserole d'eau froide.
+\etape Mettre les châtaignes dans une casserole d'eau froide.
 
-\item Faire boullir les fruits pendant 7/8 minutes.
+\etape Faire boullir les fruits pendant 7/8 minutes.
 
-\item Les égoutter et retirer l'écorce des fruits.
+\etape Les égoutter et retirer l'écorce des fruits.
 
-\item A la fin de cette opération, remettre les châtaignes a cuire dans un volume d'eau tiède pendant 5 minutes environ (vérifier la cuisson).
+\etape A la fin de cette opération, remettre les châtaignes a cuire dans un volume d'eau tiède pendant 5 minutes environ (vérifier la cuisson).
 
-\item Les égoutter et les passer au moulin à légume (grille fine) ou les réduire en purée au robot.
+\etape Les égoutter et les passer au moulin à légume (grille fine) ou les réduire en purée au robot.
 
-\item Faire cuire pendant 3 minutes (montre en main) le sucre et l'eau.
+\etape Faire cuire pendant 3 minutes (montre en main) le sucre et l'eau.
 
-\item Ajouter cette préparation sur la purée de châtaignes et remuer.
+\etape Ajouter cette préparation sur la purée de châtaignes et remuer.
 \end{preparation}
 
 
@@ -290,9 +280,9 @@ On peut remplacer le vinaigre par du jus de citron.
 \statistique{4}{}{}
 
 \begin{ingredients}
-\item 2 oranges
-\item $400$ g de sucre
-\item 400mL d'eau
+\ingredient 2 oranges
+\ingredient $400$ g de sucre
+\ingredient 400mL d'eau
 \end{ingredients}
 
 \begin{remarque}
@@ -301,14 +291,14 @@ Ceci est une recette à ma façon, qui ne nécessite pas d'avoir des oranges bio
 
 
 \begin{preparation}
-\item Pelez les oranges sans les ouvrir en deux.
+\etape Pelez les oranges sans les ouvrir en deux.
 \begin{remarque}
 Lors de la découpe de la tête de l'orange, tranchez le pourtour, décollez délicatement le tour avec le dos du couteau puis soulevez le couvercle. En faisant ainsi vous enlèverez une bonne partie de la tige blanche de l'intérieur de l'orange.
 \end{remarque}
-\item Coupez les oranges en tranches assez épaisse, environ 5mm (trop fin et les tranches ne résisteront pas à la cuisson. Elles seront bonnes mais en lambeaux).
-\item Préparez le sirop avec le sucre et l'eau et portez à ébullition
-\item Plongez les tranches dans le sirop, et faites frémir pendant 1h30 environ (sans couvrir).
-\item À l'issue de la cuisson, sortez délicatement les tranches à l'aide d'une spatule (ça permet de ne pas les abîmer et de les égoutter en même temps) puis déposez-les sur du papier sulfurisé afin de les laisser sécher et refroidir
+\etape Coupez les oranges en tranches assez épaisse, environ 5mm (trop fin et les tranches ne résisteront pas à la cuisson. Elles seront bonnes mais en lambeaux).
+\etape Préparez le sirop avec le sucre et l'eau et portez à ébullition
+\etape Plongez les tranches dans le sirop, et faites frémir pendant 1h30 environ (sans couvrir).
+\etape À l'issue de la cuisson, sortez délicatement les tranches à l'aide d'une spatule (ça permet de ne pas les abîmer et de les égoutter en même temps) puis déposez-les sur du papier sulfurisé afin de les laisser sécher et refroidir
 \end{preparation}
 
 \subsection*{Conseils}
@@ -323,19 +313,19 @@ Lors de la découpe de la tête de l'orange, tranchez le pourtour, décollez dé
 \statistique{1}{}{}
 
 \begin{ingredients}
-\item 2 jaunes d'œufs
-\item $250$ g de chocolat
-\item $75$ g de beurre
-\item 2 cuillères à soupe de lait
+\ingredient 2 jaunes d'œufs
+\ingredient $250$ g de chocolat
+\ingredient $75$ g de beurre
+\ingredient 2 cuillères à soupe de lait
 \end{ingredients}
 
 \begin{preparation}
-\item Faire fondre a feu très doux ou au bain-marie, le chocolat en petit morceaux et le lait.
-\item Remuer à l'aide d'une spatule pour obtenir une creme lisse; retirer du feu.
-\item Ajouter les jaunes d'œufs, mélanger, puis le beurre en petit morceaux.
-\item Bien travailler cette préparation (on peut la parfumer avec une pointe de café ou de l'écorce d'orange).
-\item Laisser refroidir dans le réfrigérateur.
-\item Former les truffes et les rouler dans du cacao en poudre, puis les disposer dans des godets\dots
+\etape Faire fondre a feu très doux ou au bain-marie, le chocolat en petit morceaux et le lait.
+\etape Remuer à l'aide d'une spatule pour obtenir une creme lisse; retirer du feu.
+\etape Ajouter les jaunes d'œufs, mélanger, puis le beurre en petit morceaux.
+\etape Bien travailler cette préparation (on peut la parfumer avec une pointe de café ou de l'écorce d'orange).
+\etape Laisser refroidir dans le réfrigérateur.
+\etape Former les truffes et les rouler dans du cacao en poudre, puis les disposer dans des godets\dots
 \end{preparation}
 
 
@@ -346,6 +336,7 @@ La même recette peut être réalisée avec du chocolat blanc ( de marque de pr�
 
 \chapter{Techniques}
 \minitoc
+\newpage
 
 \section{Couteaux de cuisine}
 Il existe beaucoup de couteaux différents, avec chacun une fonction précise. Voici un récapitulatif de certains d'entre eux.
