@@ -9,11 +9,14 @@
 \makeatletter
 
 % macros qui servent à la mise en page, elles ne doivent pas être utilisées directement
-\newcommand{\preparationTopSep}{\vspace{.2cm} \hrule height0.25pt width\hsize \vspace{.3cm}}
+\newcommand{\preparationTopSep}{\vspace{.2cm} \hrule height0.25pt width\hsize \vspace{1em}}
 \newcommand{\statistiqueTopSep}{\vspace{.3cm} \hrule height1pt width\hsize \nobreak \vskip\parskip \vspace{.3cm}}
-\newcommand{\ingredientsTopSep}{\vspace{.4cm} \hrule height0.75pt width\hsize\vspace*{1\p@}\hrule height0.25pt width\hsize \vspace{.3cm}}
+\newcommand{\ingredientsTopSep}{\vspace{.4cm} \hrule height0.75pt width\hsize\vspace*{1\p@}\hrule height0.25pt width\hsize \vspace{1em}}
 \newcommand{\partStyle}{\bfseries \large}
 
+% redéfinition d'une nouvelle commande de section qui n'a pas de numérotation, est centrée, avec mise en page modifiée. C'est pour afficher le titre des recettes et qu'elles apparaissent dans le menu. J'avais fait avec addcontentline mais la référence n'était pas bonne et pointait sur la page précédente parfois. Bref, pas propre.
+\newcommand\nomRecette{\@startsection {section}{6}{\z@}{0ex}{2.3ex }%
+	{\reset@font\Huge\bfseries\centering}}
 
 \usepackage{bbding}%to add \FiveStar and \FiveStarOpen
 \newcommand{\note}[1]
@@ -26,10 +29,7 @@
   \ifthenelse{\equal{#1}{5}}{\FiveStar\FiveStar\FiveStar\FiveStar\FiveStar}{}
 }
 
-% macro qui est utilisée par l'environnement recette, ne doit pas être utilisé directement
-\newcommand{\nomRecette}[1]{{\begin{center}\Huge \bfseries #1\end{center}}\addcontentsline{toc}{section}{#1} }
-
-\newcommand{\ingredient}[1][]{\ifthenelse{\equal{#1}{}}{\item }{\item[\textbf{#1}]}}
+\newcommand{\ingredient}[1][]{\ifthenelse{\equal{#1}{}}{\item }{\vspace{1ex}\hrule\vspace{1ex}\item[\textcurrency]\textbf{#1}}}
 
 \newcommand{\etape}[1][]{\ifthenelse{\equal{#1}{}}{\item }{\item[\textbf{#1}]}}
 
@@ -44,13 +44,14 @@
 \newenvironment{ingredients}[1][]{\ingredientsTopSep{\partStyle Ingrédients\ifthenelse{\equal{#1}{}}{}{ (#1)}}\begin{multicols}{2}\begin{itemize}\renewcommand{\labelitemi}{$\bullet$}}{\end{itemize}\end{multicols}}
 
 % Environnement pour mettre en page la préparation du plat. Les entrées sont de la forme ``\etape texte de l'étape``. Si on veut séparer les étapes, pour dénoter un groupement d'étape par exemple, il faut faire une ligne du style \etape[pour la sauce] afin de séparer.
-\newenvironment{preparation}{\preparationTopSep{\partStyle Préparation }\begin{enumerate}}{\end{enumerate}}
+\newenvironment{preparation}{\preparationTopSep{\partStyle Préparation }\vspace{0.5em}\begin{enumerate}}{\end{enumerate}}
 
 % À utiliser si on souhaite faire une mise en page un peu plus évoluée, avec deux listes par exemples.
-\newenvironment{preparation*}{\preparationTopSep{\partStyle Préparation }\par}{}
+\newenvironment{preparation*}{\preparationTopSep{\partStyle Préparation }\vspace{0.5em}\par}{}
 
 % Environnement pour mettre en page la cuisson du plat
 \newenvironment{cuisson}{\bigskip{\bfseries \large Cuisson }\par}{}
+\makeatother
 
 \title{Recettes de Cuisine}
 \author{Autiwa}
