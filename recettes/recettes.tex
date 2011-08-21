@@ -1,11 +1,12 @@
 \documentclass[a4paper,twoside]{report}
 \usepackage[print]{autiwa}
-% \usepackage{amssymb}
+
 \setcounter{secnumdepth}{2}
 \usepackage{minitoc}
 \setcounter{minitocdepth}{1}
-% \usepackage{hyperref}
+
 \fancyhead[LE]{}
+
 \makeatletter
 
 % macros qui servent à la mise en page, elles ne doivent pas être utilisées directement
@@ -34,11 +35,9 @@
 \newcommand{\etape}[1][]{\ifthenelse{\equal{#1}{}}{\item }{\item[\textbf{#1}]}}
 
 % Environnement qui crée une nouvelle recette. Ingrédients, étape, cuisson etc doivent être contenus dans un environnement recette.
-\newenvironment{recette}[1]{\newpage \nomRecette{#1}}{}
-
-% statistique de la recette, sa note, son temps de préparation et de cuisson.
-\newcommand{\statistique}[3]{\statistiqueTopSep\note{#1}\hfill\includegraphics[width=1em]{figures/logo_minuterie.pdf} \; \begin{itshape}\textbf{Préparation :} #2 \hfill \includegraphics[width=1em]{figures/logo_minuterie.pdf} \;\textbf{Cuisson :} #3\end{itshape}}
-
+\newenvironment{recette}[4]{\newpage \nomRecette{#1}\statistiqueTopSep\note{#2}\ifthenelse{\equal{#4}{}}%
+{\hfill\includegraphics[width=1em]{figures/logo_minuterie.pdf} \; \begin{itshape}\textbf{Préparation \& Cuisson :} #3\end{itshape}}%if none
+{\hfill\includegraphics[width=1em]{figures/logo_minuterie.pdf} \; \begin{itshape}\textbf{Préparation :} #3 \hfill \includegraphics[width=1em]{figures/logo_minuterie.pdf} \;\textbf{Cuisson :} #4\end{itshape}}}{}
 
 % Environnement pour la mise en page des ingrédients. Un argument optionnel de l'environnement permet de spécifier pour combien de personnes sont les doses. Les entrées de cet environnement doivent être ``\ingredient nom de l'ingrédient''. Si on veut séparer les ingrédients, pour dénoter deux sortes de choses, ingrédient pour une sauce et une pâte par exemple, il faut faire une ligne du style \ingredient[pour la sauce] afin de séparer.
 \newenvironment{ingredients}[1][]{\ingredientsTopSep{\partStyle Ingrédients\ifthenelse{\equal{#1}{}}{}{ (#1)}}\begin{multicols}{2}\begin{itemize}\renewcommand{\labelitemi}{$\bullet$}}{\end{itemize}\end{multicols}}
@@ -52,6 +51,8 @@
 % Environnement pour mettre en page la cuisson du plat
 \newenvironment{cuisson}{\bigskip{\bfseries \large Cuisson }\par}{}
 \makeatother
+
+%TODO Faire une commande pour que dans l'index on voit la liste des recettes en fonction de la note qu'elles ont. 
 
 \title{Recettes de Cuisine}
 \author{Autiwa}
@@ -79,8 +80,7 @@
 \chapter{Sauces}
 \minitoc
 
-\begin{recette}{Sauce maison}
-\statistique{2}{}{}
+\begin{recette}{Sauce maison}{2}{}{}
 \begin{ingredients}
 \ingredient 150g de champignons de Paris
 \ingredient 100g de lardons
@@ -104,21 +104,20 @@ Ne couvrez pas pendant la cuisson des champignons afin d'éviter qu'il y ait tro
 
 \end{recette}
 
-\begin{recette}{Vinaigrette classique}
-\statistique{1}{}{}
+\begin{recette}{Vinaigrette classique}{3}{5 min}{}
 \begin{ingredients}
 \ingredient 6 cuillères à soupe d'huile
-\ingredient 1 cuillère à soupe de vinaigre de vin de Xeres
+\ingredient 2 cuillère à soupe de vinaigre de vin de Xeres
 \ingredient 1 cuillère à soupe de vinaigre balsamique
-\ingredient 1 cuillère à café rase de sel
-\ingredient 1 demi-cuillère à café rase de poivre
+\ingredient 1 demi-cuillère à café de sel
+\ingredient une bonne pincée de poivre (ou 2 ou 3 tours de moulin)
 \ingredient Éventuellement des herbes
 \end{ingredients}
 
 \begin{preparation}
-\etape Mettre sel et poivre dans un bol. 
-\etape Ajouter le vinaigre pour dissoudre le sel. 
-\etape Incorporer ensuite l'huile
+\etape Dans un pot en verre (à confiture par ex) ou un petit tupperware, mettez le sel et le poivre. Ajoutez-y le vinaigre et secouez jusqu'à ce que le sel soit dissous.
+\etape Ajoutez alors les herbes de provence et tous les condiments que vous souhaitez ajouter. 
+\etape Incorporez l'huile ensuite puis secouez jusqu'à ce que la vinaigrette soit homogène.
 \end{preparation}
 
 \begin{remarque}
@@ -129,19 +128,21 @@ On peut remplacer le vinaigre par du jus de citron.
 
 \end{recette}
 
-\begin{recette}{Vinaigrette à la moutarde}
-\statistique{1}{}{}
+\begin{recette}{Vinaigrette à la moutarde}{3}{5 min}{}
 \begin{ingredients}
 \ingredient 6 cuillères à soupe d'huile
-\ingredient 2 cuillères à soupe de vinaigre
+\ingredient 2 cuillères à soupe de vinaigre de vin de xeres
+\ingredient 1 cuillères à soupe de vinaigre balsamique
 \ingredient 1 cuillère à café de moutarde
-\ingredient 1 cuillère à café rase de sel
-\ingredient 1 demi-cuillère à café rase de poivre
+\ingredient 1 demi-cuillère à café de sel
+\ingredient une bonne pincée de poivre (ou 2 ou 3 tours de moulin)
 \ingredient Éventuellement des herbes
 \end{ingredients}
 
 \begin{preparation}
-\etape Mélanger la moutarde avec sel et poivre. Ajouter le vinaigre et dissoudre la moutarde. Incorporer l'huile ensuite
+\etape Dans un pot en verre (à confiture par ex) ou un petit tupperware, mettez le sel et le poivre. Ajoutez-y le vinaigre et secouez jusqu'à ce que le sel soit dissous.
+\etape Ajoutez alors la moutarde, les herbes de provence et tous les condiments que vous souhaitez ajouter. 
+\etape Incorporez l'huile ensuite puis secouez jusqu'à ce que la moutarde soit diluée et que la vinaigrette soit homogène.
 \end{preparation}
 
 
@@ -158,8 +159,7 @@ On peut remplacer le vinaigre par du jus de citron.
 \chapter{Confitures}
 \minitoc
 
-\begin{recette}{Confiture de Fraise traditionnelle québécoise}
-\statistique{0}{}{}
+\begin{recette}{Confiture de Fraise traditionnelle québécoise}{0}{}{}
 \begin{ingredients}
 \ingredient $1$ kg de fraises
 \ingredient $750$ mL de sucre
@@ -185,8 +185,7 @@ On peut remplacer le vinaigre par du jus de citron.
 
 \end{recette}
 
-\begin{recette}{Confiture de pomme au citron}
-\statistique{5}{}{}
+\begin{recette}{Confiture de pomme au citron}{5}{}{}
 \begin{ingredients}
 \ingredient $3\unit{kg}$ de pommes vertes
 \ingredient $3\unit{kg}$ de sucre
@@ -206,8 +205,7 @@ On peut remplacer le vinaigre par du jus de citron.
 
 \end{recette}
 
-\begin{recette}{Marmelade de Fraise}
-\statistique{0}{}{}
+\begin{recette}{Marmelade de Fraise}{0}{}{}
 \begin{ingredients}
 \ingredient $1$ kg de fraises
 \ingredient Le poids en sucre des fruits épluchés
@@ -238,8 +236,7 @@ On peut remplacer le vinaigre par du jus de citron.
 \chapter{Confiseries}
 \minitoc
 
-\begin{recette}{Crème de Marron}
-\statistique{0}{}{}
+\begin{recette}{Crème de Marron}{0}{}{}
 \begin{ingredients}
 \ingredient $1$ kg de châtaignes
 
@@ -277,8 +274,7 @@ On peut remplacer le vinaigre par du jus de citron.
 
 \end{recette}
 
-\begin{recette}{Tranches d'oranges confite}
-\statistique{4}{}{}
+\begin{recette}{Tranches d'oranges confite}{4}{}{}
 
 \begin{ingredients}
 \ingredient 2 oranges
@@ -310,8 +306,7 @@ Lors de la découpe de la tête de l'orange, tranchez le pourtour, décollez dé
 
 \end{recette}
 
-\begin{recette}{Truffes au chocolat}
-\statistique{1}{}{}
+\begin{recette}{Truffes au chocolat}{1}{}{}
 
 \begin{ingredients}
 \ingredient 2 jaunes d'œufs
