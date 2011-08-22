@@ -1355,6 +1355,146 @@ close(14)
 La fonction \texttt{trim()} permet de supprimer les espaces en trop, pratique pour afficher ou écrire du texte proprement.
 \end{remarque}
 
+\subsection{Lire un fichier de paramètres}
+Ce n'est pas \emph{la} bonne façon de faire, c'est juste ce que je fais moi. 
+
+Je défini un caractère qui autorise des commentaires (dans mon exemple, \og !\fg). Les lignes blanches ou avec espaces sont ignorées quant à elle, vu que l'élément déclencheur est la présence du séparateur entre nom de paramètre et valeur. 
+
+Je défini aussi un séparateur pour les paramètres (dans mon exemple \og =\fg). Chaque paramètre doit posséder un nom, sans espaces. L'ordre des paramètres n'a pas d'importance. 
+
+\begin{remarque}
+Dans le reste du programme je défini des valeurs par défaut qui seront alors écrasées lors de la lecture du fichier si le paramètre y est défini. Je défini en effet les variables en tant que variables globales du module, vu qu'elles sont constantes dans le programme (même si le fait que je ne les connaisse pas à priori m'empêche de les définir en tant que \texttt{parameter}.
+\end{remarque}
+
+
+\begin{lstlisting}[language=Fortran]
+subroutine read_disk_properties()
+! subroutine that read the 'disk.in' file to retrieve disk properties. 
+! Default value exist, if a parameter is not defined
+
+  implicit none
+  
+  character(len=80) :: line
+
+  ! character that will indicate that the reste of the line is a comment
+  character(len=1) :: comment_character = '!' 
+  
+  ! the index of the comment character on the line. 
+  ! If zero, there is none on the current string
+  integer :: comment_position 
+
+  integer :: error ! to store the state of a read instruction
+  
+  logical :: isParameter, isDefined
+  character(len=80) :: identificator, value
+  !-----------------------------------------------------
+  
+  open(10, file='disk.in', status='old')
+  
+  do
+    read(10, '(a80)', iostat=error), line
+    if (error /= 0) exit
+      
+    ! We get only what is on the left of an eventual comment parameter
+      comment_position = index(line, comment_character)
+    
+    ! If there are comments on the current line, we get rid of them
+    if (comment_position.ne.0) then
+      line = line(1:comment_position - 1)
+    end if
+    
+    call get_parameter_value(line, isParameter, identificator, value)
+      
+    if (isParameter) then
+      select case(identificator)
+      case('b/h')
+	read(value, *) b_over_h
+      
+      case('adiabatic_index')
+	read(value, *) adiabatic_index
+
+      case('temperature')
+	read(value, *) temperature_0, temperature_index
+	
+      case default
+	write(*,*) 'Warning: An unknown parameter has been found'
+	write(*,*) "identificator='", trim(identificator),&
+                   "' ; value(s)='", trim(value),"'"
+      end select
+    end if
+  end do
+  
+  close(10)
+    
+end subroutine read_disk_properties
+\end{lstlisting}
+
+Dans cet exemple, je montre comment définir un paramètre ne contenant qu'une seule valeur, ou un paramètre contenant plusieurs valeurs (ici deux, mais il peut y en avoir plus). 
+
+\begin{attention}
+Notez que je ne lis que les 80 premiers caractères d'une ligne. Il ne peut donc pas y avoir de valeur définie au delà du 80\ieme caractère. Par contre, la longueur des commentaires est arbitraire, y compris sur les lignes qui contiennent des paramètres en début de ligne.
+\end{attention}
+
+
+Je défini ensuite la subroutine qui me permet de récupérer l'identificateur et la (ou les) valeur(s) associée(s) : 
+\begin{lstlisting}[language=Fortran]
+subroutine get_parameter_value(line, isParameter, id, value)
+! subroutine that try to split the line in two part, 
+! given a separator value (set in parameter of the subroutine)
+!
+! The routine return 3 values : 
+!
+! Return
+! isParameter : is a boolean to say whether or not there is a parameter 
+!  on this line. i.e if there is an occurence of the separator 
+!  in the input line.
+! id : a string that contain the name of the parameter
+! value : a string that contains the value(s) associated with 
+!  the parameter name
+
+  implicit none
+  
+  ! Input
+  character(len=80), intent(in) :: line
+  
+  ! Output
+  logical, intent(out) :: isParameter
+  character(len=80), intent(out) :: id, value
+  
+  ! Local
+  ! the separator of a parameter line
+  character(len=1), parameter :: sep = '=' 
+
+  integer :: sep_position ! an integer to get the position of the separator
+
+  !-----------------------------------------------------
+
+  sep_position = index(line, sep)
+  
+  if (sep_position.ne.0) then
+    isParameter = .true.
+    id = line(1:sep_position-1)
+    value = line(sep_position+1:)
+  else
+    isParameter = .false.
+  end if
+
+end subroutine get_parameter_value
+\end{lstlisting}
+
+Le fichier de paramètre est quelque chose du genre :
+\begin{verbatim}
+! ------------------------------------------------
+! Parameter file for various properties of the disk. 
+! ------------------------------------------------
+
+adiabatic_index = 1.4
+temperature = 510 1
+b/h = 0.4
+\end{verbatim}
+
+
+
 \section{Optimisation}
 \subsection{Comparaison f77/f90}
 \subsection{Profiling}
