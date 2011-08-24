@@ -7,42 +7,42 @@
 \definecolor{gray}{gray}{0.5}
 \definecolor{green}{rgb}{0,0.5,0}
 
-\lstnewenvironment{python}[1][]{
-\lstset{
-language=python,
-basicstyle=\ttfamily\small\setstretch{1},
-stringstyle=\color{red},
-showstringspaces=false,
-alsoletter={1234567890},
-otherkeywords={\ , \}, \{},
-keywordstyle=\color{blue},
-emph={access,and,break,class,continue,def,del,elif,else,%
-except,exec,finally,for,from,global,if,import,in,is,%
-lambda,not,or,pass,print,raise,return,try,while},
-emphstyle=\color{black}\bfseries,
-emph={[2]True, False, None, self},
-emphstyle=[2]\color{green},
-emph={[3]from, import, as},
-emphstyle=[3]\color{blue},
-upquote=true,
-morecomment=[s]{"""}{"""},
-commentstyle=\color{gray}\slshape,
-emph={[4]1, 2, 3, 4, 5, 6, 7, 8, 9, 0},
-emphstyle=[4]\color{blue},
-literate=*{:}{{\textcolor{blue}:}}{1}%
-	{=}{{\textcolor{blue}=}}{1}%
-	{-}{{\textcolor{blue}-}}{1}%
-	{+}{{\textcolor{blue}+}}{1}%
-	{*}{{\textcolor{blue}*}}{1}%
-	{!}{{\textcolor{blue}!}}{1}%
-	{(}{{\textcolor{blue}(}}{1}%
-	{)}{{\textcolor{blue})}}{1}%
-	{[}{{\textcolor{blue}[}}{1}%
-	{]}{{\textcolor{blue}]}}{1}%
-	{<}{{\textcolor{blue}<}}{1}%
-	{>}{{\textcolor{blue}>}}{1},%
-framexleftmargin=1mm, framextopmargin=1mm, frame=shadowbox, rulesepcolor=\color{blue},#1
-}}{}
+% \lstnewenvironment{python}[1][]{
+% \lstset{
+% language=python,
+% basicstyle=\ttfamily\small\setstretch{1},
+% stringstyle=\color{red},
+% showstringspaces=false,
+% alsoletter={1234567890},
+% otherkeywords={\ , \}, \{},
+% keywordstyle=\color{blue},
+% emph={access,and,break,class,continue,def,del,elif,else,%
+% except,exec,finally,for,from,global,if,import,in,is,%
+% lambda,not,or,pass,print,raise,return,try,while},
+% emphstyle=\color{black}\bfseries,
+% emph={[2]True, False, None, self},
+% emphstyle=[2]\color{green},
+% emph={[3]from, import, as},
+% emphstyle=[3]\color{blue},
+% upquote=true,
+% morecomment=[s]{"""}{"""},
+% commentstyle=\color{gray}\slshape,
+% emph={[4]1, 2, 3, 4, 5, 6, 7, 8, 9, 0},
+% emphstyle=[4]\color{blue},
+% literate=*{:}{{\textcolor{blue}:}}{1}%
+% 	{=}{{\textcolor{blue}=}}{1}%
+% 	{-}{{\textcolor{blue}-}}{1}%
+% 	{+}{{\textcolor{blue}+}}{1}%
+% 	{*}{{\textcolor{blue}*}}{1}%
+% 	{!}{{\textcolor{blue}!}}{1}%
+% 	{(}{{\textcolor{blue}(}}{1}%
+% 	{)}{{\textcolor{blue})}}{1}%
+% 	{[}{{\textcolor{blue}[}}{1}%
+% 	{]}{{\textcolor{blue}]}}{1}%
+% 	{<}{{\textcolor{blue}<}}{1}%
+% 	{>}{{\textcolor{blue}>}}{1},%
+% framexleftmargin=1mm, framextopmargin=1mm, frame=shadowbox, rulesepcolor=\color{blue},#1
+% }}{}
 
 
 \begin{document}
@@ -50,10 +50,10 @@ framexleftmargin=1mm, framextopmargin=1mm, frame=shadowbox, rulesepcolor=\color{
 
 \clearpage
 Soit on lance l'interpréteur via \verb|python|, soit on exécute un script python, qui doit commencer par les lignes suivantes
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-\end{verbatim}
+\end{lstlisting}
 
 La première ligne pour définir que c'est un script python et la deuxième pour spécifier l'encodage du script (pour moi, utf-8).
 
@@ -62,26 +62,26 @@ En python, la mise en forme du code est primordiale puisque c'est elle qui déte
 
 \subsection{Boucles}\index{boucles}
 Pour effectuer une boucle, on fera donc
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 for i in range(5):
   print i
 print "ici, on n'est plus dans la boucle"
-\end{verbatim}
+\end{lstlisting}
 
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 list = ['a', 'b', 'c', 'd']
 for ele in list:
   print ele
-\end{verbatim}
+\end{lstlisting}
 
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 a = 0
 while (a<1):
   print a
   a += 1
-\end{verbatim}
+\end{lstlisting}
 
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 a = 0
 if (a==0):
   print "a est nul"
@@ -90,7 +90,7 @@ elif a==1:
 else:
   print "a ne vaut ni 0 ni 1"
 # fin de la boucle
-\end{verbatim}
+\end{lstlisting}
 
 \begin{table}[htb]
 \begin{tabular}{>{\bfseries}r<{}@{ : }p{11cm}}
@@ -115,52 +115,52 @@ a != b & teste si a et b sont différent
 \subsection{Variables et types numériques}
 
 La fonction \gras[python!type]{type} permet de connaître le type d'une variable.
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 a = 2
 b = 2.
 c = 'chaine'
 type(a), type(b), type(c)
-\end{verbatim}
+\end{lstlisting}
 
 Pour limiter le nombre de chiffres significatifs d'un réel, il faut utiliser la fonction \texttt{round(x,n)} qui arrondit la variable x avec n chiffres après la virgule.
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 >>> round(1.23441, 2)
 1.23
-\end{verbatim}
+\end{lstlisting}
 
 Une fonction très pratique est la fonction \texttt{eval}. Elle permet de dire à python de considérer le contenu d'une variable ou expression comme si c'était du code python. Un exemple concrêt :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 a = 2
 b = 'a'
 print eval(b)
-\end{verbatim}
+\end{lstlisting}
 
 On voit rapidement les possibilités de cette commande dans des boucles et autres joyeusetées.
 
 \bigskip
 
 Il existe en python le type booléen dont les valeurs possibles sont \texttt{True} ou \texttt{False}
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 a = True
 if a:
   print a
 a = False
 if not(a):
   print "C'est faux"
-\end{verbatim}
+\end{lstlisting}
 
 \subsection{Débug}
 Pour celà, il existe le module \gras[module!pdb]{pdb} qui sert à ça.
 
 On l'importe de la façon suivante
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 import pdb
-\end{verbatim}
+\end{lstlisting}
 
 La commande utile, si on ne doit en retenir qu'une est :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 pdb.set_trace()
-\end{verbatim}
+\end{lstlisting}
 
 Cette commande stoppe le programme et donne la main à l'interpréteur, nous permettant de regarder l'état des variables. Il permet aussi de continuer le programme ligne à ligne, mais je sais pas encore comment.
 
@@ -173,62 +173,63 @@ Sinon, pour quitter, \touche{Ctrl}+\touche{C}, ou \texttt{exit()}
 
 \section{Fonctions}
 On peut bien évidemment créer des fonctions en python. Une fonction très simple serait
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 def affiche(variable):
   print variable
-\end{verbatim}
+\end{lstlisting}
 qui se contenterait d'afficher le contenu de la variable passée en argument.
 
 Une fonction peut retourner des valeurs via \verb|return variable|. Cette fonction peut renvoyer plusieurs valeurs, on aura donc :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 def produit_somme(a,b):
   somme = a + b
   produit = a * b
   return somme, produit_somme
 
 (sum_ab, prod_ab) = produit_somme(2,3)
-\end{verbatim}
+\end{lstlisting}
 
 On peut aussi avoir des paramètres optionnels, à qui on donne une valeur par défaut :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 def test(a, b=3)
   print a*b
-\end{verbatim}
+\end{lstlisting}
 
 On peut aussi gérer un nombre inconnu de variable :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 def test(*args):
   for arg in args:
     print arg
 test('coucou', 2, 1, range(2))
 test('coucou', 2)
-\end{verbatim}
+\end{lstlisting}
 
 Ceci peut s'ajouter à d'autres variables, elles obligatoires :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 def test(nom, *variables):
   print nom
   for var in variables:
     print var
 test('coucou', 2, 1, range(2))
 test('coucou', 2)
-\end{verbatim}
+\end{lstlisting}
 
 \subsection{Documenter une fonction}
 \source{tuto de suzy}
 
 Une dernière chose très importante lorsque vous définissez une fonction, c'est sa documentation ! Vous allez commencer à documenter votre code pour le rendre plus compréhensible et exploitable par d'autres personnes que vous. Pour cela, c'est très simple, il suffit de placer immédiatement sous la ligne de définition de votre fonction, une chaîne de caractères entre triple 'quote' (""" ou ''') qui sera considérée un commentaire.
 
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 def fonction(arg1, arg2) :
     """
-    Je documente ma fonction. J'explique rapidement à quoi sert cette fonction.
+    Je documente ma fonction. 
+    J'explique rapidement à quoi sert cette fonction.
     arg1 : J'écris à quoi correspond cet argument.
     arg2 : J'écris à quoi correspond cet argument.
     return : J'indique ce que retourne la fonction
     """
     pass
-\end{verbatim}
+\end{lstlisting}
 
 Voici un exemple d'une manière simple de documenter clairement vos fonctions. Il faut au minimum expliquer ce que fait la fonction. Une documentation complète détaille aussi le sens de chacun des arguments et ce que retourne la fonction. Avec une bonne documentation, personne ne doit avoir besoin de lire le code pour comprendre à quoi sert la fonction et ce qu'elle fait. Cela permet de la conserver en tant que boîte noire qui ne regarde que celui qui l'a implémentée.
 
@@ -239,7 +240,7 @@ Le mot clé \gras{pass} vous permet de sortir d'une structure. Il peut être uti
 \subsection{Passer plusieurs arguments d'une fonction à l'aide d'une séquence}\label{sec:args_liste}
 Il est tout à fait possible de passer pour ce type d'argument une séquence, pour cela, il suffit de la faire précéder d'une étoile pour la convertir.
 
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 def fonction(*arguments) :
     """Test de fonction avec un nombre indéfini d'arguments.
     arguments : Une séquence à écrire en console."""
@@ -247,7 +248,7 @@ def fonction(*arguments) :
         print(element)
 
 fonction(*'abcdef')
-\end{verbatim}
+\end{lstlisting}
 
 Si vous n'utilisez pas l'opérateur '*', votre séquence sera alors considérée comme n'étant qu'un seul argument ! Cela est dû au typage dynamique. En effet, n'importe quel argument de votre fonction peut prendre n'importe quel type, il faut donc préciser ici que chaque élément de la séquence est un argument à part entière.
 
@@ -260,7 +261,7 @@ Il existe des fonctions qui acceptent un nombre indéterminé d'arguments, c'est
 
 La syntaxe est particulièrement simple. En fait, vous allez préciser une séquence (liste, tuple ou chaîne de caractères) comme argument. Le fait que cet argument doivent être une séquence se précise par l'utilisation de l'opérateur '*' juste avant le nom de l'argument :
 
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 def fonction(*arguments) :
     """Test de fonction avec un nombre indéfini d'arguments.
     arguments : Une séquence à écrire en console."""
@@ -268,12 +269,12 @@ def fonction(*arguments) :
         print(element)
 
 fonction(43, 38, "Peuh !", True)
-\end{verbatim}
+\end{lstlisting}
 
 De cette façon, il est donc possible d'appeler ma fonction avec un nombre indéfini d'arguments mais attention, cela est possible à une seule condition : la séquence d'arguments doit impérativement se situer en dernier argument de la fonction ! Les arguments s'écrivent donc dans l'ordre suivant dans la déclaration d'une fonction : les arguments obligatoires, les arguments avec valeur par défaut (facultatifs) et enfin des arguments supplémentaires si nécessaires.
 
 En utilisant l'astuce \refsec{sec:args_liste} ça donne :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 def fonction(*arguments) :
     """Test de fonction avec un nombre indéfini d'arguments.
     arguments : Une séquence à écrire en console."""
@@ -281,13 +282,13 @@ def fonction(*arguments) :
         print(element)
 
 fonction(*'abcdef')
-\end{verbatim}
+\end{lstlisting}
 
 \subsubsection{Arguments avec clé}
 
 Si vous voulez associer une clé à chacun des arguments que vous donnez en supplément à une fonction, il va falloir utiliser un dictionnaire. Et ce coup-ci, c'est l'opérateur '**' qui sera utilisé.
 
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 def fonction(**arguments) :
     """Test de fonction avec un nombre indéfini d'arguments.
     arguments : Un dictionnaire à écrire en console."""
@@ -295,11 +296,11 @@ def fonction(**arguments) :
         print(cle,arguments[cle])
 
 fonction(arg1 = 'Peuh !', arg2 = 38)
-\end{verbatim}
+\end{lstlisting}
 
 Vous verrez en exécutant ce code que l'on peut donc facilement créer des couples (clé,valeur) à passer en paramètre. La contrainte est la même que précédemment et le dictionnaire d'arguments doit être impérativement placé en dernier dans la liste d'arguments lors de la déclaration de la fonction. Encore une fois, pour convertir un dictionnaire non pas un seul argument mais en une suite d'arguments, il faut utiliser l'opérateur '**' devant le dictionnaire passé en argument.
 
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 def fonction(**arguments) :
     """Test de fonction avec un nombre indéfini d'arguments.
     arguments : Un dictionnaire à écrire en console."""
@@ -307,16 +308,16 @@ def fonction(**arguments) :
         print(cle,arguments[cle])
 
 fonction(**dict(arg1 = 'Peuh !', arg2 = 38))
-\end{verbatim}
+\end{lstlisting}
 
 \subsection{Importer des fonctions}\label{sec:importer_fonctions}\index{importer des modules}
 On peut importer des fonctions très facilement. Il convient pourtant de prendre de bonnes habitudes dès le départ. Par exemple, pour importer la fonction \texttt{sin()}, on peut choisir une des lignes suivantes :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 import math
 from math import *
 from math import sin
 import math as m
-\end{verbatim}
+\end{lstlisting}
 
 Ceci est donné uniquement à titre d'exemple. La première ligne importe toute la librairie math, et pour appeler la fonction sinus, il faudra faire \texttt{math.sin(x)}
 
@@ -331,9 +332,9 @@ La 4\ieme et dernière ligne importe toute la librairie math et définit un alia
 Maintenant, voici ce qu'il faut éviter de faire : Il ne faut pas utiliser les lignes 2 ou 3 qui nous font perdre l'information d'où provient la fonction qu'on utilise.
 
 Personnellement, je continue à le faire pour la librairie math, mais c'est la seule exception. Par exemple pour les plots, j'utilise \gras{pylab} via
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 import pylab as pl
-\end{verbatim}
+\end{lstlisting}
 Ce qui fait que quand j'utilise une fonction via \texttt{pl.nomdefonction()} je sais qu'elle provient de la librairie pylab.
 
 L'autre avantage de cette méthode est qu'elle permet d'éviter les conflits entre deux fonctions qui auraient le même nom, et provenant de librairies différentes\footnote{Par exemple la librairie pylab définit d'autres fonction trigonométriques (\texttt{sin()}, \dots)}.
@@ -353,31 +354,32 @@ Avec \texttt{from \emph{module} import *}, on importe absolument tout, y compris
 
 Pour manipuler un fichier, il faut dans un premier temps l'ouvrir (et spécifier si on veut pouvoir écrire, lire, ou écrire sans effacer le fichier au moment de l'ouverture), puis effectuer diverses opérations dans un second temps et enfin le fermer.
 
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 fichier = open("fichier.txt",'w')
 fichier.write("ligne 1\nligne 2")
 fichier.close()
-\end{verbatim}
+\end{lstlisting}
 \verb|'w'| signifie que l'on souhaite écrire dans le fichier. Il signifie aussi que le fichier sera effacé lors de l'ouverture (au cas où le fichier existe). Si on ne souhaite pas effacer le fichier, il faut utiliser \verb|'a'| qui va permettre d'écrire à la suite du fichier.
 
 Par exemple, voici la fonction que j'utilise pour écrire un fichier log de mon script.
 
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 def writelog(texte_log)
   log = open(nom_fichier_log,'a')
-  log.write("["+str(time.strftime('%d/%m/%Y' %H:%M:%S'))+"] "+texte_log+"\n")
+  log.write("["+str(time.strftime('%d/%m/%Y'\
+ %H:%M:%S'))+"] "+texte_log+"\n")
   log.close()
-\end{verbatim}
+\end{lstlisting}
 (cette fonction ne retourne rien vu qu'il n'y en a pas besoin. Au début, je mettais \verb|return 0| mais pour l'instant je l'ai enlevé).
 
 \bigskip
 
 Pour lire un fichier, on procède de la manière suivante
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 fichier = open("fichier.txt",'r')
 t = fichier.readlines()
 fichier.close()
-\end{verbatim}
+\end{lstlisting}
 
 Le fichier $t$ est une liste comprenant un élément pour chaque ligne du fichier lu. \texttt{fichier.readline()} ne lit qu'une seule ligne à la fois. \texttt{fichier.read(nb)} permet de lire \texttt{nb} caractères à partir de là où s'était arrêté la lecture.
 
@@ -390,10 +392,10 @@ Pour les commandes basiques d'importations, se reporter à \refsec{sec:importer_
 
 \subsection{Importer des modules qui ne sont pas dans le répertoire courant.}\index{importer des modules}
 En ajoutant
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 import sys
 sys.path.append(monchemin)
-\end{verbatim}
+\end{lstlisting}
 on peut spécifier un nouveau chemin pour un répertoire contenant des modules. Ainsi, python vérifiera dans ce dossier si le module qu'on souhaite importer s'y trouve (en plus des autres répertoires définis automatiquement et du répertoire courant)
 
 \bigskip
@@ -402,31 +404,31 @@ Depuis Python 2.5, il est également possible d'effectuer des importations relat
 
 \subsection{subprocess}\label{sec:subprocess}\index{subprocess}
 Pour lancer une commande dans un processus séparé on fait :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 process = subprocess.Popen("ls")
-\end{verbatim}
+\end{lstlisting}
 
 Il y a en pratique deux techniques. Où bien on lance la commande et les arguments en séparant :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 process = subprocess.Popen(["ls", "-l"])
-\end{verbatim}
+\end{lstlisting}
 ou bien on lance une chaîne de caractère, et dans ce cas, on spécifie que c'est ce qu'on veut exécuter dans le terminal
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 process = subprocess.Popen("ls -l", shell=True)
-\end{verbatim}
+\end{lstlisting}
 
 \bigskip
 
 Pour récupérer la sortie de la commande, on y accès via
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 sortie = process.stdout.readlines()
-\end{verbatim}
+\end{lstlisting}
 à condition d'avoir lancé le script avec l'option \verb|stdout=subprocess.PIPE| ; dans le cas de l'exemple précédent, ça donne donc :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 process = subprocess.Popen("ls -l", shell=True, stdout=subprocess.PIPE)
 sortie = process.stdout.readlines()
 print sortie
-\end{verbatim}
+\end{lstlisting}
 
 \begin{remarque}
 \verb|sortie| est donc un objet-fichier (la même chose que si on avait fait \texttt{sortie = open("fichier.txt", 'r')}).
@@ -434,23 +436,23 @@ print sortie
 
 
 Sinon, on peut écrire la sortie dans un fichier de la façon suivante :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 sortie = open("sortie.txt", 'w')
 process = subprocess.Popen("ls -l", shell=True, stdout=sortie)
 sortie.close()
-\end{verbatim}
+\end{lstlisting}
 
 Pour que le script attende la fin du processus avant de continuer, on fait
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 fail = process.wait()
-\end{verbatim}
+\end{lstlisting}
 à quoi on peut rajouter un
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 if (fail==0):
   print "OK"
 else:
   print "fail"
-\end{verbatim}
+\end{lstlisting}
 
 
 
@@ -462,45 +464,45 @@ else:
 
 \section{Tout savoir sur les listes}\index{liste}
 On définit une liste de la façon suivante :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 a = [1.2, 2.3, 4.1, 5.7]
-\end{verbatim}
+\end{lstlisting}
 
 On peut appeler un élément à l'aide de crochets. On aura
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 a[0] = 1.2
 a[-1] = a[3] = 5.7
 a[-2] = a[2] = 4.1
-\end{verbatim}
+\end{lstlisting}
 
 On peut rajouter un élément à la liste via
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 a.append(6.8)
-\end{verbatim}
+\end{lstlisting}
 On aura alors
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 a = [1.2, 2.3, 4.1, 5.7, 6.8]
-\end{verbatim}
+\end{lstlisting}
 
 pour avoir le nombre d'éléments de la liste, il suffit de faire
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 nb = len(a)
-\end{verbatim}
+\end{lstlisting}
 
 Pour supprimer d'une liste les $n$ premiers éléments et les $m$ derniers, on fera
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 for indice in range(n):
   del(liste[0])
 
 for indice in range(m):
   del(liste[-1])
-\end{verbatim}
+\end{lstlisting}
 
 Pour récupérer l'indice d'une certaine valeur dans une liste :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 >>> a.index(2.3)
 1
-\end{verbatim}
+\end{lstlisting}
 
 
 \bigskip
@@ -508,10 +510,10 @@ Pour récupérer l'indice d'une certaine valeur dans une liste :
 Il existe aussi les fonctions \gras{map} et \gras{zip} qui ont le même principe que sous Maple.
 
 La fonction \gras{zip} retourne une liste de tuples
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 >>> print zip(['a', 'b', 'c'], [1, 2, 3])
 [''a', a), ('b', 2), ('c', 3)]
-\end{verbatim}
+\end{lstlisting}
 
 \begin{remarque}
 Ça marche aussi avec plusieurs séquences. Les chaînes de caractères sont considérées comme des séquences, on peut donc les zipper aussi.
@@ -521,105 +523,105 @@ La fonction \gras{zip} retourne une liste de tuples
 
 La fonction \gras{map} applique une fonction à chaque élément de la séquence passée en argument.
 
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 >>> print map(abs, [-5, -7, -12])
 [5, 7, 12]
-\end{verbatim}
+\end{lstlisting}
 qui est l'équivalent de
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 >>> print [abs(i) for i in [-5, -7, -12]]
 [5, 7, 12]
-\end{verbatim}
+\end{lstlisting}
 à part le fait que \gras{map} est plus rapide.
 
 Il est possible d'utiliser sa propre fonction. Il est possible d'utiliser une fonction qui nécessite plusieurs arguments, et de passer plusieurs listes à la fonction \gras{map}.
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 >>> print map(max, [4, 5, 6], [1, 2, 9])
 [4, 5, 9]
-\end{verbatim}
+\end{lstlisting}
 
 \bigskip
 
 Il est possible de convertir une liste en tuple via la commande \texttt{tuple}
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 >>> a = [1, 2, 3]
 >>> tuple(a)
 (1, 2, 3)
-\end{verbatim}
+\end{lstlisting}
 
 
 \subsection{List-comprehension}\index{list-comprehension}
 Cette technique permet d'agir sur les listes très simplement et très rapidement. Dans bien des cas (pour ne pas dire tous), cette méthode sera plus rapide que l'équivalent avec une boucle :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 list2 = [element * 2 for element in list]
 list3 = [element + 3 for element in list if element>3]
-\end{verbatim}
+\end{lstlisting}
 
 \subsection{Array et Numpy}\index{numpy}\index{array}\index{matrice}
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 import numpy as np
-\end{verbatim}
+\end{lstlisting}
 
 Permet de multiplier terme à terme des matrices de manière très simple. On définit une matrice paragraph
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 m = np.array([[1, 2, 3], [4, 5, 6]])
-\end{verbatim}
+\end{lstlisting}
 
 Après avoir galéré pendant plusieurs heures pour créer et remplir une matrice au fur et à mesure, j'ai trouvé plus pratique de définir une liste comme on le souhaite, avec la souplesse que l'on connait de Python, puis convertir cette liste en array pour faire les calculs.
 
 \bigskip
 
 Dans la suite, on considère une matrice \texttt{m}. On effectue la somme de tous les éléments de la matrice par
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 >>> m.sum()
 21
-\end{verbatim}
+\end{lstlisting}
 
 Pour effectuer la somme des éléments colonne par colonne (on somme donc sur l'indice des lignes, c'est à dire le premier indice) :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 >>> m.sum(axis=0)
 array([5, 7, 9])
-\end{verbatim}
+\end{lstlisting}
 
 La même chose ligne par ligne (on somme donc sur les colonnes avec le numéro de ligne fixé) :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 >>> m.sum(axis=1)
 array([ 6, 15])
-\end{verbatim}
+\end{lstlisting}
 
 \begin{remarque}
 Apparemment, il existe \texttt{np.append(array, truc-à-rajouter, options)} qui permet de rajouter un truc à un array, et notamment de spécifier si on veut en ligne ou en colonne. Le truc c'est qu'apparemment, il reconstruit la matrice à chaque fois, donc pas sur qu'on gagne en temps d'exécution.
 \end{remarque}
 
 \texttt{np.zeros()} et \texttt{np.empty()} permettent de définir des matrices en spécifiant leur taille
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 np.zeros((2,3))
-\end{verbatim}
+\end{lstlisting}
 
 Il est possible (et c'est très pratique) de définir une matrice de la même taille qu'une autre, en spécifiant qu'on ne souhaite que des 0 ou une matrice vide. Pour celà, on utilise
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 np.zeros_like(m)
 np.empty_like(m)
-\end{verbatim}
+\end{lstlisting}
 
 \subsubsection{Manipulation des array}
 On peut sélectionner les valeurs répondant à un ou plusieurs critères avec :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 a[a<2.]
 a[(a<10) & (a>2)]
-\end{verbatim}
+\end{lstlisting}
 
 Ces tests suppriment automatiquement les valeurs 'nan' qui ne vérifient aucun test. Si on veut juste supprimer les 'nan', on peut faire :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 a[np.isfinite(a)]
-\end{verbatim}
+\end{lstlisting}
 
 
 
 \section{Programmation objet}
 \subsection{Les fonctions sont des objets}
 Voici une astuce pour choisir une fonction en fonction de la valeur d'un paramètre, ceci de façon rapide et lisible :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 def function1():
     print 'You chose one.'
 def  function2():
@@ -644,31 +646,31 @@ except KeyError:
     print 'I didn\'t understand your choice.'
 else:
     result()
-\end{verbatim}
+\end{lstlisting}
 
 \verb|result = switch[choice]| est la ligne qui réalise le gros du travail. \verb|switch[choice]| renvoie un de nos objets fonctions (ou lève une \verb|KeyError|). Ensuite nous exécutons \verb|result()| qui l’appelle.
 
 On peut économiser quelques lignes de code via :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 # appelle une des fonctions
 try:
     switch[choice]()
 except KeyError:
     print 'I didn\'t understand your choice.'
-\end{verbatim}
+\end{lstlisting}
 
 
 \section{Faire des graphiques}\index{graphiques}
 \subsection{Graphiques 2D}
 J'utilise le module \gras[module!pylab]{pylab} que j'importe par
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 import pylab as pl
-\end{verbatim}
+\end{lstlisting}
 
 \begin{remarque}
 \gras[module!pylab]{pylab} fonctionne comme les plots dans \gras{matlab}. Il existe aussi la possibilité de faire des subplots.
 
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 pl.figure(1)
 
 # en haut a gauche
@@ -688,28 +690,28 @@ pl.subplot(224)
 pl.plot(x,y)
 
 pl.show()
-\end{verbatim}
+\end{lstlisting}
 
 \end{remarque}
 
 
 Pour faire un plot
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 pl.plot(x,y)
-\end{verbatim}
+\end{lstlisting}
 l'enregistrer
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 pl.savefig('ma_figure.png')
 pl.savefig('ma_figure.svg')
 pl.savefig('ma_figure.pdf')
-\end{verbatim}
+\end{lstlisting}
 l'afficher à l'écran
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 pl.show()
-\end{verbatim}
+\end{lstlisting}
 
 Pour aller un peu plus loin
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 pl.figure(1) # Pour spécifier que la figure active est la 1
 pl.clf()#pour remettre à zéro la figure active
 pl.grid(True)
@@ -719,27 +721,27 @@ pl.plot(x,y, 'r.', label="y=f(x)")
 pl.plot(x,z, 'b-', label="z=g(x)")
 pl.legend()#afficher la légende
 pl.show()
-\end{verbatim}
+\end{lstlisting}
 
 À la place de \verb|plot| on peut aussi faire :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 pl.semilogx(x,y)
 pl.semilogy(x,y)
 pl.loglog(x,y)
 pl.hist(x)
 pl.hist([x,y])#pour afficher plusieurs histogrammes à la fois
-\end{verbatim}
+\end{lstlisting}
 
 Pour spécifier le zoom sur la figure, il faut rajouter :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 pl.axis([xmin, xmax, ymin, ymax])
-\end{verbatim}
+\end{lstlisting}
 
 \subsubsection{Histogrammes}
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 pl.hist(x, normed=True, bins=20)
 pl.hist([x,y], normed=True, bins=20, label=['x', 'y'])
-\end{verbatim}
+\end{lstlisting}
 
 On peut changer le style avec \verb|histtype='style'| où \verb|style| peut prendre les valeurs suivantes :
 \begin{itemize}
@@ -750,11 +752,11 @@ On peut changer le style avec \verb|histtype='style'| où \verb|style| peut pren
 \end{itemize}
 
 D'autres options pratiques sont :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 cumulative=True
 normed=True
 bins=20
-\end{verbatim}
+\end{lstlisting}
 
 \begin{attention}
 Quand on veut afficher plusieurs histogrammes dans le même plots en plusieurs fois, il faut spécifier un range de bins bien définis. J'ai déjà fait deux groupes de deux histogrammes, et j'avais de gros soucis dans les valeurs, ceci dû à ces bins qui affichaient les mêmes valeurs mais qui au final ne correspondaient pas aux mêmes choses.
@@ -764,7 +766,7 @@ Quand on veut afficher plusieurs histogrammes dans le même plots en plusieurs f
 \subsection{Graphiques plus évolués}
 On peut afficher une matrice et spécifier des axes (par défaut, il n'affiche que les indices de la matrices, mais on peut associer des plages de valeurs arbitraires aux axes x et y)
 
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 liste_x = range(5)
 liste_y = range(5)
 pl.figure(1)
@@ -779,28 +781,28 @@ axes.set_xticklabels(liste_x)
 axes.set_yticks(range(len(liste_y)))
 axes.set_yticklabels(liste_y)
 pl.show()
-\end{verbatim}
+\end{lstlisting}
 
 \section{Faire des statistiques}
 \subsection{Bases}
 Dans \gras{numpy}, il existe les fonctions statistiques de bases, notamment la \gras[moyenne]{valeur moyenne} et l'\gras{écart-type} :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 a = range(10)
 np.mean(a)
 np.std(a)
-\end{verbatim}
+\end{lstlisting}
 
 
 
 \subsection{Test de Kolmogorov-Smirnov}
 Pour celà, il faut utiliser le module suivant :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 import scipy.stats.stats as scss
-\end{verbatim}
+\end{lstlisting}
 et on appelle le test via
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 (d_value, p_value) = scss.ks_2samp(a,b)
-\end{verbatim}
+\end{lstlisting}
 où $a$ et $b$ sont deux échantillons de données (des listes ou des array quoi).
 
 
@@ -821,12 +823,12 @@ rm 'fichier.txt' & os.remove('fichier.txt')
 \end{tabular}
 
 Une commande permet de manière plus générale de lancer une commande système :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 os.system('cmd argument')
-\end{verbatim}
+\end{lstlisting}
 
 Par exemple, on peut très bien faire les commandes précédentes via la commande system
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 # méthode 1
 os.system('cd \'dossier\'')
 # méthode 2
@@ -836,22 +838,22 @@ os.system("mkdir 'dossier'")
 os.system("ls")
 os.system("pwd")
 os.system("rm 'fichier.txt'")
-\end{verbatim}
+\end{lstlisting}
 
 Dans ce même module, il existe une commande très pratique pour tester l'existence d'un fichier ou dossier (pratique pour tester avant suppression ou changement de répertoire, ça évite les bugs du programme)
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 nom_fichier = "simulation.log"
 if os.path.exists(nom_fichier):
   os.remove(nom_fichier)
-\end{verbatim}
+\end{lstlisting}
 
 
 Si, par contre, on désire stocker le résultat d'une commande, on ne peut utiliser \texttt{system}. On doit utiliser un autre module, le module \gras[python!commands]{commands} et utiliser la commande suivante
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 liste = commands.getoutput("ls")
 # facultatif mais utile
 liste = liste.split("\n")
-\end{verbatim}
+\end{lstlisting}
 
 \begin{attention}
 Préférer les méthodes décrites dans \refsec{sec:subprocess} plutôt que les méthodes du module \gras[module!os]{os}. Je sais plus pourquoi, mais parait que c'est mieux.
@@ -859,9 +861,9 @@ Préférer les méthodes décrites dans \refsec{sec:subprocess} plutôt que les 
 
 \section{Erreurs}
 \subsection{Unindent}
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 IndentationError: unexpected indent
-\end{verbatim}
+\end{lstlisting}
 
 C'est normalement dû au fait qu'il y a dans le code source des indentations avec tabulation et espaces. Un simple rechercher/remplacer permet de corriger l'erreur normalement.
 
@@ -871,7 +873,7 @@ C'est normalement dû au fait qu'il y a dans le code source des indentations ave
 Par défaut, en python, si vous assignez une variable contenant une liste à une autre variable, la 2e variable sera un lien virtuel vers la première. La conséquence la plus importante est que si vous modifiez la 2e variable, vous modifiez également la première.
 
 \begin{exemple}
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 >>> t1 = range(5)
 >>> t2 = t1
 >>> print t1, t2
@@ -879,111 +881,111 @@ Par défaut, en python, si vous assignez une variable contenant une liste à une
 >>> del(t2[2])
 >>> print t1, t2
 [0, 1, 3, 4] [0, 1, 3, 4]
-\end{verbatim}
+\end{lstlisting}
 \end{exemple}
 
 Afin d'éviter ce genre de problèmes, on peut faire les choses suivantes :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 t2 = list(t1)
-\end{verbatim}
+\end{lstlisting}
 ou
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 t2 = t1[:]
-\end{verbatim}
+\end{lstlisting}
 
 
 \subsection{Tester si une variable existe}
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 try:
   print toto
 except NameError:
   print "toto n'existe pas"
-\end{verbatim}
+\end{lstlisting}
 
 ou alors
 
 utiliser la méthode \texttt{has\_key()} des dictionnaires internes répertoriant les variables. Si on veut tester l'existence de la variable $x$  qui est une variable locale ou globale, il faut utiliser respectivement
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 vars().has_key('x')
 globals().has_key('x')
-\end{verbatim}
+\end{lstlisting}
 
 ou encore
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 if ('x' in locals()):
   print("'x' est défini")
-\end{verbatim}
+\end{lstlisting}
 
 
 \subsection{Tester le type d'une variable}
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 >>> liste=['test', 'test']
 >>> if isinstance(liste, type([])):
 ...  print "c'est une liste"
 "c'est une liste"
-\end{verbatim}
+\end{lstlisting}
 
 On peut aussi faire
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 >>> liste=['test', 'test']
 >>> if isinstance(liste, list):
 ...  print "c'est une liste"
 "c'est une liste"
-\end{verbatim}
+\end{lstlisting}
 
 On peut aussi tester plusieurs types à la fois
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 >>> liste=['test', 'test']
 >>> if isinstance(liste, (list,int)):
 ...  print "c'est une liste ou un entier"
 "c'est une liste"
-\end{verbatim}
+\end{lstlisting}
 
 Sinon, plus simple :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 >>> liste=['test', 'test']
 >>> if (type(liste)==list):
 ...  print "c'est une liste"
 "c'est une liste"
-\end{verbatim}
+\end{lstlisting}
 
 Pour connaître le type à rentrer pour le test, il suffit de faire
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 >>> liste=['test', 'test']
 >>> type(liste)
 <type 'list'>
-\end{verbatim}
+\end{lstlisting}
 Le type à rentrer est simplement la valeur entre guillemets, donc ici \texttt{list}
 
 \subsection{Arrondir les floats}\index{arrondis}
 Il est possible d'arrondir les floats à l'aide de
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 >>> test = 1.12456124
 >>> round(test,3)
 1.12499999
-\end{verbatim}
+\end{lstlisting}
 
 On pourrait croire que ceci ne marche pas. En fait, c'est dû au fait que le processeur arrondi à la valeur la plus proche qu'il connait (penser au fait qu'un ordinateur ne connait pas les réels par défaut).
 
 Si on ne veut que quelques chiffres significatifs, c'est généralement pour un affichage. On n'a alors aucun problème, car lors de la conversion en string du flottant arrondi, il restera les bons chiffres significatifs (à condition qu'on ait fait un round avant, ça va de soi)
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 >>> test = 1.12456124
 >>> test2 = round(test,3)
 >>> str(test2)
 '1.125'
-\end{verbatim}
+\end{lstlisting}
 
 \subsection{Lister un type de fichier}
 En console, il est possible de lister des types de fichier en utilisant les expressions régulières, comme par exemple
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 ls *.txt
 ls test*
-\end{verbatim}
+\end{lstlisting}
 
 Avec python, si on souhaite faire ça dans un processus, il faudra utiliser
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 process = subprocess.Popen("ls *.txt", shell=True)
-\end{verbatim}
+\end{lstlisting}
 
 En effet, \verb|process = subprocess.Popen(["ls", "*.txt"])| renverra une erreur. Ne me demandez pas pourquoi, j'en sais rien.
 
@@ -1007,23 +1009,23 @@ Afin que ceci fonctionne, il faut \emph{exporter} ces variables.
 \end{attention}
 
 En supposant que votre fichier \texttt{.bash\_profile} est vide (ou  n'existe pas.\footnote{Ce fichier est à placer dans votre \texttt{/home}}), voici ce qu'il faut rajouter :
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 PATH=$PATH:$HOME/python/traitement_simu
 PYTHONPATH=$HOME/python/modules
 
 export PATH PYTHONPATH
-\end{verbatim}
+\end{lstlisting}
 
 \subsection{récupérer le nom ou l'extension d'un fichier}
 Il existe une méthode dans le module \gras{os}
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 ext = os.path.splitext(file_name)[1]
 name = os.path.splitext(file_name)[0]
-\end{verbatim}
+\end{lstlisting}
 ou 
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 (name, ext) = os.path.splitext(file_name)
-\end{verbatim}
+\end{lstlisting}
 
 
 
