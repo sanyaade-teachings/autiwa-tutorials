@@ -1602,7 +1602,9 @@ Pour mettre à jour la base de donnée des packages quand on a rajouté manuelle
 \subsubsection{Arrêter une commande en cours d'exécution}
 Pour arrêter la commande en cours du terminal ouvert, il suffit d'appuyer sur \touche{Ctrl}+ \touche{C}
 
-Pour quitter une page de manuel ou une documentation quelconque, il suffit bien souvent d'appuyer sur la touche \touche{Q}
+Pour quitter une page de manuel ou une documentation quelconque, il suffit bien souvent d'appuyer sur la touche \touche{Q}. 
+
+Pour quitter certains visualiseurs de texte dont vim et vimdiff, il faut faire \texttt{:q} ou \texttt{:q!} si on veut forcer à quitter sans enregistrer les modifications (et valider en appuyant sur \touche{Entrée}).
 
 \subsubsection{Raccourcis claviers}
 \touche{Ctrl} + \touche{A} pour aller au début de la ligne.
@@ -1615,32 +1617,54 @@ Pour quitter une page de manuel ou une documentation quelconque, il suffit bien 
 
 \touche{Ctrl} + \touche{W} pour effacer un mot à gauche de la position du curseur (n'efface que la partie gauche du mot si le curseur est au milieu).
 
-\subsubsection{!}
-Qui se souvient de la commande longue de 40m super pratique tapé il y a une heure? ! vous permet de la retrouver avec un peu de chance, ! rappelera la dernière commande commençant par le texte tapé.
+\touche{Ctrl} + \touche{$\rightarrow$} et \touche{Ctrl} + \touche{$\leftarrow$} permettent dans certains terminaux de se déplacer d'un mot à gauche ou à droite.
 
-Utilisation :
+\subsubsection{Rechercher une commande : Ctrl + R}
+Il est possible de rechercher dans l'historique avec le raccourcis \touche{Ctrl}+\touche{R}. Cette recherche est incrémentale, cela signifie qu'au fur et à mesure de la frappe les résultats correspondant apparaissent, une fois la bonne commande trouvée, il suffit de taper sur Entrée pour l'éxécuter ou sur la flèche droite pour copier cette commande sur la ligne courante si on veut y ajouter des paramètres.
 
-\verb|!sudo|
+\begin{remarque}
+En appuyant de nouveau sur \touche{Ctrl}+\touche{R}, on se déplace dans la liste des différentes commandes qui correspondent à la recherche effectuée.
+\end{remarque}
 
-\subsubsection{\$(( ))}
-Besoin de faire des maths? \verb|\$(( ))| vous permettra de faire une petite opération vite fait.\\
-Utilisation :
+\bigskip
 
-\verb|echo $(( 5 + 7 ))|
+En moins pratique, il y a \texttt{!} qui permet de retrouver la dernière commande commençant par le texte tapé : 
+\begin{verbatim}
+!sudo
+\end{verbatim}
+va retrouver la dernière commande commençant par \texttt{sudo}
 
-\subsubsection{>}
-\verb|commande > fichier.txt| : permet de stocker le résultat de la commande placée avant ceci dans le fichier \texttt{fichier.txt}. Celui-ci sera créé s'il n'existe pas, ou remplacé s'il existe.
+\subsubsection{Stocker dans un fichier : >}
+\verb|commande > fichier.txt| : permet de stocker le résultat de la commande placée avant ceci dans le fichier \textbf{fichier.txt}. Celui-ci sera créé s'il n'existe pas, ou remplacé s'il existe.
 
-\subsubsection{>>}
-\verb|commande >> fichier.txt| : permet de stocker le résultat de la commande placée avant ceci à la fin du fichier \texttt{fichier.txt}. Le résultat sera placé à la suite du contenu déjà existant du fichier.
+\subsubsection{Stocker à la suite d'un fichier : >>}
+\verb|commande >> fichier.txt| : permet de stocker le résultat de la commande placée avant ceci à la fin du fichier \textbf{fichier.txt}. Le résultat sera placé à la suite du contenu déjà existant du fichier.
 
-\subsubsection{\&}
-\verb|commande &| : permet de créer un processus dans lequel le programme va s'exécuter et de pouvoir dans le même temps continuer d'utiliser le terminal.
+\subsubsection{Exécuter en tâche de fond : \&}
+\verb|commande &| : permet de créer un processus dans lequel le programme va s'exécuter et de pouvoir dans le même temps continuer d'utiliser le terminal, ça lance donc en quelque sorte la commande en tâche de fond.
 
-\subsubsection{|}
+\subsubsection{Passer les arguments entre commandes : |}
 \verb#commande1|commande2# : permet d'exécuter plusieurs commandes à la suite. En fait, permet aussi de passer l'argument de sortie de la commande précédente dans la commande suivante, mais j'ai pas encore réellement compris le fonctionnement.
 
-\subsubsection{!\$}
+Par exemple 
+\begin{verbatim}
+ls -l *.f90| grep "10:10"
+\end{verbatim}
+permet de lister les fichiers ayant l'extension \textbf{.f90} et dont la ligne contient l'expression \texttt{10:10}. Dans la pratique, ça affichera les fichiers dont la dernière modification s'est faite à 10h10. 
+
+
+\subsubsection{\&\&}
+\verb|commande1 && commande2| permet d'exécuter \texttt{commande1}, puis exécuter \texttt{commande2} si \texttt{commande1} s'est exécutée sans retourner d'erreur.
+
+C'est très pratique quand on a une succession de commande à lancer. 
+
+Je lance par exemple 
+\begin{verbatim}
+(cd .. && Makefile.py) && mercury-clean.sh && mercury && element
+\end{verbatim}
+Je vais dans le répertoire parent tant que je reste dans la parenthèse ;  je compile. Si la compilation réussi, je lance le script de nettoyage des fichiers de la simulation, je lance la simulation, et je récupère les fichiers de sortie.
+
+\subsubsection{Argument précédent : !\$}
 
 Qui n'a jamais rêvé de reprendre l'argument précédemment fourni pour le réutiliser dans la commande actuelle? \verb|!$| le permet.
 
@@ -1649,29 +1673,16 @@ ls Desktop
 cd !$
 \end{verbatim}
 
-
-et vous voici arrivé dans le répertoire \textbf{Desktop}
-
-\subsubsection{Rechercher une commande}
-Il est possible de rechercher dans l'historique avec le raccourcis \touche{Ctrl}+\touche{R}. Cette recherche est incrémentale, cela signifie qu'au fur et à mesure de la frappe les résultats correspondant apparaissent, une fois la bonne commande trouvée, il suffit de taper sur Entrée pour l'éxécuter ou sur la flèche droite pour copier cette commande sur la ligne courante si on veut y ajouter des paramètres.
+et vous voici arrivé dans le répertoire \textbf{Desktop}.
 
 \begin{remarque}
-En appuyant de nouveau sur \touche{Ctrl}+\touche{R}, on se déplace dans la liste des différentes commandes qui correspondent à la recherche effectuée.
+Notez que si vous cherchez la commande précédente, ce sera \texttt{cd Desktop} et non \verb|cd !$|.
 \end{remarque}
 
 
-\subsubsection{Substitution de Commande}
-Vous pouvez utiliser le résultat d'une commande comme paramètre d'entrée pour une autre ; en d'autres termes pour une substitution de commande. Une substitution de commande a lieu lorsque vous encadrez une commande avec des apostrophes inversées. Par exemple :
-
-\begin{verbatim}
-cat `find . -name aaa.txt`
-\end{verbatim}
-
-va afficher à l'écran le contenu de tout les fichiers nommés \textbf{aaa.txt} dans le dossier de travail courant ou ses sous-dossiers.
-
 \subsubsection{Le bash \{\} expansion}
 
-Petite fonction sympa de bash qui va nous éviter de réecrire certaines info. Par exemple, vous voulez faire un backup de votre \textbf{/etc/postgresql/8.3/main/postgresql.conf} mais vous êtes dans votre \textbf{/home}.
+Petite fonction sympa de bash qui va nous éviter de réécrire certaines info. Par exemple, vous voulez faire un backup de votre \textbf{/etc/postgresql/8.3/main/postgresql.conf} mais vous êtes dans votre \textbf{/home}.
 
 utilisez alors le \textbf{/chemin/du/fichier\{,votreajout\}}
 
@@ -1681,7 +1692,7 @@ donc en gros :
 cp /etc/postgresql/8.3/main/postgresql.conf{,.bak}
 \end{verbatim}
 
-va en faite faire un
+va en fait faire un
 \begin{small}\begin{verbatim}
 cp /etc/postgresql/8.3/main/postgresql.conf /etc/postgresql/8.3/main/postgresql.conf.bak
 \end{verbatim}\end{small}
@@ -1694,6 +1705,20 @@ Et ca marche aussi pour \gras{mv} ou \gras{diff} par exemple :
 diff fichiermodifie{,.old}
 \end{verbatim}
 
+\subsubsection{Faire des maths : \$(( ))}
+Besoin de faire des maths? \verb|\$(( ))| vous permettra de faire une petite opération vite fait. Par exemple
+\begin{verbatim}
+echo $(( 5 + 7 ))
+\end{verbatim}
+
+\subsubsection{Substitution de Commande}
+Vous pouvez utiliser le résultat d'une commande comme paramètre d'entrée pour une autre ; en d'autres termes pour une substitution de commande. Une substitution de commande a lieu lorsque vous encadrez une commande avec des apostrophes inversées. Par exemple :
+
+\begin{verbatim}
+cat `find . -name aaa.txt`
+\end{verbatim}
+
+va afficher à l'écran le contenu de tout les fichiers nommés \textbf{aaa.txt} dans le dossier de travail courant ou ses sous-dossiers.
 
 
 \subsection{Présentation des commandes usuelles}
