@@ -206,6 +206,32 @@ Il existe des commandes spécifiques aux documents français. Par exemple, pour 
 
 Il faut ensuite rajouter le paquet \gras[package!xspace]{xspace} qui permet à \gras[package!babel]{babel} de gérer les espaces comme il faut. Par exemple, pour l'utilisation des guillemets, au lieu de devoir écrire \verb|\og{} texte en valeur \fg{}| \verb|suite du texte|, il suffit d'écrire \verb|\og texte en valeur \fg suite du texte|.
 
+\bigskip
+
+Pour faire des exposants, il faut utiliser
+\begin{example}
+M\up{lle}
+\end{example}
+
+Voici un résumé des règles de typographie française : 
+\begin{footnotesize}
+\begin{verbatim}
+\begin{tabular}{*{4}{l}}
+M\up{me}, M\up{mes}    & Jean-Michel     & 1\ier\ 1\iere\ 1\ieres  & \og guillemets \fg          \\
+M\up{lle}, M\up{lles}  & pp.~12--15      & 2\ieme\ 2\iemes         & \nombre{1234,56}            \\
+M. \bsc{Dupont},       & --- en fait --- & \No 1, \no 2            & {\OE}uf, {\oe}ufs, \AE, \ae \\
+M\up{e}, M\up{gr}, MM. & $-1$ degrés     & 13\degres, 23~\degres C & À l'État.
+\end{tabular}
+\end{verbatim}
+\end{footnotesize}
+
+
+\begin{tabular}{*{4}{l}}
+M\up{me}, M\up{mes}    & Jean-Michel     & 1\ier\ 1\iere\ 1\ieres  & \og guillemets \fg          \\
+M\up{lle}, M\up{lles}  & pp.~12--15      & 2\ieme\ 2\iemes         & \nombre{1234,56}            \\
+M. \bsc{Dupont},       & --- en fait --- & \No 1, \no 2            & {\OE}uf, {\oe}ufs, \AE, \ae \\
+M\up{e}, M\up{gr}, MM. & $-1$ degrés     & 13\degres, 23~\degres C & À l'État.
+\end{tabular}
 
 
 \subsection{Personnaliser les listes}\index{liste}

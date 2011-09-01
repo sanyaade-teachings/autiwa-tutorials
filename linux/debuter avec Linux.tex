@@ -2252,6 +2252,22 @@ ligne 02\\
 ligne 01
 \end{quote}
 
+\subsubsection{Lire le début ou la fin d'un fichier}
+Dans le cas de fichiers extrêmement gros, typiquement plusieurs Gio, il n'est pas possible de les ouvrir entièrement. Ça fait planter tous les éditeurs de textes (en tout cas la plupart), et même \textbf{vim} a du mal.
+
+La solution est d'afficher dans le terminal le début ou la fin du fichier, sans avoir à charger le fichier entier. 
+
+Pour voir le début du fichier
+\begin{verbatim}
+head fichier.txt
+\end{verbatim}
+et pour voir la fin du fichier
+\begin{verbatim}
+tail fichier.txt
+\end{verbatim}
+
+
+
 \subsubsection{Extraire un DVD avec mplayer}
 Tout d'abord, il faut trouver le bon titre. En effet, sur un DVD il y a parfois, voire même souvent, plusieurs titres, ne serait-ce que pour une introduction ou autre. On a donc, en plus du découpage en chapitres, une divisions en titre.
 
