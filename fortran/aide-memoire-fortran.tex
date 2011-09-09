@@ -1286,16 +1286,13 @@ end subroutine integrale
 end module mod_integrale
 \end{lstlisting}
 
-
-
-
 % %TODO page 61 les entrées et sorties standard
 
 
 \section{Vers les objets : les types dérivés}\index{type dérivé}\index{structure}\index{programmation orienté objet}
 On appelle type dérivé la définition d'un nouveau type de variable, sorte d'objet contenant un nombre et un type de variable arbitraire. 
 
-\bigskip
+\subsection{Définir un type dérivé}
 
 Pour utiliser des variables du type dérivé \textit{nom\_type} précédemment défini, on déclare simplement :
 \begin{lstlisting}[language=Fortran]
@@ -1327,6 +1324,20 @@ end type animal
 On peut ensuite manipuler globalement l'objet animal ou accéder à chacun de ses champs grâce à l'opérateur \og \%\fg.
 
 \end{exemple}
+
+\subsection{Initialisation lors de la déclaration}
+On peut souhaiter définir une variable directement lors de la déclaration, notamment pour en faire une variable globale d'un module, donner une valeur par défaut, ou en faire un paramètre. 
+
+Il faut alors définir la variable de la façon suivante :
+\begin{verbatim}
+type COULEUR
+  character(len=16) :: nom
+  real, dimension(3) :: compos
+end type COULEUR
+
+type(COULEUR), parameter :: coul = couleur('rouge', (/ 1.,0.,0. /))
+\end{verbatim}
+
 
 \section{Astuces et petits bouts de code}
 \subsection{Lire un fichier de longueur inconnue}

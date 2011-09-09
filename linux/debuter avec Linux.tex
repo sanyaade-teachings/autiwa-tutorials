@@ -2217,6 +2217,16 @@ find -type f -exec chmod 644 {} \;
 \end{verbatim}
 \end{remarque}
 
+\subsubsection{Convertir un .ps en .pdf}
+La commande est simple, mais l'option est importante. Par défaut, la rotation à effectuer sur une page est déterminée par l'orientation du texte le plus nombreux. Ceci peut parfois poser des problèmes, et c'était mon cas. Afin de désactiver la rotation il faut faire 
+\begin{verbatim}
+ps2pdf -dAutoRotatePages=/None fichier.ps
+\end{verbatim}
+
+\begin{remarque}
+Si non spécifié, le nom du fichier \textbf{.pdf} de sortie sera le même que le nom du fichier \textbf{.ps}.
+\end{remarque}
+
 
 
 \subsubsection{Déplacer des fichiers dans le répertoire parent}
