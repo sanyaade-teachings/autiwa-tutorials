@@ -104,13 +104,9 @@ Si la révision $39$ est la dernière et qu'elle a été envoyée depuis le rép
 
 On peut aussi supprimer les modifications de certaines révisions, à condition que celles-ci soient indépendantes des révisions plus récentes : 
 \begin{verbatim}
-svn merge -r2349:2345
-\end{verbatim}\index{commande svn!merge}
-ou
-\begin{verbatim}
 svn merge -r2349:2345 fichier.f90
 \end{verbatim}
-pour ne modifier qu'un seul fichier (ou un ensemble de fichier restreint.
+pour ne modifier qu'un seul fichier (je crois qu'on ne peut modifier qu'un fichier à la fois, mais on peut lancer plusieurs \texttt{merge} avant de faire un \texttt{commit}).
 
 Cette commande, qui doit être suivie d'un \texttt{commit}, va créer une nouvelle révision qui annule les commit entre 2345 et 2349 pour créer une révision 2350. 
 
