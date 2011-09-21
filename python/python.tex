@@ -223,9 +223,9 @@ Une dernière chose très importante lorsque vous définissez une fonction, c'es
 def fonction(arg1, arg2) :
     """
     Je documente ma fonction. 
-    J'explique rapidement à quoi sert cette fonction.
-    arg1 : J'écris à quoi correspond cet argument.
-    arg2 : J'écris à quoi correspond cet argument.
+    J'explique rapidement a quoi sert cette fonction.
+    arg1 : J'ecris a quoi correspond cet argument.
+    arg2 : J'ecris a quoi correspond cet argument.
     return : J'indique ce que retourne la fonction
     """
     pass
@@ -242,8 +242,8 @@ Il est tout à fait possible de passer pour ce type d'argument une séquence, po
 
 \begin{lstlisting}[language=python]
 def fonction(*arguments) :
-    """Test de fonction avec un nombre indéfini d'arguments.
-    arguments : Une séquence à écrire en console."""
+    """Test de fonction avec un nombre indefini d'arguments.
+    arguments : Une sequence a ecrire en console."""
     for element in arguments :
         print(element)
 
@@ -263,8 +263,8 @@ La syntaxe est particulièrement simple. En fait, vous allez préciser une séqu
 
 \begin{lstlisting}[language=python]
 def fonction(*arguments) :
-    """Test de fonction avec un nombre indéfini d'arguments.
-    arguments : Une séquence à écrire en console."""
+    """Test de fonction avec un nombre indefini d'arguments.
+    arguments : Une sequence a ecrire en console."""
     for element in arguments :
         print(element)
 
@@ -276,8 +276,8 @@ De cette façon, il est donc possible d'appeler ma fonction avec un nombre indé
 En utilisant l'astuce \refsec{sec:args_liste} ça donne :
 \begin{lstlisting}[language=python]
 def fonction(*arguments) :
-    """Test de fonction avec un nombre indéfini d'arguments.
-    arguments : Une séquence à écrire en console."""
+    """Test de fonction avec un nombre indefini d'arguments.
+    arguments : Une sequence a ecrire en console."""
     for element in arguments :
         print(element)
 
@@ -290,8 +290,8 @@ Si vous voulez associer une clé à chacun des arguments que vous donnez en supp
 
 \begin{lstlisting}[language=python]
 def fonction(**arguments) :
-    """Test de fonction avec un nombre indéfini d'arguments.
-    arguments : Un dictionnaire à écrire en console."""
+    """Test de fonction avec un nombre indefini d'arguments.
+    arguments : Un dictionnaire a ecrire en console."""
     for cle in arguments :
         print(cle,arguments[cle])
 
@@ -302,8 +302,8 @@ Vous verrez en exécutant ce code que l'on peut donc facilement créer des coupl
 
 \begin{lstlisting}[language=python]
 def fonction(**arguments) :
-    """Test de fonction avec un nombre indéfini d'arguments.
-    arguments : Un dictionnaire à écrire en console."""
+    """Test de fonction avec un nombre indefini d'arguments.
+    arguments : Un dictionnaire a ecrire en console."""
     for cle in arguments :
         print(cle,arguments[cle])
 
@@ -651,7 +651,7 @@ switch = {
     'three': function3,
     }
 #
-# le choix peut être 'one', 'two', or 'three'
+# le choix peut etre 'one', 'two', or 'three'
 choice = raw_input('Enter one, two, or three :')
 #
 # call one of the functions
@@ -727,14 +727,14 @@ pl.show()
 
 Pour aller un peu plus loin
 \begin{lstlisting}[language=python]
-pl.figure(1) # Pour spécifier que la figure active est la 1
-pl.clf()#pour remettre à zéro la figure active
+pl.figure(1) # Pour specifier que la figure active est la 1
+pl.clf() # pour remettre a zero la figure active
 pl.grid(True)
 pl.xlabel("abscisse")
 pl.ylabel("ordonnee")
 pl.plot(x,y, 'r.', label="y=f(x)")
 pl.plot(x,z, 'b-', label="z=g(x)")
-pl.legend()#afficher la légende
+pl.legend() # afficher la legende
 pl.show()
 \end{lstlisting}
 
@@ -744,7 +744,7 @@ pl.semilogx(x,y)
 pl.semilogy(x,y)
 pl.loglog(x,y)
 pl.hist(x)
-pl.hist([x,y])#pour afficher plusieurs histogrammes à la fois
+pl.hist([x,y]) # pour afficher plusieurs histogrammes a la fois
 \end{lstlisting}
 
 Pour spécifier le zoom sur la figure, il faut rajouter :
@@ -844,9 +844,9 @@ os.system('cmd argument')
 
 Par exemple, on peut très bien faire les commandes précédentes via la commande system
 \begin{lstlisting}[language=python]
-# méthode 1
+# methode 1
 os.system('cd \'dossier\'')
-# méthode 2
+# methode 2
 os.system("cd 'dossier'")
 
 os.system("mkdir 'dossier'")
@@ -928,7 +928,7 @@ globals().has_key('x')
 ou encore
 \begin{lstlisting}[language=python]
 if ('x' in locals()):
-  print("'x' est défini")
+  print("'x' est defini")
 \end{lstlisting}
 
 
@@ -1015,9 +1015,9 @@ Je souhaitais pouvoir exécuter certains scripts python depuis  n'importe quel r
 
 Afin de pouvoir exécuter les scripts depuis n'importe quel dossier,  il faut déjà regrouper tous ces scripts dans un dossier particulier.  Par exemple, j'ai mis dans mon \texttt{/home} un dossier \texttt {python/traitement\_simu} où je stocke les scripts que je veux  exécuter pour chaque simulation, et un dossier \texttt{python/modules} où je stocke tous mes modules.
 
-Les modifications sont à effectuer dans \texttt{.bash\_profile} (voir  \refsec{sec:bashprofile}).
+Les modifications sont à effectuer dans \texttt{.bash\_profile}.
 
-Il faut rajouter le dossier \texttt{python/traitement\_simu} dans la  variable PATH et il faut créer une variable PYTHONPATH
+Il faut rajouter le dossier \texttt{python/traitement\_simu} dans la  variable PATH et il faut créer une variable PYTHONPATH.
 
 \begin{attention}
 Afin que ceci fonctionne, il faut \emph{exporter} ces variables.
@@ -1060,6 +1060,61 @@ If you feel the need for speed, go for built-in functions - you can't beat a loo
 \item And last but not least: collect data. Python's excellent profile module can quickly show the bottleneck in your code. if you're considering different versions of an algorithm, test it in a tight loop using the time.clock() function. 
 \end{itemize}
 
+\section{Avancé}
+\subsection{Passer des arguments à un script}
+Il y a un moyen très simple de passer des arguments à un script python en ligne de commande. Il suffit de faire par exemple :
+\begin{verbatim}
+> ./test.py 1 "hey"
+\end{verbatim}
+
+Le script alors contenir les commandes suivantes :
+\begin{lstlisting}[language=python]
+import sys
+
+print sys.argv[1] # affiche arg1
+print sys.argv[2] # affiche arg2
+\end{lstlisting}
+Les arguments sont des chaînes de caractères, à vous de les convertir dans le format qui vous convient en fonction de l'ordre.
+
+\begin{remarque}
+À noter que le premier élément de la liste \textbf{sys.argv} est le chemin absolu vers le script
+\begin{verbatim}
+(Pdb) print sys.argv
+['/home/login/scripts/test.py', '1', 'hey']
+\end{verbatim}
+\end{remarque}
+
+\bigskip
+
+Il est possible de faire des choses beaucoup plus compliquées en mettant des options au script du style \texttt{-d} ou \texttt{--debut} mais c'est beaucoup plus compliqué. Il faut pour cela importer le module \textbf{getopt}. Voici un bout de code que j'avais fait en utilisant ce module : 
+\begin{lstlisting}[language=python]
+import sys, getopt
+
+try:                                
+    opts, args = getopt.getopt(sys.argv[1:], 
+    "hdf", ["help", "debut=", "fin="])
+except getopt.GetoptError:          
+    print("les options sont h, d et f")                        
+    sys.exit(2)
+
+for opt, arg in opts:                
+    if opt in ("-h", "--help"):      
+        print("les options sont h, d et f")                    
+        sys.exit()                  
+    elif opt in ("-d", "--debut"):
+        try:
+            indice_simu_debut = int(arg)
+        except:
+            print("L'argument n'est pas un entier")
+    elif opt in ("-f", "--fin"): 
+        try:
+            indice_simu_fin = int(arg)
+        except:
+            print("L'argument n'est pas un entier")
+
+autres_arguments = " ".join(args)
+\end{lstlisting}
+On peut remarquer que chaque option a un format court et un format long.
 
 \printindex
 \end{document}

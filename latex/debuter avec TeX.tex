@@ -2160,6 +2160,17 @@ J'avais depuis quelques temps des erreurs de numérotation des figures. Il se tr
 \subsection{Entête qui n'a pas les mêmes marges}
 Il faut faire attention à définir les marges avant d'appeler le paquet \gras[package!fancyhdr]{fancyhdr}. Le cas échéant, les marges pour le style de page \emph{fancy} seront les anciennes marges.
 
+\subsection{[PDFLaTeX] finished with exit code 1}
+
+J'ai eu cette erreur à cause des lignes suivantes. Apparemment lstlistings n'accepte pas les accents.
+\begin{verbatim}
+\begin{lstlisting}[language=python]
+if ('x' in locals()):
+  print("'x' est défini")
+\end{lstlisting}
+\end{verbatim}
+
+
 % \newpage
 % \addcontentsline{toc}{section}{\numberline{}Index}
 \printindex
