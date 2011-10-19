@@ -74,7 +74,7 @@ svn list -r 7
 \end{verbatim}
 pour afficher la liste des fichiers de la révision 7.
 
-\subsection{Revenir à une version précédente} \index{Revenir à une version précédente}
+\subsection{Revenir (tout ou en partie) à la révision courante : revert}\index{commande svn!revert}
 Pour annuler les modifications locales et revenir à la dernière révision : 
 \begin{verbatim}
 svn revert *.f90
@@ -90,7 +90,7 @@ svn update --force -r39
 pour revenir à la révision $39$ ou 
 \begin{verbatim}
 svn update --force -r39 fichier.f90
-\end{verbatim}
+\end{verbatim}\index{commande svn!update}
 Pour ne changer qu'un seul fichier en particulier.
 
 \begin{remarque}
@@ -99,14 +99,36 @@ Si la révision $39$ est la dernière et qu'elle a été envoyée depuis le rép
 \texttt{--force} permet de forcer les fichiers de la révision et d'écraser toute éventuelle modification locale. Dans le doute, tester sans cette option, quitte à la rajouter ensuite.
 \end{remarque}
 
+\subsection{Annuler les modifications induite par une ou plusieurs révisions : merge}\index{commande svn!merge}
+Pour annuler les modifications d'une ou plusieurs révisions, il faut utiliser la commande suivante : 
+\begin{verbatim}
+svn merge -r131:129 .
+\end{verbatim}
+
+\begin{attention}
+Pour supprimer les révisions 129 à 131, il faut entrer la commande :
+\begin{verbatim}
+svn merge -r131:128 .
+\end{verbatim}
+
+Afin d'appliquer les changements, il faut faire un \texttt{commit} pour créer une nouvelle révision qui contiendra les modifications d'annulations.
+\end{attention}
+
+\begin{remarque}
+Pour supprimer les modifications de la révision 130, il faut faire :
+\begin{verbatim}
+svn merge -r130:129 .
+\end{verbatim}
+\end{remarque}
+
+
 
 \bigskip
 
-On peut aussi supprimer les modifications de certaines révisions, à condition que celles-ci soient indépendantes des révisions plus récentes : 
+On peut aussi supprimer les modifications de certaines révisions, mais à un seul fichier : 
 \begin{verbatim}
 svn merge -r2349:2345 fichier.f90
 \end{verbatim}
-pour ne modifier qu'un seul fichier (je crois qu'on ne peut modifier qu'un fichier à la fois, mais on peut lancer plusieurs \texttt{merge} avant de faire un \texttt{commit}).
 
 Cette commande, qui doit être suivie d'un \texttt{commit}, va créer une nouvelle révision qui annule les commit entre 2345 et 2349 pour créer une révision 2350. 
 

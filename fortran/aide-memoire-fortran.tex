@@ -1835,11 +1835,7 @@ autres fonctions, consultez les ouvrages de référence (voir bibliographie).
 \subsubsection{Les fonctions numériques élémentaires}
 
 \begin{description}
-\item[\textbf{ABS} \emph{abs(a)}]  Fournit la valeur absolue de 
-\emph{a} ($\left|a\right|$), de type entier, réel ou complexe. 
-Le résultat est du type de \emph{a}. Quand \emph{a} est 
-complexe ($a=(x,y)$), le résultat est de type \emph{real} et égal 
-à $\sqrt{x^{2}+y^{2}}$. 
+\item[\textbf{ABS} \emph{abs(a)}]  Fournit la valeur absolue de \emph{a} ($\left|a\right|$), de type entier, réel ou complexe. Le résultat est du type de \emph{a}. Quand \emph{a} est complexe ($a=(x,y)$), le résultat est de type \emph{real} et égal à $\sqrt{x^{2}+y^{2}}$. 
 \begin{exemple}
 \begin{align}
 \mathrm{abs}(-7.4) &= 7.4\\
@@ -1847,18 +1843,14 @@ complexe ($a=(x,y)$), le résultat est de type \emph{real} et égal
 \end{align}
 \end{exemple}
 
-\item[\textbf{AIMAG} \emph{aimag(z)}] Fournit la partie imaginaire de \emph{z}, 
-de type complexe. Le résultat est de type \emph{real}. Si 
-$z=(x,y)$, le résultat est égal à $y$. 
+\item[\textbf{AIMAG} \emph{aimag(z)}] Fournit la partie imaginaire de \emph{z}, de type complexe. Le résultat est de type \emph{real}. Si $z=(x,y)$, le résultat est égal à $y$. 
 \begin{exemple}
 \begin{align}
 \mathrm{aimag}((4.0,5.0))&= 5.0
 \end{align}
 \end{exemple}
 
-\item[\textbf{AINT} \emph{aint(a)}] Fournit, dans le type \emph{real}, 
-la troncature de \emph{a} (partie entière E($a$) pour $a>$0 et 
--E(-$a$) pour $a<$0). 
+\item[\textbf{AINT} \emph{aint(a)}] Fournit, dans le type \emph{real}, la troncature de \emph{a} (partie entière $E(a)$ pour $a>0$ et $-E(-a)$ pour $a<0$). 
 \begin{exemple}
 \begin{align}
 \mathrm{aint}(3.678) &= 3.0\\
@@ -1866,8 +1858,7 @@ la troncature de \emph{a} (partie entière E($a$) pour $a>$0 et
 \end{align}
 \end{exemple}
 
-\item[\textbf{ANINT} \emph{anint(a)}] Fournit, dans le type \emph{real}, 
-l'arrondi de \emph{a} à l'entier le plus proche. 
+\item[\textbf{ANINT} \emph{anint(a)}] Fournit, dans le type \emph{real}, l'arrondi de \emph{a} à l'entier le plus proche. 
 \begin{exemple}
 \begin{align}
 \mathrm{anint}(3.456) &= 3.0\\
@@ -1875,9 +1866,7 @@ l'arrondi de \emph{a} à l'entier le plus proche.
 \end{align}
 \end{exemple}
 
-\item[\textbf{CEILING} \emph{ceiling(a)}] Fournit l'entier (type 
-\emph{integer} standard) immédiatement supérieur à la valeur 
-du réel \emph{a} (voir \emph{floor}).
+\item[\textbf{CEILING} \emph{ceiling(a)}] Fournit l'entier (type \emph{integer} standard) immédiatement supérieur à la valeur du réel \emph{a} (voir \emph{floor}).
 \begin{exemple}
 \begin{align}
 \mathrm{ceiling}(4.8) &= 5\\
@@ -1885,12 +1874,11 @@ du réel \emph{a} (voir \emph{floor}).
 \end{align}
 \end{exemple}
 
-\item[\textbf{CMPLX } \emph{cmplx(x,y)}] Si \emph{y} est absent~: 
-fournit le résultat de la conversion de la valeur \emph{x} 
-(de type numérique quelconque, complexe compris) en un complexe standard, \\
-Si \emph{y} est présent~: fournit le résultat de la conversion 
-du complexe (\emph{x},\emph{y}) (\emph{x} et \emph{y} doivent être de 
-type entier ou réel) dans le type complexe standard. 
+\item[\textbf{CMPLX } \emph{cmplx(x,y)}] 
+\begin{itemize}
+\item Si \emph{y} est absent~: fournit le résultat de la conversion de la valeur \emph{x} (de type numérique quelconque, complexe compris) en un complexe standard, 
+\item Si \emph{y} est présent~: fournit le résultat de la conversion du complexe (\emph{x},\emph{y}) (\emph{x} et \emph{y} doivent être de type entier ou réel) dans le type complexe standard. 
+\end{itemize}
 \begin{exemple}
 \begin{align}
 \mathrm{cmplx}(-3) &= (-3.0,0.0)\\
@@ -1898,9 +1886,7 @@ type entier ou réel) dans le type complexe standard.
 \end{align}
 \end{exemple}
 
-\item[\textbf{FLOOR} \emph{floor(a)}] Fournit l'entier (type \emph{integer} standard) 
-immédiatement inférieur à la valeur du réel \emph{a} 
-(voir \emph{ceiling}). 
+\item[\textbf{FLOOR} \emph{floor(a)}] Fournit l'entier (type \emph{integer} standard) immédiatement inférieur à la valeur du réel \emph{a} (voir \emph{ceiling}). 
 \begin{exemple}
 \begin{align}
 \mathrm{floor}(4.8)  &= 4\\
@@ -1908,12 +1894,7 @@ immédiatement inférieur à la valeur du réel \emph{a}
 \end{align}
 \end{exemple}
 
-\item[\textbf{INT} \emph{int(a)}] Fournit le résultat de la conversion 
-en entier standard de la valeur de \emph{a} qui peut être entière 
-(le résultat est alors égal à \emph{a}), réelle (le résultat 
-est aIors égal à la troncature de \emph{a}, c'est-à-dire 
-\emph{aint(a)}) ou complexe (le résultat est alors égal à la 
-troncature de la partie réelle de \emph{a}). 
+\item[\textbf{INT} \emph{int(a)}] Fournit le résultat de la conversion en entier standard de la valeur de \emph{a} qui peut être entière (le résultat est alors égal à \emph{a}), réelle (le résultat est aIors égal à la troncature de \emph{a}, c'est-à-dire \emph{aint(a)}) ou complexe (le résultat est alors égal à la troncature de la partie réelle de \emph{a}). 
 \begin{exemple}
 \begin{align}
 \mathrm{int}(-4.2)  &= -4\\
@@ -1921,8 +1902,7 @@ troncature de la partie réelle de \emph{a}).
 \end{align}
 \end{exemple}
 
-\item[\textbf{NINT} \emph{nint(a)}] Fournit l'entier standard le plus 
-proche du réel \emph{a}. 
+\item[\textbf{NINT} \emph{nint(a)}] Fournit l'entier standard le plus proche du réel \emph{a}. 
 \begin{exemple}
 \begin{align}
 \mathrm{nint}(3.879)  &= 4\\
@@ -1930,9 +1910,7 @@ proche du réel \emph{a}.
 \end{align}
 \end{exemple}
 
-\item[\textbf{REAL}	\emph{real(a)}] Fournit le réel correspondant à \emph{a} qui 
-peut être de type numérique quelconque (s'il est complexe, on 
-obtient la partie réelle). 
+\item[\textbf{REAL} \emph{real(a)}] Fournit le réel correspondant à \emph{a} qui peut être de type numérique quelconque (s'il est complexe, on obtient la partie réelle). 
 \begin{exemple}
 \begin{align}
 \mathrm{real}(-4)  &= -4.0
@@ -1947,16 +1925,14 @@ les fonctions suivantes (\emph{conjg} à \emph{sign}) fournissent un résultat a
 
 \begin{description}
 
-\item[\textbf{CONJG} \emph{conjg(z)}] Fournit le complexe 
-conjugué du complexe z. 
+\item[\textbf{CONJG} \emph{conjg(z)}] Fournit le complexe conjugué du complexe z. 
 \begin{exemple}
 \begin{align}
 \mathrm{conjg}((2.0,3.0))  &= (2.0,-3.0)
 \end{align}
 \end{exemple}
 
-\item[\textbf{DIM} \emph{dim(x, y)}] Fournit le maximum de $x-y$ 
-et de 0, $x$ et $y$ sont entiers ou réels. 
+\item[\textbf{DIM} \emph{dim(x, y)}] Fournit le maximum de $x-y$ et de 0, $x$ et $y$ sont entiers ou réels. 
 \begin{exemple}
 \begin{align}
 \mathrm{dim}(6,2)  &= 4\\
@@ -1964,25 +1940,21 @@ et de 0, $x$ et $y$ sont entiers ou réels.
 \end{align}
 \end{exemple}
 
-\item[\textbf{MAX} \emph{max(al, a2, a3...)}] Fournit la valeur maximale des valeurs 
-reçues en arguments (entiers ou réels). 
+\item[\textbf{MAX} \emph{max(a1, a2, a3\dots)}] Fournit la valeur maximale des valeurs reçues en arguments (entiers ou réels). 
 \begin{exemple}
 \begin{align}
 \mathrm{max}(2.0, -8.0, 6.0)  &= 6.0
 \end{align}
 \end{exemple}
 
-\item[\textbf{MIN} \emph{min(al, a2, a3...)}] Fournit la valeur minimale des valeurs 
-reçues en arguments (entiers ou réels). 
+\item[\textbf{MIN} \emph{min(a1, a2, a3\dots)}] Fournit la valeur minimale des valeurs reçues en arguments (entiers ou réels). 
 \begin{exemple}
 \begin{align}
 \mathrm{min}(2.0, -8.0, 6.0)  &= -8.0
 \end{align}
 \end{exemple}
 
-\item[\textbf{MOD} \emph{mod(a, p)}] Fournit la valeur de \emph{a-int(a/p)*p} ; 
-$a$ et $p$ doivent être de même type (entiers ou réels). Si $p$ est nul, le résultat 
-dépend de la machine (pas défini). 
+\item[\textbf{MOD} \emph{mod(a, p)}] Fournit la valeur de \emph{a-int(a/p)*p} ; $a$ et $p$ doivent être de même type (entiers ou réels). Si $p$ est nul, le résultat dépend de la machine (pas défini). 
 \begin{exemple}
 \begin{align}
 \mathrm{mod}(7,3)  &= 1\\
@@ -1990,8 +1962,7 @@ dépend de la machine (pas défini).
 \end{align}
 \end{exemple}
 
-Cette fonction est souvent 
-utilisée pour tester si un nombre est pair ou impair. 
+Cette fonction est souvent utilisée pour tester si un nombre est pair ou impair. 
 \begin{exemple}
 \begin{align}
 \mathrm{mod}(4,2)  &= 0\\
@@ -1999,13 +1970,7 @@ utilisée pour tester si un nombre est pair ou impair.
 \end{align}
 \end{exemple}
 
-\item[\textbf{MODULO} \emph{modulo(a, p)}] Fournit la valeur de $a$ 
-modulo $p$, c'est-à-dire $a-floor(a/p)*p$ quand $a$ et $p$ sont 
-réels et $a-floor(a:p)*p$  
-(: représentant la division euclidienne quand $a$ et $p$ sont 
-entiers). 
-Si $p$ est nul, le résultat dépend de la machine (pas 
-défini). 
+\item[\textbf{MODULO} \emph{modulo(a, p)}] Fournit la valeur de $a$ modulo $p$, c'est-à-dire \texttt{a-floor(a/p)*p} quand $a$ et $p$ sont réels et \texttt{a-floor(a:p)*p } (\og:\fg représentant la division euclidienne quand $a$ et $p$ sont entiers). Si $p$ est nul, le résultat dépend de la machine (pas défini). 
 \begin{exemple}
 \begin{align}
 \mathrm{modulo}(7,3)  &= 1\\
@@ -2014,9 +1979,7 @@ défini).
 \end{align}
 \end{exemple}
 
-\item[\textbf{SIGN}	\emph{sign(a, b)}] Fournit la valeur absolue 
-de $a$ multiplié par le signe de $b$ ($a$ et $b$ doivent être 
-de même type). 
+\item[\textbf{SIGN} \emph{sign(a, b)}] Fournit la valeur absolue de $a$ multiplié par le signe de $b$ ($a$ et $b$ doivent être de même type). 
 \begin{exemple}
 \begin{align}
 \mathrm{sign}(4.0,-6.0)  &= -4.0\\
@@ -2033,21 +1996,16 @@ toutes ces fonctions fournissent un résultat ayant le même type que leur premi
 \end{remarque}
 
 \begin{description}
-\item[\textbf{ACOS} \emph{acos(x)}] Fournit la valeur en radians, 
-dans l'intervalle [0,$\pi$], de arccosinus de $x$, $x$ étant un réel tel que 
-$x \in$ [-1,1]. 
+\item[\textbf{ACOS} \emph{acos(x)}] Fournit la valeur en radians, dans l'intervalle $[0,\pi]$, de arccosinus de $x$, $x$ étant un réel tel que $x \in [-1,1]$. 
 
-\item[\textbf{ASIN}	\emph{asin(x)}] Fournit la valeur en radians, 
-dans l'intervalle [-$\pi$/2, $\pi$/2], de arcsinus de $x$, $x$ étant un 
-réel tel que $x \in$ [-1,1]. 
+\item[\textbf{ASIN} \emph{asin(x)}] Fournit la valeur en radians, dans l'intervalle $[-\frac{\pi}{2}, \frac{\pi}{2}]$, de arcsinus de $x$, $x$ étant un réel tel que $x \in [-1,1]$. 
 
-\item[\textbf{ATAN}	\emph{atan(x)}] Fournit la valeur de 
-arctangente de $x$, $x$ étant réel, exprimé en radians, dans 
-l'intervalle [-$\pi$/2, $\pi$/2].
+\item[\textbf{ATAN} \emph{atan(x)}] Fournit la valeur de arctangente de $x$, $x$ étant réel, exprimé en radians, dans l'intervalle $[-\frac{\pi}{2}, \frac{\pi}{2}]$.
 
 \item[\textbf{ATAN2} \emph{atan2(y,x)}] Fournit la valeur principale de l'argument
-du nombre complexe $(x,y)$, exprimée en radians dans l'intervalle [-$\pi$, $\pi$], 
+du nombre complexe $(x,y)$, exprimée en radians dans l'intervalle $[-\pi, \pi]$, 
 $x$ et $y$ étant du même type réel. 
+
 Les valeurs de $x$ et $y$ ne doivent pas être toutes deux nulles. 
 \begin{exemple}
 \begin{align}
@@ -2055,39 +2013,25 @@ atan2(2.679676,1.0)  &= 1.213623
 \end{align}
 \end{exemple}
 
-\item[\textbf{COS}	\emph{cos(x)}] Fournit le cosinus de $x$ pour $x$ réel 
-ou complexe, exprimé en radians. 
+\item[\textbf{COS} \emph{cos(x)}] Fournit le cosinus de $x$ pour $x$ réel ou complexe, exprimé en radians. 
 
-\item[\textbf{COSH}	\emph{cosh(x)}] Fournit la valeur du cosinus 
-hyperbolique de $x$, $x$ étant un réel exprimé en radians.  
+\item[\textbf{COSH} \emph{cosh(x)}] Fournit la valeur du cosinus hyperbolique de $x$, $x$ étant un réel exprimé en radians.  
 
-\item[\textbf{EXP} \emph{exp(x)}] Fournit la valeur de l'exponentielle 
-de $x$ pour $x$ réel ou complexe.  
+\item[\textbf{EXP} \emph{exp(x)}] Fournit la valeur de l'exponentielle de $x$ pour $x$ réel ou complexe.  
 
-\item[\textbf{LOG} \emph{log(x)}] Fournit la valeur  du logarithme 
-népérien de $x$, 
-réel positif ou complexe non nul (dans ce dernier cas, le résultat 
-possède une partie imaginaire situé dans l'intervalle $[-\pi;\pi]$).
+\item[\textbf{LOG} \emph{log(x)}] Fournit la valeur  du logarithme népérien de $x$, réel positif ou complexe non nul (dans ce dernier cas, le résultat possède une partie imaginaire situé dans l'intervalle $[-\pi;\pi]$).
 
-\item[\textbf{LOG10} \emph{log10(x)}] Fournit la valeur du logarithme 
-à base 10 du réel positif $x$. 
+\item[\textbf{LOG10} \emph{log10(x)}] Fournit la valeur du logarithme à base 10 du réel positif $x$. 
 
-\item[\textbf{SIN} \emph{sin(x)}] Fournit le sinus de $x$ pour $x$ réel ou 
-complexe et exprimé en radians.  
+\item[\textbf{SIN} \emph{sin(x)}] Fournit le sinus de $x$ pour $x$ réel ou complexe et exprimé en radians.  
 
-\item[\textbf{SINH} \emph{sinh(x)}] Fournit la valeur du sinus 
-hyperbolique de $x$, $x$ 
-étant réel et exprimé en radians.  
+\item[\textbf{SINH} \emph{sinh(x)}] Fournit la valeur du sinus hyperbolique de $x$, $x$ étant réel et exprimé en radians.  
 
-\item[\textbf{SQRT}	\emph{sqrt(x)}] Fournit la valeur de la racine carrée de $x$, 
-réel positif ou nul ou complexe (dans ce cas, le résultat possède une partie réelle
-non négative ; s'il s'agit de 0, la partie imaginaire du résultat n'est pas négative).
+\item[\textbf{SQRT} \emph{sqrt(x)}] Fournit la valeur de la racine carrée de $x$, réel positif ou nul ou complexe (dans ce cas, le résultat possède une partie réelle non négative ; s'il s'agit de 0, la partie imaginaire du résultat n'est pas négative).
 
-\item[\textbf{TAN}	\emph{tan(x)}] Fournit la tangente de $x$ réel 
-exprimé en radians. 
+\item[\textbf{TAN} \emph{tan(x)}] Fournit la tangente de $x$ réel exprimé en radians. 
 
-\item[\textbf{TANH}	\emph{tanh(x)}] Fournit la tangente 
-hyperbolique de $x$ pour $x$  réel et exprimé en radians.
+\item[\textbf{TANH} \emph{tanh(x)}] Fournit la tangente hyperbolique de $x$ pour $x$  réel et exprimé en radians.
     
 \end{description}
 
@@ -2098,8 +2042,7 @@ Toutes ces fonctions peuvent recevoir en argument un scalaire (numérique) ou un
 \end{remarque}
 
 \begin{description}
-\item[\textbf{DIGITS} \emph{digits(x)}] Fournit le nombre (entier standard) 
-de chiffres significatifs du type de $x$ (réel ou entier). 
+\item[\textbf{DIGITS} \emph{digits(x)}] Fournit le nombre (entier standard) de chiffres significatifs du type de $x$ (réel ou entier). 
 \begin{exemple}
 si $x$ est un réel codé sur 32 bits, 
 \begin{align}
@@ -2107,11 +2050,7 @@ si $x$ est un réel codé sur 32 bits,
 \end{align}
 \end{exemple}
 
-\item[\textbf{EPSILON} \emph{epsilon(x)}] Fournit l'"epsilon machine" 
-(le plus petit nombre $\epsilon$ tel que 1+$\epsilon$ soit 
-différent de 1) 
-du type correspondant au réel $x$. Le résultat a la valeur 
-$b^{1-p}$ (voir chapitre \ref{chap-structure-generale}). 
+\item[\textbf{EPSILON} \emph{epsilon(x)}] Fournit l'"epsilon machine" (le plus petit nombre $\epsilon$ tel que $1+\epsilon$ soit différent de 1) du type correspondant au réel $x$. Le résultat a la valeur $b^{1-p}$. 
 \begin{exemple}
 si $x$ est un réel codé sur 32 bits, 
 \begin{align}
@@ -2119,11 +2058,7 @@ si $x$ est un réel codé sur 32 bits,
 \end{align}
 \end{exemple}
 
-\item[\textbf{HUGE}	\emph{huge(x)}] Fournit la plus grande valeur représentable
-  dans le type de $x$. Le résultat est du même type 
-  que $x$ qui peut être entier ou réel. Si $x$ est réel, le 
-  résultat a la valeur $(1-b^{-p})*b^{e_{max}}$ (voir chapitre 
-  \ref{chap-structure-generale}). 
+\item[\textbf{HUGE} \emph{huge(x)}] Fournit la plus grande valeur représentable dans le type de $x$. Le résultat est du même type que $x$ qui peut être entier ou réel. Si $x$ est réel, le résultat a la valeur $(1-b^{-p})*b^{e_{max}}$.
 \begin{exemple}
 si $x$ est un réel codé sur 32 bits, 
 \begin{align}
@@ -2131,21 +2066,13 @@ si $x$ est un réel codé sur 32 bits,
 \end{align}
 \end{exemple}
 
-\item[\textbf{MAXEXPONENT} \emph{maxexponent(x)}] Fournit la plus grande valeur 
-(entier standard) possible pour un exposant dans le type (réel) de 
-$x$ ($e_{max}$ voir chapitre \ref{chap-structure-generale}).
+\item[\textbf{MAXEXPONENT} \emph{maxexponent(x)}] Fournit la plus grande valeur (entier standard) possible pour un exposant dans le type (réel) de $x$.
 
-\item[\textbf{MINEXPONENT} \emph{minexponent(x)}] Fournit la plus petite valeur 
-(entier standard) possible pour un exposant dans le type (réel) 
-de $x$ ($e_{min}$ voir chapitre \ref{chap-structure-generale}).
+\item[\textbf{MINEXPONENT} \emph{minexponent(x)}] Fournit la plus petite valeur (entier standard) possible pour un exposant dans le type (réel) de $x$.
 
-\item[\textbf{PRECISION} \emph{precision(x)}] Fournit le nombre (entier standard) 
-minimal de chiffres significatifs dans le type (réel ou complexe) de $x$.
+\item[\textbf{PRECISION} \emph{precision(x)}] Fournit le nombre (entier standard) minimal de chiffres significatifs dans le type (réel ou complexe) de $x$.
 
-\item[\textbf{RANGE} \emph{range(x)}] Fournit la valeur maximale \emph{e} (entier standard) 
-d'un exposant (en puissance de 10) dans le type de \emph{x} (entier, réel 
-ou complexe) telle que les nombres $10^{e}$ et $10^{-e}$ soient représentables 
-dans le type en question. 
+\item[\textbf{RANGE} \emph{range(x)}] Fournit la valeur maximale \emph{e} (entier standard) d'un exposant (en puissance de 10) dans le type de \emph{x} (entier, réel ou complexe) telle que les nombres $10^{e}$ et $10^{-e}$ soient représentables dans le type en question. 
 \begin{exemple}
 si $x$ est un réel codé sur 
 32 bits, 
@@ -2154,10 +2081,7 @@ si $x$ est un réel codé sur
 \end{align}
 \end{exemple}
 
-\item[\textbf{TINY}	\emph{tiny(x)}] Fournit la plus petite valeur représentable dans 
-le type de $x$. Le résultat est du même type (variante comprise) 
-que $x$ qui peut être réel ou double précision. Le résultat a la valeur 
-$b^{e_{min}-1}$ (voir chapitre \ref{chap-structure-generale}). 
+\item[\textbf{TINY} \emph{tiny(x)}] Fournit la plus petite valeur représentable dans le type de $x$. Le résultat est du même type (variante comprise) que $x$ qui peut être réel ou double précision. Le résultat a la valeur $b^{e_{min}-1}$. 
 \begin{exemple}
 si $x$ est un réel codé sur 32 bits, 
 \begin{align}
@@ -2174,8 +2098,7 @@ si $x$ est un réel codé sur 32 bits,
 
 \begin{description}
 
-\item[\textbf{CHAR} \emph{char(i)}] Fournit une chaîne de caractères de longueur 1 
-correspondant au caractère de code ASCII \emph{i} (entier). 
+\item[\textbf{CHAR} \emph{char(i)}] Fournit une chaîne de caractères de longueur 1 correspondant au caractère de code ASCII \emph{i} (entier). 
 \begin{exemple}
 \begin{align}
 \mathrm{char}(71)  &= 'G'\\
@@ -2184,8 +2107,7 @@ correspondant au caractère de code ASCII \emph{i} (entier).
 
 \end{exemple}
 
-\item[\textbf{ICHAR} \emph{ichar(c)}] Fournit l'entier (type \emph{integer} standard) 
-correspondant au code ASCII du caractère \emph{c}  (chaîne de longueur 1). 
+\item[\textbf{ICHAR} \emph{ichar(c)}] Fournit l'entier (type \emph{integer} standard) correspondant au code ASCII du caractère \emph{c}  (chaîne de longueur 1). 
 \begin{exemple}
 \begin{align}
 \mathrm{ichar}('Y')  &= 89\\
@@ -2200,33 +2122,23 @@ correspondant au code ASCII du caractère \emph{c}  (chaîne de longueur 1).
 
 \begin{description}
     
-\item[\textbf{LGE} \emph{lge(string\_a, string\_b)}] Fournit la valeur \emph{vrai} 
-si la chaîne \emph{string\_a} apparaît après 
-\emph{string\_b} ou lui est égale (dans l'ordre alphabétique 
-donné par la table de caractères).
+\item[\textbf{LGE} \emph{lge(string\_a, string\_b)}] Fournit la valeur \emph{vrai} si la chaîne \emph{string\_a} apparaît après \emph{string\_b} ou lui est égale (dans l'ordre alphabétique donné par la table de caractères).
 \begin{exemple}
 \begin{align}
 \mathrm{lge}('TWO','THREE')  &= true
 \end{align}
 \end{exemple}
 
-\item[\textbf{LGT} \emph{lgt(string\_a, string\_b)}] Fournit la valeur \emph{vrai} 
-si la chaîne \emph{string\_a}  apparaît après \emph{string\_b} (dans l'ordre alphabétique 
-donné par la table de caractères).
+\item[\textbf{LGT} \emph{lgt(string\_a, string\_b)}] Fournit la valeur \emph{vrai} si la chaîne \emph{string\_a}  apparaît après \emph{string\_b} (dans l'ordre alphabétique donné par la table de caractères).
 
-\item[\textbf{LLE} \emph{lle(string\_a, string\_b)}] Fournit la valeur \emph{vrai} 
-si la chaîne \emph{string\_a} apparaît avant \emph{string\_b} 
-ou lui est égale (dans l'ordre alphabétique   
-donné par la table de caractères).
+\item[\textbf{LLE} \emph{lle(string\_a, string\_b)}] Fournit la valeur \emph{vrai} si la chaîne \emph{string\_a} apparaît avant \emph{string\_b} ou lui est égale (dans l'ordre alphabétique donné par la table de caractères).
 \begin{exemple}
 \begin{align}
 \mathrm{lge}('TWO','THREE')  &= false
 \end{align}
 \end{exemple}
 
-\item[\textbf{LLT} \emph{llt(string\_a, string\_b)}] Fournit la valeur \emph{vrai} 
-si la chaîne \emph{string\_a}  apparaît avant \emph{string\_b} 
-(dans l'ordre alphabétique donné par la table de caractères).
+\item[\textbf{LLT} \emph{llt(string\_a, string\_b)}] Fournit la valeur \emph{vrai} si la chaîne \emph{string\_a}  apparaît avant \emph{string\_b} (dans l'ordre alphabétique donné par la table de caractères).
 
 \end{description}
 
@@ -2234,10 +2146,7 @@ si la chaîne \emph{string\_a}  apparaît avant \emph{string\_b}
 \subsubsection{Les fonctions de manipulation de chaînes}
 
 \begin{description}
-\item[\textbf{ADJUSTL} \emph{adjustl(string)}] Fournit en résultat la chaîne 
-string "cadrée à gauche", c'est-à-dire débar\-rassée de tous 
-ses blancs de début (et donc complétée à droite par autant 
-de blancs supplémentaires). 
+\item[\textbf{ADJUSTL} \emph{adjustl(string)}] Fournit en résultat la chaîne string \og cadrée à gauche\fg, c'est-à-dire débar\-rassée de tous ses blancs de début (et donc complétée à droite par autant de blancs supplémentaires). 
 \begin{exemple}
 \begin{align}
 \mathrm{adjustl}('\#\#\#\#summer')  &= 'summer\#\#\#\#'
@@ -2246,10 +2155,7 @@ Le caractère \# représente ici
 un blanc.
 \end{exemple} 
 
-\item[\textbf{ADJUSTR} \emph{adjustr(string)}] Fournit en résultat la chaîne 
-string Òcadrée à droiteÒ, c'est-à-dire débarrassée de tous ses 
-blancs de fin (et donc complétée à gauche par autant de 
-blancs supplémentaires). 
+\item[\textbf{ADJUSTR} \emph{adjustr(string)}] Fournit en résultat la chaîne string \og cadrée à droite\fg, c'est-à-dire débarrassée de tous ses blancs de fin (et donc complétée à gauche par autant de blancs supplémentaires). 
 \begin{exemple}
 \begin{align}
 \mathrm{adjustl}('summer\#\#\#\#')  &= '\#\#\#\#summer'
@@ -2257,24 +2163,14 @@ blancs supplémentaires).
 Le caractère \# représente ici un blanc.
 \end{exemple}
 
-\item[\textbf{INDEX} \emph{index(string, substring, back)}] Fournit 
-un entier (de type \emph{integer} standard) correspondant au premier 
-caractère de la chaîne \emph{string} où apparaît la sous-chaîne
-\emph{substring} (ou la valeur 0 si cette sous-chaîne n'apparaît pas). 
-Si \emph{back}  (de type logical) n'est pas précisé ou s'il a la valeur
-\emph{faux}, l'exploration se fait depuis le début de la chaîne ; 
-si \emph{back} a la valeur \emph{vrai}, 
-cette recherche se fait depuis la fin de la chaîne 
-(on a donc, en fait, la dernière ÒoccurrenceÒ de la sous-chaîne). 
+\item[\textbf{INDEX} \emph{index(string, substring, back)}] Fournit un entier (de type \emph{integer} standard) correspondant au premier caractère de la chaîne \emph{string} où apparaît la sous-chaîne \emph{substring} (ou la valeur 0 si cette sous-chaîne n'apparaît pas). Si \emph{back}  (de type logical) n'est pas précisé ou s'il a la valeur \emph{faux}, l'exploration se fait depuis le début de la chaîne ; si \emph{back} a la valeur \emph{vrai}, cette recherche se fait depuis la fin de la chaîne (on a donc, en fait, la dernière \og occurrence\fg de la sous-chaîne). 
 \begin{exemple}
 \begin{align}
 \mathrm{index}('caractere','a',back=.true.)  &= 4
 \end{align}
 \end{exemple}
 
-\item[\textbf{LEN\_TRIM} \emph{len\_trim(string)}] Fournit la longueur (type \emph{integer} 
-standard) de la chaîne \emph{string}, débar\-rassée de ses blancs 
-de fin. 
+\item[\textbf{LEN\_TRIM} \emph{len\_trim(string)}] Fournit la longueur (type \emph{integer} standard) de la chaîne \emph{string}, débar\-rassée de ses blancs de fin. 
 \begin{exemple}
 \begin{align}
 \mathrm{len\_trim}('\#\#\#C\#\#D\#\#\#')  &= 7
@@ -2282,15 +2178,7 @@ de fin.
 Le caractère \# représente ici un blanc.
 \end{exemple}
 
-\item[\textbf{SCAN} \emph{scan(string, set, back)}] Fournit un entier 
-(de type \emph{integer} standard) correspondant au premier caractère de 
-la chaîne \emph{string}  où apparaît l'un des caractères de la 
-chaîne \emph{set}  (ou la valeur 0 si cette chaîne n'apparaît pas). 
-Si \emph{back}  (de type logical) n'est pas précisé ou s'il a la valeur 
-\emph{faux}, l'exploration se fait depuis le début de la chaîne ; si 
-\emph{back} a la valeur \emph{vrai}, cette recherche se fait depuis la fin de la 
-chaîne (on a donc, en fait, la dernière \og occurrence\fg de l'un des 
-caractères mentionnés). 
+\item[\textbf{SCAN} \emph{scan(string, set, back)}] Fournit un entier (de type \emph{integer} standard) correspondant au premier caractère de la chaîne \emph{string}  où apparaît l'un des caractères de la chaîne \emph{set}  (ou la valeur 0 si cette chaîne n'apparaît pas). Si \emph{back}  (de type logical) n'est pas précisé ou s'il a la valeur \emph{faux}, l'exploration se fait depuis le début de la chaîne ; si \emph{back} a la valeur \emph{vrai}, cette recherche se fait depuis la fin de la chaîne (on a donc, en fait, la dernière \og occurrence\fg de l'un des caractères mentionnés). 
 \begin{exemple}
 \begin{align}
 \mathrm{scan}('astring','st')  &= 2\\
@@ -2298,15 +2186,7 @@ caractères mentionnés).
 \end{align}
 \end{exemple}
 
-\item[\textbf{VERIFY} \emph{verify(string, set, back)}] Fournit un entier 
-(de type \emph{integer} standard) valant 0 si tous les caractères de la chaîne 
-\emph{string} figurent dans la chaîne \emph{set} ou
-la position du premier caractère de \emph{string} qui ne figure pas 
-dans \emph{set} dans le cas contraire. 
-Si \emph{back} (de type logical ) n'est pas précisé ou s'il a la valeur \emph{faux}, 
-l'exploration se fait depuis le début de la chaîne ; si 
-\emph{back} a la valeur \emph{vrai}, cette recherche se fait depuis 
-la fin de la chaîne.
+\item[\textbf{VERIFY} \emph{verify(string, set, back)}] Fournit un entier (de type \emph{integer} standard) valant 0 si tous les caractères de la chaîne \emph{string} figurent dans la chaîne \emph{set} ou la position du premier caractère de \emph{string} qui ne figure pas dans \emph{set} dans le cas contraire. Si \emph{back} (de type logical ) n'est pas précisé ou s'il a la valeur \emph{faux}, l'exploration se fait depuis le début de la chaîne ; si \emph{back} a la valeur \emph{vrai}, cette recherche se fait depuis la fin de la chaîne.
 \begin{exemple}
 \begin{align}
 \mathrm{verify}('cdddc','c')  &= 2\\
@@ -2314,9 +2194,7 @@ la fin de la chaîne.
 \end{align}
 \end{exemple}
 
-\item[\textbf{LEN}	\emph{len(string)}] Entier (\emph{integer} standard) correspondant 
-à la longueur de la chaîne \emph{string}. Si \emph{string} est un tableau 
-de chaînes, on obtient la longueur d'un élément d'un tel tableau. 
+\item[\textbf{LEN} \emph{len(string)}] Entier (\emph{integer} standard) correspondant à la longueur de la chaîne \emph{string}. Si \emph{string} est un tableau de chaînes, on obtient la longueur d'un élément d'un tel tableau. 
 \begin{exemple}
 si $c$ a été déclaré comme suit \emph{character(15) :: c} alors 
 \begin{align}
@@ -2326,9 +2204,7 @@ si $c$ a été déclaré comme suit \emph{character(15) :: c} alors
 
 
 
-\item[\textbf{REPEAT} \emph{repeat(string, n)}] Fournit en 
-résultat une chaîne obtenue en concaténant \emph{n} fois la 
-chaîne \emph{string}. 
+\item[\textbf{REPEAT} \emph{repeat(string, n)}] Fournit en résultat une chaîne obtenue en concaténant \emph{n} fois la chaîne \emph{string}. 
 \begin{exemple}
 \begin{align}
 \mathrm{repeat}('s',3)  &= 'sss'
@@ -2336,8 +2212,7 @@ chaîne \emph{string}.
 \end{exemple}
 
 
-\item[\textbf{TRIM}	\emph{trim(string)}] Fournit une chaîne obtenue en débarrassant 
-la chaîne string de tous ses blancs de fin.  
+\item[\textbf{TRIM} \emph{trim(string)}] Fournit une chaîne obtenue en débarrassant la chaîne string de tous ses blancs de fin.  
 \begin{exemple}
 \begin{align}
 \mathrm{trim}('\#\#\#C\#\#D\#\#\#')  &= '\#\#\#C\#\#D'
@@ -2353,37 +2228,14 @@ caractère \# représente ici un blanc.
 
 \begin{description}
 
-\item[\textbf{DOT\_PRODUCT}	\emph{dot\_product (vector\_a, 
-vector\_b)}] Fournit le produit scalaire de deux vecteurs (peut 
-égale\-ment
-porter sur des tableaux de type logique). Les arguments \emph{vector\_a}  
-et \emph{vector\_b} doivent être des tableaux de rang 1 et de même taille, 
-ayant soit tous les deux un type numérique (mais pas obligatoirement le même), 
-soit tous les deux un type logique. Si \emph{vector\_a} est de type entier ou réel, 
-on obtient la valeur de l'expression : $sum(vector\_a*vector\_b)$, 
-avec le type correspondant à cette expression. Si 
-\emph{vector\_a} est de type complexe,
-on obtient la valeur de l'expression : $sum(conjg(vector\_a*vector\_b)$, 
-avec le type correspondant à cette expression. 
-Si \emph{vector\_a} et \emph{vector\_b} sont 
-tous deux de type logique, on obtient la valeur de l'expression~: 
-$any(vecteur\_a.and.vecteur\_b)$ avec le type correspondant à cette 
-expression. 
+\item[\textbf{DOT\_PRODUCT} \emph{dot\_product (vector\_a, vector\_b)}] Fournit le produit scalaire de deux vecteurs (peut égale\-ment porter sur des tableaux de type logique). Les arguments \emph{vector\_a}  et \emph{vector\_b} doivent être des tableaux de rang 1 et de même taille, ayant soit tous les deux un type numérique (mais pas obligatoirement le même), soit tous les deux un type logique. Si \emph{vector\_a} est de type entier ou réel, on obtient la valeur de l'expression : \texttt{sum(vector\_a*vector\_b)}, avec le type correspondant à cette expression. Si \emph{vector\_a} est de type complexe, on obtient la valeur de l'expression : \texttt{sum(conjg(vector\_a*vector\_b)}, avec le type correspondant à cette expression. Si \emph{vector\_a} et \emph{vector\_b} sont tous deux de type logique, on obtient la valeur de l'expression~: \texttt{any(vecteur\_a.and.vecteur\_b)} avec le type correspondant à cette expression. 
 \begin{exemple}
 \begin{align}
 \mathrm{dot\_product}((/1,2,3/),(/3,4,5/))  &= 26
 \end{align}
 \end{exemple}
 
-\item[\textbf{MATMUL} \emph{matmul(matrix\_a, matrix\_b)}] 
-Produit scalaire de deux matrices, ou produit 
-d'un vecteur (ligne) par une matrice ou produit d'une matrice par un vecteur 
-(colonne). Les dimensions des tableaux sont soumises aux contraintes mathématiques 
-habituelles. De plus, comme \emph{dot\_product}, la fonction 
-\emph{matmul} peut porter sur
-des tableaux de type logique. Les arguments sont donc des tableaux de rang 1 
-ou 2 qui doivent être soit tous deux de type numérique (mais pas
-nécessairement le même), soit tous deux de type logique. 
+\item[\textbf{MATMUL} \emph{matmul(matrix\_a, matrix\_b)}] Produit scalaire de deux matrices, ou produit d'un vecteur (ligne) par une matrice ou produit d'une matrice par un vecteur (colonne). Les dimensions des tableaux sont soumises aux contraintes mathématiques habituelles. De plus, comme \emph{dot\_product}, la fonction \emph{matmul} peut porter sur des tableaux de type logique. Les arguments sont donc des tableaux de rang 1 ou 2 qui doivent être soit tous deux de type numérique (mais pas nécessairement le même), soit tous deux de type logique. 
 \begin{exemple}
 si $A=\left(
 \begin{array}{ccc}
@@ -2404,40 +2256,28 @@ les fonctions suivantes s'appliquent à des tableaux de rang quelconque et fourn
 
 
 \begin{description}
-\item[\textbf{ALL} \emph{all(mask)}] Fournit la valeur \emph{vrai} 
-si tous les éléments du tableau logique \emph{mask} ont la valeur 
-\emph{vrai}. 
+\item[\textbf{ALL} \emph{all(mask)}] Fournit la valeur \emph{vrai} si tous les éléments du tableau logique \emph{mask} ont la valeur \emph{vrai}. 
 \begin{exemple}
 \begin{align}
 \mathrm{all}((/.true.,.false.,.true./))  &= false
 \end{align}
 \end{exemple}
 
-\item[\textbf{ANY}	\emph{any(mask)}] Fournit la valeur \emph{vrai} si l'un 
-au mois des éléments du tableau logique \emph{mask} a la valeur 
-\emph{vrai} et la valeur \emph{faux} dans le cas contraire. 
+\item[\textbf{ANY} \emph{any(mask)}] Fournit la valeur \emph{vrai} si l'un au mois des éléments du tableau logique \emph{mask} a la valeur \emph{vrai} et la valeur \emph{faux} dans le cas contraire. 
 \begin{exemple}
 \begin{align}
 \mathrm{any}((/.true.,.false.,.true./))  &= true
 \end{align}
 \end{exemple}
 
-\item[\textbf{COUNT} \emph{count(mask)}] Fournit le nombre (entier 
-standard) d'éléments 
-du tableau logique \emph{mask} ayant la valeur \emph{vrai}.
+\item[\textbf{COUNT} \emph{count(mask)}] Fournit le nombre (entier standard) d'éléments du tableau logique \emph{mask} ayant la valeur \emph{vrai}.
 \begin{exemple}
 \begin{align}
 \mathrm{count}((/.true.,.false.,.true./))  &= 2
 \end{align}
 \end{exemple}
 
-\item[\textbf{MAXVAL} \emph{maxval(array)}] Fournit la plus grande 
-valeur du tableau \emph{array}.
-Le résultat est du même type que les éléments de \emph{array} 
-qui peuvent être de type entier ou réel. 
-Si le tableau \emph{array} est de taille nulle, le résultat 
-est égal à la plus petite valeur représentable dans le type 
-concerné. 
+\item[\textbf{MAXVAL} \emph{maxval(array)}] Fournit la plus grande valeur du tableau \emph{array}. Le résultat est du même type que les éléments de \emph{array} qui peuvent être de type entier ou réel. Si le tableau \emph{array} est de taille nulle, le résultat est égal à la plus petite valeur représentable dans le type concerné. 
 \begin{exemple}
 si $A=\left(
 \begin{array}{ccc}
@@ -2447,22 +2287,14 @@ si $A=\left(
 \begin{align}
 \mathrm{maxval}(A,dim=1)  &= (5,6,7)
 \end{align}
-(5 est 
-la valeur max. dans la colonne 1, 6 est la valeur max. dans la 
-colonne 2, etc.) et 
+(5 est la valeur max. dans la colonne 1, 6 est la valeur max. dans la colonne 2, etc.) et 
 \begin{align}
 \mathrm{maxval}(A,dim=2)  &= (6,7)
 \end{align}
-(6 est 
-la valeur max. dans la ligne 1, 7 est la valeur max. dans la ligne 2).
+(6 est la valeur max. dans la ligne 1, 7 est la valeur max. dans la ligne 2).
 \end{exemple}
 
-\item[\textbf{MINVAL} \emph{minval(array)}] Fournit la plus petite 
-valeur du tableau \emph{array}.
-Le résultat est du même type que les éléments de \emph{array} qui peuvent 
-être de type entier ou réel. Si le tableau \emph{array} est de taille nulle, 
-le résultat est égal à la plus grande valeur représentable 
-dans le type concerné. 
+\item[\textbf{MINVAL} \emph{minval(array)}] Fournit la plus petite valeur du tableau \emph{array}. Le résultat est du même type que les éléments de \emph{array} qui peuvent être de type entier ou réel. Si le tableau \emph{array} est de taille nulle, le résultat est égal à la plus grande valeur représentable dans le type concerné. 
 \begin{exemple}
 si $A=\left(
 \begin{array}{ccc}
@@ -2472,22 +2304,14 @@ si $A=\left(
 \begin{align}
 \mathrm{minval}(A,dim=1)  &= (2,3,4)
 \end{align}
-(2 est 
-la valeur min. dans la colonne 1, 3 est la valeur min. dans la 
-colonne 2, etc.) et 
+(2 est la valeur min. dans la colonne 1, 3 est la valeur min. dans la colonne 2, etc.) et 
 \begin{align}
 \mathrm{minval}(A,dim=2)  &= (2,3)
 \end{align}
-(2 est 
-la valeur min. dans la ligne 1, 3 est la valeur min. dans la ligne 2).
+(2 est la valeur min. dans la ligne 1, 3 est la valeur min. dans la ligne 2).
 \end{exemple}
 
-\item[\textbf{PRODUCT} \emph{product(array)}] Fournit le produit des  
-valeurs des éléments
-du tableau \emph{array}. Le résultat est du même type que les éléments de 
-\emph{array} qui peuvent être de type entier, réel ou complexe. 
-Si le tableau \emph{array} est de taille nulle, le résultat vaut 
-1. 
+\item[\textbf{PRODUCT} \emph{product(array)}] Fournit le produit des  valeurs des éléments du tableau \emph{array}. Le résultat est du même type que les éléments de \emph{array} qui peuvent être de type entier, réel ou complexe. Si le tableau \emph{array} est de taille nulle, le résultat vaut 1. 
 \begin{exemple}
 si $A=\left(
 \begin{array}{ccc}
@@ -2500,11 +2324,7 @@ si $A=\left(
 \end{align}
 \end{exemple}
 
-\item[\textbf{SUM} \emph{sum(array)}] Fournit la somme des  valeurs des éléments 
-du tableau \emph{array}. Le résultat est du même type que les 
-éléments de \emph{array} qui peuvent être 
-de type entier, réel ou complexe. Si le tableau \emph{array} est de taille nulle, 
-le résultat vaut 0. 
+\item[\textbf{SUM} \emph{sum(array)}] Fournit la somme des  valeurs des éléments du tableau \emph{array}. Le résultat est du même type que les éléments de \emph{array} qui peuvent être de type entier, réel ou complexe. Si le tableau \emph{array} est de taille nulle, le résultat vaut 0. 
 \begin{exemple}
 si $A=\left(
 \begin{array}{ccc}
@@ -2517,34 +2337,19 @@ si $A=\left(
 \end{align}
 \end{exemple}
 
-\item[\textbf{ALLOCATED} \emph{allocated(array)}] Fournit la valeur 
-\emph{vrai} si le tableau \emph{array} 
-(déclaré avec l'attribut allocate) est alloué et la valeur \emph{faux} dans le cas 
-contraire.
+\item[\textbf{ALLOCATED} \emph{allocated(array)}] Fournit la valeur \emph{vrai} si le tableau \emph{array} (déclaré avec l'attribut allocate) est alloué et la valeur \emph{faux} dans le cas contraire.
 
-\item[\textbf{LBOUND} \emph{lbound(array,dim)}] Si \emph{dim} (entier) est présent, 
-fournit la borne inférieure (entier standard) du tableau \emph{array}, 
-suivant sa dimension \emph{dim}.
-Si \emph{dim} est absent, Fournit un tableau d'entiers 
-ayant le rang de \emph{array},
-contenant les bornes inférieures de \emph{array}, suivant toutes ses dimensions. 
-Notez qu'il n'est pas possible d'appeler \emph{lbound} au sein d'une procédure en lui 
-fournissant un deuxième argument effectif qui soit lui-même un argument muet 
-optionnel.
+\item[\textbf{LBOUND} \emph{lbound(array,dim)}] Si \emph{dim} (entier) est présent, fournit la borne inférieure (entier standard) du tableau \emph{array}, suivant sa dimension \emph{dim}. Si \emph{dim} est absent, Fournit un tableau d'entiers ayant le rang de \emph{array}, contenant les bornes inférieures de \emph{array}, suivant toutes ses dimensions. Notez qu'il n'est pas possible d'appeler \emph{lbound} au sein d'une procédure en lui fournissant un deuxième argument effectif qui soit lui-même un argument muet optionnel.
 \begin{exemple}
 si $A$ a été déclaré comme suit 
 $real$ :: $A(1:3,5:8)$ alors 
 \begin{align}
 \mathrm{lbound}(A)  &= (1,5)
 \end{align}
-Voir 
-aussi \emph{ubound}.
+Voir aussi \emph{ubound}.
 \end{exemple}
 
-\item[\textbf{SHAPE} \emph{shape(source)}] Fournit un tableau d'entiers 
-(standards) de rang 1 
-correspondant au profil de \emph{source}. Si \emph{source} est un scalaire, on obtient un
-tableau de taille 0. 
+\item[\textbf{SHAPE} \emph{shape(source)}] Fournit un tableau d'entiers (standards) de rang 1 correspondant au profil de \emph{source}. Si \emph{source} est un scalaire, on obtient un tableau de taille 0. 
 \begin{exemple}
 si $A$ a été déclaré comme suit 
 $real$ :: $A(1:3,5:8)$ alors
@@ -2553,10 +2358,7 @@ $real$ :: $A(1:3,5:8)$ alors
 \end{align}
 \end{exemple}.
 
-\item[\textbf{SIZE}	\emph{size(array, dim)}] Si \emph{dim} est 
-présent, fournit l'étendue 
-(entier standard) de \emph{array}, suivant sa dimension \emph{dim}. 
-Si \emph{dim} est absent, fournit la taille de \emph{array}. 
+\item[\textbf{SIZE} \emph{size(array, dim)}] Si \emph{dim} est présent, fournit l'étendue (entier standard) de \emph{array}, suivant sa dimension \emph{dim}. Si \emph{dim} est absent, fournit la taille de \emph{array}. 
 \begin{exemple}
 si $A$ a été déclaré comme suit 
 $real$ :: $A(1:3,5:8)$ alors
@@ -2566,14 +2368,7 @@ $real$ :: $A(1:3,5:8)$ alors
 \end{align}
 \end{exemple}
 
-\item[\textbf{UBOUND} \emph{ubound(array, dim)}] Si \emph{dim} (entier) est présent, 
-fournit la borne supérieure (entier) du tableau \emph{array}, 
-suivant sa dimension \emph{dim}. 
-Si \emph{dim} est absent, fournit un tableau d'entiers ayant le rang de \emph{array}, 
-contenant les bornes supérieures de \emph{array}, suivant toutes ses dimensions. 
-Notez qu'il n'est pas possible d'appeler \emph{ubound} au sein d'une procédure en lui 
-fournissant un deuxième argument effectif qui soit lui-même un argument muet 
-optionnel. 
+\item[\textbf{UBOUND} \emph{ubound(array, dim)}] Si \emph{dim} (entier) est présent, fournit la borne supérieure (entier) du tableau \emph{array}, suivant sa dimension \emph{dim}. Si \emph{dim} est absent, fournit un tableau d'entiers ayant le rang de \emph{array}, contenant les bornes supérieures de \emph{array}, suivant toutes ses dimensions. Notez qu'il n'est pas possible d'appeler \emph{ubound} au sein d'une procédure en lui fournissant un deuxième argument effectif qui soit lui-même un argument muet optionnel. 
 \begin{exemple}
 si $A$ a été déclaré comme suit 
 $real$ :: $A(1:3,5:8)$ alors
@@ -2584,62 +2379,35 @@ Voir
 aussi \emph{lbound}.
 \end{exemple}
 
-\item[\textbf{TRANSPOSE} \emph{transpose(matrix)}] L'argument \emph{matrix}  
-doit être un tableau de rang 2, de type quel\-con\-que. 
-Il fournit un tableau de même rang et dont les
-étendues sont celles de \emph{matrix} inversées et dont l'élément d'indices \emph{i}, 
-\emph{j} est \emph{matrix(j,i)} (comme dans la transposée d'une matrice).
+\item[\textbf{TRANSPOSE} \emph{transpose(matrix)}] L'argument \emph{matrix}  doit être un tableau de rang 2, de type quel\-con\-que. Il fournit un tableau de même rang et dont les étendues sont celles de \emph{matrix} inversées et dont l'élément d'indices \emph{i}, \emph{j} est \emph{matrix(j,i)} (comme dans la transposée d'une matrice).
 \end{description}
 
 \subsection{Procédures diverses}
 
 \begin{description}
-\item[\textbf{DATE\_AND\_TIME}	\emph{call date\_and\_time(date, time, zone, values)}]
-Fournit dans les différents ar\-gu\-ments (de sortie) dont le type est précisé 
-ci-dessous les valeurs suivantes (lorsqu'elles ne sont pas disponibles, 
-on obtient un espace pour les arguments de type character et la valeur \emph{-huge(0)}, 
-c'est-à-dire le plus petit entier négatif, pour les argu\-ments de 
-type numérique). \\
-- \emph{date (character)} : date sous la forme aaaammjj (4 caractères pour l'année, 
-2 pour le numéro de mois, 2 pour le numéro de jour), \\
-- \emph{time (character)} : heure sous la forme hhmmss.sss (2 caractères pour l'heure, 
-2 pour les minutes, 2 pour les secondes, un point et 2 caractères pour les 
-millièmes de secondes), \\
-- \emph{zone (character)} : écart entre l'heure locale et le temps universel sous 
-la forme shhmm (1 caractère pour le signe + ou -, 2 caractères pour les heures 
-et 2 caractères pour les minutes). \\
-- \emph{values (tableau de rang 1 de 8 entiers)} : il fournit, sous forme numérique les 
-différentes informations précédentes ; ses éléments correspondent dans l'ordre 
-à : année, numéro de mois, numéro de jour, différence en minutes avec le temps
-universel, heure, minutes, secondes et millièmes de seconde.
+\item[\textbf{DATE\_AND\_TIME}	\emph{call date\_and\_time(date, time, zone, values)}] Fournit en sortie, dans les dif\-fé\-rents ar\-gu\-ments dont le type est précisé ci-dessous les valeurs suivantes (lorsqu'elles ne sont pas disponibles, on obtient un espace pour les arguments de type character et la valeur \emph{-huge(0)}, c'est-à-dire le plus petit entier négatif, pour les argu\-ments de type numérique). 
+\begin{itemize}
+\item \emph{date (character)} : date sous la forme aaaammjj (4 caractères pour l'année, 2 pour le numéro de mois, 2 pour le numéro de jour), 
+\item \emph{time (character)} : heure sous la forme hhmmss.sss (2 caractères pour l'heure, 2 pour les minutes, 2 pour les secondes, un point et 2 caractères pour les millièmes de secondes),
+\item \emph{zone (character)} : écart entre l'heure locale et le temps universel sous la forme shhmm (1 caractère pour le signe + ou -, 2 caractères pour les heures et 2 caractères pour les minutes).
+\item \emph{values (tableau de rang 1 de 8 entiers)} : il fournit, sous forme numérique les différentes informations précédentes ; ses éléments correspondent dans l'ordre à : année, numéro de mois, numéro de jour, différence en minutes avec le temps universel, heure, minutes, secondes et millièmes de seconde.
+\end{itemize}
 
-\item[\textbf{SYSTEM\_CLOCK} \emph{call system\_clock(count, count\_rate, count\_max)}]
-Fournit dans les trois élé\-ments de sortie, de type \emph{integer}, les 
-informations suivantes : \\
-\emph{count} : valeur de l'horloge interne (\emph{-huge(0)} si elle n'est pas accessible),
-\emph{count\_rate} : fréquence de l'horloge interne (0 si elle n'est pas accessible),
-\emph{count\_max} : valeur maximale de l'horloge interne (nombre de coups 
-qu'elle peut compter avant de repasser à zéro, 0 si elle n'est pas accessible).
+\item[\textbf{SYSTEM\_CLOCK} \emph{call system\_clock(count, count\_rate, count\_max)}] Fournit dans les trois élé\-ments de sortie, de type \emph{integer}, les informations suivantes : 
+\begin{itemize}
+\item \emph{count} : valeur de l'horloge interne (\emph{-huge(0)} si elle n'est pas accessible),
+\item \emph{count\_rate} : fréquence de l'horloge interne (0 si elle n'est pas accessible),
+\item \emph{count\_max} : valeur maximale de l'horloge interne (nombre de coups qu'elle peut compter avant de repasser à zéro, 0 si elle n'est pas accessible).
+\end{itemize}
 
-\item[\textbf{RANDOM\_NUMBER} \emph{call random\_number(x)}] 
-Fournit, dans \emph{x} 
-(réel) un nombre pseudo\_aléatoire appartenant à l'intervalle [0,1[ ; 
-l'argument \emph{x} peut être un tableau de réels ; dans ce cas, on obtient 
-une série de nombres aléatoires.
+\item[\textbf{RANDOM\_NUMBER} \emph{call random\_number(x)}] Fournit, dans \emph{x} (réel) un nombre pseu\-do-aléa\-toi\-re appartenant à l'intervalle $[0,1[$. L'argument \emph{x} peut être un tableau de réels ; dans ce cas, on obtient une série de nombres aléatoires.
 
-\item[\textbf{RANDOM\_SEED}	\emph{call random\_seed(size, put, get)}] 
-Permet d'initialiser ou d'interroger le généra\-teur de nombres 
-aléatoires utilisé par la routine \emph{random\_number}. 
-Un seul des trois arguments doit être spécifié. \\
-- \emph{size (integer de genre out)} : taille du tableau d'entiers utilisé comme ÒgrainesÒ 
-pour la génération des nombres aléatoires, \\
-- \emph{put (integer de genre in)} : tableau d'entiers de rang 1 (de taille égale 
-à la valeur fournie dans \emph{size}) qui correspond aux valeurs qui seront utilisées 
-comme graines pour la génération des nombres aléatoires. \\
-- \emph{get (integer de genre out)} : tableau d'entiers de rang 1 (de taille égale à la
-valeur fournie dans \emph{size}) qui correspond aux valeurs utilisées pour la génération 
-des nombres aléatoires. Si aucun argument n'est précisé, le générateur 
-de nombres aléatoires est initialisé d'une manière dépendant de la machine.
+\item[\textbf{RANDOM\_SEED} \emph{call random\_seed(size, put, get)}] Permet d'initialiser ou d'interroger le gé\-né\-ra\-teur de nombres aléatoires utilisé par la routine \textbf{random\_number}. Un seul des trois arguments doit être spécifié. 
+\begin{itemize}
+\item \emph{size (integer de genre out)} : taille du tableau d'entiers utilisé comme \og graines\fg pour la génération des nombres aléatoires,
+\item \emph{put (integer de genre in)} : tableau d'entiers de rang 1 (de taille égale à la valeur fournie dans \emph{size}) qui correspond aux valeurs qui seront utilisées comme graines pour la génération des nombres aléatoires.
+\item \emph{get (integer de genre out)} : tableau d'entiers de rang 1 (de taille égale à la valeur fournie dans \emph{size}) qui correspond aux valeurs utilisées pour la génération des nombres aléatoires. Si aucun argument n'est précisé, le générateur de nombres aléatoires est initialisé d'une manière dépendant de la machine.
+\end{itemize}
 \end{description}
 
 \section{Avancé}
