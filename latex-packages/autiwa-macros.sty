@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}[1999/01/01]
-\ProvidesPackage{autiwa-macros}[2011/06/01 Extension personnelle, V0.11]%aaaa/mm/dd
+\ProvidesPackage{autiwa-macros}[2011/06/01 Extension personnelle, V0.20]%aaaa/mm/dd
 %meta paquet qui regroupe des environnements, des commandes persos et cie. Permet de les ajouter plus simplement dans mon paquet pour du latex normal, des beamers ou des posters. Ainsi les commandes ne sont qu'à un seul endroit. Ici, il est censé y avoir un minimum de paquet appelés, et est censé regrouper les commandes perso et autres astuces générales.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -133,9 +133,9 @@
 \newcommand{\reference}[1]{\textit{Référence :} #1}
 
 \renewcommand{\refeq}[1]{(\ref{#1})}
-\newcommand{\reffig}[1]{[\figurename~\ref{#1}]}
-\newcommand{\reftab}[1]{[\tablename~\ref{#1}]}
-\newcommand{\refsec}[1]{[\S~\ref{#1}]}
+\newcommand{\reffig}[1]{[\figurename~\ref{#1}, p\pageref{#1}]}
+\newcommand{\reftab}[1]{[\tablename~\ref{#1}, p\pageref{#1}]}
+\newcommand{\refsec}[1]{[\S~\ref{#1}, p\pageref{#1}]}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Nouvelles fonctions pour le mode mathématique
