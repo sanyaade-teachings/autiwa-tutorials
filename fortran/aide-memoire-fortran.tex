@@ -1507,6 +1507,36 @@ Dans la section \refsec{sec:initialisation_tableau}, une astuce est montrée pou
 angle = (/(i*0.5, i=0, 90, 10)/) ! boucle implicite
 \end{verbatim}
 
+\subsection{Remplissage d'un tableau dynamique de taille variable}
+Sous ce titre flou se cache une idée simple. On veut stocker des informations sur un nombre inconnu d'évènements. Par exemple, je veux stocker la valeur des pas de temps jusqu'à un temps final. Les pas de temps étant non constants, je ne connais pas \emph{a priori} leur nombre. Ainsi, je peux faire quelque chose comme ça : 
+\begin{lstlisting}[language=Fortran]
+real(double_precision), dimension(:), allocatable :: time, time_temp
+real(double_precision) :: time_size ! the size of the array 'time'. 
+integer :: error ! to retrieve error, especially during allocations
+
+time_size = 512 ! the size of the array. 
+allocate(time(time_size), stat=error)
+
+[...]
+
+! If the limit of the array is reach, 
+! we copy the values in a temporary array, 
+! allocate with a double size, and 
+! paste the old values in the new bigger array
+if (k.eq.time_size) then
+  allocate(time_temp(time_size), stat=error)
+  time_temp(1:time_size) = time(1:time_size)
+  deallocate(time, stat=error)
+  time_size = time_size * 2
+  allocate(time(time_size), stat=error)
+  time(1:time_size/2) = time_temp(1:time_size/2)
+  deallocate(time_temp, stat=error)
+end if
+\end{lstlisting}
+où \texttt{time} est mon tableau princpal, contenant la valeur des pas de temps et \texttt{time\_temp} le tableau tampon me permettant de stocker les valeurs de \texttt{time} pendant que je l'agrandis.
+
+Je définis \texttt{time\_size} (la taille du tableau \texttt{time}) comme étant égal à 512 au départ. Doubler la taille du tableau à chaque fois permet de limiter les réallocations qui sont coûteuses en temps. 
+
 
 \section{Optimisation}
 \subsection{Comparaison f77/f90}

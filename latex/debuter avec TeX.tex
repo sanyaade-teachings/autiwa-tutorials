@@ -2032,10 +2032,20 @@ Pour ne pas réserver d'espace, et ainsi pouvoir remplacer une chose par une aut
 \end{verbatim}
 
 \subsection{Faire fonctionner natbib}\index{package!natbibnatbib}\label{sec:beamer_natbib}
-Insérer immédiatement après \verb|\bibliography{}| :
+Insérer immédiatement avant \verb|\bibliography{}| :
 \begin{verbatim}
 \def\newblock{}
 \end{verbatim}
+
+\begin{exemple}
+\begin{verbatim}
+\bibliographystyle{plainnat}
+\def\newblock{}
+\bibliography{nom-biblio} % nom-biblio.bib
+\nocite{*}
+\end{verbatim}
+
+\end{exemple}
 
 
 
