@@ -409,15 +409,27 @@ Un exemple : Je voulais redimensionner toutes les images d'un énorme fichier .o
 \section{Configuration du système}
 \subsection{Remettre son système en l'état à partir d'une réinstallation fraiche}
 \begin{enumerate}
-\item modification du menu de grub pour mettre le temps à 3 secondes et modifier les autres systèmes si besoin (dans mon cas, j'ai aussi Kubuntu, et je renomme donc Ubuntu en Kubuntu dans mon menu pour que ce soit plus clair.
-\item Rajouter l'item pour \textbf{hd-media} :
+\item Rajouter les modifs de grub. Ces modifs sont à faire dans le fichier \texttt{40\_custom}. Dans ce dernier, je rajoute les entrées suivantes qui me permettent de démarrer sur des iso, disponibles dans la 2e partition du premier disque dur (hd0,1), à l'intérieur d'un dossier \textbf{iso} :
 \begin{verbatim}
-title Autres Options
-root
+menuentry "GParted Live 0.7.1-1" {
+    insmod loopback
+    insmod iso9660
+    set isofile="/iso/gparted-live-0.7.1-1.iso"
+    search --set -f $isofile
+    loopback loop $isofile
+    set gfxpayload=800x600x16, 800x600
+    linux (loop)/live/vmlinuz findiso=$isofile locale=fr_FR keyb=fr gl_kbd=fr gl_lang=fr_FR gl_numlk=off gl_batch boot=live noswap noprompt ip=frommedia toram=filesystem.squashfs
+    initrd (loop)/live/initrd.img
+}
 
-title  Installation depuis Disque Dur
-kernel (hd0,1)/boot/hd-media/vmlinuz root=/dev/ram0 ramdisk_size=13000
-initrd (hd0,1)/boot/hd-media/initrd.gz
+menuentry "ISO Live - Ubuntu 11.10 Oneiric AMD64" {
+insmod loopback
+insmod iso9660
+set isofile="/iso/ubuntu-11.10-desktop-amd64.iso"
+loopback loop (hd0,1)$isofile
+linux (loop)/casper/vmlinuz locale=fr_FR bootkbd=fr console-setup/layoutcode=fr iso-scan/filename=$isofile boot=casper file=/cdrom/preseed/ubuntu.seed noprompt quiet splash --
+initrd (loop)/casper/initrd.lz
+}
 \end{verbatim}
 
 \item rajout des dépots dans mon sources.list. soit manuellement, soit en rentrant les informations depuis synaptics (medibuntu, wine HQ. Opéra en particulier, tant qu'il n'est pas dans le dépot partner)
@@ -431,20 +443,14 @@ deb http://deb.opera.com/opera/ stable non-free #Dépôt d'Opera
 \end{enumerate}
 %\item clé médibuntu : wget -q http://packages.medibuntu.org/medibuntu-key.gpg -O- | sudo apt-key add -
 %\item clé wine HQ : wget -q http ://wine.budgetdedicated.com/apt/387EE263.gpg -O- | sudo apt-key add -
-\item clé opéra : wget -O - http://deb.opera.com/archive.key | sudo apt-key add -
-\item Système>Administration>fenêtre de connection dans l'onglet "sécurité" activer "connection automatique" (préciser l'utilisateur souhaité)
-\item clic droit sur l'icone du wifi. Et dans les propriétés de la connection wifi, activer le mode itinérant (ça permet de pouvoir se connecter à plusieurs réseaux wifi)
-\item on réinstalle les applications qu'on avait avant (que l'on aura préalablement sauvegardé sous forme de liste)
+\item clé opéra : 
+\begin{verbatim}
+wget -O - http://deb.opera.com/archive.key | sudo apt-key add -
+\end{verbatim}
 
-% \begin{center}
-% \texttt{sudo apt-get install alltray audacity  evolution-plugins exfalso ffmpeg firefox flashplugin-nonfree gimp gftp geany gnudatalanguage gnumeric grace grisbi gstreamer0.10-alsa gstreamer0.10-ffmpeg gstreamer0.10-fluendo-mp3 gstreamer0.10-gnomevfs gstreamer0.10-pitfdll gstreamer0.10-plugins-bad gstreamer0.10-plugins-bad-multiverse gstreamer0.10-plugins-base gstreamer0.10-plugins-base-apps gstreamer0.10-plugins-good gstreamer0.10-plugins-ugly gstreamer0.10-plugins-ugly-multiverse gstreamer0.10-pulseaudio gstreamer0.10-sdl gstreamer0.10-tools gstreamer0.10-x gthumb imagemagick inkscape kate kate-plugins kile okular ksnapshot lame lame-extras
-% language-pack-fr language-pack-fr-base language-pack-gnome-fr language-pack-gnome-fr-base language-pack-kde-fr language-pack-kde-fr-base mail-notification mail-notification-evolution manpages-fr mplayer
-% nautilus-actions nautilus-cd-burner nautilus-data nautilus-gksu nautilus-image-converter nautilus-open-terminal nautilus-script-audio-convert nautilus-script-manager
-%  nautilus-sendto nautilus-share oggconvert opera quodlibet quodlibet-ext quodlibet-plugins smplayer smplayer-translations tex-common texlive-base texlive-base-bin texlive-common texlive-doc-base texlive-fonts-extra texlive-fonts-recommended texlive-generic-recommended texlive-lang-cyrillic texlive-lang-french texlive-latex-base texlive-latex-extra texlive-latex-recommended texlive-math-extra texlive-pictures texlive-pstricks
-% unrar vlc vorbis-tools w32codecs wine wxmaxima latex-beamer pdftk plplot9-driver-xwin python-numarray python-matplotlib python-lxml libflashsupport gparted digikam kipi-plugins emesene gajim anacron rawstudio lmodern qtpfsgui msn-pecan}
-% \end{center}
+\item on réinstalle les applications qu'on avait avant (que l'on aura préalablement sauvegardé sous forme de liste). Par exemple pour moi :
 
-\texttt{sudo apt-get install alltray geany avidemux quodlibet msn-pecan gftp qtoctave octave-signal gnumeric grace gthumb imagemagick inkscape kate okular ksnapshot smplayer nautilus-actions nautilus-cd-burner nautilus-data nautilus-gksu nautilus-image-converter nautilus-open-terminal nautilus-script-audio-convert opera pidgin unrar vlc wine latex-beamer pdftk digikam lmodern htop xcftools ecryptfs-utils pstoedit p7zip}
+\texttt{sudo apt-get install geany avidemux gftp gnumeric grace gthumb imagemagick inkscape kate okular smplayer nautilus-actions nautilus-gksu nautilus-image-converter nautilus-open-terminal opera pidgin unrar vlc latex-beamer pdftk digikam lmodern xcftools}
 %ecryptfs-utils c'est pour monter le dossier ~/Private
 %pstoedit pour avoir latex dans inkscape
 %p7zip permet de décompresser les archives au format .7z. Cette fonctionnalité est rajoutée automatiquement au file-roller ce qui fait qu'une fois installé, c'est totalement transparent pour l'utilisateur.
@@ -473,24 +479,7 @@ deb http://deb.opera.com/opera/ stable non-free #Dépôt d'Opera
 %screenlets : pour rajouter des screnlet sur le bureau, et donc pouvoir utiliser le truc des notes.
 %htop est un ``top'' amélioré
 %xcftools contient xcf2png qui permet de convertir du gimp en png (en particulier pour mon script)
-\item on installe le paquet \textbf{autiwa.sty} et comme je prévoie, je ne met qu'un lien virtuel dans le répertoire root et je garde le fichier dans le dossier \verb|~/.latex|
 
-% \begin{verbatim}
-% cd /usr/share/texmf-texlive/tex/latex/
-% sudo ln -s -d ~/.latex autiwa
-% sudo texhash
-% \end{verbatim}
-
-\begin{verbatim}
-cd /usr/share/texmf-texlive/tex/latex/
-sudo ln -s -d ~/Documents/Formulaires/latex-packages autiwa
-sudo texhash
-\end{verbatim}
-% où ~/Documents/Formulaires est le dossier où il y a le svn
-
-\begin{remarque}
-Je fais un lien vers le dossier tout entier finalement, ça me permet de rajouter des fichiers dans le dossiers et qu'ils soient automatiquement dans le dossier latex. Tels des fichiers de styles ou autres, ou pourquoi pas s'il me vient à l'idée de créer plusieurs paquets.
-\end{remarque}
 \item installer métamorphose via le \textbf{.deb} qui se trouve dans \texttt{downloads/programmes} puis exécuter les lignes suivantes pour avoir les anciens fichiers de configuration.
 \begin{verbatim}
 cd /usr/share/metamorphose2/configs
@@ -541,8 +530,6 @@ Fermez votre session, puis ouvrez-la à nouveau pour que votre nouvelle configur
 cd ~/.gnome2
 ln -s -d ~/scripts nautilus-scripts
 \end{verbatim}
-
-\item modifier le thème root pour nautilus de sorte à savoir quand nautilus est lancé en session root. Pour celà, avec nautilus lancé en mode root, allez dans Édition> Arrière plan et emblèmes. Puis sélectionnez, par exemple, une couleur rouge (j'ai pris rubis pour ma part) et faites la glisser sur le répertoire courant. Et voilà, maintenant vous savez différencier les deux de manière visuelle et très rapide (au lieu de regarder si le nom du home est root).
 
 \end{enumerate}
 

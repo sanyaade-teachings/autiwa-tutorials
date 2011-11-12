@@ -2070,6 +2070,18 @@ Pour mettre à jour la base de donnée des packages quand on a rajouté manuelle
 
 À noter que le chemin où se trouvent les packages, et donc, là où on en rajoute manuellement est : \textbf{/usr/share/texmf-texlive/tex/latex/}
 
+\subsection{Ajouter des paquets}
+On peut souhaiter rajouter à l'arborescence \LaTeX des paquets personnalisés et autres fichiers. Afin de faire ça proprement, et de conserver les fichiers d'une réinstallation à l'autre (à condition de conserver son /home) il suffit de placer les fichiers dans \textbf{~/texmf/tex/latex/} et de faire ensuite
+\begin{verbatim}
+sudo texhash
+\end{verbatim}
+pour mettre à jour la base de données des paquets.
+
+\begin{remarque}
+Beaucoup de paquets sont disponibles dans les dépots via des paquets spécifiques, il n'y a que des cas spécifiques, dont les fichiers .sty personnalisés qui nécessitent l'utilisation de ce type de dossiers.
+\end{remarque}
+
+
 \subsection[LaTeX avec Inkscape]{\LaTeX avec Inkscape}\index{inkscape}
 Pour avoir l'option Effet>Rendu>Formule LaTeX... il faut installer \gras{pstoedit} en plus d'inkscape. L'option apparaît automatique au démarrage suivant.
 
