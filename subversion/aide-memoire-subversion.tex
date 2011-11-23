@@ -241,6 +241,46 @@ svnsync: Le serveur a envoyé une valeur inattendue (502 Bad Gateway)
 J'ai re-exécuté la même commande de synchronisation quelques minutes après et j'ai pu synchroniser, je ne sais pas d'où le problème venait.
 \end{remarque}
 
+\section{Gérer un conflit}
+Parfois il arrive qu'il y ait un conflit lors d'un \textbf{commit} en particulier quand les modifications locales ont été faites sur une version plus ancienne que la dernière version disponible sur le serveur svn. En gros, ça signifie qu'il y a des modifications dans les deux versions, la version locale et la version de la base de données Subversion.
+
+Lors du commit, on aura alors quelque chose du genre :
+\begin{verbatim}
+Conflict discovered in 'recettes/chapitres/05_desserts.tex'.
+Select: (p) postpone, (df) diff-full, (e) edit,
+        (mc) mine-conflict, (tc) theirs-conflict,
+        (s) show all options: s
+
+  (e)  edit             - change merged file in an editor
+  (df) diff-full        - show all changes made to merged file
+  (r)  resolved         - accept merged version of file
+
+  (dc) display-conflict - show all conflicts (ignoring merged version)
+  (mc) mine-conflict    - accept my version for all conflicts (same)
+  (tc) theirs-conflict  - accept their version for all conflicts (same)
+
+  (mf) mine-full        - accept my version of entire file (even non-conflicts)
+  (tf) theirs-full      - accept their version of entire file (same)
+
+  (p)  postpone         - mark the conflict to be resolved later
+  (l)  launch           - launch external tool to resolve conflict
+  (s)  show all         - show this list
+\end{verbatim}
+
+Je ne vais parler que de ce que je connais. Il existe deux familles d'actions principales, les commandes \texttt{*-conflict} et les commandes \texttt{*-full} :
+\begin{itemize}
+\item Les commandes \texttt{*-full} vont écraser les modifications par le fichier soir local (\textbf{mine-full}) soit sur le serveur (\textbf{theirs-full}) ;
+\item Les commandes \texttt{*-conflict} vont au contraire chercher à rajouter toutes les modifications en prenant pour base le fichier local (\textbf{mine-conflict}) ou le fichier distant (\textbf{theirs-conflict})
+\end{itemize}
+
+\bigskip
+
+On peut aussi laisser le coté la résolution du conflit avec \textbf{postpone}, en rentrant la commande 'p' dans le terminal dans le prompt pour la résolution du conflit. Le conflit sera alors marqué, on devra s'en occuper (ou pas) à la main, puis marquer le conflit comme résolu en faisant
+\begin{verbatim}
+svn resolved recettes/chapitres/05_desserts.tex
+\end{verbatim}
+
+
 
 \printindex
 \end{document}

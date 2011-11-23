@@ -363,6 +363,23 @@ On peut forcer l'utilisation de lignes (par exemple) pour afficher les courbes :
 plot 'test_opacity.dat' using 1:2 with lines
 \end{verbatim}
 
+ou encore afficher des lignes pointillées :
+\begin{verbatim}
+plot 'test_opacity.dat' using 1:2 with lines linetype 0 linewidth 3 
+\end{verbatim}
+Ici on a changé la largeur de la ligne pour que les points soient aisément visibles.
+
+\bigskip
+
+La commande \textbf{test}, donnée à \textbf{gnuplot}, permet d'afficher un graphique avec les différentes possibilités comme le montre \reffig{fig:styles}. Je n'ai pas réussi à récupérer le code source de la commande \textbf{test} par contre.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.65\linewidth]{figures/test_styles.png}
+\caption{Résultat de la commande \textbf{test} dans le cas du terminal \textbf{pngcairo} : affichage des différents styles et personnalisations graphiques offertes par gnuplot.}\label{fig:styles}
+\end{figure}
+
+Notez que cette figure a des rendus différents suivant le terminal choisi. Je n'ai pas réussi à avoir le résultat pour un terminal .pdf par exemple. Ou plutôt, impossible d'ouvrir le .pdf ensuite.
 
 \subsection{Texte avancé}\label{sec:enhanced}
 Dans le terminal\footnote{Pour plus de détails sur la définition du terminal, voir \refsec{sec:terminal}} courant, lors de sa définition, il faut rajouter l'option \texttt{enhanced}
