@@ -2099,6 +2099,18 @@ Pour avoir l'option Effet>Rendu>Formule LaTeX... il faut installer \gras{pstoedi
 \subsubsection{TeX capacity exceeded, sorry [input stack size=5000]}
 Elle peut survenir pour plusieurs raisons. La raison pour laquelle je l'avais était que j'avais mis une commande \verb#\verb|[XYZ]STYLE|# dans un \gras{caption}
 
+\subsubsection{[PdfLaTeX] finished with exit code 1}
+Le détail du .log nous donne : 
+\begin{verbatim}
+l.697 pl.figure(1) # définit 
+                              la figure 1 comme figure courante
+
+! Package inputenc Error: Keyboard character used is undefined
+(inputenc)                in inputencoding `utf8'.
+\end{verbatim}
+
+J'ai cette erreur généralement quand j'utilise des caractères accentués dans l'environnement \textbf{lstlistings}.
+
 \subsection{Avertissements}
 \subsubsection{binôme de newton}\index{binôme de Newton}
 La commande \verb|{n \choose k}| est obsolète et génère une erreur car elle utilise une macro qui ne devrait plus être utilisée. À la place, il faut utiliser \verb|\binom{n}{k}|

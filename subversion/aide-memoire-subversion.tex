@@ -163,6 +163,14 @@ Opération d'extraction d'une version d'un projet du repository vers un réperto
 \end{definition}
 
 
+\subsection{Récupérer le contenu en lecture seule (pour de la production)}
+Pour créer un dossier \textbf{modules} dans le dossier courant contenant l'architecture du dépot SVN, il suffit de faire :
+\begin{verbatim}
+svn checkout http://autiwa-py-modules.googlecode.com/svn/trunk/ modules
+\end{verbatim}
+
+Ici, pas besoin de mot de passe, c'est juste pour accéder aux mises à jours. 
+
 \subsection{Appliquer les changements qu'on vient de faire localement : commit}\label{sec:commit}\index{commande svn!commit}\index{mise à jour local -> serveur}
 
 Pour mettre à jour les versions sur serveur à partir des modifications effectuées localement, il faut : 

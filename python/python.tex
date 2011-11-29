@@ -675,14 +675,48 @@ except KeyError:
 \end{lstlisting}
 
 
-\section{Faire des graphiques}\index{graphiques}
-\subsection{Graphiques 2D}
+
+\section{Graphiques 2D}\index{graphique 2D}
 J'utilise le module \gras[module!pylab]{pylab} que j'importe par
 \begin{lstlisting}[language=python]
 import pylab as pl
 \end{lstlisting}
 
+Le principe est le même que pour les graphiques avec matlab. On définit des figures :
+\begin{lstlisting}[language=python]
+pl.figure(1)
+\end{lstlisting}
+Et on peut ensuite y afficher des graphiques, les exporter, modifier les propriétés etc\dots
+
 \begin{remarque}
+Si on n'utilise qu'une seule figure, il n'est pas nécessaire de définir son nombre, qui n'est utile que pour pouvoir changer de figure, nettoyer une figure pour la remettre à zéro et afficher autre chose à la place. Par défaut, le numéro est \textbf{1}.
+\end{remarque}
+
+Pour remettre une figure à zéro :
+\begin{lstlisting}[language=python]
+pl.figure(1) # definit la figure 1 comme figure courante
+pl.clf() # efface la figure courante (clf pour clear figure)
+\end{lstlisting}
+
+\subsection{Afficher un graphique}
+Pour faire un plot
+\begin{lstlisting}[language=python]
+pl.plot(x,y)
+\end{lstlisting}
+et l'afficher à l'écran
+\begin{lstlisting}[language=python]
+pl.show()
+\end{lstlisting}
+
+\subsection{Exporter un graphique}
+Pour exporter la figure courante, il suffit de faire :
+\begin{lstlisting}[language=python]
+pl.savefig('ma_figure.png')
+pl.savefig('ma_figure.svg')
+pl.savefig('ma_figure.pdf')
+\end{lstlisting}
+
+\subsection{Subplots}
 \gras[module!pylab]{pylab} fonctionne comme les plots dans \gras{matlab}. Il existe aussi la possibilité de faire des subplots.
 
 \begin{lstlisting}[language=python]
@@ -707,23 +741,7 @@ pl.plot(x,y)
 pl.show()
 \end{lstlisting}
 
-\end{remarque}
-
-
-Pour faire un plot
-\begin{lstlisting}[language=python]
-pl.plot(x,y)
-\end{lstlisting}
-l'enregistrer
-\begin{lstlisting}[language=python]
-pl.savefig('ma_figure.png')
-pl.savefig('ma_figure.svg')
-pl.savefig('ma_figure.pdf')
-\end{lstlisting}
-l'afficher à l'écran
-\begin{lstlisting}[language=python]
-pl.show()
-\end{lstlisting}
+\subsection{Vrac de petites commandes}
 
 Pour aller un peu plus loin
 \begin{lstlisting}[language=python]
@@ -738,25 +756,49 @@ pl.legend() # afficher la legende
 pl.show()
 \end{lstlisting}
 
+\subsection{Graphiques logarithmiques}
+
 À la place de \verb|plot| on peut aussi faire :
 \begin{lstlisting}[language=python]
 pl.semilogx(x,y)
 pl.semilogy(x,y)
 pl.loglog(x,y)
-pl.hist(x)
-pl.hist([x,y]) # pour afficher plusieurs histogrammes a la fois
 \end{lstlisting}
+
+\subsection{Zoom et étendue des axes}
 
 Pour spécifier le zoom sur la figure, il faut rajouter :
 \begin{lstlisting}[language=python]
 pl.axis([xmin, xmax, ymin, ymax])
 \end{lstlisting}
 
-\subsubsection{Histogrammes}
+Python ne va pas forcément zoomer sur les limites du graphique. Je veux dire par là que si la valeur maximale en abscisse est 3, il affichera peut-être des limites jusqu'à 5. Pour forcer à avoir une zone graphique qui affiche nos courbes et uniquement nos courbes, il faut utiliser :
+\begin{lstlisting}[language=python]
+pl.axis('tight')
+\end{lstlisting}
+
+et comme je suis pointilleux et jamais content, j'aime bien que les axes commencent à zéro, ce qu'on peut faire via :
+\begin{lstlisting}[language=python]
+pl.axis('tight')
+pl.xlim(xmin=0)
+pl.ylim(ymin=0)
+\end{lstlisting}
+
+Les commandes \textbf{xlim} et \textbf{ylim} peuvent spécifier respectivement les limites (\textbf{xmin}, \textbf{xmax}, \textbf{ymin}, \textbf{ymax}) des axes. En ne spécifiant qu'une valeur, l'autre est laissée inchangée.
+
+
+\subsection{Histogrammes}
+Pour afficher un histogramme :
 \begin{lstlisting}[language=python]
 pl.hist(x, normed=True, bins=20)
+\end{lstlisting}
+
+Pour afficher plusieurs histogrammes à la fois :
+\begin{lstlisting}[language=python]
 pl.hist([x,y], normed=True, bins=20, label=['x', 'y'])
 \end{lstlisting}
+
+\bigskip
 
 On peut changer le style avec \verb|histtype='style'| où \verb|style| peut prendre les valeurs suivantes :
 \begin{itemize}
@@ -778,8 +820,8 @@ Quand on veut afficher plusieurs histogrammes dans le même plots en plusieurs f
 \end{attention}
 
 
-\subsection{Graphiques plus évolués}
-On peut afficher une matrice et spécifier des axes (par défaut, il n'affiche que les indices de la matrices, mais on peut associer des plages de valeurs arbitraires aux axes x et y)
+\subsection{Afficher une carte de valeurs (du 3D avec le z représenté par un code de couleur)}
+On peut afficher une matrice et spécifier des axes (par défaut, il n'affiche que les indices de la matrice, mais on peut associer des plages de valeurs arbitraires aux axes x et y)
 
 \begin{lstlisting}[language=python]
 liste_x = range(5)
