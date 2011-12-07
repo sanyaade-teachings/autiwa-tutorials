@@ -500,6 +500,52 @@ do var = debut, fin
 end do
 \end{lstlisting}
 
+\subsection{Les formats de lecture et écriture}
+Il est possible de lire ou écrire avec un format par défaut, \og * \fg. 
+
+\begin{lstlisting}[language=Fortran]
+write(*,*) 'la valeur de var est : ',var
+\end{lstlisting}
+
+Mais on peut souhaiter utiliser des formats spécifiques, pour limiter le nombre de chiffres significatifs par exemple afin de rendre l'information plus lisible. Dans ce cas là, on utilisera plutôt : 
+\begin{lstlisting}[language=Fortran]
+write(*,'(a, es10.2)') 'la valeur de var est : ',var
+\end{lstlisting}
+où 'a' désigne une chaîne de caractère de longueur quelconque, et où 'es10.2' est un format d'affichage pour un réel. La signification exacte est expliqué dans \reftab{tab:formats}. 
+
+Dans ce tableau, les lettres suivantes (en italique) ont une signification :
+\begin{itemize}
+\item[\emph{w}]: Le nombre de position à utiliser (l'espace à réserver pour l'affichage)
+\item[\emph{m}]: Le nombre minimum de position à utiliser
+\item[\emph{d}]: Le nombre de chiffres à utiliser à droite du point décimal.
+\item[\emph{e}]: Le nombre de chiffres à utiliser pour l'affichage de l'exposant.
+\end{itemize}
+
+Même si on peut afficher un nombre avec autant de positions qu'on veut, c'est juste une question d'affichage, ce nombre de positions n'a rien à voir avec la précision (i.e le nombre de chiffres significatifs). 
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{|l|l||l|l|}
+\hline
+\multicolumn{2}{|c||}{But} & \multicolumn{2}{l|}{Descripteurs de format}\\\hline\hline
+\multicolumn{2}{|l||}{Afficher/Lire des entiers} & I\emph{w} & I\emph{w}.\emph{n}\\\hline
+\multirow{4}*{Afficher/Lire des réels} & Format décimale & \multicolumn{2}{l|}{F\emph{w}.\emph{d}}\\\cline{3-4}
+ & Format exponentielle & E\emph{w}.\emph{d} & E\emph{w}.\emph{d}E\emph{e}\\\cline{3-4}
+ & Format Scientifique & ES\emph{w}.\emph{d} & ES\emph{w}.\emph{d}E\emph{e}\\\cline{3-4}
+ & Format Ingénieur & EN\emph{w}.\emph{d} & EN\emph{w}.\emph{d}E\emph{e}\\\hline
+\multicolumn{2}{|l||}{Afficher/lire des booléens} & \multicolumn{2}{l|}{L\emph{w}}\\\hline
+\multicolumn{2}{|l||}{Afficher/lire des chaînes de caractères} & A & A\emph{w}\\\hline
+\multirow{3}*{Positionnement} & Horizontal & \multicolumn{2}{l|}{\emph{n}X}\\\cline{3-4}
+ & Tabulé & T\emph{c} & TL\emph{c} et TR\emph{c}\\\cline{3-4}
+ & Vertical & \multicolumn{2}{l|}{/}\\\hline
+\multirow{4}*{Autre} & Groupé & \multicolumn{2}{l|}{r(...)}\\\cline{3-4}
+ & Contrôle du format de scan & \multicolumn{2}{l|}{:}\\\cline{3-4}
+ & Contrôle du signe & \multicolumn{2}{l|}{S, SP, et SS}\\\cline{3-4}
+ & Contrôle des blancs & \multicolumn{2}{l|}{BN et BZ}\\\hline
+\end{tabular}
+\caption{Liste des formats (je ne sais pas s'ils sont tous là, mais les plus courants en tout cas) d'affichage de variables. Ils sont utiles pour créer un format, qui doit être de la forme suivante \texttt{'(F,F\dots)'} où $F$ est un format quelconque du tableau ci-dessus. Il est possible de dire qu'on plusieurs fois le même format en le préfixant par un nombre d'occurence.}\label{tab:formats}
+\end{table}
+
 \section{Les tableaux}
 \subsection{Déclaration des tableaux}
 Un tableau est un ensemble ordonné d'éléments de même type. Chaque élément du tableau est repéré par un indice qui précise sa position au sein du tableau. Cet indice est entier. La déclaration des tableaux s'effectue comme suit :
@@ -1285,8 +1331,6 @@ end subroutine integrale
 
 end module mod_integrale
 \end{lstlisting}
-
-% %TODO page 61 les entrées et sorties standard
 
 
 \section{Vers les objets : les types dérivés}\index{type dérivé}\index{structure}\index{programmation orienté objet}

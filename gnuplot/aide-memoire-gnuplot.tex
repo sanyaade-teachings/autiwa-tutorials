@@ -358,28 +358,48 @@ set xrange [0:5]
 \end{verbatim}
 
 \subsection{Style de courbe}
-On peut forcer l'utilisation de lignes (par exemple) pour afficher les courbes : 
-\begin{verbatim}
-plot 'test_opacity.dat' using 1:2 with lines
-\end{verbatim}
-
-ou encore afficher des lignes pointillées :
-\begin{verbatim}
-plot 'test_opacity.dat' using 1:2 with lines linetype 0 linewidth 3 
-\end{verbatim}
-Ici on a changé la largeur de la ligne pour que les points soient aisément visibles.
-
-\bigskip
-
-La commande \textbf{test}, donnée à \textbf{gnuplot}, permet d'afficher un graphique avec les différentes possibilités comme le montre \reffig{fig:styles}. Je n'ai pas réussi à récupérer le code source de la commande \textbf{test} par contre.
+La commande \textbf{test}, donnée à \textbf{gnuplot}, permet d'afficher un graphique avec les différentes possibilités comme le montre \reffig{fig:styles}. Je n'ai pas réussi à récupérer le code source de la commande \textbf{test} par contre. Cette figure permet de voir les différentes possibilités, en particulier en matière de style de point ou de ligne. L'utilisation des paramètres pour contraindre le style d'affichage est détaillé dans les sous-sections suivantes.
 
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.65\linewidth]{figures/test_styles.png}
-\caption{Résultat de la commande \textbf{test} dans le cas du terminal \textbf{pngcairo} : affichage des différents styles et personnalisations graphiques offertes par gnuplot.}\label{fig:styles}
+\caption{Résultat de la commande \textbf{test} dans le cas du terminal \textbf{pngcairo} : affichage des différents styles et personnalisations graphiques offertes par gnuplot. Pour les styles de lignes, de points, types etc, le numéro pour avoir le style correspondant est à gauche, mais ce n'est pas la même commande selon qu'on veut un style de ligne (linestyle) ou de points (pointtype)}\label{fig:styles}
 \end{figure}
 
 Notez que cette figure a des rendus différents suivant le terminal choisi. Je n'ai pas réussi à avoir le résultat pour un terminal .pdf par exemple. Ou plutôt, impossible d'ouvrir le .pdf ensuite.
+
+\bigskip
+
+Il y a principalement deux styles d'affichage, la ligne, et les points. La différence majeure est que les points correspondent aux points des données, alors que la ligne (même pointillée) relie entre elle les points et ne se préoccupe pas de la densité de points. S'il y a très peu de points, vous verrez clairement les traits reliant les points mais sinon, vous pourrez avoir une idée très vague de l'échantillonnage, et surtout de la variation de celui-ci le long de la courbe.
+
+\subsubsection{Les lignes}
+Pour afficher une courbe à l'aide d'une ligne : 
+\begin{verbatim}
+plot 'test_opacity.dat' using 1:2 with lines
+\end{verbatim}\index{line}
+
+La version compliquée est :
+\begin{verbatim}
+plot 'test_opacity.dat' using 1:2 with lines linetype 0 linewidth 3 
+\end{verbatim}\index{linetype}\index{line}\index{linewidth}
+où \textbf{linetype} permet de sélectionner la couleur de la ligne (\texttt{linetype 0} est un cas particulier pour avoir une ligne pointillée noire) et \textbf{linewidth} permet de spécifier la largeur de la ligne, dont la valeur n'est pas forcément entière (\texttt{linewidth 0.4} ou \texttt{linewidth 2.5} fonctionnent).
+
+\subsubsection{Les points}
+Pour afficher les points correspondant à une liste de données (sans les relier entre elles) :
+\begin{verbatim}
+plot 'test_opacity.dat' using 1:2 with points
+\end{verbatim}\index{point}
+
+Une version un peu plus complexe est :
+\begin{verbatim}
+plot 'test_opacity.dat' using 1:2 with points linetype -1 pointtype 2 linewidth 3
+\end{verbatim}\index{linetype}\index{point}\index{linewidth}\index{pointtype}
+\textbf{linetype} permet de choisir la couleur (ici noir), \textbf{pointtype} permet de choisir le type de point (ici une croix) et \textbf{linewidth} la largeur des points. 
+
+\begin{attention}
+Le type de point \texttt{pointtype -1} est un peu particulier puisque c'est un point, mais non affecté par la taille. On ne peut pas le grossir avec \textbf{linewidth}.
+\end{attention}
+
 
 \subsection{Texte avancé}\label{sec:enhanced}
 Dans le terminal\footnote{Pour plus de détails sur la définition du terminal, voir \refsec{sec:terminal}} courant, lors de sa définition, il faut rajouter l'option \texttt{enhanced}
