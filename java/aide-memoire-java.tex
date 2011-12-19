@@ -315,9 +315,12 @@ int max = (x < y) ? y : x ; //Maintenant max vaut 20
 On peut faire par exemple : 
 \begin{lstlisting}[language=java]
 int x = 10;
-String type = (x % 2 == 0) ? "C' est pair" : "C' est impair" ; //Ici type vaut "C' est pair"
+String type = (x % 2 == 0) ? "C' est pair" : "C' est impair" ; 
+//Ici type vaut "C' est pair"
+
 x = 9;
-type = (x % 2 == 0) ? "C' est pair" : "C' est impair" ; //Ici type vaut "C' est impair"
+type = (x % 2 == 0) ? "C' est pair" : "C' est impair" ; 
+//Ici type vaut "C' est impair"
 \end{lstlisting}
 
 \subsubsection{Boucle while}\index{boucle!while}
@@ -334,22 +337,22 @@ On peut aussi faire :
 \begin{lstlisting}[language=java]
 //Une variable vide
 String prenom;
-// On initialise celle-ci à O pour oui !
+// On initialise celle-ci a O pour oui !
 char reponse = 'O';
 //Notre objet Scanner, n'oubliez pas l'import de java.util.Scanner
 Scanner sc = new Scanner(System.in);
-//Tant que la réponse donnée est égale à oui
+//Tant que la reponse donnee est egale a oui
 while (reponse == 'O')
 {
   //On affiche une instruction
-  System.out.println("Donnez un prénom : ");
-  //On récupère le prénom saisi
+  System.out.println("Donnez un prenom : ");
+  //On recupere le prenom saisi
   prenom = sc.nextLine();
-  // On affiche notre phrase avec le prénom
+  // On affiche notre phrase avec le prenom
   System.out.println("Bonjour " +prenom+ " comment vas-tu ?");
   //On demande si la personne veut faire un autre essai
-  System.out.println("Voulez-vous réessayer ?(O/N)");
-  //On récupère la réponse de l'utilisateur
+  System.out.println("Voulez-vous reessayer ?(O/N)");
+  //On recupere la reponse de l'utilisateur
   reponse = sc.nextLine().charAt(0);
 }
  
@@ -372,11 +375,6 @@ for(int i = 1; i <= 10; i++)
 }
 \end{lstlisting}
 
-
-
-\begin{lstlisting}[language=java]
-
-\end{lstlisting}
 
 \printindex
 \end{document}
