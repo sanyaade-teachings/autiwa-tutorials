@@ -1,0 +1,382 @@
+\documentclass[a4paper,twoside]{article}
+\usepackage{autiwa}
+
+\title{Aide mémoire Java}
+\author{Autiwa}
+
+\makeindex
+\begin{document}
+
+\tableofcontents
+
+\clearpage
+
+\section{Préambule}
+Java est un language orienté objet, il n'est pas possible d'y couper. Dans toute la suite, il sera supposé que vous connaissez déjà le principe de la Programmation Orienté Objet (POO). 
+
+En Java, l'exécution d'un programme va lancer la méthode \textbf{main()} de l'objet associé. Le code ci-dessous est le code minimum d'un programme Java qui défini la classe \textbf{sdz1}. Ce code ne fait rien. 
+\begin{lstlisting}[language=java]
+public class sdz1 {
+
+  /**
+  * @param args
+  */
+
+  public static void main(String[] args) {
+  // TODO Auto-generated method stub
+
+  }
+}
+\end{lstlisting}
+
+Le même code, affichant le sempiternel ``Hello World'' : 
+\begin{lstlisting}[language=java]
+import java.util.Scanner;
+
+
+public class sdz1 {
+
+  /**
+    * @param args
+    */
+  public static void main(String[] args) {
+    // TODO Auto-generated method stub
+    
+    System.out.println("Hello World!");
+  }
+
+}
+\end{lstlisting}
+
+Quelques informations de base : 
+\begin{itemize}
+\item Le programme commence par le lancement de la méthode \textbf{.main()} de la classe du programme principal.%TODO 
+\item Les lignes doivent se terminer par ``\textbf{;}''
+\item Il faut déclarer les variables avant de les utiliser (voir \refsec{sec:types_variables})
+\item Il faut compiler le programme avant de pouvoir l'utiliser (via une plateforme java, ce n'est pas un binaire mais un bytecode utilisable uniquement par un environnement Java)
+\end{itemize}
+
+
+\section{Les bases}
+\subsection{Commentaires}
+Il existe deux types de commentaires : 
+\begin{itemize}
+\item les commentaires unilignes : introduits par les symboles \textbf{//}, ils mettent tous ce qui les suit en commentaires, du moment que le texte se trouve sur la même ligne que les \textbf{//}.
+\begin{lstlisting}[language=java]
+public static void main(String[] args){
+  //Un commentaire
+  //un autre
+  //Encore un autre
+  Ceci n'est pas un commentaire ! ! ! !
+}
+\end{lstlisting}
+
+
+\item les commentaires multilignes : ils sont introduits par les symboles \textbf{/*} et se terminent par les symboles \textbf{*/}.
+\begin{lstlisting}[language=java]
+public static void main(String[] args){
+ 
+  /*
+  Un commentaire
+  Un autre
+  Encore un autre
+  */
+  Ceci n'est pas un commentaire ! ! 
+}
+\end{lstlisting}
+\end{itemize}
+
+\subsection{Types de variables}\label{sec:types_variables}
+En Java, nous avons deux type de variables :
+\begin{itemize}
+\item des variables de type simple ou "primitif",
+\item des variables de type complexe ou encore des objets.
+\end{itemize}
+
+Ce qu'on appelle des types simples, ou types primitifs, en Java ce sont tout bonnement des nombres entiers, des nombres réels, des booléens ou encore des caractères. Mais vous allez voir qu'il y a plusieurs façons de déclarer certains de ces types.
+
+Commençons par les variables de type numérique
+\begin{itemize}
+\item Le type \gras[type!byte]{byte} (1 octet) peut contenir les entiers entre -128 et +127.
+\begin{lstlisting}[language=java]
+byte temperature;
+temperature = 64;
+\end{lstlisting}
+
+\item Le type \gras[type!short]{short} (2 octets) contient les entiers compris entre -32768 et +32767.
+\begin{lstlisting}[language=java]
+short vitesseMax;
+vitesseMax = 32000;
+\end{lstlisting}
+
+\item Le type \gras[type!int]{int} (4 octets) va de -2*109 à 2*109 (2 et 9 zéros derrière... ce qui fait déjà un joli nombre).
+\begin{lstlisting}[language=java]
+int temperatureSoleil;
+temperatureSoleil = 15600000;
+\end{lstlisting}
+C'est en kelvins...
+
+\item Le type \gras[type!long]{long}(8 octets) de -9*1018 à 9*1018 (encore plus gros...).
+\begin{lstlisting}[language=java]
+long anneeLumiere;
+anneeLumiere = 9460700000000000;
+\end{lstlisting}
+
+\item Le type \gras[type!float]{float} (4 octets) correspond à des nombres avec virgule flottante.
+\begin{lstlisting}[language=java]
+float pi;
+pi = 3.141592653f;
+\end{lstlisting}
+ou encore
+\begin{lstlisting}[language=java]
+float nombre;
+nombre = 2.0f;
+\end{lstlisting}
+
+Vous remarquerez que nous ne mettons pas de virgule mais un point ! Et vous remarquerez aussi que même si le nombre en question est rond, on met tout de même .0 derrière celui-ci !
+
+\item Le type \gras[type!double]{double} (8 octets) est identique à float, si ce n'est qu'il contient un nombre plus grand derrière la virgule.
+\begin{lstlisting}[language=java]
+double division;
+division = 0.333333333333333333333333333333333333333333334;
+\end{lstlisting}
+\end{itemize}
+
+
+Nous avons aussi des variables stockant du caractère
+
+Le type \gras[type!char]{char} contient UN caractère stocké entre de simples quotes ' ' comme ceci...
+\begin{lstlisting}[language=java]
+char caractere;
+caractere = 'A';
+\end{lstlisting}
+
+\bigskip
+
+Nous avons aussi le type booléen
+
+Le type \gras[type!boolean]{boolean} qui lui contient \textbf{true} (vrai) ou \textbf{false} (faux).
+\begin{lstlisting}[language=java]
+boolean question;
+question = true;
+\end{lstlisting}
+
+Et aussi le type \gras[type!String]{String}. Celle-ci correspond à de la chaîne de caractères.
+Ici, il ne s'agit pas d'une variable mais d'un objet qui instancie une classe qui existe dans Java ; nous pouvons l'initialiser en utilisant l'opérateur unaire new() dont on se sert pour réserver un emplacement mémoire à un objet (mais nous reparlerons de tout ceci dans la partie deux, lorsque nous verrons les classes), ou alors lui affecter directement la chaîne de caractères.
+
+Vous verrez que celle-ci s'utilise très facilement et se déclare comme ceci :
+\begin{lstlisting}[language=java]
+String phrase;
+phrase = "Titi et gros minet";
+//Deuxieme methode de declaration de type String
+String str = new String();
+str = "Une autre chaine de caracteres";
+//La troisieme
+String string = "Une autre chaine";
+//Et une quatrieme pour la route
+String chaine = new String("Et une de plus ! ");
+\end{lstlisting}
+
+\bigskip
+
+On peut très bien compacter la phase de déclaration et d'initialisation en une seule phase ! Comme ceci :
+\begin{lstlisting}[language=java]
+int entier = 32;
+float pi = 3.1416f;
+char carac = 'z';
+String mot = new String("Coucou");
+\end{lstlisting}
+
+Et lorsque nous avons plusieurs variables d'un même type, nous pouvons compacter tout ceci en une déclaration comme ceci :
+\begin{lstlisting}[language=java]
+int nbre1 = 2, nbre2 = 3, nbre3 = 0;
+\end{lstlisting}
+
+\subsection{Entrées/Sorties}
+\subsubsection{Entrées}
+Afin de récupérer ce qu'on tape au clavier, il faut importer une nouvelle classe
+\begin{lstlisting}[language=java]
+import java.util.Scanner;
+\end{lstlisting}
+
+\bigskip
+
+Voici l'instruction pour permettre à Java de récupérer ce que vous avez saisi et ensuite de l'afficher :
+\begin{lstlisting}[language=java]
+Scanner sc = new Scanner(System.in);
+System.out.println("Veuillez saisir un mot :");
+String str = sc.nextLine();
+System.out.println("Vous avez saisi : " + str);
+\end{lstlisting}
+
+%TODO voir les sorties
+
+\subsection{Boucles}
+\subsubsection{Boucle if}\index{boucle!if}
+\begin{lstlisting}[language=java]
+if(//condition)
+  {
+  // execution des instructions si la condition est remplie
+  
+  
+  }
+else
+  {
+  // execution des instructions si la condition n'est pas remplie
+  
+  
+  }
+\end{lstlisting}
+
+\begin{exemple}
+\begin{lstlisting}[language=java]
+int i = 10;
+ 
+if (i < 0)
+  System.out.println("Le nombre est negatif");
+ 
+else
+  System.out.println("Le nombre est positif");
+\end{lstlisting}
+\end{exemple}
+
+\begin{remarque}
+On n'est pas obligés de mettre les accolades quand il n'y a qu'une seule ligne d'instruction dans la boucle.
+\end{remarque}
+
+\bigskip
+
+On peut aussi mettre des tests multiples :
+
+
+\begin{lstlisting}[language=java]
+int i = 0;
+
+if (i < 0)
+  System.out.println("Ce nombre est negatif !");      
+
+else if(i > 0)
+  System.out.println("Ce nombre est positif !!");           
+
+else  
+  System.out.println("Ce nombre est nul !!");
+\end{lstlisting}
+
+Si on souhaite faire beaucoup de tests, on peut souhaiter utiliser la structure \gras[boucle!switch]{switch} à la place.
+
+\subsubsection{Boucle Switch}\index{boucle!switch}
+
+\begin{lstlisting}[language=java]
+int nbre = 5; 
+
+switch (nbre)
+{
+  case 1: 
+    System.out.println("Ce nombre est tout petit");
+    break;
+
+  case 2: 
+    System.out.println("Ce nombre est tout petit");
+    break;
+
+  case 3: 
+    System.out.println("Ce nombre est un peu plus grand");
+    break;
+
+  case 4: 
+    System.out.println("Ce nombre est un peu plus grand");
+    break;
+
+  case 5: 
+    System.out.println("Ce nombre est la moyenne");
+    break;
+
+  case 6: 
+    System.out.println("Ce nombre est tout de meme grand");
+    break;
+
+  case 7: 
+    System.out.println("Ce nombre est grand");
+    break;
+
+  default: 
+    System.out.println("Ce nombre est compris entre 8 et 10");
+
+}
+\end{lstlisting}
+
+\subsubsection{Opérateur ternaire}
+La particularité des conditions ternaires réside dans le fait que trois opérandes (variable ou constante) sont mises en jeu mais aussi que ces conditions sont employées pour affecter des données dans une variable. Voici à quoi ressemble la structure de ce type de condition :
+\begin{lstlisting}[language=java]
+int x = 10, y = 20;
+int max = (x < y) ? y : x ; //Maintenant max vaut 20
+\end{lstlisting}
+
+On peut faire par exemple : 
+\begin{lstlisting}[language=java]
+int x = 10;
+String type = (x % 2 == 0) ? "C' est pair" : "C' est impair" ; //Ici type vaut "C' est pair"
+x = 9;
+type = (x % 2 == 0) ? "C' est pair" : "C' est impair" ; //Ici type vaut "C' est impair"
+\end{lstlisting}
+
+\subsubsection{Boucle while}\index{boucle!while}
+\begin{lstlisting}[language=java]
+int a = 1, b = 15;
+while (a < b)
+{
+        System.out.println("coucou " +a+ " fois !!");
+        a++;
+}
+\end{lstlisting}
+
+On peut aussi faire :
+\begin{lstlisting}[language=java]
+//Une variable vide
+String prenom;
+// On initialise celle-ci à O pour oui !
+char reponse = 'O';
+//Notre objet Scanner, n'oubliez pas l'import de java.util.Scanner
+Scanner sc = new Scanner(System.in);
+//Tant que la réponse donnée est égale à oui
+while (reponse == 'O')
+{
+  //On affiche une instruction
+  System.out.println("Donnez un prénom : ");
+  //On récupère le prénom saisi
+  prenom = sc.nextLine();
+  // On affiche notre phrase avec le prénom
+  System.out.println("Bonjour " +prenom+ " comment vas-tu ?");
+  //On demande si la personne veut faire un autre essai
+  System.out.println("Voulez-vous réessayer ?(O/N)");
+  //On récupère la réponse de l'utilisateur
+  reponse = sc.nextLine().charAt(0);
+}
+ 
+System.out.println("Au revoir...");
+//Fin de la boucle
+\end{lstlisting}
+
+\subsubsection{Boucle do while}\index{boucle!do while}
+\begin{lstlisting}[language=java]
+do{
+  blablablablablablablabla
+}while(a < b);
+\end{lstlisting}
+
+\subsubsection{Boucle for}\index{boucle!for}
+\begin{lstlisting}[language=java]
+for(int i = 1; i <= 10; i++)
+{
+  System.out.println("Voici la ligne "+i);
+}
+\end{lstlisting}
+
+
+
+\begin{lstlisting}[language=java]
+
+\end{lstlisting}
+
+\printindex
+\end{document}

@@ -1050,6 +1050,24 @@ En effet, \verb|process = subprocess.Popen(["ls", "*.txt"])| renverra une erreur
 Pour récupérer la sortie, il faut bien évidemment faire comme expliqué dans la section \refsec{sec:subprocess}.
 \end{remarque}
 
+\subsection{Modifier la ligne précédemment affichée dans le terminal (progression)}	
+\begin{lstlisting}[language=python]
+import sys, time
+ 
+for i in range(1, 6):
+    sys.stdout.write (str(i) + chr(13))
+    sys.stdout.flush()
+    time.sleep (1)
+\end{lstlisting}
+
+
+Par défaut quand on fait un \textbf{print} en console, le \textbf{print} envoi en fin de ligne un \texttt{chr(13)} (Carriage Return ; \touche{CR}) et un \texttt{chr(10)}, (Line Feed ; \touche{LF}).
+
+\touche{CR} (\texttt{chr(13)}) renvoi en début de ligne et \touche{LF} effectue un saut de ligne. La combinaison de ces deux caractères équivaut à un renvoi à la ligne (qui sous GNU/Linux se code \touche{CR}+\touche{LF}).
+
+En écrivant uniquement \texttt{chr(13)} (\touche{CR}), je retourne au début de la ligne sans faire un saut de ligne, ce qui permet de réécrire sur la ligne précédente. C'est pratique quand il y a des affichage textuels de barres de progression par exemple.
+
+
 \subsection{Personnaliser Python}
 Cette astuce doit surement fonctionner avec d'autres language, je  n'ai utilisé que python, donc à vous de voir comment généraliser.
 
