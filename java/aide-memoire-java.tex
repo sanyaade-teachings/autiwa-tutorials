@@ -209,6 +209,23 @@ String str = sc.nextLine();
 System.out.println("Vous avez saisi : " + str);
 \end{lstlisting}
 
+\bigskip
+
+Dans le cas où on récupère autre chose qu'une chaîne de caractère, il faut vider la ligne via un \texttt{sc.nextLine();} avant de chercher à récupérer une chaîne de caractère.
+\begin{lstlisting}[language=java]
+Scanner sc = new Scanner(System.in);
+
+System.out.println("Saisissez un entier : ");
+int i = sc.nextInt();
+
+System.out.println("Saisissez une chaine : ");
+//On vide la ligne avant d'en lire une autre
+sc.nextLine();
+String str = sc.nextLine();
+System.out.println("FIN ! ");
+\end{lstlisting}
+
+
 %TODO voir les sorties
 
 \subsection{Boucles}
@@ -374,6 +391,74 @@ for(int i = 1; i <= 10; i++)
   System.out.println("Voici la ligne "+i);
 }
 \end{lstlisting}
+
+\bigskip
+
+On peut aussi boucler sur les éléments d'un tableau :
+\begin{lstlisting}[language=java]
+String tab[] = {"toto", "titi", "tutu", "tete", "tata"};
+ 
+for(String str : tab)
+   System.out.println(str);
+\end{lstlisting}\index{tableaux}
+
+Cette forme de boucle for est particulièrement adaptée au parcours de tableau. On peut naturellement se demander comment faire de même pour des tableaux multidimensionnels. La chose à retenir est que la variable en premier paramètre de la boucle for doit être du même type que la valeur de retour du tableau. Dans le cas d'un tableau multi-dimensionnel, cette dernière sera un tableau de dimension inférieure. En conséquence, on peut boucler sur des sous tableaux, puis sur les éléments de ces derniers via des boucles imbriquées :
+\begin{lstlisting}[language=java]
+String tab[][] = {{"toto", "titi", "tutu", "tete", "tata"}, 
+                  {"1", "2", "3", "4"}};
+int i = 0, j = 0;
+
+for(String sousTab[] : tab)
+{
+  i = 0;
+  for(String str : sousTab)
+  {     
+    System.out.println("La valeur de la nouvelle boucle est : " + str);
+    System.out.println("La valeur du tableau a l'indice [" 
+      + j + "][" +i +"] est : " +  tab[j][i] + "\n");
+    i++;
+  }
+  j++;
+}
+\end{lstlisting}
+
+
+
+
+
+\subsection{Tableaux}\index{tableaux}
+On définit des tableaux de la même manière que les éléments qui le constituent. Un tableau a donc un type associé et ne peut stocker que des éléments de ce type là.
+
+Pour définir un tableau sans l'initialiser on fait :
+\begin{lstlisting}[language=java]
+int tableauEntier[] = new int[6];
+//ou encore
+int[] tableauEntier2 = new int[6];
+\end{lstlisting}
+mais la définition d'un tableau initialisé se fait elle de la façon suivante :
+\begin{lstlisting}[language=java]
+String tableauChaine[] = {"chaine1", "chaine2", "chaine3" , "chaine4"};
+\end{lstlisting}
+
+\bigskip
+
+On peut définir des tableaux multi-dimensionnels : 
+\begin{lstlisting}[language=java]
+int premiersNombres[][] = { {0,2,4,6,8},{1,3,5,7,9} };
+\end{lstlisting}
+
+Nous voyons bien ici les deux lignes de notre tableau symbolisées par les doubles crochets \texttt{[][]}. Ce genre de tableau n'est rien d'autre que plusieurs tableaux en un. Ainsi, pour passer d'une ligne à l'autre, nous jouerons avec la valeur du premier crochet.
+\begin{exemple}
+\verb|premiersNombres[0][0]| correspondra au premier élément de la colonne paire.\\
+Et \verb|premiersNombres[1][0]| correspondra au premier élément de la colonne impaire.
+\end{exemple}
+
+\subsubsection{Propriétés}
+La longueur d'un tableau \textbf{tab} est donnée par :
+\begin{lstlisting}[language=java]
+tab.length
+\end{lstlisting}
+
 
 
 \printindex
