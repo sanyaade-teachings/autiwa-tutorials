@@ -161,6 +161,7 @@ boolean question;
 question = true;
 \end{lstlisting}
 
+\subsubsection{Chaînes de caractères}
 Et aussi le type \gras[type!String]{String}. Celle-ci correspond à de la chaîne de caractères.
 Ici, il ne s'agit pas d'une variable mais d'un objet qui instancie une classe qui existe dans Java ; nous pouvons l'initialiser en utilisant l'opérateur unaire new() dont on se sert pour réserver un emplacement mémoire à un objet (mais nous reparlerons de tout ceci dans la partie deux, lorsque nous verrons les classes), ou alors lui affecter directement la chaîne de caractères.
 
@@ -179,6 +180,115 @@ String chaine = new String("Et une de plus ! ");
 
 \bigskip
 
+String étant un objet, il possède des méthodes afin de les manipuler. En voici quelques exemples :
+\begin{itemize}
+
+\item \gras{toLowerCase()}
+
+Cette méthode permet de transformer toute saisie clavier de type caractère en minuscules. Elle n'a aucun effet sur les nombres, puisqu'ils ne sont pas assujettis à cette contrainte. Vous pouvez donc utiliser cette fonction sur une chaîne de caractères comportant des nombres.
+Elle s'utilise comme ceci :
+\begin{lstlisting}[language=java]
+String chaine = new String("COUCOU TOUT LE MONDE !");
+String chaine2 = new String();
+chaine2 = chaine.toLowerCase();//donne "coucou tout le monde !"
+\end{lstlisting}
+
+
+\item \gras{toUpperCase()}
+
+Celle-là est facile, puisqu'il s'agit de l'opposée de la précédente. Elle transforme donc une chaîne de caractères en majuscules. Et s'utilise comme suit :
+\begin{lstlisting}[language=java]
+String chaine = new String("coucou coucou"), chaine2 = new String();
+chaine2 = chaine.toUpperCase();//donne "COUCOU COUCOU"
+\end{lstlisting}
+
+
+\item \gras{concat()}
+
+Très explicite, celle-là permet de concaténer deux chaînes de caractères.
+\begin{lstlisting}[language=java]
+String str1 = new String("Coucou "), str2 = new String("toi !");
+String str3 = new String();
+str3 = str1.concat(str2);//donne "Coucou toi !"
+\end{lstlisting}
+
+
+\item \gras{length()}
+
+Celle-là permet de donner la longueur d'une chaîne de caractères (en comptant les espaces blancs).
+\begin{lstlisting}[language=java]
+String chaine = new String("coucou ! "); 
+int longueur = 0;
+longueur = chaine.length();//donne 9
+\end{lstlisting}
+
+
+\item \gras{equals()}
+
+Permet de voir si deux chaînes de caractères sont identiques. Donc, de faire des tests. C'est avec cette fonction que vous ferez vos tests de conditions, lorsqu'il y aura des \gras[type!String]{String}. Exemple concret :
+\begin{lstlisting}[language=java]
+String str1 = new String("coucou"), str2 = new String("toutou");
+ 
+if (str1.equals(str2))//Si les deux chaines sont identiques
+        System.out.println("Les deux chaines sont identiques !");
+ 
+else
+        System.out.println("Les deux chaines sont differentes !");
+\end{lstlisting}
+
+
+Vous pouvez aussi demander la non vérification de l'égalité grâce à l'opérateur de négation \og !\fg, ce qui nous donne :
+\begin{lstlisting}[language=java]
+String str1 = new String("coucou"), str2 = new String("toutou");
+ 
+if (!str1.equals(str2))//Si les deux chaines sont differentes
+        System.out.println("Les deux chaines sont differentes !");
+ 
+else
+        System.out.println("Les deux chaines sont identiques !");
+\end{lstlisting}
+
+Le principe de ce genre de condition fonctionne de la même façon pour les boucles. Et dans l'absolu, cette fonction retourne un booléen. C'est pourquoi nous pouvons utiliser cette fonction dans les tests de condition.
+\begin{lstlisting}[language=java]
+String str1 = new String("coucou"), str2 = new String("toutou");
+boolean Bok = str1.equals(str2);//ici Bok prendra la valeur false
+\end{lstlisting}
+
+\item \gras{charAt()}
+
+Le résultat de cette méthode sera un caractère, car il s'agit d'une méthode d'extraction de caractères, je dirais même d'UN caractère. Elle ne peut s'opérer que sur des \gras[type!String]{String}! Elle possède la même particularité que les tableaux, c'est-à-dire que, pour cette méthode, le premier caractère sera le numéro 0. Cette méthode prend un entier comme argument.
+\begin{lstlisting}[language=java]
+String nbre = new String("1234567");
+char carac = ' ';
+carac = nbre.charAt(4);//renverra ici le caractere 5
+\end{lstlisting}
+
+
+\item \gras{substring()}
+
+Comme son nom l'indique, elle permet d'extraire une sous-chaîne de caractères d'une chaîne de caractères. Cette méthode prend 2 entiers comme arguments. Le premier définit le début de la sous-chaîne à extraire inclus, le deuxième correspond au dernier caractère à extraire exclus. Et le premier caractère est aussi le numéro 0.
+\begin{lstlisting}[language=java]
+String chaine = new String("la paix niche"), chaine2 = new String();
+chaine2 = chaine.substring(3,13);//permet d'extraire "paix niche"
+\end{lstlisting}
+
+
+\item \gras{indexOf()}/\gras{lastIndexOf()}
+
+\gras{indexOf()} permet d'explorer une chaîne de caractères depuis son début. \gras{lastIndexOf()} depuis sa fin, mais renvoie l'index depuis le début de la chaine. Elle prend un caractère, ou une chaîne de caractères comme argument, et renvoie un int. Tout comme \gras{charAt()} et \gras{substring()}, le premier caractère est à la place 0. Je crois qu'ici un exemple s'impose, plus encore que pour les autres fonctions :
+\begin{lstlisting}[language=java]
+String mot = new String("anticonstitutionnellement");
+int n = 0;
+ 
+n = mot.indexOf('t');      // n vaut 2
+n = mot.lastIndexOf('t');        // n vaut 24
+n = mot.indexOf("ti");    // n vaut 2
+n = mot.lastIndexOf("ti");      // n vaut 12
+n = mot.indexOf('x');      // n vaut -1
+\end{lstlisting}
+\end{itemize}
+
+\subsubsection{Astuces}
 On peut très bien compacter la phase de déclaration et d'initialisation en une seule phase ! Comme ceci :
 \begin{lstlisting}[language=java]
 int entier = 32;
@@ -191,6 +301,26 @@ Et lorsque nous avons plusieurs variables d'un même type, nous pouvons compacte
 \begin{lstlisting}[language=java]
 int nbre1 = 2, nbre2 = 3, nbre3 = 0;
 \end{lstlisting}
+
+\bigskip
+
+On peut aussi convertir une variable ou une formule dans un autre type de donnée via ce qu'on appelle un \textbf{cast} :
+\begin{lstlisting}[language=java]
+int i = 123;
+double j = (double)i;
+\end{lstlisting}
+
+\begin{attention}
+Il peut y avoir des pertes de précision au sein même des opérations mathématiques que la conversion du résultat via un cast n'empêchera pas. 
+Ex :
+\begin{lstlisting}[language=java]
+int i = 123, j = 5;
+double k = (double) (i / j);
+\end{lstlisting}
+\end{attention}
+
+
+
 
 \subsection{Entrées/Sorties}
 \subsubsection{Entrées}
@@ -458,6 +588,54 @@ La longueur d'un tableau \textbf{tab} est donnée par :
 \begin{lstlisting}[language=java]
 tab.length
 \end{lstlisting}
+
+\section{Méthodes de classe}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\linewidth]{figures/method_scheme.pdf}
+\caption{Explication des différents attributs d'une méthode. Le but ici est de présenter à quoi correspond la syntaxe, sans présenter les différents choix possibles.}
+\end{figure}
+
+Les méthodes ne sont pas limitées en nombre de paramètres (s'il n'y a pas d'argument, il faut au minimum \og \texttt{String[] args}\fg.
+
+Il existe trois grands types de méthodes : 
+\begin{itemize}
+\item celles qui ne renvoient rien. Elles sont de type \gras{void}. Ces types de méthodes n'ont pas d'instruction \textbf{return} !
+\item celles qui retournent des types primitifs (\gras[type!double]{double}, \gras[type!int]{int}...). Elles sont de type \gras[type!double]{double}, \gras[type!int]{int}, \gras[type!char]{char}... Celles-ci ont une instruction \textbf{return}.
+\item celles qui retournent des objets. Par exemple, une méthode qui retourne un objet de type \gras[type!String]{String}. Celles-ci aussi ont une instruction \textbf{return}.
+\end{itemize}
+
+\bigskip
+
+\begin{remarque}
+On n'imbrique pas les méthodes et elles doivent toutes faire partie d'une classe. 
+\end{remarque}
+
+\begin{attention}
+Les méthodes de la classe \textbf{main}, c'est à dire la classe lancée par défaut au début du programme et qui contient le \gras{main()}, doivent être \gras{static}
+\end{attention}
+
+\subsection{La surcharge de méthode}
+La surcharge de méthode consiste à garder un nom de méthode (donc un type de traitement à faire, pour nous, lister un tableau) et de changer la liste ou le type de ses paramètres.
+
+Nous allons surcharger notre méthode afin qu'elle puisse travailler avec des int par exemple :
+\begin{lstlisting}[language=java]
+static void parcourirTableau(String[] tab)
+  {
+     for(String str : tab)
+        System.out.println(str);
+  }
+        
+static void parcourirTableau(int[] tab)
+  {
+     for(int str : tab)
+        System.out.println(str);
+  }
+\end{lstlisting}
+
+On peut aussi faire de même avec les tableaux à 2 dimensions ou ajouter des paramètres à la méthode.
+
 
 
 
