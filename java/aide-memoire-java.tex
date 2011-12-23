@@ -589,7 +589,189 @@ La longueur d'un tableau \textbf{tab} est donnée par :
 tab.length
 \end{lstlisting}
 
-\section{Méthodes de classe}
+\section{Les classes}
+Toute classe possède un constructeur (une méthode particulière, lancée lors de l'initialisation d'une instance de classe), ayant le même nom que la classe elle-même.
+
+Prenons un exemple avec une classe \textbf{Ville} :
+\begin{lstlisting}[language=java]
+public class Ville{
+  /**
+  * Stocke le nom de notre ville
+  */
+  String nomVille;
+  /**
+  * Stocke le nom du pays de notre ville
+  */
+  String nomPays;
+  /**
+  * Stocke le nombre d'habitants de notre ville
+  */
+  int nbreHabitant;
+ 
+  /**
+   * Constructeur par defaut
+   */
+  public Ville(){
+    System.out.println("Creation d'une ville !");      
+    nomVille = "Inconnu";
+    nomPays = "Inconnu";
+    nbreHabitant = 0;
+  }
+ 
+}
+\end{lstlisting}
+
+\begin{remarque}
+Il est possible de surcharger le constructeur et ainsi avoir plusieurs constructeurs en fonction des paramètres passés lors de l'initialisation de l'instance de classe.
+\end{remarque}
+
+\bigskip
+
+Dans l'exemple précédent, les variables de classes sont publiques et modifiables directement. La philosophie de la POO est d'utiliser des accesseurs getVar (qui renvoient la valeur d'une variable var) et des mutateurs setVar (qui modifient la valeur de la variable var). En conséquence, on mettra plutôt les variables avec une portée privée, et on créera des méthodes permettant d'afficher ou modifier ces dernières. La classe devient alors :
+\raggedbottom
+\begin{lstlisting}[language=java]
+public class Ville {
+  /**
+  * Stocke le nom de notre ville
+  */
+  private String nomVille;
+  /**
+  * Stocke le nom du pays de notre ville
+  */
+  private String nomPays;
+  /**
+  * Stocke le nombre d'habitants de notre ville
+  */
+  private int nbreHabitant;
+
+  /**
+  * Constructeur par defaut
+  */
+  public Ville(){
+    System.out.println("Creation d'une ville !");          
+    nomVille = "Inconnu";
+    nomPays = "Inconnu";
+    nbreHabitant = 0;
+  }
+ 
+  /**
+  * Constructeur d'initialisation
+  * @param pNom 
+  *                    Nom de la Ville
+  *  @param pNbre
+  *                    Nombre d'habitants
+  *  @param pPays
+  *                    Nom du pays
+  */
+  public Ville(String pNom, int pNbre, String pPays)
+  {
+    System.out.println("Creation d'une ville avec des parametres !");     
+    nomVille = pNom;
+    nomPays = pPays;
+    nbreHabitant = pNbre;
+  }
+  
+ //************************************************************************
+  //                                    ACCESSEURS
+  //***********************************************************************
+  
+  /**
+   * Retourne le nom de la ville
+   * @return le nom de la ville
+   */
+  public String getNom()
+  {
+    return nomVille;
+  }
+  
+  /**
+   * Retourne le nom du pays
+   * @return le nom du pays
+   */
+  public String getNomPays()
+  {
+    return nomPays;
+  }
+  
+  /**
+   * Retourne le nombre d'habitants
+   * @return nombre d'habitants
+   */
+ public int getNombreHabitant()
+ {
+    return nbreHabitant;
+ }
+ 
+ //************************************************************************
+ //                                    MUTATEURS
+ //************************************************************************
+ 
+ /**
+  * Definit le nom de la ville
+  * @param pNom
+  *             nom de la ville
+  */
+ public void setNom(String pNom)
+ {
+    nomVille = pNom;
+ }
+ 
+ /**
+  * Definit le nom du pays
+  * @param pPays
+  *             nom du pays
+  */
+ public void setNomPays(String pPays)
+ {
+    nomPays = pPays;
+ }
+ 
+ /**
+  * Definit le nombre d'habitants
+  * @param nbre
+  *             nombre d'habitants
+  */
+  public void setNombreHabitant(int nbre)
+  {
+    nbreHabitant = nbre;
+  }
+  
+}
+\end{lstlisting}
+\flushbottom
+
+La création d'une instance de classe se fait via le mot clé \textbf{new} :
+\begin{lstlisting}[language=java]
+Ville bordeaux = new Ville();
+\end{lstlisting}
+
+\bigskip
+
+Il y a deux principaux types de variables : 
+\begin{itemize}
+\item Les variables de classes, qui sont définies dans la classe, avec l'attribut \gras{static}. Cette variable sera commune à toutes les instances de la classe.
+\begin{lstlisting}[language=java]
+public class Ville {
+ 
+  /**
+   * Variable de classe
+   */
+  static String nomVille;
+\end{lstlisting}
+\item Les variables d'instance, qui sont définies dans la classe. Cette variable \textbf{var} est accessible, à l'intérieur de la classe via \textbf{this.var} où \textbf{this} désigne l'instance de classe (c'est un concept de POO difficile à saisir, car c'est abstrait, ça désigne la variable instanciée, que l'on ne connait pas \textit{a priori} lorsque l'on programme. En gros, si je défini une variable toto, de type \og la classe considérée\fg, \textbf{this} désigne, DANS la variable toto, l'instance toto de la classe.
+\begin{lstlisting}[language=java]
+public class Ville {
+ 
+  /**
+   * Variable d'instance
+   */
+  String nomVille;
+\end{lstlisting}
+\end{itemize}
+
+On peut créer des variables privées (notamment pour faire des variables locales) en rajoutant un attribu privé à une variable.
+
+\subsection{Méthodes de classe}
 
 \begin{figure}[htb]
 \centering

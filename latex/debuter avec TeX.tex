@@ -2168,6 +2168,31 @@ Overfull \hbox (5.128pt too wide) in paragraph at lines 916-918
 
 Celà signifie que \LaTeX{} ne savait pas comment couper un mot et plutôt que de faire n'importe quoi, il a préféré ne rien faire. Pour lui dire où couper le mot, il suffit d'insérer la commande \verb|\-| au milieu du mot, sans espace ni avant, ni après la commande.
 
+\subsubsection{Underfull \\vbox (badness 10000) has occurred while \\output is active []}
+J'ai eu ce problème avec l'environnement lstlistings notamment, parce que j'avais un code assez long qui s'étalait sur deux pages. Or, les lignes de codes ne sont pas extensibles dues à l'environnement verbatim. Afin de corriger le warning, on peut placer
+\begin{verbatim}
+\raggedbottom
+\end{verbatim}
+avant le début de l'environnement et 
+\begin{verbatim}
+\flushbottom
+\end{verbatim}
+juste après la fin. Ce qui donne (avec un code raccourci bien entendu :
+\begin{verbatim}
+\raggedbottom
+\begin{lstlisting}[language=java]
+public class Ville {
+
+  public Ville(){
+    System.out.println("Creation d'une ville !");          
+  }
+  
+}
+\end{lstlisting}
+\flushbottom
+\end{verbatim}
+
+
 \subsection{références erronées}
 J'avais depuis quelques temps des erreurs de numérotation des figures. Il se trouve que je ne mettais pas le \verb|\label{}| au bon endroit. En effet, le \verb|\label{}| doit être placé à la fin du \verb|\caption{}|. D'une manière générale, voici un exemple de \gras[environnement!figure]{figure} et de \gras[environnement!subfig]{subfig}
 
