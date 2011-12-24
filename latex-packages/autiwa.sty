@@ -102,11 +102,34 @@
 %%% verbatim %%%
 \RequirePackage{example}%pour avoir, en un environnement, deux colonnes, la premières en verbatimn, et la 2e qui exécute le code.
 \RequirePackage{listings}
-\lstnewenvironment{latex}[1][]{
-\lstset{language=TeX,
-   basicstyle=\ttfamily\small,
-   columns=flexible,
-   escapechar=+}}{}
+
+\lstset{%
+%Basic Appearance%
+  basicstyle=\footnotesize\ttfamily,
+  commentstyle=\itshape\color{gray},
+  keywordstyle=\color{purple}\bfseries,
+  stringstyle=\color{blue}\rmfamily,
+%Basic Layout%
+  tabsize=4,
+  showtabs=false,
+  showspaces=false,
+  showstringspaces=false,
+%Numbering%
+  numbers=left,
+  stepnumber=1,
+  numberstyle=\scriptsize,
+  numbersep=5pt,
+%Margins%
+  xleftmargin=0.02\textwidth,
+  xrightmargin=0.02\textwidth,
+  breaklines=true,
+%Frame%
+  frame=leftline,
+  framerule=0.5pt,
+  rulecolor=\color{purple},
+  framexleftmargin=0em,
+%Captions, Index, and so on passed as arguments%
+  }
 
 \RequirePackage{paralist}%permet d'utiliser l'environnement inparaenum qui est une liste numérotée formatée dans un paragraphe (c'est à dire sans retour à la ligne) ; je l'utilise pour définir mon propre environnement de liste, à défaut de savoir le faire depuis la base.
 

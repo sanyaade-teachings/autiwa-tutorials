@@ -86,6 +86,21 @@ public static void main(String[] args){
 \end{lstlisting}
 \end{itemize}
 
+\bigskip
+
+Il existe en fait un troisième type de commentaires : les \gras[javadoc]{javadocs}. Ce sont des commentaires avec une mise en forme particulière (ils commencent par \verb|/**| au lieu de \verb|/*|) qui vont permettre de générer de la documentation de manière automatisée. En voici un exemple :
+\begin{lstlisting}[language=java]
+  /**
+   * Retourne une chaine de caracteres selon le resultat de la comparaison
+   * @param v1
+   *            objet Ville
+   * @return comparaison de deux ville
+   */
+\end{lstlisting}
+
+Dans \gras{Eclipse}, il vous suffit d'aller dans \textbf{Project} et de cliquer sur \textbf{Generate Javadoc}.
+
+
 \subsection{Types de variables}\label{sec:types_variables}
 En Java, nous avons deux type de variables :
 \begin{itemize}
@@ -627,7 +642,7 @@ Il est possible de surcharger le constructeur et ainsi avoir plusieurs construct
 
 \bigskip
 
-Dans l'exemple précédent, les variables de classes sont publiques et modifiables directement. La philosophie de la POO est d'utiliser des accesseurs getVar (qui renvoient la valeur d'une variable var) et des mutateurs setVar (qui modifient la valeur de la variable var). En conséquence, on mettra plutôt les variables avec une portée privée, et on créera des méthodes permettant d'afficher ou modifier ces dernières. La classe devient alors :
+Dans l'exemple précédent, les variables de classes sont publiques et modifiables directement. La philosophie de la POO est d'utiliser des \gras[accesseur]{accesseurs} getVar (qui renvoient la valeur d'une variable var) et des \gras[mutateur]{mutateurs} setVar (qui modifient la valeur de la variable var). En conséquence, on mettra plutôt les variables avec une portée privée, et on créera des méthodes permettant d'afficher ou modifier ces dernières. La classe devient alors :
 \raggedbottom
 \begin{lstlisting}[language=java]
 public class Ville {
@@ -747,9 +762,14 @@ Ville bordeaux = new Ville();
 
 \bigskip
 
-Il y a deux principaux types de variables : 
-\begin{itemize}
-\item Les variables de classes, qui sont définies dans la classe, avec l'attribut \gras{static}. Cette variable sera commune à toutes les instances de la classe.
+Il y a deux principaux types de variables. Tout d'abord les variables de classes, qui sont définies dans la classe, avec l'attribut \gras{static}. Cette variable sera commune à toutes les instances de la classe. 
+\begin{remarque}
+Pour accéder à une \gras{variable de classe} \textbf{var} (de la classe \textbf{Ville} par exemple) à l'intérieur même de celle-ci (ou une de ses instances), on y accède via :
+\begin{lstlisting}[language=java]
+Ville.var
+\end{lstlisting}
+\end{remarque}
+
 \begin{lstlisting}[language=java]
 public class Ville {
  
@@ -758,20 +778,46 @@ public class Ville {
    */
   static String nomVille;
 \end{lstlisting}
-\item Les variables d'instance, qui sont définies dans la classe. Cette variable \textbf{var} est accessible, à l'intérieur de la classe via \textbf{this.var} où \textbf{this} désigne l'instance de classe (c'est un concept de POO difficile à saisir, car c'est abstrait, ça désigne la variable instanciée, que l'on ne connait pas \textit{a priori} lorsque l'on programme. En gros, si je défini une variable toto, de type \og la classe considérée\fg, \textbf{this} désigne, DANS la variable toto, l'instance toto de la classe.
+
+\bigskip
+
+Il y a ensuite les variables d'instance, qui sont définies dans la classe. Cette variable \textbf{var} est accessible, à l'intérieur de la classe via \textbf{this.var} où \gras{this} désigne l'instance de classe. 
+\begin{remarque}
+En effet, en règle générale, on appelle des méthodes ou des paramètres grâce à notre variable qui nous sert de référence, celle-ci suivie de l'opérateur ".", puis du nom de la dite méthode/variable.
+\begin{lstlisting}[{language=java}]
+String str = new String("opizrgpinbzegip");
+str = str.subString(0,4);
+\end{lstlisting}
+
+Mais pour accéder aux données ou méthode de notre objet à l'intérieur même de celui-ci, cette méthode n'est pas possible. Pour y remédier, il faut utiliser le mot-clé \gras{this} :
 \begin{lstlisting}[language=java]
 public class Ville {
- 
+  
   /**
-   * Variable d'instance
-   */
+  * Variable d'instance
+  */
   String nomVille;
+  
+  public Ville(String nom) {
+    this.nomVille = "nom";
+  }
+}
 \end{lstlisting}
-\end{itemize}
+\end{remarque}
 
-On peut créer des variables privées (notamment pour faire des variables locales) en rajoutant un attribu privé à une variable.
+\bigskip
 
-\subsection{Méthodes de classe}
+On peut créer des variables privées (notamment pour faire des variables locales) en rajoutant un attribu privé à une variable. Il est recommandé de définir ces variables avec l'attribut \gras{private} et de créer des \gras[accesseur]{accesseurs} et des \gras[mutateur]{mutateurs} afin de voir le contenu de la variable et de le modifier.
+
+\subsection{Générer automatiquement les accesseurs et les mutateurs avec Eclipse}\index{accesseur}\index{mutateur}\index{Eclipse}
+Une fois qu'on a créé une classe avec beaucoup de variables d'instances ou de classe, \gras{eclipse} permet de générer automatiquement les \gras[accesseur]{accesseurs} et les \gras[mutateur]{mutateurs}. 
+
+Il faut pour cela aller dans le menu \textbf{Source}, puis l'option générale \textbf{Generate Getters and Setters}. \gras{Eclipse} propose alors la liste des variables présentes dans la classe courante.
+
+
+
+
+\subsection{Méthodes d'instance}
 
 \begin{figure}[htb]
 \centering
@@ -798,10 +844,19 @@ On n'imbrique pas les méthodes et elles doivent toutes faire partie d'une class
 Les méthodes de la classe \textbf{main}, c'est à dire la classe lancée par défaut au début du programme et qui contient le \gras{main()}, doivent être \gras{static}
 \end{attention}
 
+\subsection{Méthode de classe}
+Toutes les \textbf{méthodes} d'une \textbf{classe} n'utilisant que des \gras{variables de classes} doivent être déclarées \gras{static} ! On les appelle des \textbf{méthodes de classes} car elles sont globales à toutes vos instances !
+
+\begin{remarque}
+Par contre ceci n'est plus vrai si une méthode utilise des variables d'instances et des variables de classes...
+\end{remarque}
+
+L'\gras{accesseur} d'une \gras{variable de classe} doit aussi être déclarée \gras{static}, c'est une règle !
+
 \subsection{La surcharge de méthode}
 La surcharge de méthode consiste à garder un nom de méthode (donc un type de traitement à faire, pour nous, lister un tableau) et de changer la liste ou le type de ses paramètres.
 
-Nous allons surcharger notre méthode afin qu'elle puisse travailler avec des int par exemple :
+Nous allons surcharger notre méthode afin qu'elle puisse travailler avec des \textbf{int} par exemple :
 \begin{lstlisting}[language=java]
 static void parcourirTableau(String[] tab)
   {
