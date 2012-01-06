@@ -7,43 +7,6 @@
 \definecolor{gray}{gray}{0.5}
 \definecolor{green}{rgb}{0,0.5,0}
 
-% \lstnewenvironment{python}[1][]{
-% \lstset{
-% language=python,
-% basicstyle=\ttfamily\small\setstretch{1},
-% stringstyle=\color{red},
-% showstringspaces=false,
-% alsoletter={1234567890},
-% otherkeywords={\ , \}, \{},
-% keywordstyle=\color{blue},
-% emph={access,and,break,class,continue,def,del,elif,else,%
-% except,exec,finally,for,from,global,if,import,in,is,%
-% lambda,not,or,pass,print,raise,return,try,while},
-% emphstyle=\color{black}\bfseries,
-% emph={[2]True, False, None, self},
-% emphstyle=[2]\color{green},
-% emph={[3]from, import, as},
-% emphstyle=[3]\color{blue},
-% upquote=true,
-% morecomment=[s]{"""}{"""},
-% commentstyle=\color{gray}\slshape,
-% emph={[4]1, 2, 3, 4, 5, 6, 7, 8, 9, 0},
-% emphstyle=[4]\color{blue},
-% literate=*{:}{{\textcolor{blue}:}}{1}%
-% 	{=}{{\textcolor{blue}=}}{1}%
-% 	{-}{{\textcolor{blue}-}}{1}%
-% 	{+}{{\textcolor{blue}+}}{1}%
-% 	{*}{{\textcolor{blue}*}}{1}%
-% 	{!}{{\textcolor{blue}!}}{1}%
-% 	{(}{{\textcolor{blue}(}}{1}%
-% 	{)}{{\textcolor{blue})}}{1}%
-% 	{[}{{\textcolor{blue}[}}{1}%
-% 	{]}{{\textcolor{blue}]}}{1}%
-% 	{<}{{\textcolor{blue}<}}{1}%
-% 	{>}{{\textcolor{blue}>}}{1},%
-% framexleftmargin=1mm, framextopmargin=1mm, frame=shadowbox, rulesepcolor=\color{blue},#1
-% }}{}
-
 
 \begin{document}
 \tableofcontents
@@ -676,7 +639,7 @@ except KeyError:
 
 
 
-\section{Graphiques 2D}\index{graphique 2D}
+\section{Graphiques avec pylab}\index{graphique 2D}
 J'utilise le module \gras[module!pylab]{pylab} que j'importe par
 \begin{lstlisting}[language=python]
 import pylab as pl
@@ -716,7 +679,7 @@ pl.savefig('ma_figure.svg')
 pl.savefig('ma_figure.pdf')
 \end{lstlisting}
 
-\subsection{Subplots}
+\subsection{Plusieurs graphiques sur une même page : subplots}\gras{subplot}
 \gras[module!pylab]{pylab} fonctionne comme les plots dans \gras{matlab}. Il existe aussi la possibilité de faire des subplots.
 
 \begin{lstlisting}[language=python]
@@ -741,7 +704,7 @@ pl.plot(x,y)
 pl.show()
 \end{lstlisting}
 
-\subsection{Vrac de petites commandes}
+\subsection{Personnalisations diverses}
 
 Pour aller un peu plus loin
 \begin{lstlisting}[language=python]
@@ -755,6 +718,13 @@ pl.plot(x,z, 'b-', label="z=g(x)")
 pl.legend() # afficher la legende
 pl.show()
 \end{lstlisting}
+
+\subsection{Utilisation de symbole au lieu de ligne}
+\begin{lstlisting}[language=python]
+pl.plot(x,z, 'o', markersize=5)
+\end{lstlisting}
+On peut utiliser des cercles \texttt{o}, des croix \texttt{x} ou des carrés \texttt{s}
+
 
 \subsection{Graphiques logarithmiques}
 
