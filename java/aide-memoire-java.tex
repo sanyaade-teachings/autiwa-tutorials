@@ -61,7 +61,7 @@ Quelques informations de base :
 \subsection{Commentaires}
 Il existe deux types de commentaires : 
 \begin{itemize}
-\item les commentaires unilignes : introduits par les symboles \textbf{//}, ils mettent tous ce qui les suit en commentaires, du moment que le texte se trouve sur la même ligne que les \textbf{//}.
+\item les commentaires unilignes : introduits par les symboles \textbf{//}, ils mettent tout ce qui les suit en commentaires, du moment que le texte se trouve sur la même ligne que les \textbf{//}.
 \begin{lstlisting}[language=java]
 public static void main(String[] args){
   //Un commentaire
@@ -109,30 +109,30 @@ En Java, nous avons deux type de variables :
 \end{itemize}
 
 \subsubsection{Variables primitives}
-Ce qu'on appelle des types simples, ou types primitifs, en Java ce sont tout bonnement des nombres entiers, des nombres réels, des booléens ou encore des caractères. Mais vous allez voir qu'il y a plusieurs façons de déclarer certains de ces types.
+Ce qu'on appelle des types simples, ou types primitifs, en Java ce sont tout bonnement des nombres entiers, des nombres réels, des booléens ou encore des caractères. 
 
 Commençons par les variables de type numérique
 \begin{itemize}
-\item Le type \gras[type!byte]{byte} (1 octet) peut contenir les entiers entre -128 et +127.
+\item Le type \gras[type!byte]{byte} (1 octet) peut contenir les entiers entre $-128$ et $+127$.
 \begin{lstlisting}[language=java]
 byte temperature;
 temperature = 64;
 \end{lstlisting}
 
-\item Le type \gras[type!short]{short} (2 octets) contient les entiers compris entre -32768 et +32767.
+\item Le type \gras[type!short]{short} (2 octets) contient les entiers compris entre $-32768$ et $+32767$.
 \begin{lstlisting}[language=java]
 short vitesseMax;
 vitesseMax = 32000;
 \end{lstlisting}
 
-\item Le type \gras[type!int]{int} (4 octets) va de -2*109 à 2*109 (2 et 9 zéros derrière... ce qui fait déjà un joli nombre).
+\item Le type \gras[type!int]{int} (4 octets) va de $-2*10^9$ à $2*10^9$ (2 et 9 zéros derrière...).
 \begin{lstlisting}[language=java]
 int temperatureSoleil;
 temperatureSoleil = 15600000;
 \end{lstlisting}
 C'est en kelvins...
 
-\item Le type \gras[type!long]{long}(8 octets) de -9*1018 à 9*1018 (encore plus gros...).
+\item Le type \gras[type!long]{long}(8 octets) de $-9*10^{18}$ à $9*10^{18}$.
 \begin{lstlisting}[language=java]
 long anneeLumiere;
 anneeLumiere = 9460700000000000;
@@ -158,8 +158,7 @@ division = 0.333333333333333333333333333333333333333333334;
 \end{lstlisting}
 \end{itemize}
 
-
-Nous avons aussi des variables stockant du caractère
+\bigskip
 
 Le type \gras[type!char]{char} contient UN caractère stocké entre de simples quotes ' ' comme ceci...
 \begin{lstlisting}[language=java]
@@ -168,8 +167,6 @@ caractere = 'A';
 \end{lstlisting}
 
 \bigskip
-
-Nous avons aussi le type booléen
 
 Le type \gras[type!boolean]{boolean} qui lui contient \textbf{true} (vrai) ou \textbf{false} (faux).
 \begin{lstlisting}[language=java]
@@ -186,7 +183,7 @@ char carac = 'z';
 String mot = new String("Coucou");
 \end{lstlisting}
 
-Et lorsque nous avons plusieurs variables d'un même type, nous pouvons compacter tout ceci en une déclaration comme ceci :
+Et lorsque nous avons plusieurs variables d'un même type, nous pouvons compacter tout ceci en une déclaration comme suit :
 \begin{lstlisting}[language=java]
 int nbre1 = 2, nbre2 = 3, nbre3 = 0;
 \end{lstlisting}
@@ -209,8 +206,8 @@ double k = (double) (i / j);
 \end{attention}
 
 \subsubsection{Un type complexe particulier : la Chaîne de caractères}
-Et aussi le type \gras[type!String]{String}. Celle-ci correspond à de la chaîne de caractères.
-Ici, il ne s'agit pas d'une variable mais d'un objet qui instancie une classe qui existe dans Java ; nous pouvons l'initialiser en utilisant l'opérateur unaire new() dont on se sert pour réserver un emplacement mémoire à un objet (mais nous reparlerons de tout ceci dans la partie deux, lorsque nous verrons les classes), ou alors lui affecter directement la chaîne de caractères.
+Le type \gras[type!String]{String} correspond à de la chaîne de caractères.
+Ici, il ne s'agit pas d'une variable mais d'un objet qui instancie une classe qui existe dans Java ; nous pouvons l'initialiser en utilisant l'opérateur unaire \gras{new()} dont on se sert pour réserver un emplacement mémoire à un objet, ou alors lui affecter directement la chaîne de caractères.
 
 Vous verrez que celle-ci s'utilise très facilement et se déclare comme ceci :
 \begin{lstlisting}[language=java]
@@ -227,7 +224,7 @@ String chaine = new String("Et une de plus ! ");
 
 \bigskip
 
-String étant un objet, il possède des méthodes afin de les manipuler. En voici quelques exemples :
+\gras[type!String]{String} étant un objet, il possède des méthodes afin de les manipuler. En voici quelques exemples :
 \begin{itemize}
 
 \item \gras{toLowerCase()}
@@ -243,7 +240,7 @@ chaine2 = chaine.toLowerCase();//donne "coucou tout le monde !"
 
 \item \gras{toUpperCase()}
 
-Celle-là est facile, puisqu'il s'agit de l'opposée de la précédente. Elle transforme donc une chaîne de caractères en majuscules. Et s'utilise comme suit :
+Il s'agit de l'opposée de la précédente. Elle transforme donc une chaîne de caractères en majuscules. Et s'utilise comme suit :
 \begin{lstlisting}[language=java]
 String chaine = new String("coucou coucou"), chaine2 = new String();
 chaine2 = chaine.toUpperCase();//donne "COUCOU COUCOU"
@@ -252,7 +249,7 @@ chaine2 = chaine.toUpperCase();//donne "COUCOU COUCOU"
 
 \item \gras{concat()}
 
-Très explicite, celle-là permet de concaténer deux chaînes de caractères.
+Cette méthode permet de concaténer deux chaînes de caractères.
 \begin{lstlisting}[language=java]
 String str1 = new String("Coucou "), str2 = new String("toi !");
 String str3 = new String();
@@ -342,39 +339,7 @@ Ville bdx = new Ville();
 \end{lstlisting}
 On définit ici la variable \textbf{bdx} comme étant un objet de la classe \textbf{Ville} à laquelle on affecte l'instanciation \textbf{new Ville()}. \gras{new} signifie qu'on créer un nouvel objet de la classe, le constructeur étant appelé sans aucun argument (vu que les parenthèses n'en contiennent pas). Pour plus de détails sur ce point, voir \refsec{sec:les_classes}.
 
-\bigskip
-
-Il existe ce qu'on appelle la \gras{covariance des variables}, c'est à dire qu'il est possible d'utiliser une variable, déclarée comme appartenant à une classe \textbf{ClasseParente}, pour stocker une instance de n'importe quel objet d'une classe héritée \textbf{ClasseFille}. Un exemple :
-\begin{lstlisting}[language=java]
-//Def d'un tableau de ville null
-Ville[] tableau = new Ville[6];
-    
-//Definition d'un tableau de noms de Villes et d'un tableau de nombres d'habitants
-String[] tab = {"Marseille", "lille", "caen", "lyon", "paris", "nantes"};
-int[] tab2 = {123456, 78456, 654987, 75832165, 1594,213};
-
-/* Les 3 premiers elements du tableau seront des Villes, et le reste, des capitales
-*/
-for(int i = 0; i < 6; i++){
-  if (i <3){
-    Ville V = new Ville(tab[i], tab2[i], "france" );
-    tableau[i] = V;
-  }
-
-  else{
-    Capitale C = new Capitale(tab[i], tab2[i], "france", "Sarko");
-    tableau[i] = C;
-  }
-}
-
-//il ne nous reste plus qu'a decrire tout notre tableau !
-for(Ville v : tableau){
-  System.out.println(v.decrisToi()+"\n");
-}
-\end{lstlisting}
-
-\subsection{Entrées/Sorties}
-\subsubsection{Entrées}
+\subsection{Entrées clavier}
 Afin de récupérer ce qu'on tape au clavier, il faut importer une nouvelle classe
 \begin{lstlisting}[language=java]
 import java.util.Scanner;
@@ -406,8 +371,23 @@ String str = sc.nextLine();
 System.out.println("FIN ! ");
 \end{lstlisting}
 
+\subsection{Opérateur ternaire}\index{opérateur ternaire}
+La particularité des conditions ternaires réside dans le fait que trois opérandes (variable ou constante) sont mises en jeu mais aussi que ces conditions sont employées pour affecter des données dans une variable. Voici à quoi ressemble la structure de ce type de condition :
+\begin{lstlisting}[language=java]
+int x = 10, y = 20;
+int max = (x < y) ? y : x ; //Maintenant max vaut 20
+\end{lstlisting}
 
-%TODO voir les sorties
+On peut faire par exemple : 
+\begin{lstlisting}[language=java]
+int x = 10;
+String type = (x % 2 == 0) ? "C' est pair" : "C' est impair" ; 
+//Ici type vaut "C' est pair"
+
+x = 9;
+type = (x % 2 == 0) ? "C' est pair" : "C' est impair" ; 
+//Ici type vaut "C' est impair"
+\end{lstlisting}
 
 \subsection{Boucles}
 \subsubsection{Boucle if}\index{boucle!if}
@@ -445,8 +425,6 @@ On n'est pas obligés de mettre les accolades quand il n'y a qu'une seule ligne 
 \bigskip
 
 On peut aussi mettre des tests multiples :
-
-
 \begin{lstlisting}[language=java]
 int i = 0;
 
@@ -501,24 +479,6 @@ switch (nbre)
     System.out.println("Ce nombre est compris entre 8 et 10");
 
 }
-\end{lstlisting}
-
-\subsubsection{Opérateur ternaire}
-La particularité des conditions ternaires réside dans le fait que trois opérandes (variable ou constante) sont mises en jeu mais aussi que ces conditions sont employées pour affecter des données dans une variable. Voici à quoi ressemble la structure de ce type de condition :
-\begin{lstlisting}[language=java]
-int x = 10, y = 20;
-int max = (x < y) ? y : x ; //Maintenant max vaut 20
-\end{lstlisting}
-
-On peut faire par exemple : 
-\begin{lstlisting}[language=java]
-int x = 10;
-String type = (x % 2 == 0) ? "C' est pair" : "C' est impair" ; 
-//Ici type vaut "C' est pair"
-
-x = 9;
-type = (x % 2 == 0) ? "C' est pair" : "C' est impair" ; 
-//Ici type vaut "C' est impair"
 \end{lstlisting}
 
 \subsubsection{Boucle while}\index{boucle!while}
@@ -583,7 +543,7 @@ for(String str : tab)
    System.out.println(str);
 \end{lstlisting}\index{tableaux}
 
-Cette forme de boucle for est particulièrement adaptée au parcours de tableau. On peut naturellement se demander comment faire de même pour des tableaux multidimensionnels. La chose à retenir est que la variable en premier paramètre de la boucle for doit être du même type que la valeur de retour du tableau. Dans le cas d'un tableau multi-dimensionnel, cette dernière sera un tableau de dimension inférieure. En conséquence, on peut boucler sur des sous tableaux, puis sur les éléments de ces derniers via des boucles imbriquées :
+Cette forme de boucle \textbf{for} est particulièrement adaptée au parcours de tableau. On peut naturellement se demander comment faire de même pour des tableaux multidimensionnels. La chose à retenir est que la variable en premier paramètre de la boucle \textbf{for} doit être du même type que la valeur de retour du tableau. Dans le cas d'un tableau multi-dimensionnel, cette dernière sera un tableau de dimension inférieure. En conséquence, on peut boucler sur des sous tableaux, puis sur les éléments de ces derniers via des boucles imbriquées :
 \begin{lstlisting}[language=java]
 String tab[][] = {{"toto", "titi", "tutu", "tete", "tata"}, 
                   {"1", "2", "3", "4"}};
@@ -602,10 +562,6 @@ for(String sousTab[] : tab)
   j++;
 }
 \end{lstlisting}
-
-
-
-
 
 \subsection{Tableaux}\index{tableaux}
 On définit des tableaux de la même manière que les éléments qui le constituent. Un tableau a donc un type associé et ne peut stocker que des éléments de ce type là.
@@ -634,11 +590,17 @@ Nous voyons bien ici les deux lignes de notre tableau symbolisées par les doubl
 Et \verb|premiersNombres[1][0]| correspondra au premier élément de la colonne impaire.
 \end{exemple}
 
-\subsubsection{Propriétés}
+\begin{remarque}
 La longueur d'un tableau \textbf{tab} est donnée par :
 \begin{lstlisting}[language=java]
 tab.length
 \end{lstlisting}
+\end{remarque}
+
+\begin{important}
+On peut définir des sortes de tableaux pouvant contenir n'importe quel type de données, ce sont des objets de type \gras{ArrayList} qu'on appelle des \gras{collection d'objet}. %TODO parler des ArrayList
+\end{important}
+
 
 \section{Les classes}\label{sec:les_classes}
 Toute classe possède un constructeur (une méthode particulière, lancée lors de l'initialisation d'une instance de classe), ayant le même nom que la classe elle-même.
@@ -673,12 +635,19 @@ public class Ville{
 \end{lstlisting}
 
 \begin{remarque}
-Il est possible de surcharger le constructeur et ainsi avoir plusieurs constructeurs en fonction des paramètres passés lors de l'initialisation de l'instance de classe.
+Il est possible de surcharger \refsec{sec:surcharge} le constructeur et ainsi avoir plusieurs constructeurs en fonction des paramètres passés lors de l'initialisation de l'instance de classe.
 \end{remarque}
 
 \bigskip
 
-Dans l'exemple précédent, les variables de classes sont publiques et modifiables directement. La philosophie de la POO est d'utiliser des \gras[accesseur]{accesseurs} getVar (qui renvoient la valeur d'une variable var) et des \gras[mutateur]{mutateurs} setVar (qui modifient la valeur de la variable var). En conséquence, on mettra plutôt les variables avec une portée privée, et on créera des méthodes permettant d'afficher ou modifier ces dernières. La classe devient alors :
+La création d'une instance de classe se fait via le mot clé \textbf{new} :
+\begin{lstlisting}[language=java]
+Ville bordeaux = new Ville();
+\end{lstlisting}    \textsl{}
+
+\subsection{Bien gérer les variables}
+
+Dans l'exemple précédent, les \gras[variable!d'instance]{variables d'instance} sont publiques et modifiables directement. La philosophie de la POO est d'utiliser des \gras[accesseur]{accesseurs} getVar (qui renvoient la valeur d'une variable var) et des \gras[mutateur]{mutateurs} setVar (qui modifient la valeur de la variable var). En conséquence, on mettra plutôt les variables avec une portée privée, et on créera des méthodes permettant d'afficher ou modifier ces dernières. La classe devient alors :
 \raggedbottom
 \begin{lstlisting}[language=java]
 public class Ville {
@@ -791,14 +760,10 @@ public class Ville {
 \end{lstlisting}
 \flushbottom
 
-La création d'une instance de classe se fait via le mot clé \textbf{new} :
-\begin{lstlisting}[language=java]
-Ville bordeaux = new Ville();
-\end{lstlisting}
 
-\bigskip
+\subsection{Types de variables}
 
-Il y a deux principaux types de variables. Tout d'abord les variables de classes, qui sont définies dans la classe, avec l'attribut \gras{static}. Cette variable sera commune à toutes les instances de la classe. 
+Il y a deux principaux types de variables. Tout d'abord les \gras[variable!de classe]{variables de classes}, qui sont définies dans la classe, avec l'attribut \gras{static}. Cette variable sera commune à toutes les instances de la classe. 
 \begin{remarque}
 Pour accéder à une \gras{variable de classe} \textbf{var} (de la classe \textbf{Ville} par exemple) à l'intérieur même de celle-ci (ou une de ses instances), on y accède via :
 \begin{lstlisting}[language=java]
@@ -817,29 +782,7 @@ public class Ville {
 
 \bigskip
 
-Il y a ensuite les variables d'instance, qui sont définies dans la classe. Cette variable \textbf{var} est accessible, à l'intérieur de la classe via \textbf{this.var} où \gras{this} désigne l'instance de classe. 
-\begin{remarque}
-En effet, en règle générale, on appelle des méthodes ou des paramètres grâce à notre variable qui nous sert de référence, celle-ci suivie de l'opérateur ".", puis du nom de la dite méthode/variable.
-\begin{lstlisting}[{language=java}]
-String str = new String("opizrgpinbzegip");
-str = str.subString(0,4);
-\end{lstlisting}
-
-Mais pour accéder aux données ou méthode de notre objet à l'intérieur même de celui-ci, cette méthode n'est pas possible. Pour y remédier, il faut utiliser le mot-clé \gras{this} :
-\begin{lstlisting}[language=java]
-public class Ville {
-  
-  /**
-  * Variable d'instance
-  */
-  String nomVille;
-  
-  public Ville(String nom) {
-    this.nomVille = "nom";
-  }
-}
-\end{lstlisting}
-\end{remarque}
+Il y a ensuite les \gras[variable!d'instance]{variables d'instance}, qui sont définies dans la classe. Cette variable \textbf{var} est accessible, à l'intérieur de la classe via \textbf{this.var} où \gras{this} désigne l'instance de classe. 
 
 \bigskip
 
@@ -869,16 +812,36 @@ Le mot-clé abstract permet de définir des classes abstraites \refsec{sec:class
 
 \gras{interface} permet de considérer une classe comme une interface. Plus de détails au \refsec{sec:interface}.
 
-%TODO autres mots clés? static?
-\subsection{Générer automatiquement les accesseurs et les mutateurs avec Eclipse}\index{accesseur}\index{mutateur}\index{Eclipse}
-Une fois qu'on a créé une classe avec beaucoup de variables d'instances ou de classe, \gras{eclipse} permet de générer automatiquement les \gras[accesseur]{accesseurs} et les \gras[mutateur]{mutateurs}. 
+\bigskip
 
-Il faut pour cela aller dans le menu \textbf{Source}, puis l'option générale \textbf{Generate Getters and Setters}. \gras{Eclipse} propose alors la liste des variables présentes dans la classe courante.
+\gras{static} permet de définir une variable comme constante ou une méthode comme immuable. Je n'ai pas bien compris le détail, mais en gros, ça permet de définir des variables de classes. Pour le reste, lire la doc. %TODO expliquer mieux 'static'
 
-\subsection{Classes dérivées d'une autre classe : Héritage}\index{héritage}
+\subsection{Accéder aux méthodes et variables d'un objet}
+En règle générale, on appelle des méthodes ou des paramètres grâce à notre variable qui nous sert de référence, celle-ci suivie de l'opérateur ".", puis du nom de la dite méthode/variable.
+\begin{lstlisting}[{language=java}]
+String str = new String("opizrgpinbzegip");
+str = str.subString(0,4);
+\end{lstlisting}
+
+Mais pour accéder aux données ou méthode de notre objet à l'intérieur même de celui-ci, cette méthode n'est pas possible. Pour y remédier, il faut utiliser le mot-clé \gras{this} :
+\begin{lstlisting}[language=java]
+public class Ville {
+  
+  /**
+  * Variable d'instance
+  */
+  String nomVille;
+  
+  public Ville(String nom) {
+    this.nomVille = "nom";
+  }
+}
+\end{lstlisting}
+où \textbf{this} désigne l'instance courante de l'objet (qui n'existe pas au moment de l'écriture du programme, mais qui existera quand le mot clé \textbf{this} aura besoin de pointer vers quelque chose. 
+
+\subsection{Classes dérivées d'une autre classe : Héritage}\index{héritage}\label{sec:heritage}
 L'\gras{héritage} permet de créer des classes filles d'une classe donnée. L'intérêt de l'héritage est que toutes les méthodes et variables créées pour la classe parente se retrouveront dans les classes filles. 
 
-Le mot-clé \gras{super()} permet de modifier les opérateurs existants (au lieu de les remplacer). ça signifie concrêtement que \gras{super()} va exécuter la version parente de la méthode en lieu et place du mot-clé. Ceci fonctionne bien entendu pour le constructeur, ce qui permet d'initialiser la classe parente de manière normale, tout en rajoutant l'initialisation des variables propre à la classe courante : 
 \begin{lstlisting}[language=java]
 class Capitale extends Ville {
  
@@ -893,14 +856,9 @@ private String president;
     president = "aucun";
   }
 }
-\end{lstlisting}
+\end{lstlisting}\index{extends}
 
-\begin{remarque}
-Dans le cas d'une méthode qui nécessite une variable, imaginez que \gras{super()} se comporte comme un alias. Il suffit de mettre en paramètre de \gras{super()} les valeurs que vous souhaitez : 
-\begin{lstlisting}[language=java]
-super(nom, hab, pays);
-\end{lstlisting}
-\end{remarque}
+Pour plus de détails sur \gras{super()} voir \refsec{sec:surcharge}.
 
 \subsection{Conversion d'objets}
 Il est possible, en particulier pour l'utilisation de certaines méthodes, de convertir des objets. Imaginons qu'on ait une classe \textbf{Ville}, définissant la méthode \textbf{.decrisToi()}, le code suivant est possible :
@@ -930,51 +888,37 @@ class Ville extends Object {
 }
 \end{lstlisting}
 
-\subsection{Super-classes non instantiables : Classe abstraite}\label{sec:classe_abstraite}
-Le mot-clé \gras{abstract} permet de créer une classe ou une méthode abstraite. Ça signifie concrêtement que la classe ne peut pas être instanciée. Elle n'est utile que pour définir des sous classes, ayant des méthodes ou attributs communs qu'on peut définir dans cette super-classe qui n'est pas utilisable en l'état.
-\begin{exemple}
-Imaginez une méta-classe abstraite \textbf{Animal} qui servirait à définir des sous classes \textbf{Chien}, \textbf{Chat}, \textbf{Lion}, \textbf{Ours} etc...
-\end{exemple}
+Pour plus de détails sur \gras{extends}, voir \refsec{sec:heritage}.
 
+\subsection{Covariance des variables}
+Il existe ce qu'on appelle la \gras{covariance des variables}, c'est à dire qu'il est possible d'utiliser une variable, déclarée comme appartenant à une classe \textbf{ClasseParente}, pour stocker une instance de n'importe quel objet d'une classe héritée \textbf{ClasseFille}. Un exemple :
 \begin{lstlisting}[language=java]
-abstract class Animal{
- 
+//Def d'un tableau de ville null
+Ville[] tableau = new Ville[6];
+    
+//Definition d'un tableau de noms de Villes et d'un tableau de nombres d'habitants
+String[] tab = {"Marseille", "lille", "caen", "lyon", "paris", "nantes"};
+int[] tab2 = {123456, 78456, 654987, 75832165, 1594,213};
+
+/* Les 3 premiers elements du tableau seront des Villes, et le reste, des capitales
+*/
+for(int i = 0; i < 6; i++){
+  if (i <3){
+    Ville V = new Ville(tab[i], tab2[i], "france" );
+    tableau[i] = V;
+  }
+
+  else{
+    Capitale C = new Capitale(tab[i], tab2[i], "france", "Sarko");
+    tableau[i] = C;
+  }
+}
+
+//il ne nous reste plus qu'a decrire tout notre tableau !
+for(Ville v : tableau){
+  System.out.println(v.decrisToi()+"\n");
 }
 \end{lstlisting}
-
-Une telle classe peut avoir le même contenu qu'une classe normale. Ses enfants pourront utiliser tous ses éléments déclarés (attributs et méthodes) public. Cependant, ce type de classe permet de définir des méthodes abstraites, voir \refsec{sec:methode_abstraite}.
-
-\begin{remarque}
-Les classes abstraites sont à utiliser lorsque qu'une classe mère ne doit pas être instanciée.
-\end{remarque}
-
-\subsection{Compilations de définitions de méthodes : Interfaces}\label{sec:interface}\index{interface}
-Une \gras{interface} permet de définir le squelette (le nom de la méthode, le nombre et le type des arguments) de différentes méthodes généralistes. Ensuite, un peu comme un module, on appelle cette interface dans la classe voulue. On doit alors implémenter \textit{toutes} les méthodes définies dans l'interface.
-
-On définit une interface \textbf{I} de la façon suivante :
-\begin{lstlisting}[language=java]
-public interface I{
- 
-   public void A();
-   public String B();
- 
-}
-\end{lstlisting}
-
-On appelle une \gras{interface} \textbf{I} dans la classe \textbf{X}
-\begin{lstlisting}[language=java]
-public class X implements I{
-    public void A(){
-      //.......
-    }
- 
-    public String B(){
-      //.......
-    }
-}
-\end{lstlisting}
-
-
 
 
 \section{Les méthodes}
@@ -1036,10 +980,28 @@ On peut aussi faire de même avec les tableaux à 2 dimensions ou ajouter des pa
 
 \bigskip
 
-En déclarant le mot-clé \gras{final}, on empêche la surchage de méthode. Ces méthodes sont figées et vous ne pourrez \textit{jamais} redéfinir une méthode déclarée \gras{final}. Un exemple de ce type de méthode est la méthode \textbf{getClass()} de la classe \textbf{Object}.
+Le mot-clé \gras{super()} permet de faire appel à la version parente d'une méthode donnée que l'on souhaite surcharger. Ça signifie concrêtement que \gras{super()} va exécuter la version parente de la méthode en lieu et place du mot-clé. Ceci fonctionne bien entendu pour le constructeur, ce qui permet d'initialiser la classe parente de manière normale, tout en rajoutant l'initialisation des variables propre à la classe courante : 
+\begin{lstlisting}[language=java]
+class Capitale extends Ville {
+ 
+private String president;
+ 
+ /**
+  *Constructeur par defaut
+  */
+  public Capitale(){
+    //Ce mot cle appelle le constructeur de la classe mere.  
+    super();
+    president = "aucun";
+  }
+}
+\end{lstlisting}
 
 \begin{remarque}
-Il existe aussi des classes déclarées \gras{final}. Vous avez compris que ces classes sont immuables... Et vous ne pouvez donc pas faire hériter un objet d'une classe déclarée \gras{final}.
+Dans le cas d'une méthode qui nécessite une variable, imaginez que \gras{super()} se comporte comme un alias. Il suffit de mettre en paramètre de \gras{super()} les valeurs que vous souhaitez : 
+\begin{lstlisting}[language=java]
+super(nom, hab, pays);
+\end{lstlisting}
 \end{remarque}
 
 \subsection{Polymorphisme}\index{polymorphisme}
@@ -1052,10 +1014,60 @@ Il ne faut pas confondre le \gras{polymorphisme}, c'est à dire le fait de défi
 Le polymorphisme permet d'agir sur la classe mère, dans laquelle les méthodes sont définies, et agir indifféremment sur des objets de sous-classes ayant redéfini les méthodes de la classe mère. 
 
 \begin{remarque}
-L'utilisation d'\gras[interface]{interfaces} permet aussi d'utiliser le polymorphisme dans des classes non issues de la même classe mère (voir \refsec{sec:interface}).%TODO faire la section interface pour que le lien fonctionne
+L'utilisation d'\gras[interface]{interfaces} permet aussi d'utiliser le polymorphisme dans des classes non issues de la même classe mère (voir \refsec{sec:interface}).
 \end{remarque}
 
+\section{Les classes : avancé}
+\subsection{Empêcher la surcharge de méthode ou l'héritage}
+En déclarant le mot-clé \gras{final} comme attribut d'une méthode, on empêche la surchage de méthode. Ces méthodes sont figées et vous ne pourrez \textit{jamais} redéfinir une méthode déclarée \gras{final}. Un exemple de ce type de méthode est la méthode \textbf{getClass()} de la classe \textbf{Object}.
 
+\begin{remarque}
+Il existe aussi des classes déclarées \gras{final}. Vous avez compris que ces classes sont immuables... Et vous ne pouvez donc pas faire hériter un objet d'une classe déclarée \gras{final}.
+\end{remarque}
+
+\subsection{Super-classes non instantiables : Classe abstraite}\label{sec:classe_abstraite}
+Le mot-clé \gras{abstract} permet de créer une classe ou une méthode abstraite. Ça signifie concrêtement que la classe ne peut pas être instanciée. Elle n'est utile que pour définir des sous classes, ayant des méthodes ou attributs communs qu'on peut définir dans cette super-classe qui n'est pas utilisable en l'état.
+\begin{exemple}
+Imaginez une méta-classe abstraite \textbf{Animal} qui servirait à définir des sous classes \textbf{Chien}, \textbf{Chat}, \textbf{Lion}, \textbf{Ours} etc...
+\end{exemple}
+
+\begin{lstlisting}[language=java]
+abstract class Animal{
+ 
+}
+\end{lstlisting}
+
+Une telle classe peut avoir le même contenu qu'une classe normale. Ses enfants pourront utiliser tous ses éléments déclarés (attributs et méthodes) public. Cependant, ce type de classe permet de définir des méthodes abstraites, voir \refsec{sec:methode_abstraite}.
+
+\begin{remarque}
+Les classes abstraites sont à utiliser lorsque qu'une classe mère ne doit pas être instanciée.
+\end{remarque}
+
+\subsection{Compilations de définitions de méthodes : Interfaces}\label{sec:interface}\index{interface}
+Une \gras{interface} permet de définir le squelette (le nom de la méthode, le nombre et le type des arguments) de différentes méthodes généralistes. Ensuite, un peu comme un module, on appelle cette interface dans la classe voulue. On doit alors implémenter \textit{toutes} les méthodes définies dans l'interface.
+
+On définit une interface \textbf{I} de la façon suivante :
+\begin{lstlisting}[language=java]
+public interface I{
+ 
+   public void A();
+   public String B();
+ 
+}
+\end{lstlisting}
+
+On appelle une \gras{interface} \textbf{I} dans la classe \textbf{X}
+\begin{lstlisting}[language=java]
+public class X implements I{
+    public void A(){
+      //.......
+    }
+ 
+    public String B(){
+      //.......
+    }
+}
+\end{lstlisting}
 
 \subsection{Méthode abstraite}\label{sec:methode_abstraite}
 Le mot-clé \gras{abstract} permet de créer une classe ou une méthode abstraite. Une méthode abstraite n'a pas de corps.
@@ -1070,7 +1082,23 @@ abstract class Animal{
 Une classe déclarée abstraite n'est plus instanciable, mais elle n'est nullement obligée d'avoir des méthodes abstraites ! En revanche, une classe ayant une méthode abstraite doit être déclarée abstraite ! 
 \end{remarque}
 
+\section{Eclipse}
+Il est impossible de faire un tutoriel Java sans s'attarder sur Eclipse, excellent logiciel pour coder en Java et qui facilite vraiment la vie des développeurs.
 
+\subsection{Générer automatiquement les accesseurs et les mutateurs avec Eclipse}\index{accesseur}\index{mutateur}\index{Eclipse}
+Une fois qu'on a créé une classe avec beaucoup de variables d'instances ou de classe, \gras{eclipse} permet de générer automatiquement les \gras[accesseur]{accesseurs} et les \gras[mutateur]{mutateurs}. 
+
+Il faut pour cela aller dans le menu \textbf{Source}, puis l'option générale \textbf{Generate Getters and Setters}. \gras{Eclipse} propose alors la liste des variables présentes dans la classe courante.
+
+\subsection{Récupérer un projet déjà existant sur un SVN distant}\index{SVN}
+Il faut installer le plugin \gras{subclipse} au préalable.
+
+Il faut pour celà créer un nouveau ``Projet'' : File>New>Other>Checkout projet from SVN (dans le dossier SVN).
+
+Suivre les instructions et renseigner l'adresse du dépot SVN (sans mettre le nom du sous-dossier où se trouve le projet). Dans l'onglet suivant, vous pourrez spécifiez le nom du dossier qui vous intéresse.
+
+\subsection{Synchroniser un projet en le sauvegardant sur un SVN distant}
+En prenant un projet déjà existant localement (mais qui n'existe pas sur le SVN distant). Il faut faire clic droit sur le nom du projet. Puis \textbf{Team} et enfin \textbf{Share Project...}
 
 \printindex
 \end{document}

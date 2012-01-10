@@ -407,6 +407,13 @@ Un exemple : Je voulais redimensionner toutes les images d'un énorme fichier .o
 
 
 \section{Configuration du système}
+\subsection{Changer l'intervalle entre deux check des partitions au démarrage}
+Par défaut, tous les 30 démarrages, Ubuntu effectue un test des partitions afin de vérifier qu'elles ne sont pas corrompues. On peut changer cet intervalle. De plus, on peut spécifier un intervalle en jour au lieu de le spécifier en nombre de démarrages :
+\begin{verbatim}
+$ sudo tune2fs -i 90d -c 500 /dev/sda2
+\end{verbatim}
+Tous les 90 jours (ou tous les 500 démarrages), Ubuntu vérifiera la partition \textbf{/dev/sda2}.
+
 \subsection{Remettre son système en l'état à partir d'une réinstallation fraiche}
 \begin{enumerate}
 \item Rajouter les modifs de grub. Ces modifs sont à faire dans le fichier \texttt{40\_custom}. Dans ce dernier, je rajoute les entrées suivantes qui me permettent de démarrer sur des iso, disponibles dans la 2e partition du premier disque dur (hd0,1), à l'intérieur d'un dossier \textbf{iso} :
