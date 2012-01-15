@@ -643,9 +643,9 @@ Il est possible de surcharger \refsec{sec:surcharge} le constructeur et ainsi av
 La création d'une instance de classe se fait via le mot clé \textbf{new} :
 \begin{lstlisting}[language=java]
 Ville bordeaux = new Ville();
-\end{lstlisting}    \textsl{}
+\end{lstlisting}
 
-\subsection{Bien gérer les variables}
+\subsection{Bien gérer les variables}\label{sec:good_behavior}
 
 Dans l'exemple précédent, les \gras[variable!d'instance]{variables d'instance} sont publiques et modifiables directement. La philosophie de la POO est d'utiliser des \gras[accesseur]{accesseurs} getVar (qui renvoient la valeur d'une variable var) et des \gras[mutateur]{mutateurs} setVar (qui modifient la valeur de la variable var). En conséquence, on mettra plutôt les variables avec une portée privée, et on créera des méthodes permettant d'afficher ou modifier ces dernières. La classe devient alors :
 \raggedbottom
@@ -763,14 +763,10 @@ public class Ville {
 
 \subsection{Types de variables}
 
-Il y a deux principaux types de variables. Tout d'abord les \gras[variable!de classe]{variables de classes}, qui sont définies dans la classe, avec l'attribut \gras{static}. Cette variable sera commune à toutes les instances de la classe. 
-\begin{remarque}
-Pour accéder à une \gras{variable de classe} \textbf{var} (de la classe \textbf{Ville} par exemple) à l'intérieur même de celle-ci (ou une de ses instances), on y accède via :
-\begin{lstlisting}[language=java]
-Ville.var
-\end{lstlisting}
-\end{remarque}
+Il y a deux principaux types de variables. 
 
+\subsubsection{Variable de classe}
+Tout d'abord les \gras[variable!de classe]{variables de classes}, qui sont définies dans la classe, avec l'attribut \gras{static}. Cette variable sera commune à toutes les instances de la classe. On déclare une variable de classe de la façon suivante :
 \begin{lstlisting}[language=java]
 public class Ville {
  
@@ -778,15 +774,32 @@ public class Ville {
    * Variable de classe
    */
   static String nomVille;
+\end{lstlisting}\index{static}
+
+\bigskip
+
+Pour accéder à une \gras{variable de classe} \textbf{var} (de la classe \textbf{Ville} par exemple) à l'intérieur même de celle-ci (ou une de ses instances), on y accède via :
+\begin{lstlisting}[language=java]
+Ville.var
 \end{lstlisting}
 
-\bigskip
+\subsubsection{Variable d'instance}
+Il y a ensuite les \gras[variable!d'instance]{variables d'instance}, qui sont définies dans la classe. Cette variable \textbf{var} est accessible, à l'intérieur de la classe via \textbf{this.var} où \gras{this} désigne l'instance de classe. On défini une variable d'instance dans l'entête de la classe, de la façon suivante :
+\begin{lstlisting}[language=java]
+public class Ville {
+ 
+  /**
+   * Variable d'instance
+   */
+  String nomVille;
+\end{lstlisting}
 
-Il y a ensuite les \gras[variable!d'instance]{variables d'instance}, qui sont définies dans la classe. Cette variable \textbf{var} est accessible, à l'intérieur de la classe via \textbf{this.var} où \gras{this} désigne l'instance de classe. 
+Pour accéder à une variable d'instance à l'intérieur d'une instance, on procède de la façon suivante :
+\begin{lstlisting}[language=java]
+this.var
+\end{lstlisting}
 
-\bigskip
-
-On peut créer des variables privées (notamment pour faire des variables locales) en rajoutant un attribu privé à une variable. Il est recommandé de définir ces variables avec l'attribut \gras{private} et de créer des \gras[accesseur]{accesseurs} et des \gras[mutateur]{mutateurs} afin de voir le contenu de la variable et de le modifier.
+Pour y accéder depuis l'extérieur, il est conseillé de configurer des accesseurs \og getVariable()\fg, voir \refsec{sec:good_behavior} pour plus de détails. On peut créer des variables privées (notamment pour faire des variables locales) en rajoutant un attribu privé à une variable. Il est recommandé de définir ces variables avec l'attribut \gras{private} et de créer des \gras[accesseur]{accesseurs} et des \gras[mutateur]{mutateurs} afin de voir le contenu de la variable et de le modifier.
 
 \subsection{Mots clés}
 Lors de la déclaration de variables ou de méthodes, il y a plusieurs attributs possible, dont le type bien entendu (mais que je ne détaillerai pas ici). 
@@ -799,6 +812,14 @@ L'un des attributs est la \textbf{portée} de la variable ou la méthode :
 \item \gras{private} : La variable/méthode n'est accessible qu'à l'intérieur de la classe où elle est définie
 \item \gras{protected} : La variable/méthode est accessible à l'intérieur de la classe où elle est définie ainsi que toutes ses classes dérivées (\gras{héritage})
 \end{itemize}
+
+\begin{figure}[htb]
+\centering
+\subfloat[Variable publique : accès pour tout le monde]{\label{fig:portee_public}\includegraphics[width=0.3\textwidth]{figures/portee_public.pdf}}\hfill
+\subfloat[Variable protégée : accès réservé à la classe et ses classes dérivées]{\label{fig:portee_protected}\includegraphics[width=0.3\textwidth]{figures/portee_protected.pdf}}\hfill
+\subfloat[Variable privée : accessible uniquement à l'intérieur de la classe.]{\label{fig:portee_private}\includegraphics[width=0.3\textwidth]{figures/portee_private.pdf}}
+\caption{Illustration de la portée des variables dans une classe}\label{fig:portee}
+\end{figure}
 
 \bigskip
 
@@ -838,27 +859,6 @@ public class Ville {
 }
 \end{lstlisting}
 où \textbf{this} désigne l'instance courante de l'objet (qui n'existe pas au moment de l'écriture du programme, mais qui existera quand le mot clé \textbf{this} aura besoin de pointer vers quelque chose. 
-
-\subsection{Classes dérivées d'une autre classe : Héritage}\index{héritage}\label{sec:heritage}
-L'\gras{héritage} permet de créer des classes filles d'une classe donnée. L'intérêt de l'héritage est que toutes les méthodes et variables créées pour la classe parente se retrouveront dans les classes filles. 
-
-\begin{lstlisting}[language=java]
-class Capitale extends Ville {
- 
-private String president;
- 
- /**
-  *Constructeur par defaut
-  */
-  public Capitale(){
-    //Ce mot cle appelle le constructeur de la classe mere.  
-    super();
-    president = "aucun";
-  }
-}
-\end{lstlisting}\index{extends}
-
-Pour plus de détails sur \gras{super()} voir \refsec{sec:surcharge}.
 
 \subsection{Conversion d'objets}
 Il est possible, en particulier pour l'utilisation de certaines méthodes, de convertir des objets. Imaginons qu'on ait une classe \textbf{Ville}, définissant la méthode \textbf{.decrisToi()}, le code suivant est possible :
@@ -1003,6 +1003,27 @@ Dans le cas d'une méthode qui nécessite une variable, imaginez que \gras{super
 super(nom, hab, pays);
 \end{lstlisting}
 \end{remarque}
+
+\section{Héritage}\index{héritage}\label{sec:heritage}
+L'\gras{héritage} permet de créer des classes filles d'une classe donnée. L'intérêt de l'héritage est que toutes les méthodes et variables créées pour la classe parente se retrouveront dans les classes filles. 
+
+\begin{lstlisting}[language=java]
+class Capitale extends Ville {
+ 
+private String president;
+ 
+ /**
+  *Constructeur par defaut
+  */
+  public Capitale(){
+    //Ce mot cle appelle le constructeur de la classe mere.  
+    super();
+    president = "aucun";
+  }
+}
+\end{lstlisting}\index{extends}
+
+Pour plus de détails sur \gras{super()} voir \refsec{sec:surcharge}.
 
 \subsection{Polymorphisme}\index{polymorphisme}
 Le \gras{polymorphisme}, c'est le fait qu'une même méthode soit implémentée dans plusieurs classes, autorisant cette méthode à être utilisée indifféremment sur plusieurs types d'objets. 
