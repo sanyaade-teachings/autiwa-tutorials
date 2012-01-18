@@ -37,6 +37,10 @@
 \newif\if@colorgrey\@colorgreyfalse
 \DeclareOption{grey}{\@colorgreytrue}
 
+% option for the orientation of the title (and position of the picture)
+\newif\if@left \@leftfalse
+\DeclareOption{left}{\@lefttrue}
+
 % roman option
 \newif\if@roman\@romanfalse
 \DeclareOption{roman}{\@romantrue}
@@ -132,34 +136,69 @@
     \@firstdetailselementfalse%
   \else%
     \\[.2em]\fi}
-\renewcommand*{\maketitle}{%
-  % name and title
-  \begin{minipage}[b]{\maketitlenamewidth}%
-    \firstnamestyle{\@firstname~}\familynamestyle{\@familyname}%
-    \ifthenelse{\equal{\@title}{}}{}{\\[1.25em]\titlestyle{\@title}}%
-  \end{minipage}%
-  % optional data
-  \begin{minipage}[b]{\maketitledetailswidth}%
-    \raggedleft\addressfont\color{addresscolor}%
-    \ifthenelse{\isundefined{\@addressstreet}}{}{%
-      \maketitledetailsnewline%
-      \addresssymbol~\@addressstreet%
-      \ifthenelse{\isundefined{\@addresscity}}{}{\\\@addresscity}}%
-    \ifthenelse{\isundefined{\@mobile}}{}{\maketitledetailsnewline\mobilesymbol~\@mobile}%
-    \ifthenelse{\isundefined{\@phone}}{}{\maketitledetailsnewline\phonesymbol~\@phone}%
-    \ifthenelse{\isundefined{\@fax}}{}{\maketitledetailsnewline\faxsymbol~\@fax}%
-    \ifthenelse{\isundefined{\@email}}{}{\maketitledetailsnewline\emailsymbol~\emaillink{\@email}}%
-    \ifthenelse{\isundefined{\@extrainfo}}{}{\maketitledetailsnewline\@extrainfo}%
-  \end{minipage}%
-  % optional photo
-  \ifthenelse{\isundefined{\@photo}}%
-    {}%
-    {\hspace*{\separatorcolumnwidth}{\color{firstnamecolor}\framebox{\includegraphics[width=\maketitlepicturewidth]{\@photo}}}}\\[3em]%
-  % optional quote
-  \ifthenelse{\isundefined{\@quote}}%
-    {}%
-    {\centering{\begin{minipage}{\quotewidth}\centering\quotestyle{\@quote}\end{minipage}}\\[2.5em]}%
-  }
+
+\if@left
+%aligne à gauche
+  \renewcommand*{\maketitle}{%
+    % optional photo
+    \ifthenelse{\isundefined{\@photo}}%
+      {}%
+      {{\color{firstnamecolor}\framebox{\includegraphics[width=\maketitlepicturewidth]{\@photo}}}\hspace*{\separatorcolumnwidth}}
+    % optional data
+    \begin{minipage}[b]{\maketitledetailswidth}%
+      \raggedright\addressfont\color{addresscolor}%
+      \ifthenelse{\isundefined{\@addressstreet}}{}{%
+	\maketitledetailsnewline%
+	\addresssymbol\@addressstreet%
+	\ifthenelse{\isundefined{\@addresscity}}{}{\\\@addresscity}}%
+      \ifthenelse{\isundefined{\@mobile}}{}{\maketitledetailsnewline\mobilesymbol~\@mobile}%
+      \ifthenelse{\isundefined{\@phone}}{}{\maketitledetailsnewline\phonesymbol~\@phone}%
+      \ifthenelse{\isundefined{\@fax}}{}{\maketitledetailsnewline\faxsymbol~\@fax}%
+      \ifthenelse{\isundefined{\@email}}{}{\maketitledetailsnewline\emailsymbol~\emaillink{\@email}}%
+      \ifthenelse{\isundefined{\@extrainfo}}{}{\maketitledetailsnewline\@extrainfo}%
+    \end{minipage}%
+    % name and title
+    \begin{minipage}[b]{\maketitlenamewidth}%
+      \firstnamestyle{\@firstname~}\familynamestyle{\@familyname}%
+      \ifthenelse{\equal{\@title}{}}{}{\\[1.25em]\titlestyle{\@title}}%
+    \end{minipage}\\[3em]%%
+    % optional quote
+    \ifthenelse{\isundefined{\@quote}}%
+      {}%
+      {\centering{\begin{minipage}{\quotewidth}\centering\quotestyle{\@quote}\end{minipage}}\\[2.5em]}%
+    }
+\else
+%   aligne a droite
+  \renewcommand*{\maketitle}{%
+    % name and title
+    \begin{minipage}[b]{\maketitlenamewidth}%
+      \firstnamestyle{\@firstname~}\familynamestyle{\@familyname}%
+      \ifthenelse{\equal{\@title}{}}{}{\\[1.25em]\titlestyle{\@title}}%
+    \end{minipage}%
+    % optional data
+    \begin{minipage}[b]{\maketitledetailswidth}%
+      \raggedleft\addressfont\color{addresscolor}%
+      \ifthenelse{\isundefined{\@addressstreet}}{}{%
+	\maketitledetailsnewline%
+	\addresssymbol~\@addressstreet%
+	\ifthenelse{\isundefined{\@addresscity}}{}{\\\@addresscity}}%
+      \ifthenelse{\isundefined{\@mobile}}{}{\maketitledetailsnewline\mobilesymbol~\@mobile}%
+      \ifthenelse{\isundefined{\@phone}}{}{\maketitledetailsnewline\phonesymbol~\@phone}%
+      \ifthenelse{\isundefined{\@fax}}{}{\maketitledetailsnewline\faxsymbol~\@fax}%
+      \ifthenelse{\isundefined{\@email}}{}{\maketitledetailsnewline\emailsymbol~\emaillink{\@email}}%
+      \ifthenelse{\isundefined{\@extrainfo}}{}{\maketitledetailsnewline\@extrainfo}%
+    \end{minipage}%
+    % optional photo
+    \ifthenelse{\isundefined{\@photo}}%
+      {}%
+      {\hspace*{\separatorcolumnwidth}{\color{firstnamecolor}\framebox{\includegraphics[width=\maketitlepicturewidth]{\@photo}}}}\\[3em]%
+    % optional quote
+    \ifthenelse{\isundefined{\@quote}}%
+      {}%
+      {\centering{\begin{minipage}{\quotewidth}\centering\quotestyle{\@quote}\end{minipage}}\\[2.5em]}%
+    }
+\fi
+
 
 
 \endinput
