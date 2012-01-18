@@ -760,48 +760,7 @@ public class Ville {
 \end{lstlisting}
 \flushbottom
 
-
-\subsection{Types de variables}
-
-Il y a deux principaux types de variables. 
-
-\subsubsection{Variable de classe}
-Tout d'abord les \gras[variable!de classe]{variables de classes}, qui sont définies dans la classe, avec l'attribut \gras{static}. Cette variable sera commune à toutes les instances de la classe. On déclare une variable de classe de la façon suivante :
-\begin{lstlisting}[language=java]
-public class Ville {
- 
-  /**
-   * Variable de classe
-   */
-  static String nomVille;
-\end{lstlisting}\index{static}
-
-\bigskip
-
-Pour accéder à une \gras{variable de classe} \textbf{var} (de la classe \textbf{Ville} par exemple) à l'intérieur même de celle-ci (ou une de ses instances), on y accède via :
-\begin{lstlisting}[language=java]
-Ville.var
-\end{lstlisting}
-
-\subsubsection{Variable d'instance}
-Il y a ensuite les \gras[variable!d'instance]{variables d'instance}, qui sont définies dans la classe. Cette variable \textbf{var} est accessible, à l'intérieur de la classe via \textbf{this.var} où \gras{this} désigne l'instance de classe. On défini une variable d'instance dans l'entête de la classe, de la façon suivante :
-\begin{lstlisting}[language=java]
-public class Ville {
- 
-  /**
-   * Variable d'instance
-   */
-  String nomVille;
-\end{lstlisting}
-
-Pour accéder à une variable d'instance à l'intérieur d'une instance, on procède de la façon suivante :
-\begin{lstlisting}[language=java]
-this.var
-\end{lstlisting}
-
-Pour y accéder depuis l'extérieur, il est conseillé de configurer des accesseurs \og getVariable()\fg, voir \refsec{sec:good_behavior} pour plus de détails. On peut créer des variables privées (notamment pour faire des variables locales) en rajoutant un attribu privé à une variable. Il est recommandé de définir ces variables avec l'attribut \gras{private} et de créer des \gras[accesseur]{accesseurs} et des \gras[mutateur]{mutateurs} afin de voir le contenu de la variable et de le modifier.
-
-\subsection{Mots clés}
+\subsection{Portée des variables}
 Lors de la déclaration de variables ou de méthodes, il y a plusieurs attributs possible, dont le type bien entendu (mais que je ne détaillerai pas ici). 
 
 \bigskip
@@ -821,21 +780,99 @@ L'un des attributs est la \textbf{portée} de la variable ou la méthode :
 \caption{Illustration de la portée des variables dans une classe}\label{fig:portee}
 \end{figure}
 
+\subsection{Variable de classe}
+Tout d'abord les \gras[variable!de classe]{variables de classes}, qui sont définies dans la classe, avec l'attribut \gras{static}. Cette variable sera commune à toutes les instances de la classe. On déclare une variable de classe de la façon suivante :
+\begin{lstlisting}[language=java]
+public class Ville {
+ 
+  /**
+   * Variable de classe
+   */
+  static String nomVille;
+\end{lstlisting}\index{static}
+
 \bigskip
 
-Le mot clé \gras{final} empêche la redéfinition, l'héritage ou la surcharge d'une méthode ou classe. Pour plus de détails, voir \refsec{sec:surcharge}.
+Pour accéder à une \gras[variable!de classe]{variable de classe} \textbf{var} (de la classe \textbf{Ville} par exemple) à l'intérieur même de celle-ci (ou une de ses instances), on y accède via :
+\begin{lstlisting}[language=java]
+Ville.var
+\end{lstlisting}
+
+\subsection{Méthode de classe}\label{sec:methode_classe}
+Toutes les \textbf{méthodes} d'une \textbf{classe} n'utilisant que des \gras[variable!de classe]{variables de classes} doivent être déclarées \gras{static} ! On les appelle des \textbf{méthodes de classes} car elles sont globales à toutes vos instances !
+
+\begin{remarque}
+Par contre ceci n'est plus vrai si une méthode utilise des variables d'instances et des variables de classes...
+\end{remarque}
+
+L'\gras{accesseur} d'une \gras[variable!de classe]{variable de classe} doit aussi être déclarée \gras{static}, c'est une règle !
+
+\subsection{Héritage}\index{héritage}\label{sec:heritage}
+L'\gras{héritage} permet de créer des classes filles d'une classe donnée. L'intérêt de l'héritage est que toutes les méthodes et variables créées pour la classe parente se retrouveront dans les classes filles. 
+
+\begin{lstlisting}[language=java]
+class Capitale extends Ville {
+ 
+private String president;
+ 
+ /**
+  *Constructeur par defaut
+  */
+  public Capitale(){
+    //Ce mot cle appelle le constructeur de la classe mere.  
+    super();
+    president = "aucun";
+  }
+}
+\end{lstlisting}\index{extends}
+
+Pour plus de détails sur \gras{super()} voir \refsec{sec:surcharge}. \refsec{sec:empecher_heritage} détaille comment empêcher l'héritage.
+
+\section{Les instances de classe}
+\subsection{Variable d'instance}
+Il y a ensuite les \gras[variable!d'instance]{variables d'instance}, qui sont définies dans la classe. Cette variable \textbf{var} est accessible, à l'intérieur de la classe via \textbf{this.var} où \gras{this} désigne l'instance de classe. On défini une variable d'instance dans l'entête de la classe, de la façon suivante :
+\begin{lstlisting}[language=java]
+public class Ville {
+ 
+  /**
+   * Variable d'instance
+   */
+  String nomVille;
+\end{lstlisting}
+
+Pour accéder à une variable d'instance à l'intérieur d'une instance, on procède de la façon suivante :
+\begin{lstlisting}[language=java]
+this.var
+\end{lstlisting}
+
+Pour y accéder depuis l'extérieur, il est conseillé de configurer des accesseurs \og getVariable()\fg, voir \refsec{sec:good_behavior} pour plus de détails. On peut créer des variables privées (notamment pour faire des variables locales) en rajoutant un attribu privé à une variable. Il est recommandé de définir ces variables avec l'attribut \gras{private} et de créer des \gras[accesseur]{accesseurs} et des \gras[mutateur]{mutateurs} afin de voir le contenu de la variable et de le modifier.
+
+\subsection{Méthodes d'instance}\label{sec:methode_instance}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\linewidth]{figures/method_scheme.pdf}
+\caption{Explication des différents attributs d'une méthode. Le but ici est de présenter à quoi correspond la syntaxe, sans présenter les différents choix possibles.}
+\end{figure}
+
+Les méthodes ne sont pas limitées en nombre de paramètres (s'il n'y a pas d'argument, il faut au minimum \og \texttt{String[] args}\fg.
+
+Il existe trois grands types de méthodes : 
+\begin{itemize}
+\item celles qui ne renvoient rien. Elles sont de type \gras{void}. Ces types de méthodes n'ont pas d'instruction \textbf{return} !
+\item celles qui retournent des types primitifs (\gras[type!double]{double}, \gras[type!int]{int}...). Elles sont de type \gras[type!double]{double}, \gras[type!int]{int}, \gras[type!char]{char}... Celles-ci ont une instruction \textbf{return}.
+\item celles qui retournent des objets. Par exemple, une méthode qui retourne un objet de type \gras[type!String]{String}. Celles-ci aussi ont une instruction \textbf{return}.
+\end{itemize}
 
 \bigskip
 
-Le mot-clé abstract permet de définir des classes abstraites \refsec{sec:classe_abstraite} ou des méthodes abstraites \refsec{sec:methode_abstraite}. Ces dernières sont utiles dans le cas d'un héritage, quand on souhaite uniquement définir les outils communs, sans qu'ils puissent être utilisés dans une classe parente commune.
+\begin{remarque}
+On n'imbrique pas les méthodes et elles doivent toutes faire partie d'une classe. 
+\end{remarque}
 
-\bigskip
-
-\gras{interface} permet de considérer une classe comme une interface. Plus de détails au \refsec{sec:interface}.
-
-\bigskip
-
-\gras{static} permet de définir une variable comme constante ou une méthode comme immuable. Je n'ai pas bien compris le détail, mais en gros, ça permet de définir des variables de classes. Pour le reste, lire la doc. %TODO expliquer mieux 'static'
+\begin{attention}
+Les méthodes de la classe \textbf{main}, c'est à dire la classe lancée par défaut au début du programme et qui contient le \gras{main()}, doivent être \gras{static}
+\end{attention}
 
 \subsection{Accéder aux méthodes et variables d'un objet}
 En règle générale, on appelle des méthodes ou des paramètres grâce à notre variable qui nous sert de référence, celle-ci suivie de l'opérateur ".", puis du nom de la dite méthode/variable.
@@ -859,6 +896,135 @@ public class Ville {
 }
 \end{lstlisting}
 où \textbf{this} désigne l'instance courante de l'objet (qui n'existe pas au moment de l'écriture du programme, mais qui existera quand le mot clé \textbf{this} aura besoin de pointer vers quelque chose. 
+
+
+\section{Les méthodes}
+Pour des infos sur les méthodes de classes (\refsec{sec:methode_classe}) et les méthodes d'instance (\refsec{sec:methode_instance}), se référer aux sections correspondantes.
+\subsection{La surcharge de méthode}\label{sec:surcharge}
+La surcharge de méthode consiste à garder un nom de méthode (donc un type de traitement à faire, pour nous, lister un tableau) et de changer la liste ou le type de ses paramètres.
+
+Nous allons surcharger notre méthode afin qu'elle puisse travailler avec des \textbf{int} par exemple :
+\begin{lstlisting}[language=java]
+static void parcourirTableau(String[] tab)
+  {
+     for(String str : tab)
+        System.out.println(str);
+  }
+        
+static void parcourirTableau(int[] tab)
+  {
+     for(int str : tab)
+        System.out.println(str);
+  }
+\end{lstlisting}
+
+On peut aussi faire de même avec les tableaux à 2 dimensions ou ajouter des paramètres à la méthode.
+
+\bigskip
+
+Le mot-clé \gras{super()} permet de faire appel à la version parente d'une méthode donnée que l'on souhaite surcharger. Ça signifie concrêtement que \gras{super()} va exécuter la version parente de la méthode en lieu et place du mot-clé. Ceci fonctionne bien entendu pour le constructeur, ce qui permet d'initialiser la classe parente de manière normale, tout en rajoutant l'initialisation des variables propre à la classe courante : 
+\begin{lstlisting}[language=java]
+class Capitale extends Ville {
+ 
+private String president;
+ 
+ /**
+  *Constructeur par defaut
+  */
+  public Capitale(){
+    //Ce mot cle appelle le constructeur de la classe mere.  
+    super();
+    president = "aucun";
+  }
+}
+\end{lstlisting}
+
+\begin{remarque}
+Dans le cas d'une méthode qui nécessite une variable, imaginez que \gras{super()} se comporte comme un alias. Il suffit de mettre en paramètre de \gras{super()} les valeurs que vous souhaitez : 
+\begin{lstlisting}[language=java]
+super(nom, hab, pays);
+\end{lstlisting}
+\end{remarque}
+
+Pour aller plus loin, voir \refsec{sec:empecher_heritage} pour apprendre comment empêcher la surcharge et l'héritage
+
+\subsection{Polymorphisme}\index{polymorphisme}
+Le \gras{polymorphisme}, c'est le fait qu'une même méthode soit implémentée dans plusieurs classes, autorisant cette méthode à être utilisée indifféremment sur plusieurs types d'objets. 
+
+\begin{attention}
+Il ne faut pas confondre le \gras{polymorphisme}, c'est à dire le fait de définir une même méthode avec un squelette identique (même nombre et type d'arguments) dans plusieurs classes avec la surcharge de méthodes, qui permet au sein d'une même classe de définir la même méthode plusieurs fois mais avec un nombre ou type d'argument différents.
+\end{attention}
+
+Le polymorphisme permet d'agir sur la classe mère, dans laquelle les méthodes sont définies, et agir indifféremment sur des objets de sous-classes ayant redéfini les méthodes de la classe mère. 
+
+\begin{remarque}
+L'utilisation d'\gras[interface]{interfaces} permet aussi d'utiliser le polymorphisme dans des classes non issues de la même classe mère (voir \refsec{sec:interface}).
+\end{remarque}
+
+\subsection{Méthode abstraite}\label{sec:methode_abstraite}
+Le mot-clé \gras{abstract} permet de créer une classe ou une méthode abstraite. Une méthode abstraite n'a pas de corps.
+
+\begin{lstlisting}[language=java]
+abstract class Animal{
+   abstract void manger();//une methode abstraite
+}
+\end{lstlisting}
+
+\begin{remarque}
+Une classe déclarée abstraite n'est plus instanciable, mais elle n'est nullement obligée d'avoir des méthodes abstraites ! En revanche, une classe ayant une méthode abstraite doit être déclarée abstraite ! 
+\end{remarque}
+
+\section{Les classes : avancé}
+\subsection{Empêcher la surcharge de méthode ou l'héritage}\label{sec:empecher_heritage}
+En déclarant le mot-clé \gras{final} comme attribut d'une méthode, on empêche la surchage de méthode. Ces méthodes sont figées et vous ne pourrez \textit{jamais} redéfinir une méthode déclarée \gras{final}. Un exemple de ce type de méthode est la méthode \textbf{getClass()} de la classe \textbf{Object}.
+
+\begin{remarque}
+Il existe aussi des classes déclarées \gras{final}. Vous avez compris que ces classes sont immuables... Et vous ne pouvez donc pas faire hériter un objet d'une classe déclarée \gras{final}.
+\end{remarque}
+
+\subsection{Super-classes non instantiables : Classe abstraite}\label{sec:classe_abstraite}
+Le mot-clé \gras{abstract} permet de créer une classe ou une méthode abstraite. Ça signifie concrêtement que la classe ne peut pas être instanciée. Elle n'est utile que pour définir des sous classes, ayant des méthodes ou attributs communs qu'on peut définir dans cette super-classe qui n'est pas utilisable en l'état.
+\begin{exemple}
+Imaginez une méta-classe abstraite \textbf{Animal} qui servirait à définir des sous classes \textbf{Chien}, \textbf{Chat}, \textbf{Lion}, \textbf{Ours} etc...
+\end{exemple}
+
+\begin{lstlisting}[language=java]
+abstract class Animal{
+ 
+}
+\end{lstlisting}
+
+Une telle classe peut avoir le même contenu qu'une classe normale. Ses enfants pourront utiliser tous ses éléments déclarés (attributs et méthodes) public. Cependant, ce type de classe permet de définir des méthodes abstraites, voir \refsec{sec:methode_abstraite}.
+
+\begin{remarque}
+Les classes abstraites sont à utiliser lorsque qu'une classe mère ne doit pas être instanciée.
+\end{remarque}
+
+\subsection{Compilations de définitions de méthodes : Interfaces}\label{sec:interface}\index{interface}
+Une \gras{interface} permet de définir le squelette (le nom de la méthode, le nombre et le type des arguments) de différentes méthodes généralistes. Ensuite, un peu comme un module, on appelle cette interface dans la classe voulue. On doit alors implémenter \textit{toutes} les méthodes définies dans l'interface.
+
+On définit une interface \textbf{I} de la façon suivante :
+\begin{lstlisting}[language=java]
+public interface I{
+ 
+   public void A();
+   public String B();
+ 
+}
+\end{lstlisting}
+
+On appelle une \gras{interface} \textbf{I} dans la classe \textbf{X}
+\begin{lstlisting}[language=java]
+public class X implements I{
+    public void A(){
+      //.......
+    }
+ 
+    public String B(){
+      //.......
+    }
+}
+\end{lstlisting}
 
 \subsection{Conversion d'objets}
 Il est possible, en particulier pour l'utilisation de certaines méthodes, de convertir des objets. Imaginons qu'on ait une classe \textbf{Ville}, définissant la méthode \textbf{.decrisToi()}, le code suivant est possible :
@@ -919,189 +1085,6 @@ for(Ville v : tableau){
   System.out.println(v.decrisToi()+"\n");
 }
 \end{lstlisting}
-
-
-\section{Les méthodes}
-\subsection{Méthodes d'instance}
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width=\linewidth]{figures/method_scheme.pdf}
-\caption{Explication des différents attributs d'une méthode. Le but ici est de présenter à quoi correspond la syntaxe, sans présenter les différents choix possibles.}
-\end{figure}
-
-Les méthodes ne sont pas limitées en nombre de paramètres (s'il n'y a pas d'argument, il faut au minimum \og \texttt{String[] args}\fg.
-
-Il existe trois grands types de méthodes : 
-\begin{itemize}
-\item celles qui ne renvoient rien. Elles sont de type \gras{void}. Ces types de méthodes n'ont pas d'instruction \textbf{return} !
-\item celles qui retournent des types primitifs (\gras[type!double]{double}, \gras[type!int]{int}...). Elles sont de type \gras[type!double]{double}, \gras[type!int]{int}, \gras[type!char]{char}... Celles-ci ont une instruction \textbf{return}.
-\item celles qui retournent des objets. Par exemple, une méthode qui retourne un objet de type \gras[type!String]{String}. Celles-ci aussi ont une instruction \textbf{return}.
-\end{itemize}
-
-\bigskip
-
-\begin{remarque}
-On n'imbrique pas les méthodes et elles doivent toutes faire partie d'une classe. 
-\end{remarque}
-
-\begin{attention}
-Les méthodes de la classe \textbf{main}, c'est à dire la classe lancée par défaut au début du programme et qui contient le \gras{main()}, doivent être \gras{static}
-\end{attention}
-
-\subsection{Méthode de classe}
-Toutes les \textbf{méthodes} d'une \textbf{classe} n'utilisant que des \gras{variables de classes} doivent être déclarées \gras{static} ! On les appelle des \textbf{méthodes de classes} car elles sont globales à toutes vos instances !
-
-\begin{remarque}
-Par contre ceci n'est plus vrai si une méthode utilise des variables d'instances et des variables de classes...
-\end{remarque}
-
-L'\gras{accesseur} d'une \gras{variable de classe} doit aussi être déclarée \gras{static}, c'est une règle !
-
-\subsection{La surcharge de méthode}\label{sec:surcharge}
-La surcharge de méthode consiste à garder un nom de méthode (donc un type de traitement à faire, pour nous, lister un tableau) et de changer la liste ou le type de ses paramètres.
-
-Nous allons surcharger notre méthode afin qu'elle puisse travailler avec des \textbf{int} par exemple :
-\begin{lstlisting}[language=java]
-static void parcourirTableau(String[] tab)
-  {
-     for(String str : tab)
-        System.out.println(str);
-  }
-        
-static void parcourirTableau(int[] tab)
-  {
-     for(int str : tab)
-        System.out.println(str);
-  }
-\end{lstlisting}
-
-On peut aussi faire de même avec les tableaux à 2 dimensions ou ajouter des paramètres à la méthode.
-
-\bigskip
-
-Le mot-clé \gras{super()} permet de faire appel à la version parente d'une méthode donnée que l'on souhaite surcharger. Ça signifie concrêtement que \gras{super()} va exécuter la version parente de la méthode en lieu et place du mot-clé. Ceci fonctionne bien entendu pour le constructeur, ce qui permet d'initialiser la classe parente de manière normale, tout en rajoutant l'initialisation des variables propre à la classe courante : 
-\begin{lstlisting}[language=java]
-class Capitale extends Ville {
- 
-private String president;
- 
- /**
-  *Constructeur par defaut
-  */
-  public Capitale(){
-    //Ce mot cle appelle le constructeur de la classe mere.  
-    super();
-    president = "aucun";
-  }
-}
-\end{lstlisting}
-
-\begin{remarque}
-Dans le cas d'une méthode qui nécessite une variable, imaginez que \gras{super()} se comporte comme un alias. Il suffit de mettre en paramètre de \gras{super()} les valeurs que vous souhaitez : 
-\begin{lstlisting}[language=java]
-super(nom, hab, pays);
-\end{lstlisting}
-\end{remarque}
-
-\section{Héritage}\index{héritage}\label{sec:heritage}
-L'\gras{héritage} permet de créer des classes filles d'une classe donnée. L'intérêt de l'héritage est que toutes les méthodes et variables créées pour la classe parente se retrouveront dans les classes filles. 
-
-\begin{lstlisting}[language=java]
-class Capitale extends Ville {
- 
-private String president;
- 
- /**
-  *Constructeur par defaut
-  */
-  public Capitale(){
-    //Ce mot cle appelle le constructeur de la classe mere.  
-    super();
-    president = "aucun";
-  }
-}
-\end{lstlisting}\index{extends}
-
-Pour plus de détails sur \gras{super()} voir \refsec{sec:surcharge}.
-
-\subsection{Polymorphisme}\index{polymorphisme}
-Le \gras{polymorphisme}, c'est le fait qu'une même méthode soit implémentée dans plusieurs classes, autorisant cette méthode à être utilisée indifféremment sur plusieurs types d'objets. 
-
-\begin{attention}
-Il ne faut pas confondre le \gras{polymorphisme}, c'est à dire le fait de définir une même méthode avec un squelette identique (même nombre et type d'arguments) dans plusieurs classes avec la surcharge de méthodes, qui permet au sein d'une même classe de définir la même méthode plusieurs fois mais avec un nombre ou type d'argument différents.
-\end{attention}
-
-Le polymorphisme permet d'agir sur la classe mère, dans laquelle les méthodes sont définies, et agir indifféremment sur des objets de sous-classes ayant redéfini les méthodes de la classe mère. 
-
-\begin{remarque}
-L'utilisation d'\gras[interface]{interfaces} permet aussi d'utiliser le polymorphisme dans des classes non issues de la même classe mère (voir \refsec{sec:interface}).
-\end{remarque}
-
-\section{Les classes : avancé}
-\subsection{Empêcher la surcharge de méthode ou l'héritage}
-En déclarant le mot-clé \gras{final} comme attribut d'une méthode, on empêche la surchage de méthode. Ces méthodes sont figées et vous ne pourrez \textit{jamais} redéfinir une méthode déclarée \gras{final}. Un exemple de ce type de méthode est la méthode \textbf{getClass()} de la classe \textbf{Object}.
-
-\begin{remarque}
-Il existe aussi des classes déclarées \gras{final}. Vous avez compris que ces classes sont immuables... Et vous ne pouvez donc pas faire hériter un objet d'une classe déclarée \gras{final}.
-\end{remarque}
-
-\subsection{Super-classes non instantiables : Classe abstraite}\label{sec:classe_abstraite}
-Le mot-clé \gras{abstract} permet de créer une classe ou une méthode abstraite. Ça signifie concrêtement que la classe ne peut pas être instanciée. Elle n'est utile que pour définir des sous classes, ayant des méthodes ou attributs communs qu'on peut définir dans cette super-classe qui n'est pas utilisable en l'état.
-\begin{exemple}
-Imaginez une méta-classe abstraite \textbf{Animal} qui servirait à définir des sous classes \textbf{Chien}, \textbf{Chat}, \textbf{Lion}, \textbf{Ours} etc...
-\end{exemple}
-
-\begin{lstlisting}[language=java]
-abstract class Animal{
- 
-}
-\end{lstlisting}
-
-Une telle classe peut avoir le même contenu qu'une classe normale. Ses enfants pourront utiliser tous ses éléments déclarés (attributs et méthodes) public. Cependant, ce type de classe permet de définir des méthodes abstraites, voir \refsec{sec:methode_abstraite}.
-
-\begin{remarque}
-Les classes abstraites sont à utiliser lorsque qu'une classe mère ne doit pas être instanciée.
-\end{remarque}
-
-\subsection{Compilations de définitions de méthodes : Interfaces}\label{sec:interface}\index{interface}
-Une \gras{interface} permet de définir le squelette (le nom de la méthode, le nombre et le type des arguments) de différentes méthodes généralistes. Ensuite, un peu comme un module, on appelle cette interface dans la classe voulue. On doit alors implémenter \textit{toutes} les méthodes définies dans l'interface.
-
-On définit une interface \textbf{I} de la façon suivante :
-\begin{lstlisting}[language=java]
-public interface I{
- 
-   public void A();
-   public String B();
- 
-}
-\end{lstlisting}
-
-On appelle une \gras{interface} \textbf{I} dans la classe \textbf{X}
-\begin{lstlisting}[language=java]
-public class X implements I{
-    public void A(){
-      //.......
-    }
- 
-    public String B(){
-      //.......
-    }
-}
-\end{lstlisting}
-
-\subsection{Méthode abstraite}\label{sec:methode_abstraite}
-Le mot-clé \gras{abstract} permet de créer une classe ou une méthode abstraite. Une méthode abstraite n'a pas de corps.
-
-\begin{lstlisting}[language=java]
-abstract class Animal{
-   abstract void manger();//une methode abstraite
-}
-\end{lstlisting}
-
-\begin{remarque}
-Une classe déclarée abstraite n'est plus instanciable, mais elle n'est nullement obligée d'avoir des méthodes abstraites ! En revanche, une classe ayant une méthode abstraite doit être déclarée abstraite ! 
-\end{remarque}
 
 \section{Eclipse}
 Il est impossible de faire un tutoriel Java sans s'attarder sur Eclipse, excellent logiciel pour coder en Java et qui facilite vraiment la vie des développeurs.
