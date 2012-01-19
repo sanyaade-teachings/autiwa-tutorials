@@ -1600,16 +1600,37 @@ int j=0, multiplication, entree=3;
 
 On peut modifier, via des options, l'affichage du code, les mots spéciaux et cie. Voici ce que je donne comme option à la suite de la déclaration du paquet :
 \begin{verbatim}
-\lstset{language=c++,columns=flexible,caption=\lstname,%
-numbers=left,stepnumber=1,numberfirstline=true,%
-rangeprefix=//*,rangesuffix=*//,includerangemarker=false,%
-keywordstyle=\color{blue}\bfseries,identifierstyle=\color{red}\bfseries,%
-commentstyle=\color{darkgray},showstringspaces=false}
-\usepackage{moreverb}
+\lstset{%
+%Basic Appearance%
+  basicstyle=\footnotesize\ttfamily,
+  commentstyle=\itshape\color{gray},
+  keywordstyle=\color{purple}\bfseries,
+  stringstyle=\color{blue}\rmfamily,
+%Basic Layout%
+  tabsize=4,
+  showtabs=false,
+  showspaces=false,
+  showstringspaces=false,
+%Numbering%
+  numbers=left,
+  stepnumber=1,
+  numberstyle=\scriptsize,
+  numbersep=5pt,
+%Margins%
+  xleftmargin=0.02\textwidth,
+  xrightmargin=0.02\textwidth,
+  breaklines=true,
+%Frame%
+  frame=leftline,
+  framerule=0.5pt,
+  rulecolor=\color{purple},
+  framexleftmargin=0em,
+%Captions, Index, and so on passed as arguments%
+  }
 \end{verbatim}
 
 \begin{remarque}
-Il faut faire attention à ne pas trop modifier les choses. En particulier le caractère d'échappement pour pouvoir faire du \LaTeX. Ça peut donner des erreurs de compilation suivant les caractères qu'on met dans l'environnement \texttt{lstlisting}.
+Il faut faire attention à ne pas trop modifier les choses. En particulier le caractère d'échappement pour pouvoir faire du \LaTeX. Ça peut donner des erreurs de compilation suivant les caractères qu'on met dans l'environnement \gras[environnement!lstlisting]{lstlisting}.
 \end{remarque}
 
 
@@ -1617,7 +1638,8 @@ L'extension \gras[package!listings]{listings} permet de mettre du code source. O
 
 Le code source est placé dans un environnement \gras[environnement!lstlisting]{lstlisting} ; la mise en forme stricte (y compris les espaces et les retours de ligne) est respectée, et les commandes \LaTeX{} ne sont pas interprétées.
 
-On définit le langage ainsi qu'un caractère d'échappement juste après l'appel de l'extension :
+\subsubsection{Options spécifiques pour un language}
+On peut définir ou redéfinir un langage ainsi qu'un caractère d'échappement juste après l'appel de l'extension :
 \begin{lstlisting}[language={TeX}]
 \usepackage{listings}
 \lstset{language=TeX,
@@ -1625,8 +1647,6 @@ On définit le langage ainsi qu'un caractère d'échappement juste après l'appe
    columns=flexible,
    escapechar=+}
 \end{lstlisting}
-
-
 
 Dans l'exemple ci-dessus, on indique :
 
@@ -1645,22 +1665,9 @@ Le texte compris entre deux caractères d'échappement est interprété par \LaT
 \end{lstlisting}
 \end{example}
 
+La séquence \verb|{\large| et le \verb|}| final seront imprimés tels quels, tandis que le \verb|\emph{Texte en corps plus| \verb|grand}| sera interprété (on aura donc le contenu du bloc en italique). Il faut évidemment choisir un caractère d'échappement qui ne sera pas dans le code.
 
-
-la séquence \verb|{\large| et le \verb|}| final seront imprimés tels quels, tandis que le \verb|\emph{Texte en corps plus| \verb|grand}| sera interprété (on aura donc le contenu du bloc en italique). Il faut évidemment choisir un caractère d'échappement qui ne sera pas dans le code.
-
-On peut mettre du code au sein d'un texte, avec la commande \verb|\lstinlinec\dots c|. Le c indique un caractère qui marque le début et la fin du code ; il peut être choisi arbitrairement, mais ne doit évidemment pas faire partie du code. Par exemple
-
-Pour mettre du texte en emphase,
-on utilise la commande \verb|\lstinline-\emph-|.
-
-Un grand nombre de langages sont disponibles : Pascal, Fortran, Basic, C, C++, Ada, Scilab, HTML, Java, ? On peut indiquer des variantes, par exemple
-
-\begin{verbatim}
-\lstset{language=[95]Ada}
-\lstset{language=[Visual]C++}
-\lstset{language=[77]Fortran}
-\end{verbatim}
+\bigskip
 
 On peut aussi indiquer les options lors de l'appel de l'environnement \gras[environnement!lstlisting]{lstlisting} :
 
@@ -1669,7 +1676,34 @@ On peut aussi indiquer les options lors de l'appel de l'environnement \gras[envi
 \dots
 \end{lstlisting}
 \end{verbatim}
-%\end{lstlisting}Cette ligne est uniquement là pour corriger un "bug" de coloration syntaxique de Kile. Elle ne sert à rien dans l'absolu.
+
+\subsubsection{Continuer la numérotation entre deux bouts de code}
+Avec listings, il est possible de continuer la numérotation si on le souhaite. Il y a des options générales, que l'on peut définir dans \texttt{lstset}, mais on peut aussi le faire de la façon suivante :
+\begin{verbatim}
+\begin{lstlisting}[language=bash, name=script]
+#############################
+
+# modules cleaning
+. /etc/profile.d/modules.sh
+module purge
+
+#############################
+\end{lstlisting}
+
+\begin{lstlisting}[language=bash, name=script]
+#############################
+
+# What you actually want to launch
+echo "Hello World" 
+sleep 1m # fake to work
+
+# all done
+echo "Job finished" 
+\end{lstlisting}
+\end{verbatim}
+
+En spécifiant un \textbf{nom} pour le bout de code, on peut signifier que deux bouts de codes ont le même nom et font donc partie du même code source, la numérotation continuera donc.
+
 
 \subsubsection{code source matlab}\index{matlab!afficher du code source}
 Tout d'abord, il faut télécharger le paquet \\
@@ -1872,6 +1906,34 @@ Pour mettre la table des matières au début, j'utilise
 \bigskip
 
 Il est possible d'afficher du texte petit à petit, et de faire plein d'autres choses. je vous conseille d'aller voir la documentation de \gras{beamer} qui est très complète.
+
+\subsection{Utiliser des environnements verbatim dans une page}
+Par défaut, vous obtiendrez des erreurs de compilation. Il faut utiliser l'option suivante dans la page qui vous intéresse afin de pouvoir utiliser des environnements verbatim (\gras{environnement!lstlisting} compris) :
+\begin{lstlisting}[{language=tex}]
+\begin{frame}[containsverbatim]
+\begin{verbatim}
+#############################
+
+# What you actually want to launch
+echo "Hello World" 
+sleep 1m # fake to work
+
+# all done
+echo "Job finished" 
+\end{verbatim}
+
+\end{frame}
+\end{lstlisting}
+
+\subsection{Mise en valeur d'info : alertes}
+On peut mettre des exemples, des alertes et autres via des environnements disponibles par défaut :
+\begin{lstlisting}[{language=tex}]
+\begin{alertblock}{titre}
+Information a mettre en valeur.
+\end{alertblock}
+\end{lstlisting}
+
+
 
 \section{Faire une bibliographie}\index{bibliographie}
 
