@@ -512,6 +512,24 @@ Il est possible de convertir une liste en tuple via la commande \texttt{tuple}
 (1, 2, 3)
 \end{lstlisting}
 
+\subsection{Sélectionner une partie d'une liste}
+Il est possible de prendre une partie de liste :
+\begin{lstlisting}[language=python]
+>>> t = range(5)
+>>> t
+[0, 1, 2, 3, 4]
+>>> t[1:3]
+[1, 2]
+\end{lstlisting}
+
+\begin{attention}
+À partir d'une liste d'indice \texttt{[i:j]}, python retourne les éléments allant de $i$ à $j-1$. Ainsi pour une liste de $n$ éléments, aux indices allant de $0$ à $n-1$, pour avoir la liste complète en spécifiant les indices il faut faire :
+\begin{lstlisting}[language=python]
+>>> liste[0:n]
+[0, ..., n-1]
+\end{lstlisting}
+\end{attention}
+
 
 \subsection{List-comprehension}\index{list-comprehension}
 Cette technique permet d'agir sur les listes très simplement et très rapidement. Dans bien des cas (pour ne pas dire tous), cette méthode sera plus rapide que l'équivalent avec une boucle :
