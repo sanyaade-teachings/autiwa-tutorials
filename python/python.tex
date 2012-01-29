@@ -689,6 +689,16 @@ et l'afficher à l'écran
 pl.show()
 \end{lstlisting}
 
+\subsection{Ajouter du texte}
+\begin{lstlisting}[language=python]
+pl.text(x, y, "mon texte")
+\end{lstlisting}
+permet d'ajouter du texte en spécifiant les coordonnées dans les unités des axes, tandis que
+\begin{lstlisting}[language=python]
+pl.figtext(x, y, "mon texte")
+\end{lstlisting}
+permet de spécifier les coordonnées en unités absolues de la figure, c'est à dire que (0,0) correspond au coin en bas à gauche, et (1, 1) au coin en haut à droite de la fenêtre graphique.
+
 \subsection{Exporter un graphique}
 Pour exporter la figure courante, il suffit de faire :
 \begin{lstlisting}[language=python]
@@ -938,6 +948,15 @@ ou
 t2 = t1[:]
 \end{lstlisting}
 
+\subsection{Supprimer toutes les occurences d'un caractère dans une chaine}
+Il existe une méthode particulière de \textbf{String} qui peut être utilisée pour faire celà. Par défaut, cette méthode permet de faire des remplacements de caractères, et optionnellement d'en supprimer certains, mais dans le cas présent, on ne fait que supprimer des caractères : 
+\begin{lstlisting}[language=python]
+>>> test = "toto"
+>>> test.translate(None, 'o')
+'tt'
+>>> print(test)
+'toto'
+\end{lstlisting}
 
 \subsection{Tester si une variable existe}
 \begin{lstlisting}[language=python]
