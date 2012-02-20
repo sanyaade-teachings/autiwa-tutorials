@@ -713,24 +713,30 @@ pl.savefig('ma_figure.pdf')
 \begin{lstlisting}[language=python]
 pl.figure(1)
 
+# 2 lignes, 3 colonnes pour les subplots
+# Le 3e indice sert juste a positionner le subplot dans la matrice ainsi creee
+
 # en haut a gauche
-pl.subplot(221)
+pl.subplot(231)
+pl.plot(x,y)
+
+#en haut au milieu
+pl.subplot(232)
 pl.plot(x,y)
 
 #en haut a droite
-pl.subplot(222)
+pl.subplot(233)
 pl.plot(x,y)
 
 #en bas a gauche
-pl.subplot(223)
+pl.subplot(234)
 pl.plot(x,y)
 
-#en bas a droite
-pl.subplot(224)
-pl.plot(x,y)
+#[...]
 
 pl.show()
 \end{lstlisting}
+
 
 \subsection{Personnalisations diverses}
 
