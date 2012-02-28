@@ -2298,6 +2298,27 @@ Pour extraire chapitre par chapitre, voir le script \textbf{dvdchapter2vob.sh} (
 
 Pour encoder, voir l'astuce \refsec{sec:encoder_DVD}.
 
+\subsubsection{Extraire les sous-titres d'un fichier .mkv}
+Il faut d'abord connaître l'ID du fichier de sous-titre à l'intérieur du fichier .mkv : 
+\begin{verbatim}
+$ mkvmerge -I movie.mkv
+File 'movie.mkv': container: Matroska [duration:7753608000000]
+Track ID 1: subtitles (S_TEXT/UTF8) 
+[language:und default_track:1 forced_track:0]
+Track ID 2: video (V_MPEG4/ISO/AVC) 
+[language:und display_dimensions:1280x544 default_track:1
+forced_track:0 packetizer:mpeg4_p10_video]
+Track ID 3: audio (A_AAC) [language:und default_track:1 forced_track:0]
+Chapters: 1 entries
+\end{verbatim}
+
+Ici, c'est le premier ID. On adapte en conséquence et on extrait l'ID numéro 1 pour le stocker dans le fichier de notre choix, que j'appelle \textbf{subtitle.srt} dans mon cas : 
+\begin{verbatim}
+mkvextract tracks "movie.mkv" 1:subtitles.srt
+\end{verbatim}
+
+
+
 \subsection{Mettre de la couleur dans la console}
 Pour ajouter de la couleur à votre terminal, éditez votre fichier \verb|~/.bashrc| (\verb|gedit ~/.bashrc|) :
 \begin{itemize}
