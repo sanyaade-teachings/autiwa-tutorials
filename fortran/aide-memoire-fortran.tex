@@ -544,6 +544,77 @@ Même si on peut afficher un nombre avec autant de positions qu'on veut, c'est j
 \caption{Liste des formats (je ne sais pas s'ils sont tous là, mais les plus courants en tout cas) d'affichage de variables. Ils sont utiles pour créer un format, qui doit être de la forme suivante \texttt{'(F,F\dots)'} où $F$ est un format quelconque du tableau ci-dessus. Il est possible de dire qu'on plusieurs fois le même format en le préfixant par un nombre d'occurence.}\label{tab:formats}
 \end{table}
 
+Voici ci-dessous un exemple d'utilisation dans un cas pratique, l'écriture d'un fichier de sortie \textbf{disk.out} qui écrit les différents paramètres d'un programme : 
+\begin{lstlisting}[language=Fortran]
+open(10, file='disk.out')
+
+write(10,*) '------------------------------------'
+write(10,*) '|   Properties of the disk         |'
+write(10,*) '------------------------------------'
+write(10,'(a,f4.2)') 'b/h = ',B_OVER_H
+write(10,'(a,f4.2)') 'adiabatic index = ', ADIABATIC_INDEX
+write(10,'(a,f4.2)') 'mean molecular weight = ', MEAN_MOLECULAR_WEIGHT
+write(10,'(a,es10.1e2,a)') 'viscosity = ', viscosity, ' (cm^2/s)'
+write(10,'(a,f6.1,a,f4.2 ,a)') 'initial surface density = ',INITIAL_SIGMA_0, ' * R^(-',INITIAL_SIGMA_INDEX,') (g/cm^2)'
+write(10,*) ''
+write(10,*) "Possible values : 'open', 'closed'"
+write(10,*) 'inner boundary condition = ', trim(INNER_BOUNDARY_CONDITION)
+write(10,*) 'outer boundary condition = ', trim(OUTER_BOUNDARY_CONDITION)
+write(10,*) ''
+write(10,'(a,f6.1,a)') 'inner edge of the disk = ',INNER_BOUNDARY_RADIUS, ' (AU)'
+write(10,'(a,f6.1,a)') 'outer edge of the disk = ',OUTER_BOUNDARY_RADIUS, ' (AU)'
+write(10,*) ''
+write(10,*) 'Possible values : 0 for no dissipation, 1 for viscous dissipation and 2 for exponential decay of the initial profile'
+write(10,'(a,i1)') 'dissipation of the disk = ',DISSIPATION_TYPE
+write(10,'(a,es10.1e2)') 'characteristic time for decay (only valid for exponential decay) = ',TAU_DISSIPATION
+write(10,*) ''
+write(10,*) '------------------------------------'
+write(10,*) '|     Interactions disk/planets     |'
+write(10,*) '------------------------------------'
+write(10,*) 'when the inclination damping stops'
+write(10,'(a,es10.1e2,a)') 'inclination cutoff = ',INCLINATION_CUTOFF, ' (rad)'
+write(10,*) ''
+write(10,*) "Possible values : 'real', 'mass_independant', 'mass_dependant'"
+write(10,*) 'torque type = ', trim(TORQUE_TYPE)
+write(10,*) ''
+
+close(10)
+\end{lstlisting}
+qui donne le résultat suivant :
+\begin{verbatim}
+ ------------------------------------
+ |   Properties of the disk         |
+ ------------------------------------
+b/h = 0.40
+adiabatic index = 1.40
+mean molecular weight = 2.35
+viscosity =    1.0E+15(cm^2/s)
+surface density =  450.0 * R^(-0.50) (g/cm^2)
+
+ Possible values : 'open', 'closed'
+ inner boundary condition = closed
+ outer boundary condition = closed
+
+inner edge of the disk =    1.0(AU)
+outer edge of the disk =  100.0(AU)
+
+ Possible values : 0 for no dissipation, 1 for viscous 
+dissipation and 2 for exponential decay of the initial profile
+dissipation of the disk = 1
+characteristic time for decay (only valid for exponential decay) =   -1.0E+00
+
+ ------------------------------------
+ |     Interactions disk/planets     |
+ ------------------------------------
+ when the inclination damping stops
+inclination cutoff =    5.0E-04(rad)
+
+ Possible values : 'real', 'mass_independant', 'mass_dependant'
+ torque type = mass_dependant
+\end{verbatim}
+
+
+
 \section{Les tableaux}
 \subsection{Déclaration des tableaux}
 Un tableau est un ensemble ordonné d'éléments de même type. Chaque élément du tableau est repéré par un indice qui précise sa position au sein du tableau. Cet indice est entier. La déclaration des tableaux s'effectue comme suit :
