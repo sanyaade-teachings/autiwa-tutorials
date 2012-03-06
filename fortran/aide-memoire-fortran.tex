@@ -1453,6 +1453,90 @@ type(COULEUR), parameter :: coul = couleur('rouge', (/ 1.,0.,0. /))
 
 
 \section{Astuces et petits bouts de code}
+\subsection{Allouer une variable dynamique dans une subroutine}
+Voici un bout de code, qui ne s'intéresse pas à la rapidité d'exécution (il y a peut-être mieux) mais qui montre ce qu'il est possible de faire avec des variables dynamiques. Ici, on définit des tableaux dont on ne connait pas la taille, on lit un fichier pour déterminer le nombre d'élément qu'il nous faut, et on définit les éléments du tableau. Tout ça est fait dans une subroutine qui passe ensuite les tableaux au programme principal : 
+\begin{lstlisting}[language=Fortran]
+program resultant_torque
+  use types_numeriques
+    
+  implicit none
+  
+  real(double_precision), dimension(:), allocatable :: semi_major_axis
+
+  call read_element_out(semi_major_axis=semi_major_axis)
+  write(*,*) semi_major_axis
+  
+  contains
+  
+  subroutine read_element_out(semi_major_axis)
+  ! subroutine that get properties of the planets from the file element.out
+  
+  implicit none
+  
+  character(len=80) :: line
+  character(len=8) :: name
+  integer :: error ! to store the state of a read instruction
+  real(double_precision) :: value1
+  real(double_precision), dimension(:), allocatable, intent(out) :: semi_major_axis
+  integer :: nb_planets
+  
+  logical :: isDefined
+  
+  ! For loops
+  integer :: i
+  !------------------------------------------------------------------------------
+  
+  inquire(file='element.out', exist=isDefined)
+  if (isDefined) then
+  
+    open(10, file='element.out', status='old')
+    
+    ! We read the header. There the time in there, but we do not need it for the moment
+    do i=1,5
+      read(10, '(a80)', iostat=error), line
+    end do
+    
+    nb_planets = 0
+    do 
+      read(10, *, iostat=error), line
+      if (error.eq.0) then
+        nb_planets = nb_planets + 1
+      else
+        exit
+      end if
+    end do
+
+    ! Once we have the number of planets, we rewind the file and read again
+    rewind(unit=10, iostat=error)
+    
+    ! We allocate the array now we know its desired size
+    allocate(semi_major_axis(nb_planets))
+    
+    ! We skip the header
+    do i=1,5
+      read(10, '(a80)', iostat=error), line
+    end do
+    
+    i=1
+    do
+      read(10, *, iostat=error), name, value1
+      if (error /= 0) exit
+      semi_major_axis(i) = value1
+      i = i + 1
+    
+    end do
+  else
+    write(*,*) 'Error: the file "element.out" does not exist'
+  end if
+  
+  end subroutine read_element_out
+
+end program resultant_torque
+\end{lstlisting}
+La \textbf{subroutine} \texttt{read\_element\_out} va lire dans un premier temps le fichier (sans tenir compte du header de 5 lignes) afin de déterminer le nombre de lignes utiles, et donc le nombre d'élément qu'aura notre tableau. Puis, il alloue la place nécessaire au tableau et enfin il stocke les éléments, un par un.
+
+À noter que \texttt{read\_element\_out} affiche une erreur si le fichier nécessaire n'existe pas (dans le cas présent, le fichier \textbf{element.out}).
+
 \subsection{Lire un fichier de longueur inconnue}
 Pour lire un fichier dont on ne connait pas le nombre de lignes : 
 \begin{lstlisting}[language=Fortran]
@@ -1649,7 +1733,6 @@ end if
 où \texttt{time} est mon tableau princpal, contenant la valeur des pas de temps et \texttt{time\_temp} le tableau tampon me permettant de stocker les valeurs de \texttt{time} pendant que je l'agrandis.
 
 Je définis \texttt{time\_size} (la taille du tableau \texttt{time}) comme étant égal à 512 au départ. Doubler la taille du tableau à chaque fois permet de limiter les réallocations qui sont coûteuses en temps. 
-
 
 \section{Optimisation}
 \subsection{Comparaison f77/f90}
