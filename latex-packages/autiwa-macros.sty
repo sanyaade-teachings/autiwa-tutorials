@@ -132,10 +132,15 @@
 \newcommand{\source}[1]{\textit{source} : #1}
 \newcommand{\reference}[1]{\textit{Référence :} #1}
 
-\renewcommand{\refeq}[1]{(\ref{#1})}
-\newcommand{\reffig}[1]{[\figurename~\ref{#1}, p\pageref{#1}]}
-\newcommand{\reftab}[1]{[\tablename~\ref{#1}, p\pageref{#1}]}
-\newcommand{\refsec}[1]{[\S~\ref{#1}, p\pageref{#1}]}
+\RequirePackage{varioref}
+\renewcommand{\refeq}[1]{(\vref{#1})}
+\newcommand{\reffig}[1]{[\figurename~\vref{#1}]}
+\newcommand{\reftab}[1]{[\tablename~\vref{#1}]}
+\newcommand{\refsec}[1]{[\S~\vref{#1}]}
+% \newcommand{\reffig}[1]{[\figurename~\vref{#1}, p\pageref{#1}]}
+% \newcommand{\reftab}[1]{[\tablename~\vref{#1}, p\pageref{#1}]}
+% \newcommand{\refsec}[1]{[\S~\vref{#1}, p\pageref{#1}]}
+%TODO regarder varioref.sty pour faire des versions plus jolies des références, qui tiennent compte de la position de la référence par rapport à la figure.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Nouvelles fonctions pour le mode mathématique

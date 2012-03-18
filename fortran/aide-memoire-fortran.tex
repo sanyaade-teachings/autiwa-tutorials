@@ -613,6 +613,19 @@ inclination cutoff =    5.0E-04(rad)
  torque type = mass_dependant
 \end{verbatim}
 
+\begin{remarque}
+Vous pourrez remarquer que certaines lignes ont un espace au début, pas forcément très joli. C'est dû à l'utilisation d'un format \texttt{*}.
+
+Afin de contourner ce problème, on doit spécifier explicitement le format. Au lieu d'utiliser : 
+\begin{verbatim}
+write(10,*) '------------------------------------'
+\end{verbatim}
+on doit donc utiliser 
+\begin{verbatim}
+write(10,'(a)') '------------------------------------'
+\end{verbatim}
+\end{remarque}
+
 
 
 \section{Les tableaux}
@@ -1734,322 +1747,6 @@ où \texttt{time} est mon tableau princpal, contenant la valeur des pas de temps
 
 Je définis \texttt{time\_size} (la taille du tableau \texttt{time}) comme étant égal à 512 au départ. Doubler la taille du tableau à chaque fois permet de limiter les réallocations qui sont coûteuses en temps. 
 
-\section{Optimisation}
-\subsection{Comparaison f77/f90}
-\subsection{Profiling}
-Avant d'essayer de rendre le code plus rapide, il faut en premier lieu trouver quelles parties du code le ralentissent et dans lesquelles il va être rentable de passer le temps d'optimisation.
-
-Profiler le temps d'exécution d'un code fortran peut être fait en ajoutant l'option de compilation \texttt{-pg} : 
-\begin{verbatim}
-gfortran -g -pg -o myprog myprog.f90
-\end{verbatim}
-
-\begin{remarque}
-Certains compilateurs, en particulier les vieux, ne vont pas autoriser les options d'optimisation si l'option \texttt{-g} est présente, et même s'ils optimisent, ça pourrait donner des résultats de profiling flous et difficiles à interpréter. 
-
-Il vaut donc mieux éviter les options d'optimisation quand on compile pour profiler. 
-\end{remarque}
-
-Ensuite, exécutez normalement votre programme
-\begin{verbatim}
-./myprog
-\end{verbatim}
-mais il faut quand même faire attention à avoir les droits d'écriture dans le dossier d'exécution afin de pouvoir écrire le fichier de résultat du profiling, appelé \textbf{gmon.out}. 
-
-\bigskip
-
-Vous pouvez maintenant avoir les information de profiling en utilisant \textbf{gprof} :
-\begin{verbatim}
-gprof myprog gmon.out
-\end{verbatim}
-
-\begin{remarque}
-Si vous voulez une analyse ligne par ligne plutôt que fonction par fonction, il vous suffit (tant que vous avez compilé le programme avec l'option \texttt{-g}), d'utiliser l'option \texttt{--line} :
-\begin{verbatim}
-gprof --line myprog gmon.out
-\end{verbatim}
-\end{remarque}
-
-L'exécution de \textbf{gprof} va produire deux parties d'output, un \textit{flat profile} et un \textit{call graph}.
-\subsubsection{flat profile}
-Le flat profile ressemble à ça : 
-\begin{verbatim}
-Flat profile:
-
-Each sample counts as 0.01 seconds.
-  %   cumulative   self              self     total           
- time   seconds   seconds    calls  ms/call  ms/call  name    
- 32.08      0.17     0.17     1488     0.11     0.14  __algo_mvs_MOD_mdt_mvs
- 28.30      0.32     0.15        1   150.01   530.02  MAIN__
- 16.98      0.41     0.09      477     0.19     0.34  __algo_radau_MOD_mdt_ra15
- 13.21      0.48     0.07     7254     0.01     0.01  __forces_MOD_mfo_grav
-  7.55      0.52     0.04     1634     0.02     0.02  __algo_mvs_MOD_mfo_mvs
-  1.89      0.53     0.01     1428     0.01     0.01  __drift_MOD_drift_kepu_lag
-  0.00      0.53     0.00    61641     0.00     0.00  __drift_MOD_drift_kepu_stumpff
-\end{verbatim}
-
-Ce dernier liste les sections du programme (que ce soit les fonctions ou les lignes, selon que vous utilisez ou non l'option \texttt{--line}) par ordre du temps CPU utilisé, le premier étant celui qui en utilise le plus. Chaque ligne vous donne : 
-\begin{enumerate}
-\item le pourcentage de CPU utilisé par cette section
-\item le temps cumulé utilisé par cette section et toutes celles qui sont en dessous dans la liste
-\item le nombre de seconde passés dans cette section
-\item [si cette section est une fonction] : 
-\begin{enumerate}
-\item le nombre d'appel de cette fonction dans le programme
-\item le temps moyen passé dans la fonction, par appel
-\item le temps moyen passé dans la fonction, ou une des fonctions qu'elle appelle, par appel
-\end{enumerate}
-\item le nom de la fonction.
-\end{enumerate}
-
-\begin{remarque}
-Si vous avez compilé avec l'option \texttt{-g} et l'option \texttt{--line} pour \textbf{gprof}, alors le nom de la fonction incluera aussi le nom du fichier source et le numéro de ligne. 
-
-Le \textbf{flat profile} est suivi d'une explication de ce que signifie chaque champ.
-\end{remarque}
-
-\subsubsection{call graph}
-Le \textbf{call graph} fournit les mêmes informations que le \textbf{flat profile}, mais organisation de façon à ce qu'il reflète la structure du programme. 
-
-\begin{verbatim}
-		     Call graph (explanation follows)
-
-
-granularity: each sample hit covers 2 byte(s) for 1.89% of 0.53 seconds
-
-index % time    self  children    called     name
-                                   2             MAIN__ [1]
-                0.15    0.38       1/1           main [2]
-[1]    100.0    0.15    0.38       1+2       MAIN__ [1]
-                0.17    0.05    1488/1488        __algo_mvs_MOD_mdt_mvs [3]
-                0.00    0.16       1/1           mxx_sync.1545 [4]
-                0.00    0.00      35/35          __algo_mvs_MOD_mco_mvs2h [13]
-                0.00    0.00       1/1           __algo_mvs_MOD_mco_h2mvs [14]
-                0.00    0.00    1488/1488        __dynamic_MOD_mce_cent [28]
-                0.00    0.00      67/67          __mercury_outputs_MOD_mio_ce [35]
-                0.00    0.00      54/54          __utilities_MOD_mio_spl [36]
-                0.00    0.00      33/33          __mercury_outputs_MOD_mio_dump [37]
-                0.00    0.00      32/32          __mercury_outputs_MOD_mio_out [38]
-                0.00    0.00      14/15          __system_properties_MOD_mce_hill [41]
-                0.00    0.00      14/14          __system_properties_MOD_mxx_ejec [42]
-                0.00    0.00       6/6           __orbital_elements_MOD_mco_el2x [44]
-                0.00    0.00       4/18          __system_properties_MOD_mxx_en [40]
-                0.00    0.00       2/2           __mercury_outputs_MOD_mio_log [45]
-                0.00    0.00       1/1           __system_properties_MOD_mce_init [47]
-                                   2             MAIN__ [1]
------------------------------------------------
-                                                 <spontaneous>
-[2]    100.0    0.00    0.53                 main [2]
-                0.15    0.38       1/1           MAIN__ [1]
------------------------------------------------
-                0.17    0.05    1488/1488        MAIN__ [1]
-[3]     40.6    0.17    0.05    1488         __algo_mvs_MOD_mdt_mvs [3]
-                0.04    0.00    1490/1634        __algo_mvs_MOD_mfo_mvs [8]
-                0.00    0.01   22320/25560       __drift_MOD_drift_one [10]
-\end{verbatim}
-
-
-\subsection{Des opérations équivalentes ne s'exécutent pas forcément avec la même rapidité}
-Dans l'exemple d'un programme qui fait $X$ à la puissance $Y$, pour un entier $Y$, utilisons trois façons différentes de coder :
-\begin{enumerate}
-\item en utilisant la fonction power avec un $Y$ constant
-\begin{lstlisting}[language=Fortran]
-A=PI
-
-call CPU_TIME(start_time)
-do I=1,MAXLOOPS
-    B=A**4
-end do
-call CPU_TIME(stop_time)
-write(*,*) "A**4 Duration=       ",stop_time - start_time
-\end{lstlisting}
-
-\item en utilisant la fonction power mais avec une variable comme exposant.
-\begin{lstlisting}[language=Fortran]
-A=PI
-N=4
-
-call CPU_TIME(start_time)
-do I=1,MAXLOOPS
-    B=A**N
-end do
-call CPU_TIME(stop_time)
-write(*,*) "A**N (N=4) Duration= ",stop_time - start_time
-\end{lstlisting}
-
-\item en multipliant $X$ par lui même $Y$ fois.
-\begin{lstlisting}[language=Fortran]
-A=PI
-
-call CPU_TIME(start_time)
-do I=1,MAXLOOPS
-    B=A*A*A*A
-end do
-call CPU_TIME(stop_time)
-write(*,*) "A*A*A*A Duration=    ",stop_time - start_time
-\end{lstlisting}
-
-\end{enumerate}
-
-\begin{verbatim}
- \nInteger powers tests:
- A**4 Duration=          1.3827890000000000     
- A**N (N=4) Duration=    2.9805470000000005     
- A**pN (pointer) Duration=    2.9005589999999994     
- A*A*A*A Duration=       1.2208150000000009     
-\end{verbatim}
-
-\begin{important}
-\begin{align}
-A^n & \Rightarrow \underbrace{A * \cdots * A_{\text{$n$ fois}}}
-\end{align}
-
-Il vaut donc mieux élever un nombre à une puissance entière par multiplication répétée (ou multiplication répétée suivie de division par 1.0 pour les puissances d'entiers négatifs.
-\end{important}
-
-\begin{remarque}
-D'autres opérations pour lesquelles il y a de multiples façon de programmer auront le même comportement. Si on a un doute sur la technique à utiliser, on peut toujours modifier les sources fournis pour créer un set de tests pour un autre type d'opération.
-\end{remarque}
-
-
-\subsection{Use Lookup Tables for Common Calculations}
-Le code ci-dessous consiste à comparer de manière intensive une valeur calculée de $\sin\left(\frac{\pi}{4}\right)$ dans une boucle, en utilisant une valeur pré-calculée stockée dans un tableau ("lookup table").
-
-Tout d'abord on crée les tables de données : 
-\begin{verbatim}
-do i=1,10
-    pi_table(i)=pi/i
-    sine_table(i)=sin(pi_table(i))
-end do
-\end{verbatim}
-
-utilisons trois façons différentes de coder :
-\begin{enumerate}
-\item en calculant intégralement à chaque fois :
-\begin{lstlisting}[language=Fortran]
-call cpu_time(start_time)
-do i=1,maxloops
-    b=i*sin(pi/4.0)
-end do
-call cpu_time(stop_time)
-write(*,*) "Repeated pi/4 & sine, Duration=    ",stop_time - start_time
-\end{lstlisting}
-
-\item en utilisant la table d'arguments :
-\begin{lstlisting}[language=Fortran]
-call cpu_time(start_time)
-do  i=1,maxloops
-    b=i*sin(pi_table(4))
-end do
-call cpu_time(stop_time)
-write(*,*) "Repeated sine, Duration=    ",stop_time - start_time
-\end{lstlisting}
-
-\item en utilisant une table de sinus :
-\begin{lstlisting}[language=Fortran]
-call cpu_time(start_time)
-do i=1,maxloops
-    b=i*sine_table(4)
-end do
-call cpu_time(stop_time)
-write(*,*) "All lookups, Duration=    ",stop_time - start_time
-\end{lstlisting}
-\end{enumerate}
-
-On peut constater que le pré-calcul de $\pi/4$ fait peu de différence, mais éviter l'évaluation répétée de la fonction sinus (très consommatrice en temps) entraine un temps de calcul 40 fois plus court. Dans cet exemple, le temps pris par la construction de la table de valeur est beaucoup moins grand que le temps économisé par le fait de se servir de la table.
-
-\begin{verbatim}
- Repeated pi/4 & sine, Duration=      2.99960000000000226E-002
- Repeated sine, Duration=      0.16397499999999998     
- All lookups, Duration=      1.29980000000000095E-002
-\end{verbatim}
-
-\begin{remarque}
-Dans d'autres situation, la différence pourrait ne pas être aussi sensible. Cependant, il peut être parfois très intéressant de faire calculer à un autre programme une table de valeur que le programme pourra ensuite lire dans un fichier.
-
-Quand c'est applicable, il peut être aussi intéressant de produire une table de valeur et ensuite d'interpoler la fonction entre deux valeurs tabulées pour calculer l'image par la fonction au lieu d'évaluer cette dernière à chaque fois.
-\end{remarque}
-
-\subsection{Minimiser les sauts dans l'adressage mémoire}\label{sec:indices_loops}
-Cette section a pour but d'illustrer comment la manière dont est construit l'ordinateur peut influencer l'exécution de votre programme.
-
-Tous les ordinateurs modernes ont trois types de mémoire :
-\begin{itemize}
-\item de la mémoire cache (quelques Mio)
-\item de la RAM (environ 4 Gio)
-\item de la mémoire tampon (\textit{swap}) écrite sur disque dur (quasiment autant qu'on veut)
-\end{itemize}
-Chacun de ces types de mémoire peut être considéré un ordre de magnitude plus lent en terme de temps d'accès par rapport au type indiqué au dessus de lui dans la liste. Idéalement on veut donc utiliser la mémoire cache au maximum, et éviter autant que possible d'avoir recours à la mémoire tampon (ou \textit{swap}). Malheureusement, vous n'avez aucun contrôle sur l'endroit où sont stockées les informations, c'est l'ordinateur qui gère les déplacements de fichiers de l'une à l'autre des types de mémoire. 
-
-\begin{important}
-À cause de ce comportement, on ne veut pas continuellement être en train de transférer des informations dans la mémoire cache parce que des informations logiques se trouvent à des emplacements physiques éloignés dans la mémoire. Il est donc important de comprendre comment est agencée la mémoire en fortran, en particulier dans les tableaux. C'est ce qu'illustre l'exemple suivant, par l'utilisant d'un grand tableau à deux dimension où on fait des opérations sur les éléments.
-\end{important}
-
-Même si \textbf{fortran} autorise l'utilisation de tableaux multi-dimensionnels, l'espace mémoire de l'ordinateur n'a qu'une seule dimension. \reffig{fig:array_indices} montre comment est représenté un simple tableau 3x3 \texttt{a(i,j)}.
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width=0.65\linewidth]{figure/array_indices.pdf}
-\caption{Représentation de l'agencement en mémoire des valeurs associées aux éléments d'une matrice. L'élément $a_{ij}$ (ligne $i$ et colonne $j$) est noté \texttt{a(i,j)} en \textbf{fortran 90}}\label{fig:array_indices}
-\end{figure}
-
-On constate alors que c'est l'indice $i$ qui varie le plus rapidement. 
-
-Si on a un tableau de grande dimension, alors faire varier le deuxième indice de 1 va entrainer la mise en mémoire cache d'une autre page de données. Il est donc important de mettre les boucles dans le bon ordre sous peine de ralentir considérablement les calculs. 
-
-\begin{remarque}
-Dans la pratique, ce n'est pas si important que ça à partir du moment où on active les options d'optimisation qui vont se charger d'inverser l'ordre des boucles lors de la compilation. Mais c'est toujours bon de le savoir, ne serait-ce que pour certains cas particuliers.
-\end{remarque}
-
-On a donc les deux cas de figure suivant : 
-\begin{itemize}
-\item on fait varier d'abord l'indice des lignes puis pour chaque ligne on parcours toutes les colonnes
-\begin{lstlisting}[language=Fortran]
-call cpu_time(start_time)
-do i=1,maxloops2
-    do x=1,2000
-      do y=1,2000
-	  matrix(x,y)=x*y
-      end do
-    end do
-end do
-call cpu_time(stop_time)
-write(*,*) "x outer, y inner, Duration=    ",stop_time - start_time
-\end{lstlisting}
-
-\item on fait varier d'abord l'indice des colonnes puis pour chaque colonne on parcours toutes les lignes
-\begin{lstlisting}[language=Fortran]
-call cpu_time(start_time)
-do i=1,maxloops2
-    do y=1,2000
-      do x=1,2000
-	  matrix(x,y)=x*y
-      end do
-    end do
-end do
-call cpu_time(stop_time)
-write(*,*) "y outer, x inner, Duration=    ",stop_time - start_time
-\end{lstlisting}
-\end{itemize}
-
-\begin{verbatim}
- x outer, y inner, Duration=      0.52391999999999994     
- y outer, x inner, Duration=      0.14897799999999994     
-\end{verbatim}
-
-Imbriquer les boucles dans le mauvais ordre ralenti le code par un facteur 3 environ. Il faut donc que l'indice qui varie le plus vite soit l'indice des lignes. 
-
-\subsection{Utiliser les options d'optimisation du compilateur}
-L'astuce la plus simple pour augmenter la vitesse d'exécution d'un programme est de loin d'utiliser les options d'optimisation du compilateur. 
-
-L'option \texttt{-O2} est une sorte de meta option qui regroupe plein d'options, c'est celle qu'il faut activer en priorité. Dans mon cas, j'ai eu un gain de temps supérieur à 30\% (mais ça dépend fortement du programme).
-
-\begin{remarque}
-Avec l'option \texttt{-O2}, il n'y a plus de différence de temps entre les deux ordres de boucles pour \refsec{sec:indices_loops}.
-\end{remarque}
-
-Une autre option qui peut augmenter parfois la rapidité d'un programme est \texttt{-funroll-loops}
-
 \section{Les fonctions intrinsèques en Fortran 90}
 Voici une liste de quelques fonctions intrinsèques du \emph{Fortran 90}. 
 Toutes les fonctionnalités de chaque fonction ne sont pas 
@@ -2721,6 +2418,323 @@ logical, intent(inout) ::   c    ! argument d'entree et de sortie
 end subroutine nom 
 \end{lstlisting}
 
+
+\subsection{Optimisation}
+\subsubsection{Comparaison f77/f90}
+\subsubsection{Profiling}
+Avant d'essayer de rendre le code plus rapide, il faut en premier lieu trouver quelles parties du code le ralentissent et dans lesquelles il va être rentable de passer le temps d'optimisation.
+
+Profiler le temps d'exécution d'un code fortran peut être fait en ajoutant l'option de compilation \texttt{-pg} : 
+\begin{verbatim}
+gfortran -g -pg -o myprog myprog.f90
+\end{verbatim}
+
+\begin{remarque}
+Certains compilateurs, en particulier les vieux, ne vont pas autoriser les options d'optimisation si l'option \texttt{-g} est présente, et même s'ils optimisent, ça pourrait donner des résultats de profiling flous et difficiles à interpréter. 
+
+Il vaut donc mieux éviter les options d'optimisation quand on compile pour profiler. 
+\end{remarque}
+
+Ensuite, exécutez normalement votre programme
+\begin{verbatim}
+./myprog
+\end{verbatim}
+mais il faut quand même faire attention à avoir les droits d'écriture dans le dossier d'exécution afin de pouvoir écrire le fichier de résultat du profiling, appelé \textbf{gmon.out}. 
+
+\bigskip
+
+Vous pouvez maintenant avoir les information de profiling en utilisant \textbf{gprof} :
+\begin{verbatim}
+gprof myprog gmon.out
+\end{verbatim}
+
+\begin{remarque}
+Si vous voulez une analyse ligne par ligne plutôt que fonction par fonction, il vous suffit (tant que vous avez compilé le programme avec l'option \texttt{-g}), d'utiliser l'option \texttt{--line} :
+\begin{verbatim}
+gprof --line myprog gmon.out
+\end{verbatim}
+\end{remarque}
+
+L'exécution de \textbf{gprof} va produire deux parties d'output, un \textit{flat profile} et un \textit{call graph}.
+\paragraph{flat profile}
+Le flat profile ressemble à ça : 
+\begin{verbatim}
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+ 32.08      0.17     0.17     1488     0.11     0.14  __algo_mvs_MOD_mdt_mvs
+ 28.30      0.32     0.15        1   150.01   530.02  MAIN__
+ 16.98      0.41     0.09      477     0.19     0.34  __algo_radau_MOD_mdt_ra15
+ 13.21      0.48     0.07     7254     0.01     0.01  __forces_MOD_mfo_grav
+  7.55      0.52     0.04     1634     0.02     0.02  __algo_mvs_MOD_mfo_mvs
+  1.89      0.53     0.01     1428     0.01     0.01  __drift_MOD_drift_kepu_lag
+  0.00      0.53     0.00    61641     0.00     0.00  __drift_MOD_drift_kepu_stumpff
+\end{verbatim}
+
+Ce dernier liste les sections du programme (que ce soit les fonctions ou les lignes, selon que vous utilisez ou non l'option \texttt{--line}) par ordre du temps CPU utilisé, le premier étant celui qui en utilise le plus. Chaque ligne vous donne : 
+\begin{enumerate}
+\item le pourcentage de CPU utilisé par cette section
+\item le temps cumulé utilisé par cette section et toutes celles qui sont en dessous dans la liste
+\item le nombre de seconde passés dans cette section
+\item [si cette section est une fonction] : 
+\begin{enumerate}
+\item le nombre d'appel de cette fonction dans le programme
+\item le temps moyen passé dans la fonction, par appel
+\item le temps moyen passé dans la fonction, ou une des fonctions qu'elle appelle, par appel
+\end{enumerate}
+\item le nom de la fonction.
+\end{enumerate}
+
+\begin{remarque}
+Si vous avez compilé avec l'option \texttt{-g} et l'option \texttt{--line} pour \textbf{gprof}, alors le nom de la fonction incluera aussi le nom du fichier source et le numéro de ligne. 
+
+Le \textbf{flat profile} est suivi d'une explication de ce que signifie chaque champ.
+\end{remarque}
+
+\paragraph{call graph}
+Le \textbf{call graph} fournit les mêmes informations que le \textbf{flat profile}, mais organisation de façon à ce qu'il reflète la structure du programme. 
+
+\begin{verbatim}
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 2 byte(s) for 1.89% of 0.53 seconds
+
+index % time    self  children    called     name
+                                   2             MAIN__ [1]
+                0.15    0.38       1/1           main [2]
+[1]    100.0    0.15    0.38       1+2       MAIN__ [1]
+                0.17    0.05    1488/1488        __algo_mvs_MOD_mdt_mvs [3]
+                0.00    0.16       1/1           mxx_sync.1545 [4]
+                0.00    0.00      35/35          __algo_mvs_MOD_mco_mvs2h [13]
+                0.00    0.00       1/1           __algo_mvs_MOD_mco_h2mvs [14]
+                0.00    0.00    1488/1488        __dynamic_MOD_mce_cent [28]
+                0.00    0.00      67/67          __mercury_outputs_MOD_mio_ce [35]
+                0.00    0.00      54/54          __utilities_MOD_mio_spl [36]
+                0.00    0.00      33/33          __mercury_outputs_MOD_mio_dump [37]
+                0.00    0.00      32/32          __mercury_outputs_MOD_mio_out [38]
+                0.00    0.00      14/15          __system_properties_MOD_mce_hill [41]
+                0.00    0.00      14/14          __system_properties_MOD_mxx_ejec [42]
+                0.00    0.00       6/6           __orbital_elements_MOD_mco_el2x [44]
+                0.00    0.00       4/18          __system_properties_MOD_mxx_en [40]
+                0.00    0.00       2/2           __mercury_outputs_MOD_mio_log [45]
+                0.00    0.00       1/1           __system_properties_MOD_mce_init [47]
+                                   2             MAIN__ [1]
+-----------------------------------------------
+                                                 <spontaneous>
+[2]    100.0    0.00    0.53                 main [2]
+                0.15    0.38       1/1           MAIN__ [1]
+-----------------------------------------------
+                0.17    0.05    1488/1488        MAIN__ [1]
+[3]     40.6    0.17    0.05    1488         __algo_mvs_MOD_mdt_mvs [3]
+                0.04    0.00    1490/1634        __algo_mvs_MOD_mfo_mvs [8]
+                0.00    0.01   22320/25560       __drift_MOD_drift_one [10]
+\end{verbatim}
+
+
+\subsubsection{Des opérations équivalentes ne s'exécutent pas forcément avec la même rapidité}
+Dans l'exemple d'un programme qui fait $X$ à la puissance $Y$, pour un entier $Y$, utilisons trois façons différentes de coder :
+\begin{enumerate}
+\item en utilisant la fonction power avec un $Y$ constant
+\begin{lstlisting}[language=Fortran]
+A=PI
+
+call CPU_TIME(start_time)
+do I=1,MAXLOOPS
+    B=A**4
+end do
+call CPU_TIME(stop_time)
+write(*,*) "A**4 Duration=       ",stop_time - start_time
+\end{lstlisting}
+
+\item en utilisant la fonction power mais avec une variable comme exposant.
+\begin{lstlisting}[language=Fortran]
+A=PI
+N=4
+
+call CPU_TIME(start_time)
+do I=1,MAXLOOPS
+    B=A**N
+end do
+call CPU_TIME(stop_time)
+write(*,*) "A**N (N=4) Duration= ",stop_time - start_time
+\end{lstlisting}
+
+\item en multipliant $X$ par lui même $Y$ fois.
+\begin{lstlisting}[language=Fortran]
+A=PI
+
+call CPU_TIME(start_time)
+do I=1,MAXLOOPS
+    B=A*A*A*A
+end do
+call CPU_TIME(stop_time)
+write(*,*) "A*A*A*A Duration=    ",stop_time - start_time
+\end{lstlisting}
+
+\end{enumerate}
+
+\begin{verbatim}
+ \nInteger powers tests:
+ A**4 Duration=          1.3827890000000000     
+ A**N (N=4) Duration=    2.9805470000000005     
+ A**pN (pointer) Duration=    2.9005589999999994     
+ A*A*A*A Duration=       1.2208150000000009     
+\end{verbatim}
+
+\begin{important}
+\begin{align}
+A^n & \Rightarrow \underbrace{A * \cdots * A_{\text{$n$ fois}}}
+\end{align}
+
+Il vaut donc mieux élever un nombre à une puissance entière par multiplication répétée (ou multiplication répétée suivie de division par 1.0 pour les puissances d'entiers négatifs.
+\end{important}
+
+\begin{remarque}
+D'autres opérations pour lesquelles il y a de multiples façon de programmer auront le même comportement. Si on a un doute sur la technique à utiliser, on peut toujours modifier les sources fournis pour créer un set de tests pour un autre type d'opération.
+\end{remarque}
+
+
+\subsubsection{Use Lookup Tables for Common Calculations}
+Le code ci-dessous consiste à comparer de manière intensive une valeur calculée de $\sin\left(\frac{\pi}{4}\right)$ dans une boucle, en utilisant une valeur pré-calculée stockée dans un tableau ("lookup table").
+
+Tout d'abord on crée les tables de données : 
+\begin{verbatim}
+do i=1,10
+    pi_table(i)=pi/i
+    sine_table(i)=sin(pi_table(i))
+end do
+\end{verbatim}
+
+utilisons trois façons différentes de coder :
+\begin{enumerate}
+\item en calculant intégralement à chaque fois :
+\begin{lstlisting}[language=Fortran]
+call cpu_time(start_time)
+do i=1,maxloops
+    b=i*sin(pi/4.0)
+end do
+call cpu_time(stop_time)
+write(*,*) "Repeated pi/4 & sine, Duration=    ",stop_time - start_time
+\end{lstlisting}
+
+\item en utilisant la table d'arguments :
+\begin{lstlisting}[language=Fortran]
+call cpu_time(start_time)
+do  i=1,maxloops
+    b=i*sin(pi_table(4))
+end do
+call cpu_time(stop_time)
+write(*,*) "Repeated sine, Duration=    ",stop_time - start_time
+\end{lstlisting}
+
+\item en utilisant une table de sinus :
+\begin{lstlisting}[language=Fortran]
+call cpu_time(start_time)
+do i=1,maxloops
+    b=i*sine_table(4)
+end do
+call cpu_time(stop_time)
+write(*,*) "All lookups, Duration=    ",stop_time - start_time
+\end{lstlisting}
+\end{enumerate}
+
+On peut constater que le pré-calcul de $\pi/4$ fait peu de différence, mais éviter l'évaluation répétée de la fonction sinus (très consommatrice en temps) entraine un temps de calcul 40 fois plus court. Dans cet exemple, le temps pris par la construction de la table de valeur est beaucoup moins grand que le temps économisé par le fait de se servir de la table.
+
+\begin{verbatim}
+ Repeated pi/4 & sine, Duration=      2.99960000000000226E-002
+ Repeated sine, Duration=      0.16397499999999998     
+ All lookups, Duration=      1.29980000000000095E-002
+\end{verbatim}
+
+\begin{remarque}
+Dans d'autres situation, la différence pourrait ne pas être aussi sensible. Cependant, il peut être parfois très intéressant de faire calculer à un autre programme une table de valeur que le programme pourra ensuite lire dans un fichier.
+
+Quand c'est applicable, il peut être aussi intéressant de produire une table de valeur et ensuite d'interpoler la fonction entre deux valeurs tabulées pour calculer l'image par la fonction au lieu d'évaluer cette dernière à chaque fois.
+\end{remarque}
+
+\subsubsection{Minimiser les sauts dans l'adressage mémoire}\label{sec:indices_loops}
+Cette section a pour but d'illustrer comment la manière dont est construit l'ordinateur peut influencer l'exécution de votre programme.
+
+Tous les ordinateurs modernes ont trois types de mémoire :
+\begin{itemize}
+\item de la mémoire cache (quelques Mio)
+\item de la RAM (environ 4 Gio)
+\item de la mémoire tampon (\textit{swap}) écrite sur disque dur (quasiment autant qu'on veut)
+\end{itemize}
+Chacun de ces types de mémoire peut être considéré un ordre de magnitude plus lent en terme de temps d'accès par rapport au type indiqué au dessus de lui dans la liste. Idéalement on veut donc utiliser la mémoire cache au maximum, et éviter autant que possible d'avoir recours à la mémoire tampon (ou \textit{swap}). Malheureusement, vous n'avez aucun contrôle sur l'endroit où sont stockées les informations, c'est l'ordinateur qui gère les déplacements de fichiers de l'une à l'autre des types de mémoire. 
+
+\begin{important}
+À cause de ce comportement, on ne veut pas continuellement être en train de transférer des informations dans la mémoire cache parce que des informations logiques se trouvent à des emplacements physiques éloignés dans la mémoire. Il est donc important de comprendre comment est agencée la mémoire en fortran, en particulier dans les tableaux. C'est ce qu'illustre l'exemple suivant, par l'utilisant d'un grand tableau à deux dimension où on fait des opérations sur les éléments.
+\end{important}
+
+Même si \textbf{fortran} autorise l'utilisation de tableaux multi-dimensionnels, l'espace mémoire de l'ordinateur n'a qu'une seule dimension. \reffig{fig:array_indices} montre comment est représenté un simple tableau 3x3 \texttt{a(i,j)}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.65\linewidth]{figure/array_indices.pdf}
+\caption{Représentation de l'agencement en mémoire des valeurs associées aux éléments d'une matrice. L'élément $a_{ij}$ (ligne $i$ et colonne $j$) est noté \texttt{a(i,j)} en \textbf{fortran 90}}\label{fig:array_indices}
+\end{figure}
+
+On constate alors que c'est l'indice $i$ qui varie le plus rapidement. 
+
+Si on a un tableau de grande dimension, alors faire varier le deuxième indice de 1 va entrainer la mise en mémoire cache d'une autre page de données. Il est donc important de mettre les boucles dans le bon ordre sous peine de ralentir considérablement les calculs. 
+
+\begin{remarque}
+Dans la pratique, ce n'est pas si important que ça à partir du moment où on active les options d'optimisation qui vont se charger d'inverser l'ordre des boucles lors de la compilation. Mais c'est toujours bon de le savoir, ne serait-ce que pour certains cas particuliers.
+\end{remarque}
+
+On a donc les deux cas de figure suivant : 
+\begin{itemize}
+\item on fait varier d'abord l'indice des lignes puis pour chaque ligne on parcours toutes les colonnes
+\begin{lstlisting}[language=Fortran]
+call cpu_time(start_time)
+do i=1,maxloops2
+    do x=1,2000
+      do y=1,2000
+	  matrix(x,y)=x*y
+      end do
+    end do
+end do
+call cpu_time(stop_time)
+write(*,*) "x outer, y inner, Duration=    ",stop_time - start_time
+\end{lstlisting}
+
+\item on fait varier d'abord l'indice des colonnes puis pour chaque colonne on parcours toutes les lignes
+\begin{lstlisting}[language=Fortran]
+call cpu_time(start_time)
+do i=1,maxloops2
+    do y=1,2000
+      do x=1,2000
+	  matrix(x,y)=x*y
+      end do
+    end do
+end do
+call cpu_time(stop_time)
+write(*,*) "y outer, x inner, Duration=    ",stop_time - start_time
+\end{lstlisting}
+\end{itemize}
+
+\begin{verbatim}
+ x outer, y inner, Duration=      0.52391999999999994     
+ y outer, x inner, Duration=      0.14897799999999994     
+\end{verbatim}
+
+Imbriquer les boucles dans le mauvais ordre ralenti le code par un facteur 3 environ. Il faut donc que l'indice qui varie le plus vite soit l'indice des lignes. 
+
+\subsubsection{Utiliser les options d'optimisation du compilateur}
+L'astuce la plus simple pour augmenter la vitesse d'exécution d'un programme est de loin d'utiliser les options d'optimisation du compilateur. 
+
+L'option \texttt{-O2} est une sorte de meta option qui regroupe plein d'options, c'est celle qu'il faut activer en priorité. Dans mon cas, j'ai eu un gain de temps supérieur à 30\% (mais ça dépend fortement du programme).
+
+\begin{remarque}
+Avec l'option \texttt{-O2}, il n'y a plus de différence de temps entre les deux ordres de boucles pour \refsec{sec:indices_loops}.
+\end{remarque}
+
+Une autre option qui peut augmenter parfois la rapidité d'un programme est \texttt{-funroll-loops}
+
 \subsection{Débuger des programmes fortran avec gdb}\index{gdb}\index{débugeur}
 Afin d'utiliser un débugeur comme \gras{gdb} pour suivre l'exécution d'un programme fortran, il est nécessaire de le compiler avec l'option \texttt{-g}, par exemple : 
 \begin{verbatim}
@@ -3003,4 +3017,5 @@ et j'essayais de passer en argument
 call contour(levels=0.)
 \end{lstlisting}
 Le problème vient du fait qu'on ne peut pas passer un scalaire pour un argument défini comme étant un tableau, il ne comprend pas que ça peut être un tableau à un élément. Je n'ai pas vraiment résolu le problème puisque je l'ai contourné en définissant l'argument comme scalaire. Je ne sais pas comment faire pour qu'on puisse passer une seule valeur. Peut-être définir un tableau à un seul élément via \texttt{dimension(1)}.
+
 \end{document}
