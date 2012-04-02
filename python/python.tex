@@ -753,6 +753,49 @@ pl.legend() # afficher la legende
 pl.show()
 \end{lstlisting}
 
+Sur \reffig{fig:type_ligne} sont représentés quelques types de lignes différents (deux sous-groupes, les lignes et les marqueurs) : 
+\begin{table}[htb]
+\hfill
+\begin{tabular}{|>{\tt}c<{}|c|}
+\hline
+character & description\\\hline
+'-' & solid line style\\\hline
+'--' & dashed line style\\\hline
+'-.' & dash-dot line style\\\hline
+':' & dotted line style\\\hline
+'.' & point marker\\\hline
+',' & pixel marker\\\hline
+'o' & circle marker\\\hline
+'v' & triangle\_down marker\\\hline
+'\textasciicircum' & triangle\_up marker\\\hline
+'<' & triangle\_left marker\\\hline
+'>' & triangle\_right marker\\\hline
+'1' & tri\_down marker\\\hline
+'2' & tri\_up marker\\\hline
+\end{tabular}
+\hfill
+\begin{tabular}{|>{\tt}c<{}|c|}
+\hline
+character & description\\\hline
+'3' & tri\_left marker\\\hline
+'4' & tri\_right marker\\\hline
+'s' & square marker\\\hline
+'p' & pentagon marker\\\hline
+'*' & star marker\\\hline
+'h' & hexagon1 marker\\\hline
+'H' & hexagon2 marker\\\hline
+'+' & plus marker\\\hline
+'x' & x marker\\\hline
+'D' & diamond marker\\\hline
+'d' & thin\_diamond marker\\\hline
+'|' & vline marker\\\hline
+'\_' & hline marker\\\hline
+\end{tabular}\hfill~
+
+\caption{Différents types de ligne ou de marqueurs pour l'affichage de graphique avec pylab. Pour s'en servir, il faut utiliser une commande du style \texttt{pl.plot(x,z, 'b-', label="z=g(x)")} où \og 'b-'\fg signifie qu'on veut une ligne à trait plein bleue .}\label{fig:type_ligne}
+\end{table}
+
+
 \subsection{Utilisation de symbole au lieu de ligne}
 \begin{lstlisting}[language=python]
 pl.plot(x,z, 'o', markersize=5)
@@ -928,6 +971,44 @@ IndentationError: unexpected indent
 
 C'est normalement dû au fait qu'il y a dans le code source des indentations avec tabulation et espaces. Un simple rechercher/remplacer permet de corriger l'erreur normalement.
 
+\subsection{Pointeurs implicites}
+Attention avec python, il va parfois utiliser des pointeurs implicites, et la modification d'une valeur va en modifier plusieurs. L'exemple classique est de dire que la liste b est égale à la liste a :
+\begin{lstlisting}[language=python]
+>>> a = range(5)
+>>> b = a
+>>> b.append(6)
+>>> print(a)
+[0, 1, 2, 3, 4, 6]
+\end{lstlisting}
+
+Pour contourner le problème, on fera :
+\begin{lstlisting}[language=python]
+>>> a = range(5)
+>>> b = list(a)
+>>> b.append(6)
+>>> print(a)
+[0, 1, 2, 3, 4]
+\end{lstlisting}
+
+\bigskip
+
+Mais il peut y avoir plus subtil. J'ai récemment eu le problème suivant :
+\begin{lstlisting}[language=python]
+>>> toto = [[]] * 5
+[[], [], [], [], []]
+>>> toto[1].append(1)
+>>> print(toto)
+[[1], [1], [1], [1], [1]]
+\end{lstlisting}
+
+Pour contourner le problème, j'ai fait :
+\begin{lstlisting}[language=python]
+>>> toto = [[] for i in range(5)]
+[[], [], [], [], []]
+>>> toto[1].append(1)
+>>> print(toto)
+[[], [1], [], [], []]
+\end{lstlisting}
 
 \section{Astuces}
 \subsection{Copier une liste (et non faire un lien virtuel)}
