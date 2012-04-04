@@ -182,7 +182,7 @@ set palette rgbformulae 22,13,-31
 \end{verbatim}
 et avoir une sorte d'arc en ciel.
 
-\subsubsection{Ajouter des contours à une surface}
+\subsubsection{Ajouter des contours à une surface}\label{sec:contour}
 Ci-dessous voici le contenu d'un script que j'utilise pour afficher un contour sur l'iso-ligne $z=0$ : 
 \begin{verbatim}
 set contour base; set cntrparam levels discret 0.
@@ -296,6 +296,70 @@ On stocke le graphique dans un fichier \textbf{.png}
 !rm contour.dat
 \end{verbatim}
 On efface le fichier temporaire qui a été créé pour stocker le contour.
+
+\subsubsection{Ajouter un champ de vecteur à une surface}
+Ci-dessous voici le contenu d'un script que j'utilise pour afficher un contour sur l'iso-ligne $z=0$ : 
+\begin{verbatim}
+set contour base; set cntrparam levels discret 0.
+unset surface
+set table "contour.dat"
+set dgrid3d 30,30,10
+splot 'test_total_torque.dat'
+unset table
+# Draw the plot
+reset
+set terminal wxt enhanced
+set xlabel "semi major axis (AU)"
+set ylabel "Planet mass (m_{earth})" center
+set title "Evolution of the total torque {/Symbol G}_{tot}/{/Symbol G}_0 "
+set pm3d map
+set pm3d explicit
+set palette rgbformulae 22,13,-31
+splot 'test_total_torque.dat' with pm3d notitle,\
+ 'contour.dat' with line linetype -1 title '{/Symbol G}=0',\
+ 'test_vector_total_torque.dat' with vector notitle head filled linestyle -1
+#pause -1 # wait until a carriage return is hit
+set terminal pngcairo enhanced
+set output 'total_torque.png'
+replot # pour générer le fichier d'output
+!rm contour.dat
+\end{verbatim}
+Pour plus de détails, voir \refsec{sec:contour}. 
+
+La ligne différente est :
+\begin{verbatim}
+'test_vector_total_torque.dat' with vector notitle head filled linestyle -1
+\end{verbatim}
+Pour afficher un champ de vecteur avec la flèche remplie (\texttt{head filled}), sans titre dans la légende (\texttt{notitle}), et en trait plein noir (\texttt{linestyle -1}).
+
+Pour plus de détails sur les champs de vecteurs, voir \refsec{sec:vector}.
+
+\subsection{Afficher un champ de vecteur}\label{sec:vector}
+Pour faire un champ de vecteurs, il faut utiliser \textbf{with vector}, soit avec \textbf{plot} soit avec \textbf{splot}.
+
+\bigskip
+
+Avec \textbf{plot} il faut quatres colonnes dont la syntaxe est $x, y, \delta x, \delta y$ afin d'afficher des vecteurs dont les coordonnées sont, pour une ligne donnée $x, y, \delta x, \delta y$ : $((x,y), (x+\delta x, y+\delta y))$ :
+\begin{verbatim}
+plot 'vector.dat' with vector
+\end{verbatim}
+ou
+\begin{verbatim}
+plot 'vector.dat' using 1:2:3:4 with vector
+\end{verbatim}
+
+\bigskip
+
+Avec \textbf{splot}, il faut six colonnes dont la syntaxe est $x, y, z, \delta x, \delta y, \delta z$ afin d'afficher des vecteurs dont les coordonnées sont, pour une ligne donnée $x, y, z, \delta x, \delta y, \delta z$ : $((x,y,z), (x+\delta x, y+\delta y, z+\delta z))$ :
+\begin{verbatim}
+splot 'vector.dat' with vector
+\end{verbatim}
+ou
+\begin{verbatim}
+splot 'vector.dat' using 1:2:3:4:5:6 with vector
+\end{verbatim}
+
+
 
 \section{Exporter la courbe}\label{sec:terminal}
 Le principe de gnuplot est de sélectionner un terminal où envoyer les données du graphique. par défaut, ce terminal est \textbf{x11}. 
