@@ -892,6 +892,45 @@ public class Test {
 \end{lstlisting}
 \end{exemple}
 
+\bigskip
+
+On n'est pas limité à une seule variable. On peut définir par ce même principe, plusieurs variables génériques dans une classe donnée : 
+\begin{lstlisting}[language=java]
+public class Duo<T, S> {
+ 
+  /**
+    * Variable d'instance de type T
+    */
+  private T valeur1;
+  /**
+    * Variable d'instance de type S
+    */
+  private S valeur2;
+}
+\end{lstlisting}
+que l'on utilise de la façon suivante :
+\begin{lstlisting}[language=java]
+Duo<String, Boolean> dual = new Duo<String, Boolean>("toto", true);
+System.out.println("Valeur de l'objet dual: val1 = " + dual.getValeur1() + ", val2 = " + dual.getValeur2());
+
+Duo<Double, Character> dual2 = new Duo<Double, Character>(12.25895, 'C');
+System.out.println("Valeur de l'objet dual2: val1 = " + dual2.getValeur1() + ", val2 = " + dual2.getValeur2()); 
+\end{lstlisting}
+
+\bigskip
+
+On peut contourner l'interdiction d'utiliser un type différent en utilisant le point d'interrogation \og ?\fg lors de la déclaration du type des variables. Ça permet, pour une même variable, d'accepter l'écrasement de l'objet existant par un nouvel objet de type différent (mais l'objet défini n'acceptera toujours qu'un seul type de variable. 
+
+\begin{exemple}
+\begin{lstlisting}[language=java]
+Duo<?, ?> dual = new Duo<String, Boolean>("toto", true);
+
+System.out.println("Valeur de l'objet dual: val1 = " + dual.getValeur1() + ", val2 = " + dual.getValeur2());
+dual = new Duo<Double, Character>();
+dual = new Duo<Integer, Float>();
+dual = new Duo<Solo, Solo>();
+\end{lstlisting}
+\end{exemple}
 
 
 \section{Les instances de classe}
