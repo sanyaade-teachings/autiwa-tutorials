@@ -71,6 +71,26 @@ Dans le \gras[mode!Normal]{mode Normal}, un appui sur \touche{/} permet de reche
 \end{verbatim}
 Des appuis successifs sur \touche{n} (pour next) et \touche{N} permettent respectivement d'aller aux occurences suivantes et précédentes.
 
+\section{Avancé}
+\subsection{Sélection de texte par block}
+Dans le mode normal, il suffit d'appuyer sur :
+\begin{itemize}
+\item \touche{V} puis se déplacer dans le texte pour sélectionner des lignes
+\item \touche{Ctrl} + \touche{v} puis se déplacer pour sélectionner un block d'un ou plusieurs caractères
+\end{itemize}
+
+Il est possible sous vim de sélectionner un block de texte, soit pour le supprimer, le copier, ou simplement pour modifier plusieurs lignes en même temps. Une fois un block sélectionné à l'aide de \touche{Ctrl} + \touche{v}, on peut : 
+\begin{itemize}
+\item Appuyer sur \touche{d} pour supprimer la sélection
+\item Appuyer sur \touche{I} pour insérer du texte à gauche de la sélection, sur toutes les lignes sélectionnées. Le texte écrit ne s'affichera que sur une seule ligne, mais en quittant le mode insertion, la même modification sera apportée à toutes les autres lignes. 
+\end{itemize}
+
+\begin{remarque}
+Cette technique permet aisément de commenter ou décommenter des lignes de codes.\index{commenter/décommenter}
+\end{remarque}
+
+
+
 \section{Commandes dans le mode Normal}
 Avant toute chose, la commande \touche{u} permet d'annuler une ou plusieurs commandes précédentes, effacement de texte ou autre.
 
