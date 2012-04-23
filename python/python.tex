@@ -753,7 +753,7 @@ pl.legend() # afficher la legende
 pl.show()
 \end{lstlisting}
 
-Sur \reffig{fig:type_ligne} sont représentés quelques types de lignes différents (deux sous-groupes, les lignes et les marqueurs) : 
+Sur \reftab{tab:type_ligne} sont représentés quelques types de lignes différents (deux sous-groupes, les lignes et les marqueurs) : 
 \begin{table}[htb]
 \hfill
 \begin{tabular}{|>{\tt}c<{}|c|}
@@ -792,7 +792,7 @@ character & description\\\hline
 '\_' & hline marker\\\hline
 \end{tabular}\hfill~
 
-\caption{Différents types de ligne ou de marqueurs pour l'affichage de graphique avec pylab. Pour s'en servir, il faut utiliser une commande du style \texttt{pl.plot(x,z, 'b-', label="z=g(x)")} où \og 'b-'\fg signifie qu'on veut une ligne à trait plein bleue .}\label{fig:type_ligne}
+\caption{Différents types de ligne ou de marqueurs pour l'affichage de graphique avec pylab. Pour s'en servir, il faut utiliser une commande du style \texttt{pl.plot(x,z, 'b-', label="z=g(x)")} où \og 'b-'\fg signifie qu'on veut une ligne à trait plein bleue .}\label{tab:type_ligne}
 \end{table}
 
 
@@ -802,6 +802,12 @@ pl.plot(x,z, 'o', markersize=5)
 \end{lstlisting}
 On peut utiliser des cercles \texttt{o}, des croix \texttt{x} ou des carrés \texttt{s}
 
+Il existe beaucoup d'options de personnalisation, pour avoir des symboles sans couleur de remplissage mais en contrôlant la couleur du trait du marqueur notamment. La liste n'est pas exhaustive : 
+\begin{verbatim}
+markerfacecolor='None' # To set 'no color' inside the marker
+markeredgewidth=1
+markeredgecolor='#000000'
+\end{verbatim}
 
 \subsection{Graphiques logarithmiques}
 
@@ -1011,6 +1017,13 @@ Pour contourner le problème, j'ai fait :
 \end{lstlisting}
 
 \section{Astuces}
+\subsection{Copier un fichier}
+En utilisant le module \gras[module!shutil]{shutil}, on peut copier un fichier à l'aide de la commande suivante 
+\begin{lstlisting}[language=python]
+>>> import shutil
+>>> shutil.copy2(src, dst)
+\end{lstlisting}
+
 \subsection{Copier une liste (et non faire un lien virtuel)}
 Par défaut, en python, si vous assignez une variable contenant une liste à une autre variable, la 2e variable sera un lien virtuel vers la première. La conséquence la plus importante est que si vous modifiez la 2e variable, vous modifiez également la première.
 
@@ -1063,8 +1076,10 @@ globals().has_key('x')
 
 ou encore
 \begin{lstlisting}[language=python]
-if ('x' in locals()):
+if ('x' in vars()):
   print("'x' est defini")
+if ('x' in locals()):
+  print("'x' est une variable locale")
 \end{lstlisting}
 
 
