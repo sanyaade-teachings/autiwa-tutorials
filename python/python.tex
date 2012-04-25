@@ -820,6 +820,24 @@ pl.plot(x,y)
 pl.show()
 \end{lstlisting}
 
+\subsection{Lier les limites des axes entre elles dans subplot}\index{subplot!lier les axes}
+Dans des graphiques subplots, on peut de plus lier les axes entre eux, pour que lors d'un zoom dans la fenêtre graphique affichée avec \texttt{pl.show()}, le même zoom soit reproduit dans tous les axes liés.
+
+\begin{lstlisting}[language=python]
+# en haut a gauche
+ax1 = pl.subplot(211)
+pl.plot(x,y)
+
+#en haut au milieu
+pl.subplot(212, sharex=ax1, sharey=ax1)
+pl.plot(x,y)
+
+pl.show()
+\end{lstlisting}
+
+\begin{remarque}
+On peut bien évidemment ne partager que l'axe des x ou l'axe des y, et c'est extrêmement pratique dans certains cas, quand par exemple on affiche plusieurs variables en fonction du temps.
+\end{remarque}
 
 \subsection{Personnalisations diverses}
 
