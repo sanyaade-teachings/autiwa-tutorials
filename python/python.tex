@@ -112,6 +112,89 @@ if not(a):
   print "C'est faux"
 \end{lstlisting}
 
+\subsection{Formatter des chaînes de caractère}
+On peut bien entendu faire des choses de ce genre : 
+\begin{lstlisting}[language=python]
+print('Il y a '+str(count)+' choses.')
+\end{lstlisting}
+mais c'est rapidement ennuyeux à écrire, et on ne contrôle pas l'affichage des informations. Pour donner un exemple de l'opérateur de formattage des chaînes de caractères, voici comment écrire la ligne plus haut, avec l'opérateur \og\%\fg :
+\begin{lstlisting}[language=python]
+print('Il y a %d choses.' % (count))
+\end{lstlisting}
+où \texttt{\%d} indique que la variable sera un entier.
+
+\begin{remarque}
+Après le caractère \og\%\fg, le tuple contient la liste des variables à afficher, dans l'ordre d'apparition des marqueurs tels \texttt{\%d}.
+\end{remarque}
+
+Un format de conversion contient au moins 2 caractères et a les éléments suivants dans cet ordre :
+\begin{itemize}
+\item Le caractère \og\%\fg qui marque le début du format de conversion
+\item (optionnel) \textbf{une clé} \texttt{keyValue}, spécifiée entre parenthèse \texttt{(keyValue)} , pour le cas où la liste des variables est donnée dans un dictionnaire et non dans un tuple
+\item (optionnel) \textbf{les options de conversions} (listées plus bas), qui affectent le résultat dans certains types de conversion.
+\item (optionnel) \textbf{la longueur minimale du champ considéré}. Si cette longueur est donnée par une astérisque \og *\fg, la longueur actuelle est lue dans le tuple de valeurs. Ainsi, pour une valeur donnée, avec cette option, trois valeurs seront lues dans le tuple, la première sera la longueur minimale du champ, la deuxième sera la précision de la conversion, et la troisième sera la valeur à convertir.
+\item (optionnel) \textbf{la précision}, donnée par un point suivi de la valeur de la précision \texttt{.d}. Si spécifiée par une astérisque \og * \fg, la largueur réelle sera lue dans le tuple, et l'élément encore après sera la valeur à convertir.
+\item (optionnel) permet de modifier la longueur
+\item type de conversion
+\end{itemize}
+
+Voici un exemple qui montre comment se servir de certaines options, dont la clé en particulier : 
+\begin{lstlisting}[language=python]
+>>> print '%(language)s has %(#)03d quote types.' % \
+          {'language': "Python", "#": 2}
+Python has 002 quote types.
+\end{lstlisting}
+
+De manière équivalente, on peut écrire :
+\begin{lstlisting}[language=python]
+>>> print '%s has %03d quote types.' % \
+          ("Python",  2)
+Python has 002 quote types.
+\end{lstlisting}
+
+Les caractères suivants sont les options de conversion disponibles :
+\begin{itemize}
+\item[\emph{\#}]: La valeur a convertir utilisera la forme alternative (définie plus bas)
+\item[\emph{0}]: La conversion sera complétée par des \og0\fg pour les valeurs numériques.
+\item[\emph{-}]: la valeur convertie est ajustée à gauche (écrase les \og0\fg si les deux sont donnés)
+\item[\emph{ }]: (un espace) Un blanc devrait ere laissé avant un nombre positive (ou une chaîne vide) produite par une conversion signée.
+\item[\emph{+}]: Un caractère représentant le signe (\og+\fg ou \og-\fg) précèdera la conversion (écrase l'option \og espace\fg)/
+\end{itemize}
+
+Dans ce tableau, les lettres suivantes (en italique) ont une signification :
+\begin{itemize}
+\item[\emph{w}]: Le nombre de position à utiliser (l'espace à réserver pour l'affichage)
+\item[\emph{m}]: La précision (qui peut parfois devenir les chiffres significatifs dans la version alternative).
+\end{itemize}
+
+Même si on peut afficher un nombre avec autant de positions qu'on veut, c'est juste une question d'affichage, ce nombre de positions n'a rien à voir avec la précision (i.e le nombre de chiffres significatifs). 
+\begin{table}
+\begin{center}
+\begin{tabular}{|p{2cm}|l||l|l|l|l|}
+\hline
+\multicolumn{2}{|c||}{But} & \multicolumn{2}{c|}{Descripteur} & Rendu & Alt\\\hline
+\multirow{5}{2cm}{Afficher des entiers} & décimal signé & \%d & \%\emph{w}.\emph{m}d & -20 &\\\cline{2-6}
+ & décimal signé & \%i & \%\emph{w}.\emph{m}i & -20 &\\\cline{2-6}
+ & octal signé & \%o & \%\emph{w}.\emph{m}o & -24 & -024\\\cline{2-6}
+ & hexadécimal signé & \%x & \%\emph{w}.\emph{m}x & -14 & -0x14\\\cline{2-6}
+ & hexadécimal signé & \%X & \%\emph{w}.\emph{m}X & -14 & -0X14\\\hline
+\multirow{6}{2cm}{Afficher des réels} & Format exponentiel & \%e & \%\emph{w}.\emph{m}e & -2.000000e+01 & \footnotemark[103]\\\cline{2-6}
+ & Format exponentiel & \%E & \%\emph{w}.\emph{m}E & -2.000000E+01 & \footnotemark[103]\\\cline{2-6}
+ & Format décimal & \%f & \%\emph{w}.\emph{m}f & 20.000000 & \footnotemark[103]\\\cline{2-6}
+ & Format décimal & \%F & \%\emph{w}.\emph{m}F & 20.000000 & \footnotemark[103]\\\cline{2-6}
+ & Format hybride \footnotemark[101] & \%g & \%\emph{w}.\emph{m}g & 20 & 20\footnotemark[104]\\\cline{2-6}
+ & Format hybride \footnotemark[101] & \%G & \%\emph{w}.\emph{m}G & 20 & 20\footnotemark[104]\\\hline
+\multirow{2}{2cm}{Afficher des caractères} & Un seul caractère \footnotemark[102] & \%c & \%\emph{w}.\emph{m}c & ' ' & ' '\\\cline{2-6}
+ & Une chaîne de caractère & \%s & \%\emph{w}.\emph{m}s & '20' & '20'\\\hline
+\end{tabular}
+\end{center}
+\caption{Liste des formats d'affichage de variables en python, utilisant le descripteur de format \%}\label{tab:formats}
+\end{table}
+\footnotetext[101]{exponentiel si l'exposant est inférieure à -4}
+\footnotetext[102]{Accepte comme valeur un caractère, ou un entier désignant un caractère (en ASCII)}
+\footnotetext[103]{Affiche toujours un point, même s'il n'y a aucune décimale à afficher après.}
+\footnotetext[104]{Ne supprime pas le point décimal. La précision représente le nombre de chiffres significatifs}
+
 \subsection{Débug}
 Pour celà, il existe le module \gras[module!pdb]{pdb} qui sert à ça.
 

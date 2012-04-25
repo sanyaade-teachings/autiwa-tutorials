@@ -527,8 +527,8 @@ Même si on peut afficher un nombre avec autant de positions qu'on veut, c'est j
 \hline
 \multicolumn{2}{|c||}{But} & \multicolumn{2}{l|}{Descripteurs de format}\\\hline\hline
 \multicolumn{2}{|l||}{Afficher/Lire des entiers} & I\emph{w} & I\emph{w}.\emph{n}\\\hline
-\multirow{4}*{Afficher/Lire des réels} & Format décimale & \multicolumn{2}{l|}{F\emph{w}.\emph{d}}\\\cline{3-4}
- & Format exponentielle & E\emph{w}.\emph{d} & E\emph{w}.\emph{d}E\emph{e}\\\cline{3-4}
+\multirow{4}*{Afficher/Lire des réels} & Format décimal & \multicolumn{2}{l|}{F\emph{w}.\emph{d}}\\\cline{3-4}
+ & Format exponentiel & E\emph{w}.\emph{d} & E\emph{w}.\emph{d}E\emph{e}\\\cline{3-4}
  & Format Scientifique & ES\emph{w}.\emph{d} & ES\emph{w}.\emph{d}E\emph{e}\\\cline{3-4}
  & Format Ingénieur & EN\emph{w}.\emph{d} & EN\emph{w}.\emph{d}E\emph{e}\\\hline
 \multicolumn{2}{|l||}{Afficher/lire des booléens} & \multicolumn{2}{l|}{L\emph{w}}\\\hline
@@ -541,7 +541,7 @@ Même si on peut afficher un nombre avec autant de positions qu'on veut, c'est j
  & Contrôle du signe & \multicolumn{2}{l|}{S, SP, et SS}\\\cline{3-4}
  & Contrôle des blancs & \multicolumn{2}{l|}{BN et BZ}\\\hline
 \end{tabular}
-\caption{Liste des formats (je ne sais pas s'ils sont tous là, mais les plus courants en tout cas) d'affichage de variables. Ils sont utiles pour créer un format, qui doit être de la forme suivante \texttt{'(F,F\dots)'} où $F$ est un format quelconque du tableau ci-dessus. Il est possible de dire qu'on plusieurs fois le même format en le préfixant par un nombre d'occurence.}\label{tab:formats}
+\caption{Liste des formats (je ne sais pas s'ils sont tous là, mais les plus courants en tout cas) d'affichage de variables. Ils sont utiles pour créer un format, qui doit être de la forme suivante \texttt{'(F,F\dots)'} où $F$ est un format quelconque du tableau ci-dessus. Il est possible de dire qu'on veut plusieurs fois le même format en le préfixant par un nombre d'occurence.}\label{tab:formats}
 \end{table}
 
 Voici ci-dessous un exemple d'utilisation dans un cas pratique, l'écriture d'un fichier de sortie \textbf{disk.out} qui écrit les différents paramètres d'un programme : 
