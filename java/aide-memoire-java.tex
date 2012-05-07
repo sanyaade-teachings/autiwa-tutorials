@@ -598,8 +598,107 @@ tab.length
 \end{remarque}
 
 \begin{important}
-On peut définir des sortes de tableaux pouvant contenir n'importe quel type de données, ce sont des objets de type \gras{ArrayList} qu'on appelle des \gras{collection d'objet}. %TODO parler des ArrayList
+On peut définir des sortes de tableaux pouvant contenir n'importe quel type de données, ce sont des objets de type \gras{ArrayList} qu'on appelle des \gras{collection d'objet}.
 \end{important}
+
+\subsubsection{ArrayList}\index{ArrayList}
+\textbf{ArrayList} permet de stocker un nombre inconnu d'objets. C'est à dire que contrairement à un tableau classique, on ne sait pas \emph{a priori} combien d'élément on a besoin de stocker. 
+
+On peut définir un tableau de la façon suivante :
+\begin{lstlisting}[language=java]
+ArrayList liste = new ArrayList();
+liste.add('d');
+liste.add("une chaine");
+liste.add(3);
+liste.add(3.14f);
+\end{lstlisting}
+
+Il y a en particulier les méthodes suivantes, disponible pour les objets \textbf{ArrayList} :
+\begin{itemize}
+\item \textbf{add()} : permet d'ajouter un élément.
+\item \textbf{get(int index)} : retourne l'élément à l'index demandé.
+\item \textbf{remove(int index)} : efface l'entrée à l'indice demandé.
+\item \textbf{isEmpty()} : renvoie "vrai" si l'objet est vide.
+\item \textbf{removeAll()} : efface tout le contenu de l'objet.
+\item \textbf{contains(Object element)} : retourne "vrai" si l'élément passé en paramètre est dans l'objet.
+\end{itemize}
+
+
+Ça permet par exemple de remplir une liste à l'aide de l'utilisateur.
+\begin{lstlisting}[language=java]
+ArrayList<Player> players = new ArrayList(); // The list of players we want to define
+String name = new String();
+//To get info via stdin
+Scanner sc = new Scanner(System.in);
+//On affiche une instruction
+System.out.println("Please enter the names of players (one line per name, leave a blank line to end the process) :");
+while(true) {
+  //On recupere le prenom saisi
+  name = sc.nextLine();
+  
+  if (name.length()!=0) {
+    // We add a new player in the list
+    players.add(new Player(name));
+  }
+  else
+    break;
+\end{lstlisting}
+
+\subsubsection{HashMap}\index{HashMap}
+Dans le même style, une \textbf{HashMap} est un peu l'équivalent d'un dictionnaire en python. C'est à dire que c'est une liste non ordonnée où on stocke des couples (clé, valeur), ce qui permet de référencer des données via d'autres types de données. 
+
+Un exemple rapide :
+\begin{lstlisting}[language=java]
+HashMap dict = new HashMap();
+dict.put(1, "printemps");
+dict.put(10, "ete");
+dict.put(12, "automne");
+dict.put(45, "hiver");
+\end{lstlisting}
+
+Il y a en particulier les méthodes suivantes, disponible pour les objets \textbf{HashMap} :
+\begin{itemize}
+\item \textbf{isEmpty()} : retourne "vrai" si l'objet est vide.
+\item \textbf{contains(Object value)} : retourne "vrai" si la valeur est présente. Identique à\\ \textbf{containsValue(Object value)}.
+\item \textbf{containsKey(Object key)} : retourne "vrai" si la clé passée en paramètre est présente.
+\item \textbf{put(Object key, Object value)} : ajoute le couple key/value dans l'objet.
+\item \textbf{elements()} : retoune une énumération des éléments de l'objet.
+\item \textbf{keys()} : retourne la liste des clés (peut servir dans une boucle)
+\item \textbf{values()} : retourne la liste des valeurs (peut servir dans une boucle)
+\end{itemize}
+
+\begin{remarque}
+On peut contraindre le type de données pour la clé ou la valeur lors de la déclaration de l'objet \textbf{HashMap} :
+\begin{lstlisting}[language=java]
+HashMap<String, int> dict = new HashMap();
+\end{lstlisting}
+Ici, les clés devront être des chaînes de caractère, et les valeurs seront des entiers.
+\end{remarque}
+
+
+Un exemple d'utilisation (en reprenant l'exemple pour les \textbf{ArrayList}) :
+\begin{lstlisting}[language=java]
+// We start by giving the name of the players
+HashMap<String, Player> players = new HashMap<String, Player>();
+String name = new String();
+
+Scanner sc = new Scanner(System.in);
+//On affiche une instruction
+System.out.println("Please enter the names of players (one line per name, leave a blank line to end the process) :");
+while(true) {
+  //On recupere le prenom saisi
+  name = sc.nextLine();
+  
+  if (name.length()!=0) {
+    // We add a new player in the list
+    players.put(name, new Player(name));
+  }
+  else
+    break;
+}
+\end{lstlisting}
+
+
 
 
 \section{Les classes}\label{sec:les_classes}
@@ -1190,6 +1289,66 @@ for(Ville v : tableau){
   System.out.println(v.decrisToi()+"\n");
 }
 \end{lstlisting}
+
+\section{Avancé}
+\subsection{Lire/écrire des objets dans un fichier : sérialisation}
+\subsubsection{Écrire des objets dans un fichier}
+
+\begin{lstlisting}[language=java]
+FileOutputStream fos = new FileOutputStream("task_list.task"); // Lie un flux de donnees a un fichier physique
+ObjectOutputStream oos = new ObjectOutputStream(fos); // permet de convertir un objet en flux de donnees
+for (Task task : taskList) {
+  oos.writeObject(task);
+}
+oos.close();
+\end{lstlisting}
+
+\bigskip
+
+Afin de pouvoir être enregistré dans un fichier, l'objet doit être déclaré de la manière suivante :
+\begin{lstlisting}[language=java]
+public class Task implements Serializable{
+  
+  /**
+    * To follow, in the saving of tasks, the eventual modification of the class itself
+    */
+  private static final long serialVersionUID = 1L;
+}
+\end{lstlisting}
+Cette interface \textbf{Serializable} est dite de type marqueur, c'est à dire qu'elle n'a aucune méthode à implémenter. Elle permet juste d'indiquer que cette classe est sérialisable, et donc enregistrable dans un fichier par la méthode ci-dessus.
+
+\bigskip
+
+En résumé : 
+\begin{enumerate}
+\item Il faut créer un FileOutputStrem. C'est objet permet de se connecter à un fichier (voire en créer un).
+\item Il faut ensuite créer un ObjectOutputStrem. Avec pour paramètre un FileOutputStream, il peut écrire des objets dans un fichier.
+\item Ce dernier objet est ensuite celui avec qui on interagit pour écrire des objets, le reste s'opère en interne.
+\end{enumerate}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.65\linewidth]{figures/serialisation.pdf}
+\caption{Les différentes étapes de l'enregistrement d'un objet dans un fichier.}
+\end{figure}
+
+\subsubsection{Lire des objets à partir d'un fichier}
+\begin{lstlisting}[language=java]
+ArrayList<Task> taskList = new ArrayList<Task>();
+FileInputStream fis = new FileInputStream("task_list.task"); 
+ObjectInputStream ois = new ObjectInputStream(fis);
+try {
+  Task obj = null;
+  while ((obj = (Task)ois.readObject()) != null) 
+    taskList.add(obj);
+} catch (EOFException ex) { //This exception will be caught when EOF is reached
+System.out.println("List of tasks read successfully");
+} finally {
+  ois.close();
+}
+\end{lstlisting}
+
+Même principe que pour l'écriture, la lecture du fichier pour récupérer les objets. 
 
 \section{Eclipse}
 Il est impossible de faire un tutoriel Java sans s'attarder sur Eclipse, excellent logiciel pour coder en Java et qui facilite vraiment la vie des développeurs.
