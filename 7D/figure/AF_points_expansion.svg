@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="426.91162"
-     inkscape:cy="249.33481"
+     inkscape:zoom="0.7"
+     inkscape:cx="848.79406"
+     inkscape:cy="403.17764"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -46,7 +46,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -227,40 +227,11 @@
        height="36.717625"
        width="24.931919"
        id="use4927"
-       style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+       style="fill:none;stroke:#ff0000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
     <path
-       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:1;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-       d="m -954.30529,131.28468 0,505.09972"
-       id="path4883"
-       inkscape:connector-curvature="0" />
-    <path
-       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:1;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-       d="m -801.2658,131.28468 0,110.36322 m 0,287.14286 0,107.59364"
-       id="path4881"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccc" />
-    <path
-       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:1;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-       d="m -342.14728,131.28468 0,505.09972"
-       id="use4824"
-       inkscape:connector-curvature="0" />
-    <path
-       id="path4872"
-       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:1;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-       d="m -488.40875,525.8238 222.78119,0 m -352.58579,0 103.54063,0 m -271.73103,0 106.06601,0 m -350.48736,0 216.64215,0 m 325.7742,-283.9785 222.78119,0 m -352.58579,0 103.54063,0 m -271.73103,0 106.06601,0 m -350.48736,0 216.64215,0 m 411.13209,141.98925 137.4233,0 m -765.19754,0 135.82995,0"
-       inkscape:connector-curvature="0" />
-    <path
-       sodipodi:nodetypes="cccc"
-       inkscape:connector-curvature="0"
-       id="path4885"
-       d="m -648.22632,131.28468 0,110.36322 m 0,287.14286 0,107.59364"
-       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:1;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-    <path
-       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:1;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-       d="m -495.18683,131.28468 0,110.36322 m 0,287.14286 0,107.59364"
        id="path4887"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccc" />
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       d="m -495.18683,131.28468 0,110.36322 m 0,287.14286 0,107.59364 m -153.03949,-505.09972 0,110.36322 m 0,287.14286 0,107.59364 m 159.81757,-110.5606 222.78119,0 m -352.58579,0 103.54063,0 m -271.73103,0 106.06601,0 m -350.48736,0 216.64215,0 m 325.7742,-283.9785 222.78119,0 m -352.58579,0 103.54063,0 m -271.73103,0 106.06601,0 m -350.48736,0 216.64215,0 m 411.13209,141.98925 137.4233,0 m -765.19754,0 135.82995,0 m 552.84787,-252.54987 0,505.09972 m -459.11852,-505.09972 0,110.36322 m 0,287.14286 0,107.59364 m -153.03949,-505.09972 0,505.09972" />
     <rect
        y="146.43642"
        x="-981.0697"
@@ -296,37 +267,33 @@
        height="17.891163"
        x="-1019.1962"
        y="139.73651" />
-    <use
-       height="1052.3622"
-       width="744.09448"
-       transform="translate(-4.3740234e-5,-56.238755)"
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="use4990"
-       xlink:href="#use4927"
-       y="0"
-       x="0" />
-    <use
-       height="1052.3622"
-       width="744.09448"
-       transform="translate(70.388926,1.5258789e-5)"
+       width="24.931919"
+       height="36.717625"
+       x="-660.69232"
+       y="311.37982" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="use4992"
-       xlink:href="#use4927"
-       y="0"
-       x="0" />
-    <use
-       height="1052.3622"
-       width="744.09448"
-       transform="translate(-4.3740234e-5,56.238785)"
+       width="24.931919"
+       height="36.717625"
+       x="-590.30334"
+       y="367.61859" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="use4994"
-       xlink:href="#use4927"
-       y="0"
-       x="0" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#use4927"
+       width="24.931919"
+       height="36.717625"
+       x="-660.69232"
+       y="423.85739" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="use4988"
-       transform="translate(-70.389094,1.5258789e-5)"
-       width="744.09448"
-       height="1052.3622" />
+       width="24.931919"
+       height="36.717625"
+       x="-731.08136"
+       y="367.61859" />
   </g>
 </svg>
