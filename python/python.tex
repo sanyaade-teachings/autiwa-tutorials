@@ -157,14 +157,14 @@ Les caractères suivants sont les options de conversion disponibles :
 \item[\emph{\#}]: La valeur a convertir utilisera la forme alternative (définie plus bas)
 \item[\emph{0}]: La conversion sera complétée par des \og0\fg pour les valeurs numériques.
 \item[\emph{-}]: la valeur convertie est ajustée à gauche (écrase les \og0\fg si les deux sont donnés)
-\item[\emph{ }]: (un espace) Un blanc devrait ere laissé avant un nombre positive (ou une chaîne vide) produite par une conversion signée.
+\item[\emph{ }]: (un espace) Un blanc devrait être laissé avant un nombre positif (ou une chaîne vide) produite par une conversion signée.
 \item[\emph{+}]: Un caractère représentant le signe (\og+\fg ou \og-\fg) précèdera la conversion (écrase l'option \og espace\fg)/
 \end{itemize}
 
 Dans ce tableau, les lettres suivantes (en italique) ont une signification :
 \begin{itemize}
-\item[\emph{w}]: Le nombre de position à utiliser (l'espace à réserver pour l'affichage)
-\item[\emph{m}]: La précision (qui peut parfois devenir les chiffres significatifs dans la version alternative).
+\item[\emph{w}]: Le nombre de position à utiliser (l'espace à réserver pour l'affichage). Si le nombre réellement nécessaire est supérieur, ce nombre n'est pas pris en compte. (en clair, si vous dites de réserver 2 caractères, mais qu'il en faut 6 pour afficher le nombre, il en utilisera 6, mais si vous dites d'en réserver 6 et qu'il vous en faut 2, alors il laissera des blancs, par défaut à gauche)
+\item[\emph{m}]: La précision (qui peut parfois devenir les chiffres significatifs dans la version alternative). C'est la précision au delà de la virgule dans le cas de nombre réels.
 \end{itemize}
 
 Même si on peut afficher un nombre avec autant de positions qu'on veut, c'est juste une question d'affichage, ce nombre de positions n'a rien à voir avec la précision (i.e le nombre de chiffres significatifs). 
@@ -194,6 +194,44 @@ Même si on peut afficher un nombre avec autant de positions qu'on veut, c'est j
 \footnotetext[102]{Accepte comme valeur un caractère, ou un entier désignant un caractère (en ASCII)}
 \footnotetext[103]{Affiche toujours un point, même s'il n'y a aucune décimale à afficher après.}
 \footnotetext[104]{Ne supprime pas le point décimal. La précision représente le nombre de chiffres significatifs}
+
+\bigskip
+
+Voici des exemples concrêts pour l'affichage d'un flottant normal : 
+\begin{verbatim}
+>>> t=2.3500000
+>>> print("%d"%t)
+2
+>>> print("%f"%t)
+2.350000
+>>> print("%.2f"%t)
+2.35
+>>> print("%.4f"%t)
+2.3500
+>>> print("%7.2f"%t)
+   2.35
+>>> print("%5.2f"%t)
+ 2.35
+\end{verbatim}
+
+En voici d'autres pour un réels déclaré sous la forme d'une exponentielle :
+\begin{verbatim}
+>>> t=3.875786e17
+>>> print("%e" % t)
+3.875786e+17
+>>> print("%f" % t)
+387578600000000000.000000
+>>> print("%d" % t)
+387578600000000000
+>>> print("%.2e" % t)
+3.88e+17
+>>> print("%10.2e" % t)
+  3.88e+17
+>>> print("'%-10.2e'" % t)
+'3.88e+17  '
+\end{verbatim}
+
+
 
 \subsection{Débug}
 Pour celà, il existe le module \gras[module!pdb]{pdb} qui sert à ça.

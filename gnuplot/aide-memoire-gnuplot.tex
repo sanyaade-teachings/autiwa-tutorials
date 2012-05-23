@@ -407,12 +407,27 @@ replot
 \end{verbatim}
 
 \subsection{fichier png}
+Pour faire ceci en terminal principal, il faut entrer en préambule les lignes suivantes :
+\begin{verbatim}
+set terminal pngcairo
+set output 'graphique.png'
+\end{verbatim}
+
+Pour, au contraire, afficher le graphique, puis l'exporter en png : 
 \begin{verbatim}
 set terminal pngcairo
 set output 'graphique.png'
 replot
 \end{verbatim}
 
+\bigskip
+
+L'option \textbf{crop} permet d'éliminer les blancs autour du graphique, mais dans ce cas, la résolution que vous aurez en sortie sera plus petite que la résolution que vous avez demandé. Le graphique aura en fait la même taille dans les deux cas, mais les zones parfaitement blanches autour du graphique seront ôtées.
+
+J'utilise pour ma part la ligne suivante : 
+\begin{verbatim}
+set terminal pngcairo crop enhanced size 1200, 1000
+\end{verbatim}
 
 \section{Les options}
 \subsection{label}
@@ -653,6 +668,15 @@ pause -1 # wait until a carriage return is hit
 \end{verbatim}
 
 \end{remarque}
+
+\subsection{Invalid character \textbackslash}
+\begin{verbatim}
+splot 'test_total_torque.dat' with pm3d notitle, \ 
+                                                 ^
+"torque_parameter_space.gnuplot", line 12: invalid character \
+\end{verbatim}
+
+Quand j'ai eu ce problème, c'était dû à un espace en trop, juste après le caractère \og \textbackslash\fg.
 
 
 
