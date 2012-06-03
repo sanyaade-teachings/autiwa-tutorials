@@ -231,7 +231,12 @@ En voici d'autres pour un réels déclaré sous la forme d'une exponentielle :
 '3.88e+17  '
 \end{verbatim}
 
-
+Et pour un entier :
+\begin{verbatim}
+>>> print("%0*i_total_torque.png" % (len, value))
+012_total_torque.png
+\end{verbatim}
+qui ici met en forme \texttt{value}, mais complète avec des 0 à gauche pour atteindre une longueur totale de \texttt{len}.
 
 \subsection{Débug}
 Pour celà, il existe le module \gras[module!pdb]{pdb} qui sert à ça.
@@ -733,7 +738,32 @@ Ces tests suppriment automatiquement les valeurs 'nan' qui ne vérifient aucun t
 a[np.isfinite(a)]
 \end{lstlisting}
 
+\subsection{Générer des listes entre deux valeurs extrêmes}
+La façon la plus simple de faire une liste de valeurs est la fonction \textbf{range} : 
+\begin{lstlisting}[language=python]
+>>> range(5)
+[0, 1, 2, 3, 4]
+>>> range(1,5)
+[1, 2, 3, 4]
+>>> range(1,12,3)
+[1, 4, 7, 10]
+\end{lstlisting}
 
+Pour définir des listes de valeurs non entières, il existe les fonctions \textbf{linspace} et \textbf{arange} du module \gras{numpy}. La fonction \textbf{linspace} a l'avantage d'inclure la valeur finale par défaut (comportement que l'on peut changer dans les options).
+
+\begin{lstlisting}[language=python]
+>>> np.linspace(0.3,0.7, 2)
+array([ 0.3,  0.7])
+>>> np.linspace(0.3,0.7, 5)
+array([ 0.3,  0.4,  0.5,  0.6,  0.7])
+\end{lstlisting}
+
+On peut aussi définir les valeurs extrémales dans un tuple : 
+\begin{lstlisting}[language=python]
+>>> b = (0.3, 0.7)
+>>> np.linspace(*b, num=5)
+array([ 0.3,  0.4,  0.5,  0.6,  0.7])
+\end{lstlisting}
 
 \section{Programmation objet}
 \subsection{Les fonctions sont des objets}
