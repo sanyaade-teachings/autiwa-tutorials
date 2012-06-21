@@ -888,27 +888,7 @@ pl.plot(x,y)
 pl.show()
 \end{lstlisting}
 
-\subsection{Lier les limites des axes entre elles dans subplot}\index{subplot!lier les axes}
-Dans des graphiques subplots, on peut de plus lier les axes entre eux, pour que lors d'un zoom dans la fenêtre graphique affichée avec \texttt{pl.show()}, le même zoom soit reproduit dans tous les axes liés.
-
-\begin{lstlisting}[language=python]
-# en haut a gauche
-ax1 = pl.subplot(211)
-pl.plot(x,y)
-
-#en haut au milieu
-pl.subplot(212, sharex=ax1, sharey=ax1)
-pl.plot(x,y)
-
-pl.show()
-\end{lstlisting}
-
-\begin{remarque}
-On peut bien évidemment ne partager que l'axe des x ou l'axe des y, et c'est extrêmement pratique dans certains cas, quand par exemple on affiche plusieurs variables en fonction du temps.
-\end{remarque}
-
 \subsection{Personnalisations diverses}
-
 Pour aller un peu plus loin
 \begin{lstlisting}[language=python]
 pl.figure(1) # Pour specifier que la figure active est la 1
@@ -978,16 +958,34 @@ markeredgewidth=1
 markeredgecolor='#000000'
 \end{verbatim}
 
-\subsection{Graphiques logarithmiques}
+\subsection{Manipuler les axes}
 
-À la place de \verb|plot| on peut aussi faire :
+\subsubsection{Lier les limites des axes entre elles dans subplot}\index{subplot!lier les axes}
+Dans des graphiques subplots, on peut de plus lier les axes entre eux, pour que lors d'un zoom dans la fenêtre graphique affichée avec \texttt{pl.show()}, le même zoom soit reproduit dans tous les axes liés.
+
 \begin{lstlisting}[language=python]
-pl.semilogx(x,y)
-pl.semilogy(x,y)
-pl.loglog(x,y)
+# en haut a gauche
+ax1 = pl.subplot(211)
+pl.plot(x,y)
+
+#en haut au milieu
+pl.subplot(212, sharex=ax1, sharey=ax1)
+pl.plot(x,y)
+
+pl.show()
 \end{lstlisting}
 
-\subsection{Zoom et étendue des axes}
+\begin{remarque}
+On peut bien évidemment ne partager que l'axe des x ou l'axe des y, et c'est extrêmement pratique dans certains cas, quand par exemple on affiche plusieurs variables en fonction du temps.
+\end{remarque}
+
+\subsubsection{Récupérer les bornes des axes}
+Avec la commande ci-dessous, on peut récupérer les valeurs extrêmes des axes, utile pour le placement d'objets, ou avoir des traits qui font toute la largeur des courbes.
+\begin{lstlisting}[language=python]
+ylims = list(pl.ylim())
+\end{lstlisting}
+
+\subsubsection{Zoom et étendue des axes}
 
 Pour spécifier le zoom sur la figure, il faut rajouter :
 \begin{lstlisting}[language=python]
@@ -1008,8 +1006,17 @@ pl.ylim(ymin=0)
 
 Les commandes \textbf{xlim} et \textbf{ylim} peuvent spécifier respectivement les limites (\textbf{xmin}, \textbf{xmax}, \textbf{ymin}, \textbf{ymax}) des axes. En ne spécifiant qu'une valeur, l'autre est laissée inchangée.
 
+\subsection{Styles de graphiques 2D}
+\subsubsection{Graphiques logarithmiques}
 
-\subsection{Histogrammes}
+À la place de \verb|plot| on peut aussi faire :
+\begin{lstlisting}[language=python]
+pl.semilogx(x,y)
+pl.semilogy(x,y)
+pl.loglog(x,y)
+\end{lstlisting}
+
+\subsubsection{Histogrammes}
 Pour afficher un histogramme :
 \begin{lstlisting}[language=python]
 pl.hist(x, normed=True, bins=20)
@@ -1041,6 +1048,21 @@ bins=20
 Quand on veut afficher plusieurs histogrammes dans le même plots en plusieurs fois, il faut spécifier un range de bins bien définis. J'ai déjà fait deux groupes de deux histogrammes, et j'avais de gros soucis dans les valeurs, ceci dû à ces bins qui affichaient les mêmes valeurs mais qui au final ne correspondaient pas aux mêmes choses.
 \end{attention}
 
+\subsubsection{Barres d'erreurs}
+Il existe un style graphique uniquement pour représenter des données avec des barres d'erreurs. Il faut tout de même savoir que la valeur spécifiée correspond à la demi largeur de la barre (la même taille sera appliquée à gauche et à droite de la valeur de référence)
+
+Pour faire des barres d'erreurs il faut faire : 
+\begin{lstlisting}[language=python]
+errorbar(x, y, yerr=e, fmt='ro')
+\end{lstlisting}
+où $e$ est une liste de même taille que $x$ et $y$ et qui contient les demi-largeurs des barres d'erreurs. \texttt{xerr} permet de faire la même choses pour des barres d'erreurs horizontales, et les deux options sont utilisables simultanément.
+
+\bigskip
+
+Pour faire des barres d'erreurs assymétriques, il suffit de spécifier une liste de deux listes : 
+\begin{lstlisting}[language=python]
+errorbar(x, y, yerr=[e,f], fmt='ro')
+\end{lstlisting}
 
 \subsection{Afficher une carte de valeurs (du 3D avec le z représenté par un code de couleur)}
 On peut afficher une matrice et spécifier des axes (par défaut, il n'affiche que les indices de la matrice, mais on peut associer des plages de valeurs arbitraires aux axes x et y)

@@ -440,6 +440,26 @@ else
 
 Si on souhaite faire beaucoup de tests, on peut souhaiter utiliser la structure \gras[boucle!switch]{switch} à la place.
 
+Avec des chaînes de caractère
+\begin{lstlisting}[language=java]
+String entry = new String("t");
+
+if (entry.equals("t"))
+  System.out.println("le texte est 't'");      
+else  
+  System.out.println("le texte n'est pas 't'");
+\end{lstlisting}
+
+Voici un autre exemple pour utiliser par exemple les modulo : 
+\begin{lstlisting}[language=java]
+int i = 25;
+
+if (i%5==0)
+  System.out.println("Ce nombre est multiple de 5");      
+else  
+  System.out.println("Ce nombre n'est pas multiple de 5");
+\end{lstlisting}
+
 \subsubsection{Boucle Switch}\index{boucle!switch}
 
 \begin{lstlisting}[language=java]
