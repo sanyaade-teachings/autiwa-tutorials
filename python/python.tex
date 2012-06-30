@@ -816,7 +816,7 @@ import pylab as pl
 
 Le principe est le même que pour les graphiques avec matlab. On définit des figures :
 \begin{lstlisting}[language=python]
-pl.figure(1)
+fig = pl.figure(1)
 \end{lstlisting}
 Et on peut ensuite y afficher des graphiques, les exporter, modifier les propriétés etc\dots
 
@@ -829,6 +829,11 @@ Pour remettre une figure à zéro :
 pl.figure(1) # definit la figure 1 comme figure courante
 pl.clf() # efface la figure courante (clf pour clear figure)
 \end{lstlisting}
+
+\begin{attention}
+Pylab est un module pour manipuler des objets. Si beaucoup de tutoriels ne montrent pas cette façon là de faire, c'est parce qu'il existe des routines internes qui vont déterminer le dernier objet activé (la dernière figure, le dernier graphique, afin d'appliquer les méthodes sur ces objets là, mais la façon propre de manipuler les graphes est de faire des objets. C'est beaucoup plus facile à comprendre et à lire.
+\end{attention}
+
 
 \subsection{Afficher un graphique}
 Pour faire un plot
@@ -860,7 +865,7 @@ pl.savefig('ma_figure.pdf')
 
 \subsection{Plusieurs graphiques sur une même page : subplots}\gras{subplot}
 \gras[module!pylab]{pylab} fonctionne comme les plots dans \gras{matlab}. Il existe aussi la possibilité de faire des subplots.
-
+%TODO faire une version objet du code subplot, afin de montrer la façon propre de procéder avec les subplots
 \begin{lstlisting}[language=python]
 pl.figure(1)
 
@@ -886,6 +891,31 @@ pl.plot(x,y)
 #[...]
 
 pl.show()
+\end{lstlisting}
+
+\subsubsection{Ajuster les espaces entre les subplots}
+\begin{lstlisting}[language=python]
+import pylab as pl
+fig = pl.figure(1)
+# default values
+# fig.subplots_adjust(left=0.12, bottom=0.1, right=0.90, top=0.90, wspace=0.20, hspace=0.20)
+fig.subplots_adjust(left=0.12, bottom=0.1, right=0.96, top=0.96, wspace=0.26, hspace=0.26)
+.
+.
+.
+pl.show()
+\end{lstlisting}
+
+\begin{itemize}
+\item \textbf{left}, \textbf{bottom}, \textbf{right} et \textbf{top} permettent d'ajuster les espaces sur les cotés du graphique (sans toucher aux espaces entre les subplots). À noter que vous ne pouvez pas trop toucher à \textbf{left} et \textbf{bottom} parce que dans cet espace se trouvera la légende certains axes, alors que \textbf{right} et \textbf{top} n'ont normalement aucune légende, vous pouvez donc rogner un peu dans cette partie là.
+\item \textbf{wspace} et \textbf{hspace} contrôlent les espaces respectivement horizontaux et verticaux entre les subplots. La valeur spécifier, en pourcentage, représente l'espace à alouer à tous les espaces entre subplots (chaque espace aura une fraction du total.
+\end{itemize}
+
+\subsubsection{Ajouter un subplot en coordonnées polaires}
+\begin{lstlisting}[language=python]
+import pylab as pl
+fig = pl.figure(1)
+fig.add_subplot(111, polar=True) # add a polar subplot
 \end{lstlisting}
 
 \subsection{Personnalisations diverses}
