@@ -260,6 +260,18 @@ Ensuite, on peut taper des commandes python, notamment pour évaluer les variabl
 \end{itemize}
 Sinon, pour quitter, \touche{Ctrl}+\touche{C}, ou \texttt{exit()}
 
+\subsection{Lire des données depuis un fichier texte}
+Outre la méthode classique en ouvrant le fichier, il est possible de directement récupérer les données avec une fonction du module \gras{numpy} : 
+\begin{lstlisting}[language=python]
+import numpy as np
+# Read in data from an ASCII data table
+data = np.genfromtxt('datafile.txt')
+
+#'data' is a matrix containing the columns and rows from the file
+mass   = data[:,0]  # Python indices are (row,col) as in linalg
+radius = data[:,1]  # Creates arrays for first two columns
+\end{lstlisting}
+
 \section{Fonctions}
 On peut bien évidemment créer des fonctions en python. Une fonction très simple serait
 \begin{lstlisting}[language=python]
@@ -845,16 +857,6 @@ et l'afficher à l'écran
 pl.show()
 \end{lstlisting}
 
-\subsection{Ajouter du texte}
-\begin{lstlisting}[language=python]
-pl.text(x, y, "mon texte")
-\end{lstlisting}
-permet d'ajouter du texte en spécifiant les coordonnées dans les unités des axes, tandis que
-\begin{lstlisting}[language=python]
-pl.figtext(x, y, "mon texte")
-\end{lstlisting}
-permet de spécifier les coordonnées en unités absolues de la figure, c'est à dire que (0,0) correspond au coin en bas à gauche, et (1, 1) au coin en haut à droite de la fenêtre graphique.
-
 \subsection{Exporter un graphique}
 Pour exporter la figure courante, il suffit de faire :
 \begin{lstlisting}[language=python]
@@ -932,6 +934,7 @@ pl.legend() # afficher la legende
 pl.show()
 \end{lstlisting}
 
+\subsubsection{Styles de ligne et de point}\label{sec:linestyle}
 Sur \reftab{tab:type_ligne} sont représentés quelques types de lignes différents (deux sous-groupes, les lignes et les marqueurs) : 
 \begin{table}[htb]
 \hfill
@@ -939,7 +942,7 @@ Sur \reftab{tab:type_ligne} sont représentés quelques types de lignes différe
 \hline
 character & description\\\hline
 '-' & solid line style\\\hline
-'--' & dashed line style\\\hline
+'-~-' & dashed line style\\\hline
 '-.' & dash-dot line style\\\hline
 ':' & dotted line style\\\hline
 '.' & point marker\\\hline
@@ -974,8 +977,57 @@ character & description\\\hline
 \caption{Différents types de ligne ou de marqueurs pour l'affichage de graphique avec pylab. Pour s'en servir, il faut utiliser une commande du style \texttt{pl.plot(x,z, 'b-', label="z=g(x)")} où \og 'b-'\fg signifie qu'on veut une ligne à trait plein bleue .}\label{tab:type_ligne}
 \end{table}
 
+\subsubsection{Ajouter une grille (majeure/mineure)}
+\begin{lstlisting}[language=python]
+# We prepare the plot
+fig = pl.figure(1)
+# We define a fake subplot that is in fact only the plot.
+plot = fig.add_subplot(111)
 
-\subsection{Utilisation de symbole au lieu de ligne}
+plot.xaxis.grid(True,'minor', color='#000000', linestyle=':')
+plot.yaxis.grid(True,'minor', color='#000000', linestyle=':')
+plot.xaxis.grid(True,'major', color='#000000', linestyle='--')
+plot.yaxis.grid(True,'major', color='#000000', linestyle='--')
+\end{lstlisting}
+
+Il est possible de modifier la largeur du trait, en plus de la couleur ou du style. Pour la personnalisation de ces paramètres, les valeurs possibles sont les mêmes que d'habitude. Les différents styles de ligne sont répertoriés dans \refsec{sec:linestyle}.
+
+\subsubsection{Changer la taille des labels des axes}
+Ceci permet en particulier de changer la taille des labels mineurs par rapports aux labels majeurs :
+\begin{lstlisting}[language=python]
+# We prepare the plot
+fig = pl.figure(1)
+# We define a fake subplot that is in fact only the plot.
+plot_hyperfocal = fig.add_subplot(111)
+
+# We change the fontsize of minor ticks label
+plot_hyperfocal.tick_params(axis='both', which='major', labelsize=10)
+plot_hyperfocal.tick_params(axis='both', which='minor', labelsize=8)
+\end{lstlisting}
+
+\subsubsection{Légende}
+Pour afficher la légende, il faut d'une part spécifier le nom des courbes quand on les déclare : 
+\begin{lstlisting}[language=python]
+pl.plot(x,y, 'r.', label="y=f(x)")
+pl.plot(x,z, 'b-', label="z=g(x)")
+\end{lstlisting}
+mais il faut aussi dire qu'on veut afficher la légende :
+\begin{lstlisting}[language=python]
+pl.legend()
+\end{lstlisting}
+
+\bigskip
+
+On peut spécifier la position de la légende via le paramètre optionnel \texttt{loc} qui peut prendre les valeurs suivantes :
+'best' (only implemented for axis legends), 'upper right' , 'upper left' , 'lower left' , 'lower right' , 'right' , 'center left' , 'center right', 'lower center', 'upper center', 'center'.
+
+que l'on utilise de la façon suivante :
+ \begin{lstlisting}[language=python]
+pl.legend(loc='lower right')
+\end{lstlisting}
+
+
+\subsubsection{Utilisation de symbole au lieu de ligne}
 \begin{lstlisting}[language=python]
 pl.plot(x,z, 'o', markersize=5)
 \end{lstlisting}
@@ -987,6 +1039,16 @@ markerfacecolor='None' # To set 'no color' inside the marker
 markeredgewidth=1
 markeredgecolor='#000000'
 \end{verbatim}
+
+\subsubsection{Ajouter du texte}
+\begin{lstlisting}[language=python]
+pl.text(x, y, "mon texte")
+\end{lstlisting}
+permet d'ajouter du texte en spécifiant les coordonnées dans les unités des axes, tandis que
+\begin{lstlisting}[language=python]
+pl.figtext(x, y, "mon texte")
+\end{lstlisting}
+permet de spécifier les coordonnées en unités absolues de la figure, c'est à dire que (0,0) correspond au coin en bas à gauche, et (1, 1) au coin en haut à droite de la fenêtre graphique.
 
 \subsection{Manipuler les axes}
 

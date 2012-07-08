@@ -33,6 +33,52 @@ Le \textbf{Quick Control Dial}, la molette avec le bouton \og SET\fg au milieu a
 \end{attention}
 
 \section{Les bases}
+\subsection{La profondeur de champ}
+La profondeur de champ c’est une zone de netteté qui s’étend en deçà et au delà du plan de netteté. \emph{Elle se repartit 1/3 devant et 2/3 derrière. Les objets situés en dehors de la profondeur de champ seront flous sur l’image.} C'est en fait simplement la zone à l'intérieur de laquelle le cercle de confusion des rayons provenant d'un même point de l'image est plus petite qu'un pixel. Quand ce n'est plus le cas, l'image est floue.
+
+\begin{remarque}
+Le cercle de confusion est dû au fait qu'un élément d'optique ne donnera pas une focalisation ponctuelle d'une image ponctuelle, même après focalisation. Ce petit cercle contenant tous les rayons lumineux d'un même point objet permet de déterminre, en comparant à la taille de pixel, si ce point sera net ou pas.
+\end{remarque}
+
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.5\linewidth]{figure/confusion_circle.pdf}
+\caption{Schéma représentant le trajet lumineux de tous les rayons éclairant un même point de l'image source. Ces rayons se retrouvent dans ce qu'on appelle un cercle de confusion une fois la mise au point faite. Si ce cercle de confusion se trouve être plus petit qu'un pixel de l'appareil photo, alors ce point apparaîtra net, sinon il apparaîtra flou. Sur le schéma sont représentés les différents paramètres qui vont modifier la profondeur de champ, c'est à dire la zone de l'image dans laquelle le cercle de confusion sera plus petit qu'un pixel. Ces paramètres sont la distance de l'objet, la focale de l'objectif, la taille du pixel et l'ouverture.}
+\end{figure}
+
+Cette zone est fonction de 4 paramètres essentiellement :
+\begin{itemize}
+\item l'\textbf{ouverture} du diaphragme : Plus l'ouverture est grande et plus le cône de lumière entrant dans l'objectif pour un point donné aura un angle d'ouverture grand. Ainsi, le cercle de confusion sera plus grand
+\item la \textbf{longueur focale} de l'objectif : Plus la focale est grande et plus la profondeur de champ est faible, (pour tous les autres paramètres fixés)
+\item la \textbf{distance de mise au point} : Plus la distance de mise au point est grande, et plus la profondeur de champ est grande
+\item le format du capteur : Plus les pixels sont grands, et plus la profondeur de champ est grande.
+\end{itemize}
+
+\begin{attention}
+Je ne pense pas avoir raison en disant que la référence pour le capteur est la taille du pixel, car où que je regarde sur internet, la valeur a l'air d'être la même pour un type de capteur (full frame par exemple) et ce quel que soit le nombre de pixel total. Je ne comprends donc pas cette partie là, mais vu que c'est une constante, ce n'est pas vraiment important. Pour le 7D ce nombre vaut $0.019\unit{mm}$.
+\end{attention}
+
+\begin{important}
+Ce qu'il faut retenir : 
+\begin{enumerate}
+\item La zone de netteté se repartit 1/3 devant et 2/3 derrière à grande distance, sinon c'est plutôt 50--50;
+\item Si le diaphragme augmente (c’est-à-dire passer de f/2 à f/16) la profondeur de champ augmente ;
+\item Si la focale diminue (c’est-à-dire passer de 50mm à 24mm) la profondeur de champ augmente ;
+\item Si la distance de mise au point augmente (passer de 3m à l’infini) la profondeur de champ augmente.
+\end{enumerate}
+\end{important}
+
+\subsubsection{Hyperfocale}
+L'hyperfocale est la distance minimale de mise au point qui donne une zone de netteté qui s'étend jusqu'à l'infini.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.5\linewidth]{figure/hyperfocal.pdf}
+\caption{Sur ce graphique est représenté l'hyperfocale (la distance minimale de mise au point qui permet d'avoir une zone de netteté qui s'étend à l'infini) pour différentes valeurs d'ouverture et de focale.}
+\end{figure}
+%TODO donner un graphique de la valeur de l'hyperfocale pour différentes focales et ouvertures
+
 \subsection{L'exposition}
 L'exposition d'une photo, ou dit autrement la quantité de lumière nécessaire pour avoir une image, est déterminée par deux variables : 
 \begin{itemize}
