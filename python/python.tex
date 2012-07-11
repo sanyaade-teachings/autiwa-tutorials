@@ -75,42 +75,40 @@ a != b & teste si a et b sont différent
 
 
 
-\subsection{Variables et types numériques}
-
-La fonction \gras[python!type]{type} permet de connaître le type d'une variable.
+\subsection{Types de variable}
+Pour déclarer une variable, il suffit de lui attribuer une valeur :
 \begin{lstlisting}[language=python]
-a = 2
-b = 2.
-c = 'chaine'
-type(a), type(b), type(c)
+>>> a = 2
+>>> b = 3.4
+>>> c = 'Hello World!'
+>>> d = [1, 2]
 \end{lstlisting}
 
-Pour limiter le nombre de chiffres significatifs d'un réel, il faut utiliser la fonction \texttt{round(x,n)} qui arrondit la variable x avec n chiffres après la virgule.
-\begin{lstlisting}[language=python]
->>> round(1.23441, 2)
-1.23
-\end{lstlisting}
 
-Une fonction très pratique est la fonction \texttt{eval}. Elle permet de dire à python de considérer le contenu d'une variable ou expression comme si c'était du code python. Un exemple concrêt :
-\begin{lstlisting}[language=python]
-a = 2
-b = 'a'
-print eval(b)
-\end{lstlisting}
+Par défaut on n'a pas forcément besoin de connaître les noms des types, mais il est toujours intéressant de les connaître, que ce soit pour numpy ou pour tester les types des variables dans des cas particuliers. Les différents types que je connais sont répertoriés dans \reftab{tab:types}.
 
-On voit rapidement les possibilités de cette commande dans des boucles et autres joyeusetées.
+\begin{table}[htb]
+\centering
+\begin{tabular}{|>{\tt}c<{}|c|}
+\hline
+type & description\\\hline
+int & un entier\\\hline
+float & un réel\\\hline
+bool & un booléen (\textbf{True} ou \textbf{False})\\\hline
+str & une chaîne de caractères\\\hline
+tuple & un tuple, c'est à dire \verb|(1, 2)| par exemple\\\hline
+list & une liste : \verb|[1, 2]|\\\hline
+dict & un dictionnaire : \verb|{'un':1, 'deux':2}|\\\hline
+\end{tabular}
+
+\caption{Liste des types par défaut de python. Ce sont les types les plus utilisés, il y en a sans doute d'autres. Afin de connaître le type d'une variable particulière, il suffit de faire \texttt{type(variable)}.}\label{tab:types}
+\end{table}
+
+Ce sont en fait des classes définies par défaut, et les classes personnalisées auront leur propre type. 
 
 \bigskip
 
-Il existe en python le type booléen dont les valeurs possibles sont \texttt{True} ou \texttt{False}
-\begin{lstlisting}[language=python]
-a = True
-if a:
-  print a
-a = False
-if not(a):
-  print "C'est faux"
-\end{lstlisting}
+On peut bien entendu tester le type d'une variable et décider de la marche à suivre en fonction. Des exemples sont donnés dans \refsec{sec:test-type-variable}.
 
 \subsection{Formatter des chaînes de caractère}
 On peut bien entendu faire des choses de ce genre : 
@@ -237,6 +235,35 @@ Et pour un entier :
 012_total_torque.png
 \end{verbatim}
 qui ici met en forme \texttt{value}, mais complète avec des 0 à gauche pour atteindre une longueur totale de \texttt{len}.
+
+\subsection{Lire un fichier de données}
+Ici je ne parle pas de lire un fichier de paramètres, mais bien des données, formattées en colonnes, avec un entête et des formats variés. 
+
+Je ne vais pas forcément détailler tout ce qu'on peut faire, mais simplement montrer la commande de base, du module numpy, ainsi que les options les plus utiles : 
+\begin{lstlisting}[language=python]
+import numpy as np
+
+(t, a, e, I, m) = np.loadtxt('data.dat', skiprows=4, usecols = (0,1,2,3,7), dtype=(str, float, float, float, float), unpack=True)
+\end{lstlisting}
+Dans un fichier \texttt{data.dat} qui contient au moins 8 colonnes, on ne conserve que les 4 premières et la 8e colonne, qu'on définit comme étant respectivement une chaîne de caractère et des flottants. Les 4 premières lignes ne sont pas prises en compte, et sont l'entête du fichier.
+
+\bigskip
+
+On n'est pas obligé de définir les types des colonnes ou le délimiteurs. Par défaut, j'utilise la ligne suivante : 
+\begin{lstlisting}[language=python]
+import numpy as np
+
+data = np.loadtxt('data.dat', skiprows=4, usecols = (0,1), dtype=float)
+\end{lstlisting}
+
+\begin{remarque}
+Spécifier les options, comme le type des données, permet d'accélérer la lecture du fichier. Pour une fichier de \nombre{200000} lignes, j'ai ainsi gagné environ 5 secondes sur le temps de lecture.
+\end{remarque}
+
+\bigskip
+
+Il existe une commande sensiblement équivalente, \textbf{np.genfromtxt}, qui permet de mieux gérer les absences de données s'il y en a. En contre partie, cette fonction est plus lente que \textbf{loadtxt}, donc je n'en parle pas ici. Son fonctionnement est très similaire de toute manière.
+
 
 \subsection{Débug}
 Pour celà, il existe le module \gras[module!pdb]{pdb} qui sert à ça.
@@ -554,14 +581,6 @@ if (fail==0):
 else:
   print "fail"
 \end{lstlisting}
-
-
-
-
-
-
-
-
 
 \section{Tout savoir sur les listes}\index{liste}
 On définit une liste de la façon suivante :
@@ -1331,6 +1350,16 @@ ou
 t2 = t1[:]
 \end{lstlisting}
 
+\subsection{Exécuter une portion de code python à partir d'une chaîne de caractères}
+Une fonction très pratique est la fonction \texttt{eval}. Elle permet de dire à python de considérer le contenu d'une variable ou expression comme si c'était du code python. Un exemple concrêt :
+\begin{lstlisting}[language=python]
+a = 2
+b = 'a'
+print eval(b)
+\end{lstlisting}
+
+On voit rapidement les possibilités de cette commande dans des boucles et autres joyeusetées.
+
 \subsection{Supprimer toutes les occurences d'un caractère dans une chaine}
 Il existe une méthode particulière de \textbf{String} qui peut être utilisée pour faire celà. Par défaut, cette méthode permet de faire des remplacements de caractères, et optionnellement d'en supprimer certains, mais dans le cas présent, on ne fait que supprimer des caractères : 
 \begin{lstlisting}[language=python]
@@ -1366,18 +1395,10 @@ if ('x' in locals()):
 \end{lstlisting}
 
 
-\subsection{Tester le type d'une variable}
+\subsection{Tester le type d'une variable}\label{sec:test-type-variable}
 \begin{lstlisting}[language=python]
 >>> liste=['test', 'test']
->>> if isinstance(liste, type([])):
-...  print "c'est une liste"
-"c'est une liste"
-\end{lstlisting}
-
-On peut aussi faire
-\begin{lstlisting}[language=python]
->>> liste=['test', 'test']
->>> if isinstance(liste, list):
+>>> if (type(liste) == list):
 ...  print "c'est une liste"
 "c'est une liste"
 \end{lstlisting}
@@ -1385,17 +1406,9 @@ On peut aussi faire
 On peut aussi tester plusieurs types à la fois
 \begin{lstlisting}[language=python]
 >>> liste=['test', 'test']
->>> if isinstance(liste, (list,int)):
+>>> if (type(liste) in (list,int)):
 ...  print "c'est une liste ou un entier"
-"c'est une liste"
-\end{lstlisting}
-
-Sinon, plus simple :
-\begin{lstlisting}[language=python]
->>> liste=['test', 'test']
->>> if (type(liste)==list):
-...  print "c'est une liste"
-"c'est une liste"
+"c'est une liste ou un entier"
 \end{lstlisting}
 
 Pour connaître le type à rentrer pour le test, il suffit de faire

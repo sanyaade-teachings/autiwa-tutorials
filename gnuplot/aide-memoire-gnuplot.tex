@@ -390,6 +390,10 @@ set terminal wxt enhanced
 
 \subsection{Fichier pdf}
 \begin{verbatim}
+plot ...
+.
+.
+.
 set terminal pdfcairo
 set output 'graphique.pdf'
 replot
@@ -399,23 +403,41 @@ replot
 Le \texttt{replot} n'est utile que si la courbe a déjà été affichée (à l'écran par exemple).
 \end{remarque}
 
+Si on veut simplement enregistrer la courbe dans un fichier, il suffit de faire : 
+\begin{verbatim}
+set terminal pdfcairo enhanced
+set output 'graphique.pdf'
+plot ...
+.
+.
+.
+\end{verbatim}
+
 \subsection{fichier svg}
 \begin{verbatim}
 set terminal svg rounded size 450,360
 set output 'graphique.svg'
-replot
+plot ...
+.
+.
+.
 \end{verbatim}
 
 \subsection{fichier png}
 Pour faire ceci en terminal principal, il faut entrer en préambule les lignes suivantes :
 \begin{verbatim}
-set terminal pngcairo
+set terminal pngcairo crop enhanced
 set output 'graphique.png'
+plot ...
+.
+.
+.
 \end{verbatim}
 
 Pour, au contraire, afficher le graphique, puis l'exporter en png : 
 \begin{verbatim}
-set terminal pngcairo
+pause -1
+set terminal pngcairo crop
 set output 'graphique.png'
 replot
 \end{verbatim}

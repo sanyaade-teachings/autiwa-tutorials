@@ -215,25 +215,6 @@ end
 \end{lstlisting}
 \end{remarque}
 
-\subsection{Afficher et lire des informations (entrée et sortie standard)}
-Pour pouvoir écrire des informations à l'écran, c'est-à-dire des commentaires ou le contenu de certaines variables, on utilise l'instruction print. L'affectation d'une variable par l'intermédiaire du clavier se fait en utilisant l'instruction read. Si on ne veut pas imposer le format d'écriture (on laisse faire l'ordinateur), on utilise le format par défaut symbolisé par une * (voir l'exemple du programme ecriture-lecture). Tous les caractères compris entre ' ' (ou entre ” ”) sont écrits à l'écran.
-
-\begin{lstlisting}[language=Fortran]
-program ecriture_lecture
-implicit none
-real :: var, &
-	lu	! variable lue au clavier
-
-var = 2.5
-
-print*, 'La variable var vaut : ', var
-print*, 'Entrez une valeur au clavier'
-read*, lu
-print*, 'La valeur entree au clavier est', lu
-
-end
-\end{lstlisting}
-
 \subsection{Les expressions arithmétiques}
 On retrouve les opérateurs arithmétiques usuels : \og + \fg, \og - \fg, \og * \fg et \og / \fg. Ces opérandes ne sont définis à priori que lorsque les deux opérandes sont de même type. Le résultat est du même type que les opérandes. 
 
@@ -498,14 +479,65 @@ do var = debut, fin
 end do
 \end{lstlisting}
 
-\subsection{Les formats de lecture et écriture}
-Il est possible de lire ou écrire avec un format par défaut, \og * \fg. 
+\subsection{Lire et écrire des données (entrée et sortie standard)}
+Pour pouvoir écrire des informations à l'écran, c'est-à-dire des commentaires ou le contenu de certaines variables, on utilise l'instruction \textbf{write}. L'affectation d'une variable par l'intermédiaire du clavier se fait en utilisant l'instruction \textbf{read}. Si on ne veut pas imposer le format d'écriture (on laisse faire l'ordinateur), on utilise le format par défaut symbolisé par une \texttt{*}. Tous les caractères compris entre ' ' (ou entre ” ”) sont écrits à l'écran.
+
 
 \begin{lstlisting}[language=Fortran]
-write(*,*) 'la valeur de var est : ',var
+program ecriture_lecture
+implicit none
+real :: var, lu
+
+var = 2.5
+
+write(*,*) 'La variable var vaut : ', var
+write(*,*) 'Entrez une valeur au clavier'
+read(*,*) lu
+write(*,*) 'La valeur entree au clavier est', lu
+
+end program ecriture_lecture
 \end{lstlisting}
 
-Mais on peut souhaiter utiliser des formats spécifiques, pour limiter le nombre de chiffres significatifs par exemple afin de rendre l'information plus lisible. Dans ce cas là, on utilisera plutôt : 
+Les astérisques \texttt{*} désignent l'unité par défaut (pour la lecture, 5, pour l'écriture 6), c'est à dire l'entrée clavier pour 5, et le terminal pour 6. Pour utiliser une autre unité, et écrire ou lire dans un fichier, on peut faire : 
+\begin{lstlisting}[language=Fortran]
+open(10, file=filename, status='replace')
+write(10,*) '#       a in AU'
+
+do j=1,NB_SAMPLE_PROFILES
+  write(10,*) distance_sample(j)
+end do
+
+close(10)
+\end{lstlisting}
+
+Mais on peut souhaiter utiliser des formats spécifiques, pour limiter le nombre de chiffres significatifs par exemple afin de rendre l'information plus lisible. Voir \refsec{sec:formats} pour plus de détails.
+
+\bigskip
+
+Lorsqu'on ouvre un fichier, plusieurs options sont possibles. En particulier, l'option \gras{status}, qui peut prendre les valeurs suivantes :
+\begin{itemize}
+\item 'OLD' : Le fichier doit déjà exister, sinon une erreur est retournée
+\item 'NEW' : Le fichier ne doit pas exister, sinon une erreur est retournée
+\item 'SCRATCH'
+\item 'REPLACE' : Le fichier est créé s'il n'existe pas, et supprimé s'il existe
+\item 'UNKNOWN'
+\end{itemize}
+
+L'option \gras{form} permet de choisir d'écrire un ASCII ou en format binaire (les formats binaires, beaucoup plus rapides à lire et à écrire peuvent permettre de gagner du temps et de la place quand ces fichiers ne sont pas censés être lus par quelqu'un d'autre qu'un programme. L'option \gras{form} peut prendre les valeurs suivantes : 
+\begin{itemize}
+\item 'FORMATTED'
+\item 'UNFORMATTED'
+\end{itemize}
+
+L'option \gras{access} permet d'ajouter le texte à la suite du fichier déjà existant (il y a d'autres options, mais comme je ne les connais pas, je préfère de pas en parler : 
+\begin{verbatim}
+access='append'
+\end{verbatim}
+
+
+
+\subsection{Les formats de lecture et écriture}\label{sec:formats}
+Au lieu d'utiliser un formatage par défaut, représenté par une astérisque \texttt{*}, on peut spécifier nous même le format des données à lire ou à écrire : 
 \begin{lstlisting}[language=Fortran]
 write(*,'(a, es10.2)') 'la valeur de var est : ',var
 \end{lstlisting}
@@ -1251,12 +1283,11 @@ Dans le cas des procédures internes, la procédure a accès à toutes les varia
 
 Ainsi, la déclaration de deux variables, l'une dans le programme hôte et l'autre dans la procédure interne avec le même nom provoque la création de deux variables différentes (bien qu'ayant le même nom!). Bien que pouvant paraître attrayante, cette méthode d'utilisation des procédures est à utiliser avec circonspection. En effet, l'utilisation dans le programme principal et le sous-programme interne d'un même nom pour 2 variables a priori différentes, risque de provoquer des erreurs de programmation. 
 
-
 \begin{attention}
 Il est important de noter que les procédures internes ne peuvent être utilisées que par l'hôte qui les contiennent. 
 \end{attention}
 
-\subsection{fonctions}
+\subsection{Fonctions}
 En \emph{Fortran 90}, les fonctions peuvent retourner n'importe quel type valide (tableau, type dérivé), mais une seule variable, que l'on attribue via le nom de la fonction elle même. En définissant le type de la fonction, on définit le type de la variable que l'on va retourner.
 
 \begin{lstlisting}[language=Fortran]
@@ -1319,7 +1350,28 @@ end subroutine transfert
 
 Les attributs \texttt{intent(in)}, \texttt{intent(out)} ou \texttt{intent(inout)} permettent de spécifier si un argument d'une subroutine est un paramètre d'entrée, une variable de sortie ou les deux. Ce n'est pas obligatoire, mais c'est fortement conseillé de s'en servir. Sans ça, il est beaucoup plus difficile de comprendre le code, et de le sécuriser (pour savoir si on a modifié une variable alors qu'on n'aurait pas dû par exemple).
 
-\subsection{transmission d'une procédure en argument}
+\subsection{Argument optionnel}
+\begin{lstlisting}[language=Fortran]
+subroutine reprimande(argument, option)
+implicit none
+
+character(len = 8), intent(in) :: argument
+character(len = 8), intent(in), optional :: option
+character(len = 8) :: mot2
+
+if (present(option)) then
+mot2 = option
+else
+mot2 = "machin !"
+end if
+
+print*, argument//" "//mot2
+
+end subroutine reprimande
+\end{lstlisting}
+
+
+\subsection{Transmission d'une procédure en argument}
 Supposons que nous ayons écrit un sous programme dont l'un des arguments représente une fonction (le sous-programme utilise la fonction passée en argument). On suppose que le sous-programme est inclu dans un module. Lors de l'apparl du sous-programme depuis le programme principale, le compilateur ne pourra pas détecter que l'un des arguments est une fonction s'il n'a pas été déclaré comme tel. Pour résoudre ce problème, on utilise une interface contenant l'en-tête de la fonction ainsi que les déclarations relatives aux arguments. 
 \begin{lstlisting}[language=Fortran]
 program integration
@@ -1549,6 +1601,58 @@ end program resultant_torque
 La \textbf{subroutine} \texttt{read\_element\_out} va lire dans un premier temps le fichier (sans tenir compte du header de 5 lignes) afin de déterminer le nombre de lignes utiles, et donc le nombre d'élément qu'aura notre tableau. Puis, il alloue la place nécessaire au tableau et enfin il stocke les éléments, un par un.
 
 À noter que \texttt{read\_element\_out} affiche une erreur si le fichier nécessaire n'existe pas (dans le cas présent, le fichier \textbf{element.out}).
+
+\subsection{Histogramme en fortran}
+Le petit bout de code qui va suivre permet de calculer la hauteur des bins d'un histogramme dont on a les données dans un tableau fortran. À la base, c'est fait pour ensuite tracer l'histogramme en \textbf{gnuplot}. Les paramètres sont le \textbf{nombre de points} des données, et le nombre de \textbf{bins} pour l'histogramme. La valeur \textbf{min} et \textbf{max} des données seront utilisées respectivement pour le début et la fin des \textbf{bins}.
+
+\begin{lstlisting}[language=Fortran]
+integer, parameter :: nb_points = 100000 ! The number of data points
+integer, parameter :: nb_bins = 200 ! the number of bins for the histogram
+
+! histogram temp values
+real(double_precision) :: delta_bin, max_value, min_value
+real(double_precision), dimension(nb_bins) :: bin_x_values, bin_y_values
+integer :: index_bin
+
+integer :: i ! For loops
+
+! We initialize the values of the counting array
+bin_y_values(1:nb_bins) = 0
+
+! From the list of values, we get the values for the histogram
+max_value = maxval(turbulence_torque(1:nb_points))
+min_value = minval(turbulence_torque(1:nb_points))
+
+delta_bin = (max_value - min_value) / float(nb_bins)
+
+do i=1,nb_bins
+  bin_x_values(i) = min_value + (i - 0.5d0) * delta_bin
+end do
+  
+do i=1, nb_points
+  ! if the value is exactly equal to max_value, we force the index to be nb_bins
+  index_bin = min(floor((turbulence_torque(i) - min_value) / delta_bin)+1, nb_bins)
+  
+  ! With floor, we get the immediate integer below the value. 
+  ! Since the index start at 1, we add 1 to the value, because the 
+  ! calculation will get from 0 to the number of bins. 
+  ! Thus, for the max value, we will get nb_bins +1, which is not possible. 
+  ! As a consequence, we take the lower value between the index and 
+  ! nb_bins, to ensure that for the max value, we get an index 
+  ! of nb_bins.
+  
+  bin_y_values(index_bin) = bin_y_values(index_bin) + 1
+end do
+
+! We normalize the histogram
+bin_y_values(1:nb_bins) = bin_y_values(1:nb_bins) / float(nb_points)
+
+open(10, file="unitary_tests/turbulence_torque.hist")
+do i=1, nb_bins
+  write(10,*) bin_x_values(i), bin_y_values(i)
+end do
+close(10)
+\end{lstlisting}
 
 \subsection{Lire un fichier de longueur inconnue}
 Pour lire un fichier dont on ne connait pas le nombre de lignes : 
