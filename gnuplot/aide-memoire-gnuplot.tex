@@ -458,6 +458,38 @@ set xlabel "axe des abscisses"
 set ylabel "axe des ordonnées"
 \end{verbatim}
 
+\bigskip
+
+On peut aussi définir des labels arbitraires, en spécifiant des coordonnées. 
+
+Gnuplot utilise quatres systèmes de coordonnées pour définir des positions des lignes, flèches, texte et légendes. Ces derniers sont :
+\begin{itemize}
+\item 'first' : il est déterminé par l'axe des y de gauche, et l'axe des x du bas
+\item 'second' : le point (0,0) se trouve à l'intersection de l'axe des y de droite et de l'axe des x du haut
+\item 'graph' : le point (0,0) se trouve au milieu du graphique
+\item 'screen' : ce système permet de donner une coordonnée relative à l'écran entier
+\end{itemize}
+Tous les systèmes de coordonnées vont de 0 à 1 (je crois), à part celui des 'vraies' coordonnées auquel on accède en ne donnant aucun nom avant.
+
+Le système de coordonnée par défaut est ``first''. la position peut être donnée dans un système de coordonnée différent pour x et pour y. La syntaxe est la suivante : 
+\begin{verbatim}
+set label "mon texte" at graph x, screen y
+\end{verbatim}
+
+\begin{remarque}
+Un label défini dans le système ``first'' se déplace quand l'étendue de l'axe des x ou y est changée, mais il ne se déplace pas si les coordonnées sont exprimés dans les systèmes ``graph'' ou ``screen''.
+\end{remarque}
+
+On peut aussi spécifier en 'vraie' coordonnée du graphe via :
+\begin{verbatim}
+set label "mon texte" at x,y
+\end{verbatim}
+
+
+
+
+Gnuplot uses four coodinates to define positions of arbitrary lines, arrows, texts, and a legend. Those are called as "first", "second", "graph", and "screen". The "first" coodinate is the left Y-axis and the bottom X-axis. The "second" is the right Y2-axis and the top X2-axis. The "graph" coodinate is a relative position in the graph frame. The "screen" coodinate is a relative position in the whole screen (paper). The defaut is the "first" coordinate. The position can be specified by the syntax graph x, screen y .
+
 \subsection{échelle logarithmique}
 \begin{verbatim}
 set logscale x
