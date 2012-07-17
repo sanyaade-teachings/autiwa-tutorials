@@ -996,6 +996,21 @@ character & description\\\hline
 \caption{Différents types de ligne ou de marqueurs pour l'affichage de graphique avec pylab. Pour s'en servir, il faut utiliser une commande du style \texttt{pl.plot(x,z, 'b-', label="z=g(x)")} où \og 'b-'\fg signifie qu'on veut une ligne à trait plein bleue .}\label{tab:type_ligne}
 \end{table}
 
+Pour tracer une ligne : 
+\begin{lstlisting}[language=python]
+fig.plot(x, y, linestyle=':')
+\end{lstlisting}
+en spécifiant le style de la ligne. 
+
+Pour tracer une courbe en ne montrant que les points : 
+\begin{lstlisting}[language=python]
+fig.plot(x, y, marker='*')
+\end{lstlisting}
+en spécifiant le style du marqueur. Pour utiliser le marqueur à la place de la ligne, il suffit de spécifier le code du marker sans l'attribut : 
+\begin{lstlisting}[language=python]
+fig.plot(x, y, '*')
+\end{lstlisting}
+
 \subsubsection{Ajouter une grille (majeure/mineure)}
 \begin{lstlisting}[language=python]
 # We prepare the plot
@@ -1116,6 +1131,15 @@ pl.ylim(ymin=0)
 \end{lstlisting}
 
 Les commandes \textbf{xlim} et \textbf{ylim} peuvent spécifier respectivement les limites (\textbf{xmin}, \textbf{xmax}, \textbf{ymin}, \textbf{ymax}) des axes. En ne spécifiant qu'une valeur, l'autre est laissée inchangée.
+
+\subsubsection{Même zoom sur les deux axes}
+Parfois, il est utile que le zoom soit le même sur les deux axes. En particulier si on veut qu'un cercle ressemble à un cercle (si les deux axes ont des zoom différents, ça ressemblera à une ellipse. 
+
+Il y a plusieurs manières de faire ça, notamment en définissant directement le paramètre dans un subplot. Mais voici une méthode générale qui marche bien par défaut : 
+\begin{lstlisting}[language=python]
+pl.axis('equal')
+\end{lstlisting}
+
 
 \subsection{Styles de graphiques 2D}
 \subsubsection{Graphiques logarithmiques}
