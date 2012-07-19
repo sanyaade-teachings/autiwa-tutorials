@@ -395,7 +395,7 @@ Si en mode Av ou Tv, les conditions de lumières changent et il n'est pas possib
 
 En gros, si vous avez une ouverture maximale de f/2.8, et si en mode Tv vous voulez une photo à 1/125s qui nécessiterait une ouverture de f/2 pour une bonne exposition, l'appareil changera pour 1/60s à la place, même si vous avez demandé 1/125s, et il prendre la photo à f/2.8.
 
-\subsubsection{C.Fn I-07: Vitesse de synchronisation du flash en mode Av}
+\subsubsection{C.Fn I-07: Vitesse de synchronisation du flash en mode Av}\label{sec:vitesse_synchronisation}
 La vitesse de synchronisation peut être un problème quand on utilise un flash, car l'exposition est calculée pour le flash, et n'a rien à voir avec l'exposition classique nécessaire s'il n'y avait pas de flash. 
 
 En conséquence, la vitesse de synchronisation sert principalement à : 
@@ -467,6 +467,39 @@ Les objectifs sont sensibles aux lumières parasites arrivant par le coté de l'
 
 \subsubsection{Flou d'arrière plan : Bokeh}\index{bokeh}
 Le Bokeh désigne le flou en dehors de la zone de netteté. Ce dernier n'aura pas forcément le même rendu en fonction de la qualité de l'objectif (et en particulier du diaphragme et son nombre de lamelle). Le Bokeh désigne les sortes de tâches qui vont se former pour chaque point qu'on aurait eu si la mise au point s'était fait à cet endroit de la composition. 
+
+\subsection{Le Flash}
+Le basique du flash est d'apporter plus de lumière que la lumière naturelle. Jusque là, j'enfonce des portes ouvertes. Mais il est important de comprendre certains principes avant de se lancer tête baissée dans le ``tout flash''. 
+
+Si vous éclairez bêtement votre sujet de front, disons avec le flash interne à l'appareil, il y a de fortes chances pour que ce soit moche, pour plusieurs raisons : 
+\begin{itemize}
+\item toute la lumière formera un faisceau et éclairera principalement le sujet, laissant le reste tout noir.
+\item La lumière sera dure
+\item les yeux rouges s'il n'y a pas eu de pré flash qui permet de s'en prémunir
+\item correction de balance des blancs à faire à postériori si vous n'avez pas pensé à modifier cette dernière avant la photo
+\end{itemize}
+
+S'il n'est pas vraiment important de comprendre comment est prise une photo dans un cas classique, ça le devient dans le cas du flash, car la durée d'exposition (la durée pendant laquelle il y a de la lumière flash) est beaucoup plus courte que le temps d'exposition. 
+
+En effet, l'appareil photo possède deux régimes de mode d'exposition. L'appareil photo possède deux rideaux. 
+\begin{itemize}
+\item Pour des temps supérieurs à 1/250s (1/250s, 1/125s et ainsi de suite jusqu'à plusieurs secondes), l'appareil abaisse d'abord complètement le premier rideau (le capteur est alors soumis à la lumière), puis abaisse complètement le deuxième rideau. C'est ce qui est schématiquement représenté sur \reffig{fig:curtain_slow}.
+\item Pour des temps inférieurs à 1/250s (1/500s, 1/1000s et jusqu'à 1/8000s dans le cas du 7D), l'appareil n'a pas le temps d'abaisser d'abord le premier rideau, puis faire l'exposition, puis abaisser le second rideau. Au lieu de ça, les deux rideau sont abaissé quasiment en même temps, avec un bref décalage qui permet l'exposition du capteur au fur et à mesure de la descente.
+\end{itemize}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.45\linewidth]{figure/first_second_curtain_slow.pdf}
+\caption{Illustration du déplacement des rideaux devant le capteur. Ce mode ne fonctionne que pour des temps d'exposition assez longs, supérieurs strictement à 1/250s. Pour ces temps d'exposition, l'appareil a le temps d'abaisser les rideaux l'un après l'autre. L'exposition se fait donc uniformément sur le capteur}\label{fig:curtain_slow}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.45\linewidth]{figure/first_second_curtain_fast.pdf}
+\caption{Illustration du déplacement des rideaux devant le capteur. Ce mode ne fonctionne que pour des temps d'exposition courts, inférieurs ou égaux à 1/250s. À ces vitesse là, l'appareil n'aurait pas le temps d'abaisser un rideau puis l'autre. Les deux rideaux sont abaissés en même temps, avec un décalage constant qui maintient une petite fenêtre d'ouverture, l'exposition se fait donc par balayage du capteur}\label{fig:curtain_slow}
+\end{figure}
+
+Ce petit détail a une importance cruciale dans le cas du flash. Il ne faut en aucun cas avoir une durée d'exposition inférieure à 1/250s (comme 1/500s par exemple), car le flash n'aurait pas accès à toute la surface du capteur, et certaines zones seraient non exposées. \refsec{sec:vitesse_synchronisation} détaille l'option qui permet de régler la vitesse de synchronisation du flash (pour le cas où on veuille exposer l'arrière plan à la lumière naturelle, ou simplement exposer le sujet sans se préoccuper du reste.
 
 \subsection{Réglages spécifiques à une scène}
 Cette section a pour prétention de donner mes réglages pour certains types de photo. ÇA ne veut pas dire que c'est le must du must, mais c'est ce dont je me sers. Par exemple pour les feux d'artifices, j'ai loupé les 3/4 des photos à essayer des réglages avant de faire des photos potables avec les réglages que je donne, libre à vous d'essayer, ou de prendre mes réglages pour base. 
