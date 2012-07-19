@@ -1360,15 +1360,35 @@ character(len = 8), intent(in), optional :: option
 character(len = 8) :: mot2
 
 if (present(option)) then
-mot2 = option
+  mot2 = option
 else
-mot2 = "machin !"
+  mot2 = "machin !"
 end if
 
 print*, argument//" "//mot2
 
 end subroutine reprimande
 \end{lstlisting}
+
+\begin{attention}
+Le code suivant ne fonctionne pas (je ne sais pas pourquoi) : 
+\begin{lstlisting}[language=Fortran]
+subroutine reprimande(argument, mot2)
+implicit none
+
+character(len = 8), intent(in) :: argument
+character(len = 8), intent(in), optional :: mot2
+
+if (.not.present(mot2)) then
+  mot2 = "machin !"
+end if
+
+print*, argument//" "//mot2
+
+end subroutine reprimande
+\end{lstlisting}
+\end{attention}
+
 
 
 \subsection{Transmission d'une procédure en argument}

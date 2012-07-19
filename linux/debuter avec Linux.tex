@@ -2317,6 +2317,12 @@ Ici, c'est le premier ID. On adapte en conséquence et on extrait l'ID numéro 1
 mkvextract tracks "movie.mkv" 1:subtitles.srt
 \end{verbatim}
 
+\subsubsection{Rechercher/Remplacer de manière récursive dans plusieurs fichiers}
+\begin{verbatim}
+find . -name "*.php" -exec sed -i 's/mot1/mot2/g' {} \;
+\end{verbatim}
+
+La ligne de commande ci-dessus permet de remplacer toutes les occurences de \textbf{mot1} par \textbf{mot2} dans tous les fichiers \textbf{php} du dossier courant ou de ses sous-dossiers.
 
 
 \subsection{Mettre de la couleur dans la console}

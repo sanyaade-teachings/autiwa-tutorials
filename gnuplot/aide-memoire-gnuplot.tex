@@ -126,7 +126,23 @@ Mais ça peut être aussi quelque chose de beaucoup plus radical. J'ai parfois e
 Il faut donc faire attention à l'équation qu'on utilise, et il vaut mieux savoir à l'avance ce qu'on cherche.
 \end{attention}
 
+\subsection{Multiplot}
+On peut faire plusieurs graphiques dans la même fenêtre en faisant :
+\begin{verbatim}
+set multiplot layout 2, 1 title "nom du graphique"
 
+set xlabel "eccentricity"
+set xrange [0:1]
+plot 'data.dat' using 1:2 with lines title 'f1'
+
+set xlabel "eccentricity"
+set ylabel "G"
+set xrange [0:1]
+plot 'data.dat' using 1:3 with lines title 'f2'
+
+unset multiplot
+\end{verbatim}
+Où on définit deux lignes et une seule colonne quand on défini le \textbf{multiplot}. On peut aussi modifier les marges avec \textbf{lmargin} et \textbf{rmargin}.
 
 
 \section{Faire un plot 3D}
