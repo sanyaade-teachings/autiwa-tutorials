@@ -742,6 +742,30 @@ np.zeros_like(m)
 np.empty_like(m)
 \end{lstlisting}
 
+\subsubsection{Manipulation des indices}
+On peut être amené à trier des listes, ou calculer le minimum ou maximum d'une liste. Mais il peut être encore plus intéressant de récupérer les indices de ces choses là. 
+
+Voici des exemples pour récupérer les indices pour le minimum et maximum : 
+\begin{lstlisting}[language=python]
+m.argmax()
+m.argmin()
+\end{lstlisting}
+où m est une liste numpy.
+
+Si on veut récupérer les indices correspondant à un tri : 
+\begin{lstlisting}[language=python]
+m.argsort()
+\end{lstlisting}
+
+\bigskip
+
+Si on veut appliquer ça à des listes ou tuples qui ne sont pas des objets numpy, on peut faire : 
+\begin{lstlisting}[language=python]
+np.argmax(m)
+np.argmin(m)
+np.argsort(m)
+\end{lstlisting}
+
 \subsubsection{Manipulation des array}
 On peut sélectionner les valeurs répondant à un ou plusieurs critères avec :
 \begin{lstlisting}[language=python]
