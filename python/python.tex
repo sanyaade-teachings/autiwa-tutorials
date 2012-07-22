@@ -1108,6 +1108,20 @@ pl.figtext(x, y, "mon texte")
 \end{lstlisting}
 permet de spécifier les coordonnées en unités absolues de la figure, c'est à dire que (0,0) correspond au coin en bas à gauche, et (1, 1) au coin en haut à droite de la fenêtre graphique.
 
+\subsubsection{Tracer des poligones et formes diverses}
+J'ai souhaité récemment tracer des rectangles avec python, pour rajouter des informations sur un graphique. La commande suivante permet de le faire :
+\begin{lstlisting}[language=python]
+fig = pl.figure(1)
+myplot = fig.add_subplot(111)
+
+x_left = 1
+x_right = 2
+y_bottom = 3
+y_top = 4
+
+myplot.fill([x_left, x_right, x_right, x_left],[y_bottom, y_bottom, y_top, y_top], fill=False, hatch='\\')
+\end{lstlisting}
+
 \subsection{Manipuler les axes}
 
 \subsubsection{Lier les limites des axes entre elles dans subplot}\index{subplot!lier les axes}
