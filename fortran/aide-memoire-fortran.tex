@@ -885,6 +885,25 @@ end do
 
 Dans cet exemple, si on n'utilise pas les sections de tableau, on remarque qu'il est nécessaire d'utiliser un tableau tampon \emph{v1} pour effectuer les calculs intermédiaires. 
 
+\subsection{Sélectionner un caractère dans une chaîne de caractère}
+Contrairement à ce qu'on pourrait penser, pour sélectionner un caractère dans un chaîne, il faut faire : 
+\begin{lstlisting}[language=Fortran]
+character(len=80) :: line
+  
+character(len=1) :: first_character
+integer :: id_first_char
+
+!------------------------------------------------------------------------------
+id_first_char = 2
+first_character = line(id_first_char:id_first_char)
+\end{lstlisting}
+
+En effet, 
+\begin{lstlisting}[language=Fortran]
+first_character = line(id_first_char)
+\end{lstlisting}
+ne fonctionnera pas.
+
 \subsubsection{Les fonctions portant sur des tableaux}
 
 Il existe en \emph{Fortran 90} des fonctions spécifiques aux tableaux. Les plus usuelles sont \texttt{sum} qui fournit la somme des éléments d'un tableau, \texttt{maxval} qui donne la valeur maximale d'un tableau, \texttt{minval} qui donne la valeur minimale et \texttt{product} qui donne le produits des éléments. Les fonctions \texttt{dot\_product} et \texttt{matmul} permettent d'obtenir respectivement le produit scalaire et le produit matriciel de deux tableaux.
@@ -1781,18 +1800,15 @@ Notez que je ne lis que les 80 premiers caractères d'une ligne. Il ne peut donc
 Je défini ensuite la subroutine qui me permet de récupérer l'identificateur et la (ou les) valeur(s) associée(s) : 
 \begin{lstlisting}[language=Fortran]
 subroutine get_parameter_value(line, isParameter, id, value)
-! subroutine that try to split the line in two part, 
-! given a separator value (set in parameter of the subroutine)
-!
+! subroutine that try to split the line in two part, given a separator value (set in parameter of the subroutine)
 ! The routine return 3 values : 
 !
 ! Return
-! isParameter : is a boolean to say whether or not there is a parameter 
-!  on this line. i.e if there is an occurence of the separator 
-!  in the input line.
+! isParameter : is a boolean to say whether or not there is a parameter on this line. 
+!               i.e if there is an occurence of the separator in the input line
 ! id : a string that contain the name of the parameter
-! value : a string that contains the value(s) associated with 
-!  the parameter name
+! value : a string that contains the value(s) associated with the parameter name. 
+!         Note that a special attention is given to the fact that the first character of 'value' must NOT be a 'space'
 
   implicit none
   
@@ -1804,25 +1820,49 @@ subroutine get_parameter_value(line, isParameter, id, value)
   character(len=80), intent(out) :: id, value
   
   ! Local
-  ! the separator of a parameter line
-  character(len=1), parameter :: sep = '=' 
+  character(len=1), parameter :: SEP = '=' ! the separator of a parameter line
+  
+  character(len=1) :: first_character
+  integer :: id_first_char
 
   integer :: sep_position ! an integer to get the position of the separator
 
-  !-----------------------------------------------------
+  !------------------------------------------------------------------------------
 
-  sep_position = index(line, sep)
+  sep_position = index(line, SEP)
   
   if (sep_position.ne.0) then
     isParameter = .true.
     id = line(1:sep_position-1)
-    value = line(sep_position+1:)
+    
+    id_first_char = sep_position +1
+    first_character = line(id_first_char:id_first_char)
+    do while (first_character.eq.' ')
+      id_first_char = id_first_char +1
+			first_character = line(id_first_char:id_first_char)
+    end do
+    value = line(id_first_char:)
   else
     isParameter = .false.
   end if
 
 end subroutine get_parameter_value
 \end{lstlisting}
+
+\begin{attention}
+J'ai rajouté une partie où j'oblige le premier caractère de value à ne pas être un espace, car si on teste cette valeur, le premier espace peut poser des problèmes, chose qui n'arrive normalement pas pour les clés, vu qu'on commence la ligne avec, alors que dans le cas de la valeur, le séparateur (le signe égal '=') peut être entouré d'espaces.
+
+Ainsi, sans les modifs que j'ai faite, 
+\begin{verbatim}
+surface density = manual
+\end{verbatim}
+ne fonctionnera pas, alors que
+\begin{verbatim}
+surface density =manual
+\end{verbatim}
+fonctionnera.
+\end{attention}
+
 
 Le fichier de paramètre est quelque chose du genre :
 \begin{verbatim}
@@ -1870,6 +1910,27 @@ end if
 où \texttt{time} est mon tableau princpal, contenant la valeur des pas de temps et \texttt{time\_temp} le tableau tampon me permettant de stocker les valeurs de \texttt{time} pendant que je l'agrandis.
 
 Je définis \texttt{time\_size} (la taille du tableau \texttt{time}) comme étant égal à 512 au départ. Doubler la taille du tableau à chaque fois permet de limiter les réallocations qui sont coûteuses en temps. 
+
+\subsection{Gérer les erreurs d'un programme}
+Parfois, on peut vouloir tester des erreurs dans un programme, pour certaines choses précises. Voici comment je procède : 
+\begin{lstlisting}[language=Fortran]
+if (var.eq.0) then
+  stop 1
+end if
+\end{lstlisting}
+ou
+\begin{lstlisting}[language=Fortran]
+if (var.eq.0) then
+  stop "var equal 0, and the program will crash because of that"
+end if
+\end{lstlisting}
+On peut choisir, soit de donner un code retour, en spécifiant un entier, soit on peut spécifier un texte pour décrire l'erreur (auquel cas le code retour sera 0).
+
+\bigskip
+
+Ce que je fais, c'est que les codes de 1 à 9 sont pour le programme principal, les codes 10 à 99 pour les sous programmes, et les codes de 100 à 999 pour les modules qui peuvent être utilisés dans plusieurs codes différents.
+
+Dans la pratique, je trouve plus intéressant de détailler l'erreur avec un texte, même s'il est vrai que ça doit être plus propre de spécifier un code retour avec un entier.
 
 \section{Les fonctions intrinsèques en Fortran 90}
 Voici une liste de quelques fonctions intrinsèques du \emph{Fortran 90}. 

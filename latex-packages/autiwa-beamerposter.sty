@@ -5,10 +5,13 @@
 %%% polices %%%
 \RequirePackage[english]{babel}
 \RequirePackage[utf8]{inputenc}
-\RequirePackage[orientation=portrait,size=a0,scale=1.4]{beamerposter}
+\RequirePackage[orientation=portrait,scale=1.4]{beamerposter}
 \RequirePackage{autiwa-macros}
 \RequirePackage{multicol}
 
+\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{beamerposter}}%% Ne rien faire quand une option est inconnue
+
+\ProcessOptions
 
 \RequirePackage{lmodern}
 %###############################################
