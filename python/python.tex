@@ -1508,6 +1508,17 @@ if ('x' in locals()):
   print("'x' est une variable locale")
 \end{lstlisting}
 
+\subsection{Tester si un fichier ou dossier existe}
+\begin{lstlisting}[language=python]
+if os.path.isfile("test.txt") :
+  print("le fichier existe")
+\end{lstlisting}
+
+De même, la commande \verb|os.path.isdir()| permet de tester si un dossier existe :
+\begin{lstlisting}[language=python]
+if os.path.isfile("test") :
+  print("le dossier existe")
+\end{lstlisting}
 
 \subsection{Tester le type d'une variable}\label{sec:test-type-variable}
 \begin{lstlisting}[language=python]
