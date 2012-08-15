@@ -1370,6 +1370,81 @@ System.out.println("List of tasks read successfully");
 
 Même principe que pour l'écriture, la lecture du fichier pour récupérer les objets. 
 
+\section{Interface Graphique}
+Cette section a pour ambition de donner des bases mnémotechniques pour faire des interfaces graphiques avec Java. 
+Le principe est le suivant, une fenêtre affichera des composants, boutons, textes, tableau, zones où on peut entrer du texte, et les actions comme les clics de souris et autre devront être capturés, pour chaque composants, afin qu'une action s'effectue derrière. 
+
+Le plus simple est de créer une classe dérivée pour nos fenêtres, de laquelle tous nos autres types de fenêtres hériterons. 
+
+Voici un exemple : 
+\begin{lstlisting}[language=java]
+package graphics;
+
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
+import javax.swing.JFrame;
+
+public abstract class Window extends JFrame implements WindowListener {
+  
+  public Window() {
+    super();
+    this.addWindowListener(this);
+    this.setSize(800, 350);
+  }	
+
+  public void onFermeture() {
+    main.Main.windowList.remove(this);
+    if (main.Main.windowList.size() == 0) System.exit(0);
+  }
+
+  public void dispose() {
+    this.onFermeture();
+    super.dispose();
+  }
+
+  public void windowClosing(WindowEvent e){
+    this.onFermeture();
+  }
+
+  @Override
+  public void windowActivated(WindowEvent arg0) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void windowClosed(WindowEvent arg0) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void windowDeactivated(WindowEvent arg0) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void windowDeiconified(WindowEvent arg0) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void windowIconified(WindowEvent arg0) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void windowOpened(WindowEvent arg0) {
+    // TODO Auto-generated method stub
+
+  }
+}
+\end{lstlisting}
+
 \section{Eclipse}
 Il est impossible de faire un tutoriel Java sans s'attarder sur Eclipse, excellent logiciel pour coder en Java et qui facilite vraiment la vie des développeurs.
 
