@@ -3124,6 +3124,12 @@ En compilant avec \textbf{gfortran} et l'option \texttt{-fbounds-check}, il faut
 
 
 \subsection{Erreurs de compilation}
+\subsection{Apparition de fichiers fort.10}
+Le numéro pouvant être différent, ces fichiers apparaissent quand des commandes \texttt{write(10,*)} sont utilisées alors que le numéro 10 n'est associé à aucun fichier via la commande \texttt{open()}. 
+
+Ce problème peut aussi apparaître de manière un peu plus déguisée, quand vous ouvrez un fichier via \texttt{open(10, ...)} mais que vous lancez, entre l'ouverture du fichier et l'écriture des commandes, une autre fonction ou routine qui utilise le même numéro de fichier, et qui va alors écraser le fichier, puis le fermer. 
+
+Pensez donc à ouvrir, utiliser et ferme le fichier sans lancer de commande ou de routine entre temps.
 \subsubsection{Utilisation de fonctions internes à un module}
 \begin{verbatim}
 kepler_equation.o: In function `__kepler_equation_MOD_orbel_fhybrid':

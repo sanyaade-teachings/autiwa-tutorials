@@ -6,6 +6,16 @@
 \selectcolormodel{cmyk}
 \mode<presentation>
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Variables to be modified
+\def\setLeftLogo#1{\def\@leftLogo{#1}}
+\def\setLeftLogo#1{\def\@rightLogo{#1}}
+% \def\leftlogo#1{\gdef\@leftlogo{#1}}
+% \def\@leftlogo[1]{#1}
+\setLeftLogo{\includegraphics[width=0.6\linewidth]{logo-lab}\\[1ex]
+\includegraphics[width=0.6\linewidth]{logo-cnrsv2}}
+\setRightLogo{\includegraphics[width=0.6\linewidth]{logo-bx1}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setbeamercolor{headline}{fg=tabutter,bg=black}
 \setbeamercolor{footline}{fg=tabutter, bg=ta3gray}
@@ -79,8 +89,7 @@
 \begin{columns}[c]
 \begin{column}{.15\paperwidth}
 \centering\vskip1ex
-\includegraphics[width=0.6\linewidth]{logo-lab}\\[1ex]
-\includegraphics[width=0.6\linewidth]{logo-cnrsv2}
+\@leftLogo
 \end{column}
 
 \begin{column}{.7\paperwidth}
@@ -93,7 +102,7 @@
 
 \begin{column}{.15\paperwidth}
 \centering
-\includegraphics[width=0.6\linewidth]{logo-bx1}
+\@rightLogo
 \end{column}
 \end{columns}
 \vskip.75ex
