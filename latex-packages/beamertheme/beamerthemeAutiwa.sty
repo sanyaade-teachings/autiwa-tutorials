@@ -2,6 +2,7 @@
 \ProvidesPackage{beamerthemeAutiwa} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{ragged2e}
 \RequirePackage{tangocolors}
 \selectcolormodel{cmyk}
 \mode<presentation>
@@ -66,7 +67,7 @@
 
 % In the following environment, we define what will contain the new save box, and after, we can use this macro to reuse what we have stored in it. This way, we can box (with \fbox{}, \ovalbox{} or something) an environment, and here, we need it to box what will be in the block environment.
 \newenvironment{fmpage}[1]
-     {\begin{lrbox}{\fmbox}\begin{minipage}{#1}\addtolength{\textwidth}{-1em}}
+     {\begin{lrbox}{\fmbox}\begin{minipage}{#1}}
      {\end{minipage}\end{lrbox}\fbox{\usebox{\fmbox}}}
 
 % modification du style des blocks pour pouvoir centrer le titre, encadrer le block et espacer un peu plus le titre et le contenu du bloc.
@@ -75,10 +76,11 @@
     \usebeamerfont*{block title}\insertblocktitle
   \end{beamercolorbox}%
   \usebeamerfont{block body}%
-  \begin{center}\begin{fmpage}{\textwidth}\begin{flushleft}\begin{beamercolorbox}[rounded=true,shadow=true,colsep*=.75ex,sep=1ex,vmode]{block body}
-  }
+  \addtolength{\textwidth}{-1em}%
+  \begin{center}\begin{fmpage}{\textwidth}\begin{beamercolorbox}[rounded=true,shadow=true,colsep*=.75ex,sep=1ex,vmode]{block body}
+  \justifying}
   \setbeamertemplate{block end}{
-  \end{beamercolorbox}\end{flushleft}\end{fmpage}\end{center}
+  \end{beamercolorbox}\end{fmpage}\end{center}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

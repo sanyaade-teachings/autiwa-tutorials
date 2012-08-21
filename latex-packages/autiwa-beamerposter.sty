@@ -7,9 +7,11 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[orientation=portrait,scale=1.4]{beamerposter}
 \RequirePackage{autiwa-macros}
+\RequirePackage[font=small,format=plain,labelsep=endash, justification=justified]{caption}
 \RequirePackage{multicol}
+\setlength{\columnsep}{20pt}
 
-\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{beamerposter}}%% Ne rien faire quand une option est inconnue
+\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{beamerposter}}%% We an option is unknown, pass it to beamerposter
 
 \ProcessOptions
 
@@ -23,7 +25,8 @@
 % \usetheme{Dreuw}
 
 % Pour avoir la numérotation des figures
-\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption}[numbered, justification=justified]
+
 
 \usefonttheme[onlylarge]{structurebold}
 \setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
