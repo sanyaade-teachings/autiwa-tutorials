@@ -1334,7 +1334,6 @@ En particulier, hors du mode mathématique, la commande \verb|\nombre| permet de
 Il faut maintenant inclure le package \gras[package!numprint]{numprint} et il est de plus conseillé d'utiliser \verb|\numprint{123456,789123}| à la place de \verb|\nombre{123456,789123}|
 \end{remarque}
 
-
 \subsection{cancel}\index{package!cancel}\label{sec:cancel}
 Ce paquet permet de barrer de différentes manières des expressions, y compris en mode mathématique.
 
@@ -1665,7 +1664,8 @@ Le texte compris entre deux caractères d'échappement est interprété par \LaT
 \end{lstlisting}
 \end{example}
 
-La séquence \verb|{\large| et le \verb|}| final seront imprimés tels quels, tandis que le \verb|\emph{Texte en corps plus| \verb|grand}| sera interprété (on aura donc le contenu du bloc en italique). Il faut évidemment choisir un caractère d'échappement qui ne sera pas dans le code.
+La séquence \verb|{\large| et le \verb|}| final seront imprimés tels quels, tandis que le \\
+\verb|\emph{Texte en corps plus| \verb|grand}| sera interprété (on aura donc le contenu du bloc en italique). Il faut évidemment choisir un caractère d'échappement qui ne sera pas dans le code.
 
 \bigskip
 
@@ -1933,6 +1933,66 @@ Information a mettre en valeur.
 \end{alertblock}
 \end{lstlisting}
 
+
+\section{Faire un poster avec \LaTeX et beamerposter}
+\subsection{Les bases}
+Voici comment je fais
+\begin{verbatim}
+\begin{document}
+\textsize
+\begin{frame}
+ 
+\begin{block}{Abstract}
+ Le contenu de mon premier block
+\end{block}
+
+\vfill
+
+\begin{block}{developpement}
+ Le contenu de mon deuxieme block
+\end{block}
+
+\vfill
+
+\begin{block}{conclusion}
+ Le contenu de mon troisieme block
+\end{block}
+
+\end{frame}
+\end{document}
+\end{verbatim}
+
+\subsection{Plusieurs blocks par ligne}
+On peut souhaiter mettre plusieurs blocks par ligne, et il est dans ce cas pratique d'utiliser les environnements multicolonne pour encadrer les blocks eux mêmes : 
+\begin{verbatim}
+\begin{columns}[t]
+\begin{column}{.45\textwidth}
+ \begin{block}{developpement}
+ Le contenu de mon deuxieme block
+\end{block}
+\end{column}
+
+\begin{column}{.45\textwidth}
+ \begin{block}{developpement2}
+ Le contenu de mon troisieme block
+\end{block}
+\end{column}
+\end{columns}
+\end{verbatim}
+
+\subsection{Faire une bibliographie natbib dans un poster}
+Même solution que pour la faire avec beamer, insérer immédiatement avant \verb|\bibliography{}| :
+\begin{verbatim}
+\def\newblock{}
+\end{verbatim}
+
+\begin{exemple}
+\begin{verbatim}
+\bibliographystyle{plainnat}
+\def\newblock{}
+\bibliography{nom-biblio} % nom-biblio.bib
+\end{verbatim}
+\end{exemple}
 
 
 \section{Faire une bibliographie}\index{bibliographie}
