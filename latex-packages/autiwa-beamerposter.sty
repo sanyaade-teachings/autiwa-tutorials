@@ -7,7 +7,6 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[orientation=portrait,scale=1.4]{beamerposter}
 \RequirePackage{autiwa-macros}
-\RequirePackage[font=small,format=plain,labelsep=endash, justification=justified]{caption}
 \RequirePackage{multicol}
 \setlength{\columnsep}{20pt}
 
@@ -25,8 +24,9 @@
 % \usetheme{Dreuw}
 
 % Pour avoir la numérotation des figures
-\setbeamertemplate{caption}[numbered, justification=justified]
-
+\setbeamertemplate{caption}[numbered]
+\setbeamerfont{caption}{size=\small}
+% \RequirePackage[font=small,format=plain,labelsep=endash, justification=justified]{caption}
 
 \usefonttheme[onlylarge]{structurebold}
 \setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
