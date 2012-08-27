@@ -951,19 +951,19 @@ pl.figure(1)
 # Le 3e indice sert juste a positionner le subplot dans la matrice ainsi creee
 
 # en haut a gauche
-pl.subplot(231)
+pl.subplot(2, 3, 1)
 pl.plot(x,y)
 
 #en haut au milieu
-pl.subplot(232)
+pl.subplot(2, 3, 2)
 pl.plot(x,y)
 
 #en haut a droite
-pl.subplot(233)
+pl.subplot(2, 3, 3)
 pl.plot(x,y)
 
 #en bas a gauche
-pl.subplot(234)
+pl.subplot(2, 3, 4)
 pl.plot(x,y)
 
 #[...]
@@ -993,20 +993,20 @@ pl.show()
 \begin{lstlisting}[language=python]
 import pylab as pl
 fig = pl.figure(1)
-fig.add_subplot(111, polar=True) # add a polar subplot
+fig.add_subplot(1, 1, 1, polar=True) # add a polar subplot
 \end{lstlisting}
 
 \subsection{Personnalisations diverses}
 Pour aller un peu plus loin
 \begin{lstlisting}[language=python]
-pl.figure(1) # Pour specifier que la figure active est la 1
+fig = pl.figure(1) # Pour specifier que la figure active est la 1
 pl.clf() # pour remettre a zero la figure active
-pl.grid(True)
-pl.xlabel("abscisse")
-pl.ylabel("ordonnee")
-pl.plot(x,y, 'r.', label="y=f(x)")
-pl.plot(x,z, 'b-', label="z=g(x)")
-pl.legend() # afficher la legende
+fig.grid(True)
+fig.set_xlabel("abscisse")
+fig.set_ylabel("ordonnee")
+fig.plot(x,y, 'r.', label="y=f(x)")
+fig.plot(x,z, 'b-', label="z=g(x)")
+fig.legend() # afficher la legende
 pl.show()
 \end{lstlisting}
 
@@ -1073,7 +1073,7 @@ fig.plot(x, y, '*')
 # We prepare the plot
 fig = pl.figure(1)
 # We define a fake subplot that is in fact only the plot.
-plot = fig.add_subplot(111)
+plot = fig.add_subplot(1, 1, 1)
 
 plot.xaxis.grid(True,'minor', color='#000000', linestyle=':')
 plot.yaxis.grid(True,'minor', color='#000000', linestyle=':')
@@ -1089,7 +1089,7 @@ Ceci permet en particulier de changer la taille des labels mineurs par rapports 
 # We prepare the plot
 fig = pl.figure(1)
 # We define a fake subplot that is in fact only the plot.
-plot_hyperfocal = fig.add_subplot(111)
+plot_hyperfocal = fig.add_subplot(1, 1, 1)
 
 # We change the fontsize of minor ticks label
 plot_hyperfocal.tick_params(axis='both', which='major', labelsize=10)
@@ -1100,7 +1100,7 @@ plot_hyperfocal.tick_params(axis='both', which='minor', labelsize=8)
 Pour afficher la légende, il faut d'une part spécifier le nom des courbes quand on les déclare : 
 \begin{lstlisting}[language=python]
 fig = pl.figure(1)
-myplot = fig.add_subplot(111)
+myplot = fig.add_subplot(1, 1, 1)
 myplot.plot(x,y, 'r.', label="y=f(x)")
 myplot.plot(x,z, 'b-', label="z=g(x)")
 \end{lstlisting}
@@ -1147,7 +1147,7 @@ permet de spécifier les coordonnées en unités absolues de la figure, c'est à
 J'ai souhaité récemment tracer des rectangles avec python, pour rajouter des informations sur un graphique. La commande suivante permet de le faire :
 \begin{lstlisting}[language=python]
 fig = pl.figure(1)
-myplot = fig.add_subplot(111)
+myplot = fig.add_subplot(1, 1, 1)
 
 x_left = 1
 x_right = 2
@@ -1171,11 +1171,11 @@ Dans des graphiques subplots, on peut de plus lier les axes entre eux, pour que 
 
 \begin{lstlisting}[language=python]
 # en haut a gauche
-myplot1 = fig.add_subplot(211)
+myplot1 = fig.add_subplot(2, 1, 1)
 myplot1.plot(x,y)
 
 #en haut au milieu
-myplot2 = fig.add_subplot(212, sharex=ax1, sharey=ax1)
+myplot2 = fig.add_subplot(2, 1, 2, sharex=myplot1, sharey=myplot1)
 myplot2.plot(x,y)
 
 pl.show()
@@ -1206,7 +1206,7 @@ pl.axis('tight')
 et comme je suis pointilleux et jamais content, j'aime bien que les axes commencent à zéro, ce qu'on peut faire via :
 \begin{lstlisting}[language=python]
 fig = pl.figure(1)
-myplot = fig.add_subplot(111)
+myplot = fig.add_subplot(1, 1, 1)
 myplot.axis('tight')
 myplot.set_xlim(xmin=0)
 myplot.set_ylim(ymin=0)
@@ -1229,7 +1229,7 @@ pl.axis('equal')
 À la place de \verb|plot| on peut aussi faire :
 \begin{lstlisting}[language=python]
 fig = pl.figure(1)
-myplot = fig.add_subplot(111)
+myplot = fig.add_subplot(1, 1, 1)
 myplot.semilogx(x,y)
 myplot.semilogy(x,y)
 myplot.loglog(x,y)
@@ -1273,7 +1273,7 @@ Il existe un style graphique uniquement pour représenter des données avec des 
 Pour faire des barres d'erreurs il faut faire : 
 \begin{lstlisting}[language=python]
 fig = pl.figure(1)
-myplot = fig.add_subplot(111)
+myplot = fig.add_subplot(1, 1, 1)
 myplot.errorbar(x, y, yerr=e, fmt='ro')
 \end{lstlisting}
 où $e$ est une liste de même taille que $x$ et $y$ et qui contient les demi-largeurs des barres d'erreurs. \texttt{xerr} permet de faire la même choses pour des barres d'erreurs horizontales, et les deux options sont utilisables simultanément.
@@ -1294,7 +1294,7 @@ liste_y = range(5)
 
 import pylab as pl
 fig = pl.figure(1)
-myplot = fig.add_subplot(111)
+myplot = fig.add_subplot(1, 1, 1)
 myplot.set_xlabel("axe des x")
 myplot.set_ylabel("axe des y")
 

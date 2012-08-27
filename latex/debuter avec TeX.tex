@@ -2102,6 +2102,33 @@ La commande \verb|\nocite{*}| permet d'afficher tout les ouvrages qui n'ont pas 
 L'extension \gras[package!tocbibind]{tocbibind} permet de faire figurer la bibliographie dans la table des matières.
 \end{remarque}
 
+\subsection{Forcer l'ordre de deux citations (a,b)}
+Si un même auteur a deux citations pour la même année, , elles vont apparaîtrent comme (Auteur, 2012a) et (Auteur, 2012b), avec natbib en particulier. Il se peut que l'ordre ne soit pas celui qu'on souhaite, car \LaTeX va utiliser l'ordre alphabétique des auteurs afin d'ordonner les citations. 
+
+Afin de forcer l'ordre, on peut mettre une petite commande \verb|\setbox0=\hbox{}| avant le nom du deuxième auteur qui sert à ordonner la citation comme dans l'exemple qui suit : 
+\begin{verbatim}
+@article{auteur2012a,
+title={mon premier titre},
+author={Auteur, O. and Dupont, A.},
+journal={Mon Journal},
+note={ accepted},
+month={august},
+year={2012}
+}
+
+@article{auteur2012b,
+title={mon deuxieme titre},
+author={Auteur, O. and \setbox0=\hbox{}Auteur, B.},
+journal={Mon Journal},
+note={ in preparation},
+month={october},
+year={2012}
+}
+\end{verbatim}
+
+Au début j'avais mis \verb|\setbox0=\hbox{Z}| pour forcer le tri alphabétique, mais il semble que même sans ça, ça fonctionne. Par contre, avec plus de deux citations, peut-être que cette commande redeviendra utile, je ne sais pas.
+
+
 \subsection{Paquet natbib}\label{sec:biblio-natbib}\index{package!natbib}
 Ce paquet permet de citer sous la forme \og auteur-année\fg. Il existe une page très bien faite qui parle des possibilités de natbib à cette adresse : \url{http://merkel.zoneo.net/latex/natbib.php?lang=fr}
 

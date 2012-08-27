@@ -1311,6 +1311,21 @@ for(Ville v : tableau){
 \end{lstlisting}
 
 \section{Avancé}
+\subsection{Erreurs et Bugs}
+\subsubsection{Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException}
+Cette erreur n'est peut-être pas tout le temps due à la même chose, mais dans mon cas, j'ai résolu en initialisant les variables. 
+
+Dans une classe, j'avais par exemple : 
+\begin{lstlisting}[language=java]
+private boolean variable;
+\end{lstlisting}
+que j'ai remplacé par :
+\begin{lstlisting}[language=java]
+private boolean variable = null;
+\end{lstlisting}
+
+En effet, je ne voulais pas donner de valeur à la base, et j'ai donc contourné en faisant ainsi, car une variable non initialisée vaut aussi \textbf{null} (enfin je crois), ça permet juste d'éviter des erreurs.
+
 \subsection{Lire/écrire des objets dans un fichier : sérialisation}
 \subsubsection{Écrire des objets dans un fichier}
 
