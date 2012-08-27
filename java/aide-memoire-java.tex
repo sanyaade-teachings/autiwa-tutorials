@@ -1460,6 +1460,26 @@ public abstract class Window extends JFrame implements WindowListener {
 }
 \end{lstlisting}
 
+\subsection{Fenêtre graphique}
+L'idée est de créer une classe générique, et de créer des classes héritées pour les différents types de fenêtres que vous voulez. 
+
+Chaque fenêtre doit avoir un contenu, que l'on définit par fenetre.setContentPane(objet)? L'objet étant un %TODO finir
+
+\subsection{Objects d'une interface}
+\subsubsection{JButton}
+
+\subsubsection{JTextField}
+
+\subsubsection{JTable}
+Il est possible, et même facile, d'inclure une table dans une boite déroulante (JScrollPane) afin d'afficher à l'écran uniquement une zone restreinte. mais si on souhaite afficher un tableau simple, il est compliqué d'afficher l'entête du tableau. Pour le faire, il suffit d'utiliser les commandes suivante, qui en pratique permettent d'extraire l'entête, puis de l'afficher dans contentPane : 
+\begin{lstlisting}[language=java]
+
+contentPane.setLayout(new BorderLayout());
+JTable table = new JTable(data, headerLabels);
+contentPane.add(table.getTableHeader(), BorderLayout.NORTH);
+contentPane.add(table, BorderLayout.CENTER);
+\end{lstlisting}
+
 \section{Eclipse}
 Il est impossible de faire un tutoriel Java sans s'attarder sur Eclipse, excellent logiciel pour coder en Java et qui facilite vraiment la vie des développeurs.
 
