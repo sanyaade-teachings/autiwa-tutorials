@@ -945,26 +945,26 @@ ne fonctionne pas chez moi. Il fait bien ce que je veux, à savoir évite les fu
 \gras[module!pylab]{pylab} fonctionne comme les plots dans \gras{matlab}. Il existe aussi la possibilité de faire des subplots.
 %TODO faire une version objet du code subplot, afin de montrer la façon propre de procéder avec les subplots
 \begin{lstlisting}[language=python]
-pl.figure(1)
+fig = pl.figure(1)
 
 # 2 lignes, 3 colonnes pour les subplots
-# Le 3e indice sert juste a positionner le subplot dans la matrice ainsi creee
+# Le 3e indice sert juste a positionner le subplot dans la matrice ainsi creee, balayant de gauche a droite puis de haut en bas.
 
 # en haut a gauche
-pl.subplot(2, 3, 1)
-pl.plot(x,y)
+plot1 = fig.add_subplot(2, 3, 1)
+plot1.plot(x,y)
 
 #en haut au milieu
-pl.subplot(2, 3, 2)
-pl.plot(x,y)
+plot2 = fig.add_subplot(2, 3, 2)
+plot2.plot(x,y)
 
 #en haut a droite
-pl.subplot(2, 3, 3)
-pl.plot(x,y)
+plot3 = fig.add_subplot(2, 3, 3)
+plot3.plot(x,y)
 
 #en bas a gauche
-pl.subplot(2, 3, 4)
-pl.plot(x,y)
+plot4 = fig.add_subplot(2, 3, 4)
+plot4.plot(x,y)
 
 #[...]
 
@@ -1082,6 +1082,18 @@ plot.yaxis.grid(True,'major', color='#000000', linestyle='--')
 \end{lstlisting}
 
 Il est possible de modifier la largeur du trait, en plus de la couleur ou du style. Pour la personnalisation de ces paramètres, les valeurs possibles sont les mêmes que d'habitude. Les différents styles de ligne sont répertoriés dans \refsec{sec:linestyle}.
+
+\begin{remarque}
+ Quand il n'y a qu'un seul graphique, la commande :
+\begin{verbatim}
+ plot = fig.add_subplot(1, 1, 1)
+\end{verbatim}
+est équivalente à 
+\begin{verbatim}
+ plot = fig.gca()
+\end{verbatim}
+\end{remarque}
+
 
 \subsubsection{Changer la taille des labels des axes}
 Ceci permet en particulier de changer la taille des labels mineurs par rapports aux labels majeurs :

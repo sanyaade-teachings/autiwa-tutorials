@@ -1932,6 +1932,74 @@ Ce que je fais, c'est que les codes de 1 à 9 sont pour le programme principal, 
 
 Dans la pratique, je trouve plus intéressant de détailler l'erreur avec un texte, même s'il est vrai que ça doit être plus propre de spécifier un code retour avec un entier.
 
+\subsection{Pointeur vers une fonction, pour accélérer le code et limiter les tests répétés pour rien}\label{sec:pointeur-fonction}
+Prenons un cas concrêt. En fonction du paramètre du programme, je veux exécuter différentes fonctions (par exemple pour différents types d'intéractions disque planète (dans mon cas). 
+
+Avant, je faisais à chaque pas de temps dans mon programme un test pour choisir quelle fonction lancer, sachant que toutes les fonctions ont le même nombre d'arguments. 
+
+\bigskip
+
+Voici ce que je fais maintenant. Dans le programme, je définis une variable globale qui est un pointeur, qui va pointer vers une procédure. Je définis une interface pour montrer à quoi va ressembler la procédure, en particulier les entrées sorties. 
+
+Et enfin, dans une routine d'initialisation, je teste la valeur du paramètre et attribue une valeur au pointeur. Dans le reste du programme, j'ai simplement à appeler le pointeur, sans me préoccuper de savoir vers quoi il pointe.
+
+Voici la définition du pointeur en tant que variable globale : 
+\begin{lstlisting}[language=Fortran]
+procedure(get_torques_interface), pointer :: get_torques
+
+abstract interface 
+subroutine get_torques_interface(stellar_mass, mass, p_prop, corotation_torque, lindblad_torque, Gamma_0, ecc_corot)
+  import 
+  
+  implicit none
+  real(double_precision), intent(in) :: stellar_mass ! the mass of the central body [Msun * K2]
+  ! Properties of the planet
+  real(double_precision), intent(in) :: mass ! the mass of the planet [Msun * K2]
+  type(PlanetProperties), intent(in) :: p_prop ! various properties of the planet
+  
+  
+  real(double_precision), intent(out) :: corotation_torque
+  real(double_precision), intent(out) :: lindblad_torque !  lindblad torque exerted by the disk on the planet [\Gamma_0]
+  real(double_precision), intent(out) :: Gamma_0 ! canonical torque value [Ms.AU^2](equation (8) of Paardekooper, Baruteau, 2009)
+  real(double_precision), intent(out) :: ecc_corot ! prefactor that turns out the corotation torque if the eccentricity is too high (Bitsch & Kley, 2010)
+end subroutine get_torques_interface
+end interface
+\end{lstlisting}
+
+Dans la routine d'initialisation, j'écris : 
+\begin{lstlisting}[language=Fortran]
+select case(TORQUE_TYPE)
+  case('real') ! The normal torque profile, calculated form properties of the disk
+    get_torques => get_corotation_torque
+  
+  case('linear_indep', 'mass_independant') ! a defined torque profile to get a mass independant convergence zone
+    get_torques => get_corotation_torque_linear_indep
+  
+  case('tanh_indep') ! a defined torque profile to get a mass independant convergence zone
+    get_torques => get_corotation_torque_tanh_indep
+  
+  case('mass_dependant')
+    get_torques => get_corotation_torque_mass_dep_CZ
+    
+  case('manual')
+    get_torques => get_corotation_torque_manual
+    
+  case default
+    stop 'Error in user_module : The "torque_type" cannot be found. &
+    &Values possible : real ; linear_indep ; tanh_indep ; mass_dependant ; manual'
+ end select
+\end{lstlisting}
+sachant que \textbf{TORQUE\_TYPE} est une variable contenant le paramètre du programme.
+
+Et enfin, dans le programme, je fais : 
+\begin{lstlisting}[language=Fortran]
+! Calculation of the acceleration due to migration
+ call get_torques(mass(1), mass(planet), p_prop, & ! input
+                  corotation_torque=corotation_torque, lindblad_torque=lindblad_torque, Gamma_0=torque_ref, ecc_corot=ecc_corot) ! Output
+\end{lstlisting}
+
+
+
 \section{Les fonctions intrinsèques en Fortran 90}
 Voici une liste de quelques fonctions intrinsèques du \emph{Fortran 90}. 
 Toutes les fonctionnalités de chaque fonction ne sont pas 
@@ -2568,6 +2636,10 @@ Le pointeur peut être ré-associé à n'importe quel moment. Il peut aussi êtr
 \begin{verbatim}
 nullify(pa)
 \end{verbatim}
+
+\bigskip
+
+On peut aussi créer des pointeurs vers des fonctions. Pour plus de détails voir \refsec{sec:pointeur-fonction}.
 
 \subsection{Attributs des variables lors de leur déclaration}
 Lors de leur déclaration, il existe divers attributs que l'on peut donner aux variables et qui permettent de préciser à quoi elles vont servir notamment. 
