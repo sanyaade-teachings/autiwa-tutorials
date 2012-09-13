@@ -182,8 +182,9 @@ Même si on peut afficher un nombre avec autant de positions qu'on veut, c'est j
  & Format décimal & \%F & \%\emph{w}.\emph{m}F & 20.000000 & \footnotemark[103]\\\cline{2-6}
  & Format hybride \footnotemark[101] & \%g & \%\emph{w}.\emph{m}g & 20 & 20\footnotemark[104]\\\cline{2-6}
  & Format hybride \footnotemark[101] & \%G & \%\emph{w}.\emph{m}G & 20 & 20\footnotemark[104]\\\hline
-\multirow{2}{2cm}{Afficher des caractères} & Un seul caractère \footnotemark[102] & \%c & \%\emph{w}.\emph{m}c & ' ' & ' '\\\cline{2-6}
- & Une chaîne de caractère & \%s & \%\emph{w}.\emph{m}s & '20' & '20'\\\hline
+\multirow{3}{2cm}{Afficher des caractères} & Un seul caractère \footnotemark[102] & \%c & \%\emph{w}.\emph{m}c & ' ' & ' '\\\cline{2-6}
+ & Une chaîne de caractère & \%s & \%\emph{w}.\emph{m}s & '20' & '20'\\\cline{2-6}
+ & Un booléen & \%s & \%s & 'True' & 'True'\\\hline
 \end{tabular}
 \end{center}
 \caption{Liste des formats d'affichage de variables en python, utilisant le descripteur de format \%}\label{tab:formats}
@@ -911,6 +912,11 @@ pl.savefig('ma_figure.svg')
 pl.savefig('ma_figure.pdf')
 \end{lstlisting}
 
+\begin{remarque}
+L'export en .svg fonctionne très mal je trouve, et j'en veux pour preuve la gestion des textes. En effet, ceux ci apparaissent comme des groupes de chemin, et non comme des caractères d'un texte. J'exporte généralement en .pdf et j'importe le .pdf dans Inkscape quand je souhaite faire des modifications. Même si, pour des pdf, le texte n'est pas facilement modifiable (essayez de modifier un caractère au milieu d'un mot sans supprimer tous les caractères qu'il y a après). Mais c'est bien mieux que la version .svg je trouve. 
+\end{remarque}
+
+
 \subsection{Éviter les fuites mémoires avec pylab}\label{sec:pylab-fuite-memoire}
 C'est un problème qui survient quand on génère et affiche des figures dans une boucle par exemple. 
 
@@ -1144,6 +1150,17 @@ markerfacecolor='None' # To set 'no color' inside the marker
 markeredgewidth=1
 markeredgecolor='#000000'
 \end{verbatim}
+
+\bigskip
+
+On peut aussi utiliser des marqueurs, et des lignes. qu'on peut définir soit via :
+\begin{lstlisting}[language=python]
+myplot.plot(x,z, '--o')
+\end{lstlisting}
+ou via
+\begin{lstlisting}[language=python]
+myplot.plot(x,z, linestyle='--', marker='o')
+\end{lstlisting}
 
 \subsubsection{Ajouter du texte}
 \begin{lstlisting}[language=python]
