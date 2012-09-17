@@ -700,6 +700,21 @@ Pour trouver rapidement les coordonnées des points où l'on veut rajouter du te
 \multiput(0,0.5)(0,1){10}{\multiput(0,0)(0.2,0){50}{\line(1,0){0.1}}}
 \end{verbatim}
 
+\subsection{Superposer deux figures}
+\begin{verbatim}
+ \noindent\hfill\makebox[0pt]{\includegraphics{A}}%
+\makebox[0pt]{\includegraphics{B}}%
+\hfill\null
+\end{verbatim}
+Ça ne fonctionne pas si la deuxième image n'a pas une largeur nulle elle aussi (ce qui ne me semblait pas logique au départ). Les \verb|\hfill| sont là pour forcer les images à être dans la page. Car comme on les définit avec une largeur nulle, la moitié de l'image sort du cadre à gauche si on ne fait rien.
+
+Une autre solution est de faire : 
+\begin{verbatim}
+\makebox[0pt][l]{\includegraphics[width=0.9\textwidth]{Base.pdf}}%
+\makebox[0pt][l]{\includegraphics[width=0.9\textwidth]{superp.pdf}}
+\end{verbatim}
+Sans le pourcentage entre les deux figures, les espaces ne sont pas rendus correctement, et il y a un petit décalage vers la droite de la 2\ieme image par rapport à la première.
+
 \subsection{Gérer les tailles de figures}
 J'avais pris l'habitude d'ajouter les figures, et de spécifier, quand j'en avais besoin, la largeur ou la hauteur en centimètre. Il est pourtant possible de gérer la largeur beaucoup plus proprement, notament si on oscille entre le mode page, et le mode deux colonnes.
 
@@ -1872,129 +1887,6 @@ Il est de plus possible de créer ses propres formes, notament avec un patch que
 
 %TODO le paquet multido
 
-\section{Présentation avec \LaTeX et beamer}\index{package!beamer}
-Pour faire une présentation, j'utilise la classe beamer.
-
-Voici une partie de mon préambule pour faire une présentation
-\begin{verbatim}
-\documentclass{beamer}
-\usetheme{Darmstadt}
-\usefonttheme[onlylarge]{structurebold}
-\setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
-\setbeamertemplate{navigation symbols}{}
-
-\useackage{tikz}
-\usetikzlibrary{arrows}
-\newcommand*{\newblock}{}%pour pouvoir faire des bibliographies
-\end{verbatim}
-
-Ensuite, pour faire une diapo, on utilise
-\begin{verbatim}
-\begin{frame}
-contenu de la diapo
-\end{frame}
-\end{verbatim}
-
-Pour mettre la table des matières au début, j'utilise
-\begin{verbatim}
-\begin{frame}
-\frametitle{Table des matières}
-\tableofcontents
-\end{frame}
-\end{verbatim}
-
-\bigskip
-
-Il est possible d'afficher du texte petit à petit, et de faire plein d'autres choses. je vous conseille d'aller voir la documentation de \gras{beamer} qui est très complète.
-
-\subsection{Utiliser des environnements verbatim dans une page}
-Par défaut, vous obtiendrez des erreurs de compilation. Il faut utiliser l'option suivante dans la page qui vous intéresse afin de pouvoir utiliser des environnements verbatim (\gras{environnement!lstlisting} compris) :
-\begin{lstlisting}[{language=tex}]
-\begin{frame}[containsverbatim]
-\begin{verbatim}
-#############################
-
-# What you actually want to launch
-echo "Hello World" 
-sleep 1m # fake to work
-
-# all done
-echo "Job finished" 
-\end{verbatim}
-
-\end{frame}
-\end{lstlisting}
-
-\subsection{Mise en valeur d'info : alertes}
-On peut mettre des exemples, des alertes et autres via des environnements disponibles par défaut :
-\begin{lstlisting}[{language=tex}]
-\begin{alertblock}{titre}
-Information a mettre en valeur.
-\end{alertblock}
-\end{lstlisting}
-
-
-\section{Faire un poster avec \LaTeX et beamerposter}
-\subsection{Les bases}
-Voici comment je fais
-\begin{verbatim}
-\begin{document}
-\textsize
-\begin{frame}
- 
-\begin{block}{Abstract}
- Le contenu de mon premier block
-\end{block}
-
-\vfill
-
-\begin{block}{developpement}
- Le contenu de mon deuxieme block
-\end{block}
-
-\vfill
-
-\begin{block}{conclusion}
- Le contenu de mon troisieme block
-\end{block}
-
-\end{frame}
-\end{document}
-\end{verbatim}
-
-\subsection{Plusieurs blocks par ligne}
-On peut souhaiter mettre plusieurs blocks par ligne, et il est dans ce cas pratique d'utiliser les environnements multicolonne pour encadrer les blocks eux mêmes : 
-\begin{verbatim}
-\begin{columns}[t]
-\begin{column}{.45\textwidth}
- \begin{block}{developpement}
- Le contenu de mon deuxieme block
-\end{block}
-\end{column}
-
-\begin{column}{.45\textwidth}
- \begin{block}{developpement2}
- Le contenu de mon troisieme block
-\end{block}
-\end{column}
-\end{columns}
-\end{verbatim}
-
-\subsection{Faire une bibliographie natbib dans un poster}
-Même solution que pour la faire avec beamer, insérer immédiatement avant \verb|\bibliography{}| :
-\begin{verbatim}
-\def\newblock{}
-\end{verbatim}
-
-\begin{exemple}
-\begin{verbatim}
-\bibliographystyle{plainnat}
-\def\newblock{}
-\bibliography{nom-biblio} % nom-biblio.bib
-\end{verbatim}
-\end{exemple}
-
-
 \section{Faire une bibliographie}\index{bibliographie}
 
 \subsection{Construire la bibliographie}
@@ -2166,8 +2058,50 @@ Pour faire fonctionner natbib avec \gras[package!beamer]{beamer}, se référer �
 
 
 \section{Faire une presentation avec \LaTeX : beamer}\index{package!beamer}
+Pour faire une présentation, j'utilise la classe beamer.
+
+Voici une partie de mon préambule pour faire une présentation
+\begin{verbatim}
+\documentclass{beamer}
+\usetheme{Darmstadt}
+\usefonttheme[onlylarge]{structurebold}
+\setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
+\setbeamertemplate{navigation symbols}{}
+
+\useackage{tikz}
+\usetikzlibrary{arrows}
+\newcommand*{\newblock}{}%pour pouvoir faire des bibliographies
+\end{verbatim}
+
+Ensuite, pour faire une diapo, on utilise
+\begin{verbatim}
+\begin{frame}
+contenu de la diapo
+\end{frame}
+\end{verbatim}
+
+Pour mettre la table des matières au début, j'utilise
+\begin{verbatim}
+\begin{frame}
+\frametitle{Table des matières}
+\tableofcontents
+\end{frame}
+\end{verbatim}
+
+\bigskip
+
+Il est possible d'afficher du texte petit à petit, et de faire plein d'autres choses. je vous conseille d'aller voir la documentation de \gras{beamer} qui est très complète.
+
 \subsection{Les bases}
-\subsection{Animations élémentaire}
+\subsubsection{Mise en valeur d'info : alertes}
+On peut mettre des exemples, des alertes et autres via des environnements disponibles par défaut :
+\begin{lstlisting}[{language=tex}]
+\begin{alertblock}{titre}
+Information a mettre en valeur.
+\end{alertblock}
+\end{lstlisting}
+
+\subsubsection{Animations élémentaire}
 Deux types d'animations sont très utiles et complémentaires. La première \verb|\onslide<n>{contenu}| permet d'afficher l'ensemble \verb|contenu| (qui peut être une image, du texte, ou tout autre boite \LaTeX) sur le slide numéro $n$. En écrivant \verb|<n->|, le contenu s'affichera à partir du slide $n$ jusqu'à la fin de l'\og animation\fg pour le frame courant.
 La chose importante est que \verb|\onslide<n>{contenu}| réservera l'espace dans le frame, laissant un espace blanc en attendant que le contenu apparaisse au slide voulu.
 
@@ -2176,7 +2110,25 @@ Pour ne pas réserver d'espace, et ainsi pouvoir remplacer une chose par une aut
 \only<n>{contenu}
 \end{verbatim}
 
-\subsection{Faire fonctionner natbib}\index{package!natbibnatbib}\label{sec:beamer_natbib}
+\subsection{Astuces}
+\subsubsection{Utiliser des environnements verbatim dans une page}
+Par défaut, vous obtiendrez des erreurs de compilation. Il faut utiliser l'option suivante dans la page qui vous intéresse afin de pouvoir utiliser des environnements verbatim (\gras{environnement!lstlisting} compris) :
+\begin{lstlisting}[{language=tex}]
+\begin{frame}[containsverbatim]
+\begin{verbatim}
+#############################
+
+# What you actually want to launch
+echo "Hello World" 
+sleep 1m # fake to work
+
+# all done
+echo "Job finished" 
+\end{verbatim}
+
+\end{frame}
+\end{lstlisting}
+\subsubsection{Faire fonctionner natbib}\index{package!natbibnatbib}\label{sec:beamer_natbib}
 Insérer immédiatement avant \verb|\bibliography{}| :
 \begin{verbatim}
 \def\newblock{}
@@ -2193,6 +2145,65 @@ Insérer immédiatement avant \verb|\bibliography{}| :
 \end{exemple}
 
 
+\section{Faire un poster avec \LaTeX et beamerposter}
+\subsection{Les bases}
+Voici comment je fais
+\begin{verbatim}
+\begin{document}
+\textsize
+\begin{frame}
+ 
+\begin{block}{Abstract}
+ Le contenu de mon premier block
+\end{block}
+
+\vfill
+
+\begin{block}{developpement}
+ Le contenu de mon deuxieme block
+\end{block}
+
+\vfill
+
+\begin{block}{conclusion}
+ Le contenu de mon troisieme block
+\end{block}
+
+\end{frame}
+\end{document}
+\end{verbatim}
+
+\subsection{Plusieurs blocks par ligne}
+On peut souhaiter mettre plusieurs blocks par ligne, et il est dans ce cas pratique d'utiliser les environnements multicolonne pour encadrer les blocks eux mêmes : 
+\begin{verbatim}
+\begin{columns}[t]
+\begin{column}{.45\textwidth}
+ \begin{block}{developpement}
+ Le contenu de mon deuxieme block
+\end{block}
+\end{column}
+
+\begin{column}{.45\textwidth}
+ \begin{block}{developpement2}
+ Le contenu de mon troisieme block
+\end{block}
+\end{column}
+\end{columns}
+\end{verbatim}
+
+\subsection{Faire une bibliographie natbib dans un poster}
+Même solution que pour la faire avec beamer, insérer immédiatement avant \verb|\bibliography{}| :
+\begin{verbatim}
+\def\newblock{}
+\end{verbatim}
+
+\begin{exemple}
+\begin{verbatim}
+\bibliographystyle{plainnat}
+\def\newblock{}
+\bibliography{nom-biblio} % nom-biblio.bib
+\end{verbatim}
+\end{exemple}
 
 \section{\LaTeX{} sous GNU/Linux}
 \subsection{Installation}
