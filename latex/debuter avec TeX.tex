@@ -700,7 +700,7 @@ Pour trouver rapidement les coordonnées des points où l'on veut rajouter du te
 \multiput(0,0.5)(0,1){10}{\multiput(0,0)(0.2,0){50}{\line(1,0){0.1}}}
 \end{verbatim}
 
-\subsection{Superposer deux figures}
+\subsection{Superposer deux figures}\label{sec:superposition-figure}
 \begin{verbatim}
  \noindent\hfill\makebox[0pt]{\includegraphics{A}}%
 \makebox[0pt]{\includegraphics{B}}%
@@ -2144,6 +2144,19 @@ Insérer immédiatement avant \verb|\bibliography{}| :
 
 \end{exemple}
 
+\subsubsection{Superposer deux figures transparentes et faire des animations}
+Mon idée est d'avoir une image de référence contenant les axes, les courbes fixes, en .pdf et qui sers de fond. Ceci a l'énorme avantage d'être facilement modifiable, au lieu de devoir répéter les opérations sur toutes les figures suivantes
+Et ensuite je fais autant de surcouche qu'il le faut pour faire apparaître, disparaître, ou griser ce qui m'intéresse. 
+
+Ensuite, avec les commandes ci-dessous, seul le fond ne bouge pas, et est superposé à ce dernier une seule des images suivantes : 
+\begin{verbatim}
+\makebox[0pt][l]{\includegraphics[width=0.9\textwidth]{figure/fond.pdf}}%
+\only<1>{\makebox[0pt][l]{\includegraphics[width=0.9\textwidth]{figure/frame_01.pdf}}}%
+\only<2>{\makebox[0pt][l]{\includegraphics[width=0.9\textwidth]{figure/frame_02.pdf}}}%
+\only<3>{\makebox[0pt][l]{\includegraphics[width=0.9\textwidth]{figure/frame_03.pdf}}}
+\end{verbatim}
+
+Ceci reprend un peu le principe de \refsec{sec:superposition-figure}.
 
 \section{Faire un poster avec \LaTeX et beamerposter}
 \subsection{Les bases}
