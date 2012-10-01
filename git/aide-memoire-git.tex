@@ -1,0 +1,118 @@
+\documentclass[a4paper,twoside]{article}
+\usepackage{autiwa}
+
+\title{Aide mémoire Subversion (svn)}
+\author{Autiwa}
+
+\newcommand{\raccourci}[1]{{\bfseries #1}}
+
+\makeindex
+\begin{document}
+
+\tableofcontents
+
+\clearpage
+
+\section{Préambule}
+Git permet de gérer un projet (de programmation généralement) et de garder en mémoire l'historique de toutes les versions d'un ensemble de fichiers. Il permet de gérer un projet à plusieurs, de programmer afin de pouvoir revenir en arrière, comparer avec d'anciennes versions et cie. 
+
+Le principe est d'avoir un serveur git (un seul possible) qui va garder en mémoire l'historique de toutes les versions et un client git (plusieurs possibles) qui vont se connecter au serveur pour mettre à jour la version des fichiers ou en récupérer les dernières versions.
+
+\begin{remarque}
+Il est possible que le serveur soit lui aussi client, dans le cas où il n'y aurait qu'un seul développeur et qu'on ne souhaite pas passer par internet.
+\end{remarque}
+
+\subsection{Configuration}
+Afin d'avoir la coloration syntaxique, il faut faire : 
+\begin{verbatim}
+git config --global color.diff auto
+git config --global color.status auto
+git config --global color.branch auto
+\end{verbatim}
+
+
+\section{Commandes universelles git}
+Ici, je note les commandes qui sont valables à la fois pour svn installé sur un serveur internet, ou sur une machine locale pour un usage personnel
+
+\subsection{Lister les modifications locales}\index{git!status}
+La commande git status vous indique les fichiers que vous avez modifiés récemment :
+\begin{verbatim}
+$ git status
+# On branch master
+nothing to commit (working directory clean)
+\end{verbatim}
+
+\subsection{Ajouter des fichiers ou dossiers au projet : add}\index{commande git!add} \index{Ajouter des fichiers}
+Pour ajouter des fichiers il faut faire :
+\begin{verbatim}
+git add latex/ vim/ 
+\end{verbatim}
+où \textbf{latex/} et \textbf{vim/} sont deux dossiers existant dans le dossier local de référence
+
+\begin{remarque}
+Au cas où ça serait pas clair. J'ai créé un dossier \textbf{/home/autiwa/Formulaires} grâce à \refsec{sec:checkout}. Dans ce dossier, j'ai créé et rempli à la main les sous-dossiers \textbf{latex/} et \textbf{vim/}. Maintenant, grâce à la commande ci-dessus, je définis ces sous-dossiers comme étant rattachés au projet. En faisant ainsi le contenu est rajouté récursivement.
+\end{remarque}
+
+\begin{attention}
+Cette commande n'agit que sur le répertoire local (la \emph{working copy}). Il faut ensuite appliquer ces changements au dépot (voir \refsec{sec:commit}) pour les valider.
+\end{attention}
+
+\subsection{Voir les différences entre la version du serveur et la version locale}
+
+\begin{verbatim}
+git diff
+\end{verbatim}
+
+\begin{remarque}
+Il est possible de regarder les différences sur un fichier en particulier.
+\end{remarque}
+
+
+
+\section{Subversion sur internet}
+Je vais prendre l'exemple de google code, qui est celui que j'ai choisi et que je suis en train d'apprendre.
+
+\subsection{Récupérer le contenu du projet}\label{sec:checkout}
+Une fois le projet créé (sur la page \url{http://code.google.com/hosting/createProject}), il faut faire : 
+\begin{verbatim}
+cd Formulaire
+git clone https://autiwa@code.google.com/p/autiwa-tutorials/ 
+\end{verbatim}\index{commande git!clone}
+
+Cette commande permet de récupérer le contenu du projet et de le copier dans un dossier \textbf{Formulaires} qui sera créé dans le dossier courant.
+
+\begin{definition}[Clone]
+Opération d'extraction d'une version d'un projet du repository vers un répertoire de travail local.
+\end{definition}
+
+
+\section{Subversion localement}
+Le serveur ET le client seront alors sur la même machine.
+
+\subsection{Création du projet}
+J'ai créé un dossier \textbf{mercury} dans mon \textbf{\$HOME}, puis je fais, dans mon répertoire utilisateur : 
+\begin{verbatim}
+cd mercury
+git init
+\end{verbatim}
+pour un projet que j'appelle \textbf{mercury}.
+
+
+\section{Gérer un conflit}
+
+
+
+\printindex
+\end{document}
+
+Mes svn : 
+URL : https://autiwa-tutorials.googlecode.com/svn/trunk/
+login : autiwa@gmail.com
+Description : SVN pour mes formulaires, recettes de cuisines et tutoriaux divers. Il contient même mes paquets LaTeX
+
+URL : https://mercury-90.googlecode.com/svn
+Description : SVN pour le code mercury en f90 que je développe.
+
+URL : https://pl3.projectlocker.com/autiwa_py_modules/svn
+login : autiwa@gmail.com
+Description : SVN pour mes modules python.
