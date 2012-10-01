@@ -30,9 +30,47 @@ git config --global color.status auto
 git config --global color.branch auto
 \end{verbatim}
 
+De même, il faut configurer votre nom (ou pseudo) :
+\begin{verbatim}
+git config --global user.name "votre_pseudo"
+\end{verbatim}
+
+
+Puis votre e-mail :
+\begin{verbatim}
+git config --global user.email moi@email.com
+\end{verbatim}
+
+
+Vous pouvez aussi éditer votre fichier de configuration .gitconfig situé dans votre répertoire personnel pour y ajouter une section alias à la fin :
+\begin{verbatim}
+vim ~/.gitconfig
+\end{verbatim}
+
+\begin{verbatim}
+[color]
+        diff = auto
+        status = auto
+        branch = auto
+[user]
+        name = votre_pseudo
+        email = moi@email.com
+[alias]
+        ci = commit
+        co = checkout
+        st = status
+        br = branch
+\end{verbatim}
 
 \section{Commandes universelles git}
 Ici, je note les commandes qui sont valables à la fois pour svn installé sur un serveur internet, ou sur une machine locale pour un usage personnel
+
+\subsection{Mettre à jour sa copie locale : pull}\index{commande git!pull} \index{Mise à jour du dépôt}
+\begin{verbatim}
+git pull
+\end{verbatim}
+
+Pour celà, il faut que le dossier dans lequel on se trouve ait déjà été défini comme un dossier git via un \gras[commande git!clone]{clone} (voir \refsec{sec:checkout})
 
 \subsection{Lister les modifications locales}\index{git!status}
 La commande git status vous indique les fichiers que vous avez modifiés récemment :
@@ -67,9 +105,29 @@ git diff
 Il est possible de regarder les différences sur un fichier en particulier.
 \end{remarque}
 
+\subsection{Enregistrer les modifications localement : commit}\index{commande git!commit}\index{mise à jour local -> serveur}\label{sec:commit}
+
+Pour mettre à jour les versions sur serveur à partir des modifications effectuées localement, il faut : 
+\begin{verbatim}
+git commit -a -m "initialisation"
+\end{verbatim}
+où \textbf{"initialisation"} est le commentaire qui décrit la mise à jour et les modifications effectuées. 
+
+\begin{attention}
+Un commit avec git est local : à moins d’envoyer ce commit sur le serveur comme on apprendra à le faire plus loin, personne ne sait que vous avez fait ce commit pour le moment. Cela a un avantage : si vous vous rendez compte que vous avez fait une erreur dans votre dernier commit, vous avez la possibilité de l’annuler (ce qui n’est pas le cas avec SVN !).
+\end{attention}
+
+On peut modifier ces commits là, tant qu'ils sont en local. Puis une fois vérifié. Il ne reste plus qu'à les envoyer sur le serveur. Pour celà on vérifie tout d'abord ce qu'on s'apprête à envoyer, et on envoie sur le serveur : 
+\begin{verbatim}
+git log -p
+git push
+\end{verbatim}
+
+\subsection{Annuler un commit effectué par erreur}
+%TODO
 
 
-\section{Subversion sur internet}
+\section{Git sur internet}
 Je vais prendre l'exemple de google code, qui est celui que j'ai choisi et que je suis en train d'apprendre.
 
 \subsection{Récupérer le contenu du projet}\label{sec:checkout}
@@ -86,7 +144,7 @@ Opération d'extraction d'une version d'un projet du repository vers un réperto
 \end{definition}
 
 
-\section{Subversion localement}
+\section{Git localement}
 Le serveur ET le client seront alors sur la même machine.
 
 \subsection{Création du projet}
@@ -99,20 +157,8 @@ pour un projet que j'appelle \textbf{mercury}.
 
 
 \section{Gérer un conflit}
-
+%TODO
 
 
 \printindex
 \end{document}
-
-Mes svn : 
-URL : https://autiwa-tutorials.googlecode.com/svn/trunk/
-login : autiwa@gmail.com
-Description : SVN pour mes formulaires, recettes de cuisines et tutoriaux divers. Il contient même mes paquets LaTeX
-
-URL : https://mercury-90.googlecode.com/svn
-Description : SVN pour le code mercury en f90 que je développe.
-
-URL : https://pl3.projectlocker.com/autiwa_py_modules/svn
-login : autiwa@gmail.com
-Description : SVN pour mes modules python.
