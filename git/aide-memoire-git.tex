@@ -62,17 +62,42 @@ vim ~/.gitconfig
         br = branch
 \end{verbatim}
 
+\subsection{Git sur internet}
+Je vais prendre l'exemple de google code, qui est celui que j'ai choisi et que je suis en train d'apprendre.
+
+
+Une fois le projet créé (sur la page \url{http://code.google.com/hosting/createProject}), il faut faire la commande suivante pour récupérer le contenu du projet localement (et pouvoir envoyer les modifs par la suite) : 
+\begin{verbatim}
+cd Formulaire
+git clone https://autiwa@code.google.com/p/autiwa-tutorials/ 
+\end{verbatim}\index{git!clone}
+
+Cette commande permet de récupérer le contenu du projet et de le copier dans un dossier \textbf{Formulaires} qui sera créé dans le dossier courant.
+
+\begin{definition}[Clone]
+Opération d'extraction d'une version d'un projet du repository vers un répertoire de travail local.
+\end{definition}
+
+
+\subsection{Git localement}\label{sec:git_init}
+Le serveur ET le client seront alors sur la même machine. Pour créer un projet, il faut créer un dossier, par exemple dans mon cas un dossier \textbf{mercury} dans mon \textbf{\$HOME}, puis je fais, dans mon répertoire utilisateur : 
+\begin{verbatim}
+cd mercury
+git init
+\end{verbatim}
+pour un projet que j'appelle \textbf{mercury}.
+
 \section{Commandes universelles git}
 Ici, je note les commandes qui sont valables à la fois pour svn installé sur un serveur internet, ou sur une machine locale pour un usage personnel
 
-\subsection{Mettre à jour sa copie locale : pull}\index{commande git!pull} \index{Mise à jour du dépôt}
+\subsection{Mettre à jour sa copie locale : pull}\index{git!pull} \index{Mise à jour du dépôt}
 \begin{verbatim}
 git pull
 \end{verbatim}
 
-Pour celà, il faut que le dossier dans lequel on se trouve ait déjà été défini comme un dossier git via un \gras[commande git!clone]{clone} (voir \refsec{sec:checkout})
+Pour celà, il faut que le dossier dans lequel on se trouve ait déjà été défini comme un dossier git via un \gras[commande git!clone]{clone} (voir \refsec{sec:git_init})
 
-\subsection{Lister les modifications locales}\index{git!status}
+\subsection{Lister les modifications locales : status}\index{git!status}
 La commande git status vous indique les fichiers que vous avez modifiés récemment :
 \begin{verbatim}
 $ git status
@@ -80,7 +105,7 @@ $ git status
 nothing to commit (working directory clean)
 \end{verbatim}
 
-\subsection{Ajouter des fichiers ou dossiers au projet : add}\index{commande git!add} \index{Ajouter des fichiers}
+\subsection{Ajouter des fichiers ou dossiers au projet : add}\index{git!add} \index{Ajouter des fichiers}
 Pour ajouter des fichiers il faut faire :
 \begin{verbatim}
 git add latex/ vim/ 
@@ -88,14 +113,25 @@ git add latex/ vim/
 où \textbf{latex/} et \textbf{vim/} sont deux dossiers existant dans le dossier local de référence
 
 \begin{remarque}
-Au cas où ça serait pas clair. J'ai créé un dossier \textbf{/home/autiwa/Formulaires} grâce à \refsec{sec:checkout}. Dans ce dossier, j'ai créé et rempli à la main les sous-dossiers \textbf{latex/} et \textbf{vim/}. Maintenant, grâce à la commande ci-dessus, je définis ces sous-dossiers comme étant rattachés au projet. En faisant ainsi le contenu est rajouté récursivement.
+Au cas où ça serait pas clair. J'ai créé un dossier \textbf{/home/autiwa/Formulaires} grâce à \refsec{sec:git_init}. Dans ce dossier, j'ai créé et rempli à la main les sous-dossiers \textbf{latex/} et \textbf{vim/}. Maintenant, grâce à la commande ci-dessus, je définis ces sous-dossiers comme étant rattachés au projet. En faisant ainsi le contenu est rajouté récursivement.
 \end{remarque}
 
 \begin{attention}
 Cette commande n'agit que sur le répertoire local (la \emph{working copy}). Il faut ensuite appliquer ces changements au dépot (voir \refsec{sec:commit}) pour les valider.
 \end{attention}
 
-\subsection{Voir les différences entre la version du serveur et la version locale}
+\bigskip
+
+Supposons que vous veniez d’ajouter un fichier à Git avec git add et que vous vous apprêtiez à le « commiter ». Cependant, vous vous rendez compte que ce fichier est une mauvaise idée et vous voudriez annuler votre git add.
+
+Il est possible de retirer un fichier qui avait été ajouté pour être « commité » en procédant comme suit :
+\begin{verbatim}
+git reset HEAD -- fichier_a_supprimer
+\end{verbatim}
+
+
+
+\subsection{Voir les différences versions : diff}
 
 \begin{verbatim}
 git diff
@@ -105,7 +141,7 @@ git diff
 Il est possible de regarder les différences sur un fichier en particulier.
 \end{remarque}
 
-\subsection{Enregistrer les modifications localement : commit}\index{commande git!commit}\index{mise à jour local -> serveur}\label{sec:commit}
+\subsection{Enregistrer les modifications localement : commit}\index{git!commit}\index{mise à jour local -> serveur}\label{sec:commit}
 
 Pour mettre à jour les versions sur serveur à partir des modifications effectuées localement, il faut : 
 \begin{verbatim}
@@ -117,6 +153,7 @@ où \textbf{"initialisation"} est le commentaire qui décrit la mise à jour et 
 Un commit avec git est local : à moins d’envoyer ce commit sur le serveur comme on apprendra à le faire plus loin, personne ne sait que vous avez fait ce commit pour le moment. Cela a un avantage : si vous vous rendez compte que vous avez fait une erreur dans votre dernier commit, vous avez la possibilité de l’annuler (ce qui n’est pas le cas avec SVN !).
 \end{attention}
 
+\subsection{Propager les modifications locales sur le dépots du serveur : push}\index{git!push}
 On peut modifier ces commits là, tant qu'ils sont en local. Puis une fois vérifié. Il ne reste plus qu'à les envoyer sur le serveur. Pour celà on vérifie tout d'abord ce qu'on s'apprête à envoyer, et on envoie sur le serveur : 
 \begin{verbatim}
 git log -p
@@ -124,37 +161,69 @@ git push
 \end{verbatim}
 
 \subsection{Annuler un commit effectué par erreur}
-%TODO
-
-
-\section{Git sur internet}
-Je vais prendre l'exemple de google code, qui est celui que j'ai choisi et que je suis en train d'apprendre.
-
-\subsection{Récupérer le contenu du projet}\label{sec:checkout}
-Une fois le projet créé (sur la page \url{http://code.google.com/hosting/createProject}), il faut faire : 
+\subsubsection{Modifier le message du dernier commit}
 \begin{verbatim}
-cd Formulaire
-git clone https://autiwa@code.google.com/p/autiwa-tutorials/ 
-\end{verbatim}\index{commande git!clone}
-
-Cette commande permet de récupérer le contenu du projet et de le copier dans un dossier \textbf{Formulaires} qui sera créé dans le dossier courant.
-
-\begin{definition}[Clone]
-Opération d'extraction d'une version d'un projet du repository vers un répertoire de travail local.
-\end{definition}
-
-
-\section{Git localement}
-Le serveur ET le client seront alors sur la même machine.
-
-\subsection{Création du projet}
-J'ai créé un dossier \textbf{mercury} dans mon \textbf{\$HOME}, puis je fais, dans mon répertoire utilisateur : 
-\begin{verbatim}
-cd mercury
-git init
+git commit --amend
 \end{verbatim}
-pour un projet que j'appelle \textbf{mercury}.
 
+\subsubsection{Annuler un commit sans toucher aux fichiers (soft)}
+\begin{verbatim}
+git reset HEAD^
+\end{verbatim}
+annule le dernier commit et revient à l'avant dernier. Pour autant les fichiers ne sont pas modifiés, seul le commit en lui même est annulé. Pour annuler les modifications liées au commit, il faut faire un hard reset (section suivante).
+
+
+
+
+
+\subsubsection{Annuler un commit et les modifications de fichier associées (hard)}
+\begin{verbatim}
+git reset --hard HEAD^
+\end{verbatim}
+Annule le dernier commit et toutes les modifications qui s'y rapportent. 
+
+Pour indiquer à quel commit on souhaite revenir, il existe plusieurs notations :
+\begin{itemize}
+\item \verb|HEAD| : dernier commit ;
+\item \verb|HEAD^| : avant-dernier commit ;
+\item \verb|HEAD^^| : avant-avant-dernier commit ;
+\item \verb|HEAD~2| : avant-avant-dernier commit (notation équivalente) ;
+\item \verb|d6d98923868578a7f38dea79833b56d0326fcba1| : indique un numéro de commit précis ;
+\item \verb|d6d9892| : indique un numéro de commit précis (notation équivalente à la précédente, bien souvent écrire les premiers chiffres est suffisant tant qu’aucun autre commit ne commence par les mêmes chiffres).
+\end{itemize}
+
+\subsubsection{Annuler les modifications d'un fichier avant un commit : checkout}
+Pour annuler les modifications locales et revenir à la dernière révision : 
+\begin{verbatim}
+git checkout *.f90
+\end{verbatim}\index{commande svn!revert}
+va remettre en l'état tous les fichiers du dépot qui sont présents dans le dossier courant (on peut aussi ne préciser qu'un seul fichier).
+
+\subsubsection{Annuler un commit publié}
+Si vous publiez un commit sur le serveur, mais que vous souhaitez l'annuler, c'est quand même possible, mais c'est un peu plus barbare qu'un commit non encore propagé (à l'aide de push). 
+
+Pour celà il faut créer un nouveau commit qui annule les modifications du commit que vous souhaitez annuler. Il faut alors connaître l'ID du commit visé et faire : 
+\begin{verbatim}
+git revert 6261cc2
+\end{verbatim}
+Il faut préciser l’ID du commit à « revert ». Il n’est pas obligatoire d’indiquer l’ID en entier (qui est un peu long), il suffit de mettre les premiers chiffres tant qu’ils sont uniques (les 4-5 premiers chiffres devraient suffire). On vous invite à entrer un message de commit. Un message par défaut est indiqué dans l’éditeur.
+
+Une fois que c’est enregistré, le commit d’annulation est créé. Il ne vous reste plus qu’à vérifier que tout est bon et à le publier (avec un git push).
+
+\subsection{Historique des modifications : log}\index{historique des modifications}
+La commande \texttt{log} permet de voir un historique des commentaires de révision, soit de l'ensemble des fichiers, soit d'un fichier en particulier.
+
+\begin{verbatim}
+git log
+\end{verbatim}\index{git!log}
+affiche l'historique de toutes les révisions.
+
+\begin{attention}
+Chaque commit est numéroté grâce à un long numéro hexadécimal comme 12328a1bcbf231da\-8eaf942f8d68c7dc0c7c4f38. Cela permet de les identifier.
+\end{attention}
+
+\section{Travailler avec des branches}
+%TODO les branches sont une partie très importante de git apparemment, il faut donc que je me penche dessus rapidement.
 
 \section{Gérer un conflit}
 %TODO
