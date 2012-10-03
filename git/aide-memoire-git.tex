@@ -223,7 +223,108 @@ Chaque commit est numéroté grâce à un long numéro hexadécimal comme 12328a
 \end{attention}
 
 \section{Travailler avec des branches}
-%TODO les branches sont une partie très importante de git apparemment, il faut donc que je me penche dessus rapidement.
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.75\linewidth]{figure/branchs.pdf}
+\caption{Le principe des branches est de travailler à part sur des modifications et de ne les fusionner avec la branche principale que si c'est ok et ça donne quelque chose.}
+\end{figure}
+
+L'idée derrière le fait de créer des branches, c'est de bien séparer les idées de développement, et de pouvoir les tester et les séparer avant de les inclure (ou pas) dans la branche principale. 
+
+\begin{important}
+En gros, Si vous avez une modification à faire, qui risque de prendre un peu de temps et qui va nécessiter plusieurs commit, faites une branche !
+\end{important}
+
+
+\subsection{Lister les branches}
+Première chose utile, lister les branches existantes. Par défaut il n'y aura que la branche principale : 
+\begin{verbatim}
+git branch
+\end{verbatim}
+
+\subsection{Créer une branche}
+Pour créer une branche \textbf{test\_01}, il faut utiliser la commande :
+\begin{verbatim}
+git branch test_01
+\end{verbatim}
+
+Si vous listez alors les branches, vous aurez :
+\begin{verbatim}
+$ git branch
+* master
+  test_01
+\end{verbatim}
+où on voit que \textbf{master} est toujours la branche active. Il faut donc changer de branche pour pouvoir modifier les fichiers et faire des commits dans cette branche.
+
+\subsection{Activer une branche et y faire des commits}
+Il faut déclarer cette branche comme active via :
+\begin{verbatim}
+git checkout test_01
+\end{verbatim}
+
+La liste des branches donne alors :
+\begin{verbatim}
+$ git branch
+  master
+* test_01
+\end{verbatim}
+qui montre que la branche \textbf{test\_01} est maintenant active.
+
+\begin{remarque}
+\textbf{git checkout} est utilisé pour changer de branche mais aussi pour restaurer un fichier tel qu’il était lors du dernier commit. La commande a donc un double usage.
+\end{remarque}
+
+\begin{attention}
+Vous pouvez changer d'une branche à l'autre, faire des commits (éventuellement des push) sur la branche principale, mais ceux ci ne seront pas propagés aux autres branches, c'est d'ailleurs le principe des branches. 
+\end{attention}
+
+\subsection{Fusionner une branche avec la branche principale}
+Pour celà, il faut se placer dans la branche principale et demander d'intégrer les changements d'une autre branche en faisant : 
+\begin{verbatim}
+git checkout master
+git merge test_01
+\end{verbatim}
+
+Une fois fusionné, vous pouvez supprimer la branche \textbf{test\_01} (voir la section suivante).
+
+\subsection{Supprimer une branche}
+Pour supprimer une branche dont vous avez déjà propagé les modifications dans la branche principale, faites : 
+\begin{verbatim}
+git branch -d test_01
+\end{verbatim}
+
+Si jamais vous souhaitez supprimer une branche sans avoir propagé les changements (si cet essai était une erreur par exemple) vous pouvez utiliser la commande suivante qui force la suppression : 
+\begin{verbatim}
+git branch -D test_01
+\end{verbatim}
+
+\section{Avancé}
+\subsection{Tagger une version}
+Il est possible d'associer un tag (un nom de code) à un commit particulier, afin de le mettre en valeur, pour lui donner un numéro de version par exemple, pour les versions stables que les gens devraient utiliser.
+
+Pour ajouter un tag sur un commit :
+\begin{verbatim}
+git tag NOMTAG IDCOMMIT
+\end{verbatim}
+
+Donc dans le cas présent, on écrirait :
+
+\begin{verbatim}
+git tag v1.3 2f7c8b3428aca535fdc970feeb4c09efa33d809e
+\end{verbatim}
+
+Un tag n’est pas envoyé lors d’un push, il faut préciser l’option \textbf{--tags} pour que ce soit le cas :
+\begin{verbatim}
+git push --tags
+\end{verbatim}
+
+
+Maintenant, tout le monde peut référencer ce commit par ce nom plutôt que par son numéro de révision.
+
+Pour supprimer un tag créé :
+\begin{verbatim}
+git tag -d NOMTAG
+\end{verbatim}
 
 \section{Gérer un conflit}
 %TODO
