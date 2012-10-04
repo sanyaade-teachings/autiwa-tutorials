@@ -122,9 +122,9 @@ Cette commande n'agit que sur le répertoire local (la \emph{working copy}). Il 
 
 \bigskip
 
-Supposons que vous veniez d’ajouter un fichier à Git avec git add et que vous vous apprêtiez à le « commiter ». Cependant, vous vous rendez compte que ce fichier est une mauvaise idée et vous voudriez annuler votre git add.
+Supposons que vous veniez d'ajouter un fichier à Git avec git add et que vous vous apprêtiez à le \og commiter \fg. Cependant, vous vous rendez compte que ce fichier est une mauvaise idée et vous voudriez annuler votre git add.
 
-Il est possible de retirer un fichier qui avait été ajouté pour être « commité » en procédant comme suit :
+Il est possible de retirer un fichier qui avait été ajouté pour être \og commité \fg en procédant comme suit :
 \begin{verbatim}
 git reset HEAD -- fichier_a_supprimer
 \end{verbatim}
@@ -150,7 +150,7 @@ git commit -a -m "initialisation"
 où \textbf{"initialisation"} est le commentaire qui décrit la mise à jour et les modifications effectuées. 
 
 \begin{attention}
-Un commit avec git est local : à moins d’envoyer ce commit sur le serveur comme on apprendra à le faire plus loin, personne ne sait que vous avez fait ce commit pour le moment. Cela a un avantage : si vous vous rendez compte que vous avez fait une erreur dans votre dernier commit, vous avez la possibilité de l’annuler (ce qui n’est pas le cas avec SVN !).
+Un commit avec git est local : à moins d'envoyer ce commit sur le serveur comme on apprendra à le faire plus loin, personne ne sait que vous avez fait ce commit pour le moment. Cela a un avantage : si vous vous rendez compte que vous avez fait une erreur dans votre dernier commit, vous avez la possibilité de l'annuler (ce qui n'est pas le cas avec SVN !).
 \end{attention}
 
 \subsection{Propager les modifications locales sur le dépots du serveur : push}\index{git!push}
@@ -189,7 +189,7 @@ Pour indiquer à quel commit on souhaite revenir, il existe plusieurs notations 
 \item \verb|HEAD^^| : avant-avant-dernier commit ;
 \item \verb|HEAD~2| : avant-avant-dernier commit (notation équivalente) ;
 \item \verb|d6d98923868578a7f38dea79833b56d0326fcba1| : indique un numéro de commit précis ;
-\item \verb|d6d9892| : indique un numéro de commit précis (notation équivalente à la précédente, bien souvent écrire les premiers chiffres est suffisant tant qu’aucun autre commit ne commence par les mêmes chiffres).
+\item \verb|d6d9892| : indique un numéro de commit précis (notation équivalente à la précédente, bien souvent écrire les premiers chiffres est suffisant tant qu'aucun autre commit ne commence par les mêmes chiffres).
 \end{itemize}
 
 \subsubsection{Annuler les modifications d'un fichier avant un commit : checkout}
@@ -206,11 +206,11 @@ Pour celà il faut créer un nouveau commit qui annule les modifications du comm
 \begin{verbatim}
 git revert 6261cc2
 \end{verbatim}
-Il faut préciser l’ID du commit à « revert ». Il n’est pas obligatoire d’indiquer l’ID en entier (qui est un peu long), il suffit de mettre les premiers chiffres tant qu’ils sont uniques (les 4-5 premiers chiffres devraient suffire). On vous invite à entrer un message de commit. Un message par défaut est indiqué dans l’éditeur.
+Il faut préciser l'ID du commit à \og revert \fg. Il n'est pas obligatoire d'indiquer l'ID en entier (qui est un peu long), il suffit de mettre les premiers chiffres tant qu'ils sont uniques (les 4-5 premiers chiffres devraient suffire). On vous invite à entrer un message de commit. Un message par défaut est indiqué dans l'éditeur.
 
-Une fois que c’est enregistré, le commit d’annulation est créé. Il ne vous reste plus qu’à vérifier que tout est bon et à le publier (avec un git push).
+Une fois que c'est enregistré, le commit d'annulation est créé. Il ne vous reste plus qu'à vérifier que tout est bon et à le publier (avec un git push).
 
-\subsection{Historique des modifications : log}\index{historique des modifications}
+\subsection{Historique des modifications : log}\index{historique des modifications}\index{git!log}
 La commande \texttt{log} permet de voir un historique des commentaires de révision, soit de l'ensemble des fichiers, soit d'un fichier en particulier.
 
 \begin{verbatim}
@@ -222,7 +222,7 @@ affiche l'historique de toutes les révisions.
 Chaque commit est numéroté grâce à un long numéro hexadécimal comme 12328a1bcbf231da\-8eaf942f8d68c7dc0c7c4f38. Cela permet de les identifier.
 \end{attention}
 
-\section{Travailler avec des branches}
+\section{Travailler avec des branches}\index{git!branch}
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.75\linewidth]{figure/branchs.pdf}
@@ -271,7 +271,7 @@ $ git branch
 qui montre que la branche \textbf{test\_01} est maintenant active.
 
 \begin{remarque}
-\textbf{git checkout} est utilisé pour changer de branche mais aussi pour restaurer un fichier tel qu’il était lors du dernier commit. La commande a donc un double usage.
+\textbf{git checkout} est utilisé pour changer de branche mais aussi pour restaurer un fichier tel qu'il était lors du dernier commit. La commande a donc un double usage.
 \end{remarque}
 
 \begin{attention}
@@ -286,6 +286,44 @@ git merge test_01
 \end{verbatim}
 
 Une fois fusionné, vous pouvez supprimer la branche \textbf{test\_01} (voir la section suivante).
+
+\subsection{Incorporer les nouvelles modifications de la branche principale dans une branche annexe : rebase}\index{git!rebase}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.75\linewidth]{figure/branchs.pdf}
+\caption{Avec git rebase, on peut inclure les dernières modifications d'une branche dans une autre branche, afin de décaler la \og base\fg de cette branche. En résumé, c'est comme si on faisait bifurquer la branche concernée à la fin de la branche de laquelle on veut inclure les modifications}
+\end{figure}
+
+\begin{verbatim}
+git rebase master devel
+\end{verbatim}
+permet d'inclure dans \textbf{devel} les dernières modifications de \textbf{master}.
+
+\bigskip
+
+En cas de conflits, on peut modifier les fichiers affectés et continuer via la commande 
+\begin{verbatim}
+git rebase --continue
+\end{verbatim}
+ou annuler directement avec la commande
+\begin{verbatim}
+git rebase --abort
+\end{verbatim}
+
+\subsection{Mettre de coté et reprendre un travail en cours : stash}\index{git!stash}
+Si on est en train de faire une modification, sans faire de commit, mais qu'on doit faire des modifications plus urgentes, et surtout immédiate, on peut souhaiter ne pas perdre le travail déjà effectué. Au lieu de faire un commit on peut simplement faire une sauvegarde de l'état modifié, pour le restituer plus tard.
+
+\begin{verbatim}
+git stash save "ongoing work about something"
+\end{verbatim}
+va sauvegarder les modifications effectuées depuis le dernier commit dans le \textbf{stash}, et remettre les fichiers dans leur état lors du dernier commit. 
+
+On peut ensuite faire les modifications urgente, dans cette branche ou dans une autre, faire des commit etc. Puis une fois qu'on veut réutiliser le stash, il suffit de faire : 
+\begin{verbatim}
+git stash apply
+\end{verbatim}
+
+
 
 \subsection{Supprimer une branche}
 Pour supprimer une branche dont vous avez déjà propagé les modifications dans la branche principale, faites : 
@@ -313,7 +351,7 @@ Donc dans le cas présent, on écrirait :
 git tag v1.3 2f7c8b3428aca535fdc970feeb4c09efa33d809e
 \end{verbatim}
 
-Un tag n’est pas envoyé lors d’un push, il faut préciser l’option \textbf{--tags} pour que ce soit le cas :
+Un tag n'est pas envoyé lors d'un push, il faut préciser l'option \textbf{--tags} pour que ce soit le cas :
 \begin{verbatim}
 git push --tags
 \end{verbatim}
@@ -325,6 +363,19 @@ Pour supprimer un tag créé :
 \begin{verbatim}
 git tag -d NOMTAG
 \end{verbatim}
+
+\subsection{Ignorer des fichiers (.gitignore)}
+Pour ignorer un fichier dans git, créez un fichier \textbf{.gitignore} (à la racine) et indiquez-y le nom du fichier. Entrez un nom de fichier par ligne, comme ceci :
+\begin{verbatim}
+project.xml
+dossier/temp.txt
+*.tmp
+cache/*
+\end{verbatim}
+Aucun de ces fichiers n'apparaîtra dans git status, même s'il est modifié. Il ne paraîtra donc pas dans les commits.
+Utilisez cela sur les fichiers temporaires par exemple, qui n'ont aucune raison d'apparaître dans Git.
+
+Il est possible d'utiliser une étoile (*) comme joker. Dans l'exemple précédent, tous les fichiers ayant l'extension \textbf{.tmp} seront ignorés, de même que tous les fichiers du dossier cache.
 
 \section{Gérer un conflit}
 %TODO
