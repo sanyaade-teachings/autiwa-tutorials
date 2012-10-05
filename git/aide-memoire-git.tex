@@ -344,9 +344,13 @@ Pour ajouter un tag sur un commit :
 \begin{verbatim}
 git tag NOMTAG IDCOMMIT
 \end{verbatim}
+ou avec un message explicatif :
+\begin{verbatim}
+git tag NOMTAG IDCOMMIT -m "message associe au tag"
+\end{verbatim}
+
 
 Donc dans le cas présent, on écrirait :
-
 \begin{verbatim}
 git tag v1.3 2f7c8b3428aca535fdc970feeb4c09efa33d809e
 \end{verbatim}
@@ -356,13 +360,39 @@ Un tag n'est pas envoyé lors d'un push, il faut préciser l'option \textbf{--ta
 git push --tags
 \end{verbatim}
 
-
 Maintenant, tout le monde peut référencer ce commit par ce nom plutôt que par son numéro de révision.
+
+\bigskip
 
 Pour supprimer un tag créé :
 \begin{verbatim}
 git tag -d NOMTAG
 \end{verbatim}
+
+\bigskip
+
+Pour lister les tags existants :
+\begin{verbatim}
+git tag -l
+\end{verbatim}
+
+On peut aussi lister les tags correspondant à un motif particulier : 
+\begin{verbatim}
+$ git tag -l 'v1.4.2.*'
+v1.4.2.1
+v1.4.2.2
+v1.4.2.3
+v1.4.2.4
+\end{verbatim}
+
+\bigskip
+
+Pour avoir les infos sur le tag \textbf{nomdutag} : 
+\begin{verbatim}
+git show nomdutag
+\end{verbatim}
+
+
 
 \subsection{Ignorer des fichiers (.gitignore)}
 Pour ignorer un fichier dans git, créez un fichier \textbf{.gitignore} (à la racine) et indiquez-y le nom du fichier. Entrez un nom de fichier par ligne, comme ceci :
