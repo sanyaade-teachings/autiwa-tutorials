@@ -337,7 +337,7 @@ git branch -D test_01
 \end{verbatim}
 
 \section{Avancé}
-\subsection{Tagger une version}
+\subsection{Tagger une version : tag}\index{git!tag}
 Il est possible d'associer un tag (un nom de code) à un commit particulier, afin de le mettre en valeur, pour lui donner un numéro de version par exemple, pour les versions stables que les gens devraient utiliser.
 
 Pour ajouter un tag sur un commit :
@@ -394,7 +394,7 @@ git show nomdutag
 
 
 
-\subsection{Ignorer des fichiers (.gitignore)}
+\subsection{Ignorer des fichiers (.gitignore)}\index{.gitignore}
 Pour ignorer un fichier dans git, créez un fichier \textbf{.gitignore} (à la racine) et indiquez-y le nom du fichier. Entrez un nom de fichier par ligne, comme ceci :
 \begin{verbatim}
 project.xml
@@ -406,6 +406,18 @@ Aucun de ces fichiers n'apparaîtra dans git status, même s'il est modifié. Il
 Utilisez cela sur les fichiers temporaires par exemple, qui n'ont aucune raison d'apparaître dans Git.
 
 Il est possible d'utiliser une étoile (*) comme joker. Dans l'exemple précédent, tous les fichiers ayant l'extension \textbf{.tmp} seront ignorés, de même que tous les fichiers du dossier cache.
+
+\subsection{Rechercher dans les fichiers du dépot : git grep}\index{git!grep}
+On peut vouloir chercher quelque chose parmis les fichiers du dépot. Une commande très simple pour faire ça : 
+\begin{verbatim}
+git grep "xmax"
+\end{verbatim}
+qui va donner toutes les occurences par fichier. Mais si on veut aussi les numéros de lignes, il suffit alors de faire :
+\begin{verbatim}
+git grep -n "xmax"
+\end{verbatim}
+
+
 
 \section{Gérer un conflit}
 %TODO
