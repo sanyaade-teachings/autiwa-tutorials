@@ -1,0 +1,12 @@
+*.aux
+*.bbl
+*.blg
+*.idx
+*.ilg
+*.ind
+*.synctex.gz
+*.log
+*.out
+*.toc
+*.tex.backup
+*.tex~
