@@ -160,6 +160,13 @@ git log -p
 git push
 \end{verbatim}
 
+\subsection{Annuler les modifications non commités : checkout}
+Pour annuler les modifications locales et revenir à la dernière révision : 
+\begin{verbatim}
+git checkout *.f90
+\end{verbatim}\index{git!checkout}
+va remettre en l'état tous les fichiers du dépot qui sont présents dans le dossier courant (on peut aussi ne préciser qu'un seul fichier).
+
 \subsection{Annuler un commit effectué par erreur}
 \subsubsection{Modifier le message du dernier commit}
 \begin{verbatim}
@@ -171,9 +178,6 @@ git commit --amend
 git reset HEAD^
 \end{verbatim}
 annule le dernier commit et revient à l'avant dernier. Pour autant les fichiers ne sont pas modifiés, seul le commit en lui même est annulé. Pour annuler les modifications liées au commit, il faut faire un hard reset (section suivante).
-
-
-
 
 
 \subsubsection{Annuler un commit et les modifications de fichier associées (hard)}
@@ -191,13 +195,6 @@ Pour indiquer à quel commit on souhaite revenir, il existe plusieurs notations 
 \item \verb|d6d98923868578a7f38dea79833b56d0326fcba1| : indique un numéro de commit précis ;
 \item \verb|d6d9892| : indique un numéro de commit précis (notation équivalente à la précédente, bien souvent écrire les premiers chiffres est suffisant tant qu'aucun autre commit ne commence par les mêmes chiffres).
 \end{itemize}
-
-\subsubsection{Annuler les modifications d'un fichier avant un commit : checkout}
-Pour annuler les modifications locales et revenir à la dernière révision : 
-\begin{verbatim}
-git checkout *.f90
-\end{verbatim}\index{commande svn!revert}
-va remettre en l'état tous les fichiers du dépot qui sont présents dans le dossier courant (on peut aussi ne préciser qu'un seul fichier).
 
 \subsubsection{Annuler un commit publié}
 Si vous publiez un commit sur le serveur, mais que vous souhaitez l'annuler, c'est quand même possible, mais c'est un peu plus barbare qu'un commit non encore propagé (à l'aide de push). 
