@@ -9,4 +9,7 @@
 *.out
 *.toc
 *.tex.backup
-*.tex~
+*~
+*.mtc*
+*.maf
+
