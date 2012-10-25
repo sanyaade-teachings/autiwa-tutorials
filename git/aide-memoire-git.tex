@@ -414,6 +414,14 @@ qui va donner toutes les occurences par fichier. Mais si on veut aussi les numé
 git grep -n "xmax"
 \end{verbatim}
 
+\section{FAQ}
+\subsection{git demande le mot de passe à chaque fois}
+Il est possible de rentrer les mots de passe dans un fichier .netrc dans le répertoire utilisateur. Le fichier ressemble à ceci :
+\begin{verbatim}
+machine code.google.com login usernamea@gmail.com password blablabla
+\end{verbatim}
+
+Mais si lors de la création du dépot, l'url utilisée contenait l'identifiant, git demandera le mot de passe à chaque fois. Afin de résoudre le problème, il faut se placer dans le répertoire du dépot. Puis aller dans le sous-dossier \textbf{.git} et modifier dans le fichier \textbf{config} pour enlever la partie \textbf{login@} qu'il pourrait y avoir.
 
 
 \section{Gérer un conflit}
