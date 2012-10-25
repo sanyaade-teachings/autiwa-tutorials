@@ -333,6 +333,47 @@ Si jamais vous souhaitez supprimer une branche sans avoir propagé les changemen
 git branch -D test_01
 \end{verbatim}
 
+\section{Gérer un conflit}
+Un conflit survient quand on veut mettre à jour le dépot : 
+\begin{verbatim}
+git pull
+remote: Counting objects: 7, done.
+remote: Finding sources: 100% (7/7), done.
+remote: Total 7 (delta 0)
+Unpacking objects: 100% (7/7), done.
+From https://code.google.com/p/blablabla
+   93ad6a9..a10e8d1  master     -> origin/master
+Auto-merging recettes/recettes.pdf
+CONFLICT (content): Merge conflict in recettes/recettes.pdf
+Automatic merge failed; fix conflicts and then commit the result.
+\end{verbatim}
+
+L'idée pour résoudre le conflit est de modifier le fichier de conflit, soit en choisissant \textbf{--ours} ou \textbf{--theirs}, soit en utilisant \textbf{mergetool}, puis d'ajouter le fichier au dépot via un nouveau commit, et ensuite d'essayer de mettre à jour de nouveau.
+
+\subsection{Écraser un fichier par un autre}
+On peut garder soit le fichier local, soit le fichier distant. C'est la partie la plus facile. Pour garder notre fichier :
+\begin{verbatim}
+git checkout --ours filename.c
+git add filename.c
+git commit -m "using theirs"
+\end{verbatim}
+
+Pour garder leur version :
+\begin{verbatim}
+git checkout --theirs filename.c
+git add filename.c
+git commit -m "using theirs"
+\end{verbatim}
+
+\subsection{Regarder les différences et en tenir compte}
+Si on veut voir le contenu des fichiers et créer notre futur fichier à partir des deux fichiers du conflit, on a :
+\begin{verbatim}
+git mergetool
+\end{verbatim}
+
+Mais ceci ne va fonctionner qu'avec des fichier ASCII. Dans mon cas, j'avais un conflit avec un fichier .pdf, et dans ce cas, mergetool ne fonctionne pas, il faut choisir si on veut le fichier distant ou le fichier local. Dans tous les cas ce sont normalement des fichiers qui sont aisément générable, le soucis majeur étant de ne plus être embêté par le conflit.
+
+
 \section{Avancé}
 \subsection{Tagger une version : tag}\index{git!tag}
 Il est possible d'associer un tag (un nom de code) à un commit particulier, afin de le mettre en valeur, pour lui donner un numéro de version par exemple, pour les versions stables que les gens devraient utiliser.
@@ -422,11 +463,6 @@ machine code.google.com login usernamea@gmail.com password blablabla
 \end{verbatim}
 
 Mais si lors de la création du dépot, l'url utilisée contenait l'identifiant, git demandera le mot de passe à chaque fois. Afin de résoudre le problème, il faut se placer dans le répertoire du dépot. Puis aller dans le sous-dossier \textbf{.git} et modifier dans le fichier \textbf{config} pour enlever la partie \textbf{login@} qu'il pourrait y avoir.
-
-
-\section{Gérer un conflit}
-%TODO
-
 
 \printindex
 \end{document}
