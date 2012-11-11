@@ -1503,6 +1503,12 @@ print eval(b)
 
 On voit rapidement les possibilités de cette commande dans des boucles et autres joyeusetées.
 
+\subsection{Lister des dossiers}
+La commande suivante permet de lister tous les dossiers du répertoire courant :
+\begin{lstlisting}[language=python]
+list_dirs = [dir for dir in os.listdir(".") if os.path.isdir(dir)]
+\end{lstlisting}
+
 \subsection{Supprimer toutes les occurences d'un caractère dans une chaine}
 Il existe une méthode particulière de \textbf{String} qui peut être utilisée pour faire celà. Par défaut, cette méthode permet de faire des remplacements de caractères, et optionnellement d'en supprimer certains, mais dans le cas présent, on ne fait que supprimer des caractères : 
 \begin{lstlisting}[language=python]
