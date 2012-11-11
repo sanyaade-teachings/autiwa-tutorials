@@ -482,8 +482,6 @@ Avec \texttt{from \emph{module} import *}, on importe absolument tout, y compris
 
 
 \section{Manipuler des fichiers}\index{fichier!lire}\index{fichier!écrire}
-%TODO parler des fichiers, écrire, fermer. Parler aussi des chaînes de caractère.
-
 Pour manipuler un fichier, il faut dans un premier temps l'ouvrir (et spécifier si on veut pouvoir écrire, lire, ou écrire sans effacer le fichier au moment de l'ouverture), puis effectuer diverses opérations dans un second temps et enfin le fermer.
 
 \begin{lstlisting}[language=python]
@@ -949,7 +947,7 @@ ne fonctionne pas chez moi. Il fait bien ce que je veux, à savoir évite les fu
 
 \subsection{Plusieurs graphiques sur une même page : subplots}\gras{subplot}
 \gras[module!pylab]{pylab} fonctionne comme les plots dans \gras{matlab}. Il existe aussi la possibilité de faire des subplots.
-%TODO faire une version objet du code subplot, afin de montrer la façon propre de procéder avec les subplots
+
 \begin{lstlisting}[language=python]
 fig = pl.figure(1)
 
@@ -1217,7 +1215,7 @@ On peut bien évidemment ne partager que l'axe des x ou l'axe des y, et c'est ex
 \subsubsection{Récupérer les bornes des axes}
 Avec la commande ci-dessous, on peut récupérer les valeurs extrêmes des axes, utile pour le placement d'objets, ou avoir des traits qui font toute la largeur des courbes.
 \begin{lstlisting}[language=python]
-ylims = list(pl.ylim())
+ylims = current_plot.get_ylim()
 \end{lstlisting}
 
 \subsubsection{Zoom et étendue des axes}
@@ -1365,7 +1363,6 @@ où $a$ et $b$ sont deux échantillons de données (des listes ou des array quoi
 
 
 \section{Exécuter des commandes système}
-%TODO parler de os et commands (notamment getoutput et system)
 Le module \gras[python!os]{os} permet d'utiliser plusieurs commandes systèmes dont voici quelques équivalents
 
 \begin{tabular}{>{\bfseries}r<{}@{ : }p{11cm}}
