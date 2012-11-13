@@ -90,21 +90,6 @@ pour un projet que j'appelle \textbf{mercury}.
 \section{Commandes universelles git}
 Ici, je note les commandes qui sont valables à la fois pour svn installé sur un serveur internet, ou sur une machine locale pour un usage personnel
 
-\subsection{Mettre à jour sa copie locale : pull}\index{git!pull} \index{Mise à jour du dépôt}
-\begin{verbatim}
-git pull
-\end{verbatim}
-
-Pour celà, il faut que le dossier dans lequel on se trouve ait déjà été défini comme un dossier git via un \gras[commande git!clone]{clone} (voir \refsec{sec:git_init})
-
-\subsection{Lister les modifications locales : status}\index{git!status}
-La commande git status vous indique les fichiers que vous avez modifiés récemment :
-\begin{verbatim}
-$ git status
-# On branch master
-nothing to commit (working directory clean)
-\end{verbatim}
-
 \subsection{Ajouter des fichiers ou dossiers au projet : add}\index{git!add} \index{Ajouter des fichiers}
 Pour ajouter des fichiers il faut faire :
 \begin{verbatim}
@@ -129,37 +114,6 @@ Il est possible de retirer un fichier qui avait été ajouté pour être \og com
 git reset HEAD -- fichier_a_supprimer
 \end{verbatim}
 
-
-
-\subsection{Voir les différences versions : diff}
-
-\begin{verbatim}
-git diff
-\end{verbatim}
-
-\begin{remarque}
-Il est possible de regarder les différences sur un fichier en particulier.
-\end{remarque}
-
-\subsection{Enregistrer les modifications localement : commit}\index{git!commit}\index{mise à jour local -> serveur}\label{sec:commit}
-
-Pour mettre à jour les versions sur serveur à partir des modifications effectuées localement, il faut : 
-\begin{verbatim}
-git commit -a -m "initialisation"
-\end{verbatim}
-où \textbf{"initialisation"} est le commentaire qui décrit la mise à jour et les modifications effectuées. 
-
-\begin{attention}
-Un commit avec git est local : à moins d'envoyer ce commit sur le serveur comme on apprendra à le faire plus loin, personne ne sait que vous avez fait ce commit pour le moment. Cela a un avantage : si vous vous rendez compte que vous avez fait une erreur dans votre dernier commit, vous avez la possibilité de l'annuler (ce qui n'est pas le cas avec SVN !).
-\end{attention}
-
-\subsection{Propager les modifications locales sur le dépots du serveur : push}\index{git!push}
-On peut modifier ces commits là, tant qu'ils sont en local. Puis une fois vérifié. Il ne reste plus qu'à les envoyer sur le serveur. Pour celà on vérifie tout d'abord ce qu'on s'apprête à envoyer, et on envoie sur le serveur : 
-\begin{verbatim}
-git log -p
-git push
-\end{verbatim}
-
 \subsection{Annuler les modifications non commités : checkout}
 Pour annuler les modifications locales et revenir à la dernière révision : 
 \begin{verbatim}
@@ -173,14 +127,14 @@ va remettre en l'état tous les fichiers du dépot qui sont présents dans le do
 git commit --amend
 \end{verbatim}
 
-\subsubsection{Annuler un commit sans toucher aux fichiers (soft)}
+\subsubsection{Annuler un commit sans toucher aux fichiers (soft) : reset}\index{git!reset}
 \begin{verbatim}
 git reset HEAD^
 \end{verbatim}
 annule le dernier commit et revient à l'avant dernier. Pour autant les fichiers ne sont pas modifiés, seul le commit en lui même est annulé. Pour annuler les modifications liées au commit, il faut faire un hard reset (section suivante).
 
 
-\subsubsection{Annuler un commit et les modifications de fichier associées (hard)}
+\subsubsection{Annuler un commit et les modifications de fichier associées (hard) : reset --hard}\index{git!reset}
 \begin{verbatim}
 git reset --hard HEAD^
 \end{verbatim}
@@ -207,6 +161,36 @@ Il faut préciser l'ID du commit à \og revert \fg. Il n'est pas obligatoire d'i
 
 Une fois que c'est enregistré, le commit d'annulation est créé. Il ne vous reste plus qu'à vérifier que tout est bon et à le publier (avec un git push).
 
+\subsection{Différences entre versions : diff}
+
+\begin{verbatim}
+git diff
+\end{verbatim}
+
+\begin{remarque}
+Il est possible de regarder les différences sur un fichier en particulier.
+\end{remarque}
+
+\subsection{Enregistrer les modifications localement : commit}\index{git!commit}\index{mise à jour local -> serveur}\label{sec:commit}
+
+Pour mettre à jour les versions sur serveur à partir des modifications effectuées localement, il faut : 
+\begin{verbatim}
+git commit -a -m "initialisation"
+\end{verbatim}
+où \textbf{"initialisation"} est le commentaire qui décrit la mise à jour et les modifications effectuées. 
+
+\begin{attention}
+Un commit avec git est local : à moins d'envoyer ce commit sur le serveur comme on apprendra à le faire plus loin, personne ne sait que vous avez fait ce commit pour le moment. Cela a un avantage : si vous vous rendez compte que vous avez fait une erreur dans votre dernier commit, vous avez la possibilité de l'annuler (ce qui n'est pas le cas avec SVN !).
+\end{attention}
+
+\subsection{État du dépot local (modifications par rapport au dernier commit) : status}\index{git!status}
+La commande git status vous indique les fichiers que vous avez modifiés récemment :
+\begin{verbatim}
+$ git status
+# On branch master
+nothing to commit (working directory clean)
+\end{verbatim}
+
 \subsection{Historique des modifications : log}\index{historique des modifications}\index{git!log}
 La commande \texttt{log} permet de voir un historique des commentaires de révision, soit de l'ensemble des fichiers, soit d'un fichier en particulier.
 
@@ -219,7 +203,39 @@ affiche l'historique de toutes les révisions.
 Chaque commit est numéroté grâce à un long numéro hexadécimal comme 12328a1bcbf231da\-8eaf942f8d68c7dc0c7c4f38. Cela permet de les identifier.
 \end{attention}
 
-\section{Travailler avec des branches}\index{git!branch}
+\subsection{Mettre à jour sa copie locale : pull}\index{git!pull} \index{Mise à jour du dépôt}
+\begin{verbatim}
+git pull
+\end{verbatim}
+
+Pour celà, il faut que le dossier dans lequel on se trouve ait déjà été défini comme un dossier git via un \gras[commande git!clone]{clone} (voir \refsec{sec:git_init})
+
+\subsection{Propager les modifications locales sur le dépot du serveur : push}\index{git!push}
+On peut modifier ces commits là, tant qu'ils sont en local. Puis une fois vérifié. Il ne reste plus qu'à les envoyer sur le serveur. Pour celà on vérifie tout d'abord ce qu'on s'apprête à envoyer, et on envoie sur le serveur : 
+\begin{verbatim}
+git log -p
+git push
+\end{verbatim}
+
+\subsection{Revenir à une révision antérieure : checkout}\label{sec:revenir_en_arriere}\index{git!checkout}
+Pour changer la révision courante, il suffit de faire : 
+\begin{verbatim}
+git checkout c23db4a1d05e
+\end{verbatim}
+et la révision \textbf{c23db4a1d05e} devient la révision active. 
+
+Pour revenir à la dernière révision d'une branche donnée, il suffit de faire :
+\begin{verbatim}
+git checkout nom_de_branche
+\end{verbatim}
+ainsi
+\begin{verbatim}
+git checkout master
+\end{verbatim}
+active la dernière révision de la branche principale.
+
+
+\section{Travailler avec des branches : branch}\index{git!branch}
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.75\linewidth]{figure/branchs.pdf}
@@ -461,6 +477,90 @@ qui va donner toutes les occurences par fichier. Mais si on veut aussi les numé
 \begin{verbatim}
 git grep -n "xmax"
 \end{verbatim}
+
+\begin{remarque}
+À noter que les expressions régulières sont possibles.
+\end{remarque}
+
+\subsection{Rechercher un bug en utilisant la puissance de GIT : bisect}\index{git!bisect}
+J'ai eu le cas tout à l'heure et j'ai découvert la puissance de \textbf{bisect}, je vais tâcher de l'expliquer du mieux possible. Vous avez un bug dans votre code, vous ne savez pas d'où vient le bug, \textbf{bisect} est fait pour vous. 
+
+Le principe est le suivant : Vous avez une révision que vous savez ne pas fonctionner (la dernière par exemple) et une qui fonctionne (au pire la première si vous en avez peu, sinon vous en trouvez une assez ancienne et qui fonctionne. Personnellement j'ai fini par y aller franco, et je suis remonté six mois en arrière, une centaine de révisions à tester, mais avec \textbf{bisect} c'est rapide. Pour trouver cette révision, j'ai fait \textbf{git checkout} (qui permet de revenir à une révision antérieure \refsec{sec:revenir_en_arriere}) jusqu'à ce que je trouve une révision qui fonctionne. 
+
+Une fois fait, on peut exploiter la puissance de \textbf{bisect}, qui va nous aider à trouver par dichotomie la révision qui a introduit le bug. On part donc d'un encadrement en ayant une version bonne de référence et une version mauvaise, et on sait donc que la révision fautive se trouve au milieu.
+
+\bigskip
+
+La première étape est d'avoir une version de référence propre, il ne faut pas qu'il reste des modifications non encore sauvées dans un commit. Si vous voulez mettre des modifs de cotés, utilisez \textbf{git stash} : 
+\begin{verbatim}
+git stash
+\end{verbatim}\index{git!stash}
+
+Ensuite, on démarre l'opération de traque du bug via :
+\begin{verbatim}
+git bisect start
+\end{verbatim}
+
+On déclare le \textbf{mauvais} commit :
+\begin{verbatim}
+git bisect bad # le commit actuel
+\end{verbatim}
+
+On déclare le \textbf{bon} commit : 
+\begin{verbatim}
+git bisect good 3776c939294f
+\end{verbatim}
+où \textbf{3776c939294f} est la référence du commit en question. 
+
+\bigskip
+
+Une fois fait, vous aurez un message qui ressemblera à ça :
+\begin{verbatim}
+Bisecting: 65 revisions left to test after this
+\end{verbatim}
+
+\textbf{bisect} nous place automatiquement dans des commit différents, indique combien il reste de révisions à tester, et le nombre d'étape estimée pour arriver à trouver l'origine du bug. 
+
+Vous devez donc tester si cette version bugue ou pas. L'idéal est d'avoir un script qui permet de voir rapidement si ça bugue. J'avais pour ma part un script python de tests unitaires que je lançais à chaque fois. 
+
+Une fois que vous savez si la version courante bugue ou pas, il suffit de le dire à bisect via : 
+\begin{verbatim}
+git bisect good
+\end{verbatim}
+ou
+\begin{verbatim}
+git bisect bad
+\end{verbatim}
+et en fonction de ça, bisect vous mettre une autre révision à tester. Une fois qu'il aura trouvé LA révision fautive, il le dira par :
+\begin{verbatim}
+d109d47732cb85652b79d679edd7bfe2379e5707 is first bad commit
+\end{verbatim}
+
+\begin{attention}
+Si pour une raison ou pour une autre, un commit particulier vous pose problème (problème de compilation ou impossibilité de tester, il est possible de dire à bisect qu'on souhaite passer ce commit et en tester un autre à la place via :
+\begin{verbatim}
+git bisect skip
+\end{verbatim}
+\end{attention}
+
+
+Une fois que vous avez le nom de la révision fautive, il faut terminer \textbf{bisect} via :
+\begin{verbatim}
+git bisect reset
+\end{verbatim}
+
+\begin{remarque}
+Dans la pratique, bisect va créer une branche je crois, mais comme c'est fait de manière transparente si on procède ainsi, je trouve qu'on n'a pas besoin de savoir réellement comment ça fonctionne.
+\end{remarque}
+
+\bigskip
+
+Pour aller plus loin, il est possible de carrément automatiser la tâche si vous arrivez à faire un script qui peut tester le bug, et qui retourne 0 si le code est correct, 1 si le code est incorrect, et 125 si on ne peut pas tester le code (\textbf{git skip}). Pour le faire, il suffit de procéder ainsi :
+\begin{verbatim}
+git bisect start HEAD <bad_commit> -- # raccourci
+git bisect run script
+\end{verbatim}
+
 
 \section{FAQ}
 \subsection{git demande le mot de passe à chaque fois}
