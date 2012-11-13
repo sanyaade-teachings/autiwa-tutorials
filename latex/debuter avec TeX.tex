@@ -2254,6 +2254,19 @@ Beaucoup de paquets sont disponibles dans les dépots via des paquets spécifiqu
 \subsection[LaTeX avec Inkscape]{\LaTeX avec Inkscape}\index{inkscape}
 Pour avoir l'option Effet>Rendu>Formule LaTeX... il faut installer \gras{pstoedit} en plus d'inkscape. L'option apparaît automatique au démarrage suivant.
 
+\section{\LaTeX{} sous mac}
+C'est quasiment la même utilisation que sous linux. On peut ajouter des paquets dans \textbf{/User/login/Library/texmf/tex/latex/}
+
+Dans ce dossier, on n'a même pas besoin de faire de \textbf{texhash}. Par contre, il y a une chose importante à savoir, c'est que les alias mac ne sont pas à proprement parler des liens symboliques, et ne seront pas suivis par latex lors de la recherche des paquets. 
+
+Ainsi, si on veut faire un lien symbolique, il faut le faire en ligne de commande via : 
+\begin{verbatim}
+cd /Users/login/Library/texmf/tex/latex
+ln -s /absolute/path/to/the/folder/ local_folder_name
+\end{verbatim}
+
+On se place d'abord dans le dossier où on doit créer le lien symbolique, on fait ensuite le lien symbolique en donnant le chemin vers le dossier visé, et le nom local du lien symbolique. 
+
 \section{Problèmes de Compilation}
 \subsection{Erreurs}
 
