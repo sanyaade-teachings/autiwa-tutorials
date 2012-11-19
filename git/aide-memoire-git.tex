@@ -559,13 +559,15 @@ git bisect skip
 \end{attention}
 
 
-Une fois que vous avez le nom de la révision fautive, il faut terminer \textbf{bisect} via :
+\begin{important}
+Pendant la bisection, git créé une branche spéciale dédiée. N’oubliez pas de repasser sur votre branche de développement quand vous aurez débusqué la régression. Il est possible de le faire simplement en tapant :
 \begin{verbatim}
 git bisect reset
 \end{verbatim}
+\end{important}
 
 \begin{remarque}
-Dans la pratique, bisect va créer une branche je crois, mais comme c'est fait de manière transparente si on procède ainsi, je trouve qu'on n'a pas besoin de savoir réellement comment ça fonctionne.
+La première fois où j'ai utilisé bisect, j'ai oublié de faire \textbf{git bisect reset} et je me suis retrouvé sur une branche \textbf{(no branch)} sans m'en rendre compte. J'ai donc fait des modifications là, sans réaliser que je ne modifiais plus \textbf{master}. Pour plus d'infos quant à la solution à ce problème, voir \refsec{sec:no-branch}.
 \end{remarque}
 
 \bigskip
@@ -576,6 +578,40 @@ git bisect start HEAD <bad_commit> -- # raccourci
 git bisect run script
 \end{verbatim}
 
+\subsection{branche (no branch), récupérer les commits}\label{sec:no-branch}
+Par exemple avec bisect, on peut sans faire exprès faire des commits dans une branche \textbf{(no branch)} et se retrouver dans \textbf{master} sans rien de nouveau. Passé le coup de stress, voici ce qu'on peut faire pour facilement récupérer les données. 
+
+La commande \textbf{reflog} permet d'avoir un historique de ce qu'on a fait et donc de récupérer le \textbf{hash-ID} de la branche \textbf{(no branch)} qui n'apparait plus une fois qu'on est repassé dans \textbf{master} : 
+\begin{footnotesize}
+\begin{verbatim}
+$ git reflog
+934101e HEAD@{0}: commit: improving some scripts
+c23db4a HEAD@{1}: checkout: moving from 99adb32062d66121f2ba056dc820b9529a9ea08c to master
+99adb32 HEAD@{2}: commit: improving some scripts
+70ca613 HEAD@{3}: commit: Modification of the formula for the feedback of the eccentricity
+\end{verbatim}
+\end{footnotesize}
+
+
+
+
+La ligne qui nous intéresse est celle-ci :
+\begin{verbatim}
+checkout: moving from 99adb32062d66121f2ba056dc820b9529a9ea08c to master
+\end{verbatim}
+C'est la ligne qui montre où on est passé depuis \textbf{(no branch)} jusqu'à \textbf{master}, en faisant 
+\begin{verbatim}
+git checkout master
+\end{verbatim}
+\begin{remarque}
+Si on est encore dans \textbf{(no branch)} on peut directement noter de \textbf{hash-ID} en fait.
+\end{remarque}
+
+Une fois dans master, on peut alors faire : 
+\begin{verbatim}
+git merge 99adb32062d66121f2ba056dc820b9529a9ea08c
+\end{verbatim}
+pour récupérer toutes les modifications de cette branche.
 
 \section{FAQ}
 \subsection{git demande le mot de passe à chaque fois}
