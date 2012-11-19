@@ -544,20 +544,16 @@ git bisect skip
 \end{attention}
 
 
-\begin{attention}
+\begin{important}
 Pendant la bisection, git créé une branche spéciale dédiée. N’oubliez pas de repasser sur votre branche de développement quand vous aurez débusqué la régression. Il est possible de le faire simplement en tapant :
 \begin{verbatim}
 git bisect reset
 \end{verbatim}
-\end{attention}
-
-
+\end{important}
 
 \begin{remarque}
-La fois où j'ai utilisé bisect, je me suis retrouvé sur une branche \textbf{(no branch)} sans m'en rendre compte, et j'ai donc fait des modifications là, sans réaliser que je ne modifiais plus \textbf{master}. Pour plus d'infos, voir \refsec{sec:no-branch}.
+La première fois où j'ai utilisé bisect, j'ai oublié de faire \textbf{git bisect reset} et je me suis retrouvé sur une branche \textbf{(no branch)} sans m'en rendre compte. J'ai donc fait des modifications là, sans réaliser que je ne modifiais plus \textbf{master}. Pour plus d'infos quant à la solution à ce problème, voir \refsec{sec:no-branch}.
 \end{remarque}
-
-
 
 \bigskip
 
