@@ -455,7 +455,7 @@ git show nomdutag
 
 
 
-\subsection{Ignorer des fichiers (.gitignore)}\index{.gitignore}
+\subsection{Ignorer des fichiers (.gitignore)}\index{.gitignore}\label{sec:gitignore}
 Pour ignorer un fichier dans git, créez un fichier \textbf{.gitignore} (à la racine) et indiquez-y le nom du fichier. Entrez un nom de fichier par ligne, comme ceci :
 \begin{verbatim}
 project.xml
@@ -563,6 +563,70 @@ git bisect start HEAD <bad_commit> -- # raccourci
 git bisect run script
 \end{verbatim}
 
+\subsection{Afficher la branche dans le prompt de la console}
+Avec Bash, il est possible d'afficher la branche active quand on arrive dans une partie sous gestionnaire de version GIT avec la commande suivante, rajoutée dans le \textbf{.bash\_profile} ou le \textbf{.bashrc} : 
+\begin{lstlisting}[language=bash]
+git_branch_prompt() {
+    git_status_output=$(git status 2> /dev/null) || return
+
+    branch_name() {
+        sed -n 's/# On branch //p' <<< "$git_status_output"
+    }
+
+    find_pattern_in_status() {
+        local pattern="$1"
+        [[ "$git_status_output" =~ ${pattern} ]]
+    }
+
+    is_clean() {
+        find_pattern_in_status '(working directory clean)'
+    }
+
+    is_local_changes() {
+        local added='# Changes to be committed'
+        local not_added='# Changes not staged for commit'
+        find_pattern_in_status "($added|$not_added)"
+    }
+
+    is_untracked() {
+        find_pattern_in_status '# Untracked files'
+    }
+
+    local bold="\033[1m"
+    local no_colour="\033[0m"
+
+    branch_part() {
+        local red="\033[31m"
+        local green="\033[32m"
+        local yellow="\033[33m"
+        local branch_colour=""
+
+        if is_untracked
+        then
+            branch_colour=$red
+        elif is_local_changes
+        then
+            branch_colour=$yellow
+        elif is_clean
+        then
+            branch_colour=$green
+        fi
+        echo "$branch_colour$(branch_name)$no_colour"
+    }
+
+    echo -e "$(branch_part)"
+}
+
+export PS1="\h.login(\$(git_branch_prompt))> "
+\end{lstlisting}
+
+Le résultat sera alors :
+\begin{verbatim}
+arguin.login(master)> 
+\end{verbatim}
+
+La couleur sera fonction du status du dépot. Si le dépot est à jour, ce sera vert, s'il y a eu des changements locaux, jaune, et s'il y a eu des commits locaux qui n'ont pas encore été propagés (push), ce sera orange. S'il y a des fichiers qui ne sont pas suivis, ce sera rouge (pour ignorer des fichiers il faut se servir du fichier .gitignore, voir \refsec{sec:gitignore}).
+
 \subsection{branche (no branch), récupérer les commits}\label{sec:no-branch}
 Par exemple avec bisect, on peut sans faire exprès faire des commits dans une branche \textbf{(no branch)} et se retrouver dans \textbf{master} sans rien de nouveau. Passé le coup de stress, voici ce qu'on peut faire pour facilement récupérer les données. 
 
@@ -576,9 +640,6 @@ c23db4a HEAD@{1}: checkout: moving from 99adb32062d66121f2ba056dc820b9529a9ea08c
 70ca613 HEAD@{3}: commit: Modification of the formula for the feedback of the eccentricity
 \end{verbatim}
 \end{footnotesize}
-
-
-
 
 La ligne qui nous intéresse est celle-ci :
 \begin{verbatim}
