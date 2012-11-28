@@ -173,11 +173,26 @@ Il est possible de regarder les différences sur un fichier en particulier.
 
 \subsection{Enregistrer les modifications localement : commit}\index{git!commit}\index{mise à jour local -> serveur}\label{sec:commit}
 
-Pour mettre à jour les versions sur serveur à partir des modifications effectuées localement, il faut : 
+Pour mettre à jour les versions sur serveur à partir des modifications effectuées localement, il faut sélectionner les fichiers qu'on veut ajouter au prochain commit avec \textbf{git add} puis faire le commit :
 \begin{verbatim}
+git add FILE
+git commit -m "initialisation"
+\end{verbatim}
+où \textbf{"initialisation"} est le commentaire qui décrit la mise à jour et les modifications effectuées. \textbf{FILE} peut être un ou plusieurs fichiers, l'astérisque pouvant être utilisée.
+
+À noter que l'option -a permet de se passer du \textbf{git add} et d'ajouter automatiquement tous les fichiers qui ont été modifiés :
+ \begin{verbatim}
 git commit -a -m "initialisation"
 \end{verbatim}
-où \textbf{"initialisation"} est le commentaire qui décrit la mise à jour et les modifications effectuées. 
+
+\begin{remarque}
+Si on a fait un 'add' par erreur et qu'on ne veut pas ajouter un certain fichier au prochain commit, il suffit de faire :
+\begin{verbatim}
+git reset FILE
+\end{verbatim}
+\end{remarque}
+
+\bigskip
 
 \begin{attention}
 Un commit avec git est local : à moins d'envoyer ce commit sur le serveur comme on apprendra à le faire plus loin, personne ne sait que vous avez fait ce commit pour le moment. Cela a un avantage : si vous vous rendez compte que vous avez fait une erreur dans votre dernier commit, vous avez la possibilité de l'annuler (ce qui n'est pas le cas avec SVN !).
