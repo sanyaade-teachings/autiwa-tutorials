@@ -637,7 +637,7 @@ git_branch_prompt() {
     fi
 }
 
-export PS1="\h.login$(git_branch_prompt)> " 
+export PS1="\h.\u\$(git_branch_prompt)> " 
 \end{lstlisting}
 
 Le résultat sera alors :
