@@ -626,19 +626,29 @@ git_branch_prompt() {
         then
             branch_colour=$green
         fi
-        echo "$branch_colour$(branch_name)$no_colour"
+        echo "($branch_colour$(branch_name)$no_colour)"
     }
-
-    echo -e "$(branch_part)"
+    
+    local branch=$(branch_part)
+    
+    if [ $branch ] 
+    then
+        echo -e "$branch"
+    fi
 }
 
-export PS1="\h.login(\$(git_branch_prompt))> "
+export PS1="\h.login$(git_branch_prompt)> " 
 \end{lstlisting}
 
 Le résultat sera alors :
 \begin{verbatim}
 arguin.login(master)> 
 \end{verbatim}
+si on est dans un dossier GIT, \textbf{master} étant le nom de la branche active, et :
+\begin{verbatim}
+arguin.login> 
+\end{verbatim}
+si le dossier courant n'est pas un dossier GIT.
 
 La couleur sera fonction du status du dépot. Si le dépot est à jour, ce sera vert, s'il y a eu des changements locaux, jaune, et s'il y a eu des commits locaux qui n'ont pas encore été propagés (push), ce sera orange. S'il y a des fichiers qui ne sont pas suivis, ce sera rouge (pour ignorer des fichiers il faut se servir du fichier .gitignore, voir \refsec{sec:gitignore}).
 
