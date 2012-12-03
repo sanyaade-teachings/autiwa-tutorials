@@ -12,4 +12,6 @@
 *~
 *.mtc*
 *.maf
-
+*.bak
+*.tmp
+java/projects/
