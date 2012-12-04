@@ -171,6 +171,11 @@ git diff
 Il est possible de regarder les différences sur un fichier en particulier.
 \end{remarque}
 
+Pour regarder les différences avec le commit précédent, il suffit de faire :
+\begin{verbatim}
+git diff HEAD^
+\end{verbatim}
+
 \subsection{Enregistrer les modifications localement : commit}\index{git!commit}\index{mise à jour local -> serveur}\label{sec:commit}
 
 Pour mettre à jour les versions sur serveur à partir des modifications effectuées localement, il faut sélectionner les fichiers qu'on veut ajouter au prochain commit avec \textbf{git add} puis faire le commit :
@@ -581,12 +586,18 @@ git bisect run script
 \subsection{Afficher la branche dans le prompt de la console}
 Avec Bash, il est possible d'afficher la branche active quand on arrive dans une partie sous gestionnaire de version GIT avec la commande suivante, rajoutée dans le \textbf{.bash\_profile} ou le \textbf{.bashrc} : 
 \begin{lstlisting}[language=bash]
-git_branch_prompt() {
+git_branch_name_prompt() {
     git_status_output=$(git status 2> /dev/null) || return
 
     branch_name() {
         sed -n 's/# On branch //p' <<< "$git_status_output"
     }
+
+    echo -e "($(branch_name))"
+}
+
+git_branch_colour_prompt() {
+    git_status_output=$(git status 2> /dev/null) || return
 
     find_pattern_in_status() {
         local pattern="$1"
@@ -607,37 +618,29 @@ git_branch_prompt() {
         find_pattern_in_status '# Untracked files'
     }
 
-    local bold="\033[1m"
+    # local bold="\033[1m"
     local no_colour="\033[0m"
 
-    branch_part() {
-        local red="\033[31m"
-        local green="\033[32m"
-        local yellow="\033[33m"
-        local branch_colour=""
+    local red="\033[31m"
+    local green="\033[32m"
+    local yellow="\033[33m"
+    local branch_colour=""
 
-        if is_untracked
-        then
-            branch_colour=$red
-        elif is_local_changes
-        then
-            branch_colour=$yellow
-        elif is_clean
-        then
-            branch_colour=$green
-        fi
-        echo "($branch_colour$(branch_name)$no_colour)"
-    }
-    
-    local branch=$(branch_part)
-    
-    if [ $branch ] 
+    if is_untracked
     then
-        echo -e "$branch"
+        branch_colour=$red
+    elif is_local_changes
+    then
+        branch_colour=$yellow
+    elif is_clean
+    then
+        branch_colour=$green
     fi
+    # echo -e "$branch_colour$(branch_name)$no_colour"
+    echo -e "$branch_colour"
 }
 
-export PS1="\h.\u\$(git_branch_prompt)> " 
+PS1="\h.\u\[\$(git_branch_colour_prompt)\]\$(git_branch_name_prompt)\[\033[0m\]> "
 \end{lstlisting}
 
 Le résultat sera alors :
@@ -651,6 +654,10 @@ arguin.login>
 si le dossier courant n'est pas un dossier GIT.
 
 La couleur sera fonction du status du dépot. Si le dépot est à jour, ce sera vert, s'il y a eu des changements locaux, jaune, et s'il y a eu des commits locaux qui n'ont pas encore été propagés (push), ce sera orange. S'il y a des fichiers qui ne sont pas suivis, ce sera rouge (pour ignorer des fichiers il faut se servir du fichier .gitignore, voir \refsec{sec:gitignore}).
+
+\begin{remarque}
+La difficulté est ici d'afficher les couleurs. Il faut échapper ces caractères pour que le retour à la ligne et l'effacement de la ligne se fasse de manière correcte. On est ainsi obligé d'afficher et d'échapper les couleurs au tout dernier moment, dans PS1, et on ne peut donc pas encapsuler ces fonctions dans une grosse fonction qu'on appelerait par la suite.
+\end{remarque}
 
 \subsection{branche (no branch), récupérer les commits}\label{sec:no-branch}
 Par exemple avec bisect, on peut sans faire exprès faire des commits dans une branche \textbf{(no branch)} et se retrouver dans \textbf{master} sans rien de nouveau. Passé le coup de stress, voici ce qu'on peut faire pour facilement récupérer les données. 
