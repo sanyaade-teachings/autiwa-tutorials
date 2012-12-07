@@ -89,7 +89,48 @@ Il est possible sous vim de sélectionner un block de texte, soit pour le suppri
 Cette technique permet aisément de commenter ou décommenter des lignes de codes.\index{commenter/décommenter}
 \end{remarque}
 
+\subsection{Indentation automatique de tout un fichier}
+Dans le mode normal, il suffit d'appuyer sur :
+\begin{verbatim}
+gg=G
+\end{verbatim}
+Le fichier courant sera alors automatiquement indenté. À noter que \textbf{gg} permet d'aller en début de fichier, et \textbf{G} (\touche{Shift}+\touche{G}) permet d'aller en fin de fichier.
 
+Pour que mon fichier fortran 90 soit correctement indenté, j'ai rajouté les lignes suivantes dans le fichier \textbf{.vimrc} : 
+\begin{verbatim}
+if has ("autocmd")
+    " File type detection. Indent based on filetype. Recommended.
+    filetype plugin indent on
+endif
+let fortran_do_enddo=1
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+\end{verbatim}
+
+Pour appliquer des tabulations au lieu d'espaces, toujours de 2 espaces en taille, il faut faire :
+\begin{verbatim}
+set shiftwidth=2
+set tabstop=2
+\end{verbatim}
+
+\begin{remarque}
+Mais je crois qu'avec fortran, ce seront quand même des espaces.
+\end{remarque}
+
+\subsection{Appliquer une commande vim a plusieurs fichiers en même temps}
+La commande \textbf{:argdo} permet d'appliquer une commande (ou une suite de commandes) à plusieurs fichiers à la fois. 
+
+Il faut d'abord définir les fichiers auxquels va s'appliquer la commande en faisant :
+\begin{verbatim}
+:args *.f90
+\end{verbatim}
+
+Ensuite il faut définir la commande que l'on souhaite appliquer (ou les commandes, en les séparant par \textbf{|}) : 
+\begin{verbatim}
+:argdo :execute 'normal "gg=G' | w
+\end{verbatim}
+Ici, argdo va indenter chaque fichier, puis l'enregistrer. Je n'ai pas trouvé comment faire cette commande de manière plus compacte, et si ça se trouve il y a mieux.
 
 \section{Commandes dans le mode Normal}
 Avant toute chose, la commande \touche{u} permet d'annuler une ou plusieurs commandes précédentes, effacement de texte ou autre.
