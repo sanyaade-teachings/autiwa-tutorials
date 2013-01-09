@@ -1112,6 +1112,16 @@ plot_hyperfocal.tick_params(axis='both', which='major', labelsize=10)
 plot_hyperfocal.tick_params(axis='both', which='minor', labelsize=8)
 \end{lstlisting}
 
+\subsubsection{Changer la taille du texte d'un graphique}
+Afin de changer complètement les caractéristiques pour les graphiques, on peut modifier les paramètres de matplotlib en faisant : 
+\begin{lstlisting}[language=python]
+from matplotlib import rcParams
+
+rcParams.update({'font.size':15})
+\end{lstlisting}
+
+Il y a bien entendu d'autres paramètres, comme le type de police par exemple.
+
 \subsubsection{Légende}
 Pour afficher la légende, il faut d'une part spécifier le nom des courbes quand on les déclare : 
 \begin{lstlisting}[language=python]
