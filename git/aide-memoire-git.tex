@@ -1,7 +1,7 @@
 \documentclass[a4paper,twoside]{article}
 \usepackage{autiwa}
 
-\title{Aide mémoire Subversion (svn)}
+\title{Aide mémoire Git}
 \author{Autiwa}
 
 \newcommand{\raccourci}[1]{{\bfseries #1}}
@@ -222,6 +222,11 @@ affiche l'historique de toutes les révisions.
 \begin{attention}
 Chaque commit est numéroté grâce à un long numéro hexadécimal comme 12328a1bcbf231da\-8eaf942f8d68c7dc0c7c4f38. Cela permet de les identifier.
 \end{attention}
+
+Pour avoir les informations d'un commit particulier, il faut faire :
+\begin{verbatim}
+git show 99adb32062d66121f2ba056dc820b9529a9ea08c
+\end{verbatim}\index{git!show}
 
 \subsection{Mettre à jour sa copie locale : pull}\index{git!pull} \index{Mise à jour du dépôt}
 \begin{verbatim}
