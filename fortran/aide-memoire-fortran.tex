@@ -1915,22 +1915,46 @@ Je définis \texttt{time\_size} (la taille du tableau \texttt{time}) comme étan
 Parfois, on peut vouloir tester des erreurs dans un programme, pour certaines choses précises. Voici comment je procède : 
 \begin{lstlisting}[language=Fortran]
 if (var.eq.0) then
-  stop 1
+  call exit(1)
 end if
 \end{lstlisting}
 ou
 \begin{lstlisting}[language=Fortran]
 if (var.eq.0) then
-  stop "var equal 0, and the program will crash because of that"
+  write(error_unit,*) "var equal 0, and the program will crash because of that"
+  call exit(1)
 end if
 \end{lstlisting}
-On peut choisir, soit de donner un code retour, en spécifiant un entier, soit on peut spécifier un texte pour décrire l'erreur (auquel cas le code retour sera 0).
+À partir du moment où on met un entier différent de 0, le système considèrera que le programme n'a pas terminé correctement et a renvoyé une erreur. La valeur de l'entier permet de déterminer le type d'erreur mais je ne sais pas exactement comment ça marche, alors j'essaie simplement de donner des numéros différents à chaque fois et d'afficher des infos juste avant de quitter. Je fais attention à ce que ces infos soient redirigées vers l'erreur standard \textbf{stderr} afin que les choses soient le plus propre possible.
 
 \bigskip
 
-Ce que je fais, c'est que les codes de 1 à 9 sont pour le programme principal, les codes 10 à 99 pour les sous programmes, et les codes de 100 à 999 pour les modules qui peuvent être utilisés dans plusieurs codes différents.
+À noter que la variable correspondant à la sortie \textbf{stderr}, vers laquelle il faut rediriger les erreurs se trouve dans le module \textbf{iso\_fortran\_env} en fortran 2003. Si comme moi vous ne pouvez pas utiliser cela, vous pouvez utiliser le module équivalent suivant :
+\begin{lstlisting}[language=Fortran]
+module iso_fortran_env
 
-Dans la pratique, je trouve plus intéressant de détailler l'erreur avec un texte, même s'il est vrai que ça doit être plus propre de spécifier un code retour avec un entier.
+  ! Nonintrinsic version for Lahey/Fujitsu Fortran for Linux. 
+  ! See Subclause 13.8.2 of the Fortran 2003 standard. 
+
+  implicit NONE 
+  public 
+
+  integer, parameter :: Character_Storage_Size = 8 
+  integer, parameter :: Error_Unit = 0 
+  integer, parameter :: File_Storage_Size = 8 
+  integer, parameter :: Input_Unit = 5 
+  integer, parameter :: IOSTAT_END = -1 
+  integer, parameter :: IOSTAT_EOR = -2 
+  integer, parameter :: Numeric_Storage_Size = 32 
+  integer, parameter :: Output_Unit = 6 
+
+end module iso_fortran_env
+\end{lstlisting}
+
+Pour l'utiliser, il faut importer la variable qui nous intéresse :
+\begin{lstlisting}[language=Fortran]
+use iso_fortran_env, only : error_unit
+\end{lstlisting}
 
 \subsection{Pointeur vers une fonction, pour accélérer le code et limiter les tests répétés pour rien}\label{sec:pointeur-fonction}
 Prenons un cas concrêt. En fonction du paramètre du programme, je veux exécuter différentes fonctions (par exemple pour différents types d'intéractions disque planète (dans mon cas). 
@@ -3196,7 +3220,7 @@ En compilant avec \textbf{gfortran} et l'option \texttt{-fbounds-check}, il faut
 
 
 \subsection{Erreurs de compilation}
-\subsection{Apparition de fichiers fort.10}
+\subsubsection{Apparition de fichiers fort.10}
 Le numéro pouvant être différent, ces fichiers apparaissent quand des commandes \texttt{write(10,*)} sont utilisées alors que le numéro 10 n'est associé à aucun fichier via la commande \texttt{open()}. 
 
 Ce problème peut aussi apparaître de manière un peu plus déguisée, quand vous ouvrez un fichier via \texttt{open(10, ...)} mais que vous lancez, entre l'ouverture du fichier et l'écriture des commandes, une autre fonction ou routine qui utilise le même numéro de fichier, et qui va alors écraser le fichier, puis le fermer. 
