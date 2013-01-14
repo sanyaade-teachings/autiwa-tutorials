@@ -1079,10 +1079,10 @@ fig = pl.figure(1)
 # We define a fake subplot that is in fact only the plot.
 plot = fig.add_subplot(1, 1, 1)
 
-plot.xaxis.grid(True,'minor', color='#000000', linestyle=':')
-plot.yaxis.grid(True,'minor', color='#000000', linestyle=':')
-plot.xaxis.grid(True,'major', color='#000000', linestyle='--')
-plot.yaxis.grid(True,'major', color='#000000', linestyle='--')
+plot.xaxis.grid(True,which='minor', color='#000000', linestyle=':')
+plot.yaxis.grid(True,which='minor', color='#000000', linestyle=':')
+plot.xaxis.grid(True,which='major', color='#000000', linestyle='--')
+plot.yaxis.grid(True,which='major', color='#000000', linestyle='--')
 \end{lstlisting}
 
 Il est possible de modifier la largeur du trait, en plus de la couleur ou du style. Pour la personnalisation de ces paramètres, les valeurs possibles sont les mêmes que d'habitude. Les différents styles de ligne sont répertoriés dans \refsec{sec:linestyle}.
