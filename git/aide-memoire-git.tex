@@ -176,6 +176,19 @@ Pour regarder les différences avec le commit précédent, il suffit de faire :
 git diff HEAD^
 \end{verbatim}
 
+\bigskip
+
+On peut faire des diff entre des branches 
+\begin{verbatim}
+git diff master branch_devel
+\end{verbatim}
+ou entre deux versions en spécifiant leur hashtag : 
+\begin{verbatim}
+git diff dqsfg54qsdf35dqs4f ze9r8az7er3azer2
+\end{verbatim}
+
+J'utilise personnellement \gras[git!difftool]{difftool}, ça me permet d'utiliser \gras{meld} que j'affectionne particulièrement.
+
 \subsection{Enregistrer les modifications localement : commit}\index{git!commit}\index{mise à jour local -> serveur}\label{sec:commit}
 
 Pour mettre à jour les versions sur serveur à partir des modifications effectuées localement, il faut sélectionner les fichiers qu'on veut ajouter au prochain commit avec \textbf{git add} puis faire le commit :
@@ -421,6 +434,9 @@ git mergetool
 
 Mais ceci ne va fonctionner qu'avec des fichier ASCII. Dans mon cas, j'avais un conflit avec un fichier .pdf, et dans ce cas, mergetool ne fonctionne pas, il faut choisir si on veut le fichier distant ou le fichier local. Dans tous les cas ce sont normalement des fichiers qui sont aisément générable, le soucis majeur étant de ne plus être embêté par le conflit.
 
+\begin{remarque}
+J'utilise \textbf{meld}, que j'aime beaucoup, et qui marche autant pour les diff (\textbf{difftool}) que pour les conflits (\textbf{mergetool}).
+\end{remarque}
 
 \section{Avancé}
 \subsection{Tagger une version : tag}\index{git!tag}
