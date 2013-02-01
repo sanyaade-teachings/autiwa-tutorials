@@ -1,38 +1,38 @@
-\documentclass[a4paper,twoside]{article}
+\documentclass[a4paper,twoside]{book}
 \usepackage[french]{autiwa}
-\title{Embryos assembly in a radiative disk}
+\title{Migration et accrétion d'embryons planétaires dans un disque radiatif}
 \author{C. Cossou, S. Raymond \and A. Pierens}
 
 \begin{document}
 \tableofcontents
 \newpage
 
-\section{Introduction}
-La formation des planètes autour de leur étoile est un sujet complexe et étudié depuis de nombreuses années. Sa complexité est telle que de nombreuses approximations sont nécessaires, parfois justifiées, parfois non. La récente complexification des interactions entre le disque et les embryons par la levée d'une de ces approximations (disque isotherme) a amené la dynamique des planètes dans le disque à un niveau extrêmement élevé, tous les effets étant intimement liés. 
 
-Dans les parties qui vont suivre, je vais essayer de décrire le plus clairement possible les enjeux et les limites de chacun des grands sous domaines liés à la formation planétaire, en particulier concernant les propriétés du disque protoplanétaire dans lequel elles se forment
 
-\section{Les disques de gaz}
-\subsection{Formation et évolution d'un disque protoplanétaire}
-%TODO parler de l'évolution du disque, sa dissipation etc...
+\chapter{Introduction}
+%TODO parler de formation planétaire (en citant des papiers, sans rentrer dans les détails. notamment pollack, alibert)
 
-\subsection{Approximations et paramètres de modélisation}
-%TODO parler du profil de densité, 
+%TODO une des grandes questions c'est  : comment on forme des noyaux de jupiter et Kepler 11?
+
+
+
+\chapter{Physique des disques}
+\section{Les disques protoplanétaire}
+%TODO voir thèse mordasini, et les articles de mordasini, alibert, ida et lin, histoire de voir ce qu'ils font)
+\subsection{Formation et évolution}
+\subsection{Propriétés}
+\subsubsection{Profil de densité}
+\subsubsection{Profil de température}
 %TODO parler de la température du disque (et les phénomènes principaux qui ont un effet sur la température, chauffage visqueux, irradiation de l'étoile, irradiation externe. Parler dans cette partie de l'opacité, des transitions et à quoi c'est dû, des modèles had oc pour l'opacité et des incertitudes qui en découlent
 
+\subsection{Les bords du disque}
 %TODO parler des bords du disque et de tous les problèmes que ça pose
 
-\section{La dynamique planétaire}
-\subsection{Les résonances de Moyen Mouvement (MMR)}
-%TODO parler des résonances de moyen mouvement
-
-
-\section{Les interactions entre le disque et les planètes}
-\subsection{La migration}
-%TODO Parler du couple exercé par le disque sur les planètes (lindblad et corotation, parler des différents couples de corotation, que je ne connais pas pour le moment
-
-\subsection{L'accrétion du gaz}
-%TODO parler de l'accrétion, et du fait que ça va créer des planètes géantes notamment
+\section{Interaction disque-planète}
+\subsection{Migration planétaire}
+\paragraph{Type I}
+\paragraph{Type II}
+\paragraph{Type III}
 
 \subsection{L'amortissement de l'excentricité}%circularisation
 %TODO parler des autres phénomènes importants dans le disque, comme l'amortissement de l'excentricité
@@ -40,57 +40,57 @@ Dans les parties qui vont suivre, je vais essayer de décrire le plus clairement
 \subsection{L'amortissement de l'inclinaison}%coplanarisation
 %TODO parler de l'amortissement de l'inclinaison, 
 
+\subsection{L'accrétion du gaz}
+%TODO parler de l'accrétion, et du fait que ça va créer des planètes géantes notamment
 
-
-
-
-
-
-
+\chapter{Le Code N-Corps}
+\section{Présentation de mercury}
+\section{Disque 1D}
+\subsection{Profil de densité de surface}
+\subsection{Table d'opacité}
+\subsection{Profil de température}
+\section{Migration type I}
+%TODO paardekooper
+\section{Amortissement de e et I}
+\section{Effet de l'excentricité sur le couple de corotation}
 %TODO du couple de corotation quand l'excentricité augmente, mais je sais pas encore où le placer, pas dans la partie intro je suppose
 
-Liste en vrac de choses à dire : 
-Quel code?
+\section{Outils d'analyse}
+\subsection{Diagrammes de couple a-m}
 
-Ce que j'ai rajouté? 
+\chapter{Mécanismes individuels}
+\section{Les Résonances de Moyen Mouvement (MMR)}
+\subsection{Résonances et excentricité}
+\subsection{Stabilité et ordre des résonances}
 
-Ce que j'ai modifié à paardekooper pour le rendre mieux (profil de température par exemple)
+\section{Les Zones de Convergence}
+\subsection{Existence et intérêt}
+\subsection{Les différents types}
+\subsection{Résonances et Accrétions}
 
-zone de convergence : les embryons se rassemblent, mais sont bloqués par les résonances
+\chapter{Mécanismes de formation}
+\section{Décalage de la Zone de Convergence}
+\section{Formation des super terre chaude}
+\section{Effets des paramètres du disque}
+\subsection{Viscosité du disque}
+\subsection{Profil de densité de surface}
+\subsection{Profil de température}
+\subsection{Masse du disque}
+\subsection{Table d'opacité}
 
-présentation de mes diagrammes de couple (que je présenterai plus rapidement ensuite, mais les présenter de manière générale et détaillée.)
+\chapter{Discussion et limite du modèle}
+\section{Étude de sensibilité}
+\subsection{Le choix de la table d'opacité et son implémentation}
+%TODO le choix de la table, mais aussi le fait qu'on a besoin d'une densité volumique, ou qu'on a besoin de la masse moléculaire moyenne. 
 
-effet des résonances sur la migration (les embryons se stabilisent, et on peut considérer le système planétaire comme un ensemble dont le couple de migration est nul
+\subsection{La modélisation des bords du disque}
 
-effet de bitsch et kley sur la migration : ça décale la zone de convergence (cf papier 1)
+\subsection{Pas d'effet indirect des ondes de densité sur les autres planètes}
 
-effet du type de résonance sur la dynamique planétaire (une 3:2 par rapport à une 7:6, ça change quoi normalement, et ça change quoi dans un disque quand il y a la migration en plus, détailler les deux cas
+\subsection{Modélisation de la viscosité}
 
+\subsection{Profil de densité du gaz en 2D}
 
-
-effet des paramètres du disque : 
-* viscosité
-* profil de température
-* profil de densité de surface
-* masse du disque (à profil constant). 
-* table d'opacité
-
-Il faudrait que je trouve toutes les incertitudes qu'il y a dans mon modèle : 
-* la table d'opacité
-* ma viscosité constante
-* les bords du disque
-* la densité volumique qui n'est dans mon code que la densité surfacique divisée par l'échelle de hauteur
-* pas d'effets indirects des ondes de densité d'une planète sur les autres planètes (effet visible en hydro, mais qui n'apparait pas ici en N-corps)
-
-\chapter{Simulations}
-\section{Mécanisme d'accrétion à une zone de convergence}
-
-\section{Différents types de zone de convergence}
-
-\section{Les résonnances comme moteur de la non-circularisation des orbites}
-
-\section{Rétroaction de l'excentricité sur la migration planétaire}
-
-\section{Influence des paramètres du disque}
+\chapter{Conclusion}
 
 \end{document}
