@@ -307,7 +307,20 @@ $ git branch
 \end{verbatim}
 où on voit que \textbf{master} est toujours la branche active. Il faut donc changer de branche pour pouvoir modifier les fichiers et faire des commits dans cette branche.
 
-\subsection{Activer une branche et y faire des commits}
+\subsection{Envoyer et suivre une branche distante}
+Pour que cette branche soit envoyée et synchronisée avec le dépot distant, si on veut en fair eune branche permanente, il faut lancer la commande :
+\begin{verbatim}
+git push origin test_01
+\end{verbatim}\index{branche distance}
+
+Pour que quelqu'un puisse \textbf{suivre} les modifications de cette branche, il devra utiliser la commande suivante :
+\begin{verbatim}
+git checkout -b ma-branche origin/ma-branche
+\end{verbatim}
+
+Ce qui revient à créer dans le nouveau dépôt créé une branche \textbf{ma-branche} qui suivra celle du dépôt distant \textbf{origin/ma-branche}.
+
+\subsection{Aller dans une branche et y faire des commits}
 Il faut déclarer cette branche comme active via :
 \begin{verbatim}
 git checkout test_01
@@ -711,6 +724,86 @@ Une fois dans master, on peut alors faire :
 git merge 99adb32062d66121f2ba056dc820b9529a9ea08c
 \end{verbatim}
 pour récupérer toutes les modifications de cette branche.
+
+\subsection{Créer des patchs et les appliquer}
+Il est possible de créer des patchs, qui vont contenir différentes modifications à appliquer où on veut. Dans la pratique, je me suis servi de ça pour appliquer des modifications sur certains fichiers (sur plusieurs centaines de révisions) afin de déporter ces modifications sur une autre branche. 
+
+Pour faire court, si on veut suivre les modifications d'un ou plusieurs fichiers bien précis (et ignorer les autres) pour appliquer ces modifications ailleurs, il faut faire : 
+\begin{verbatim}
+git format-patch --output-directory myPatch 7552b3a2fb57..dabfc11cce3884fa1e
+ -- user_module.f90 bessel.f90
+\end{verbatim}
+
+Ici, toutes les modifications des fichiers \textbf{user\_module.f90} et \textbf{bessel.f90} contenues entre les révisions \textbf{7552b3a2fb57} et \textbf{dabfc11cce3884fa1e} seront enregistrées dans des patchs différents. Ces patchs seront ensuite stockés dans le sous-dossier \textbf{myPatch}. 
+
+\bigskip
+
+Pour appliquer les patchs, il suffit de faire :
+\begin{verbatim}
+git apply myPatch/*.patch
+\end{verbatim}
+
+\begin{remarque}
+Comme je voulais des choses un peu propre, j'ai fait un script python qui applique les patchs un par un et qui fait un commit pour chacun d'entre eux. En effet, le patch va appliquer des modifications, mais il ne va pas faire de commit (comme pourrait le faire un \textbf{cherry-pick}). 
+\end{remarque}
+
+Vous trouverez ci-dessous le code du script python (même si vous n'avez pas le module \textbf{autiwa} qui contient la fonction \textbf{lancer\_commande}, il suffit d'avoir une fonction équivalente qui lance une commande système) : 
+\begin{lstlisting}[language=python]
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# will apply a list of patch separately, and create one commit for each single patch
+
+import autiwa
+import pdb
+
+(process_stdout, process_stderr, return_code) = autiwa.lancer_commande("ls ../myPatch/*.patch")
+if (return_code != 0):
+  print("the command return an error "+str(return_code))
+  print(process_stderr)
+  exit()
+  
+patches = process_stdout.split("\n")
+patches.remove('') # we remove an extra element that doesn't mean anything
+nb_patchs = len(patches)
+
+patches.sort()
+
+for patch in patches:
+  # Apply patch
+  cmd = "git apply %s" % patch
+  autiwa.lancer_commande(cmd)
+  
+  # Get corresponding hashID
+  patchText = open(patch, 'r')
+  tmp = patchText.readline()
+  patchText.close()
+  hashID = tmp.split()[1]
+  
+  # Get log text
+  cmd = 'git log --pretty=format:"%%s" %s -1' % hashID
+  (logText, process_stderr, return_code) = autiwa.lancer_commande(cmd)
+  
+  # Get untracked files
+  cmd = 'git ls-files --other --exclude-standard'
+  (process_stdout, process_stderr, return_code) = autiwa.lancer_commande(cmd)
+  
+  if (return_code != 0):
+    print("the command return an error "+str(return_code))
+    print(process_stderr)
+    exit()
+  
+  untracked_files = process_stdout.split("\n")
+  untracked_files.remove('') # we remove an extra element that doesn't mean anything
+  
+  # Add untracked files
+  cmd = 'git add %s' % (' '.join(untracked_files))
+  (process_stdout, process_stderr, return_code) = autiwa.lancer_commande(cmd)
+  
+  # Commit the modif
+  cmd = 'git commit -a -m "%s"' % logText
+  autiwa.lancer_commande(cmd)
+\end{lstlisting}
+
 
 \section{FAQ}
 \subsection{git demande le mot de passe à chaque fois}
