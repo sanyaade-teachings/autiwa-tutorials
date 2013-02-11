@@ -1,16 +1,140 @@
-\documentclass[a4paper,twoside]{report}
-\usepackage[french]{autiwa}
+\documentclass[logos,parttoc]{bordeaux-thesis}
+
+%########################################################################
+% Extensions
+%########################################################################
+
+%Text encoding and fonts
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{autiwa-macros}
+%\usepackage{graphicx}
+
+% for the french text adaptation (babel is already in the class)
+\FrenchFootnotes % pour les notes de bas de page
+\AddThinSpaceBeforeFootnotes % pour les puristes (donc tout le monde!) qui veulent une espace fine entre le mot et l'appel de note
+
+
+\renewcommand\theequation{\thechapter.\arabic{equation}}
+\makeatletter
+\@addtoreset{equation}{chapter}
+\makeatother
+
+\usepackage{natbib}%améliore la bibliographie, surtout pour citer les publications scientifiques.
+\usepackage{frbib}%pour mettre la bibliographie en français
+\usepackage{aas_macros}% contient les macros pour la définition des noms de journaux des publications scientifiques utilses pour les enterées bibtex de ADS.
+\usepackage[nottoc]{tocbibind}%pour que la bibliographie  et l'index apparaissent dans la table des matières. l'option permet de ne pas afficher la table des matières. (notlof, notlot pour table des figures et ou des tableaux)
+
+\usepackage{xspace}%Permet à babel d'utiliser la macro xspace  partout où c'est nécessaire. (Voir la doc de babel pour de plus amples explications.)
+
+%########################################################################
+% Title page
+%########################################################################
+
+%Thesis author
+\author{Christophe \textsc{Cossou}}
+
+%Title for main language (french)
 \title{Migration et accrétion d'embryons planétaires dans un disque radiatif}
-\author{C. Cossou, S. Raymond \and A. Pierens}
+%Titles for other languages
+\title[english]{My English thesis title}
+
+
+%Keywords for main language (french)
+\keywords{Blabla, blabla, blabla, blabla, blabla, blabla, blabla}
+%Keywords for other languages languages
+\keywords[english]{Blabla, blabla, blabla, blabla, blabla, blabla, blabla}
+
+%Order number of the thesis
+\ordernumber{1234}
+
+%Date of defense
+\date{xx Xxxxxxxxx xxxx}
+
+%You define the commission member list using \addcommissionmember (mandatory) with an optional role (eg: president, supervisor, etc...)
+\addcommissionmember{M.}{Aaaaa}{Bbbbbbbb}
+\addcommissionmember{M.}{Ccccccccc}{Dddddddddd}
+\addcommissionmember[Directeur de thèse]{M.}{Eee}{Fffff}
+\addcommissionmember{M.}{Ggggggggg}{Hhhhhhh}
+\addcommissionmember[Président du jury]{M.}{Iiii}{Jjjjjjjjjjjj}
+\addcommissionmember{M.}{Kkkkkkkkkkkk}{Llllll}
+
+%If some referees are not part of the commission, you can add them in a separate list with \addreferee (optional)
+\addreferee{M.}{Mmmmmmmm}{Nnnnnnnn}
+\addreferee{M.}{Oooooooooo}{Pppppppp}
+
+\newcommand{\dummytext}{
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus blandit massa non tellus. Pellentesque blandit. Etiam sapien. Quisque sed massa ac tortor accumsan bibendum. Donec et orci quis mi sollicitudin consectetuer. Donec malesuada. Pellentesque bibendum pellentesque elit. Morbi et diam ac wisi auctor fringilla. Cras nec arcu sed velit dapibus blandit. Maecenas mollis aliquet quam. In eget sem nec orci fringilla sagittis. Suspendisse cursus placerat massa. Pellentesque non metus. Morbi congue tellus eget tellus. Suspendisse justo. Suspendisse potenti. Praesent interdum lorem in velit. Nullam sit amet nisl eget wisi consectetuer consequat. Mauris vel felis. Nulla sed neque.
+
+Nulla facilisi. Maecenas accumsan gravida wisi. Maecenas sodales gravida neque. Mauris in est a ante molestie gravida. In id neque. Ut augue. Duis fringilla ullamcorper risus. Nullam at lorem. Quisque consequat turpis ac libero. Ut auctor ante commodo magna. Donec in magna. Integer sodales. Donec ac nibh eu felis suscipit elementum.
+
+Fusce convallis dolor sit amet dolor. Nulla sit amet pede. Maecenas et ante vitae risus tempus facilisis. Nullam ut tellus et lacus sollicitudin condimentum. Maecenas vitae lorem. Quisque nec leo varius est euismod posuere. Integer ac diam in enim pellentesque pulvinar. Etiam sodales tristique eros. Curabitur non magna. Suspendisse blandit metus vitae purus. Phasellus nec sem vitae arcu consequat auctor. Donec nec dui. Donec sit amet lorem vel erat tristique laoreet. Duis ac felis tincidunt arcu consequat faucibus. Vestibulum ultrices porttitor purus. In semper consequat dolor. Nunc porta. Vestibulum nisl ipsum, rhoncus quis, adipiscing sed, sollicitudin ut, quam.
+}
+
+
+%########################################################################
+% Document start
+%########################################################################
 
 \begin{document}
-\tableofcontents
+
+%Print title NOW
+\maketitle%
+
+%Disable page numbering
+\pagestyle{empty}
+
+%########################################################################
+% Multilingual abstracts
+%########################################################################
+
+%French abstract:
+\begin{abstract}
+\dummytext
+\end{abstract}
+
+%Horizontal rule
+\noindent\hspace*{0.35\textwidth}\hrulefill\hspace*{0.35\textwidth}\\[-\bigskipamount]
+
+%English abstract:
+\begin{abstract}[english]
+\dummytext
+\end{abstract}
+
+%########################################################################
+% Acknowledgments
+%########################################################################
+
+\pagebreak\strut\newpage
+
+\chapter*{Remerciements}
+%Put the text vertically centered
+\vfill
+\dummytext
+\vfill
+
 \newpage
 
+%########################################################################
+% Contents
+%########################################################################
 
+\strut\newpage
+
+\tableofcontents
+
+\newpage
+
+%########################################################################
+% Introduction
+%########################################################################
+
+%Enable page numbering
+\pagestyle{fancy}
 
 \chapter*{Introduction}
-\addcontentsline{toc}{chapter}{Introduction}
+\addstarredchapter{Introduction}% To be used instead of addcontentsline in order to have the good minitoc. If not, the starred chapter create a shift in the minitocs.
+%%\addcontentsline{toc}{chapter}{Introduction}
 
 %TODO parler de formation planétaire (en citant des papiers, sans rentrer dans les détails. notamment pollack, alibert)
 
@@ -159,9 +283,13 @@ Afin de calculer les valeurs suivantes, ce disque est échantillonné et toutes 
 %TODO 
 
 \chapter*{Conclusion}
-\addcontentsline{toc}{chapter}{Conclusion}
+\addstarredchapter{Conclusion} % to be used in place of addcontentsline to avoid problems with minitoc
+%%\addcontentsline{toc}{chapter}{Conclusion}
 
 %TODO 
+
+%\thispagestyle{empty}
+%\strut\newpage
 
 \bibliographystyle{plainnat}
 \bibliography{these}%.bib
