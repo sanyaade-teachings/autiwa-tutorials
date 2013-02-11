@@ -121,6 +121,12 @@ git checkout *.f90
 \end{verbatim}\index{git!checkout}
 va remettre en l'état tous les fichiers du dépot qui sont présents dans le dossier courant (on peut aussi ne préciser qu'un seul fichier).
 
+\subsection{Annuler un git add : git reset}\index{git!add}
+Parfois, on peut avoir préparé des modifications à ajouter à un commit, via \textbf{git add}, soit sur des fichiers déjà suivis, soit pour suivre de nouveaux fichiers. Afin de retirer certains de ces fichiers de la liste des fichiers pour le prochain commit, il faut faire :
+\begin{verbatim}
+git reset HEAD <FILE>
+\end{verbatim}\index{git!reset}
+
 \subsection{Annuler un commit effectué par erreur}
 \subsubsection{Modifier le message du dernier commit}
 \begin{verbatim}
