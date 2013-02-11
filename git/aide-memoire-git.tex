@@ -307,7 +307,7 @@ $ git branch
 \end{verbatim}
 où on voit que \textbf{master} est toujours la branche active. Il faut donc changer de branche pour pouvoir modifier les fichiers et faire des commits dans cette branche.
 
-\subsection{Envoyer et suivre une branche distante}
+\subsection{Gérer une branche distante}
 Pour que cette branche soit envoyée et synchronisée avec le dépot distant, si on veut en fair eune branche permanente, il faut lancer la commande :
 \begin{verbatim}
 git push origin test_01
@@ -319,6 +319,13 @@ git checkout -b ma-branche origin/ma-branche
 \end{verbatim}
 
 Ce qui revient à créer dans le nouveau dépôt créé une branche \textbf{ma-branche} qui suivra celle du dépôt distant \textbf{origin/ma-branche}.
+
+\bigskip
+
+On peut de plus supprimer une branche distante en faisant : 
+\begin{verbatim}
+git push origin :test_01
+\end{verbatim}\index{branche distance}
 
 \subsection{Aller dans une branche et y faire des commits}
 Il faut déclarer cette branche comme active via :
