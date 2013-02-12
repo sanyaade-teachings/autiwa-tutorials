@@ -292,7 +292,7 @@
     \end{center}
   \fi
   {\normalsize\No d'ordre : \@ordernumber}
-  \vfill
+  
   \begin{center}
     \textbf{\Huge TH\`{E}SE}
     \\[\bigskipamount]
@@ -300,7 +300,7 @@
     Pr\'{e}sent\'{e}e par 
     \\[\medskipamount]
     \textbf{\@author}
-    \\[4\bigskipamount]
+    \\[\medskipamount]
     pour obtenir le grade de 
     \\[1.5\bigskipamount]
     \begin{minipage}{0.65\textwidth}
@@ -311,9 +311,9 @@
     \\[1.5\bigskipamount]
     \large
     Sp\'{e}cialit\'{e} : Astrophysique, Plasmas, Corpuscules
-    \bigskip
-    \rule{\linewidth}{0.5mm}
-    \bigskip
+    \vfill
+    \rule{0.9\linewidth}{0.5mm}
+    \\[\bigskipamount]
     \begin{minipage}{0.9\textwidth}
       \LARGE
       \bfseries
@@ -322,10 +322,10 @@
       \csname @title@\@phd@language\endcsname
       \selectlanguage{frenchb}
     \end{minipage}
-    \bigskip
-    \rule{\linewidth}{0.5mm}
+    \\[1\bigskipamount]
+    \rule{0.9\linewidth}{0.5mm}
   \end{center}
-  \vfill
+  \vfill\vfill
   \ifnum\the@member=0\relax%
     \ClassWarning{bordeaux-thesis}{No commission member have been given}{You can provide members using the command \string\addcommissionmember.}%
   \else%
