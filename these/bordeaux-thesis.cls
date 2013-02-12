@@ -22,7 +22,6 @@
 \RequirePackage{ifthen}
 \RequirePackage{keyval}
 
-
 \def\@phd@language{french}
 \def\@phd@babel@language{frenchb}
 \def\@phd@select@language{%
@@ -322,7 +321,7 @@
       \csname @title@\@phd@language\endcsname
       \selectlanguage{frenchb}
     \end{minipage}
-    \\[1\bigskipamount]
+    \\[1.\bigskipamount]
     \rule{0.9\linewidth}{0.5mm}
   \end{center}
   \vfill\vfill
