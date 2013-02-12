@@ -43,9 +43,9 @@
   \edef\@phd@languages{#1,\@phd@languages}%
 }
 
-\newif\if@phd@parttoc
-\@phd@parttocfalse
-\define@key{bordeaux-thesis}{parttoc}[]{\@phd@parttoctrue}
+\newif\if@phd@chaptertoc
+\@phd@chaptertocfalse
+\define@key{bordeaux-thesis}{chaptertoc}[]{\@phd@chaptertoctrue}
 
 \newif\if@phd@logos
 \@phd@logosfalse
@@ -111,23 +111,23 @@
 \RequirePackage{lastpage}
 
 %Part table of contents
-\def\@finalize@parttoc{%
-  \if@phd@doneparttoc%
+\def\@finalize@chaptertoc{%
+  \if@phd@donechaptertoc%
   \else%
-    \doparttoc%
+    \dominitoc%
     \faketableofcontents%
   \fi%
 }
-\if@phd@parttoc%
-  \AtEndDocument{\@finalize@parttoc}
+\if@phd@chaptertoc%
+  \AtEndDocument{\@finalize@chaptertoc}
   \RequirePackage[french]{minitoc}
   \setcounter{tocdepth}{2}
-  \mtcsetdepth{parttoc}{3}
-  \newif\if@phd@doneparttoc
-  \@phd@doneparttocfalse
+  \mtcsetdepth{minitoc}{3}
+  \newif\if@phd@donechaptertoc
+  \@phd@donechaptertocfalse
   \let\@old@tableofcontents=\tableofcontents
   \def\tableofcontents{%
-    \@phd@doneparttoctrue%
+    \@phd@donechaptertoctrue%
     \dominitoc%
     \@old@tableofcontents%
   }
@@ -197,7 +197,7 @@
   \def\@part[#1]#2{%
     \newpage%
     \@phd@old@part[#1]{#2}%
-    \if@phd@parttoc\vfill\minitoc\fi%
+    \if@phd@chaptertoc\vfill\minitoc\fi%
     \vfill%
     \newpage%
   }%
@@ -205,7 +205,7 @@
   \def\@chapter[#1]#2{%
     \newpage%
     \@phd@old@chapter[#1]{#2}%
-    \if@phd@parttoc\vfill\minitoc\fi%
+    \if@phd@chaptertoc\vfill\minitoc\fi%
     \vfill%
     \newpage%
   }%
@@ -270,62 +270,62 @@
   \fi%
 }
 
-\renewcommand\maketitle{%
-  \selectlanguage{frenchb}%
-  \setcounter{page}{1}%
-  \thispagestyle{empty}%
-  \Large%
-  \if@phd@logos%
-    \noindent%
-    \includelogo[height=2cm]{logo_univ_de_bdx}%
-    \hfill%
-    \includelogo[height=2cm]{logo-cnrs}%
-    {\normalsize\\}%
-  \else%
-    \begin{center}%
-      \begin{tabular}{|c|}%
-        \hline\\[-1.5\medskipamount]%
-        UNIVERSIT\'E BORDEAUX 1\\%
-        ÉCOLE DOCTORALE DES SCIENCES PHYSIQUES ET DE L'ING\'{E}NIEUR\\[\smallskipamount]%
-        \hline%
-      \end{tabular}%
-    \end{center}%
-  \fi%
-  {\normalsize\No d'ordre : \@ordernumber}%
+\renewcommand\maketitle{
+  \selectlanguage{frenchb}
+  \setcounter{page}{1}
+  \thispagestyle{empty}
+  \Large
+  \if@phd@logos
+    \noindent
+    \includelogo[height=2cm]{logo_univ_de_bdx}
+    \hfill
+    \includelogo[height=2cm]{logo-cnrs}
+    {\normalsize\\}
+  \else
+    \begin{center}
+      \begin{tabular}{|c|}
+        \hline\\[-1.5\medskipamount]
+        UNIVERSIT\'E BORDEAUX 1\\
+        ÉCOLE DOCTORALE DES SCIENCES PHYSIQUES ET DE L'ING\'{E}NIEUR\\[\smallskipamount]
+        \hline
+      \end{tabular}
+    \end{center}
+  \fi
+  {\normalsize\No d'ordre : \@ordernumber}
   \vfill
-  \begin{center}%
-    \textbf{\Huge TH\`{E}SE}%
-    \\[\bigskipamount]%
-    \large%
-    Pr\'{e}sent\'{e}e par %
-    \\[\medskipamount]%
-    \textbf{\@author}%
-    \\[4\bigskipamount]%
-    pour obtenir le grade de %
-    \\[1.5\bigskipamount]%
-    \begin{minipage}{0.65\textwidth}%
-      \large%
-      \centering%
-      \textsc{\bfseries Docteur en Sciences de L'Universit\'{e} Bordeaux 1}%
-    \end{minipage}%
-    \\[1.5\bigskipamount]%
-    \large%
-    Sp\'{e}cialit\'{e} : Astrophysique, Plasmas, Corpuscules%
+  \begin{center}
+    \textbf{\Huge TH\`{E}SE}
+    \\[\bigskipamount]
+    \large
+    Pr\'{e}sent\'{e}e par 
+    \\[\medskipamount]
+    \textbf{\@author}
+    \\[4\bigskipamount]
+    pour obtenir le grade de 
+    \\[1.5\bigskipamount]
+    \begin{minipage}{0.65\textwidth}
+      \large
+      \centering
+      \textsc{\bfseries Docteur en Sciences de L'Universit\'{e} Bordeaux 1}
+    \end{minipage}
+    \\[1.5\bigskipamount]
+    \large
+    Sp\'{e}cialit\'{e} : Astrophysique, Plasmas, Corpuscules
     \bigskip
-    \hrule%
-    \bigskip%
-    \begin{minipage}{0.9\textwidth}%
-      \LARGE%
-      \bfseries%
-      \centering%
-      \@phd@select@language%
-      \csname @title@\@phd@language\endcsname%
-      \selectlanguage{frenchb}%
-    \end{minipage}%
-    \bigskip%
-    \hrule
-  \end{center}%
-  \vfill%
+    \rule{\linewidth}{0.5mm}
+    \bigskip
+    \begin{minipage}{0.9\textwidth}
+      \LARGE
+      \bfseries
+      \centering
+      \@phd@select@language
+      \csname @title@\@phd@language\endcsname
+      \selectlanguage{frenchb}
+    \end{minipage}
+    \bigskip
+    \rule{\linewidth}{0.5mm}
+  \end{center}
+  \vfill
   \ifnum\the@member=0\relax%
     \ClassWarning{bordeaux-thesis}{No commission member have been given}{You can provide members using the command \string\addcommissionmember.}%
   \else%
