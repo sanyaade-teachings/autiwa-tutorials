@@ -575,6 +575,16 @@ c & d\\ \hline
  \end{tabular}
 \end{example}
 
+\begin{remarque}
+Si on souhaite que le début du texte de la première colonne ne soit absolument pas décalé, il faut définir un séparateur sans espace, de la façon suivante :
+\begin{verbatim}
+\begin{tabular}{@{}lcl}
+mon texte & & \\
+mon autre texte & &
+\end{tabular}
+\end{verbatim}
+\end{remarque}
+
 \subsection{Définition des colonnes}
 
 \verb|l|, \verb|r| et \verb|c| permettent respectivement d'aligner les colonnes à gauche, droite ou centré.\verb|p{longueur}| définit une colonne paragraphe. la commande \verb|m{longueur}| fait la même chose mais centre verticalement le texte, mais pour celà, il faut le package \gras[package!array]{array}.
