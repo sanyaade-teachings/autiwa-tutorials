@@ -244,21 +244,26 @@
   \gdef\@ordernumber{#1}%
 }
 
+\newcommand{\submityear}[1]{%
+  \gdef\@submityear{#1}%
+}
+
 \newcounter{@member}
 \newcounter{@referee}
 
-\newcommand\addcommissionmember[4][]{%
+\newcommand\addcommissionmember[4]{%
   \stepcounter{@member}%
-  \ifthenelse{\equal{#1}{}}{%
-    \expandafter\def\csname @member@\the@member\endcsname{#2&#3&\textsc{#4}&}%
-  }{%
-    \expandafter\def\csname @member@\the@member\endcsname{#2&#3&\textsc{#4}&(#1)}%
-  }%
+  \expandafter\def\csname @member@\the@member\endcsname{#1 \textsc{#2}&#3\dotfill & #4}%
 }
 
 \newcommand\addreferee[3]{%
   \stepcounter{@referee}%
-  \expandafter\def\csname @referee@\the@referee\endcsname{#1&#2&#3&}%
+  \ifnum\value{@referee}=1\relax
+\expandafter\def\csname @referee@\the@referee\endcsname{& #1 \textsc{#2} \dotfill & Rapporteurs}%
+\else
+\expandafter\def\csname @referee@\the@referee\endcsname{& #1 \textsc{#2}\dotfill &}%
+\fi
+  \addcommissionmember{#1}{#2}{#3}{Rapporteur}
 }
 
 \newcommand\includelogo[2][]{%
@@ -325,32 +330,44 @@
     \rule{0.9\linewidth}{0.5mm}
   \end{center}
   \vfill\vfill
-  \ifnum\the@member=0\relax%
-    \ClassWarning{bordeaux-thesis}{No commission member have been given}{You can provide members using the command \string\addcommissionmember.}%
-  \else%
-    \normalsize%
-    \@ifundefined{c@@tempa}{\newcounter{@tempa}}{}%
-    \setcounter{@tempa}{0}%
-    \begin{tabular}{>{\hspace{0.08\textwidth}}cr@{ }ll}%
-      \multicolumn{4}{l}{\large Soutenue le \@date{} devant la Commission d'examen:}\\[\medskipamount]%
-      \whiledo{\value{@tempa}<\value{@member}}{%
+  
+\begin{flushleft}
+\footnotesize
+\@ifundefined{c@@tempa}{\newcounter{@tempa}}{}%
+\ifnum\the@member=0\relax%
+  \ClassWarning{bordeaux-thesis}{No commission member have been given}{You can provide members using the command \string\addcommissionmember.}%
+\else%
+\textbf{Soutenue le :} {\@date{}}\\\medskip%
+\setcounter{@tempa}{0}%
+\begin{tabular}{@{}lcl}
+\textbf{Apr\`es avis de : }%
+\ifnum\value{@referee}>0\relax
+\setcounter{@tempa}{0}%
+\whiledo{\value{@tempa}<\value{@referee}}{%
+  \stepcounter{@tempa}%
+  \csname @referee@\the@tempa\endcsname\\%
+}%
+\fi  
+\end{tabular}
+\fi%
+\\{\bf Devant la Commission d'examen form\'ee de :}\\\medskip%
+\begin{tabular}{@{\enskip}lcl}
+\setcounter{@tempa}{0}%
+\whiledo{\value{@tempa}<\value{@member}}{%
         \stepcounter{@tempa}%
         \csname @member@\the@tempa\endcsname%
         \ifnum\value{@tempa}<\value{@member}\relax%
           \\%
         \fi%
       }%
-      \ifnum\value{@referee}>0\relax
-        \setcounter{@tempa}{0}%
-        \\[\bigskipamount]%
-        \multicolumn{4}{l}{\large Rapporteurs:}\\[\medskipamount]%
-        \whiledo{\value{@tempa}<\value{@referee}}{%
-          \stepcounter{@tempa}%
-          \csname @referee@\the@tempa\endcsname\\%
-        }%
-      \fi
-    \end{tabular}
-  \fi%
+\end{tabular}
+\end{flushleft}
+
+\begin{center}
+\large
+-- \@submityear{} --
+\end{center} 
+
   \newpage%
   \null%
   \vfill%
