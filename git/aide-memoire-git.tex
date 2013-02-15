@@ -1,7 +1,7 @@
 \documentclass[a4paper,twoside]{article}
 \usepackage{autiwa}
 
-\title{Aide mémoire Subversion (svn)}
+\title{Aide mémoire Git}
 \author{Autiwa}
 
 \newcommand{\raccourci}[1]{{\bfseries #1}}
@@ -121,6 +121,12 @@ git checkout *.f90
 \end{verbatim}\index{git!checkout}
 va remettre en l'état tous les fichiers du dépot qui sont présents dans le dossier courant (on peut aussi ne préciser qu'un seul fichier).
 
+\subsection{Annuler un git add : git reset}\index{git!add}
+Parfois, on peut avoir préparé des modifications à ajouter à un commit, via \textbf{git add}, soit sur des fichiers déjà suivis, soit pour suivre de nouveaux fichiers. Afin de retirer certains de ces fichiers de la liste des fichiers pour le prochain commit, il faut faire :
+\begin{verbatim}
+git reset HEAD <FILE>
+\end{verbatim}\index{git!reset}
+
 \subsection{Annuler un commit effectué par erreur}
 \subsubsection{Modifier le message du dernier commit}
 \begin{verbatim}
@@ -176,6 +182,19 @@ Pour regarder les différences avec le commit précédent, il suffit de faire :
 git diff HEAD^
 \end{verbatim}
 
+\bigskip
+
+On peut faire des diff entre des branches 
+\begin{verbatim}
+git diff master branch_devel
+\end{verbatim}
+ou entre deux versions en spécifiant leur hashtag : 
+\begin{verbatim}
+git diff dqsfg54qsdf35dqs4f ze9r8az7er3azer2
+\end{verbatim}
+
+J'utilise personnellement \gras[git!difftool]{difftool}, ça me permet d'utiliser \gras{meld} que j'affectionne particulièrement.
+
 \subsection{Enregistrer les modifications localement : commit}\index{git!commit}\index{mise à jour local -> serveur}\label{sec:commit}
 
 Pour mettre à jour les versions sur serveur à partir des modifications effectuées localement, il faut sélectionner les fichiers qu'on veut ajouter au prochain commit avec \textbf{git add} puis faire le commit :
@@ -222,6 +241,11 @@ affiche l'historique de toutes les révisions.
 \begin{attention}
 Chaque commit est numéroté grâce à un long numéro hexadécimal comme 12328a1bcbf231da\-8eaf942f8d68c7dc0c7c4f38. Cela permet de les identifier.
 \end{attention}
+
+Pour avoir les informations d'un commit particulier, il faut faire :
+\begin{verbatim}
+git show 99adb32062d66121f2ba056dc820b9529a9ea08c
+\end{verbatim}\index{git!show}
 
 \subsection{Mettre à jour sa copie locale : pull}\index{git!pull} \index{Mise à jour du dépôt}
 \begin{verbatim}
@@ -289,7 +313,27 @@ $ git branch
 \end{verbatim}
 où on voit que \textbf{master} est toujours la branche active. Il faut donc changer de branche pour pouvoir modifier les fichiers et faire des commits dans cette branche.
 
-\subsection{Activer une branche et y faire des commits}
+\subsection{Gérer une branche distante}
+Pour que cette branche soit envoyée et synchronisée avec le dépot distant, si on veut en fair eune branche permanente, il faut lancer la commande :
+\begin{verbatim}
+git push origin test_01
+\end{verbatim}\index{branche distance}
+
+Pour que quelqu'un puisse \textbf{suivre} les modifications de cette branche, il devra utiliser la commande suivante :
+\begin{verbatim}
+git checkout -b ma-branche origin/ma-branche
+\end{verbatim}
+
+Ce qui revient à créer dans le nouveau dépôt créé une branche \textbf{ma-branche} qui suivra celle du dépôt distant \textbf{origin/ma-branche}.
+
+\bigskip
+
+On peut de plus supprimer une branche distante en faisant : 
+\begin{verbatim}
+git push origin :test_01
+\end{verbatim}\index{branche distance}
+
+\subsection{Aller dans une branche et y faire des commits}
 Il faut déclarer cette branche comme active via :
 \begin{verbatim}
 git checkout test_01
@@ -416,6 +460,9 @@ git mergetool
 
 Mais ceci ne va fonctionner qu'avec des fichier ASCII. Dans mon cas, j'avais un conflit avec un fichier .pdf, et dans ce cas, mergetool ne fonctionne pas, il faut choisir si on veut le fichier distant ou le fichier local. Dans tous les cas ce sont normalement des fichiers qui sont aisément générable, le soucis majeur étant de ne plus être embêté par le conflit.
 
+\begin{remarque}
+J'utilise \textbf{meld}, que j'aime beaucoup, et qui marche autant pour les diff (\textbf{difftool}) que pour les conflits (\textbf{mergetool}).
+\end{remarque}
 
 \section{Avancé}
 \subsection{Tagger une version : tag}\index{git!tag}
@@ -690,6 +737,86 @@ Une fois dans master, on peut alors faire :
 git merge 99adb32062d66121f2ba056dc820b9529a9ea08c
 \end{verbatim}
 pour récupérer toutes les modifications de cette branche.
+
+\subsection{Créer des patchs et les appliquer}
+Il est possible de créer des patchs, qui vont contenir différentes modifications à appliquer où on veut. Dans la pratique, je me suis servi de ça pour appliquer des modifications sur certains fichiers (sur plusieurs centaines de révisions) afin de déporter ces modifications sur une autre branche. 
+
+Pour faire court, si on veut suivre les modifications d'un ou plusieurs fichiers bien précis (et ignorer les autres) pour appliquer ces modifications ailleurs, il faut faire : 
+\begin{verbatim}
+git format-patch --output-directory myPatch 7552b3a2fb57..dabfc11cce3884fa1e
+ -- user_module.f90 bessel.f90
+\end{verbatim}
+
+Ici, toutes les modifications des fichiers \textbf{user\_module.f90} et \textbf{bessel.f90} contenues entre les révisions \textbf{7552b3a2fb57} et \textbf{dabfc11cce3884fa1e} seront enregistrées dans des patchs différents. Ces patchs seront ensuite stockés dans le sous-dossier \textbf{myPatch}. 
+
+\bigskip
+
+Pour appliquer les patchs, il suffit de faire :
+\begin{verbatim}
+git apply myPatch/*.patch
+\end{verbatim}
+
+\begin{remarque}
+Comme je voulais des choses un peu propre, j'ai fait un script python qui applique les patchs un par un et qui fait un commit pour chacun d'entre eux. En effet, le patch va appliquer des modifications, mais il ne va pas faire de commit (comme pourrait le faire un \textbf{cherry-pick}). 
+\end{remarque}
+
+Vous trouverez ci-dessous le code du script python (même si vous n'avez pas le module \textbf{autiwa} qui contient la fonction \textbf{lancer\_commande}, il suffit d'avoir une fonction équivalente qui lance une commande système) : 
+\begin{lstlisting}[language=python]
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# will apply a list of patch separately, and create one commit for each single patch
+
+import autiwa
+import pdb
+
+(process_stdout, process_stderr, return_code) = autiwa.lancer_commande("ls ../myPatch/*.patch")
+if (return_code != 0):
+  print("the command return an error "+str(return_code))
+  print(process_stderr)
+  exit()
+  
+patches = process_stdout.split("\n")
+patches.remove('') # we remove an extra element that doesn't mean anything
+nb_patchs = len(patches)
+
+patches.sort()
+
+for patch in patches:
+  # Apply patch
+  cmd = "git apply %s" % patch
+  autiwa.lancer_commande(cmd)
+  
+  # Get corresponding hashID
+  patchText = open(patch, 'r')
+  tmp = patchText.readline()
+  patchText.close()
+  hashID = tmp.split()[1]
+  
+  # Get log text
+  cmd = 'git log --pretty=format:"%%s" %s -1' % hashID
+  (logText, process_stderr, return_code) = autiwa.lancer_commande(cmd)
+  
+  # Get untracked files
+  cmd = 'git ls-files --other --exclude-standard'
+  (process_stdout, process_stderr, return_code) = autiwa.lancer_commande(cmd)
+  
+  if (return_code != 0):
+    print("the command return an error "+str(return_code))
+    print(process_stderr)
+    exit()
+  
+  untracked_files = process_stdout.split("\n")
+  untracked_files.remove('') # we remove an extra element that doesn't mean anything
+  
+  # Add untracked files
+  cmd = 'git add %s' % (' '.join(untracked_files))
+  (process_stdout, process_stderr, return_code) = autiwa.lancer_commande(cmd)
+  
+  # Commit the modif
+  cmd = 'git commit -a -m "%s"' % logText
+  autiwa.lancer_commande(cmd)
+\end{lstlisting}
+
 
 \section{FAQ}
 \subsection{git demande le mot de passe à chaque fois}
