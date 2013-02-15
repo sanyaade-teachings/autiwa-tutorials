@@ -1326,6 +1326,13 @@ private boolean variable = null;
 
 En effet, je ne voulais pas donner de valeur à la base, et j'ai donc contourné en faisant ainsi, car une variable non initialisée vaut aussi \textbf{null} (enfin je crois), ça permet juste d'éviter des erreurs.
 
+\subsubsection{Comportement bizarre, variable locale qui garde la valeur précédente}
+Le titre est un peu flou, mais c'est pour illustrer le fait que quand j'ai essayé de trouver ce bug, je ne comprenais absolument pas d'où ça pouvait venir. 
+
+J'ai une classe avec des variables contenant des boutons, me permettant de déterminer un score. J'avais fait l'erreur de mettre ces boutons en temps que variable de classe avec un \textbf{static}. En conséquence, les valeurs étaient conservées d'une fois sur l'autre. 
+
+La solution est de définir les boutons comme variable d'instance et non variable de classe. J'ai laissé les textes en \textbf{static}, mais les boutons ne doivent pas l'être.
+
 \subsection{Lire/écrire des objets dans un fichier : sérialisation}
 \subsubsection{Écrire des objets dans un fichier}
 
