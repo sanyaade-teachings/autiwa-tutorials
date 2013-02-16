@@ -7,25 +7,12 @@
 %Text encoding and fonts
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{autiwa-macros}
 %\usepackage{graphicx}
 
-% for the french text adaptation (babel is already in the class)
-\FrenchFootnotes % pour les notes de bas de page
-\AddThinSpaceBeforeFootnotes % pour les puristes (donc tout le monde!) qui veulent une espace fine entre le mot et l'appel de note
 
 
-\renewcommand\theequation{\thechapter.\arabic{equation}}
-\makeatletter
-\@addtoreset{equation}{chapter}
-\makeatother
 
-\usepackage{natbib}%améliore la bibliographie, surtout pour citer les publications scientifiques.
-\usepackage{frbib}%pour mettre la bibliographie en français
-\usepackage{aas_macros}% contient les macros pour la définition des noms de journaux des publications scientifiques utilses pour les enterées bibtex de ADS.
-\usepackage[nottoc]{tocbibind}%pour que la bibliographie  et l'index apparaissent dans la table des matières. l'option permet de ne pas afficher la table des matières. (notlof, notlot pour table des figures et ou des tableaux)
 
-\usepackage{xspace}%Permet à babel d'utiliser la macro xspace  partout où c'est nécessaire. (Voir la doc de babel pour de plus amples explications.)
 
 %########################################################################
 % Title page

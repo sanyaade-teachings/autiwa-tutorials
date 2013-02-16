@@ -109,6 +109,59 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{lastpage}
 
+\RequirePackage[frenchb]{babel}
+\FrenchFootnotes % pour les notes de bas de page
+\AddThinSpaceBeforeFootnotes % pour les puristes (donc tout le monde!) qui veulent une espace fine entre le mot et l'appel de note
+
+\RequirePackage[autolanguage]{numprint}
+\RequirePackage[font=small,format=plain,labelsep=endash]{caption}
+
+%meta paquet qui regroupe des environnements, des commandes persos et cie. Permet de les ajouter plus simplement dans mon paquet pour du latex normal, des beamers ou des posters. Ainsi les commandes ne sont qu'à un seul endroit.
+\RequirePackage{autiwa-macros}
+
+\RequirePackage[french]{varioref}
+
+\renewcommand{\refeq}[1]{(\vref{#1})}
+\newcommand{\reffig}[1]{[\figurename~\vref{#1}]}
+\newcommand{\reftab}[1]{[\tablename~\vref{#1}]}
+\newcommand{\refsec}[1]{[\S~\vref{#1}]}
+
+
+%%% mise en page %%%
+\RequirePackage{multicol}%permet de mettre du texte sur plusieurs colonnes sans changer de pages (très pratique pour deux colonnes, vu que par défaut, il change de page
+\RequirePackage{natbib}%améliore la bibliographie, surtout pour citer les publications scientifiques.
+
+\RequirePackage{frbib}%pour mettre la bibliographie en français
+
+
+\RequirePackage{aas_macros}% contient les macros pour la déifnition des noms de journaux des publications scientifiques utilses pour les enterées bibtex de ADS.
+\RequirePackage[nottoc]{tocbibind}%pour que la bibliographie  et l'index apparaissent dans la table des matières. l'option permet de ne pas afficher la table des matières. (notlof, notlot pour table des figures et ou des tableaux)
+\RequirePackage{xspace}%Permet à babel d'utiliser la macro xspace  partout où c'est nécessaire. (Voir la doc de babel pour de plus amples explications.)
+\RequirePackage{acronym}%pour gérer les acronymes. Description du paquet dans mon pdf, ou dans la description du paquet acronym.sty
+
+
+\RequirePackage[pdftex]{hyperref}%l'option pagebackref permet d'afficher les pages dans lesquelles sont citées les références (en gros, la position des labels je pense)
+\hypersetup{
+  colorlinks=true, %colorise les liens
+  breaklinks=true, %permet le retour à la ligne dans les liens trop longs
+  urlcolor= blue,  %couleur des hyperliens
+  linkcolor= refcolor, %couleur des liens internes
+  plainpages=false,  %pour palier à "Bookmark problems can occur when you have duplicate page numbers, for example, if you have a page i and a page 1."
+  citecolor=refcolor % pour définir la couleur des liens de bibliographie
+}
+
+%%% graphiques et images %%%
+
+\RequirePackage{afterpage} % permet de placer des images plus intelligemment
+\RequirePackage{graphics}
+\RequirePackage[pdftex]{graphicx}
+\RequirePackage[justification=centerfirst]{subfig}%pour pouvoir mettre plusieurs figures dans le même environnement de figure, avec plusieurs caption
+
+%%% divers %%%
+\pdfcompresslevel=9
+\RequirePackage{shorttoc}
+\RequirePackage{makeidx} %pour faire un index. J'ai mis la commande d'indexation dans \gras{} d'ailleurs. Ensuite, on crée l'index via la commande \makeindex et on l'affiche via la commande \printindex. Pour indexer un mot, il faut écrire \index{mot}. Attention à respecter la casse pour le même mot.
+
 %Part table of contents
 \def\@finalize@chaptertoc{%
   \if@phd@donechaptertoc%
@@ -227,6 +280,10 @@
 
 \setlength\headheight{16pt}
 \setlength\headsep{\baselineskip}
+
+\renewcommand\theequation{\thechapter.\arabic{equation}}
+\@addtoreset{equation}{chapter}
+
 
 %########################################################################
 % Title page
