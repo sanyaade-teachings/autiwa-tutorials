@@ -34,8 +34,10 @@
   \RequirePackage[frenchb]{babel}
   \FrenchFootnotes % pour les notes de bas de page
   \AddThinSpaceBeforeFootnotes % pour les puristes (donc tout le monde!) qui veulent une espace fine entre le mot et l'appel de note
+  \RequirePackage[french]{varioref}
 \else
   \RequirePackage[english]{babel}
+  \RequirePackage{varioref}
 \fi
 
 \RequirePackage[autolanguage]{numprint}
@@ -43,6 +45,11 @@
 
 %meta paquet qui regroupe des environnements, des commandes persos et cie. Permet de les ajouter plus simplement dans mon paquet pour du latex normal, des beamers ou des posters. Ainsi les commandes ne sont qu'à un seul endroit.
 \RequirePackage{autiwa-macros}
+
+\renewcommand{\refeq}[1]{(\vref{#1})}
+\newcommand{\reffig}[1]{[\figurename~\vref{#1}]}
+\newcommand{\reftab}[1]{[\tablename~\vref{#1}]}
+\newcommand{\refsec}[1]{[\S~\vref{#1}]}
 
 
 %%% mise en page %%%
