@@ -186,10 +186,7 @@
 \fi
 
 %Logos
-\if@phd@logos
-\RequirePackage{graphicx}
 \RequirePackage{ifpdf}
-\fi
 
 %Math
 \RequirePackage{amsmath,amssymb,amsfonts}
