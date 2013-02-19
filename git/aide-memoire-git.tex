@@ -235,6 +235,32 @@ On peut ensuite faire les modifications urgente, dans cette branche ou dans une 
 git stash apply
 \end{verbatim}
 
+\subsubsection{Supprimer les fichiers inconnus de Git}\index{git!clean}
+Pour supprimer les fichiers \textbf{untracked}, il faut utiliser la commande \gras[git!clean]{clean}. 
+
+D'abord on simule la suppression pour voir ce qu'il va supprimer (option \textbf{-n}) :
+\begin{verbatim}
+git clean -n
+\end{verbatim}
+
+\begin{itemize}
+\item[\textbf{-d}] Pour supprimer aussi les dossiers
+\item[\textbf{-x}] Pour supprimer les fichiers ignorés par Git (\textbf{.gitignore})
+\item[\textbf{-X}] Pour \textbf{ne} supprimer \textbf{que} les fichiers ignorés par Git (\textbf{.gitignore})
+\item[\textbf{-f}] Par défaut, il faut cette option pour supprimer les fichiers, ça évite de faire le nettoyage par erreur.
+\end{itemize}
+
+Pour supprimer les fichiers, une fois qu'on a vu ce qu'il allait faire :
+\begin{verbatim}
+git clean -f
+\end{verbatim}
+ou
+\begin{verbatim}
+git clean -f <PATH>
+\end{verbatim}
+si on souhaite faire cela dans un dossier particulier.
+
+
 \subsection{Contrôler}
 \subsubsection{État du dépot local (modifications par rapport au dernier commit) : status}\index{git!status}
 La commande git status vous indique les fichiers que vous avez modifiés récemment :
