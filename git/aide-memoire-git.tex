@@ -88,9 +88,11 @@ git init
 pour un projet que j'appelle \textbf{mercury}.
 
 \section{Commandes universelles git}
-Ici, je note les commandes qui sont valables à la fois pour svn installé sur un serveur internet, ou sur une machine locale pour un usage personnel
+Ici, je note les commandes qui sont valables à la fois pour svn installé sur un serveur internet, ou sur une machine locale pour un usage personnel.
 
-\subsection{Ajouter des fichiers ou dossiers au projet : add}\index{git!add} \index{Ajouter des fichiers}
+\subsection{Commandes de base}
+
+\subsubsection{Ajouter des fichiers ou dossiers au projet : add}\index{git!add} \index{Ajouter des fichiers}
 Pour ajouter des fichiers il faut faire :
 \begin{verbatim}
 git add latex/ vim/ 
@@ -114,38 +116,34 @@ Il est possible de retirer un fichier qui avait été ajouté pour être \og com
 git reset HEAD -- fichier_a_supprimer
 \end{verbatim}
 
-\subsection{Annuler les modifications non commités : checkout}
-Pour annuler les modifications locales et revenir à la dernière révision : 
-\begin{verbatim}
-git checkout *.f90
-\end{verbatim}\index{git!checkout}
-va remettre en l'état tous les fichiers du dépot qui sont présents dans le dossier courant (on peut aussi ne préciser qu'un seul fichier).
+\subsubsection{Enregistrer les modifications localement : commit}\index{git!commit}\index{mise à jour local -> serveur}\label{sec:commit}
 
-\subsection{Annuler un git add : git reset}\index{git!add}
-Parfois, on peut avoir préparé des modifications à ajouter à un commit, via \textbf{git add}, soit sur des fichiers déjà suivis, soit pour suivre de nouveaux fichiers. Afin de retirer certains de ces fichiers de la liste des fichiers pour le prochain commit, il faut faire :
+Pour mettre à jour les versions sur serveur à partir des modifications effectuées localement, il faut sélectionner les fichiers qu'on veut ajouter au prochain commit avec \textbf{git add} puis faire le commit :
 \begin{verbatim}
-git reset HEAD <FILE>
-\end{verbatim}\index{git!reset}
+git add FILE
+git commit -m "initialisation"
+\end{verbatim}
+où \textbf{"initialisation"} est le commentaire qui décrit la mise à jour et les modifications effectuées. \textbf{FILE} peut être un ou plusieurs fichiers, l'astérisque pouvant être utilisée.
 
-\subsection{Annuler un commit effectué par erreur}
-\subsubsection{Modifier le message du dernier commit}
-\begin{verbatim}
-git commit --amend
+À noter que l'option -a permet de se passer du \textbf{git add} et d'ajouter automatiquement tous les fichiers qui ont été modifiés :
+ \begin{verbatim}
+git commit -a -m "initialisation"
 \end{verbatim}
 
-\subsubsection{Annuler un commit sans toucher aux fichiers (soft) : reset}\index{git!reset}
+\begin{remarque}
+Si on a fait un 'add' par erreur et qu'on ne veut pas ajouter un certain fichier au prochain commit, il suffit de faire :
 \begin{verbatim}
-git reset HEAD^
+git reset FILE
 \end{verbatim}
-annule le dernier commit et revient à l'avant dernier. Pour autant les fichiers ne sont pas modifiés, seul le commit en lui même est annulé. Pour annuler les modifications liées au commit, il faut faire un hard reset (section suivante).
+\end{remarque}
 
+\bigskip
 
-\subsubsection{Annuler un commit et les modifications de fichier associées (hard) : reset --hard}\index{git!reset}
-\begin{verbatim}
-git reset --hard HEAD^
-\end{verbatim}
-Annule le dernier commit et toutes les modifications qui s'y rapportent. 
+\begin{attention}
+Un commit avec git est local : à moins d'envoyer ce commit sur le serveur comme on apprendra à le faire plus loin, personne ne sait que vous avez fait ce commit pour le moment. Cela a un avantage : si vous vous rendez compte que vous avez fait une erreur dans votre dernier commit, vous avez la possibilité de l'annuler (ce qui n'est pas le cas avec SVN !).
+\end{attention}
 
+\subsubsection{Identifier un commit}
 Pour indiquer à quel commit on souhaite revenir, il existe plusieurs notations :
 \begin{itemize}
 \item \verb|HEAD| : dernier commit ;
@@ -155,6 +153,63 @@ Pour indiquer à quel commit on souhaite revenir, il existe plusieurs notations 
 \item \verb|d6d98923868578a7f38dea79833b56d0326fcba1| : indique un numéro de commit précis ;
 \item \verb|d6d9892| : indique un numéro de commit précis (notation équivalente à la précédente, bien souvent écrire les premiers chiffres est suffisant tant qu'aucun autre commit ne commence par les mêmes chiffres).
 \end{itemize}
+
+\begin{exemple}
+\begin{verbatim}
+git diff HEAD^
+\end{verbatim}
+permet de comparer la version courante avec la version juste avant.
+\end{exemple}
+
+\subsubsection{Mettre à jour sa copie locale : pull}\index{git!pull} \index{Mise à jour du dépôt}
+\begin{verbatim}
+git pull
+\end{verbatim}
+
+Pour celà, il faut que le dossier dans lequel on se trouve ait déjà été défini comme un dossier git via un \gras[commande git!clone]{clone} (voir \refsec{sec:git_init})
+
+\subsubsection{Propager les modifications locales sur le dépot du serveur : push}\index{git!push}
+On peut modifier ces commits là, tant qu'ils sont en local. Puis une fois vérifié. Il ne reste plus qu'à les envoyer sur le serveur. Pour celà on vérifie tout d'abord ce qu'on s'apprête à envoyer, et on envoie sur le serveur : 
+\begin{verbatim}
+git log -p
+git push
+\end{verbatim}
+
+\subsection{Annuler ou nettoyer}
+\subsubsection{Annuler les modifications non commités : checkout}
+Pour annuler les modifications locales et revenir à la dernière révision : 
+\begin{verbatim}
+git checkout *.f90
+\end{verbatim}\index{git!checkout}
+va remettre en l'état tous les fichiers du dépot qui sont présents dans le dossier courant (on peut aussi ne préciser qu'un seul fichier).
+
+\subsubsection{Annuler un git add : git reset}\index{git!add}
+Parfois, on peut avoir préparé des modifications à ajouter à un commit, via \textbf{git add}, soit sur des fichiers déjà suivis, soit pour suivre de nouveaux fichiers. Afin de retirer certains de ces fichiers de la liste des fichiers pour le prochain commit, il faut faire :
+\begin{verbatim}
+git reset HEAD <FILE>
+\end{verbatim}\index{git!reset}
+
+\subsubsection{Annuler un commit effectué par erreur}
+\subsubsection{Modifier le message du dernier commit}
+Valable si on n'a pas fait de \gras[git!push]{git push} :
+\begin{verbatim}
+git commit --amend
+\end{verbatim}
+
+\subsubsection{Annuler un commit pas encore publié}\index{git!reset}
+Valable si on n'a pas fait de \gras[git!push]{git push} :
+\begin{verbatim}
+git reset HEAD^
+\end{verbatim}
+annule le dernier commit et revient à l'avant dernier. Pour autant les fichiers ne sont pas modifiés, seul le commit en lui même est annulé.
+
+\bigskip
+
+Pour annuler les modifications liées au commit, il faut faire un hard reset :
+\begin{verbatim}
+git reset --hard HEAD^
+\end{verbatim}\index{git!reset}
+Annule le dernier commit et toutes les modifications qui s'y rapportent. 
 
 \subsubsection{Annuler un commit publié}
 Si vous publiez un commit sur le serveur, mais que vous souhaitez l'annuler, c'est quand même possible, mais c'est un peu plus barbare qu'un commit non encore propagé (à l'aide de push). 
@@ -167,7 +222,72 @@ Il faut préciser l'ID du commit à \og revert \fg. Il n'est pas obligatoire d'i
 
 Une fois que c'est enregistré, le commit d'annulation est créé. Il ne vous reste plus qu'à vérifier que tout est bon et à le publier (avec un git push).
 
-\subsection{Différences entre versions : diff}
+\subsubsection{Mettre de coté et reprendre un travail en cours : stash}\index{git!stash}
+Si on est en train de faire une modification, sans faire de commit, mais qu'on doit faire des modifications plus urgentes, et surtout immédiate, on peut souhaiter ne pas perdre le travail déjà effectué. Au lieu de faire un commit on peut simplement faire une sauvegarde de l'état modifié, pour le restituer plus tard.
+
+\begin{verbatim}
+git stash save "ongoing work about something"
+\end{verbatim}
+va sauvegarder les modifications effectuées depuis le dernier commit dans le \textbf{stash}, et remettre les fichiers dans leur état lors du dernier commit. 
+
+On peut ensuite faire les modifications urgente, dans cette branche ou dans une autre, faire des commit etc. Puis une fois qu'on veut réutiliser le stash, il suffit de faire : 
+\begin{verbatim}
+git stash apply
+\end{verbatim}
+
+\subsubsection{Supprimer les fichiers inconnus de Git}\index{git!clean}
+Pour supprimer les fichiers \textbf{untracked}, il faut utiliser la commande \gras[git!clean]{clean}. 
+
+D'abord on simule la suppression pour voir ce qu'il va supprimer (option \textbf{-n}) :
+\begin{verbatim}
+git clean -n
+\end{verbatim}
+
+\begin{itemize}
+\item[\textbf{-d}] Pour supprimer aussi les dossiers
+\item[\textbf{-x}] Pour supprimer les fichiers ignorés par Git (\textbf{.gitignore})
+\item[\textbf{-X}] Pour \textbf{ne} supprimer \textbf{que} les fichiers ignorés par Git (\textbf{.gitignore})
+\item[\textbf{-f}] Par défaut, il faut cette option pour supprimer les fichiers, ça évite de faire le nettoyage par erreur.
+\end{itemize}
+
+Pour supprimer les fichiers, une fois qu'on a vu ce qu'il allait faire :
+\begin{verbatim}
+git clean -f
+\end{verbatim}
+ou
+\begin{verbatim}
+git clean -f <PATH>
+\end{verbatim}
+si on souhaite faire cela dans un dossier particulier.
+
+
+\subsection{Contrôler}
+\subsubsection{État du dépot local (modifications par rapport au dernier commit) : status}\index{git!status}
+La commande git status vous indique les fichiers que vous avez modifiés récemment :
+\begin{verbatim}
+$ git status
+# On branch master
+nothing to commit (working directory clean)
+\end{verbatim}
+
+\subsubsection{Historique des modifications : log}\index{historique des modifications}\index{git!log}
+La commande \texttt{log} permet de voir un historique des commentaires de révision, soit de l'ensemble des fichiers, soit d'un fichier en particulier.
+
+\begin{verbatim}
+git log
+\end{verbatim}\index{git!log}
+affiche l'historique de toutes les révisions.
+
+\begin{attention}
+Chaque commit est numéroté grâce à un long numéro hexadécimal comme 12328a1bcbf231da\-8eaf942f8d68c7dc0c7c4f38. Cela permet de les identifier.
+\end{attention}
+
+Pour avoir les informations d'un commit particulier, il faut faire :
+\begin{verbatim}
+git show 99adb32062d66121f2ba056dc820b9529a9ea08c
+\end{verbatim}\index{git!show}
+
+\subsubsection{Différences entre versions : diff}
 
 \begin{verbatim}
 git diff
@@ -195,73 +315,7 @@ git diff dqsfg54qsdf35dqs4f ze9r8az7er3azer2
 
 J'utilise personnellement \gras[git!difftool]{difftool}, ça me permet d'utiliser \gras{meld} que j'affectionne particulièrement.
 
-\subsection{Enregistrer les modifications localement : commit}\index{git!commit}\index{mise à jour local -> serveur}\label{sec:commit}
-
-Pour mettre à jour les versions sur serveur à partir des modifications effectuées localement, il faut sélectionner les fichiers qu'on veut ajouter au prochain commit avec \textbf{git add} puis faire le commit :
-\begin{verbatim}
-git add FILE
-git commit -m "initialisation"
-\end{verbatim}
-où \textbf{"initialisation"} est le commentaire qui décrit la mise à jour et les modifications effectuées. \textbf{FILE} peut être un ou plusieurs fichiers, l'astérisque pouvant être utilisée.
-
-À noter que l'option -a permet de se passer du \textbf{git add} et d'ajouter automatiquement tous les fichiers qui ont été modifiés :
- \begin{verbatim}
-git commit -a -m "initialisation"
-\end{verbatim}
-
-\begin{remarque}
-Si on a fait un 'add' par erreur et qu'on ne veut pas ajouter un certain fichier au prochain commit, il suffit de faire :
-\begin{verbatim}
-git reset FILE
-\end{verbatim}
-\end{remarque}
-
-\bigskip
-
-\begin{attention}
-Un commit avec git est local : à moins d'envoyer ce commit sur le serveur comme on apprendra à le faire plus loin, personne ne sait que vous avez fait ce commit pour le moment. Cela a un avantage : si vous vous rendez compte que vous avez fait une erreur dans votre dernier commit, vous avez la possibilité de l'annuler (ce qui n'est pas le cas avec SVN !).
-\end{attention}
-
-\subsection{État du dépot local (modifications par rapport au dernier commit) : status}\index{git!status}
-La commande git status vous indique les fichiers que vous avez modifiés récemment :
-\begin{verbatim}
-$ git status
-# On branch master
-nothing to commit (working directory clean)
-\end{verbatim}
-
-\subsection{Historique des modifications : log}\index{historique des modifications}\index{git!log}
-La commande \texttt{log} permet de voir un historique des commentaires de révision, soit de l'ensemble des fichiers, soit d'un fichier en particulier.
-
-\begin{verbatim}
-git log
-\end{verbatim}\index{git!log}
-affiche l'historique de toutes les révisions.
-
-\begin{attention}
-Chaque commit est numéroté grâce à un long numéro hexadécimal comme 12328a1bcbf231da\-8eaf942f8d68c7dc0c7c4f38. Cela permet de les identifier.
-\end{attention}
-
-Pour avoir les informations d'un commit particulier, il faut faire :
-\begin{verbatim}
-git show 99adb32062d66121f2ba056dc820b9529a9ea08c
-\end{verbatim}\index{git!show}
-
-\subsection{Mettre à jour sa copie locale : pull}\index{git!pull} \index{Mise à jour du dépôt}
-\begin{verbatim}
-git pull
-\end{verbatim}
-
-Pour celà, il faut que le dossier dans lequel on se trouve ait déjà été défini comme un dossier git via un \gras[commande git!clone]{clone} (voir \refsec{sec:git_init})
-
-\subsection{Propager les modifications locales sur le dépot du serveur : push}\index{git!push}
-On peut modifier ces commits là, tant qu'ils sont en local. Puis une fois vérifié. Il ne reste plus qu'à les envoyer sur le serveur. Pour celà on vérifie tout d'abord ce qu'on s'apprête à envoyer, et on envoie sur le serveur : 
-\begin{verbatim}
-git log -p
-git push
-\end{verbatim}
-
-\subsection{Revenir à une révision antérieure : checkout}\label{sec:revenir_en_arriere}\index{git!checkout}
+\subsubsection{Revenir à une révision antérieure : checkout}\label{sec:revenir_en_arriere}\index{git!checkout}
 Pour changer la révision courante, il suffit de faire : 
 \begin{verbatim}
 git checkout c23db4a1d05e
@@ -277,6 +331,7 @@ ainsi
 git checkout master
 \end{verbatim}
 active la dernière révision de la branche principale.
+
 
 
 \section{Travailler avec des branches : branch}\index{git!branch}
@@ -393,21 +448,6 @@ ou annuler directement avec la commande
 \begin{verbatim}
 git rebase --abort
 \end{verbatim}
-
-\subsection{Mettre de coté et reprendre un travail en cours : stash}\index{git!stash}
-Si on est en train de faire une modification, sans faire de commit, mais qu'on doit faire des modifications plus urgentes, et surtout immédiate, on peut souhaiter ne pas perdre le travail déjà effectué. Au lieu de faire un commit on peut simplement faire une sauvegarde de l'état modifié, pour le restituer plus tard.
-
-\begin{verbatim}
-git stash save "ongoing work about something"
-\end{verbatim}
-va sauvegarder les modifications effectuées depuis le dernier commit dans le \textbf{stash}, et remettre les fichiers dans leur état lors du dernier commit. 
-
-On peut ensuite faire les modifications urgente, dans cette branche ou dans une autre, faire des commit etc. Puis une fois qu'on veut réutiliser le stash, il suffit de faire : 
-\begin{verbatim}
-git stash apply
-\end{verbatim}
-
-
 
 \subsection{Supprimer une branche}
 Pour supprimer une branche dont vous avez déjà propagé les modifications dans la branche principale, faites : 
