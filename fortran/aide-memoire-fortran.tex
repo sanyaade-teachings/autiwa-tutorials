@@ -531,7 +531,7 @@ L'option \gras{form} permet de choisir d'écrire un ASCII ou en format binaire (
 
 L'option \gras{access} permet d'ajouter le texte à la suite du fichier déjà existant (il y a d'autres options, mais comme je ne les connais pas, je préfère de pas en parler : 
 \begin{verbatim}
-access='append'
+position='append'
 \end{verbatim}
 
 
@@ -3146,7 +3146,7 @@ Le point crucial est que dans mon cas, je peux récupérer le temps précis du p
 Le temps est ici un paramètre de la routine \verb|mdt_hy (time=313506736 ...)| ce qui me permet de rajouter le bout de code suivant dans mon programme : 
 \begin{verbatim}
 if (time.gt.313506725) then
-  open(10, file='leak.out', status="old", access="append")
+  open(10, file='leak.out', status="old", position="append")
   write(10,*) time, planet, time_mig, time_ecc, time_inc
   close(10)
   write(*,*)
