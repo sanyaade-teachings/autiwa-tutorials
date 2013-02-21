@@ -54,16 +54,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.63611989"
-     inkscape:cx="362.43808"
-     inkscape:cy="436.75955"
+     inkscape:zoom="0.57806931"
+     inkscape:cx="1174.0414"
+     inkscape:cy="194.35661"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
-     fit-margin-bottom="0" />
+     fit-margin-bottom="0"
+     inkscape:snap-page="true" />
   <metadata
      id="metadata6825">
     <rdf:RDF>
@@ -84,8 +85,8 @@
     <image
        y="-63.297607"
        x="-90.69577"
-       id="image6612"
-       xlink:href="file:///Users/cossou/Documents/Formulaires/these/figure/milky_way.jpg"
+       id="image3068"
+       xlink:href="file:///Users/cossou/Documents/Formulaires/these/figure/milky_way.png"
        height="1024"
        width="1024" />
     <ellipse
@@ -100,7 +101,7 @@
        sodipodi:ry="8"
        style="font-size:24px;text-anchor:middle;fill:#ffffff;fill-opacity:0;stroke:#ff0000;font-family:sans-serif"
        d="M 8,0 C 8,4.418278 4.418278,8 0,8 -4.418278,8 -8,4.418278 -8,0 c 0,-4.418278 3.581722,-8 8,-8 4.418278,0 8,3.581722 8,8 z"
-       transform="matrix(0.34367411,0,0,0.34367411,416.71838,261.25858)" />
+       transform="matrix(0.34367411,0,0,0.34367411,416.71838,640.10589)" />
     <path
        sodipodi:type="arc"
        style="fill:none;stroke:#000000;stroke-width:1.16802526;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -109,23 +110,25 @@
        sodipodi:cy="457.72729"
        sodipodi:rx="14.100316"
        sodipodi:ry="14.100316"
-       d="m 766.78861,457.72729 c 0,7.78739 -6.31293,14.10032 -14.10032,14.10032 -7.78739,0 -14.10031,-6.31293 -14.10031,-14.10032 0,-7.78738 6.31292,-14.10031 14.10031,-14.10031 7.78739,0 14.10032,6.31293 14.10032,14.10031 z"
-       transform="matrix(0.88529754,0,0,0.88529754,-249.63472,-143.96627)" />
+       d="m 766.78861,457.72729 a 14.100316,14.100316 0 1 1 -28.20063,0 14.100316,14.100316 0 1 1 28.20063,0 z"
+       transform="matrix(0.88529754,0,0,0.88529754,-249.63472,234.88104)" />
     <path
        id="path6112"
        style="fill:none;stroke:#ff0000;stroke-width:0.46067241;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-       d="m 416.71838,266.6716 0,-4.05977 m 0,-2.70651 0,-4.05976 m -5.41303,5.41302 4.05977,0 m 2.70651,0 4.05977,0"
+       d="m 416.71838,645.51891 0,-4.05977 m 0,-2.70651 0,-4.05976 m -5.41303,5.41302 4.05977,0 m 2.70651,0 4.05977,0"
        inkscape:connector-curvature="0" />
     <g
        id="g6143"
-       transform="translate(-142.64266,6.0739405)">
+       transform="translate(-142.64266,384.92125)">
       <rect
          y="281.17047"
          x="235.92245"
          height="67.815804"
          width="285.36353"
          id="rect6141"
-         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none"
+         rx="6.9195857"
+         ry="6.9195857" />
       <text
          sodipodi:linespacing="125%"
          id="text6115"
@@ -133,25 +136,27 @@
          x="378.01828"
          style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
          xml:space="preserve"><tspan
+           id="tspan6119"
            y="307.17993"
            x="378.01828"
-           id="tspan6117"
-           sodipodi:role="line">Exoplanètes détectées</tspan><tspan
-           id="tspan6119"
+           sodipodi:role="line">Zone de détection des</tspan><tspan
            y="337.17993"
            x="378.01828"
-           sodipodi:role="line"> ~500pc</tspan></text>
+           sodipodi:role="line"
+           id="tspan3096">exoplanètes : ~500pc</tspan></text>
     </g>
     <g
        id="g6135"
-       transform="translate(123.60899,-274.03225)">
+       transform="translate(222.21308,348.73045)">
       <rect
-         y="517.35626"
-         x="548.81519"
-         height="39.519257"
-         width="69.158691"
+         y="512.66083"
+         x="540.59821"
+         height="48.910122"
+         width="85.592705"
          id="rect6125"
-         style="fill:#ffffff;stroke:none" />
+         style="fill:#ffffff;stroke:none"
+         rx="5.8876605"
+         ry="5.8876605" />
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -161,23 +166,24 @@
       <text
          sodipodi:linespacing="125%"
          id="text6121"
-         y="549.1665"
+         y="551.11261"
          x="582.83203"
          style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
          xml:space="preserve"><tspan
-           y="549.1665"
+           y="551.11261"
            x="582.83203"
            id="tspan6123"
            sodipodi:role="line">1kpc</tspan></text>
     </g>
     <path
        style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;marker-end:url(#Arrow1Lend)"
-       d="m 360.85007,331.22399 49.3511,-58.07987"
+       d="m 373.82429,700.1244 36.37688,-48.13297"
        id="path6149"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
     <g
        id="g6343"
-       transform="translate(20.212065,-4.5202142)">
+       transform="translate(20.212065,374.32709)">
       <rect
          transform="translate(-128,-64)"
          y="265.29782"
@@ -185,7 +191,9 @@
          height="41.323803"
          width="237.06111"
          id="rect6341"
-         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none"
+         rx="6.0546374"
+         ry="6.0546374" />
       <text
          sodipodi:linespacing="125%"
          id="text6337"
@@ -201,7 +209,7 @@
     <path
        inkscape:connector-curvature="0"
        id="path6348"
-       d="m 533.67084,229.38318 -115.59921,31.8754"
+       d="m 533.67084,608.23049 -115.59921,31.8754"
        style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;marker-end:url(#Arrow1Lend)"
        sodipodi:nodetypes="cc" />
   </g>
