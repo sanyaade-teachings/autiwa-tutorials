@@ -1,15 +1,81 @@
-\section{Les disques protoplanétaire}
+ \section{Les disques protoplanétaires}
 %TODO voir thèse mordasini, et les articles de mordasini, alibert, ida et lin, histoire de voir ce qu'ils font)
 
 
 \subsection{Formation et évolution}
-Les planètes se forment à partir d'un disque protoplanétaire constitué de gaz et de poussière. On observe de tels disques autour d'étoiles jeunes, essentiellement pendant les premiers millions d'années de leur existence. 
+Les planètes se forment à partir d'un disque protoplanétaire constitué de gaz et de poussière. On observe de tels disques autour d'étoiles jeunes, essentiellement pendant les premiers millions d'années de leur existence. Il peut sembler étrange de voir que les disques d'accrétion sont aussi courants dans l'univers et surtout de voir qu'il apparaît spontanément un axe de rotation. 
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.8\linewidth]{figure/disk_collapse.pdf}
+\caption{Schéma de l'effondrement d'un nuage moléculaire, représenté par un amas épars de cellules de gaz représentées par des points noirs.}\label{fig:disk_collapse}
+\end{figure}
+
+\reffig*{fig:disk_collapse} montre le principe de l'effondrement gravitationnel d'un nuage. Loin de moi l'idée de comparer les patineuses avec un nuage de gaz mais pour illustrer l'effondrement gravitationnel d'un nuage moléculaire, rien de mieux que le patinage artistique. 
+
+Quand une patineuse tourne sur elle même, vous observerez qu'en ramenant les bras le long du corps, sa rotation s'accélère. À l'inverse, sa rotation diminue quand elle écarte les bras. C'est une illustration de la conservation du moment angulaire. 
+
+Pour un nuage moléculaire c'est exactement pareil. À mesure que le nuage s'effondre sur lui même, et afin de satisfaire à la conservation du moment angulaire, ce dernier voit sa rotation accélérer. C'est ainsi que le disque d'accrétion, résultat de l'effondrement du nuage de gaz, est en rotation. L'effondrement d'un nuage moléculaire étant beaucoup plus violent que le fait de ramener ses bras le long de son corps, l'accélération de la rotation est elle aussi beaucoup plus drastique dans le cas du nuage. 
+
+Initialement, il est hautement improbable que le moment angulaire du nuage soit parfaitement nul. C'est ainsi que même si sa rotation est imperceptible lors des premiers stades de son effondrement gravitationnel, le disque d'accrétion fini toujours en rotation. 
+
+\bigskip
 
 L'évolution de tels objets au cours du temps est un sujet de recherche actif, mais le principe de base est que lors de l'effondrement gravitationnel d'un nuage moléculaire diffus, le gigantesque moment angulaire de cette masse ne peut s'évacuer instantanément. 
 
+La quantité totale de moment angulaire doit être conservée. En conséquence, soit deux cellules de gaz vont échanger du moment angulaire par friction (celle qui gagne du moment angulaire migre vers l'extérieur, l'autre migrant vers l'intérieur), soit du moment angulaire est perdu soit par accrétion d'une particule de gaz sur l'étoile, soit par évaporation du gaz sur les bords du disque.
+
+Mais ces processus prennent du temps, beaucoup plus de temps que n'en met le gaz pour faire une orbite autour de l'étoile. De l'ordre du million d'années. C'est durant ce labs de temps que les planètes se forment. Le processus est complexe et très loin d'être compris. Il est cependant clair que les interactions entre le disque de gaz et les planètes ont un rôle prépondérant dans la formation d'un système stellaire, que ce soit pour les planètes géantes, dont on pense qu'elles ont accrété une partie du gaz du disque pour en faire leur enveloppe, ou les planètes telluriques, beaucoup plus denses, principalement composées des poussières du disque.
+
+\bigskip
+
+Afin de décrire la physique des disques, on a besoin principalement de deux équations. L'équation de Navier-Stokes pour décrire le comportement fluide du disque de gaz et l'équation de conservation de l'énergie, pour décrire la température du disque.
+
+\subsection{Modélisation de l'évolution hydrodynamique du disque}
+
+\subsection{Taille et représentation des disques}%TODO s'inspirer du 2.1.1 de yann en rajoutant un schéma de disque pour illustrer qu'il faut se méfier des représentations vis à vis de la "réalité"
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.45\linewidth]{figure/disk_scheme.pdf}
+\caption{Représentation de la répartition radiale et azimutale de matière dans un disque protoplanétaire.}\label{fig:disk_scheme}
+\end{figure}
+
+\reffig{fig:disk_scheme} donne une idée de ce qu'est un disque protoplanétaire. Pour autant, ce n'est qu'une représentation et il est toujours important de garder en tête quelques différences notables entre cette représentation et la réalité physique d'un disque. Quand on parle de disque protoplanétaire, on fait référence à la composante gazeuse, largement majoritaire. Pourtant, bien que minoritaire, la poussière joue un rôle majeur et sa répartition spatiale ne suis pas forcément exactement celle du gaz, ces deux entitées n'ayant pas les mêmes propriétés, elles ne sont pas strictement régies par les mêmes équations.
+
+\bigskip
+
+Tout d'abord, le bord interne est une des parties les plus complexes d'un disque protoplanétaire. Ce bord interne correspond, pour la poussière, à une température de 1500K environ, température au delà de laquelle la partie réfractaire des grains se sublime. 
+
+Le gaz, quant à lui, ne se propage pas non plus jusqu'à la surface de l'étoile en raison du champ magnétique important autour des jeunes étoiles. Le bord interne est ainsi déterminé par le rayon de co-rotation de l'étoile, c'est à dire la distance à laquelle une particule en rotation képlerienne orbite à la vitesse de rotation de l'étoile. Le champ magnétique de l'étoile tournant à la vitesse de rotation de l'étoile, ce rayon de co-rotation correspond ainsi au rayon en dessous duquel le gaz est freiné par le champ magnétique et est rapidement accrété le long des lignes de champ. 
+
+\bigskip
+
+En considérant un système \og étoile + disque\fg isolé, il n'y a pas d'arrêt brutal de la distribution de matière au bord externe qui est donc plus une limitation numérique nécessaire aux simulations qu'autre chose. La réalité est représentée plus fidèlement par une décroissante continue de la matière, difficile à représenter tant pour le bord externe que pour la distribution azimutale du disque. 
+
+Généralement, on considère donc que la taille verticale du disque est égale à une échelle de hauteur (grandeur caractéristique de la décroissance exponentielle verticale de la densité de matière), tandis que la taille radiale du disque dépend de la physique que l'on considère. Dans mon cas j'ai souvent pris un bord externe à 100 AU.
+
+
+%TODO !!!! Parler de l'équation et parler de manière logique des différents termes et paramètres qui en découlent.
+
 %TODO 
+\subsection{Le rôle prépondérant de la poussière}
+Le disque est principalement composé de gaz, hydrogène et hélium en majorité. Pour autant, c'est bien la poussière qui est au centre de toutes les attentions, même si cette dernière ne représente qu'1\% de la masse du disque environ.
+
+À cause de la pression quasi inexistante dans le disque en raison des faibles densités, solide et gaz sont les seules phases existantes, il n'y a pas de liquides dans l'espace. La poussière représente la matière solide du disque, en grain plus ou moins fin, allant du nanomètre, micromètre, jusqu'à des tailles planétaires en fin de formation. 
+
+Cette poussière est un composé extrêmement complexe à manipuler. Elle contient différents composés solides en fonction de la température (à certaines températures et densité des composés se volatilisent et d'autres non). La ligne des glaces est une ligne imaginaire au delà de laquelle de la glace d'eau apparait, augmentant de manière drastique la quantité de poussière dans le disque. 
+
+\bigskip
+
+De plus, la poussière est aussi responsable de l'opacité du disque, c'est à dire sa capacité à laisser passer ou non la lumière. À travers l'opacité, la poussière a donc une influence sur la température du disque qui se refroidit plus ou moins efficacement, et qui absorbe le rayonnement stellaire plus ou moins efficacement. 
+
 \subsection{La viscosité du disque} \index{viscosité}% (Franck et al. 1992)
-Quand on parle de viscosité $\nu$ dans un disque, ce n'est pas la viscosité moléculaire classique. On suppose généralement une viscosité due aux turbulences qui est beaucoup plus importante que la viscosité moléculaire, mais qui peut être traitée par les mêmes équations. 
+Quand on parle de viscosité $\nu$ dans un disque, ce n'est pas la viscosité moléculaire classique, bien trop faible aux densités rencontrées. On suppose généralement une viscosité due aux turbulences qui est beaucoup plus importante que la viscosité moléculaire, mais qui peut être traitée par les mêmes équations. 
+
+Ceci implique par contre qu'il y ait de l'ionisation. En effet, sans ionisation, il n'y a pas de couplage entre le champ magnétique et la matière, et donc pas de turbulence induite par ce même champ. 
+
+Dans la pratique, il est rare que la viscosité soit calculée de manière cohérente, ce qui serait beaucoup trop couteux en calculs, sans apporter forcément beaucoup plus de précisions étant donné les nombreuses incertitudes sur la poussière, le couplage et le champ magnétique. 
 
 La première hypothèse est de considérer une viscosité constante. Faute de mieux, c'est ce qui semble être le plus évident. On peut, si on veut affiner, utiliser une théorie dite des \gras{disque-alpha}
 
@@ -19,6 +85,9 @@ On peut introduire un paramètre adimensionné $\alpha$ \citep{shakura1989black}
 \item On considère que les turbulences sont sub-soniques.
 \item L'échelle des tourbillons des turbulences est plus petite que l'échelle de hauteur du disque
 \end{itemize}
+Le mécanisme qui a le plus de chance d'être à l'origine de la viscosité alpha est l'\gras{Instabilité Magnéto-Rotationnelle} (MRI). 
+
+\bigskip
 
 En conséquence, on peut définir la viscosité $\nu$ associée aux turbulences comme étant 
 \begin{align}
@@ -28,12 +97,8 @@ où $c_s$ est la vitesse du son et $H$ l'échelle de hauteur du disque. $\alpha$
 
 Même si cette prescription simplifie un peu le problème, il semble probable qu'$\alpha$ ne soit pas constant, et dépende de la position dans le disque. On déplace alors le problème, vu que se pose la question des variations d'$\alpha$ dans le disque, notamment la dépendance radiale de ce dernier.
 
-\bigskip
-
-Le mécanisme qui a le plus de chance d'être à l'origine de la viscosité alpha est l'\gras{Instabilité Magnéto-Rotationnelle} (MRI). 
-
 \subsection{Ionisation et dead-zones}\index{ionisation}\index{dead zone}
-Pour qu'une instabilité magnéto rotationnelle ait lieu, c'est à dire qu'il y ait un couplage entre le champ magnétique et les mouvements du disque, il faut qu'une partie au moins du disque soit ionisé. Dans ces régions ionisé, on pourra alors avoir transport du moment angulaire via la viscosité due au champ magnétique (et turbulences engendrées). 
+Pour qu'une instabilité magnéto rotationnelle ait lieu, c'est à dire qu'il y ait un couplage entre le champ magnétique et les mouvements du disque, il faut qu'une partie au moins du disque soit ionisé. Dans ces régions ionisées, on pourra alors avoir transport du moment angulaire via la viscosité due au champ magnétique (et turbulences engendrées). 
 
 Or, comment ioniser? Que ce soit le rayonnement X de l'étoile centrale, des rayons cosmiques ou l'ionisation thermique, il n'est pas si évident que ça de se représenter l'ionisation totale du disque de gaz. Il est donc probable que certaines zones du disques ne soient pas ionisés, et donc que le transport du moment angulaire s'y fasse peu ou pas du tout. Ces zones, appelées \index{dead zone}, sont donc des zones sans viscosité magnétique. %TODO compléter la partie dead zone
 

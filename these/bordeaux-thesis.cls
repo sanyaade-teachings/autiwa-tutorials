@@ -122,7 +122,12 @@
 \RequirePackage[french]{varioref}
 
 \renewcommand{\refeq}[1]{(\vref{#1})}
-\newcommand{\reffig}[1]{[\figurename~\vref{#1}]}
+
+% If at the beginning of a sentence, use \reffig*{theref}, else, use \reffig{theref}
+\newcommand*\reffig@nostar[1]{[\figurename~\vref{#1}]}
+\newcommand*\reffig@star[1]{Figure~\vref{#1}}
+\newcommand{\reffig}{\@ifstar{\reffig@star}{\reffig@nostar}}
+
 \newcommand{\reftab}[1]{[\tablename~\vref{#1}]}
 \newcommand{\refsec}[1]{[\S~\vref{#1}]}
 
