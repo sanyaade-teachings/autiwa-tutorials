@@ -10,7 +10,7 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   inkscape:version="0.48.1 r9760"
+   inkscape:version="0.48.2 r9819"
    version="1.1"
    id="svg2"
    height="411.452"
@@ -23,9 +23,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7"
-     inkscape:cx="391.04883"
-     inkscape:cy="104.10387"
+     inkscape:zoom="0.63611989"
+     inkscape:cx="688.63373"
+     inkscape:cy="61.051556"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -866,8 +866,8 @@
        d="m 499.06844,155.8578 15.1188,26.19078"
        style="fill:none;stroke:#ff0000;stroke-width:0.80000001;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#Arrow1Lend)" />
     <path
-       transform="matrix(0.42436651,0,0,0.39553224,108.30159,41.390581)"
-       d="m 98.265314,-48.333777 c 26.405166,1.246723 40.272716,5.127356 30.974046,8.667638 -9.29868,3.540282 -38.24236,5.399578 -64.647527,4.152855 -26.405166,-1.246723 -40.272717,-5.127357 -30.974042,-8.667638 4.356431,-1.658623 13.338302,-3.026284 25.058275,-3.8156"
+       transform="matrix(0.18364947,0,0,0.17117111,127.9905,31.114819)"
+       d="m 98.265314,-48.333777 a 50.688725,6.7961078 0 1 1 -39.589248,0.337255"
        sodipodi:ry="6.7961078"
        sodipodi:rx="50.688725"
        sodipodi:cy="-41.923531"
@@ -897,8 +897,8 @@
        sodipodi:cy="-41.923531"
        sodipodi:rx="50.688725"
        sodipodi:ry="6.7961078"
-       d="m 98.265314,-48.333777 c 26.405166,1.246723 40.272716,5.127356 30.974046,8.667638 -9.29868,3.540282 -38.24236,5.399578 -64.647527,4.152855 -26.405166,-1.246723 -40.272717,-5.127357 -30.974042,-8.667638 4.356431,-1.658623 13.338302,-3.026284 25.058275,-3.8156"
-       transform="matrix(0.4702212,0,0,0.45521839,518.61268,131.8512)" />
+       d="m 98.265314,-48.333777 a 50.688725,6.7961078 0 1 1 -39.589248,0.337255"
+       transform="matrix(0.31990681,0,0,0.30969991,530.85257,125.25425)" />
     <use
        x="0"
        y="0"

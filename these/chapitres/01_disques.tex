@@ -19,19 +19,128 @@ Pour un nuage moléculaire c'est exactement pareil. À mesure que le nuage s'eff
 
 Initialement, il est hautement improbable que le moment angulaire du nuage soit parfaitement nul. C'est ainsi que même si sa rotation est imperceptible lors des premiers stades de son effondrement gravitationnel, le disque d'accrétion fini toujours en rotation. 
 
-\bigskip
+%\bigskip
+%
+%L'évolution de tels objets au cours du temps est un sujet de recherche actif, mais le principe de base est que lors de l'effondrement gravitationnel d'un nuage moléculaire diffus, le gigantesque moment angulaire de cette masse ne peut s'évacuer instantanément. 
+%
+%La quantité totale de moment angulaire doit être conservée. En conséquence, soit deux cellules de gaz vont échanger du moment angulaire par friction (celle qui gagne du moment angulaire migre vers l'extérieur, l'autre migrant vers l'intérieur), soit du moment angulaire est perdu soit par accrétion d'une particule de gaz sur l'étoile, soit par évaporation du gaz sur les bords du disque.
+%
+%Mais ces processus prennent du temps, beaucoup plus de temps que n'en met le gaz pour faire une orbite autour de l'étoile. De l'ordre du million d'années. C'est durant ce labs de temps que les planètes se forment. Le processus est complexe et très loin d'être compris. Il est cependant clair que les interactions entre le disque de gaz et les planètes ont un rôle prépondérant dans la formation d'un système stellaire, que ce soit pour les planètes géantes, dont on pense qu'elles ont accrété une partie du gaz du disque pour en faire leur enveloppe, ou les planètes telluriques, beaucoup plus denses, principalement composées des poussières du disque.
+%
+%\bigskip
+%
+%Afin de décrire la physique des disques, on a besoin principalement de deux équations. L'équation de Navier-Stokes pour décrire le comportement fluide du disque de gaz et l'équation de conservation de l'énergie, pour décrire la température du disque.
 
-L'évolution de tels objets au cours du temps est un sujet de recherche actif, mais le principe de base est que lors de l'effondrement gravitationnel d'un nuage moléculaire diffus, le gigantesque moment angulaire de cette masse ne peut s'évacuer instantanément. 
-
-La quantité totale de moment angulaire doit être conservée. En conséquence, soit deux cellules de gaz vont échanger du moment angulaire par friction (celle qui gagne du moment angulaire migre vers l'extérieur, l'autre migrant vers l'intérieur), soit du moment angulaire est perdu soit par accrétion d'une particule de gaz sur l'étoile, soit par évaporation du gaz sur les bords du disque.
-
-Mais ces processus prennent du temps, beaucoup plus de temps que n'en met le gaz pour faire une orbite autour de l'étoile. De l'ordre du million d'années. C'est durant ce labs de temps que les planètes se forment. Le processus est complexe et très loin d'être compris. Il est cependant clair que les interactions entre le disque de gaz et les planètes ont un rôle prépondérant dans la formation d'un système stellaire, que ce soit pour les planètes géantes, dont on pense qu'elles ont accrété une partie du gaz du disque pour en faire leur enveloppe, ou les planètes telluriques, beaucoup plus denses, principalement composées des poussières du disque.
-
-\bigskip
-
-Afin de décrire la physique des disques, on a besoin principalement de deux équations. L'équation de Navier-Stokes pour décrire le comportement fluide du disque de gaz et l'équation de conservation de l'énergie, pour décrire la température du disque.
+Pour décrire correctement un disque de gaz, il est nécessaire de définir les trois équations suivantes : 
+\begin{itemize}
+\item L'\textbf{équation de continuité} ou par équivalence la conservation de la masse du disque.
+\begin{align}
+r\dpd{\Sigma}{t} + \dpd{}{r}\left(r\Sigma(r)v_r\right) &= 0\label{eq:disk_continuite}
+\end{align}
+où $r$ est la distance à l'étoile centrale, $\Sigma$ est le densité de surface du disque et $v_r$ la vitesse radiale à une distance donnée.
+\item L'\textbf{équation de conservation de l'énergie}. Ceci permet de calculer la température en tout point du disque à partir des phénomènes physiques que l'on souhaite décrire
+\begin{align}
+\label{eq:disk_energy}
+\end{align}
+\item L'\textbf{équation de conservation du moment angulaire}. Cette dernière décrit l'évolution fluide du disque
+\begin{align}
+r\dpd{}{t}\left(\Sigma r^2 \Omega\right) + \dpd{}{r}\left(r \Sigma v_r \cdot r^2 \Omega\right) &= \inv{2\pi} \dpd{}{r} \left(2\pi r \cdot \nu \Sigma A \cdot R\right)\label{eq:disk_angular_momentum}
+\end{align}
+\end{itemize}
 
 \subsection{Modélisation de l'évolution hydrodynamique du disque}
+Le moment cinétique $\vect{J}$ d'une particule de masse $m$ est défini par :
+\begin{align}
+\vect{J} &= \vect{r} \wedge (m\vect{v})
+\end{align}
+où $\vect{r}$ et $\vect{v}$ sont respectivement la position et la vitesse de la particule.
+
+\bigskip
+
+Prenons le cas d'un anneau de gaz en rotation autour d'une étoile, entre les positions $R$ et $R+\Delta R$ \reffig{fig:disk_ring}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.7\linewidth]{figure/disk_ring.pdf}
+\caption{Représentation d'un anneau de largeur $\Delta r$ et du bilan de moment angulaire de ce dernier.}\label{fig:disk_ring}
+\end{figure}
+
+Son moment cinétique est alors défini par :
+\begin{align}
+\vect{J_a} &= \vect{R} \wedge (m_a\vect{v(R)}) \nonumber\\
+&= m_a \cdot R \cdot R\Omega(R)\nonumber\\
+&= 2\pi R \Delta R \Sigma(R)\cdot R \cdot R\Omega(R)\nonumber\\
+\vect{J_a} &= 2\pi R^3 \Delta R \Sigma(R)\Omega(R)
+\end{align}
+où $\Sigma$ et $\Omega$ sont la densité de surface et la vitesse angulaire du gaz à la position $R$ dans le disque.
+
+\bigskip
+
+Soit $v_r$ la vitesse radiale du gaz. Cette vitesse est responsable d'un certain taux d'accrétion du gaz du disque sur l'étoile centrale. On cherche maintenant à modéliser cette accrétion pour le bilan de moment cinétique sur l'anneau.
+
+Pour cela, on cherche à exprimer la variation de masse de l'anneau, ainsi que le moment cinétique emporté par cette variation de masse. 
+
+Au bord interne $R$, par unité de temps, la masse sortant de l'anneau est :
+\begin{align}
+\dif M(R) &= 2\pi R \cdot v_r(R) * \Sigma(R)
+\end{align}
+En effet, en multipliant la circonférence de l'anneau par la vitesse, on obtient une sorte de surface par unité de temps qui représente ce qui sort de la frontière virtuelle représentée par l'anneau en $r=R$. De même on a : 
+\begin{align}
+\dif M(R+\Delta R) &= 2\pi R+\Delta R \cdot v_r(R+\Delta R) * \Sigma(R+\Delta R)
+\end{align}
+
+La quantité de moment cinétique de ces masses là est respectivement :
+\begin{subequations}
+\begin{align}
+\dif J(R) &= \vect{r} \wedge \left(\dif M(R) \vect{v}(R)\right)\nonumber\\
+\dif J(R) &= \dif M(R) \cdot R^2\Omega(R)\\
+\dif J(R+\Delta R) &= \vect{r} \wedge \left(\dif M(R+\Delta R) \vect{v}(R+\Delta R)\right)\nonumber\\
+\dif J(R+\Delta R) &= \dif M(R+\Delta R) \cdot \left(R+\Delta R\right)^2\Omega(R+\Delta R)
+\end{align}
+\end{subequations}
+
+\bigskip
+
+À ceci s'ajoute la variation de moment cinétique induite par la friction entre anneaux concentriques, en d'autres termes, dus à la viscosité du disque. 
+
+Cette variation de moment cinétique est représentée sous la forme d'un couple exercé par les anneaux internes et externes à celui considéré. 
+
+Le taux de cisaillement $A$ est donné par : 
+\begin{align}
+A &= r \dod{\Omega}{r}
+\end{align}
+et est une illustration de la viscosité d'un fluide. Plus le fluide est visqueux, et moins le cisaillement est important. C'est à dire que plus un fluide est visqueux, et plus son comportement se rapproche de celui d'un solide. En conséquence, par frottement, les éléments fluides sont agglomérés, et le gradient de vitesse est très faible, le cisaillement l'est aussi par extension. 
+
+La force visqueuse par unité de longueur est définie par :
+\begin{align}
+\dif F_\text{vis} &= \nu \Sigma A = \nu \Sigma r \dod{\Omega}{r}
+\end{align}
+
+La force visqueuse induite par les anneaux entourant l'anneau considéré est alors : 
+\begin{subequations}
+\begin{align}
+\vect{F_\text{in}}(R) &= 2\pi R * \dif F_\text{vis}(R) = 2\pi\nu \Sigma R**2 \dod{\Omega}{r}(R) \hat{e}_\theta\\
+\vect{F_\text{out}}(R+\Delta R) &= 2\pi R * \dif F_\text{vis}(R+\Delta R) = 2\pi\nu \Sigma (R+\Delta R)**2 \dod{\Omega}{r}(R+\Delta R) \cdot (- \hat{e}_\theta)
+\end{align}
+\end{subequations}
+
+\bigskip
+
+Ainsi, le couple $\vect{\Gamma}=\vect{r}\wedge\vect{F}$ issu de chacun des anneaux entourant celui de référence s'écrit :
+\begin{align}
+\vect{\Gamma_\text{in}} &= R\hat{e}_r\wedge\vect{F_\text{in}}\nonumber\\
+&= 2\pi\nu \Sigma R**3 \dod{\Omega}{r}(R) \hat{e}_z\\
+\vect{\Gamma_\text{out}} &= (R+\Delta R)\hat{e}_r\wedge\vect{F_\text{out}}\nonumber\\
+&= - 2\pi\nu \Sigma (R+\Delta R)**3 \dod{\Omega}{r}(R+\Delta R) \hat{e}_z
+\end{align}
+
+\bigskip
+
+On fait maintenant un bilan des variations de moment angulaire pour l'anneau de gaz. Pour celà on dit que la variation de moment angulaire (que l'on écrit en dérivant $J_a(t)$) est égale au moment angulaire qui sort de l'anneau, plus celui qui rentre, moins les deux couples visqueux des anneaux adjacents. Ce qui donne : 
+\begin{align}
+\dod{J_a}{t} &= \dif J(R+\Delta R) - \dif J(R) + \Gamma_\text{in} + \Gamma_\text{out}
+\end{align}
+%TODO fini ça
 
 \subsection{Taille et représentation des disques}%TODO s'inspirer du 2.1.1 de yann en rajoutant un schéma de disque pour illustrer qu'il faut se méfier des représentations vis à vis de la "réalité"
 
@@ -41,7 +150,7 @@ Afin de décrire la physique des disques, on a besoin principalement de deux éq
 \caption{Représentation de la répartition radiale et azimutale de matière dans un disque protoplanétaire.}\label{fig:disk_scheme}
 \end{figure}
 
-\reffig{fig:disk_scheme} donne une idée de ce qu'est un disque protoplanétaire. Pour autant, ce n'est qu'une représentation et il est toujours important de garder en tête quelques différences notables entre cette représentation et la réalité physique d'un disque. Quand on parle de disque protoplanétaire, on fait référence à la composante gazeuse, largement majoritaire. Pourtant, bien que minoritaire, la poussière joue un rôle majeur et sa répartition spatiale ne suis pas forcément exactement celle du gaz, ces deux entitées n'ayant pas les mêmes propriétés, elles ne sont pas strictement régies par les mêmes équations.
+\reffig*{fig:disk_scheme} donne une idée de ce qu'est un disque protoplanétaire. Pour autant, ce n'est qu'une représentation et il est toujours important de garder en tête quelques différences notables entre cette représentation et la réalité physique d'un disque. Quand on parle de disque protoplanétaire, on fait référence à la composante gazeuse, largement majoritaire. Pourtant, bien que minoritaire, la poussière joue un rôle majeur et sa répartition spatiale ne suis pas forcément exactement celle du gaz, ces deux entitées n'ayant pas les mêmes propriétés, elles ne sont pas strictement régies par les mêmes équations.
 
 \bigskip
 
