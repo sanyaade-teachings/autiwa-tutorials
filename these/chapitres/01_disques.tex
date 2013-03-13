@@ -49,15 +49,57 @@ r\dpd{}{t}\left(\Sigma r^2 \Omega\right) + \dpd{}{r}\left(r \Sigma v_r \cdot r^2
 \end{itemize}
 
 \subsection{Modélisation de l'évolution hydrodynamique du disque}
-Le moment cinétique $\vect{J}$ d'une particule de masse $m$ est défini par :
+Avant de considérer l'évolution d'un disque, il est important de regarder sa masse par rapport à la masse de l'étoile centrale. En effet, si la masse du disque est de l'ordre de la masse de l'étoile, alors des instabilités se développent et on ne peut plus négliger l'autogravité du disque. 
+
+Le \gras{paramètre de Toomre} $Q$, défini par :
+\begin{align}
+Q &= \frac{\kappa {c_{s}}^2}{\pi G \Sigma}
+\end{align}\index{$Q$}
+est un indicateur de la stabilité du disque par rapport à l'autogravité.
+
+La densité de surface $\Sigma$\index{$\Sigma$} mesure l'importance de l'\gras{auto-gravité}. La vitesse du son $c_{s}$ est liée à la pression thermique ; la \gras[fréquence!epicyclique@épicyclique]{fréquence épicyclique} $\kappa$ détermine quant à elle la force du cisaillement dans le disque.
+
+\bigskip
+
+Si $Q<1$ alors le gaz est instable gravitationnellement et il commence à s'effondrer sur lui même et former des \og tas\fg de matière.
+Si $Q>1$, le disque est stable.
+
+%\begin{remarque}
+%Dans les disques protoplanétaires, $Q\gg 1$ ce qui implique que leur auto-gravité n'est pas importante \citep{masset2008planet}.
+%\end{remarque}
+
+Nous ne considérerons que des disques dont la masse $M_\text{d}$ est faible devant la masse de l'étoile $M_\star$ :
+\begin{align}
+\frac{M_\text{d}}{M_\star} &\lesssim 0.1
+\end{align}
+
+Dans un tel cas, c'est le potentiel gravitationnel de l'étoile qui domine la dynamique du gaz. En négligeant l'effet de la pression de ce dernier, on peut donc écrire la vitesse angulaire du gaz comme étant égale à la vitesse angulaire képlerienne : 
+\begin{align}
+\Omega &= \sqrt{\frac{GM_\star}{r^3}}
+\end{align}
+où $G$ est la constante de gravitation, et $r$ la distance à l'étoile. Dans la pratique, il est à noter que la vitesse est légèrement sous-képlerienne. 
+
+\bigskip
+
+À l'instar des planètes du système solaire qui orbitent autour du Soleil d'autant plus vite qu'elle sont proche de ce dernier, les éléments fluides du disques de gaz vont orbiter beaucoup plus vite au bord interne qu'ils ne le font au bord externe. Il existe donc une force de cisaillement entre deux anneaux de gaz concentriques, dûs à leur différence de vitesse. Cette différence de vitesse génère des frottements à cause de la viscosité du disque $\nu$ (dont nous parlerons plus en détail plus loin \refsec{sec:viscosite}) qui chauffe le gaz en lui faisant perdre de l'énergie. En conséquence, une partie de l'énergie gravitationnelle du gaz est convertie en chaleur, qui est ensuite évacuée par le rayonnement de corps noir du gaz. 
+
+\bigskip
+
+La première conséquence est qu'un terme visqueux va apparaître dans l'équation de l'énergie, comme nous le verrons par la suite. 
+
+La deuxième conséquence, c'est que le gaz perds de l'énergie, et donc dérive lentement vers l'étoile centrale qui accrète petit à petit le gaz du disque. 
+
+On définit donc une vitesse de dérive négative $v_r$, orientée vers l'étoile, qui entraine petit à petit le gaz du disque.
+
+\bigskip
+
+On cherche maintenant à faire un bilan de moment cinétique pour un anneau de gaz compris entre les rayons $R$ et $R+\Delta R$, avec $\Delta R \ll R$ \reffig{fig:disk_ring}. Le moment cinétique $\vect{J}$ d'une particule de masse $m$ est défini par :
 \begin{align}
 \vect{J} &= \vect{r} \wedge (m\vect{v})
 \end{align}
 où $\vect{r}$ et $\vect{v}$ sont respectivement la position et la vitesse de la particule.
 
 \bigskip
-
-Prenons le cas d'un anneau de gaz en rotation autour d'une étoile, entre les positions $R$ et $R+\Delta R$ \reffig{fig:disk_ring}.
 
 \begin{figure}[htb]
 \centering
@@ -70,7 +112,7 @@ Son moment cinétique est alors défini par :
 \vect{J_a} &= \vect{R} \wedge (m_a\vect{v(R)}) \nonumber\\
 &= m_a \cdot R \cdot R\Omega(R)\nonumber\\
 &= 2\pi R \Delta R \Sigma(R)\cdot R \cdot R\Omega(R)\nonumber\\
-\vect{J_a} &= 2\pi R^3 \Delta R \Sigma(R)\Omega(R)
+\vect{J_a} &= 2\pi R^3 \Delta R \Sigma(R)\Omega(R)\label{eq:J_a}
 \end{align}
 où $\Sigma$ et $\Omega$ sont la densité de surface et la vitesse angulaire du gaz à la position $R$ dans le disque.
 
@@ -86,17 +128,17 @@ Au bord interne $R$, par unité de temps, la masse sortant de l'anneau est :
 \end{align}
 En effet, en multipliant la circonférence de l'anneau par la vitesse, on obtient une sorte de surface par unité de temps qui représente ce qui sort de la frontière virtuelle représentée par l'anneau en $r=R$. De même on a : 
 \begin{align}
-\dif M(R+\Delta R) &= 2\pi R+\Delta R \cdot v_r(R+\Delta R) * \Sigma(R+\Delta R)
+\dif M(R+\Delta R) &= 2\pi (R+\Delta R) \cdot v_r(R+\Delta R) * \Sigma(R+\Delta R)
 \end{align}
 
 La quantité de moment cinétique de ces masses là est respectivement :
 \begin{subequations}
 \begin{align}
 \dif J(R) &= \vect{r} \wedge \left(\dif M(R) \vect{v}(R)\right)\nonumber\\
-\dif J(R) &= \dif M(R) \cdot R^2\Omega(R)\\
+\dif J(R) &= \dif M(R) \cdot R^2\Omega(R)\label{eq:dJ_in}\\
 \dif J(R+\Delta R) &= \vect{r} \wedge \left(\dif M(R+\Delta R) \vect{v}(R+\Delta R)\right)\nonumber\\
-\dif J(R+\Delta R) &= \dif M(R+\Delta R) \cdot \left(R+\Delta R\right)^2\Omega(R+\Delta R)
-\end{align}
+\dif J(R+\Delta R) &= \dif M(R+\Delta R) \cdot \left(R+\Delta R\right)^2\Omega(R+\Delta R)\label{eq:dJ_out}
+\end{align}\label{eq:dJ}
 \end{subequations}
 
 \bigskip
@@ -119,28 +161,36 @@ La force visqueuse par unité de longueur est définie par :
 La force visqueuse induite par les anneaux entourant l'anneau considéré est alors : 
 \begin{subequations}
 \begin{align}
-\vect{F_\text{in}}(R) &= 2\pi R * \dif F_\text{vis}(R) = 2\pi\nu \Sigma R**2 \dod{\Omega}{r}(R) \hat{e}_\theta\\
-\vect{F_\text{out}}(R+\Delta R) &= 2\pi R * \dif F_\text{vis}(R+\Delta R) = 2\pi\nu \Sigma (R+\Delta R)**2 \dod{\Omega}{r}(R+\Delta R) \cdot (- \hat{e}_\theta)
+\vect{F_\text{in}}(R) &= 2\pi R * \dif F_\text{vis}(R) = 2\pi\nu \Sigma R^2 \dod{\Omega}{r}(R) \hat{e}_\theta\\
+\vect{F_\text{out}}(R+\Delta R) &= 2\pi R * \dif F_\text{vis}(R+\Delta R) = 2\pi\nu \Sigma (R+\Delta R)^2 \dod{\Omega}{r}(R+\Delta R) \cdot (- \hat{e}_\theta)
 \end{align}
 \end{subequations}
 
 \bigskip
 
 Ainsi, le couple $\vect{\Gamma}=\vect{r}\wedge\vect{F}$ issu de chacun des anneaux entourant celui de référence s'écrit :
+\begin{subequations}
 \begin{align}
 \vect{\Gamma_\text{in}} &= R\hat{e}_r\wedge\vect{F_\text{in}}\nonumber\\
-&= 2\pi\nu \Sigma R**3 \dod{\Omega}{r}(R) \hat{e}_z\\
+\vect{\Gamma_\text{in}} &= 2\pi\nu \Sigma R^3 \dod{\Omega}{r}(R) \hat{e}_z\label{eq:G_in}\\
 \vect{\Gamma_\text{out}} &= (R+\Delta R)\hat{e}_r\wedge\vect{F_\text{out}}\nonumber\\
-&= - 2\pi\nu \Sigma (R+\Delta R)**3 \dod{\Omega}{r}(R+\Delta R) \hat{e}_z
-\end{align}
+\vect{\Gamma_\text{out}} &= - 2\pi\nu \Sigma (R+\Delta R)^3 \dod{\Omega}{r}(R+\Delta R) \hat{e}_z\label{eq:G_out}
+\end{align}\label{eq:J_torque}
+\end{subequations}
 
 \bigskip
 
 On fait maintenant un bilan des variations de moment angulaire pour l'anneau de gaz. Pour celà on dit que la variation de moment angulaire (que l'on écrit en dérivant $J_a(t)$) est égale au moment angulaire qui sort de l'anneau, plus celui qui rentre, moins les deux couples visqueux des anneaux adjacents. Ce qui donne : 
 \begin{align}
-\dod{J_a}{t} &= \dif J(R+\Delta R) - \dif J(R) + \Gamma_\text{in} + \Gamma_\text{out}
+\dod{J_a}{t} &= \dif J(R+\Delta R) - \dif J(R) + \Gamma_\text{in} + \Gamma_\text{out}\label{eq:cons_J_a}
 \end{align}
-%TODO fini ça
+
+En utilisant \refeq{eq:J_a}, \refeq{eq:dJ}, \refeq{eq:J_torque}, dans \refeq{eq:cons_J_a}
+\begin{align*}
+\dpd{}{t}\left(2\pi R^3 \Delta R \Sigma(R)\Omega(R)\right) &= \dif M(R+\Delta R) \cdot \left(R+\Delta R\right)^2\Omega(R+\Delta R) - 
+\end{align*}
+
+%TODO finir ça
 
 \subsection{Taille et représentation des disques}%TODO s'inspirer du 2.1.1 de yann en rajoutant un schéma de disque pour illustrer qu'il faut se méfier des représentations vis à vis de la "réalité"
 
