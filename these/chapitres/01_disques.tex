@@ -72,6 +72,7 @@ Nous ne considérerons que des disques dont la masse $M_\text{d}$ est faible dev
 \begin{align}
 \frac{M_\text{d}}{M_\star} &\lesssim 0.1
 \end{align}
+Si tel n'était pas le cas, le temps pour que le disque perde suffisamment de masse pour se retrouver dans le cas qui nous intéresse sera court devant la vie du disque et le temps de formation planétaire. Étant donné qu'on ne s'intéresse qu'aux derniers stades de la formation planétaire, à savoir quand les embryons planétaires ont une masse de l'ordre du dixième de masse terrestre au minimum, il est raisonnable de penser que le disque sera dans un stade peu dense où l'approximation $Q>1$ sera valable.
 
 Dans un tel cas, c'est le potentiel gravitationnel de l'étoile qui domine la dynamique du gaz. En négligeant l'effet de la pression de ce dernier, on peut donc écrire la vitesse angulaire du gaz comme étant égale à la vitesse angulaire képlerienne : 
 \begin{align}
@@ -107,7 +108,56 @@ où $\vect{r}$ et $\vect{v}$ sont respectivement la position et la vitesse de la
 \caption{Représentation d'un anneau de largeur $\Delta r$ et du bilan de moment angulaire de ce dernier.}\label{fig:disk_ring}
 \end{figure}
 
-Son moment cinétique est alors défini par :
+On cherche dans un premier temps à faire le bilan de masse de l'anneau considéré. Sa masse s'écrit :
+\begin{align}
+m_a &= 2\pi R \Delta R \Sigma(R)\label{eq:m_a}
+\end{align}
+
+\bigskip
+
+Soit $-v_r\hat{e}_r$ la vitesse radiale du gaz. Cette vitesse est responsable d'un certain taux d'accrétion du gaz du disque sur l'étoile centrale. On cherche maintenant à modéliser cette accrétion pour le bilan de moment cinétique sur l'anneau.
+
+Pour cela, on cherche à exprimer la variation de masse de l'anneau, ainsi que le moment cinétique emporté par cette variation de masse. 
+
+Au bord interne $R$, par unité de temps, la masse entrant ou sortant de l'anneau est :
+\begin{align}
+\dif M(R) &= 2\pi R \cdot -v_r(R) * \Sigma(R)
+\end{align}
+En effet, en multipliant la circonférence de l'anneau par la vitesse, on obtient une sorte de surface par unité de temps qui représente ce qui sort de la frontière virtuelle représentée par l'anneau en $r=R$. Si la vitesse est positive (négative), alors de la masse rentre (sort) dans l'anneau. 
+
+De même on a : 
+\begin{align}
+\dif M(R+\Delta R) &= 2\pi (R+\Delta R) \cdot -v_r(R+\Delta R) * \Sigma(R+\Delta R)
+\end{align}
+
+La conservation de la masse implique alors que la dérivée temporelle de la masse de l'anneau est égale à la masse qui entre ou sort de ses frontières. On a ainsi : 
+\begin{align*}
+\dpd{}{t}\left(\cancel{2\pi} R \Delta R \Sigma(R)\right) &= \cancel{2\pi} (R+\Delta R) \cdot -v_r(R+\Delta R) * \Sigma(R+\Delta R) - \cancel{2\pi} R \cdot -v_r(R) * \Sigma(R)\\
+\dpd{}{t}\left(R \Delta R \Sigma(R)\right) &= - (R+\Delta R) \cdot v_r(R+\Delta R) * \Sigma(R+\Delta R) +  R \cdot v_r(R) * \Sigma(R)
+\end{align*}
+
+$R$ et $\Delta R$ sont des variables indépendantes du temps. On peut donc les sortir de la dérivée partielle en fonction du temps. 
+
+En faisant passer le terme $\Delta R$ dans le second membre de l'équation, on fait apparaître des termes de la forme 
+\begin{align*}
+\frac{U(R+\Delta R) - U(R)}{\Delta R}
+\end{align*}
+
+En faisant tendre l'épaisseur $\Delta R$ de l'anneau vers 0, on fait ainsi apparaitre une forme différentielle : 
+\begin{align*}
+\lim_{\Delta R \rightarrow 0} \frac{U(R+\Delta R) - U(R)}{\Delta R} &= \dpd{U}{r}(R)
+\end{align*}
+
+On obtient alors :
+\begin{important}
+\begin{align}
+R\dpd{\Sigma}{t} + \inv{R}\dpd{}{r}\left(R v_r \Sigma\right)\label{eq:conservation_masse}
+\end{align}
+\end{important}
+
+\bigskip
+
+On cherche maintenant à faire le bilan de moment cinétique de ce même anneau. Son moment cinétique est défini par :
 \begin{align}
 \vect{J_a} &= \vect{R} \wedge (m_a\vect{v(R)}) \nonumber\\
 &= m_a \cdot R \cdot R\Omega(R)\nonumber\\
@@ -116,36 +166,19 @@ Son moment cinétique est alors défini par :
 \end{align}
 où $\Sigma$ et $\Omega$ sont la densité de surface et la vitesse angulaire du gaz à la position $R$ dans le disque.
 
-\bigskip
-
-Soit $v_r$ la vitesse radiale du gaz. Cette vitesse est responsable d'un certain taux d'accrétion du gaz du disque sur l'étoile centrale. On cherche maintenant à modéliser cette accrétion pour le bilan de moment cinétique sur l'anneau.
-
-Pour cela, on cherche à exprimer la variation de masse de l'anneau, ainsi que le moment cinétique emporté par cette variation de masse. 
-
-Au bord interne $R$, par unité de temps, la masse sortant de l'anneau est :
-\begin{align}
-\dif M(R) &= 2\pi R \cdot v_r(R) * \Sigma(R)
-\end{align}
-En effet, en multipliant la circonférence de l'anneau par la vitesse, on obtient une sorte de surface par unité de temps qui représente ce qui sort de la frontière virtuelle représentée par l'anneau en $r=R$. De même on a : 
-\begin{align}
-\dif M(R+\Delta R) &= 2\pi (R+\Delta R) \cdot v_r(R+\Delta R) * \Sigma(R+\Delta R)
-\end{align}
-
 La quantité de moment cinétique de ces masses là est respectivement :
 \begin{subequations}
 \begin{align}
 \dif J(R) &= \vect{r} \wedge \left(\dif M(R) \vect{v}(R)\right)\nonumber\\
-\dif J(R) &= \dif M(R) \cdot R^2\Omega(R)\label{eq:dJ_in}\\
+\dif J(R) &= \dif M(R) \cdot R^2\Omega(R)\hat{e}_z\label{eq:dJ_in}\\
 \dif J(R+\Delta R) &= \vect{r} \wedge \left(\dif M(R+\Delta R) \vect{v}(R+\Delta R)\right)\nonumber\\
-\dif J(R+\Delta R) &= \dif M(R+\Delta R) \cdot \left(R+\Delta R\right)^2\Omega(R+\Delta R)\label{eq:dJ_out}
+\dif J(R+\Delta R) &= \dif M(R+\Delta R) \cdot \left(R+\Delta R\right)^2\Omega(R+\Delta R)\hat{e}_z\label{eq:dJ_out}
 \end{align}\label{eq:dJ}
 \end{subequations}
 
 \bigskip
 
-À ceci s'ajoute la variation de moment cinétique induite par la friction entre anneaux concentriques, en d'autres termes, dus à la viscosité du disque. 
-
-Cette variation de moment cinétique est représentée sous la forme d'un couple exercé par les anneaux internes et externes à celui considéré. 
+À ceci s'ajoute la variation de moment cinétique induite par la friction entre anneaux concentriques, en d'autres termes, dus à la viscosité du disque. Cette variation de moment cinétique est représentée sous la forme d'un couple exercé par les anneaux internes et externes à celui considéré. 
 
 Le taux de cisaillement $A$ est donné par : 
 \begin{align}
@@ -162,9 +195,10 @@ La force visqueuse induite par les anneaux entourant l'anneau considéré est al
 \begin{subequations}
 \begin{align}
 \vect{F_\text{in}}(R) &= 2\pi R * \dif F_\text{vis}(R) = 2\pi\nu \Sigma R^2 \dod{\Omega}{r}(R) \hat{e}_\theta\\
-\vect{F_\text{out}}(R+\Delta R) &= 2\pi R * \dif F_\text{vis}(R+\Delta R) = 2\pi\nu \Sigma (R+\Delta R)^2 \dod{\Omega}{r}(R+\Delta R) \cdot (- \hat{e}_\theta)
+\vect{F_\text{out}}(R+\Delta R) &= 2\pi (R+\Delta R) * \dif F_\text{vis}(R+\Delta R) = 2\pi\nu \Sigma (R+\Delta R)^2 \dod{\Omega}{r}(R+\Delta R) \cdot \hat{e}_\theta
 \end{align}
 \end{subequations}
+L'anneau interne tournant plus vite, la force est dirigée dans le sens de rotation $\hat{e}_\theta$. À l'inverse, l'anneau externe tourne moins vite, il tend à freiner l'anneau de référence et s'oppose à son mouvement. La force est donc opposée au sens de rotation.
 
 \bigskip
 
@@ -174,21 +208,69 @@ Ainsi, le couple $\vect{\Gamma}=\vect{r}\wedge\vect{F}$ issu de chacun des annea
 \vect{\Gamma_\text{in}} &= R\hat{e}_r\wedge\vect{F_\text{in}}\nonumber\\
 \vect{\Gamma_\text{in}} &= 2\pi\nu \Sigma R^3 \dod{\Omega}{r}(R) \hat{e}_z\label{eq:G_in}\\
 \vect{\Gamma_\text{out}} &= (R+\Delta R)\hat{e}_r\wedge\vect{F_\text{out}}\nonumber\\
-\vect{\Gamma_\text{out}} &= - 2\pi\nu \Sigma (R+\Delta R)^3 \dod{\Omega}{r}(R+\Delta R) \hat{e}_z\label{eq:G_out}
-\end{align}\label{eq:J_torque}
+\vect{\Gamma_\text{out}} &= 2\pi\nu \Sigma (R+\Delta R)^3 \dod{\Omega}{r}(R+\Delta R) \hat{e}_z\label{eq:G_out}
+\end{align}\label{eq:J_torques}
 \end{subequations}
 
 \bigskip
 
-On fait maintenant un bilan des variations de moment angulaire pour l'anneau de gaz. Pour celà on dit que la variation de moment angulaire (que l'on écrit en dérivant $J_a(t)$) est égale au moment angulaire qui sort de l'anneau, plus celui qui rentre, moins les deux couples visqueux des anneaux adjacents. Ce qui donne : 
+On fait maintenant un bilan des variations de moment angulaire pour l'anneau de gaz. Pour celà on dit que la variation de moment angulaire (que l'on écrit en dérivant $J_a(t)$) est égale à la différence de moment angulaire entre $R+\Delta R$ et $R$ à laquelle s'ajoute la différence entre les deux couples visqueux qui s'appliquent au bord externe et interne. Ce qui donne : 
 \begin{align}
-\dod{J_a}{t} &= \dif J(R+\Delta R) - \dif J(R) + \Gamma_\text{in} + \Gamma_\text{out}\label{eq:cons_J_a}
+\dod{J_a}{t} &= \dif J(R+\Delta R) - \dif J(R) + \Gamma_\text{out} - \Gamma_\text{in}\label{eq:cons_J_a}
 \end{align}
 
-En utilisant \refeq{eq:J_a}, \refeq{eq:dJ}, \refeq{eq:J_torque}, dans \refeq{eq:cons_J_a}
+En utilisant \refeq{eq:J_a}, \refeq{eq:dJ}, \refeq{eq:J_torques}, dans \refeq{eq:cons_J_a}
 \begin{align*}
-\dpd{}{t}\left(2\pi R^3 \Delta R \Sigma(R)\Omega(R)\right) &= \dif M(R+\Delta R) \cdot \left(R+\Delta R\right)^2\Omega(R+\Delta R) - 
+\begin{split}
+\dpd{}{t}\left(2\pi R^3 \Delta R \Sigma(R)\Omega(R)\right) &= -\left[\left(R+\Delta R\right)^3v_R(R+\Delta R) \Sigma(R+\Delta R) \Omega(R+\Delta R)\right.\\
+&\left. - R^3 v_R(R) \Sigma(R) \Omega(R)\right] + \left[\nu(R+\Delta R)^3\Sigma(R+\Delta R)\right.\\
+&\left. \dod{\Omega}{r}(R+\Delta R)-\nu \Sigma(R) R^3 \dod{\Omega}{r}(R)\right]
+\end{split}
 \end{align*}
+
+
+
+On fait tendre $\Delta R$ vers 0, et de manière similaire au bilan de masse obtenu précédemment, il vient alors 
+\begin{align*}
+\dpd{}{t}\left(R^3 \Sigma\Omega\right) &= -\dpd{}{r}\left(R^3 v_R \Sigma \Omega\right) + \dpd{}{r}\left(\nu \Sigma R^3 \dod{\Omega}{r}\right)\\
+\intertext{$R$ et $t$ sont des variables indépendantes, on peut donc sortir $R$ de la dérivée partielle temporelle afin de faire apparaître une forme qui fait penser à une équation de continuité.}
+R\dpd{}{t}\left(R^2 \Sigma\Omega\right) &= -\dpd{}{r}\left(R^3 v_R \Sigma \Omega\right) + \dpd{}{r}\left(\nu \Sigma R^3 \dod{\Omega}{r}\right)
+\end{align*}
+
+$R$ et $t$ étant des variables indépendantes, on peut écrire :
+\begin{align}
+R\dpd{}{t}\left(\Sigma R^2\Omega\right) + \dpd{}{r}\left(R^3 v_R \Sigma \Omega\right) &= \dpd{}{r}\left(\nu \Sigma R^3 \dod{\Omega}{r}\right)\label{eq:ang_mom_01}
+\end{align}
+
+\bigskip
+
+On suppose que $\dpd{\Omega}{t}=0$ vu que le potentiel gravitationnel est indépendant du temps (on ne considère pas une masse variable de l'étoile due à l'accrétion), et sachant que $R$ ne dépend pas explicitement de $t$, en utilisant la formule : 
+\begin{align*}
+\dpd{uv}{x} &= \dpd{u}{x}v + u\dpd{v}{x}
+\end{align*}
+on peut écrire :
+\begin{align}
+\dpd{}{t}\left(\Sigma\cdot R^2\Omega\right) &= \left(R^2\Omega\right)\dpd{\Sigma}{t} + \Sigma\cancelto{0}{\dpd{R^2\Omega}{t}}\label{eq:ang_mom_tmp_01}
+\end{align}
+
+De même : 
+\begin{align}
+\dpd{}{r}\left(R^3 v_R \Sigma \Omega\right) &= \dpd{}{r}\left(R v_R \Sigma \cdot R^2\Omega\right)\nonumber\\
+&= \left(R^2\Omega\right)\dpd{}{r}\left(R v_R \Sigma\right) + R \Sigma v_R \dpd{}{r}\left(R^2\Omega\right)\label{eq:ang_mom_tmp_02}
+\end{align}
+
+En utilisant \refeq{eq:ang_mom_tmp_01} et \refeq{eq:ang_mom_tmp_02} dans \refeq{eq:ang_mom_01}, on fait alors apparaître \refeq{eq:conservation_masse}, ce qui donne : 
+\begin{align*}
+R\left(R^2\Omega\right)\dpd{\Sigma}{t} + \left(R^2\Omega\right)\dpd{}{r}\left(R v_R \Sigma\right) + R \Sigma v_R \dpd{}{r}\left(R^2\Omega\right) &= \dpd{}{r}\left(\nu \Sigma R^3 \dod{\Omega}{r}\right)\\
+\left(R^2\Omega\right)\cancelto{0}{\left[R\dpd{\Sigma}{t} + \dpd{}{r}\left(R v_R \Sigma\right)\right]} + R \Sigma v_R \dpd{}{r}\left(R^2\Omega\right) &= \dpd{}{r}\left(\nu \Sigma R^3 \dod{\Omega}{r}\right)
+\end{align*}
+
+Et finalement :
+\begin{important}
+\begin{align}
+R \Sigma v_R \dpd{}{r}\left(R^2\Omega\right) &= \dpd{}{r}\left(\nu \Sigma R^3 \dod{\Omega}{r}\right)
+\end{align}
+\end{important}
 
 %TODO finir ça
 
