@@ -90,10 +90,13 @@ La première conséquence est qu'un terme visqueux va apparaître dans l'équati
 
 La deuxième conséquence, c'est que le gaz perds de l'énergie, et donc dérive lentement vers l'étoile centrale qui accrète petit à petit le gaz du disque. 
 
-On définit donc une vitesse de dérive négative $v_r$, orientée vers l'étoile, qui entraine petit à petit le gaz du disque.
+On définit donc une vitesse de dérive négative $\vect{v_d} = v_r \hat{e}_r$, orientée vers l'étoile, qui entraine petit à petit le gaz du disque (avec $v_r$ négatif).
 
-\bigskip
+Dans la suite de la section, nous allons nous intéresser à la conservation de différentes quantités, que ce soit la masse ou le moment angulaire. Pour cela nous allons définir un anneau de référence, portion du disque sur laquelle nous allons faire le bilan. Le but est ici de présenter d'où viennent les équations et plus précisément d'où viennent les termes des équations. 
 
+
+
+\subsubsection{Bilan de masse}
 On cherche maintenant à faire un bilan de moment cinétique pour un anneau de gaz compris entre les rayons $R$ et $R+\Delta R$, avec $\Delta R \ll R$ \reffig{fig:disk_ring}. Le moment cinétique $\vect{J}$ d'une particule de masse $m$ est défini par :
 \begin{align}
 \vect{J} &= \vect{r} \wedge (m\vect{v})
@@ -121,13 +124,13 @@ Pour cela, on cherche à exprimer la variation de masse de l'anneau, ainsi que l
 
 Au bord interne $R$, par unité de temps, la masse entrant ou sortant de l'anneau est :
 \begin{align}
-\dif M(R) &= 2\pi R \cdot -v_r(R) * \Sigma(R)
+\dif M(R) &= 2\pi R \cdot v_r(R) * \Sigma(R)
 \end{align}
 En effet, en multipliant la circonférence de l'anneau par la vitesse, on obtient une sorte de surface par unité de temps qui représente ce qui sort de la frontière virtuelle représentée par l'anneau en $r=R$. Si la vitesse est positive (négative), alors de la masse rentre (sort) dans l'anneau. 
 
 De même on a : 
 \begin{align}
-\dif M(R+\Delta R) &= 2\pi (R+\Delta R) \cdot -v_r(R+\Delta R) * \Sigma(R+\Delta R)
+\dif M(R+\Delta R) &= 2\pi (R+\Delta R) \cdot v_r(R+\Delta R) * \Sigma(R+\Delta R)
 \end{align}
 
 La conservation de la masse implique alors que la dérivée temporelle de la masse de l'anneau est égale à la masse qui entre ou sort de ses frontières. On a ainsi : 
@@ -155,8 +158,7 @@ R\dpd{\Sigma}{t} + \inv{R}\dpd{}{r}\left(R v_r \Sigma\right)\label{eq:conservati
 \end{align}
 \end{important}
 
-\bigskip
-
+\subsubsection{Bilan de moment cinétique/angulaire}
 On cherche maintenant à faire le bilan de moment cinétique de ce même anneau. Son moment cinétique est défini par :
 \begin{align}
 \vect{J_a} &= \vect{R} \wedge (m_a\vect{v(R)}) \nonumber\\
