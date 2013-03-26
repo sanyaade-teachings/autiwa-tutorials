@@ -859,6 +859,19 @@ for patch in patches:
 
 
 \section{FAQ}
+\subsection{fatal: git checkout: updating paths is incompatible}
+\begin{verbatim}
+fatal: git checkout: updating paths is incompatible with switching branches/forcing
+Did you intend to checkout ‘origin/‘ which can not be resolved as commit?’
+\end{verbatim}
+
+If you try to synchronize a distant branch and get this error, try
+\begin{verbatim}
+git pull
+\end{verbatim}
+first, to retrieve the distant branch before trying to associate it with a local branch. 
+
+
 \subsection{git demande le mot de passe à chaque fois}
 Il est possible de rentrer les mots de passe dans un fichier .netrc dans le répertoire utilisateur. Le fichier ressemble à ceci :
 \begin{verbatim}
