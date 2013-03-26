@@ -177,7 +177,7 @@
 }
 \if@phd@chaptertoc%
   \AtEndDocument{\@finalize@chaptertoc}
-  \RequirePackage[french]{minitoc}
+  \RequirePackage[french, nohints]{minitoc}
   \setcounter{tocdepth}{2}
   \mtcsetdepth{minitoc}{3}
   \newif\if@phd@donechaptertoc
