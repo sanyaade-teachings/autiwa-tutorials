@@ -306,11 +306,7 @@ Un disque peut à la fois être actif et passif, mais généralement on essaie d
 
 Afin de déterminer le profil de température, il faut écrire l'équation de conservation de l'énergie, qui va tenir compte de tous les termes source et toutes les pertes, par unité de surface.
 
-On a tout d'abord les pertes par rayonnement de corps noir. Ces dernières doivent être multiplié par deux, en effet, il y a des pertes par rayonnements des deux cotés du disque à une position donnée : 
-\begin{align}
-P_\text{cn} &= - 2\sigma T^4
-\end{align}
-où $\sigma$ est la constante de Stephan.
+On a tout d'abord les pertes par rayonnement de corps noir. Ensuite, il y a les termes sources, qui peuvent dépendre en fonction de la physique que l'on considère. Pour notre cas, il y a un terme dû à l'enveloppe du disque, un dû à l'irradiation de l'étoile centrale, et enfin un dernier dû au chauffage visqueux.
 
 
 \begin{figure}[htb]
@@ -319,7 +315,29 @@ où $\sigma$ est la constante de Stephan.
 \caption{Représentation du bilan thermique d'un disque}\label{fig:energy_equilibrium}
 \end{figure}
 
+\subsubsection{Refroidissement radiatif}
+Par toute la surface du disque, qui est à une température $T_\text{eff}$ en surface, on a des pertes par rayonnement : 
+\begin{align}
+P_\text{cn} &= - 2\sigma T^4
+\end{align}
+où $\sigma$ est la constante de Stephan. Ces dernières doivent être multiplié par deux, en effet, il y a des pertes par rayonnements des deux cotés du disque à une position donnée. 
 
+\subsubsection{Chauffage par l'enveloppe}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.45\linewidth]{figure/disk_envelope.pdf}
+\caption{Représentation de l'effondrement d'un nuage moléculaire et des différentes parties qui composent le système en effondrement.}\label{fig:envelope}
+\end{figure}
+L'enveloppe \reffig{fig:envelope} provient de l'effondrement continu du nuage moléculaire. C'est un reste diffus qui alimente continuellement le disque en matière. Mais cette enveloppe, qui possède une température que l'on fixe ici à $T_\text{en} = 10\unit{K}$ contribue aussi au bilan d'énergie du disque en apportant la contribution uniforme suivante :
+\begin{align}
+C_\text{en} &= 2 \sigma {T_\text{en}}^4
+\end{align}
+
+\subsubsection{Chauffage par l'étoile}
+
+non ponctualité de l'étoile : Chiang & Goldreich, 1997, ApJ, 490, 368
+expression de l'angle notammenet : dullemond 2000
+autres expressions : menou & goodman 2004
 
 %TODO parler de la température du disque (et les phénomènes principaux qui ont un effet sur la température, chauffage visqueux, irradiation de l'étoile, irradiation externe. Parler dans cette partie de l'opacité, des transitions et à quoi c'est dû, des modèles had oc pour l'opacité et des incertitudes qui en découlent
 
