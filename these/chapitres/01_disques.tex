@@ -334,10 +334,33 @@ C_\text{en} &= 2 \sigma {T_\text{en}}^4
 \end{align}
 
 \subsubsection{Chauffage par l'étoile}
+La surface du disque reçoit de la lumière de l'étoile centrale. Soit $R_\star$, $L_\star$ respectivement le rayon et la luminosité de l'étoile. Soit $\varepsilon$ l'albédo du disque, que l'on peut typiquement égal à $0.5$. 
 
-non ponctualité de l'étoile : Chiang & Goldreich, 1997, ApJ, 490, 368
-expression de l'angle notammenet : dullemond 2000
-autres expressions : menou & goodman 2004
+Le flux incident est alors \citep[eq. (7)]{menou2004low} : 
+\begin{align}
+F_\text{irr} &= \frac{L_\star(1-\varepsilon)}{4\pi r^2} \alpha
+\end{align}
+où $\alpha$ (avec $\alpha\ll 1$ représente l'angle entre les rayons incidents et la surface du disque. 
+
+D'après notamment \cite[eq. (5)]{chiang1997spectral}, cet angle peut être écrit comme : 
+\begin{align}
+\alpha &= 0.4 \frac{R_\star}{r} + r \dod{}{r}\left(\frac{H}{r}\right)
+\end{align}
+
+On note que dans cette expression, le premier terme illustre le fait que l'étoile n'est pas ponctuelle, et que ceci a un effet sur l'irradiation dès que l'on s'approche de cette dernière. Le deuxième terme représente la surface du disque qui intercepte le rayonnement incident, et qui est fonction de la variation d'échelle de hauteur du disque (plus le disque est évasé, et plus la paroi qui intercepte le rayonnement est abrupte). 
+
+Il vient enfin, en exprimant la luminosité de l'étoile en fonction de sa température et de son rayon, l'expression suivante :
+\begin{align}
+C_\text{irr} &= 2 \sigma {T_\star}^4 \frac{{R_\star}^2}{r^2} (1-\varepsilon) * \left[0.4 \frac{R_\star}{r} + r \dod{}{r}\left(\frac{H}{r}\right)\right]
+\end{align}
+
+
+%non ponctualité de l'étoile : Chiang & Goldreich, 1997, ApJ, 490, 368
+%expression de l'angle notammenet : dullemond 2000
+%autres expressions : menou & goodman 2004
+
+\subsubsection{Chauffage visqueux}
+
 
 %TODO parler de la température du disque (et les phénomènes principaux qui ont un effet sur la température, chauffage visqueux, irradiation de l'étoile, irradiation externe. Parler dans cette partie de l'opacité, des transitions et à quoi c'est dû, des modèles had oc pour l'opacité et des incertitudes qui en découlent
 
