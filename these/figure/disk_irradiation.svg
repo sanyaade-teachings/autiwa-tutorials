@@ -24,16 +24,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.89960937"
-     inkscape:cx="297.56789"
-     inkscape:cy="868.4791"
+     inkscape:zoom="1.7992187"
+     inkscape:cx="413.23603"
+     inkscape:cy="833.24604"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:snap-object-midpoints="true"
-     inkscape:object-paths="false"
+     inkscape:object-paths="true"
      inkscape:snap-intersection-paths="true"
-     inkscape:snap-bbox="true"
+     inkscape:snap-bbox="false"
      inkscape:bbox-nodes="true" />
   <metadata
      id="metadata7">
@@ -99,5 +99,11 @@
        d="M 274.67906,339.94368 585.75641,204.06274"
        id="path2997"
        inkscape:connector-curvature="0" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path3025"
+       d="M 394.79752,287.47503 373.79586,163.24376"
+       style="fill:none;stroke:#ff0000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:8,2,1,2;stroke-dashoffset:0" />
   </g>
 </svg>

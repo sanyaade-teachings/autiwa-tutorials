@@ -318,9 +318,21 @@ On a tout d'abord les pertes par rayonnement de corps noir. Ensuite, il y a les 
 \subsubsection{Refroidissement radiatif}
 Par toute la surface du disque, qui est à une température $T_\text{eff}$ en surface, on a des pertes par rayonnement : 
 \begin{align}
-P_\text{cn} &= - 2\sigma T^4
+P_\text{cn} &= - 2\sigma {T_\text{eff}}^4
 \end{align}
 où $\sigma$ est la constante de Stephan. Ces dernières doivent être multiplié par deux, en effet, il y a des pertes par rayonnements des deux cotés du disque à une position donnée. 
+
+\bigskip
+
+$T_\text{eff}$ est une estimation de la température effective du disque à sa surface \cite{hubeny1990vertical} : 
+\begin{subequations}
+\begin{align}
+{T_\text{eff}}^4 &= \frac{T^4}{\tau_\text{eff}}
+\intertext{avec}
+\tau_\text{eff} &= \frac{3}{8}\tau + \frac{\sqrt{3}}{4} + \inv{4\tau}
+\end{align}
+\end{subequations}
+où $\tau$ est la profondeur optique verticale moyenne.
 
 \subsubsection{Chauffage par l'enveloppe}
 \begin{figure}[htb]
