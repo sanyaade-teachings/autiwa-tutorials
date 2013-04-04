@@ -316,7 +316,7 @@ On a tout d'abord les pertes par rayonnement de corps noir. Ensuite, il y a les 
 \end{figure}
 
 \subsubsection{Refroidissement radiatif}
-Par toute la surface du disque, qui est à une température $T_\text{eff}$ en surface, on a des pertes par rayonnement : 
+Par toute la surface du disque, qui est à une température $T_\text{eff}$ en surface, on a des pertes par rayonnement de corps noir : 
 \begin{align}
 P_\text{cn} &= - 2\sigma {T_\text{eff}}^4
 \end{align}
@@ -333,6 +333,8 @@ $T_\text{eff}$ est une estimation de la température effective du disque à sa s
 \end{align}
 \end{subequations}
 où $\tau$ est la profondeur optique verticale moyenne.
+
+Cette température effective est le résultat d'un transfert de rayonnement depuis le cœur du disque, à une température $T$ qui se refroidit, et chauffe les différentes couches successives jusqu'à atteindre le bord du disque. Il résulte alors une température $T_\text{eff}$ plus faible que la température dans le plan du disque. 
 
 \subsubsection{Chauffage par l'enveloppe}
 \begin{figure}[htb]
@@ -419,11 +421,13 @@ Il vient alors :
 \begin{align*}
 \dod{E_c}{t} &= - \frac{1}{2}\int \eta(T_{ik})^2\dif V\\
 &= - \frac{1}{2}\int \eta\sum_{i=1}^3\sum_{j=1}^3 {T_{ij}}^2\dif V\\
-&= - \frac{1}{2}\int \eta{T_{r\varphi}}^2\dif V\\
-&= - \inv{2} \iint \rho\nu \left(r\dod{\Omega}{r}\right)^2\dif S\dif z\\
+&= - \frac{1}{2}\int \eta\left({T_{r\varphi}}^2+{T_{\varphi r}}^2\right)\dif V\\
+\intertext{Le tenseur est symétrique, on a donc $T_{r\varphi} = T_{\varphi r}$}
+&= - \frac{1}{2}\int \eta\left(2{T_{r\varphi}}^2\right)\dif V\\
+&= - \iint \rho\nu \left(r\dod{\Omega}{r}\right)^2\dif S\dif z\\
 \intertext{En utilisant une vitesse angulaire képlerienne $\Omega=\sqrt{\frac{GM}{r^3}}$ on obtient alors :}
-&= - \inv{2} \int \Sigma\nu \left(-\frac{3}{2}\Omega\right)^2\dif S\\
-\dod{E_c}{t} &= - \frac{9}{8} \int \Sigma\nu \Omega^2\dif S
+&= - \int \Sigma\nu \left(-\frac{3}{2}\Omega\right)^2\dif S\\
+\dod{E_c}{t} &= - \frac{9}{4} \int \Sigma\nu \Omega^2\dif S
 \end{align*}
 
 La variation d'énergie cinétique est négative, cette perte est convertie en chaleur par chauffage visqueux. Le chauffage visqueux intégré sur toute la surface du disque peut ainsi être défini comme : 
@@ -432,8 +436,16 @@ C_\text{vis/tot} &= - \dod{E_c}{t}
 \end{align*}
 de sorte qu'on peut écrire le chauffage visqueux par unité de surface comme étant égal à :
 \begin{align}
-C_\text{vis} &= \frac{9}{8} \nu\Sigma\Omega^2
+C_\text{vis} &= \frac{9}{4} \nu\Sigma\Omega^2
 \end{align}
+
+\subsubsection{Bilan}
+On cherche maintenant la température d'équilibre du disque, compte tenu de tous les termes rentrant dans l'équation bilan de l'énergie du disque. Il vient alors, en considérant le chauffage visqueux, l'irradiation de l'étoile centrale, le chauffage par l'enveloppe et les pertes par radiation à la surface du disque : 
+\begin{align}
+0 &= P_\text{cn} + C_\text{en} + C_\text{irr} + C_\text{vis}\nonumber\\
+0 &= - 2\sigma \frac{T^4}{\frac{3}{8}\tau + \frac{\sqrt{3}}{4} + \inv{4\tau}} + 2 \sigma {T_\text{en}}^4 + 2 \sigma {T_\star}^4 \frac{{R_\star}^2}{r^2} (1-\varepsilon) * \left[0.4 \frac{R_\star}{r} + r \dod{}{r}\left(\frac{H}{r}\right)\right] + \frac{9}{4} \nu\Sigma\Omega^2
+\end{align}
+
 
 %TODO parler de la température du disque (et les phénomènes principaux qui ont un effet sur la température, chauffage visqueux, irradiation de l'étoile, irradiation externe. Parler dans cette partie de l'opacité, des transitions et à quoi c'est dû, des modèles had oc pour l'opacité et des incertitudes qui en découlent
 
