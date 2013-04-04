@@ -372,7 +372,68 @@ C_\text{irr} &= 2 \sigma {T_\star}^4 \frac{{R_\star}^2}{r^2} (1-\varepsilon) * \
 %autres expressions : menou & goodman 2004
 
 \subsubsection{Chauffage visqueux}
+On considère un fluide incompressible. Il peut paraître étonnant de considérer un disque de gaz comme étant un fluide incompressible. Mais en fait l'aspect compressible va surtout se manifester lors de la mise à l'équilibre, générant des ondes de chocs par exemple. Mais une fois le disque stabilisé tout se passe comme si on avait un fluide incompressible. C'est matérialisé par le fait que la vitesse dans le disque est considérée comme inférieure à la vitesse du son dans le milieu $c_s$, au delà de laquelle on aura des ondes des chocs ayant une incidence sur le bilan thermique. Ainsi donc, en considérant un fluide incompressible, on peut partir de l'expression de la variation d'énergie cinétique (qui est l'inverse du chauffage, les pertes cinétiques étant converties en chaleur par la viscosité) \citep[(16.3)]{landau1989mecanique} : 
+\begin{align}
+\dod{E_c}{t} &= - \frac{1}{2}\int \eta(T_{ik})^2\dif V\\
+T_{ik} &= \left(\dpd{v_i}{x_k} + \dpd{v_k}{x_i}\right)\nonumber
+\end{align}
+où $\eta = \rho\nu$ est la viscosité dynamique\footnote{$\nu$ étant la viscosité cinématique et $\rho$ la densité volumique de gaz.}
 
+À partir de \citep[(15.8) et (15.17)]{landau1989mecanique}, on extrait de manière assez directe l'expression du tenseur $T_{ik}$ en coordonnées cylindriques : 
+\begin{align}
+T_{rr} &= 2\dpd{v_r}{r}, & T_{r\varphi} &= \left(\inv{r} \dpd{v_r}{\varphi} + \dpd{v_\varphi}{r} - \frac{v_\varphi}{r}\right),\nonumber\\
+T_{\varphi\varphi} &= 2 \left(\inv{r} \dpd{v_\varphi}{\varphi} + \frac{v_r}{r}\right), & T_{\varphi z} &= \left(\dpd{v_\varphi}{z} + \inv{r}\dpd{v_z}{\varphi}\right),\\
+T_{zz} &= 2\dpd{v_z}{z}, & T_{rz} &= \left(\dpd{v_z}{r} + \dpd{v_r}{z}\right).\nonumber
+\end{align}
+sachant que le tenseur est symétrique en statique, ce qui donne : 
+\begin{align}
+T_{ik} &= \begin{pmatrix}
+T_{rr} & T_{r\varphi} & T_{rz}\\
+T_{r\varphi} & T_{rr} & T_{\varphi z}\\
+T_{rz} & T_{\varphi z} & T_{zz}
+\end{pmatrix}
+\end{align}
+
+À partir de ces expressions, nous allons procéder à quelques simplifications, moyennant quelques approximations : 
+\begin{itemize}
+\item On considère tout d'abord que $v_z=0$ en invoquant le fait que le disque est à l'équilibre hydrostatique verticalement. 
+
+\item Ensuite, on néglige tous les termes en $\pd{}{\varphi}$ car le disque est axisymétrique. 
+
+\item On néglige enfin tous les termes en $v_r$ devant les termes en $v_\varphi$ étant donné que la vitesse de dérive (liée à l'accrétion) est beaucoup plus petite que la vitesse de rotation due au mouvement képlerien. En effet, la vitesse de dérive est une conséquence des pertes d'énergie par frottement visqueux entre deux anneaux due à la différence de vitesse de leur mouvement képlerien.
+\end{itemize}
+
+
+
+%TODO expliquer pourquoi on néglige tout sauf un terme. 
+
+Seul le terme $T_{r\varphi}$ reste :
+\begin{align}
+T_{r\varphi} &= \dpd{v_\varphi}{r} - \frac{v_\varphi}{r}\nonumber\\
+\intertext{avec $v_\varphi=r\Omega$}
+&= \cancel{\Omega} + r\dod{\Omega}{r} - \cancel{\frac{r\Omega}{r}}\nonumber\\
+T_{r\varphi} &= r\dod{\Omega}{r}
+\end{align}
+
+Il vient alors :
+\begin{align*}
+\dod{E_c}{t} &= - \frac{1}{2}\int \eta(T_{ik})^2\dif V\\
+&= - \frac{1}{2}\int \eta\sum_{i=1}^3\sum_{j=1}^3 {T_{ij}}^2\dif V\\
+&= - \frac{1}{2}\int \eta{T_{r\varphi}}^2\dif V\\
+&= - \inv{2} \iint \rho\nu \left(r\dod{\Omega}{r}\right)^2\dif S\dif z\\
+\intertext{En utilisant une vitesse angulaire képlerienne $\Omega=\sqrt{\frac{GM}{r^3}}$ on obtient alors :}
+&= - \inv{2} \int \Sigma\nu \left(-\frac{3}{2}\Omega\right)^2\dif S\\
+\dod{E_c}{t} &= - \frac{9}{8} \int \Sigma\nu \Omega^2\dif S
+\end{align*}
+
+La variation d'énergie cinétique est négative, cette perte est convertie en chaleur par chauffage visqueux. Le chauffage visqueux intégré sur toute la surface du disque peut ainsi être défini comme : 
+\begin{align*}
+C_\text{vis/tot} &= - \dod{E_c}{t}
+\end{align*}
+de sorte qu'on peut écrire le chauffage visqueux par unité de surface comme étant égal à :
+\begin{align}
+C_\text{vis} &= \frac{9}{8} \nu\Sigma\Omega^2
+\end{align}
 
 %TODO parler de la température du disque (et les phénomènes principaux qui ont un effet sur la température, chauffage visqueux, irradiation de l'étoile, irradiation externe. Parler dans cette partie de l'opacité, des transitions et à quoi c'est dû, des modèles had oc pour l'opacité et des incertitudes qui en découlent
 
@@ -425,7 +486,7 @@ Dans la pratique, il est rare que la viscosité soit calculée de manière cohé
 La première hypothèse est de considérer une viscosité constante. Faute de mieux, c'est ce qui semble être le plus évident. On peut, si on veut affiner, utiliser une théorie dite des \gras{disque-alpha}
 
 \subsubsection{Les disques alpha}
-On peut introduire un paramètre adimensionné $\alpha$ \citep{shakura1989black}. Dans ce formalisme, plusieurs hypothèses sont faites : 
+On peut introduire un paramètre adimensionné $\alpha$ \citep{shakura1973black}. Dans ce formalisme, plusieurs hypothèses sont faites : 
 \begin{itemize}
 \item On considère que les turbulences sont sub-soniques.
 \item L'échelle des tourbillons des turbulences est plus petite que l'échelle de hauteur du disque
