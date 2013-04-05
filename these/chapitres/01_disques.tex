@@ -446,10 +446,70 @@ On cherche maintenant la température d'équilibre du disque, compte tenu de tou
 0 &= - 2\sigma \frac{T^4}{\frac{3}{8}\tau + \frac{\sqrt{3}}{4} + \inv{4\tau}} + 2 \sigma {T_\text{en}}^4 + 2 \sigma {T_\star}^4 \frac{{R_\star}^2}{r^2} (1-\varepsilon) * \left[0.4 \frac{R_\star}{r} + r \dod{}{r}\left(\frac{H}{r}\right)\right] + \frac{9}{4} \nu\Sigma\Omega^2
 \end{align}
 
+Dans la pratique, c'est une équation de l'on résout de manière numérique, par itération. En effet, beaucoup de paramètres dépendent de la température, alors même que c'est la variable que l'on recherche. 
+
+Ce calcul est lui même extrêmement dépendant de la définition que l'on choisi pour l'opacité $\kappa$ et de la dépendance de cette dernière en fonction de la température, la densité ou la pression. 
 
 %TODO parler de la température du disque (et les phénomènes principaux qui ont un effet sur la température, chauffage visqueux, irradiation de l'étoile, irradiation externe. Parler dans cette partie de l'opacité, des transitions et à quoi c'est dû, des modèles had oc pour l'opacité et des incertitudes qui en découlent
 
 %TODO finir ça
+
+\subsection{La viscosité du disque}\label{sec:viscosite}\index{viscosité}% (Franck et al. 1992)
+Quand on parle de viscosité $\nu$ dans un disque, ce n'est pas la viscosité moléculaire classique, bien trop faible aux densités rencontrées. On suppose généralement une viscosité due aux turbulences qui est beaucoup plus importante que la viscosité moléculaire, mais qui peut être traitée par les mêmes équations. 
+
+Ceci implique par contre qu'il y ait de l'ionisation. En effet, sans ionisation, il n'y a pas de couplage entre le champ magnétique et la matière, et donc pas de turbulence induite par ce même champ. 
+
+Dans la pratique, il est rare que la viscosité soit calculée de manière cohérente, ce qui serait beaucoup trop couteux en calculs, sans apporter forcément beaucoup plus de précisions étant donné les nombreuses incertitudes sur la poussière, le couplage et le champ magnétique. 
+
+\bigskip
+
+La première hypothèse est de considérer une viscosité constante. Ce n'est certainement pas satisfaisant, sûrement éloigné de la vérité, mais on n'a ainsi qu'un seul paramètre et on n'ajoute pas de surcouche de complexité apportant son lot supplémentaire d'incertitude. Reste qu'une viscosité constante dans un disque très étendu, par exemple allant de $0.1\unit{AU}$ à $100\unit{AU}$ n'est certainement pas cohérent avec la physique du disque. 
+
+Un autre modèle très répandu pour la viscosité du disque est la prescription $\alpha$.
+
+\subsubsection{Les disques alpha}
+On peut introduire un paramètre adimensionné $\alpha$ \citep{shakura1973black}. Dans ce formalisme, plusieurs hypothèses sont faites : 
+\begin{itemize}
+\item On considère que les turbulences sont sub-soniques.
+\item L'échelle des tourbillons des turbulences est plus petite que l'échelle de hauteur du disque
+\end{itemize}
+Le mécanisme qui a le plus de chance d'être à l'origine de la viscosité alpha est l'\gras{Instabilité Magnéto-Rotationnelle} (MRI). 
+
+\bigskip
+
+En conséquence, on peut définir la viscosité $\nu$ associée aux turbulences comme étant 
+\begin{align}
+\nu &= \alpha c_s H
+\end{align}
+où $c_s$ est la vitesse du son et $H$ l'échelle de hauteur du disque. $\alpha$ (avec $\alpha < 1$) est alors un paramètre adimensionné qui permet de définir plus ou moins l'intensité des turbulences, et donc la viscosité qui leur est associée. Une valeur typique d'$\alpha$ se situe entre $10^{-2}$ et $10^{-4}$.
+
+Ce modèle permet de définir une viscosité non constante dans le disque de gaz ce qui semble déjà plus cohérent avec un disque de gaz étendu ($[0.1--100]\unit{AU}$ par exemple). 
+
+Pourtant, le modèle $\alpha$ n'est pas forcément la panacée en comparaison du modèle à viscosité constante. En effet, la complexité est ici masquée dans la valeur qu'il faut attribuer au paramètre $\alpha$. D'une part il est difficile d'estimer la valeur du paramètre $\alpha$ mais en plus il n'y a aucune raison physique qui permet de justifier qu'$\alpha$ soit constant dans tout le disque (approximation généralement sous-jacente au choix de la prescription $\alpha$ pour la viscosité.
+
+Ceci justifie donc que l'on mette ces deux modèles en concurrence, sans placer le modèle $\alpha$ au dessus du modèle à viscosité constante. Les incertitudes étant tellement grandes dans les deux cas, il est justifié d'explorer ces deux modèles et de les comparer quand cela nous est donné de le faire.
+
+\subsection{La poussière}
+Le disque protplanétaire est principalement composé de gaz, hydrogène et hélium en majorité. Pourtant, même si la poussière ne représente qu'environ 1\% de la masse du disque elle joue un rôle au moins aussi important que le gaz lui même.
+
+À cause de la pression quasi inexistante dans le disque en raison des faibles densités, solide et gaz sont les seules phases existantes, il n'y a pas de liquides dans l'espace. La poussière représente la matière solide du disque, en grain plus ou moins fin, allant du nanomètre, micromètre, jusqu'à des tailles planétaires en fin de formation. 
+
+Cette poussière est un composé extrêmement complexe à manipuler. Elle contient différents composés solides en fonction de la température (à certaines températures et densité des composés se volatilisent et d'autres non). La ligne des glaces est une ligne imaginaire au delà de laquelle de la glace d'eau apparait, augmentant de manière drastique la quantité de poussière dans le disque. 
+
+\bigskip
+
+De plus, la poussière est aussi responsable de l'opacité du disque, c'est à dire sa capacité à laisser passer ou non la lumière. À travers l'opacité, la poussière a donc une influence sur la température du disque qui se refroidit plus ou moins efficacement, et qui absorbe le rayonnement stellaire plus ou moins efficacement. 
+
+\subsection{Opacité du disque}
+Un paramètre crucial des modèles de disques protoplanétaires est l'opacité du disque. Cette dernière, qui représente l'absorption du rayonnement incident par une cellule de gaz dépend de la composition chimique de la poussière, source principale d'opacité dans le disque (sauf quand la température devient suffisamment importante pour que la totalité de la poussière se sublime, généralement au delà de $1500\unit{K}$.
+
+La source dominante d'opacité est la poussière et les différentes températures/pression auxquelles certaines espèces se subliment auront donc des conséquences importantes sur le profil d'opacité. 
+
+L'opacité dépend de plus de la longueur d'onde, les raies d'absorptions n'étant pas uniformément réparties sur toute la gamme de longueur d'onde. Pour autant, dans les modèles de disque on considère généralement des opacités dites \og grises\fg qui sont intégrées sur tout le spectre. On voit donc ici qu'en fonction du modèle choisi pour l'opacité, nous aurons des opacités différentes, qui vont se répercuter sur d'autres paramètres du disque, notamment sa température, et par extension toutes les grandeurs qui dépendent de la température. 
+
+
+%TODO parler des opacités de rosseland et planck. Je ne sais pas les différences et je n'ai pas trouvé
+
 
 \subsection{Taille et représentation des disques}%TODO s'inspirer du 2.1.1 de yann en rajoutant un schéma de disque pour illustrer qu'il faut se méfier des représentations vis à vis de la "réalité"
 
@@ -477,43 +537,9 @@ Généralement, on considère donc que la taille verticale du disque est égale 
 %TODO !!!! Parler de l'équation et parler de manière logique des différents termes et paramètres qui en découlent.
 
 %TODO 
-\subsection{Le rôle prépondérant de la poussière}
-Le disque est principalement composé de gaz, hydrogène et hélium en majorité. Pour autant, c'est bien la poussière qui est au centre de toutes les attentions, même si cette dernière ne représente qu'1\% de la masse du disque environ.
 
-À cause de la pression quasi inexistante dans le disque en raison des faibles densités, solide et gaz sont les seules phases existantes, il n'y a pas de liquides dans l'espace. La poussière représente la matière solide du disque, en grain plus ou moins fin, allant du nanomètre, micromètre, jusqu'à des tailles planétaires en fin de formation. 
 
-Cette poussière est un composé extrêmement complexe à manipuler. Elle contient différents composés solides en fonction de la température (à certaines températures et densité des composés se volatilisent et d'autres non). La ligne des glaces est une ligne imaginaire au delà de laquelle de la glace d'eau apparait, augmentant de manière drastique la quantité de poussière dans le disque. 
 
-\bigskip
-
-De plus, la poussière est aussi responsable de l'opacité du disque, c'est à dire sa capacité à laisser passer ou non la lumière. À travers l'opacité, la poussière a donc une influence sur la température du disque qui se refroidit plus ou moins efficacement, et qui absorbe le rayonnement stellaire plus ou moins efficacement. 
-
-\subsection{La viscosité du disque} \index{viscosité}% (Franck et al. 1992)
-Quand on parle de viscosité $\nu$ dans un disque, ce n'est pas la viscosité moléculaire classique, bien trop faible aux densités rencontrées. On suppose généralement une viscosité due aux turbulences qui est beaucoup plus importante que la viscosité moléculaire, mais qui peut être traitée par les mêmes équations. 
-
-Ceci implique par contre qu'il y ait de l'ionisation. En effet, sans ionisation, il n'y a pas de couplage entre le champ magnétique et la matière, et donc pas de turbulence induite par ce même champ. 
-
-Dans la pratique, il est rare que la viscosité soit calculée de manière cohérente, ce qui serait beaucoup trop couteux en calculs, sans apporter forcément beaucoup plus de précisions étant donné les nombreuses incertitudes sur la poussière, le couplage et le champ magnétique. 
-
-La première hypothèse est de considérer une viscosité constante. Faute de mieux, c'est ce qui semble être le plus évident. On peut, si on veut affiner, utiliser une théorie dite des \gras{disque-alpha}
-
-\subsubsection{Les disques alpha}
-On peut introduire un paramètre adimensionné $\alpha$ \citep{shakura1973black}. Dans ce formalisme, plusieurs hypothèses sont faites : 
-\begin{itemize}
-\item On considère que les turbulences sont sub-soniques.
-\item L'échelle des tourbillons des turbulences est plus petite que l'échelle de hauteur du disque
-\end{itemize}
-Le mécanisme qui a le plus de chance d'être à l'origine de la viscosité alpha est l'\gras{Instabilité Magnéto-Rotationnelle} (MRI). 
-
-\bigskip
-
-En conséquence, on peut définir la viscosité $\nu$ associée aux turbulences comme étant 
-\begin{align}
-\nu &= \alpha c_s H
-\end{align}
-où $c_s$ est la vitesse du son et $H$ l'échelle de hauteur du disque. $\alpha$ (avec $\alpha < 1$) est alors un paramètre adimensionné qui permet de définir plus ou moins l'intensité des turbulences, et donc la viscosité qui leur est associée. Une valeur typique d'$\alpha$ se situe entre $10^{-2}$ et $10^{-4}$.
-
-Même si cette prescription simplifie un peu le problème, il semble probable qu'$\alpha$ ne soit pas constant, et dépende de la position dans le disque. On déplace alors le problème, vu que se pose la question des variations d'$\alpha$ dans le disque, notamment la dépendance radiale de ce dernier.
 
 \subsection{Ionisation et dead-zones}\index{ionisation}\index{dead zone}
 Pour qu'une instabilité magnéto rotationnelle ait lieu, c'est à dire qu'il y ait un couplage entre le champ magnétique et les mouvements du disque, il faut qu'une partie au moins du disque soit ionisé. Dans ces régions ionisées, on pourra alors avoir transport du moment angulaire via la viscosité due au champ magnétique (et turbulences engendrées). 
