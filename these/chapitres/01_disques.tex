@@ -79,7 +79,7 @@ Dans la suite de la section, nous allons nous intéresser à la conservation de 
 
 \bigskip
 
-Afin de décrire l'évolution hydrodynamique du disque de gaz, nous allons utiliser successivement la \textbf{conservation de la masse}, et la \textbf{conservation du moment angulaire.}
+Afin de décrire l'évolution hydrodynamique du disque de gaz, nous allons utiliser successivement la \textbf{conservation de la masse}, et la \textbf{conservation du moment angulaire.} Les démonstrations qui vont suivre ont été déjà faites de nombreuses fois, notamment par \citep{pringle1981accretion}. L'intérêt ici n'est pas de réinventer la roue, mais de montrer un calcul encore plus détaillé, montrant en particulier les approximations faites, ces calculs étaient loin d'être évident pour moi quand je les ai découvert et je n'ai trouvé nulle part une démonstration détaillée.
 
 
 \subsubsection{Bilan de masse}
@@ -450,10 +450,6 @@ Dans la pratique, c'est une équation de l'on résout de manière numérique, pa
 
 Ce calcul est lui même extrêmement dépendant de la définition que l'on choisi pour l'opacité $\kappa$ et de la dépendance de cette dernière en fonction de la température, la densité ou la pression. 
 
-%TODO parler de la température du disque (et les phénomènes principaux qui ont un effet sur la température, chauffage visqueux, irradiation de l'étoile, irradiation externe. Parler dans cette partie de l'opacité, des transitions et à quoi c'est dû, des modèles had oc pour l'opacité et des incertitudes qui en découlent
-
-%TODO finir ça
-
 \subsection{La viscosité du disque}\label{sec:viscosite}\index{viscosité}% (Franck et al. 1992)
 Quand on parle de viscosité $\nu$ dans un disque, ce n'est pas la viscosité moléculaire classique, bien trop faible aux densités rencontrées. On suppose généralement une viscosité due aux turbulences qui est beaucoup plus importante que la viscosité moléculaire, mais qui peut être traitée par les mêmes équations. 
 
@@ -483,7 +479,7 @@ En conséquence, on peut définir la viscosité $\nu$ associée aux turbulences 
 \end{align}
 où $c_s$ est la vitesse du son et $H$ l'échelle de hauteur du disque. $\alpha$ (avec $\alpha < 1$) est alors un paramètre adimensionné qui permet de définir plus ou moins l'intensité des turbulences, et donc la viscosité qui leur est associée. Une valeur typique d'$\alpha$ se situe entre $10^{-2}$ et $10^{-4}$.
 
-Ce modèle permet de définir une viscosité non constante dans le disque de gaz ce qui semble déjà plus cohérent avec un disque de gaz étendu ($[0.1--100]\unit{AU}$ par exemple). 
+Ce modèle permet de définir une viscosité non constante dans le disque de gaz ce qui semble déjà plus cohérent avec un disque de gaz étendu ($[0.1-100]\unit{AU}$ par exemple). 
 
 Pourtant, le modèle $\alpha$ n'est pas forcément la panacée en comparaison du modèle à viscosité constante. En effet, la complexité est ici masquée dans la valeur qu'il faut attribuer au paramètre $\alpha$. D'une part il est difficile d'estimer la valeur du paramètre $\alpha$ mais en plus il n'y a aucune raison physique qui permet de justifier qu'$\alpha$ soit constant dans tout le disque (approximation généralement sous-jacente au choix de la prescription $\alpha$ pour la viscosité.
 
@@ -501,15 +497,51 @@ Cette poussière est un composé extrêmement complexe à manipuler. Elle contie
 De plus, la poussière est aussi responsable de l'opacité du disque, c'est à dire sa capacité à laisser passer ou non la lumière. À travers l'opacité, la poussière a donc une influence sur la température du disque qui se refroidit plus ou moins efficacement, et qui absorbe le rayonnement stellaire plus ou moins efficacement. 
 
 \subsection{Opacité du disque}
-Un paramètre crucial des modèles de disques protoplanétaires est l'opacité du disque. Cette dernière, qui représente l'absorption du rayonnement incident par une cellule de gaz dépend de la composition chimique de la poussière, source principale d'opacité dans le disque (sauf quand la température devient suffisamment importante pour que la totalité de la poussière se sublime, généralement au delà de $1500\unit{K}$.
+Un paramètre crucial des modèles de disques protoplanétaires est l'opacité du disque qui représente l'absorption du rayonnement incident par une cellule de gaz. Cette dernière dépend principalement de la composition chimique de la poussière sauf quand la température devient suffisamment importante pour que la totalité de la poussière se sublime, généralement au delà de $1500\unit{K}$, l'opacité étant alors régie par les molécules du gaz.
 
-La source dominante d'opacité est la poussière et les différentes températures/pression auxquelles certaines espèces se subliment auront donc des conséquences importantes sur le profil d'opacité. 
+En fonction de la température et de la pression, différentes espèces se condensent ou se subliment, modifiant les propriétés de la poussière (notamment la quantité de poussière disponible) et donc l'opacité.
 
-L'opacité dépend de plus de la longueur d'onde, les raies d'absorptions n'étant pas uniformément réparties sur toute la gamme de longueur d'onde. Pour autant, dans les modèles de disque on considère généralement des opacités dites \og grises\fg qui sont intégrées sur tout le spectre. On voit donc ici qu'en fonction du modèle choisi pour l'opacité, nous aurons des opacités différentes, qui vont se répercuter sur d'autres paramètres du disque, notamment sa température, et par extension toutes les grandeurs qui dépendent de la température. 
+L'opacité dépend de plus de la longueur d'onde, les raies d'absorptions n'étant pas uniformément réparties sur toute la gamme de longueur d'onde. Ce dernier paramètre est généralement intégré dans des modèles d'opacité. Citons notamment les opacités moyennes de Plank et de Rosseland, principales opacités utilisés dans les disques. Ce sont des quantités moyennées sur tout un spectre, rendant les opacités indépendantes de la longueur d'onde. 
 
+Dans le cas de l'opacité de la moyenne de Rosseland, on fait l'approximation que le disque est optiquement épais, de sorte qu'on peut négliger le flux total pour se concentrer uniquement sur la dérivée du flux. C'est à dire, en d'autres termes, que seul le flux provenant du gaz environnant arrive jusqu'à la zone considérée, le reste étant absorbé. Dû au coté optiquement épais du disque, on perd l'information sur le flux total, ce qui simplifie les calculs. L'opacité moyenne de Rosseland $\moy{\kappa_R}$ est alors définie comme : 
+\begin{align}
+\inv{\moy{\kappa_R}} &= \inv{\int_0^\infty \pd{B_\nu}{T}\dif \nu} \int_0^\infty \frac{\pd{B_\nu}{T}}{\kappa_\nu}\dif \nu
+\end{align}
+où $B_\nu$ et $\kappa_\nu$ sont l'intensité et l'opacité spécifique (dépendant de la fréquence).
 
-%TODO parler des opacités de rosseland et planck. Je ne sais pas les différences et je n'ai pas trouvé
+À l'inverse, les opacités de Planck concernent les disques optiquement mince, où on ne peut plus considérer uniquement la dérivée du flux. La moyenne est alors effectuée sur l'intensité spécifique directement : 
+\begin{align}
+\inv{\moy{\kappa_P}} &= \inv{\int_0^\infty B_\nu\dif \nu} \int_0^\infty \frac{B_\nu}{\kappa_\nu}\dif \nu
+\end{align}
+où $\int_0^\infty B_\nu\dif \nu$ représente l'intensité totale, tandis que $B_\nu$ et $\kappa_\nu$ sont l'intensité et l'opacité spécifique (dépendant de la fréquence).
 
+Dans la pratique, on fait bien souvent l'approximation que le disque est optiquement épais, ce qui est généralement vrai dans les parties internes du disque ($0.1-15\unit{AU}$), lieu de formation des planètes. Pour autant, le calcul des opacités est loin d'être trivial et plusieurs modèles proposent des tables d'opacités dont le détail des propriétés est différent. Le choix du modèle a donc des implications importantes sur le modèle de formation planétaire comme je le détaillerai dans la section \refsec{sec:influence_opacity_table}. 
+
+En formation planétaire, le modèle le plus utilisé est \citep{bell1994FU}. Mais dans mes études, j'ai utilisé en tout et pour tout 4 modèles différents \citep{bell1994FU, zhu2009nonsteady, chambers2009analytic, hure2000transition}. À noter que \citep{bell1994FU, zhu2009nonsteady} sont des modèles qui proposent différents fonctions analytiques pour définir une opacité par morceaux. \citep{chambers2009analytic} propose un modèle très simple à opacité constante $\kappa=3$ tant que la température est inférieure à $1380\unit{K}$, puis une simple loi de puissance, fonction uniquement de la température au delà. Enfin, le modèle dans \citep{hure2000transition} ne définit pas de fonctions par morceaux mais utilise simplement une table d'opacité fonction de la température et de la densité. L'avantage de ce type de méthode est qu'on ne rajoute pas d'incertitudes par des fits en loi de puissance, c'est donc principalement pour ça que j'ai choisi cette table d'opacité pour mon modèle standard. 
+
+\subsection{Profil de densité de surface}
+Un point crucial dans la modélisation physique d'un disque protoplanétaire est son profil de densité de surface $\Sigma$. Ça signifie d'une part qu'on fait l'approximation d'un disque mince, et que toutes les quantités qu'on considère par la suite sont moyennées selon la direction verticale $z$.
+
+Que l'on fasse évoluer la densité de surface ou non, on doit choisir un profil initial. Ce profil est généralement sous forme d'une loi de puissance de la forme : 
+\begin{align}
+\Sigma(R) &= \Sigma_0 \cdot \left(\frac{R}{R_0}\right)^{-\alpha}
+\end{align}
+
+Un profil largement utilisé est celui de la Masse Minimale de la Nébuleuse Solaire\footnote{MMSN : Minimum Mass Solar Nebulae} \citep{hayashi1981structure}. Dans cet article, le profil de densité est calculé à partir de la masse des planètes. La quantité de solide contenu dans les planètes est répartie dans des anneaux en lieu et place des planètes, puis à partir d'un rapport gaz sur poussière, le profil de densité de surface du gaz est calculé, puis approximé par une loi de puissance, ce qui donne : 
+\begin{align}
+\Sigma(R) &= 1700 \left(\frac{R}{1\unit{AU}}\right)^{-\sfrac{3}{2}} \unit{g/cm^2}
+\end{align}
+La première chose, c'est que c'est une masse minimale, c'est à dire qu'on suppose que toute la masse de poussière présente dans le disque de gaz se retrouve dans la masse finale des planètes, ce qui est hautement improbable, que ce soit à cause notamment de l'accrétion sur l'étoile ou de la disparition d'embryons de planètes soit en tombant dans l'étoile, soit par éjection du système.
+
+Ce profil est malgré tout une base de travail, vu qu'il est extrêmement difficile de déduire ces informations des observations des disques. Malgré tout, les études semblent montrer que l'on s'attend à un profil moins abrupt que $\Sigma\propto r^{-\sfrac{3}{2}}$, plus proche de $\Sigma\propto r^{-1}$ \citep{bell1997structure}.
+
+Mais on voit quand même que l'on a une grande liberté sur la densité de surface du disque, à la fois parce qu'on sait à ce jour peu de choses à ce sujet, mais aussi et surtout parce qu'au cours de son évolution, le disque de gaz va voir sa densité de surface varier énormément. En variant le profil, on étudie donc aussi différentes étapes de formation d'un même disque. 
+
+Le profil de densité de surface, que ce soit au travers de $\Sigma_0$ ou de l'indice $\alpha$ de la loi de puissance a une grande influence sur les autres paramètres du disques, notamment le profil de température, au travers du chauffage visqueux notamment. 
+
+Il est aussi crucial de garder à l'esprit que la loi de puissance n'est qu'un modèle, issu notamment des observations qui sondent les parties externes des disques, au delà de plusieurs dizaines d'unités astronomiques. Extrapoler ces lois de puissances jusqu'aux parties les plus interne est une très grande approximation qui a des conséquences importantes pour les planètes, dont le lieu de formation se situe vraisemblablement dans les parties internes.
+
+%TODO j'en suis là
 
 \subsection{Taille et représentation des disques}%TODO s'inspirer du 2.1.1 de yann en rajoutant un schéma de disque pour illustrer qu'il faut se méfier des représentations vis à vis de la "réalité"
 
