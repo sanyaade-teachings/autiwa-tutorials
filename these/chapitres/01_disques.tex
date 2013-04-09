@@ -19,19 +19,13 @@ Pour un nuage moléculaire c'est exactement pareil. À mesure que le nuage s'eff
 
 Initialement, il est hautement improbable que le moment angulaire du nuage soit parfaitement nul. C'est ainsi que même si sa rotation est imperceptible lors des premiers stades de son effondrement gravitationnel, le disque d'accrétion fini toujours en rotation. 
 
-%\bigskip
-%
-%L'évolution de tels objets au cours du temps est un sujet de recherche actif, mais le principe de base est que lors de l'effondrement gravitationnel d'un nuage moléculaire diffus, le gigantesque moment angulaire de cette masse ne peut s'évacuer instantanément. 
-%
-%La quantité totale de moment angulaire doit être conservée. En conséquence, soit deux cellules de gaz vont échanger du moment angulaire par friction (celle qui gagne du moment angulaire migre vers l'extérieur, l'autre migrant vers l'intérieur), soit du moment angulaire est perdu soit par accrétion d'une particule de gaz sur l'étoile, soit par évaporation du gaz sur les bords du disque.
-%
-%Mais ces processus prennent du temps, beaucoup plus de temps que n'en met le gaz pour faire une orbite autour de l'étoile. De l'ordre du million d'années. C'est durant ce labs de temps que les planètes se forment. Le processus est complexe et très loin d'être compris. Il est cependant clair que les interactions entre le disque de gaz et les planètes ont un rôle prépondérant dans la formation d'un système stellaire, que ce soit pour les planètes géantes, dont on pense qu'elles ont accrété une partie du gaz du disque pour en faire leur enveloppe, ou les planètes telluriques, beaucoup plus denses, principalement composées des poussières du disque.
-%
-%\bigskip
-%
-%Afin de décrire la physique des disques, on a besoin principalement de deux équations. L'équation de Navier-Stokes pour décrire le comportement fluide du disque de gaz et l'équation de conservation de l'énergie, pour décrire la température du disque.
-
 \subsection{Évolution hydrodynamique du disque}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.45\linewidth]{figure/disk_scheme.pdf}
+\caption{Représentation de la répartition radiale et azimutale de gaz dans un disque protoplanétaire.}\label{fig:disk_scheme}
+\end{figure}
+
 Avant de considérer l'évolution d'un disque, il est important de regarder sa masse par rapport à la masse de l'étoile centrale. En effet, si la masse du disque est de l'ordre de la masse de l'étoile, alors des instabilités se développent et on ne peut plus négliger l'autogravité du disque. 
 
 Le \gras{paramètre de Toomre} $Q$, défini par :
@@ -347,8 +341,12 @@ L'enveloppe \reffig{fig:envelope} provient de l'effondrement continu du nuage mo
 C_\text{en} &= 2 \sigma {T_\text{en}}^4
 \end{align}
 
+\begin{remarque}
+La température de l'enveloppe étant très faible, cette dernière ne contribue que dans les parties externes du disque, là où la densité de surface du gaz est très faible, rendant du même coup le chauffage visqueux extrêmement ténu lui aussi.
+\end{remarque}
+
 \subsubsection{Chauffage par l'étoile}
-La surface du disque reçoit de la lumière de l'étoile centrale. Soit $R_\star$, $L_\star$ respectivement le rayon et la luminosité de l'étoile. Soit $\varepsilon$ l'albédo du disque, que l'on peut typiquement égal à $0.5$. 
+La surface du disque reçoit de la lumière de l'étoile centrale. Soit $R_\star$, $L_\star$ respectivement le rayon et la luminosité de l'étoile. Soit $\varepsilon$ l'albédo du disque, que l'on choisi typiquement égal à $0.5$. 
 
 Le flux incident est alors \citep[eq. (7)]{menou2004low} : 
 \begin{align}
@@ -368,6 +366,11 @@ Il vient enfin, en exprimant la luminosité de l'étoile en fonction de sa temp�
 C_\text{irr} &= 2 \sigma {T_\star}^4 \frac{{R_\star}^2}{r^2} (1-\varepsilon) * \left[0.4 \frac{R_\star}{r} + r \dod{}{r}\left(\frac{H}{r}\right)\right]
 \end{align}
 
+\begin{remarque}
+Il faut cependant noter qu'une approximation implicite à été faite, c'est de dire que $h_p\sim h$, où $h_p$ est la position verticale dans le disque où les photons stellaires sont absorbés. En effet, l'absorption des photons ne dépend pas simplement de la densité mais aussi de l'opacité du disque aux photons stellaires, qui dépend de la composition du disque.
+
+Dans le cadre d'un disque optiquement épais, il devient possible de considérer $h_p \sim h$
+\end{remarque}
 
 %non ponctualité de l'étoile : Chiang & Goldreich, 1997, ApJ, 490, 368
 %expression de l'angle notammenet : dullemond 2000
@@ -485,6 +488,19 @@ Pourtant, le modèle $\alpha$ n'est pas forcément la panacée en comparaison du
 
 Ceci justifie donc que l'on mette ces deux modèles en concurrence, sans placer le modèle $\alpha$ au dessus du modèle à viscosité constante. Les incertitudes étant tellement grandes dans les deux cas, il est justifié d'explorer ces deux modèles et de les comparer quand cela nous est donné de le faire.
 
+\subsubsection{Ionisation et dead-zones}\index{ionisation}\index{dead zone}
+Pour qu'une instabilité magnéto rotationnelle ait lieu, c'est à dire qu'il y ait un couplage entre le champ magnétique et les mouvements du disque, il faut qu'une partie au moins du disque soit ionisé. Dans ces régions ionisées, on pourra alors avoir transport du moment angulaire via la viscosité due au champ magnétique (et turbulences engendrées). 
+
+Or, comment ioniser? Que ce soit le rayonnement X de l'étoile centrale, des rayons cosmiques ou l'ionisation thermique, il n'est pas si évident que ça de se représenter l'ionisation totale du disque de gaz. Il est donc probable que certaines zones du disques ne soient pas ionisés, et donc que le transport du moment angulaire s'y fasse peu ou pas du tout. Ces zones, appelées \index{dead zone}, sont donc des zones sans viscosité magnétique. 
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.7\linewidth]{figure/disk_ionization.pdf}
+\caption{Représentation des différentes zones d'un disque en fonction du mécanisme principal d'ionisation. La nature du mode d'ionisation n'indique pas le taux d'ionisation pour autant. Et ce dernier va donc fluctuer dans le disque. Les zones où l'ionisation est très faible, appelées \og dead-zones\fg sont des positions où on pense que la viscosité turbulente est extrêmement faible.}\label{fig:ionization}
+\end{figure}
+
+On voit donc que les modèles de viscosité constante ou alpha sont incapables de rendre compte de la présence de ces zones de manière intrinsèque. Il est possible de modifier artificiellement les profils de viscosité pour faire apparaître de telles zones mais ça reste ad-hoc. Dans la suite, je n'ai pas modélisé de dead-zone même s'il est probable qu'elles aient un effet sur la migration, le modèle sans dead-zone n'est encore pas suffisamment bien compris pour que le rajout de ces zones sans ionisations soit pertinent.
+
 \subsection{La poussière}
 Le disque protplanétaire est principalement composé de gaz, hydrogène et hélium en majorité. Pourtant, même si la poussière ne représente qu'environ 1\% de la masse du disque elle joue un rôle au moins aussi important que le gaz lui même.
 
@@ -541,21 +557,8 @@ Le profil de densité de surface, que ce soit au travers de $\Sigma_0$ ou de l'i
 
 Il est aussi crucial de garder à l'esprit que la loi de puissance n'est qu'un modèle, issu notamment des observations qui sondent les parties externes des disques, au delà de plusieurs dizaines d'unités astronomiques. Extrapoler ces lois de puissances jusqu'aux parties les plus interne est une très grande approximation qui a des conséquences importantes pour les planètes, dont le lieu de formation se situe vraisemblablement dans les parties internes.
 
-%TODO j'en suis là
-
-\subsection{Taille et représentation des disques}%TODO s'inspirer du 2.1.1 de yann en rajoutant un schéma de disque pour illustrer qu'il faut se méfier des représentations vis à vis de la "réalité"
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width=0.45\linewidth]{figure/disk_scheme.pdf}
-\caption{Représentation de la répartition radiale et azimutale de matière dans un disque protoplanétaire.}\label{fig:disk_scheme}
-\end{figure}
-
-\reffig*{fig:disk_scheme} donne une idée de ce qu'est un disque protoplanétaire. Pour autant, ce n'est qu'une représentation et il est toujours important de garder en tête quelques différences notables entre cette représentation et la réalité physique d'un disque. Quand on parle de disque protoplanétaire, on fait référence à la composante gazeuse, largement majoritaire. Pourtant, bien que minoritaire, la poussière joue un rôle majeur et sa répartition spatiale ne suis pas forcément exactement celle du gaz, ces deux entitées n'ayant pas les mêmes propriétés, elles ne sont pas strictement régies par les mêmes équations.
-
-\bigskip
-
-Tout d'abord, le bord interne est une des parties les plus complexes d'un disque protoplanétaire. Ce bord interne correspond, pour la poussière, à une température de 1500K environ, température au delà de laquelle la partie réfractaire des grains se sublime. 
+\subsection{Limites et approximations dues à la modélisation}
+Tout d'abord, le bord interne est une des parties les plus complexes d'un disque protoplanétaire. Ce bord interne correspond à des zones différentes pour le gaz ou pour la poussière. La poussière disparait quand la température du disque dépasse 1500K environ, température au delà de laquelle la partie réfractaire des grains se sublime. 
 
 Le gaz, quant à lui, ne se propage pas non plus jusqu'à la surface de l'étoile en raison du champ magnétique important autour des jeunes étoiles. Le bord interne est ainsi déterminé par le rayon de co-rotation de l'étoile, c'est à dire la distance à laquelle une particule en rotation képlerienne orbite à la vitesse de rotation de l'étoile. Le champ magnétique de l'étoile tournant à la vitesse de rotation de l'étoile, ce rayon de co-rotation correspond ainsi au rayon en dessous duquel le gaz est freiné par le champ magnétique et est rapidement accrété le long des lignes de champ. 
 
@@ -565,37 +568,24 @@ En considérant un système \og étoile + disque\fg isolé, il n'y a pas d'arrê
 
 Généralement, on considère donc que la taille verticale du disque est égale à une échelle de hauteur (grandeur caractéristique de la décroissance exponentielle verticale de la densité de matière), tandis que la taille radiale du disque dépend de la physique que l'on considère. Dans mon cas j'ai souvent pris un bord externe à 100 AU.
 
-
-%TODO !!!! Parler de l'équation et parler de manière logique des différents termes et paramètres qui en découlent.
-
-%TODO 
-
-
-
-
-\subsection{Ionisation et dead-zones}\index{ionisation}\index{dead zone}
-Pour qu'une instabilité magnéto rotationnelle ait lieu, c'est à dire qu'il y ait un couplage entre le champ magnétique et les mouvements du disque, il faut qu'une partie au moins du disque soit ionisé. Dans ces régions ionisées, on pourra alors avoir transport du moment angulaire via la viscosité due au champ magnétique (et turbulences engendrées). 
-
-Or, comment ioniser? Que ce soit le rayonnement X de l'étoile centrale, des rayons cosmiques ou l'ionisation thermique, il n'est pas si évident que ça de se représenter l'ionisation totale du disque de gaz. Il est donc probable que certaines zones du disques ne soient pas ionisés, et donc que le transport du moment angulaire s'y fasse peu ou pas du tout. Ces zones, appelées \index{dead zone}, sont donc des zones sans viscosité magnétique. %TODO compléter la partie dead zone
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width=0.7\linewidth]{figure/dead_zones.pdf}
-\caption{Représentation d'un disque à couches (layered disk). L'ionisation d'une zone est déterminé par sa température. Ainsi, les zones internes à température plus faible ne sont pas ionisés et n'ont donc pas de viscosité dûes aux turbulences magnétique (MRI). Les régions externes ne sont pas des zones mortes parce qu'elles peuvent être sujettes à des ionisations non thermiques en raison de leur densité plus faible. À distance intermédiaire, le disque est trop froid pour de l'ionisation thermique, et trop dense pour de l'ionisation non thermique.}\label{fig:dead_zones}
-\end{figure}
-
-
-%TODO j'en suis à la page 158 du .pdf ``accretion processes in star formation''
-
-\subsection{Profil de densité}
-%TODO 
-
-\subsection{Les bords du disque}
-%TODO parler des bords du disque et de tous les problèmes que ça pose
+Je vais ici essayer de récapituler les approximations qui ont été faites jusque là sur la physique des disques, et qui vont se retrouver implicitement dans tout code qui implémente les équations décrites ci-dessus : 
+\begin{enumerate}
+\item On suppose que les disques évoluent de manière isolée. Les études suggèrent que les étoiles se forment majoritairement dans des amas (clusters) à l'intérieur desquels la plupart des étoiles font partie de systèmes binaires ou multiples \citep{duquennoy1991multiplicity}. Même si cette approximation permet la modélisation de l'évolution du disque, il est probable que des effets de voisinages aient des conséquences dans tout ou partie des systèmes stellaires.
+\item On néglige l'autogravité du disque ($M_d \lesssim 0.1M_\star$) en considérant que la période où ce n'est pas le cas est courte devant le temps de vie du disque, et que ce dernier temps rapidement vers une configuration où l'autogravité est négligeable.
+\item On considère que le gaz est en rotation képlerienne $\Omega=\sqrt{\frac{GM_\star}{r^3}}$. Pour cela, on néglige la pression du gaz qui a tendance à rendre la rotation légèrement sous-képlerienne.
+\item On considère qu'il n'y a pas de variation de la gravité dû à la variation de masse de l'étoile induite par l'accrétion. Ça entraîne alors $\pd{\Omega}{t} = 0$.
+\item Dans le calcul du chauffage visqueux, on néglige la vitesse azimuthale, la vitesse radiale ainsi que toutes les dérivées en $\varphi$ compte tenu que le disque est axisymétrique.
+\item On se place dans le cadre d'un disque optiquement épais quand on choisi d'utiliser des moyennes de Rosseland pour l'opacité. Si c'est physiquement cohérent avec les parties internes du disque, ça ne l'est parfois plus dans les parties externes, surtout si le disque est très étendu.
+\item Le modèle d'opacité a une grande influence sur la physique du disque. En particulier, chaque modèle fait des hypothèses sur la métallicité, les propriétés de la poussière, notamment la taille des grains. Chacune de ces hypothèses joue sur l'opacité d'une manière qui est totalement masquée dans les équations ou tables qu'on utilise pour rendre compte de la dépendance de l'opacité en fonction de la température et de la densité.
+\item On fait souvent l'approximation de la masse moléculaire moyenne $\mu$ est constante (et typiquement égale à $\mu=2.35$). Or en fonction des transitions d'opacité, la quantité de poussière va brusquement varier, engendrant une variation de $\mu$. Cette masse moléculaire moyenne a en particulier une importance dans le calcul de l'échelle de hauteur $H$ du disque et la vitesse du son $c_s$. 
+\item Définir le profil de densité de surface du disque comme une loi de puissance reste une approximation. Ça l'est d'autant plus que le disque est étendu. Du reste, la masse du disque et l'indice de la loi de puissance sont peu contraints, donnant une grande liberté dans le profil de densité dont il faut tenir compte pour mettre en perspective les résultats que l'on obtient.
+\item Le modèle choisi pour la viscosité, constante ou prescription alpha, néglige bien souvent la présence de \og dead zone\fg où l'ionisation n'est pas suffisante pour que l'on puisse définir une viscosité turbulente. L'absence de ces zones dans un disque modélisé est bien entendu une approximation à des fins de simplifications, mais masque certaines propriétés intrinsèques des disques dont les conséquences sur la formation planétaire sont encore mal connues.
+\item Une dernière approximation, et qui a des conséquences importantes pour l'opacité, le profil de température, la viscosité et par extension, toute la physique du disque, est le fait de considérer les propriétés de la poussière comme figées dans le temps. Au cours de la vie du disque, la poussière évolue. Sa distribution de taille change, la quantité totale de poussière est modifiée, notamment par l'accrétion. Et enfin, à mesure que la poussière se retrouve dans des embryons de planète de plus en plus gros, la quantité de poussière disponible sous la forme de petites particules diminue d'autant. 
+\end{enumerate}
 
 \section{Interaction disque-planète}
 \subsection{Migration planétaire}
-%TODO 
+%TODO J'en suis là
 \subsubsection{Type I}\index{migration!type I}
 Ce type de migration ne concerne que les planètes de faible masse (de l'ordre de $10M_{\oplus}$)pour lesquelles l'interaction de marée entre la planète et le disque a une réponse linéaire (Le profil de densité surfacique reste quasiment le même). Ces planètes, qui ne creusent pas de sillon (gap) dans le disque de gaz, vont migrer vers l'intérieur.
 

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="357.42413"
+   height="201.78555"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.2 r9819"
+   sodipodi:docname="disk_ionization.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.5444796"
+     inkscape:cx="181.26853"
+     inkscape:cy="86.675525"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:snap-object-midpoints="true"
+     inkscape:snap-smooth-nodes="false"
+     inkscape:object-nodes="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1614"
+     inkscape:window-height="1026"
+     inkscape:window-x="66"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(18.012883,-212.16781)">
+    <path
+       d="m 339.41125,212.16781 c -97.57037,40.85846 -203.29014,69.86326 -315.672665,89.17678 l 0,13.32322 c 112.382525,19.31352 218.102295,48.31832 315.672665,89.17678 z"
+       style="fill:#00ff00;stroke:none"
+       id="path3780"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       sodipodi:type="star"
+       style="fill:#ffff00;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path2985"
+       sodipodi:sides="5"
+       sodipodi:cx="235.71429"
+       sodipodi:cy="230.93361"
+       sodipodi:r1="18.626293"
+       sodipodi:r2="7.2855659"
+       sodipodi:arg1="-1.5707963"
+       sodipodi:arg2="-0.9424778"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 235.71429,212.30732 4.28235,12.73214 13.43231,0.13831 -10.78567,8.0072 4.01927,12.81763 -10.94826,-7.78343 -10.94826,7.78343 4.01928,-12.81763 -10.78567,-8.0072 13.43231,-0.13831 z"
+       inkscape:transform-center-y="-1.7786527"
+       transform="translate(-235.51252,78.851244)" />
+    <path
+       id="path3858"
+       style="fill:#ffff00;stroke:none"
+       d="M 339.41125,241.27361 C 269.115,269.50516 54.362845,301.65531 23.738585,302.84801 l 0,-1.50342 C 136.12111,282.03107 241.84088,253.02627 339.41125,212.16781 z"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       sodipodi:nodetypes="ccccc"
+       inkscape:connector-curvature="0"
+       d="m 339.41125,220.81802 c -97.57037,40.85846 -203.29014,62.14727 -315.672665,81.46079 l 0,-0.93422 C 136.12111,282.03107 241.84088,253.02627 339.41125,212.16781 z"
+       style="fill:#ff6600;stroke:none"
+       id="path3846" />
+    <path
+       id="path3843"
+       style="fill:#0000ff;stroke:none"
+       d="m 339.41125,216.09113 c -97.57037,40.85846 -203.29014,66.48834 -315.672665,85.80186 l 0,-0.5484 C 136.12111,282.03107 241.84088,253.02627 339.41125,212.16781 z"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:none"
+       id="path3839"
+       sodipodi:cx="67.5"
+       sodipodi:cy="107.3568"
+       sodipodi:rx="25.892857"
+       sodipodi:ry="5.1785712"
+       d="m 67.500001,102.17823 a 25.892857,5.1785712 0 0 1 0,10.35714 L 67.5,107.3568 z"
+       transform="matrix(1.134129,0,0,0.70689654,-52.815124,232.11605)"
+       sodipodi:start="4.712389"
+       sodipodi:end="7.8539816" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path3858"
+       id="use3860"
+       transform="matrix(1,0,0,-1,0,616.0124)"
+       width="442.62305"
+       height="201.91037" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path3846"
+       id="use3854"
+       transform="matrix(1,0,0,-1,0,616.0124)"
+       width="442.62305"
+       height="201.91037" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path3843"
+       id="use3856"
+       transform="matrix(1,0,0,-1,0,616.0124)"
+       width="442.62305"
+       height="201.91037" />
+    <rect
+       y="381.77493"
+       x="-5.5289807"
+       height="14.015866"
+       width="28.031733"
+       id="rect3866"
+       style="fill:#ffff00;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+    <rect
+       y="346.4498"
+       x="-5.5289807"
+       height="14.015866"
+       width="28.031733"
+       id="rect3868"
+       style="fill:#0000ff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+    <rect
+       y="364.11237"
+       x="-5.5289807"
+       height="14.015866"
+       width="28.031733"
+       id="rect3870"
+       style="fill:#ff6600;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+    <rect
+       style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3864"
+       width="28.031733"
+       height="14.015866"
+       x="-5.5289807"
+       y="328.78723" />
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+       x="70.106155"
+       y="226.89345"
+       id="text3872"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3874"
+         x="70.106155"
+         y="226.89345">Processus d'ionisation dominant</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+       x="29.194986"
+       y="338.92114"
+       id="text3876"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3878"
+         x="29.194986"
+         y="338.92114">Température</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+       x="27.982096"
+       y="374.43088"
+       id="text3880"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3882"
+         x="27.982096"
+         y="374.43088">Rayons X stellaires &quot;durs&quot;</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+       x="28.368814"
+       y="356.76828"
+       id="text3884"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3886"
+         x="28.368814"
+         y="356.76828">Rayons X stellaires</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+       x="28.486002"
+       y="392.09341"
+       id="text3888"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3890"
+         x="28.486002"
+         y="392.09341">Rayons cosmiques</tspan></text>
+    <rect
+       style="fill:#00ff00;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3892"
+       width="28.031733"
+       height="14.015866"
+       x="-5.5289807"
+       y="399.4375" />
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+       x="28.588533"
+       y="410.49194"
+       id="text3894"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3896"
+         x="28.588533"
+         y="410.49194">Décroissance de <tspan
+   style="font-size:65.00091553%;baseline-shift:super"
+   id="tspan3013">26</tspan>Al</tspan></text>
+  </g>
+</svg>
