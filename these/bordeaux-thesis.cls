@@ -120,6 +120,7 @@
 \RequirePackage{autiwa-macros}
 
 \RequirePackage[french]{varioref}
+\vrefwarning % To transform errors in warning, in particular when a vref is between two pages. 
 
 \renewcommand{\refeq}[1]{(\vref{#1})}
 
