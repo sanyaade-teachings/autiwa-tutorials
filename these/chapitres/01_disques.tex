@@ -595,10 +595,19 @@ Je vais ici essayer de récapituler les approximations qui ont été faites jusq
 \end{enumerate}
 
 \section{Interaction disque-planète}
+Au même titre qu'on rencontre de la résistance quand on essaie de courir en ayant les jambes dans l'eau, les planètes sont sujettes aux mêmes effets dans le disque protoplanétaire. 
+
+Ce seul fait explique pourquoi il est si difficile de comprendre la formation des planètes dans le disque de gaz. On ne peut étudier séparément le disque ou les planètes, c'est un système global, en interaction, qui évolue depuis la formation du disque (et les poussières qu'ils contient) jusqu'à la dissipation du disque (et la possible présence d'une ou plusieurs planètes).
+
+Étant donné que j'ai implémenté les interactions disque-planète à partir de modèles qualibrés sur des simulations hydrodynamiques, je ne vais pas redémontrer ici les formules analytiques, mais plutôt m'attacher à présenter, avec les mains, le principe de chacun des phénomènes physiques mis en jeux.
+
+
 \subsection{Migration planétaire}
+Il existe plusieurs types de migration planétaire, principalement en fonction de la masse de cette dernière. Mais le principe général reste le même. En considérant que la planète découpe le disque en deux parties distinctes, une partie interne et une partie externe, la migration résulte de l'attraction différentielle exercée conjointement par les deux parties. 
+
 %TODO J'en suis là
 \subsubsection{Type I}\index{migration!type I}
-Ce type de migration ne concerne que les planètes de faible masse (de l'ordre de $10M_{\oplus}$)pour lesquelles l'interaction de marée entre la planète et le disque a une réponse linéaire (Le profil de densité surfacique reste quasiment le même). Ces planètes, qui ne creusent pas de sillon (gap) dans le disque de gaz, vont migrer vers l'intérieur.
+Ce type de migration ne concerne que les planètes de faible masse (de l'ordre de $10M_{\oplus}$) pour lesquelles l'interaction de marée entre la planète et le disque a une réponse linéaire, c'est à dire que le profil de densité surfacique n'est quasiment pas modifié par la planète. Ces planètes, qui ne creusent pas de sillon (gap) dans le disque de gaz, vont migrer vers l'intérieur.
 
 \begin{remarque}
 Pour plus de détails, se référer au chapitre 9, page 188--191 de \cite{barnes2010formation} ou \cite{ward1997protoplanet} pour l'article original.
