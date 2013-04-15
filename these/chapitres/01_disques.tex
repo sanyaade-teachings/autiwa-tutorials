@@ -601,6 +601,39 @@ Ce seul fait explique pourquoi il est si difficile de comprendre la formation de
 
 Étant donné que j'ai implémenté les interactions disque-planète à partir de modèles qualibrés sur des simulations hydrodynamiques, je ne vais pas redémontrer ici les formules analytiques, mais plutôt m'attacher à présenter, avec les mains, le principe de chacun des phénomènes physiques mis en jeux.
 
+\bigskip
+
+Il est tout d'abord intéressant de remarquer l'origine des bras spiraux dans les galaxies. Ce sont essentiellement des phénomènes statistiques que l'on peut résumer en deux points : 
+\begin{enumerate}
+\item Il y a un phénomène d'auto-interaction. Une onde de densité se forme par la cohérence des excentricité et orientation d'orbites excentriques \reffig{fig:spiral_arms}. Les excentricités et orientation des orbites et étoiles sont quant à elles soumises à la perturbation gravitationnelle induite par l'onde de densité. 
+
+La sur-densité a tendance à s'auto-entretenir en modifiant les orbites des étoiles de sorte à augmenter leur excentricité ainsi qu'orienter de manière cohérente les arguments du périhélie (la direction du grand axe de l'orbite).
+\item Les étoiles qui constituent le bras spiral ne seront pas les mêmes en fonction de l'instant d'analyse, le bras spiral n'est rien de plus qu'une sur-densité statistique. Pour une orbite excentrique, la vitesse d'une étoile est plus grande au périastre qu'à l'apoastre. Ainsi elle passera plus de temps loin de son étoile. L'excitation cohérente des excentricités des étoiles crée donc des ondes de densité dû à la présence statistique des étoiles. Le bras spiral n'est ainsi pas constitué d'une population fixe d'étoile, mais plutôt d'une population statistique. Les étoiles constituant le bras spiral changent avec le temps, mais statistiquement, la position des étoiles dans la galaxie dessine une onde de densité où le nombre d'étoiles est plus grand.
+\end{enumerate}
+
+\reffig{fig:spiral_arms} schématise l'apparition d'onde de densité. Dans le cas à gauche, des orbites concentriques parfaitement circulaires sont ajoutés. On ne voit rien de particulier. Par contre, dans le cas à droite, on choisi des orbites très légèrement excentriques. À chaque étape, on rajoute une orbite en agrandissant l'orbite précédente et en la tournant légèrement. On voit ainsi apparaître deux ondes de densités dans le disques simplement dues à l'orientation des orbites excentriques.
+
+\subsection{Onde de densité}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.9\linewidth]{figure/spiral_arms.pdf}
+\caption{Illustration de l'origine des bras spiraux dans une galaxie au travers de l'exitation cohérente de l'excentricité par les bras eux mêmes. Dans le cas \og $e=0$\fg, les orbites des étoiles, représentées par les traits noir sont des cercles parfaits. Dans le cas \og $0<e\ll 1$\fg, les orbites sont toutes très légèrement excentriques, et les arguments du périhélies légèrement décalés à mesure que les demi-grands axes augmentent.}\label{fig:spiral_arms}
+\end{figure}
+
+\bigskip
+
+Pour l'interaction entre une planète et un disque protoplanétaire, c'est exactement le même principe. Le potentiel de la planète excite les excentricités des éléments fluides voisins jusqu'à former une onde de densité autour de la planète. La différence principale est que le perturbateur est un potentiel gravitationnel tournant.
+
+% discussion avec laurent : L'explication de l'onde de densité avec les excentricités est correct. Ça permet de résoudre le problème du "winding problem", c'est à dire que si le bras spiral était rigide, il serait censé s'enrouler sur lui même au fil de la rotation (vu que la rotation du bras est égale à la rotation des étoiles qui le composent), et donc au bout de quelques rotations, le bras devrait e^tre hyper enroulé. par contre, si on considère une onde de densité, qui n'existe que statistiquement, ça veut dire que les étoiles entre et sortent du bras, qui lui tourne à une vitesse qui lui est propre, et qui n'a rien à voir avec la vitesse des étoiles en elle même. La majorité des galaxies spirales sont barrées, et on pense que c'est la barre quie st à l'origine des spirales, qui démarrent au bout de la barre.
+
+Afin de le voir, il faut décomposer le potentiel gravitationnel de la planète en série de Fourier. Le potentiel de la planète dans le référentiel tournant à la vitesse angulaire $\Omega_{p}$ et lié à l'étoile centrale vaut alors :
+\begin{align}
+\phi(r, \theta, t) &= \sum _{n} \phi_{n}(r) \cos\left(m(\theta - \Omega_{p} t)\right)\notag\\
+&= \sum _{n} \phi_{n}(r) \cos\left(m(\Omega - \Omega_{p}) t)\right)
+\end{align}
+
+%Par un phénomène résonnant entre une cellule de gaz et un mode $m$ du potentiel gravitationnel de la planète dont on a décomposé l'expression en série de fourrier (on fait ainsi apparaître des termes de fréquence différen
+
 
 \subsection{Migration planétaire}
 Il existe plusieurs types de migration planétaire, principalement en fonction de la masse de cette dernière. Mais le principe général reste le même. En considérant que la planète découpe le disque en deux parties distinctes, une partie interne et une partie externe, la migration résulte de l'attraction différentielle exercée conjointement par les deux parties. 
