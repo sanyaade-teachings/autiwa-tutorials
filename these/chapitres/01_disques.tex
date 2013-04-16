@@ -599,34 +599,17 @@ Au même titre qu'on rencontre de la résistance quand on essaie de courir en ay
 
 Ce seul fait explique pourquoi il est si difficile de comprendre la formation des planètes dans le disque de gaz. On ne peut étudier séparément le disque ou les planètes, c'est un système global, en interaction, qui évolue depuis la formation du disque (et les poussières qu'ils contient) jusqu'à la dissipation du disque (et la possible présence d'une ou plusieurs planètes).
 
-Étant donné que j'ai implémenté les interactions disque-planète à partir de modèles qualibrés sur des simulations hydrodynamiques, je ne vais pas redémontrer ici les formules analytiques, mais plutôt m'attacher à présenter, avec les mains, le principe de chacun des phénomènes physiques mis en jeux.
+Étant donné que j'ai implémenté les interactions disque-planète à partir de modèles calibrés sur des simulations hydrodynamiques, je ne vais pas redémontrer ici les formules analytiques, mais plutôt m'attacher à présenter, avec les mains, le principe de chacun des phénomènes physiques mis en jeux.
 
-\bigskip
-
-Il est tout d'abord intéressant de remarquer l'origine des bras spiraux dans les galaxies. Ce sont essentiellement des phénomènes statistiques que l'on peut résumer en deux points : 
-\begin{enumerate}
-\item Il y a un phénomène d'auto-interaction. Une onde de densité se forme par la cohérence des excentricité et orientation d'orbites excentriques \reffig{fig:spiral_arms}. Les excentricités et orientation des orbites et étoiles sont quant à elles soumises à la perturbation gravitationnelle induite par l'onde de densité. 
-
-La sur-densité a tendance à s'auto-entretenir en modifiant les orbites des étoiles de sorte à augmenter leur excentricité ainsi qu'orienter de manière cohérente les arguments du périhélie (la direction du grand axe de l'orbite).
-\item Les étoiles qui constituent le bras spiral ne seront pas les mêmes en fonction de l'instant d'analyse, le bras spiral n'est rien de plus qu'une sur-densité statistique. Pour une orbite excentrique, la vitesse d'une étoile est plus grande au périastre qu'à l'apoastre. Ainsi elle passera plus de temps loin de son étoile. L'excitation cohérente des excentricités des étoiles crée donc des ondes de densité dû à la présence statistique des étoiles. Le bras spiral n'est ainsi pas constitué d'une population fixe d'étoile, mais plutôt d'une population statistique. Les étoiles constituant le bras spiral changent avec le temps, mais statistiquement, la position des étoiles dans la galaxie dessine une onde de densité où le nombre d'étoiles est plus grand.
-\end{enumerate}
-
-\reffig{fig:spiral_arms} schématise l'apparition d'onde de densité. Dans le cas à gauche, des orbites concentriques parfaitement circulaires sont ajoutés. On ne voit rien de particulier. Par contre, dans le cas à droite, on choisi des orbites très légèrement excentriques. À chaque étape, on rajoute une orbite en agrandissant l'orbite précédente et en la tournant légèrement. On voit ainsi apparaître deux ondes de densités dans le disques simplement dues à l'orientation des orbites excentriques.
-
-\subsection{Migration des planètes de faible masse}
+\subsection{Migration des planètes de faible masse : type I}
 \index{migration!type I}
 Ce type de migration ne concerne que les planètes de faible masse (de l'ordre de $10M_{\oplus}$) pour lesquelles l'interaction de marée entre la planète et le disque a une réponse linéaire, c'est à dire que le profil de densité surfacique n'est quasiment pas modifié par la planète. Ces planètes, qui ne creusent pas de sillon (gap) dans le disque de gaz, vont migrer vers l'intérieur. On appelle cette migration la \gras[migration!type I]{migration de type I}.
 
-\begin{remarque}
-Pour plus de détails, se référer au chapitre 9, page 188--191 de \cite{barnes2010formation} ou \cite{ward1997protoplanet} pour l'article original.
-\end{remarque}
+%\begin{remarque}
+%Pour plus de détails, se référer au chapitre 9, page 188--191 de \cite{barnes2010formation} ou \cite{ward1997protoplanet} pour l'article original.
+%\end{remarque}
 
-La présence d'une planète dans un disque de gaz entraine la création d'ondes de densités aux \gras[résonnance!de Lindblad]{résonances de Lindblad} \citep{goldreich1979excitation}. Le couplage gravitationnel entre les ondes de densité et la planète qui les crées abouti à un \gras{couple} qui agit sur la planète.
-
-Lors de la création d'ondes de densité par une planète dans un disque, il se forme un déséquilibre naturel entre les couples agissant sur les disques internes et externes. La position des résonances de Lindblad externes tend à être plus proche de la planète que ne l'est celle des résonances internes.
-
-\bigskip
-
+\subsubsection{Couple du disque sur la planète}
 Un couple gravitationnel peut-être vu comme le vecteur énergie associé à une interaction gravitationnelle. Un couple positif d'un corps 1 sur un corps 2 signifie que le premier corps va donner de l'énergie au deuxième.
 
 Inversement, si ce couple est négatif, le corps 1 va prendre de l'énergie au corps 2.
@@ -644,6 +627,20 @@ Si le couple est positif, la planète migre vers l'extérieur, cette dernière p
 \end{attention}
 
 \subsubsection{Couple de Lindblad}
+La présence d'une planète dans un disque de gaz entraine la création d'ondes de densités aux \gras[résonnance!de Lindblad]{résonances de Lindblad} \citep{goldreich1979excitation}. Le couplage gravitationnel entre les ondes de densité et la planète qui les crées abouti à un \gras{couple} qui agit sur la planète.
+
+\bigskip
+
+Il est tout d'abord intéressant de remarquer l'origine des bras spiraux dans les galaxies. Ce sont essentiellement des phénomènes statistiques que l'on peut résumer en deux points : 
+\begin{enumerate}
+\item Il y a un phénomène d'auto-interaction. Une onde de densité se forme par la cohérence des excentricité et orientation d'orbites excentriques \reffig{fig:spiral_arms}. Les excentricités et orientation des orbites et étoiles sont quant à elles soumises à la perturbation gravitationnelle induite par l'onde de densité. 
+
+La sur-densité a tendance à s'auto-entretenir en modifiant les orbites des étoiles de sorte à augmenter leur excentricité ainsi qu'orienter de manière cohérente les arguments du périhélie (la direction du grand axe de l'orbite).
+\item Les étoiles qui constituent le bras spiral ne seront pas les mêmes en fonction de l'instant d'analyse, le bras spiral n'est rien de plus qu'une sur-densité statistique. Pour une orbite excentrique, la vitesse d'une étoile est plus grande au périastre qu'à l'apoastre. Ainsi elle passera plus de temps loin de son étoile. L'excitation cohérente des excentricités des étoiles crée donc des ondes de densité dû à la présence statistique des étoiles. Le bras spiral n'est ainsi pas constitué d'une population fixe d'étoile, mais plutôt d'une population statistique. Les étoiles constituant le bras spiral changent avec le temps, mais statistiquement, la position des étoiles dans la galaxie dessine une onde de densité où le nombre d'étoiles est plus grand.
+\end{enumerate}
+
+\reffig{fig:spiral_arms} schématise l'apparition d'onde de densité. Dans le cas à gauche, des orbites concentriques parfaitement circulaires sont ajoutés. On ne voit rien de particulier. Par contre, dans le cas à droite, on choisi des orbites très légèrement excentriques. À chaque étape, on rajoute une orbite en agrandissant l'orbite précédente et en la tournant légèrement. On voit ainsi apparaître deux ondes de densités dans le disques simplement dues à l'orientation des orbites excentriques.
+
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.9\linewidth]{figure/spiral_arms.pdf}
@@ -652,26 +649,34 @@ Si le couple est positif, la planète migre vers l'extérieur, cette dernière p
 
 \bigskip
 
-Pour l'interaction entre une planète et un disque protoplanétaire, c'est exactement le même principe. Le potentiel de la planète excite les excentricités des éléments fluides voisins jusqu'à former une onde de densité autour de la planète. La différence principale est que le perturbateur est un potentiel gravitationnel tournant.
+Pour l'interaction entre une planète et un disque protoplanétaire, c'est exactement le même principe. Le potentiel de la planète excite les excentricités des éléments fluides voisins jusqu'à former une onde de densité autour de la planète. La différence principale est que le perturbateur est un potentiel gravitationnel tournant, ce qui modifie la forme des ondes de densité comme illustré \reffig{fig:lindblad_torque}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.6\linewidth]{figure/lindblad_torque.png}
+\caption{Génération d'ondes de densité dans le disque protoplanétaire dû à la présence d'une planète (au centre du cercle blanc). Ici la couleur désigne la densité de surface perturbée du disque, c'est à dire la densité actuelle moins la densité initiale.}\label{fig:lindblad_torque}
+\end{figure}
+
 
 %TODO j'en suis là. Une idée, c'est que la résonnance se passe à un endroit précis du disque, mais ensuite, par viscosité, ça se propage dans le reste du disque, faut que je vois ça avec arnaud.
 
 % discussion avec laurent : L'explication de l'onde de densité avec les excentricités est correct. Ça permet de résoudre le problème du "winding problem", c'est à dire que si le bras spiral était rigide, il serait censé s'enrouler sur lui même au fil de la rotation (vu que la rotation du bras est égale à la rotation des étoiles qui le composent), et donc au bout de quelques rotations, le bras devrait e^tre hyper enroulé. par contre, si on considère une onde de densité, qui n'existe que statistiquement, ça veut dire que les étoiles entre et sortent du bras, qui lui tourne à une vitesse qui lui est propre, et qui n'a rien à voir avec la vitesse des étoiles en elle même. La majorité des galaxies spirales sont barrées, et on pense que c'est la barre quie st à l'origine des spirales, qui démarrent au bout de la barre.
 
-Afin de le voir, il faut décomposer le potentiel gravitationnel de la planète en série de Fourier. Le potentiel de la planète dans le référentiel tournant à la vitesse angulaire $\Omega_{p}$ et lié à l'étoile centrale vaut alors :
-\begin{align}
-\phi(r, \theta, t) &= \sum _{n} \phi_{n}(r) \cos\left(m(\theta - \Omega_{p} t)\right)\notag\\
-&= \sum _{n} \phi_{n}(r) \cos\left(m(\Omega - \Omega_{p}) t)\right)
-\end{align}
-
 %Par un phénomène résonnant entre une cellule de gaz et un mode $m$ du potentiel gravitationnel de la planète dont on a décomposé l'expression en série de fourrier (on fait ainsi apparaître des termes de fréquence différen
 
+Lors de la création d'ondes de densité par une planète dans un disque, il se forme un déséquilibre naturel entre les couples agissant sur les parties internes et externes du disque par rapport à la position de la planète. La position des résonances de Lindblad externes tend à être plus proche de la planète que ne l'est celle des résonances internes. Le couple de Lindblad est donc souvent négatif, à condition que la densité de surface diminue avec la distance, ce qui est le cas dans un disque de gaz isolé, non modifié par les intéractions avec des planètes massives, et en négligeant les effets aux bords.
 
 \subsubsection{Couple co-orbital ou de corotation}\index{co-orbital!couple|see{couple}}\index{couple!co-orbital}
-Comme son nom l'indique, c'est un couple exercé par les zones coorbitales entourant la planète sur cette dernière.
+Comme son nom l'indique, c'est un couple exercé depuis les zones coorbitales entourant la planète sur cette dernière. Ces orbites ont la particularité de ressembler à un fer à cheval dans le référentiel tournant avec la planète. Les particules fluides sur de telles orbites vont donc passer devant et derrière la planète, à des distances plus ou moins proches suivant l'orbite exacte du fer à cheval. \reffig*{fig:corotation_orbits} illustres différentes orbites possible, une orbite a été colorée en rouge pour bien distinguer une orbite particulière, même si ce n'est pas la seule co-orbite qui existe, bien entendu.
 
-%TODO rajouter la figure d'une orbite fer à cheval, voire en plus un schéma de la zone pour représenter les temps (visqueux, u-turn etc) et les rapports entre les temps caractéristiques). Penser aussi à supprimer les références à la section de 'resume.tex' que je n'ai pas recopié ici.
-Par exemple, si on considère plusieurs particules fluides en orbite fer-à-cheval (voir \refsec{sec:region-coorbitale}) avec la planète. Un couple sur la planète va apparaître sur le long de cette orbite si la densité de gaz rencontrée n'est pas uniforme --- Une densité non uniforme implique une attraction gravitationnelle non uniforme azimutalement dans cette région. C'est le cas par défaut, mais sans mécanismes pour diffuser la densité, le \gras[couple!co-orbital]{couple co-orbital} s'estompe. À mesure que la densité s'uniformise, on dit que le couple  \gras[couple!saturé]{sature}.
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.75\linewidth]{figure/corotation_orbits.pdf}
+\caption{Dans le référentiel tournant avec la planète (qui est donc fixe dans ce repère), représentation des iso-potentielles qui correspondent à autant d'orbites d'objets en rotations placés en un point de ces courbes. Les cercles sont des orbites classiques, mais les les orbites en forme de fer-à-cheval représentent des coorbites, c'est à dire des mouvements un peu plus complexes durant lesquels une particule va faire demi tour devant la planète pour repartir dans l'autre sens. On note aussi des orbites fermées autour des points de Lagrange L4 et L5. L'orbite en rouge est simplement une orbite particulier, afin de mieux voir le trajet d'une particule en coorbite.}\label{fig:corotation_orbits}
+\end{figure}
+
+%TODO J'en suis la
+Par exemple, si on considère plusieurs particules fluides en orbite fer-à-cheval  avec la planète. Un couple sur la planète va apparaître le long de cette orbite si la densité de gaz rencontrée n'est pas uniforme --- Une densité non uniforme implique une attraction gravitationnelle non uniforme azimutalement dans cette région. C'est le cas par défaut, mais sans mécanismes pour diffuser la densité, le \gras[couple!co-orbital]{couple co-orbital} s'estompe. À mesure que la densité s'uniformise, on dit que le couple  \gras[couple!saturé]{sature}.
 
 \begin{remarque}
 Si la planète creuse un \gras{sillon} (\gras{gap}) le long de son orbite, alors il n'y a pas de couple co-orbital étant donné que le gaz est déplété.
