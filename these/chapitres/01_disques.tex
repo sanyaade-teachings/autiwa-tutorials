@@ -658,22 +658,32 @@ Pour l'interaction entre une planète et un disque protoplanétaire, c'est exact
 \end{figure}
 
 
-%TODO j'en suis là. Une idée, c'est que la résonnance se passe à un endroit précis du disque, mais ensuite, par viscosité, ça se propage dans le reste du disque, faut que je vois ça avec arnaud.
+%TODO Une idée, c'est que la résonnance se passe à un endroit précis du disque, mais ensuite, par viscosité, ça se propage dans le reste du disque, faut que je vois ça avec arnaud.
 
 % discussion avec laurent : L'explication de l'onde de densité avec les excentricités est correct. Ça permet de résoudre le problème du "winding problem", c'est à dire que si le bras spiral était rigide, il serait censé s'enrouler sur lui même au fil de la rotation (vu que la rotation du bras est égale à la rotation des étoiles qui le composent), et donc au bout de quelques rotations, le bras devrait e^tre hyper enroulé. par contre, si on considère une onde de densité, qui n'existe que statistiquement, ça veut dire que les étoiles entre et sortent du bras, qui lui tourne à une vitesse qui lui est propre, et qui n'a rien à voir avec la vitesse des étoiles en elle même. La majorité des galaxies spirales sont barrées, et on pense que c'est la barre quie st à l'origine des spirales, qui démarrent au bout de la barre.
 
 %Par un phénomène résonnant entre une cellule de gaz et un mode $m$ du potentiel gravitationnel de la planète dont on a décomposé l'expression en série de fourrier (on fait ainsi apparaître des termes de fréquence différen
 
-Lors de la création d'ondes de densité par une planète dans un disque, il se forme un déséquilibre naturel entre les couples agissant sur les parties internes et externes du disque par rapport à la position de la planète. La position des résonances de Lindblad externes tend à être plus proche de la planète que ne l'est celle des résonances internes. Le couple de Lindblad est donc souvent négatif, à condition que la densité de surface diminue avec la distance, ce qui est le cas dans un disque de gaz isolé, non modifié par les intéractions avec des planètes massives, et en négligeant les effets aux bords.
+Le couple de Lindblad peut se décomposer en mode $m$ qui apparaissent quand on décompose le potentiel gravitationnel de la planète en série de Fourier. 
+
+Pour chaque mode $m$ du couple de Lindblad on définit une résonnance interne (ILR : Inner Lindblad Resonance) et une résonance externe (OLR : Outer Lindblad Resonance). Ces résonances sont des sur-densités qui provoquent donc une attraction gravitationnelle supplémentaire sur la planète. La vitesse de rotation képlerienne $\Omega = \sqrt{\frac{GM}{r^3}}$ implique que plus la distance augmente, et moins l'élement fluide tourne rapidement. La résonance interne tourne plus vite que la planète et accélère donc cette dernière. Pour la résonance externe c'est l'inverse. 
+
+Il est important de remarquer que la position de la résonance externe d'ordre $m$ est systématiquement plus proche que la résonance interne associée. Ainsi, en sommant sur tous les modes, on arrive à la conclusion que le couple total externe l'emporte toujours sur le couple total interne \citep{ward1997protoplanet}. 
+
+Ainsi, le couple de Lindblad est toujours négatif dans un disque protoplanétaire. De plus, c'est un résultat qui dépend peu ou pas du tout des paramètres du disque \citep{ward1997protoplanet}.
 
 \subsubsection{Couple co-orbital ou de corotation}\index{co-orbital!couple|see{couple}}\index{couple!co-orbital}
-Comme son nom l'indique, c'est un couple exercé depuis les zones coorbitales entourant la planète sur cette dernière. Ces orbites ont la particularité de ressembler à un fer à cheval dans le référentiel tournant avec la planète. Les particules fluides sur de telles orbites vont donc passer devant et derrière la planète, à des distances plus ou moins proches suivant l'orbite exacte du fer à cheval. \reffig*{fig:corotation_orbits} illustres différentes orbites possible, une orbite a été colorée en rouge pour bien distinguer une orbite particulière, même si ce n'est pas la seule co-orbite qui existe, bien entendu.
+Comme son nom l'indique, c'est un couple exercé depuis les zones coorbitales entourant la planète. Ces orbites ont la particularité de ressembler à un fer à cheval dans le référentiel tournant avec la planète. Les particules fluides sur de telles orbites vont donc passer devant et derrière la planète, à des distances plus ou moins proches suivant l'orbite exacte du fer à cheval. \reffig*{fig:corotation_orbits} illustre différentes orbites possible, une orbite a été colorée en rouge pour bien distinguer une orbite particulière, même si ce n'est pas la seule co-orbite qui existe.
 
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.75\linewidth]{figure/corotation_orbits.pdf}
 \caption{Dans le référentiel tournant avec la planète (qui est donc fixe dans ce repère), représentation des iso-potentielles qui correspondent à autant d'orbites d'objets en rotations placés en un point de ces courbes. Les cercles sont des orbites classiques, mais les les orbites en forme de fer-à-cheval représentent des coorbites, c'est à dire des mouvements un peu plus complexes durant lesquels une particule va faire demi tour devant la planète pour repartir dans l'autre sens. On note aussi des orbites fermées autour des points de Lagrange L4 et L5. L'orbite en rouge est simplement une orbite particulier, afin de mieux voir le trajet d'une particule en coorbite.}\label{fig:corotation_orbits}
 \end{figure}
+
+Une particule fluide en co-orbite va donc passer par diverses zones du disque, en particulier à des positions $r$ différentes. Les propriétés du disques variant en fonction du rayon (notamment la densité, la température), ces différences vont engendrer un couple différentiel sur la planète, car la symétrie axiale va être brisée dans la zone de corotation. 
+
+
 
 %TODO J'en suis la
 Par exemple, si on considère plusieurs particules fluides en orbite fer-à-cheval  avec la planète. Un couple sur la planète va apparaître le long de cette orbite si la densité de gaz rencontrée n'est pas uniforme --- Une densité non uniforme implique une attraction gravitationnelle non uniforme azimutalement dans cette région. C'est le cas par défaut, mais sans mécanismes pour diffuser la densité, le \gras[couple!co-orbital]{couple co-orbital} s'estompe. À mesure que la densité s'uniformise, on dit que le couple  \gras[couple!saturé]{sature}.
