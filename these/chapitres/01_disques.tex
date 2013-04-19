@@ -649,24 +649,36 @@ La sur-densité a tendance à s'auto-entretenir en modifiant les orbites des ét
 
 \bigskip
 
-Pour l'interaction entre une planète et un disque protoplanétaire, c'est exactement le même principe. Le potentiel de la planète excite les excentricités des éléments fluides voisins jusqu'à former une onde de densité autour de la planète. La différence principale est que le perturbateur est un potentiel gravitationnel tournant, ce qui modifie la forme des ondes de densité comme illustré \reffig{fig:lindblad_torque}.
+Pour l'interaction entre une planète et un disque protoplanétaire, c'est exactement le même principe. Le potentiel de la planète excite les excentricités des éléments fluides voisins jusqu'à former une onde de densité autour de la planète. La différence principale est que le perturbateur est un potentiel gravitationnel tournant, ce qui modifie la forme des ondes de densité comme illustré \reffig{fig:lindblad_torque}. 
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width=0.6\linewidth]{figure/lindblad_torque.png}
-\caption{Génération d'ondes de densité dans le disque protoplanétaire dû à la présence d'une planète (au centre du cercle blanc). Ici la couleur désigne la densité de surface perturbée du disque, c'est à dire la densité actuelle moins la densité initiale.}\label{fig:lindblad_torque}
+\includegraphics[width=\linewidth]{figure/lindblad_torque.pdf}
+\caption{Génération d'ondes de densité dans le disque protoplanétaire dû à la présence d'une planète. Chaque mode $m$ émet des ondes de densité à partir de deux positions entourant la planète. Un anneau interne  aux positions du mode $m$ est dénué de toute one dû à ce même mode. Les interférences entres toutes les ondes de densités de tous les modes donne deux ondes de densités que l'on observe dans des simulations hydrodynamique.}\label{fig:lindblad_torque}
 \end{figure}
 
-
-%TODO Une idée, c'est que la résonnance se passe à un endroit précis du disque, mais ensuite, par viscosité, ça se propage dans le reste du disque, faut que je vois ça avec arnaud.
 
 % discussion avec laurent : L'explication de l'onde de densité avec les excentricités est correct. Ça permet de résoudre le problème du "winding problem", c'est à dire que si le bras spiral était rigide, il serait censé s'enrouler sur lui même au fil de la rotation (vu que la rotation du bras est égale à la rotation des étoiles qui le composent), et donc au bout de quelques rotations, le bras devrait e^tre hyper enroulé. par contre, si on considère une onde de densité, qui n'existe que statistiquement, ça veut dire que les étoiles entre et sortent du bras, qui lui tourne à une vitesse qui lui est propre, et qui n'a rien à voir avec la vitesse des étoiles en elle même. La majorité des galaxies spirales sont barrées, et on pense que c'est la barre quie st à l'origine des spirales, qui démarrent au bout de la barre.
 
 %Par un phénomène résonnant entre une cellule de gaz et un mode $m$ du potentiel gravitationnel de la planète dont on a décomposé l'expression en série de fourrier (on fait ainsi apparaître des termes de fréquence différen
 
-Le couple de Lindblad peut se décomposer en mode $m$ qui apparaissent quand on décompose le potentiel gravitationnel de la planète en série de Fourier. 
+Le potentiel gravitationnel de la planète peut se décomposer en série de Fourier où chaque mode $m$ (entier) a une dépendance sinusoïdale en azimut et possède $m$ maxima et $m$ minima. 
 
-Pour chaque mode $m$ du couple de Lindblad on définit une résonnance interne (ILR : Inner Lindblad Resonance) et une résonance externe (OLR : Outer Lindblad Resonance). Ces résonances sont des sur-densités qui provoquent donc une attraction gravitationnelle supplémentaire sur la planète. La vitesse de rotation képlerienne $\Omega = \sqrt{\frac{GM}{r^3}}$ implique que plus la distance augmente, et moins l'élément fluide tourne rapidement. La résonance interne tourne plus vite que la planète et accélère donc cette dernière. Pour la résonance externe c'est l'inverse. 
+Pour chaque mode $m$ du potentiel gravitationnel de la planète, on définit deux résonances, une résonance interne (ILR : Inner Lindblad Resonance) et une résonance externe (OLR : Outer Lindblad Resonance) associées aux positions suivantes : 
+\begin{subequations}
+\begin{align}
+r_{OLR}(m) &= \left(\frac{m+1}{m}\right)^\sfrac{2}{3}\\
+r_{ILR}(m) &= \left(\frac{m-1}{m}\right)^\sfrac{2}{3}
+\end{align}
+\end{subequations}
+
+Pour un mode $m$ donnée, à partir des anneaux de rayon $r_{ILR}(m)$ et $r_{OLR}(m)$ vont être lancées $m$ ondes de densités. 
+
+Dans le cas des bras spiraux dans une galaxie, c'est principalement un mode $m=2$ qui propage une onde spirale de part et d'autre d'une barre centrale source des ondes de densité. Dans le cas d'une planète dans un disque, des ondes de densité sont lancées pour chaque mode $m$. 
+
+Par interférence constructive, la somme de toutes les ondes de densités émises par tous les modes du potentiel gravitationnel vont résulter en la formation d'une onde de densité résultante \reffig{fig:lindblad_torque}. 
+
+\bigskip
 
 Il est important de remarquer que la position de la résonance externe d'ordre $m$ est systématiquement plus proche que la résonance interne associée. Ainsi, en sommant sur tous les modes, on arrive à la conclusion que le couple total externe l'emporte toujours sur le couple total interne \citep{ward1997protoplanet}. 
 
@@ -681,7 +693,11 @@ Comme son nom l'indique, c'est un couple exercé depuis les zones coorbitales en
 \caption{Dans le référentiel tournant avec la planète (qui est donc fixe dans ce repère), représentation des iso-potentielles qui correspondent à autant d'orbites d'objets en rotations placés en un point de ces courbes. Les cercles sont des orbites classiques, mais les les orbites en forme de fer-à-cheval représentent des coorbites, c'est à dire des mouvements un peu plus complexes durant lesquels une particule va faire demi tour devant la planète pour repartir dans l'autre sens. On note aussi des orbites fermées autour des points de Lagrange L4 et L5. L'orbite en rouge est simplement une orbite particulier, afin de mieux voir le trajet d'une particule en coorbite.}\label{fig:corotation_orbits}
 \end{figure}
 
-Une particule fluide en co-orbite va donc passer par diverses zones du disque, en particulier à des positions $r$ différentes. Les propriétés du disques variant en fonction du rayon (notamment la densité, la température), ces différences vont engendrer un couple différentiel sur la planète, car la symétrie axiale va être brisée dans la zone de corotation. 
+Le couple de corotation provient des échanges gravitationnels que va avoir une particule fluide en co-orbite avec une planète. Il existe deux types de couples, provenant de deux quantités physiques distinctes, la vortensité et l'entropie. Le principe étant le même, je vais maintenant détailler le principe avec la vortensité. Une première partie provient du gradient de vortensité, c'est à dire la vorticité $V$ divisée par la densité de surface. La vorticité est plus ou moins une mesure de la vitesse angulaire dans le disque. Le gradient de vortensité représente donc le gradient de moment cinétique. 
+
+%TODO j'en suis la
+
+Une particule fluide en co-orbite va donc passer par diverses zones du disque, en particulier à des positions $r$ différentes. À partir du gradient de vortensité (vorticité divisé par la densité) et d'entropie le long des orbites de corotation, un couple apparaît, appelé le \gras{couple de corotation}. Les propriétés du disques variant en fonction du rayon (notamment la densité, la température), ces différences vont engendrer un couple différentiel sur la planète, car la symétrie axiale va être brisée dans la zone de corotation. 
 
 
 
