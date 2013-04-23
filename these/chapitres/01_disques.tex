@@ -654,7 +654,7 @@ Pour l'interaction entre une planète et un disque protoplanétaire, c'est exact
 \begin{figure}[htb]
 \centering
 \includegraphics[width=\linewidth]{figure/lindblad_torque.pdf}
-\caption{Génération d'ondes de densité dans le disque protoplanétaire dû à la présence d'une planète. Chaque mode $m$ émet des ondes de densité à partir de deux positions entourant la planète. Un anneau interne  aux positions du mode $m$ est dénué de toute one dû à ce même mode. Les interférences entres toutes les ondes de densités de tous les modes donne deux ondes de densités que l'on observe dans des simulations hydrodynamique.}\label{fig:lindblad_torque}
+\caption{Génération d'ondes de densité dans le disque protoplanétaire dû à la présence d'une planète. Chaque mode $m$ émet des ondes de densité à partir de deux positions entourant la planète. Un anneau interne  aux positions du mode $m$ est dénué de toute onde dû à ce même mode. Les interférences entres toutes les ondes de densités de tous les modes donne deux ondes de densités que l'on observe dans des simulations hydrodynamique.}\label{fig:lindblad_torque}
 \end{figure}
 
 
@@ -685,13 +685,24 @@ Il est important de remarquer que la position de la résonance externe d'ordre $
 Ainsi, le couple de Lindblad est toujours négatif dans un disque protoplanétaire. De plus, c'est un résultat qui dépend peu ou pas du tout des paramètres du disque \citep{ward1997protoplanet}.
 
 \subsubsection{Couple co-orbital ou de corotation}\index{co-orbital!couple|see{couple}}\index{couple!co-orbital}
-Comme son nom l'indique, c'est un couple exercé depuis les zones coorbitales entourant la planète. Ces orbites ont la particularité de ressembler à un fer à cheval dans le référentiel tournant avec la planète. Les particules fluides sur de telles orbites vont donc passer devant et derrière la planète, à des distances plus ou moins proches suivant l'orbite exacte du fer à cheval. \reffig*{fig:corotation_orbits} illustre différentes orbites possible, une orbite a été colorée en rouge pour bien distinguer une orbite particulière, même si ce n'est pas la seule co-orbite qui existe.
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\linewidth]{figure/corotation_torque.pdf}
+\caption{À partir de la décomposition en série de Fourier du potentiel gravitationnel de la planète, chaque mode $m$ a pour conséquence $m$ zones de libration dans la zone de corotation avec la planète. Les interférences entres l'infinité de modes $m$ fait apparaître des orbites fer-à-cheval (\og horseshoe orbits\fg) dans la référentiel tournant avec la planète.}\label{fig:corotation_torque}
+\end{figure}
+
+De la même manière que précédemment pour le couple de Lindblad, on peut repartir de la décomposition en série de Fourier du potentiel gravitationnel de la planète. Pour chaque mode $m$ de la décomposition, on voit apparaître $m$ zones de libration, centrées sur le rayon de la planète, et réparties en azimut. \reffig*{fig:corotation_torque} représente le mode $m=3$, puis une juxtaposition de mode et finalement le résultat des interférences cosntructives entre tous les modes $m$ de la décomposition.
+
+
+Comme son nom l'indique, le couple de corotation est un couple exercé depuis les zones coorbitales entourant la planète. Ces orbites ont la particularité de ressembler à un fer à cheval dans le référentiel tournant avec la planète. Les particules fluides sur de telles orbites vont donc passer devant et derrière la planète, à des distances plus ou moins proches suivant l'orbite exacte du fer à cheval. \reffig*{fig:corotation_orbits} illustre différentes orbites possible, une orbite a été colorée en rouge pour bien distinguer une orbite particulière, même si ce n'est pas la seule co-orbite qui existe.
 
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.75\linewidth]{figure/corotation_orbits.pdf}
-\caption{Dans le référentiel tournant avec la planète (qui est donc fixe dans ce repère), représentation des iso-potentielles qui correspondent à autant d'orbites d'objets en rotations placés en un point de ces courbes. Les cercles sont des orbites classiques, mais les les orbites en forme de fer-à-cheval représentent des coorbites, c'est à dire des mouvements un peu plus complexes durant lesquels une particule va faire demi tour devant la planète pour repartir dans l'autre sens. On note aussi des orbites fermées autour des points de Lagrange L4 et L5. L'orbite en rouge est simplement une orbite particulier, afin de mieux voir le trajet d'une particule en coorbite.}\label{fig:corotation_orbits}
+\caption{Dans le référentiel tournant avec la planète (qui est donc fixe dans ce repère), représentation des iso-potentielles qui correspondent à autant d'orbites d'objets en rotations placés en un point de ces courbes. Les cercles sont des orbites classiques, mais les orbites en forme de fer-à-cheval représentent des coorbites, c'est à dire des mouvements un peu plus complexes durant lesquels une particule va faire demi tour devant la planète pour repartir dans l'autre sens. On note aussi des orbites fermées autour des points de Lagrange L4 et L5. L'orbite en rouge est simplement une orbite particulier, afin de mieux voir le trajet d'une particule en coorbite.}\label{fig:corotation_orbits}
 \end{figure}
+
+\bigskip
 
 Le couple de corotation provient des échanges gravitationnels que va avoir une particule fluide en co-orbite avec une planète. Il existe deux types de couples, provenant de deux quantités physiques distinctes, la vortensité et l'entropie. Le principe étant le même, je vais maintenant détailler le principe avec la vortensité. Une première partie provient du gradient de vortensité, c'est à dire la vorticité $V$ divisée par la densité de surface. La vorticité est plus ou moins une mesure de la vitesse angulaire dans le disque. Le gradient de vortensité représente donc le gradient de moment cinétique. 
 
