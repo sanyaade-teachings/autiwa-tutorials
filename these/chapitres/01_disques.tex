@@ -684,6 +684,8 @@ Il est important de remarquer que la position de la résonance externe d'ordre $
 
 Ainsi, le couple de Lindblad est toujours négatif dans un disque protoplanétaire. De plus, c'est un résultat qui dépend peu ou pas du tout des paramètres du disque \citep{ward1997protoplanet}.
 
+Notons aussi que le processus physique du transport du moment angulaire de la planète est réalisé par l'onde de densité. Le moment angulaire est emporté par l'onde de densité qui l'échange avec le gaz environnant à mesure que ce dernière amorti et dissipe l'onde.
+
 \subsubsection{Couple co-orbital ou de corotation}\index{co-orbital!couple|see{couple}}\index{couple!co-orbital}
 \begin{figure}[htb]
 \centering
@@ -761,8 +763,13 @@ Si la planète creuse un \gras{sillon} (\gras{gap}) le long de son orbite, alors
 S'il n'y a pas de diffusion (temps de diffusion $t_\text{diff}$ très long), alors le couple va saturer très rapidement, typiquement quelques dizaines d'orbites.
 \end{remarque}
 
+\subsubsection{Modélisation dans le code N-corps}
+Les couples de Lindblad et de Corotation ont été intégrés aux simulations numériques en utilisant le modèle de \cite{paardekooper2011torque}. Plus de détails sur l'implémentation de ces formules et le modèle de disque utilisé dans la section \refsec{sec:code_n-corps}.
+
 \subsection{Migration des planètes massives}
 Par massive, on entend une planète qui va induire des modifications importantes du profil de densité du disque. L'approximation du régime linéaire n'est alors plus valable. 
+
+Je présente ici très succinctement ces deux types de migration que je n'ai pas considéré tout au long de ma thèse. Je me place dans le régime linéaire et me suis concentré sur les cœurs de planète géante et les planètes telluriques. J'ai donc négligé tous les effets non linéaires dû aux grandes masses, et en particulier la création d'un sillon par les planètes.
 
 \subsubsection{Type II}\index{migration!type II}
 Quand une planète dans un disque devient suffisamment massive, la réponse du disque n'est plus linéaire, et des ondes de densité induites par la planète forment des chocs non loin de là où elles sont émises. La répulsion entre le disque et la planète devient si forte qu'une cavité annulaire se forme autour de l'orbite de la planète, creusant le disque de gaz \citep{lin1986tidal}.
