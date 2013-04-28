@@ -176,12 +176,19 @@ git push
 \end{verbatim}
 
 \subsection{Annuler ou nettoyer}
-\subsubsection{Annuler les modifications non commités : checkout}
+\subsubsection{Annuler les modifications non commités : checkout/reset}
 Pour annuler les modifications locales et revenir à la dernière révision : 
 \begin{verbatim}
 git checkout *.f90
 \end{verbatim}\index{git!checkout}
 va remettre en l'état tous les fichiers du dépot qui sont présents dans le dossier courant (on peut aussi ne préciser qu'un seul fichier).
+
+\bigskip
+
+\begin{verbatim}
+git reset --hard
+\end{verbatim}\index{git!reset}
+va nettoyer le dépot pour le remettre dans l'état du dernier commit, effaçant d'un coup toutes les modifications non sauvegardées.
 
 \subsubsection{Annuler un git add : git reset}\index{git!add}
 Parfois, on peut avoir préparé des modifications à ajouter à un commit, via \textbf{git add}, soit sur des fichiers déjà suivis, soit pour suivre de nouveaux fichiers. Afin de retirer certains de ces fichiers de la liste des fichiers pour le prochain commit, il faut faire :

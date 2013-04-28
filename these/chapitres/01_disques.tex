@@ -654,7 +654,7 @@ Pour l'interaction entre une planète et un disque protoplanétaire, c'est exact
 \begin{figure}[htb]
 \centering
 \includegraphics[width=\linewidth]{figure/lindblad_torque.pdf}
-\caption{Génération d'ondes de densité dans le disque protoplanétaire dû à la présence d'une planète. Chaque mode $m$ émet des ondes de densité à partir de deux positions entourant la planète. Un anneau interne  aux positions du mode $m$ est dénué de toute one dû à ce même mode. Les interférences entres toutes les ondes de densités de tous les modes donne deux ondes de densités que l'on observe dans des simulations hydrodynamique.}\label{fig:lindblad_torque}
+\caption{Génération d'ondes de densité dans le disque protoplanétaire dû à la présence d'une planète. Chaque mode $m$ émet des ondes de densité à partir de deux positions entourant la planète. Un anneau interne  aux positions du mode $m$ est dénué de toute onde dû à ce même mode. Les interférences entres toutes les ondes de densités de tous les modes donne deux ondes de densités que l'on observe dans des simulations hydrodynamique.}\label{fig:lindblad_torque}
 \end{figure}
 
 
@@ -684,83 +684,109 @@ Il est important de remarquer que la position de la résonance externe d'ordre $
 
 Ainsi, le couple de Lindblad est toujours négatif dans un disque protoplanétaire. De plus, c'est un résultat qui dépend peu ou pas du tout des paramètres du disque \citep{ward1997protoplanet}.
 
+Notons aussi que le processus physique du transport du moment angulaire de la planète est réalisé par l'onde de densité. Le moment angulaire est emporté par l'onde de densité qui l'échange avec le gaz environnant à mesure que ce dernière amorti et dissipe l'onde.
+
 \subsubsection{Couple co-orbital ou de corotation}\index{co-orbital!couple|see{couple}}\index{couple!co-orbital}
-Comme son nom l'indique, c'est un couple exercé depuis les zones coorbitales entourant la planète. Ces orbites ont la particularité de ressembler à un fer à cheval dans le référentiel tournant avec la planète. Les particules fluides sur de telles orbites vont donc passer devant et derrière la planète, à des distances plus ou moins proches suivant l'orbite exacte du fer à cheval. \reffig*{fig:corotation_orbits} illustre différentes orbites possible, une orbite a été colorée en rouge pour bien distinguer une orbite particulière, même si ce n'est pas la seule co-orbite qui existe.
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\linewidth]{figure/corotation_principle.pdf}
+\caption{À partir de la décomposition en série de Fourier du potentiel gravitationnel de la planète, chaque mode $m$ a pour conséquence $m$ zones de libration dans la zone de corotation avec la planète. Les interférences entres l'infinité de modes $m$ fait apparaître des orbites fer-à-cheval (\og horseshoe orbits\fg) dans la référentiel tournant avec la planète. La zone de corotation a ici été exagérée pour plus de lisibilité.}\label{fig:corotation_torque}
+\end{figure}
+
+De la même manière que précédemment pour le couple de Lindblad, on peut repartir de la décomposition en série de Fourier du potentiel gravitationnel de la planète. Pour chaque mode $m$ de la décomposition, on voit apparaître $m$ zones de libration, centrées sur le rayon de la planète, et réparties en azimut. \reffig*{fig:corotation_torque} représente le mode $m=3$, puis une juxtaposition de mode et finalement le résultat des interférences constructives entre tous les modes $m$ de la décomposition.
+
+
+Le couple de corotation provient des échanges gravitationnels que va avoir une particule fluide en co-orbite avec une planète. Il existe deux types de couples, provenant de deux quantités physiques distinctes, la vorticité spécifique (vorticité divisée par la densité de surface) appelée parfois vortensité et l'entropie. 
+
+Sans considérer de grandeur thermodynamique particulière, il convient de définir certains temps caractéristiques afin de comprendre l'origine du couple de corotation. \reffig*{fig:corotation_orbits} représente schématiquement les 3 temps principaux mis en jeux. 
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width=0.75\linewidth]{figure/corotation_orbits.pdf}
-\caption{Dans le référentiel tournant avec la planète (qui est donc fixe dans ce repère), représentation des iso-potentielles qui correspondent à autant d'orbites d'objets en rotations placés en un point de ces courbes. Les cercles sont des orbites classiques, mais les les orbites en forme de fer-à-cheval représentent des coorbites, c'est à dire des mouvements un peu plus complexes durant lesquels une particule va faire demi tour devant la planète pour repartir dans l'autre sens. On note aussi des orbites fermées autour des points de Lagrange L4 et L5. L'orbite en rouge est simplement une orbite particulier, afin de mieux voir le trajet d'une particule en coorbite.}\label{fig:corotation_orbits}
+\includegraphics[width=0.75\linewidth]{figure/corotation_times.pdf}
+\caption{Dans le référentiel tournant avec la planète (qui est donc fixe dans ce repère), représentation d'une orbite de corotation ainsi que des différents temps caractéristiques mis en jeux. $t_\text{lib}$ est le temps mis par un élément fluide pour effectuer une orbite de corotation (temps qui peut être égal à 130 fois la période orbitale de la planète). $t_\text{U-turn}$ est le temps mis par un élément fluide pour effectuer un demi tour devant la planète. $t_\text{diff}$ peut être suivant le cas le temps radiatif $t_\text{rad}$ ou le temps visqueux $t_\text{vis}$ nécessaire pour homogénéiser les propriétés thermodynamiques de l'élément fluide avec son environnement.}\label{fig:corotation_orbits}
 \end{figure}
 
-Le couple de corotation provient des échanges gravitationnels que va avoir une particule fluide en co-orbite avec une planète. Il existe deux types de couples, provenant de deux quantités physiques distinctes, la vortensité et l'entropie. Le principe étant le même, je vais maintenant détailler le principe avec la vortensité. Une première partie provient du gradient de vortensité, c'est à dire la vorticité $V$ divisée par la densité de surface. La vorticité est plus ou moins une mesure de la vitesse angulaire dans le disque. Le gradient de vortensité représente donc le gradient de moment cinétique. 
+On définit tout d'abord $t_\text{lib}$ comme le temps mis par un élément fluide pour effectuer une co-orbite complète dans le fer à cheval. Ceci dépend de la distance de l'élément fluide au rayon de corotation. Mais le temps de libration le plus court est obtenu à la distance $x_s$ de la corotation, où $x_s$ est la demi-largeur de la zone de fer-à-cheval (\og half-width of the horseshoe region\fg) et vaut \citep[eq. (52)]{baruteau2008corotation} : 
+\begin{align}
+t_\text{lib} &= \frac{4\pi}{x_s\abs{\od{\Omega}{r}}} = \frac{8\pi r_p}{3\Omega_p x_s}
+\end{align}
+Ce temps de libration est généralement de quelques dizaines de fois la période orbitale de la planète, $t_\text{lib} \sim 50 T_\text{orb}$. 
 
-%TODO j'en suis la
+Le temps $t_\text{U-turn}$ représente quant à lui la durée nécessaire à un élément fluide pour effectuer un demi tour devant la planète, c'est à dire pour parcourir la zone de longueur $2x_s$\footnote{$x_s$ est la demi-largeur de la zone de fer-à-cheval (\og half-width of the horseshoe region\fg)} devant la planète. Il est définit par \citep[eq. (64)]{baruteau2008corotation}
+\begin{align}
+t_\text{U-turn} &\simeq \frac{4}{\Omega_p}\left[\frac{H(r_p)}{R_H}\right]^\sfrac{3}{2}
+\end{align}
+Ce temps est généralement de l'ordre de $t_\text{U-turn} \sim 10 T_\text{orb}$. 
 
-Une particule fluide en co-orbite va donc passer par diverses zones du disque, en particulier à des positions $r$ différentes. À partir du gradient de vortensité (vorticité divisé par la densité) et d'entropie le long des orbites de corotation, un couple apparaît, appelé le \gras{couple de corotation}. Les propriétés du disques variant en fonction du rayon (notamment la densité, la température), ces différences vont engendrer un couple différentiel sur la planète, car la symétrie axiale va être brisée dans la zone de corotation. 
+Un troisième est dernier temps $t_\text{diff}$ rentre en jeu, c'est le temps de diffusion. Selon le processus physique mis en jeu, ce temps peut être $t_\text{rad}$ ou $t_\text{visc}$.
 
+$t_\text{rad}$ représente le temps de diffusion par refroidissement radiatif. Ce temps est plus long quand on se rapproche de l'étoile car le rayonnement est plus rapidement ré-absorbé. Le temps radiatif à la zone de corotation est de l'ordre de :
+\begin{align}
+t_\text{rad} &= \frac{{x_s}^2}{\chi}
+\end{align}
+où $x_s$ est la demi-largeur de la zone de corotation et $\chi$ est la diffusivité thermique.
+ 
+$t_\text{visc}$ représente la diffusion d'une quantité physique par la viscosité. Ce temps est plus court quand on se rapproche de l'étoile. La densité et la vitesse angulaire étant plus grandes, les frottements visqueux sont plus importants. Le temps visqueux à la zone de corotation $t_\text{visc}$ est  de l'ordre de \citep{masset2001coorbital, masset2002coorbital, ogilvie2003saturation}
+\begin{align}
+\tau_\nu &\sim \frac{{x_s}^2}{\nu}
+\end{align}
 
+Pour la grandeur physique considérée est la vortensité (ou vorticité spécifique), seul $t_\text{visc}$ est à prendre en compte. Quand c'est l'entropie, les deux temps $t_\text{visc}$ et $t_\text{rad}$ sont importants. \reffig*{fig:corotation_orbits} récapitule les temps mis en jeux et à quoi ils correspondent.
 
-%TODO J'en suis la
-Par exemple, si on considère plusieurs particules fluides en orbite fer-à-cheval  avec la planète. Un couple sur la planète va apparaître le long de cette orbite si la densité de gaz rencontrée n'est pas uniforme --- Une densité non uniforme implique une attraction gravitationnelle non uniforme azimutalement dans cette région. C'est le cas par défaut, mais sans mécanismes pour diffuser la densité, le \gras[couple!co-orbital]{couple co-orbital} s'estompe. À mesure que la densité s'uniformise, on dit que le couple  \gras[couple!saturé]{sature}.
-
-\begin{remarque}
-Si la planète creuse un \gras{sillon} (\gras{gap}) le long de son orbite, alors il n'y a pas de couple co-orbital étant donné que le gaz est déplété.
-
-S'il n'y a pas de diffusion, alors le couple va saturer très rapidement (quelques dizaines d'orbites).
-\end{remarque}
-
-Le couple de corotation fait face à deux temps caractéristiques :
-\begin{itemize}
-\item le temps $t_\text{rad}$ qui représente en gros l'évacuation de l'entropie par refroidissement radiatif. Ce temps est plus long quand on se rapproche de l'étoile. Car la densité est plus grande, l'opacité aussi, et donc l'émission radiative se propage moins facilement. Le refroidissement radiatif est donc moins efficace
-\item Le temps $t_\text{visc}$ qui représente l'évacuation de l'entropie par refroidissement visqueux. Ce temps est plus court quand on se rapproche de l'étoile. La densité est plus grande, les frottements plus grands, et donc les frottements visqueux sont beaucoup plus forts. 
-\end{itemize}
+\bigskip
 
 Pour que le couple de corotation soit positif, on doit satisfaire aux inéquations suivantes :
 \begin{align}
 t_\text{u-turn} < t_\text{diff} < t_\text{lib}
 \end{align}
-$t_\text{u-turn}$ est le temps nécessaire pour faire le demi tour devant la planète (en gros, pour traverser la zone égale à $2x_s$). $t_\text{lib}$ est le temps de libration, c'est à dire le temps mis par une particule fluide pour faire le tour de la zone en fer-à-cheval. $t_\text{diff}$ quant à lui est le temps de diffusion, c'est à dire selon le cas dans l'inégalité, la valeur la plus extrême (d'un coté ou de l'autre) entre le temps radiatif ou le temps visqueux.
+$t_\text{u-turn}$ est le temps nécessaire pour faire le demi tour devant la planète (en gros, pour traverser la zone égale à $2x_s$). $t_\text{lib}$ est le temps de libration, c'est à dire le temps mis par une particule fluide pour faire le tour de la zone en fer-à-cheval. $t_\text{diff}$ quant à lui est le temps de diffusion de la quantité physique considérée. Suivant les cas, il peut y avoir plusieurs temps de diffusion qui sont important, auquel cas les inégalités doivent être satisfaites pour tous les temps de diffusions mis en jeux.
 
-$\tau_\text{lib}$ est le temps mis par un élément fluide pour effectuer une co-orbite complète dans le fer à cheval. Ceci dépend de la distance de l'élément fluide au rayon de corotation. Mais le temps de libration de plus court est obtenu à la distance $x_s$ de la corotation est vaut \citep{baruteau2008PhD} : 
-\begin{align}
-\tau_\text{lib} &= \frac{4\pi}{x_s\abs{\od{\Omega}{r}}} = \frac{8\pi r_p}{3\Omega_p x_s}
-\end{align}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.75\linewidth]{figure/corotation_principle.pdf}
+\caption{Dans le référentiel tournant avec la planète (qui est donc fixe dans ce repère), représentation du mécanisme général à l'origine du couple de corotation. Les trois schémas représentent les différents cas de figure suivant les valeurs de $t_\text{lib}$, $t_\text{U-turn}$ et $t_\text{diff}$. Un couple apparaît quand le temps mis par un élément fluide pour faire demi tour devant la planète $t_\text{U-turn}$ est plus court que le temps nécessaire pour qu'il s'homogénéise avec son environnement ($t_\text{diff}$). Ce couple ne sature pas quand le temps $t_\text{lib}$ mis par l'élément fluide pour effectuer une orbite complète est plus long que le temps $t_\text{diff}$ nécessaire pour qu'il s'homogénéise avec le gaz environnant. }\label{fig:corotation_principle}
+\end{figure}
 
-Le temps visqueux $\tau_\nu$ est lui de l'ordre de \citep{masset2001coorbital, masset2002coorbital, ogilvie2003saturation}
-\begin{align}
-\tau_\nu &\sim \frac{{x_s}^2}{\nu}
-\end{align}
+\reffig*{fig:corotation_principle} illustre les trois cas possibles en fonction des commensurabilités entre les différents temps caractéristiques mis en jeux.
 
-Si le temps de diffusion est plus grand que le temps de libration, ça veut dire qu'une particule fluide qui aura effectué un tour complet n'aura pas eu le temps de s'équilibrer par diffusion (radiative ou visqueuse) avec le reste du disque. Ainsi, le couple de corotation va saturer.
+Si le temps de diffusion $t_\text{diff}$ est plus grand que le temps de libration $t_\text{lib}$, alors une particule fluide verra ses propriétés physique converger vers une valeur moyenne qui restera plus ou moins constante au cours d'une orbite. Le couple de corotation va ainsi saturer, celui-ci étant issu de différence de propriétés physiques entre les différentes zones de l'orbite fer-à-cheval. Afin que le couple de corotation ne sature pas, il faut que le temps de diffusion $t_\text{diff}$ soit suffisamment court pour que l'état de l'élément fluide soit remis à zéro avant d'atteindre de nouveau la zone de U-turn. 
 
-Si le temps de diffusion est plus court que le temps pour effectuer le demi tour, alors la particule fluide aura le temps de s'équilibrer avec le disque avant même d'avoir fait un demi tour. Il n'y aura donc pas de gradient d'entropie dans la zone de corotation. %TODO par contre, arnaud me disait qu'on allait être en régime linéaire, et c'était ça que je ne comprenais pas.
+Si le temps de diffusion $t_\text{diff}$ est plus court que le temps pour effectuer le demi tour $t_\text{U-turn}$, alors la particule fluide aura le temps de s'équilibrer avec le disque avant même d'avoir fait un demi tour. Il n'y aura donc pas de différence avec le reste du disque, et donc pas de couple issu de différence de propriété physique à la zone de corotation.
+
+\bigskip
+
+Dans la pratique, ce couple peut être positif (migration vers l'extérieur) ou négatif (migration vers l'intérieur) en fonction des variations des quantités physiques par rapport à leur valeur nominales.
+
+\begin{remarque}
+Si la planète creuse un \gras{sillon} (\gras{gap}) le long de son orbite, alors il n'y a pas de couple co-orbital étant donné que le gaz est déplété.
+
+S'il n'y a pas de diffusion (temps de diffusion $t_\text{diff}$ très long), alors le couple va saturer très rapidement, typiquement quelques dizaines d'orbites.
+\end{remarque}
+
+\subsubsection{Modélisation dans le code N-corps}
+Les couples de Lindblad et de Corotation ont été intégrés aux simulations numériques en utilisant le modèle de \cite{paardekooper2011torque}. Plus de détails sur l'implémentation de ces formules et le modèle de disque utilisé dans la section \refsec{sec:code_n-corps}.
 
 \subsection{Migration des planètes massives}
 Par massive, on entend une planète qui va induire des modifications importantes du profil de densité du disque. L'approximation du régime linéaire n'est alors plus valable. 
 
+Je présente ici très succinctement ces deux types de migration que je n'ai pas considéré tout au long de ma thèse. Je me place dans le régime linéaire et me suis concentré sur les cœurs de planète géante et les planètes telluriques. J'ai donc négligé tous les effets non linéaires dû aux grandes masses, et en particulier la création d'un sillon par les planètes.
+
 \subsubsection{Type II}\index{migration!type II}
-Quand une planète dans un disque devient suffisamment massive, la réponse du disque n'est plus linéaire, et des ondes de densité induites par la planète forment des chocs non loin de là où elles sont émises. La répulsion entre le disque et la planète devient si forte qu'une cavité annulaire se forme autour de l'orbite de la planète, creusant le disque de gaz.
+Quand une planète dans un disque devient suffisamment massive, la réponse du disque n'est plus linéaire, et des ondes de densité induites par la planète forment des chocs non loin de là où elles sont émises. La répulsion entre le disque et la planète devient si forte qu'une cavité annulaire se forme autour de l'orbite de la planète, creusant le disque de gaz \citep{lin1986tidal}.
 
 Une fois que la cavité est formée, la planète est dite en migration de \emph{type II} : son orbite agit alors essentiellement comme une barrière entre les deux parties du disque de gaz, \emph{interne} et \emph{externe}. Du gaz peut parfois sauter le gap, ou être accrêté par la planète mais cette dernière voit son mouvement régit par le disque de gaz, se retrouvant entraînée par la migration de celui-ci.
 
 Compte tenu que la planète a une masse de l'ordre de\footnote{Quand la masse de la planète devient supérieure à la masse du disque local, l'inertie de celle-ci devient importante afin de déterminer son taux de migration} la masse du disque local (avec lequel elle interagit), la migration se passe sur des temps de l'ordre du \gras{temps visqueux} du disque.
 
-\begin{remarque}
-Pour plus de détails, se référer au chapitre 9, page 191--192 de \cite{barnes2010formation} ou \cite{lin1986tidal} pour des détails sur les planètes capables de former un sillon dans le disque de gaz.
-\end{remarque}
-%TODO 
+
 \subsubsection{Type III}\index{migration!type III}
+La migration de type III est un type de migration intermédiaire aux migrations de type I et II. Le principe est que la planète commence à migrer par type I, tout en accrétant du gaz. À mesure que la masse de la planète augmente, elle creuse petit à petit un gap et la migration devient une migration de type II \citep{masset2003runaway}. 
 
-%TODO faire ya page 192 du bouquin de barnes un truc sur \c ca, même si c'est pas explicite dans le titre.
-
-\begin{remarque}
-Pour plus de détails, se référer au chapitre 9, page 192--193 de \cite{barnes2010formation} ou \cite{masset2003runaway}.
-\end{remarque}
-%TODO 
 
 \subsection{L'amortissement de l'excentricité}%circularisation
 %TODO parler des autres phénomènes importants dans le disque, comme l'amortissement de l'excentricité
+%TODO j'en suis la
+
 
 \subsection{L'amortissement de l'inclinaison}%coplanarisation
 %TODO parler de l'amortissement de l'inclinaison, 
