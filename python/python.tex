@@ -873,12 +873,12 @@ import pylab as pl
 
 Le principe est le même que pour les graphiques avec matlab. On définit des figures :
 \begin{lstlisting}[language=python]
-fig = pl.figure(1)
+fig = pl.figure()
 \end{lstlisting}
 Et on peut ensuite y afficher des graphiques, les exporter, modifier les propriétés etc\dots
 
 \begin{remarque}
-Si on n'utilise qu'une seule figure, il n'est pas nécessaire de définir son nombre, qui n'est utile que pour pouvoir changer de figure, nettoyer une figure pour la remettre à zéro et afficher autre chose à la place. Par défaut, le numéro est \textbf{1}.
+Si on n'utilise qu'une seule figure, il n'est pas nécessaire de définir son nombre, qui n'est utile que pour pouvoir changer de figure, nettoyer une figure pour la remettre à zéro et afficher autre chose à la place. Par défaut, le numéro est \textbf{1}, et il est automatiquement incrémenté quand on appelle de nouveau cette fonction sans argument.
 \end{remarque}
 
 Pour remettre une figure à zéro :
@@ -923,7 +923,7 @@ En effet, il faut savoir que pylab (ou matplotlib.pyplot) ne supprime pas les fi
 Voici un cas concrêt : 
 \begin{lstlisting}[language=python]
 for i in range(5):
-  fig = pl.figure(1)
+  fig = pl.figure()
   fig.plot(x,y)
   fig.savefig(name)
 \end{lstlisting}
@@ -931,7 +931,7 @@ for i in range(5):
 J'ai bien évidemment largement épuré l'exemple, mais c'est pour donner l'idée. La solution, pour ne pas garder en mémoire la figure, c'est d'utiliser l'option : 
 \begin{lstlisting}[language=python]
 for i in range(5):
-  fig = pl.figure(1)
+  fig = pl.figure()
   fig.hold(False)
   fig.plot(x,y)
   fig.savefig(name)
@@ -949,7 +949,7 @@ ne fonctionne pas chez moi. Il fait bien ce que je veux, à savoir évite les fu
 \gras[module!pylab]{pylab} fonctionne comme les plots dans \gras{matlab}. Il existe aussi la possibilité de faire des subplots.
 
 \begin{lstlisting}[language=python]
-fig = pl.figure(1)
+fig = pl.figure()
 
 # 2 lignes, 3 colonnes pour les subplots
 # Le 3e indice sert juste a positionner le subplot dans la matrice ainsi creee, balayant de gauche a droite puis de haut en bas.
@@ -978,7 +978,7 @@ pl.show()
 \subsubsection{Ajuster les espaces entre les subplots}
 \begin{lstlisting}[language=python]
 import pylab as pl
-fig = pl.figure(1)
+fig = pl.figure()
 # default values
 # fig.subplots_adjust(left=0.12, bottom=0.1, right=0.90, top=0.90, wspace=0.20, hspace=0.20)
 fig.subplots_adjust(left=0.12, bottom=0.1, right=0.96, top=0.96, wspace=0.26, hspace=0.26)
@@ -996,7 +996,7 @@ pl.show()
 \subsubsection{Ajouter un subplot en coordonnées polaires}
 \begin{lstlisting}[language=python]
 import pylab as pl
-fig = pl.figure(1)
+fig = pl.figure()
 fig.add_subplot(1, 1, 1, polar=True) # add a polar subplot
 \end{lstlisting}
 
@@ -1005,12 +1005,13 @@ Pour aller un peu plus loin
 \begin{lstlisting}[language=python]
 fig = pl.figure(1) # Pour specifier que la figure active est la 1
 pl.clf() # pour remettre a zero la figure active
-fig.grid(True)
-fig.set_xlabel("abscisse")
-fig.set_ylabel("ordonnee")
-fig.plot(x,y, 'r.', label="y=f(x)")
-fig.plot(x,z, 'b-', label="z=g(x)")
-fig.legend() # afficher la legende
+plot1 = fig.add_subplot(1, 1, 1)
+plot1.grid(True)
+plot1.set_xlabel("abscisse")
+plot1.set_ylabel("ordonnee")
+plot1.plot(x,y, 'r.', label="y=f(x)")
+plot1.plot(x,z, 'b-', label="z=g(x)")
+plot1.legend() # afficher la legende
 pl.show()
 \end{lstlisting}
 
@@ -1075,7 +1076,7 @@ fig.plot(x, y, '*')
 \subsubsection{Ajouter une grille (majeure/mineure)}
 \begin{lstlisting}[language=python]
 # We prepare the plot
-fig = pl.figure(1)
+fig = pl.figure()
 # We define a fake subplot that is in fact only the plot.
 plot = fig.add_subplot(1, 1, 1)
 
@@ -1103,7 +1104,7 @@ est équivalente à
 Ceci permet en particulier de changer la taille des labels mineurs par rapports aux labels majeurs :
 \begin{lstlisting}[language=python]
 # We prepare the plot
-fig = pl.figure(1)
+fig = pl.figure()
 # We define a fake subplot that is in fact only the plot.
 plot_hyperfocal = fig.add_subplot(1, 1, 1)
 
@@ -1125,7 +1126,7 @@ Il y a bien entendu d'autres paramètres, comme le type de police par exemple.
 \subsubsection{Légende}
 Pour afficher la légende, il faut d'une part spécifier le nom des courbes quand on les déclare : 
 \begin{lstlisting}[language=python]
-fig = pl.figure(1)
+fig = pl.figure()
 myplot = fig.add_subplot(1, 1, 1)
 myplot.plot(x,y, 'r.', label="y=f(x)")
 myplot.plot(x,z, 'b-', label="z=g(x)")
@@ -1183,7 +1184,7 @@ permet de spécifier les coordonnées en unités absolues de la figure, c'est à
 \subsubsection{Tracer des poligones et formes diverses}
 J'ai souhaité récemment tracer des rectangles avec python, pour rajouter des informations sur un graphique. La commande suivante permet de le faire :
 \begin{lstlisting}[language=python]
-fig = pl.figure(1)
+fig = pl.figure()
 myplot = fig.add_subplot(1, 1, 1)
 
 x_left = 1
@@ -1197,7 +1198,7 @@ myplot.fill([x_left, x_right, x_right, x_left],[y_bottom, y_bottom, y_top, y_top
 \subsubsection{Titre de graphique}
 Pour donner un titre à un graphique, il suffit d'utiliser la commande : 
 \begin{lstlisting}[language=python]
-fig = pl.figure(1)
+fig = pl.figure()
 fig.suptitle("evolution of y in function of x")
 \end{lstlisting}
 
@@ -1242,7 +1243,7 @@ pl.axis('tight')
 
 et comme je suis pointilleux et jamais content, j'aime bien que les axes commencent à zéro, ce qu'on peut faire via :
 \begin{lstlisting}[language=python]
-fig = pl.figure(1)
+fig = pl.figure()
 myplot = fig.add_subplot(1, 1, 1)
 myplot.axis('tight')
 myplot.set_xlim(xmin=0)
@@ -1265,7 +1266,7 @@ pl.axis('equal')
 
 À la place de \verb|plot| on peut aussi faire :
 \begin{lstlisting}[language=python]
-fig = pl.figure(1)
+fig = pl.figure()
 myplot = fig.add_subplot(1, 1, 1)
 myplot.semilogx(x,y)
 myplot.semilogy(x,y)
@@ -1309,7 +1310,7 @@ Il existe un style graphique uniquement pour représenter des données avec des 
 
 Pour faire des barres d'erreurs il faut faire : 
 \begin{lstlisting}[language=python]
-fig = pl.figure(1)
+fig = pl.figure()
 myplot = fig.add_subplot(1, 1, 1)
 myplot.errorbar(x, y, yerr=e, fmt='ro')
 \end{lstlisting}
@@ -1330,7 +1331,7 @@ liste_x = range(5)
 liste_y = range(5)
 
 import pylab as pl
-fig = pl.figure(1)
+fig = pl.figure()
 myplot = fig.add_subplot(1, 1, 1)
 myplot.set_xlabel("axe des x")
 myplot.set_ylabel("axe des y")
