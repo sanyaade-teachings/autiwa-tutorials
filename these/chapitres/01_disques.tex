@@ -457,7 +457,7 @@ C_\text{vis} &= \frac{9}{4} \nu\Sigma\Omega^2
 On cherche maintenant la température d'équilibre du disque, compte tenu de tous les termes rentrant dans l'équation bilan de l'énergie du disque. Il vient alors, en considérant le chauffage visqueux, l'irradiation de l'étoile centrale, le chauffage par l'enveloppe et les pertes par radiation à la surface du disque : 
 \begin{align}
 0 &= P_\text{cn} + C_\text{en} + C_\text{irr} + C_\text{vis}\nonumber\\
-0 &= - 2\sigma \frac{T^4}{\frac{3}{8}\tau + \frac{\sqrt{3}}{4} + \inv{4\tau}} + 2 \sigma {T_\text{en}}^4 + 2 \sigma {T_\star}^4 \frac{{R_\star}^2}{r^2} (1-\varepsilon) * \left[0.4 \frac{R_\star}{r} + r \dod{}{r}\left(\frac{H}{r}\right)\right] + \frac{9}{4} \nu\Sigma\Omega^2
+0 &= - 2\sigma \frac{T^4}{\frac{3}{8}\tau + \frac{\sqrt{3}}{4} + \inv{4\tau}} + 2 \sigma {T_\text{en}}^4 + 2 \sigma {T_\star}^4 \frac{{R_\star}^2}{r^2} (1-\varepsilon) * \left[0.4 \frac{R_\star}{r} + r \dod{}{r}\left(\frac{H}{r}\right)\right] + \frac{9}{4} \nu\Sigma\Omega^2\label{eq:equation_energie}
 \end{align}
 
 Dans la pratique, c'est une équation de l'on résout de manière numérique, par itération. En effet, beaucoup de paramètres dépendent de la température, alors même que c'est la variable que l'on recherche. 
@@ -491,7 +491,7 @@ En conséquence, on peut définir la viscosité $\nu$ associée aux turbulences 
 \begin{align}
 \nu &= \alpha c_s H
 \end{align}
-où $c_s$ est la vitesse du son et $H$ l'échelle de hauteur du disque. $\alpha$ (avec $\alpha < 1$) est alors un paramètre adimensionné qui permet de définir plus ou moins l'intensité des turbulences, et donc la viscosité qui leur est associée. Une valeur typique d'$\alpha$ se situe entre $10^{-2}$ et $10^{-4}$.
+où $c_s$ est la vitesse du son et $H$ l'échelle de hauteur du disque. $\alpha$ (avec $\alpha \ll 1$) est alors un paramètre adimensionné qui permet de définir plus ou moins l'intensité des turbulences, et donc la viscosité qui leur est associée. Une valeur typique d'$\alpha$ se situe entre $10^{-2}$ et $10^{-4}$.
 
 Ce modèle permet de définir une viscosité non constante dans le disque de gaz ce qui semble déjà plus cohérent avec un disque de gaz étendu ($[0.1-100]\unit{AU}$ par exemple). 
 
@@ -786,11 +786,15 @@ La migration de type III est un type de migration intermédiaire aux migrations 
 
 
 \subsection{L'amortissement de l'excentricité}%circularisation
-%TODO parler des autres phénomènes importants dans le disque, comme l'amortissement de l'excentricité
-%TODO j'en suis la
+Je ne vais pas chercher à détailler ici le mécanisme mathématiquement. Le principe de la décomposition en série de Fourier détaillé pour le calcul des couples de Lindblad et Corotation est toujours le même. Mais au delà des couples, il y a un effet subtil sur les paramètres orbitaux de la planète que je vais essayer de détailler avec une image pour l'excentricité et l'inclinaison. 
+
+Quand une planète possède une excentricité, elle oscille autour de sa position moyenne qu'est son demi-grand axe. En conséquence, elle passe dans des zones du disques où la vitesse du disque est légèrement supérieure ou légèrement inférieure à sa propre vitesse orbitale. Ainsi, quand la planète est en dessous de son demi-grand axe, elle est dans une zone où la vitesse orbitale est plus grande que sa vitesse, cette dernière est donc accélérée. 
+
+À l'inverse, quand la planète est dans les parties externes du disques, proche de son apo-astre, la rotation du disque est plus faible, elle est donc freinée. Ces effets ont tendance à réduire l'excentricité d'une planète et à circulariser son orbite, sur des temps qui vont de la centaine au millier d'années dépendant des propriétés du disque.
 
 
 \subsection{L'amortissement de l'inclinaison}%coplanarisation
+Le principe est le même pour l'inclinaison d'une planète. Au cours de l'orbite, la planète va passer tantôt au dessus ou en dessous du disque. L'attraction gravitationnelle du gaz sur la planète n'étant plus symétrique, elle va avoir tendance à ramener la planète dans le plan du disque. 
 %TODO parler de l'amortissement de l'inclinaison, 
 
 \subsection{L'accrétion du gaz}\label{sec:accretion_coeur}
@@ -813,4 +817,8 @@ Pour une simulation donnée, si on augmente le taux d'accrétion de la planète,
 %TODO parler de l'accrétion, et du fait que ça va créer des planètes géantes notamment
 
 \subsection{Récapitulatif des interactions dans le code N-corps}
+Numériquement, le couple de migration type I est pris en compte en utilisant les formules semi-analytiques développées par \cite{paardekooper2011torque}. 
+
+L'amortissement de l'inclinaison et de l'excentricité quant à elles sont modélisées via les formules de \cite{cresswell2008three}.
+
 %TODO parler du fait que je ne prend pas en compte l'accrétion de gaz, les gaps, 

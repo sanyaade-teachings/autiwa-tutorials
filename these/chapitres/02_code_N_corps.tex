@@ -1,4 +1,4 @@
-Afin d'étudier la formation planétaire et les interactions avec le disque de gaz, j'ai utilisé un code de simulation N-corps, qui permet de regarder l'évolution d'un nombre arbitraire de corps orbitant autour d'un astre central. 
+Afin d'étudier la formation planétaire et les interactions avec le disque de gaz, j'ai utilisé un code de simulation N-corps, qui permet de regarder l'évolution d'un nombre arbitraire de corps orbitant autour d'un astre central \citep{chambers1999hybrid}. 
 
 Ce choix est apparu naturellement. Au début de ma thèse j'ai fait quelques simulations hydrodynamiques avec le code Genesis développé par Arnaud Pierens. J'ai rapidement constaté que ce genre de simulations, bien que modélisant de manière poussée le disque, ne permettait pas d'étudier de manière approfondie la dynamique planétaire. Le temps de calcul nécessaire pour une simulation limite en effet grandement le nombre de corps ainsi que la durée d'intégration. J'ai donc souhaité me tourner vers un code N-corps, afin de privilégier la dynamique planétaire, et de modifier ce programme afin d'y inclure les effets d'un disque de gas sur la dynamique planétaire. 
 
@@ -19,30 +19,107 @@ Dans le cadre de mes simulations, j'ai accordé une importance limitée aux vari
 %TODO parler du pas de temps qui a une influence sur les orbites, et des tests effectués pour contraindre le pas de temps par rapport à l'orbite minimale accessible.
 
 \section{Disque 1D}
-Afin de calculer les effets d'un disque de gaz, une modélisation de ce dernier est nécessaire. Le but étant d'avoir une grande souplesse, le disque implémenté est bien entendu très simplifié. Toutes les quantités sont intégrées et invariantes selon la hauteur z et la position azimutale $\theta$ dans le disque, résultant en un modèle radial de toutes les quantités. 
+Afin de calculer les effets d'un disque de gaz, une modélisation de ce dernier est nécessaire. Le but étant d'avoir une grande souplesse, le disque implémenté est bien entendu très simplifié. Toutes les quantités sont intégrées et invariantes selon la hauteur z et la position azimutale $\theta$ dans le disque, résultant en un modèle radial 1D de toutes les quantités. 
 
 Dans la mesure du possible, les quantités du disque ont été calculées de manière consistante. Je vais présenter dans la suite de manière chronologique comment sont calculées les grandeurs physiques du disque.
-%TODO 
+
 \subsection{Profil de densité de surface}
 Le profil de densité de surface est défini au début de la simulation comme une loi de puissance de la forme :
 \begin{align}
-\Sigma(R) &= \Sigma_0 \times R^{-\alpha}
+\Sigma(R) &= \Sigma_0 \times R^{-d}
 \end{align}
-où $\Sigma_0$ est la densité de surface à $1\unit{AU}$ et $\alpha$ l'indice de la loi de puissance. 
+où $\Sigma_0$ est la densité de surface à $1\unit{AU}$ et $d$ l'indice de la loi de puissance. 
 
-Ce profil de densité de surface est défini pour une certaine étendue radiale. On défini donc un bord interne $R_\text{in}$ et un bord externe $R_\text{out}$. Le bord interne est généralement à $0,1\unit{AU}$ et le bord externe à $100\unit{AU}$. 
+Ce profil de densité de surface est défini pour une certaine étendue radiale. On défini donc un bord interne $R_\text{in}$ et un bord externe $R_\text{out}$. Le bord interne est généralement à $0.1\unit{AU}$ et le bord externe à $100\unit{AU}$. 
 
 Afin de calculer les valeurs suivantes, ce disque est échantillonné et toutes les valeurs nécessaires sont ensuite calculées à chacun de ces points. 
 
+\bigskip
+
+Le profil de densité de surface est le paramètre d'entrée le plus important. Il est celui à partir duquel on calcule toutes les autres quantités du disque, température, échelle de hauteur, etc\dots
+
+Le profil étant une loi de puissance, un amortissement est effectué au bord interne du disque afin que la valeur de la densité au bord interne soit proche de zéro. 
+
+
 \subsection{Table d'opacité}
+Afin de pouvoir calculer le profil de température, on a besoin de choisir un modèle pour l'opacité. Je ne détaillerai pas ici les différents modèles car une étude complète sur le sujet a été effectuée, afin de comprendre l'influence du choix du modèle sur les résultats des simulations. 
+
+Par contre, quel que soit le modèle, on a généralement une dépendance en fonction de la densité et de la température. L'opacité est donc un paramètre de la résolution de l'équation qui nous permet d'avoir la température. L'opacité n'est pas, dans notre modèle, une quantité qu'on fixe \textit{a priori}, mais plutôt un des paramètres de sortie de la résolution de l'équation de l'énergie dans le disque.
+
 %TODO 
 \subsection{Profil de température}
+Afin de construire le profil de température point par point, on résout, pour chaque position dans le disque définie dans le profile, l'équation de l'énergie \refeq{eq:equation_energie}. 
+
+De manière consistante, cette équation a pour paramètre d'entrée la position, et on cherche à trouver les valeurs de la température $T$, échelle de hauteur $H$, profondeur optique $\tau$, diffusivité thermique $\chi$. Toutes ces valeurs sont fixées une fois qu'un ensemble cohérent de valeurs satisfont l'équation.
+
+Afin de résoudre cette équation du type $f(x)=0$, j'ai utilisé une version modifiée de la méthode \textbf{zbrent} de \textbf{Numerical Recipes} \citep{press1992numerical}
+
 %TODO 
 \section{Migration type I}
-%TODO 
-%TODO paardekooper
-%TODO parler du papier de bitsch (annexe I) où ils font un correctif pour le facteur 4 qu'il manque dans paardekooper
+La migration de type I est implémentée dans le code en utilisant le modèle 1D de disque, qui définit pour toute position du disque, une température, une densité de surface, et tous les autres paramètres nécessaires comme l'échelle de hauteur. En utilisant ces paramètres, on obtient ainsi le couple qu'exerce le disque sur la planète en fonction de sa masse et de sa position via la formule semi-analytique de \cite{paardekooper2011torque}. 
+
+Les deux différences principales entre le cadre du modèle de \cite{paardekooper2011torque} et le disque que j'ai modélisé, c'est que dans mon cas je n'ai pas un profil de température en loi de puissance (avec une seule loi de puissance), mais j'ai une loi de puissance définie point par point. C'est à dire que pour chaque zone du disque, la température est calculée de manière cohérente avec les autres paramètres du disques, et que l'indice de la loi de puissance correspondante est calculée en fonction des températures autour.
+
+La deuxième différence est que j'ai un profil pour l'échelle de hauteur $H$ et le rapport d'aspect $h=H/R$ du disque au lieu d'avoir un rapport d'aspect constant pour tout le disque.
+
+\bigskip
+
+De plus, certaines erreurs se sont glissées dans ce papier. \cite[appendice A]{bitsch2011range} fait remarquer en particulier qu'il manque un facteur 4 dans l'équation (33). Ainsi, la formule que j'ai utilisé pour calculer la conductivité thermique $\chi$ est :
+\begin{align}
+\chi &= \frac{16\gamma (\gamma-1) \sigma T^4}{3\kappa \rho^2 H^2\Omega^2}
+\end{align}
+
+Il y a aussi une erreur dans l'équation (35) car le disque se refroidit par la surface supérieur et la surface inférieure. Mais comme j'utilise dans mon code une équation de l'énergie \refeq{eq:equation_energie} un peu plus complexe où j'ai tenu compte de ce fait là, cette erreur n'a pas d'incidence sur le calcul du couple.
+
+Les formules nous donnent alors un couple exercé par le disque sur la planète. 
+
+À partir de ce couple, on définit un temps de migration $t_\text{mig}$ comme : 
+\begin{align}
+t_\text{mig} &= \frac{J}{2\Gamma}
+\end{align}
+où $J$ est le moment angulaire total de la planète et $\Gamma=\dot{J}$ est le couple total exercé par le disque sur la planète.
+
+L'accélération due à la migration $\vect{a_\text{mig}}$ est alors donnée par :
+\begin{align}
+\vect{a_\text{mig}} &= \frac{\vect{v}}{t_\text{mig}}
+\end{align}
+où $\vect{v}$ est la vitesse instantanée de la planète.
+
 \section{Amortissement de e et I}
+L'amortissement de l'eccentricité $e$ et de l'inclinaison $I$ d'une planète plongée dans un disque protoplanétaire est modélisée dans le code via les formules de \cite[eq. (9), (11) et (12)]{cresswell2008three} : 
+\begin{subequations}
+\begin{align}
+t_\text{wave} &= \frac{M_\star}{m_p}\frac{M_\star}{\Sigma_p {a_p}^2}\left(\frac{H}{r}\right)^4{\Omega_p}^{-1}\\
+t_e &= \frac{t_\text{wave}}{0.780}\left[1-0.14\left(\frac{e}{H/r}\right)^2 + 0.06 \left(\frac{e}{H/r}\right)^3 + 0.18\left(\frac{e}{H/r}\right)\left(\frac{i}{H/r}\right)^2\right]\\
+t_i &= \frac{t_\text{wave}}{0.544}\left[1-0.30\left(\frac{i}{H/r}\right)^2 + 0.24 \left(\frac{i}{H/r}\right)^3 + 0.14\left(\frac{e}{H/r}\right)^2\left(\frac{i}{H/r}\right)\right]
+\end{align}
+\end{subequations}
+
+L'amortissement de $I$ est arrêté quand l'inclinaison descend en dessous de $I<5\cdot 10^{-4}\unit{rad}$ afin d'empêcher les planètes d'être parfaitement dans le plan $(x,y)$, essentiellement pour empêcher des problèmes numériques.
+
 %TODO 
 \section{Effet de l'excentricité sur le couple de corotation}
+Afin de tenir compte d'un effet mis en évidence par \cite{bitsch2010orbital}, une petite modification a été effectuée dans le calcul du couple total $\Gamma$ exercé par le disque sur la planète. 
+
+En effet, il a été montré que l'excentricité d'une planète a une influence sur sa zone fer-à-cheval et par extension, sur son couple de corotation $\Gamma_C$. Un paramètre d'amortissement $D$, compris entre 0 et 1 a ainsi été ajouté au calcul du couple total :
+\begin{align}
+\Gamma &= \Gamma_0 \cdot (\Gamma_L + D\cdot \Gamma_C)
+\end{align}
+où $\Gamma_0 = \left(\frac{q}{h}\right)^2\Sigma_p {r_p}^4 {\Omega_p}^2$ et $\Gamma_L$ est le couple de Lindblad.
+
+La valeur du paramètre d'amortissement $D$ est donnée par une formule qui a été calculée pour coller au mieux aux simulations de \cite{bitsch2010orbital}, détaillée dans \cite{cossou2013convergence}, et recopiée ici : 
+\begin{subequations}
+\begin{align}
+D = \frac{\Gamma_C(e)}{\Gamma_C (e=0)} &= 1 + a \cdot \left[\tanh(c) - \tanh\left(\frac{b * e}{x_s}+c\right)\right]\label{eq:eccentricity-influence}\\
+a &= 0.45 \qquad b=3.46 \qquad c= -2.34
+\end{align}
+\end{subequations}
+où $x_s$ représente la demi-largeur de la zone fer-à-cheval divisée par le demi-grand axe.
+
+\section{Désactivation des effets du disque}
+Quand une planète sort des bornes du disques, les effets d'amortissement de $e$ et $I$ sont désactivés, au même titre que la migration dû à la présence du disque. Ce cas survient rarement au bord externe du disque (généralement à $100\unit{AU}$), mais est beaucoup plus probable au bord interne (généralement à $0.1\unit{AU}$).
+
+\section{Validité des éléments orbitaux}
+%TODO j'en suis là.
+
 %TODO du couple de corotation quand l'excentricité augmente, mais je sais pas encore où le placer, pas dans la partie intro je suppose

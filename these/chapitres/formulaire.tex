@@ -1,6 +1,29 @@
 \chapter{Formulaire}
 Ici sont répertoriées bon nombre de formules que j'ai utilisé et qui relient des grandeurs physique entre elles. Dans la mesure du possible, une source est donnée où la formule est mentionnée. Ceci a pour but de centraliser ces formules, liées à la physique des disques, et que j'ai parfois eu du mal à retrouver parmis la quantité d'articles ou de livres traitant du sujet. 
 
+\section{Variables usuelles}\label{sec:variables}
+Dans la thèse, j'utilise couramment les mêmes notations pour une propriété physique donnée. Ici je fais un inventaire des notations, afin qu'on puisse s'y référer, et pour gagner en clarté dans le texte en m'évitant de redéfinir à chaque fois les mêmes unités :
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{|>{$}c<{$}|p{7cm}|}
+\nu & Viscosité du disque\\
+c_s & vitesse du son\\
+\alpha & paramètre adimensionné pour la prescription $\alpha$ du disque, permettant de définir une viscosité fonction de la vitesse du son\\
+H & Échelle de hauteur du disque\\
+h=H/R & rapport d'aspect du disque\\
+\Omega & vitesse angulaire d'une particule fluide ou d'une planète dans le disque\\
+k_B & constante de Boltzmann \\
+T & Température\\
+\mu & Masse moléculaire moyenne du gaz constituant principal du disque\\
+\Sigma & Densité de surface du disque de gaz\\
+\rho & Densité volumique du disque de gaz\\
+q & rapport adimensionné entre la masse de la planète et la masse de son étoile\\
+
+\end{tabular}
+\caption{Liste de la plupart des variables utilisées tout au long de la thèse. Les paramètres avec un $p$ en indice indiquent simplement que c'est la valeur du paramètre à la position orbitale de la planète.}
+\end{table}
+
 \section{Propriétés du disque}
 
 La prescription alpha pour la viscosité d'un disque est définie par :
@@ -16,6 +39,7 @@ c_s &= \sqrt{\frac{k_B T}{\mu m_H}}
 H &= \inv{\Omega}\sqrt{\frac{k_B T}{\mu m_H}}\\
 &= \frac{c_s}{\Omega}
 \end{align}
+où $m_H$ est la masse d'un atome d'hydrogène.
 
 On considère que la densité de surface est égale à la densité volumique, intégrée sur la taille verticale $2H$ du disque. 
 \begin{align}
