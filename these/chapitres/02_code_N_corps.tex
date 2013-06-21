@@ -18,6 +18,243 @@ Dans le cadre de mes simulations, j'ai accordé une importance limitée aux vari
 %TODO parler de la précision de conservation de l'énergie
 %TODO parler du pas de temps qui a une influence sur les orbites, et des tests effectués pour contraindre le pas de temps par rapport à l'orbite minimale accessible.
 
+\section{Mode d'emploi du code N-corps modifié}
+À part la première section qui donne quelques détails techniques, le but de cette partie est de présenter les différentes options du code modifié. Ces options sont lues à partir d'un fichier commun \textbf{disk.in}. Si une option n'est pas présente, la valeur par défaut sera lue à partir du code. Le fichier \textbf{disk.out} récapitule toutes les valeurs de toutes les options et paramètres importants du code. 
+
+\begin{remarque}
+Il est possible de mettre des commentaires dans le fichier \textbf{disk.in}, que ce soit pour commenter une ligne entière, ou pour mettre en fin de ligne après un paramètre, à l'aide du caractère \og !\fg exactement comme en Fortran90.
+\end{remarque}
+
+\subsection{Note technique}
+Le code est en grande partie le code mercury \cite{chambers1999hybrid}. Les effets du disque ont été inclus dans la partie \textbf{mfo\_user} prévue pour inclure des effets propre à chaque utilisateur. 
+
+Pour autant, le code a été conçu de manière modulaire en portant une attention particulière au temps d'exécution et à la souplesse d'utilisation. La plupart des effets sont désactivables par une simple option dans un fichier de paramètre spécifique au effets du disque \textbf{disk.in}. 
+
+Prenons un exemple. Le couple exercé par le disque sur la planète peut être issus des formules de \cite{paardekooper2011torque}, ou bien suivre plusieurs lois artificielles permettant de tester certains effets dans des cas simplifiés. Pour autant, cette souplesse d'utilisation ne se fait pas au détriment de la célérité du code car au lancement du code, les options sont lues et des pointeurs de fonctions permettent au code d'exécuter directement la bonne fonction lors de l'intégration, sans avoir à tester à chaque pas de temps quelle fonction doit être lancée. 
+
+\bigskip
+
+Un programme externe, nommé \textbf{test\_disk} permet d'effectuer des tests unitaires sur différentes fonctions, afin de vérifier quand bon nous semble que chaque fonction n'est pas perturbée par les autres et donne des résultats corrects à la fois physiquement et numériquement.
+
+\subsection{Paramètres divers}
+Ici je regroupe des paramètres du disque qui nécessitent simplement une valeur : 
+\begin{verbatim}
+b/h = 0.6
+adiabatic_index = 1.4
+mean_molecular_weight = 2.35
+disk_edges = 0.1 100.
+sample = 800
+\end{verbatim}
+
+\textbf{b/h} est la longueur de lissage du potentiel gravitationnel d'une planète (qui diverge dans les simulations hydrodynamiques et qui est un paramètre des formules de \cite{paardekooper2011torque}.
+
+\textbf{adiabatic\_index} est l'indice adiabatique $\gamma$ comme son nom l'indique. De même, \textbf{mean\_molecular\_weight} est la masse moléculaire moyenne $\mu$.
+
+\textbf{disk\_edges} défini les deux extrémités du disque, les bords internes et externes.
+
+\textbf{sample} défini le nombre de points qu'auront les profils radiaux des différents paramètres du disque. Ces points ne sont pas répartis uniforméments, il y a plus de points au bord interne qu'au bord externe, afin d'avoir une évolution plus fine des paramètres en fonction du rayon.
+
+\subsection{Densité de surface}
+\textbf{surface\_density} permet de définir le profil en loi de puissance pour la densité de surface : 
+\begin{verbatim}
+surface_density = 500 0.5
+\end{verbatim}
+Ici, on a défini le profil suivant : 
+\begin{align*}
+\Sigma(R) &= 500. \cdot R^{-0.5} \unit{g/cm^2}
+\end{align*}
+
+Mais il est aussi possible de donner un profil tabulé de densité de surface en fonction du rayon en paramètre d'entrée, en spécifiant le paramètre suivant : 
+\begin{verbatim}
+surface_density = manual
+\end{verbatim}
+Ainsi, le profil de densité de surface sera lu à partir du fichier \textbf{surface\_density\_profile.dat} qui doit être constitué de deux colonnes, la première étant la valeur du rayon en AU, et la deuxième la densité de surface en \unit{g/cm^2}. Les lignes doivent être classées par ordre croissant de distance orbitale. (les premières lignes étant les points les plus proches de l'étoile, et les dernières les points les plus lointains. 
+
+\begin{remarque}
+Une interpolation sera réalisée si la discrétisation du fichier d'entrée est différente de celle du code.
+\end{remarque}
+
+\bigskip
+
+À ceci s'ajoute un paramètre supplémentaire : 
+\begin{verbatim}
+inner_smoothing_width = 0.05
+\end{verbatim}
+
+Ce paramètre représente la longueur d'amortissement de la densité de surface au bord interne du disque, afin que la densité de surface au bord interne soit très faible. Cette longueur est exprimée en pourcentage de distance orbitale du bord interne ; c'est à dire que si le bord interne est à 0.1 AU, alors dans le cas présent, le lissage sera effectué sur une longueur de 0.005AU
+
+\subsection{Irradiation de l'étoile centrale}
+\textbf{is\_irradiation} permet de définir si on veut inclure ou non l'irradiation dans le calcul de l'équilibre énergétique du disque. 
+
+\begin{verbatim}
+is_irradiation = 1
+disk_albedo = 0.5
+r_star = 4.65e-3 ! AU
+t_star = 5700 ! K
+\end{verbatim}
+
+Les paramètres sont relativement explicite mais pour détailler, \textbf{disk\_albedo} est l'albedo moyen du disque protoplanétaire, il représente le fait qu'une partie de la lumière incidente de l'étoile est directement réfléchie vers l'espace.
+
+\textbf{r\_star} et \textbf{t\_star} sont respectivement le rayon de l'étoile en AU et sa température en Kelvin.
+
+La manière dont est modélisée l'irradiation de l'étoile centrale est détaillée dans \refsec{sec:irradiation}.
+
+\subsection{Viscosité}
+Il est possible de définir plusieurs types de viscosité via l'option \textbf{viscosity\_type} : \textbf{constant}, \textbf{alpha} et \textbf{alpha\_dz}.
+
+\subsubsection{constant}
+Ce paramètre permet de définir une viscosité $\nu$ constante dans tout le disque. La valeur de la viscosité associée est définie dans le paramètre \textbf{viscosity} en \unit{cm^2/s}.
+
+\begin{verbatim}
+viscosity_type = constant
+viscosity = 1e15 ! cm^2/s
+\end{verbatim}
+
+\subsubsection{alpha}
+Ce paramètre permet de définir une viscosité via la prescription alpha de \cite{shakura1973black}. La valeur du paramètre alpha sera lue dans le paramètre \textbf{alpha}. 
+
+\begin{verbatim}
+viscosity_type = alpha
+alpha = 5e-3
+\end{verbatim}
+
+\subsubsection{alpha\_dz}
+Ce paramètre permet de définir une viscosité alpha par morceau, permettant de modéliser une dead zone. On aura donc 3 zones avec 3 alpha différents. Pour définir ces zones là, il faut donner dans le paramètre \textbf{alpha\_dz} trois valeurs de $\alpha$ et dans \textbf{radius\_dz} deux valeurs de distance orbitales (en AU) pour définir les bornes de la dead zone.
+\begin{verbatim}
+viscosity_type = alpha_dz
+alpha_dz = 0.005 0.0001 0.005
+radius_dz = 1.0 10.0 ! in AU
+\end{verbatim}
+
+Quand cette option est activée, une modification au profil de densité est appliquée, afin de modéliser une sous-densité, puis une sur-densité avant et après le bord interne de la zone morte. L'écart maximum de ces \og bumps\fg est de 15\% de la valeur de la densité au bord interne de la zone morte. 
+
+À ceci s'ajoute un lissage des valeurs de $\alpha$ entre la valeur à gauche et la valeur à droite de la transition selon une tangente hyperbolique. La transition s'effectue typiquement sur une longueur égale à 10\% de la position de la transition dans le disque (si la transition est à 1AU, alors la transition a lieu sur 0.1 AU autour de la transition).
+
+\subsection{Opacité}
+Afin de pouvoir les comparer, j'ai ajouté au code la possibilité de tourner avec différents modèles pour l'opacité. 
+
+Les différents modèles sont \citep{bell1994FU, zhu2009nonsteady, chambers2009analytic, hure2000transition}
+
+\subsubsection{bell}
+\begin{verbatim}
+opacity_type = bell
+\end{verbatim}
+
+L'opacité est alors calculée en utilisant le modèle fourni par \cite{bell1994FU}. 
+
+\subsubsection{zhu}
+\begin{verbatim}
+opacity_type = zhu
+\end{verbatim}
+
+L'opacité est alors calculée en utilisant le modèle fourni par \cite{zhu2009nonsteady}. 
+
+\subsubsection{chambers}
+\begin{verbatim}
+opacity_type = chambers
+\end{verbatim}
+
+L'opacité est alors calculée en utilisant le modèle fourni par \cite{chambers2009analytic}. Ce modèle est très simplifié et utilisé une opacité constante sur un grand régime de température, pour ensuite faire une transition vers une loi de puissance à très haute température.
+
+\subsubsection{hure}
+\begin{verbatim}
+opacity_type = hure
+\end{verbatim}
+
+L'opacité est alors calculée en utilisant le modèle fourni par \cite{hure2000transition}. 
+
+À la différence de tous les autres modèles que j'ai implémenté, celui de \cite{hure2000transition} est directement une table d'opacité, sans faire intervenir de loi de puissance pour différents régimes. 
+
+À la différence des autres modèles, il n'introduit pas d'incertitudes supplémentaire via les loi de puissance qu'il défini. 
+
+En effet, dans le cas qui nous intéresse, c'est à dire la migration planétaire via la formule de \citep{paardekooper2011torque}, l'indice des loi de puissance pour la densité de surface et la température a une très grande influence sur la couple effectif du disque. Et les transitions d'opacités, très marquées lors de la transition des lois de puissance, fait apparaître des zones particulières dans le disque qui n'ont parfois aucune réalité physique mais ont de grandes conséquences sur le résultat des simulations. De même, le lissage qu'elles introduisent masquent certaines zones d'intérêt qui ne sont mises en évidence qu'avec une table d'opacité où tous les effets fins ont été préservés.
+
+\subsection{Turbulence}
+Pour activer la turbulence dans le disque, c'est à dire l'effet que la turbulence peut induire sur la migration planétaire, il suffit d'utiliser le paramètre suivant : 
+\begin{verbatim}
+is_turbulence = 1
+\end{verbatim}
+
+La turbulence n'est ici qu'une migration stochastique de moyenne nulle qui perturbe les planètes et leur migration. 
+
+Le modèle utilisé est le même que celui détaillé dans \cite{ogihara2007accretion}. Le principe est de définir un potentiel turbulent dans le disque, fait de la superposition de perturbation individuelle qui ont des modes $m$, temps de vie $t_m$ et position dans le disques différents. 
+
+Dans le cas typique, il y a 100 modes différents dans le disque : 
+\begin{align}
+\Phi_\text{turb}(R,\phi,t) &= \gamma R^2 \Omega^2 \sum_{k=1}^{100} \Lambda_k(R,\phi,t)
+\end{align}
+avec 
+\begin{align}
+\Lambda_k &= \xi_k e^{-\frac{(R-R_k)^2}{{\sigma_k}^2}} \cos\left(m_k \phi -\phi_k - \Omega_k\tilde{t}_k\right) \sin\left(\pi \tilde{t}_k/\Delta t_k\right)
+\end{align}
+
+$\xi_k$ est une constante adimensionnée déterminée aléatoirement en suivant une distribution gaussienne.
+
+$R_k$ et $\phi_k$ sont respectivement les coordonnées radiales et azimutales du mode $k$ choisies aléatoirement et de manière uniforme pour l'un entre les bornes du disque, pour l'autre entre $0$ et $2\pi$. 
+
+Chaque mode $k$ possède un nombre de mode $m_k$ déterminée selon une distribution logarithmique entre $m=1$ et $m=150$, le nombre de mode déterminant l'extension radiale et la durée du vie du mode $k$.
+
+$\sigma_k = \pi R_k / 4m_k$ est l'extension radiale de ce mode tandis que $\Omega_k$ représente la vitesse angulaire képlerienne à la position $R=R_k$.
+
+$\Delta t_k=0.2\pi R_k / m_k c_s$ est la durée de vie du mode $k$. 
+
+\bigskip
+
+Les modes apparaissent et disparaissent en fonction de leur temps de vie et sont remplacés afin qu'il y ait toujours 100 modes différents dans le disque à un instant $t$. Chaque mode $k$ est créé à un instant $t_{0,k}$ et se termine quand $\tilde{t}_k = t-t_{0,k} > \Delta t_k$.
+
+\subsection{Migration}
+\subsubsection{real}
+C'est le cas le plus classique. Il n'y a pas besoin de définir d'autres paramètres, la migration induite par le disque de gaz sera simplement calculée à partir du modèle de \cite{paardekooper2011torque}.
+
+\begin{verbatim}
+torque_type = real
+\end{verbatim}
+
+\subsubsection{mass\_dependant}
+On définit une zone de convergence artificielle qui va dépendre de la masse des planètes. On va donc devoir définir deux bornes en masses et deux bornes en distance orbitale qui vont déterminer cette ligne de couple nul. À l'intérieur (resp. extérieur) de cette séparation virtuelle, la migration sera vers l'extérieur (resp. intérieur).
+
+Ensuite, on défini une pente linéaire plus ou moins importante pour voir à quelle vitesse on va tendre vers la valeur de saturation à mesure qu'on s'éloigne de la zone de convergence.
+
+En résumé, on a ces paramètres suivants à définir : 
+\begin{verbatim}
+torque_type = mass_dependant
+
+mass_dep_cz_m_max = 30 ! AU
+mass_dep_m_max = 60 ! m_earth
+
+mass_dep_cz_m_min = 4 ! AU
+mass_dep_m_min = 1 ! m_earth
+
+torque_profile_steepness = 1.0
+\end{verbatim}
+
+\subsubsection{linear\_indep}
+Même chose que précédemment, on peut définir un couple artificiel qui défini une zone de convergence indépendante de la masse, c'est à dire qu'on ne spécifie que la position de la zone de convergence dans le disque. On a donc : 
+\begin{verbatim}
+torque_type = linear_indep
+indep_cz = 3.0 ! AU
+torque_profile_steepness = 1.0
+\end{verbatim}
+
+\subsubsection{tanh\_indep}
+Ici, on défini aussi une zone de convergence indépendante de la masse, mais au lieu d'avoir une évolution linéaire du couple à mesure qu'on s'éloigne de la zone de convergence, on a une tangente hyperbolique qui sature à une valeur que l'on peut donner en paramètre. 
+
+La valeur du couple de saturation défini la valeur absolue du couple vers laquelle on va tendre quand on est très loin de la zone de convergence. Si on est à l'extérieur, ce sera cette valeur de saturation prise négativement, tandis que c'est la valeur positive qui est utilisée à l'intérieur.
+
+On a donc les paramètres suivants à définir : 
+\begin{verbatim}
+torque_type = tanh_indep
+indep_cz = 3.0 ! AU
+saturation_torque = 1.0 ! in Gamma_0
+\end{verbatim}
+
+\subsubsection{manual}
+Il est aussi possible de rentrer manuellement un couple total en fonction de la position de la planète dans le disque. 
+
+Les valeurs seront alors lues à partir du fichier \textbf{torque\_profile.dat}. La première colonne sera les positions dans le disque en AU tandis que la deuxième colonne sera le couple exercé par le disque en unité de $\Gamma_0$ (c'est à dire que l'effet de la masse de la planète sur la vitesse de migration sera toujours pris en compte dans le code au travers de la dépendance de $\Gamma_0$ en fonction de la masse de la planète et de la masse du disque.
+
+%TODO j'en suis là
+
 \section{Disque 1D}
 Afin de calculer les effets d'un disque de gaz, une modélisation de ce dernier est nécessaire. Le but étant d'avoir une grande souplesse, le disque implémenté est bien entendu très simplifié. Toutes les quantités sont intégrées et invariantes selon la hauteur z et la position azimutale $\theta$ dans le disque, résultant en un modèle radial 1D de toutes les quantités. 
 
@@ -120,6 +357,13 @@ où $x_s$ représente la demi-largeur de la zone fer-à-cheval divisée par le d
 Quand une planète sort des bornes du disques, les effets d'amortissement de $e$ et $I$ sont désactivés, au même titre que la migration dû à la présence du disque. Ce cas survient rarement au bord externe du disque (généralement à $100\unit{AU}$), mais est beaucoup plus probable au bord interne (généralement à $0.1\unit{AU}$).
 
 \section{Validité des éléments orbitaux}
+Lorsque d'une rencontre proche entre deux planètes, leurs interactions gravitationnelles rendent caduque les formules qui permettent de calculer les éléments orbitaux à partir des vitesses et positions car ceci suppose qu'on est dans le cas d'une orbite képlerienne isolée. 
+
+Dans de tels cas, on peut avoir des demi-grands axe négatifs, des excentricités supérieures à 1. Si c'est déjà en soit un problème physique, c'est aussi et surtout un problème numérique car cela fait apparaître des \textbf{Not A Number} (NaN) quand par exemple on a le demi-grand axe en argument d'une racine carrée. Ceci a donc pour conséquence concrète de faire planter le code, au mieux, ou pire, de le faire tourner avec tous les paramètres de la simulation peu à peu gangrénés par des \textbf{NaN}. 
+
+En conséquence, j'ai décidé de remplacer dans la plupart des calculs de mes simulations, le demi-grand axe par le rayon $r=\sqrt{x^2+y^2+z^2}$ qui lui n'est pas sensible à ce genre de divergences. Quand il y a une excentricité, il est clair que le rayon est différent du demi-grand axe. Mais les excentricités étant généralement faible, l'erreur faite sur le demi-grand axe reste faible. De plus les rencontres proches représentent un temps négligeable de la simulation au regard des centaines de milliers d'années sur lesquelles on intègre les orbites. On considère donc que la migration induite sur les planètes pendant leur temps de rencontre proche est totalement négligeable au regard du reste de la simulation.
+
+
 %TODO j'en suis là.
 
 %TODO du couple de corotation quand l'excentricité augmente, mais je sais pas encore où le placer, pas dans la partie intro je suppose
