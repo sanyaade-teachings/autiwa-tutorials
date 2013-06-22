@@ -211,9 +211,15 @@ torque_type = real
 \end{verbatim}
 
 \subsubsection{mass\_dependant}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.65\linewidth]{figure/migration_map/mass_dependant.pdf}
+\caption{Cette carte représente l'effet du disque dans le cas de l'option \textbf{mass\_dependant} pour une planète en fonction de sa position en abscisse et de sa masse en ordonnée. La ligne noire représente la zone de couple nul, c'est à dire une zone où la migration de la planète s'arrête.}
+\end{figure}
+
 On définit une zone de convergence artificielle qui va dépendre de la masse des planètes. On va donc devoir définir deux bornes en masses et deux bornes en distance orbitale qui vont déterminer cette ligne de couple nul. À l'intérieur (resp. extérieur) de cette séparation virtuelle, la migration sera vers l'extérieur (resp. intérieur).
 
-Ensuite, on défini une pente linéaire plus ou moins importante pour voir à quelle vitesse on va tendre vers la valeur de saturation à mesure qu'on s'éloigne de la zone de convergence.
+Ensuite, on défini une pente linéaire plus ou moins importante pour voir à quelle vitesse on va tendre vers la valeur de saturation à mesure qu'on s'éloigne de la zone de convergence. Une pente de $1$ signifie que le couple $\Gamma/\Gamma_0$ augmente de 1 tous les 10 AU.
 
 En résumé, on a ces paramètres suivants à définir : 
 \begin{verbatim}
@@ -236,6 +242,14 @@ indep_cz = 3.0 ! AU
 torque_profile_steepness = 1.0
 \end{verbatim}
 
+Une pente de $1$ signifie que le couple $\Gamma/\Gamma_0$ augmente de 1 tous les 10 AU.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.65\linewidth]{figure/migration_map/linear_indep.pdf}
+\caption{Cette carte représente l'effet du disque dans le cas de l'option \textbf{linear\_indep} pour une planète en fonction de sa position en abscisse et de sa masse en ordonnée. La ligne noire représente la zone de couple nul, c'est à dire une zone où la migration de la planète s'arrête.}
+\end{figure}
+
 \subsubsection{tanh\_indep}
 Ici, on défini aussi une zone de convergence indépendante de la masse, mais au lieu d'avoir une évolution linéaire du couple à mesure qu'on s'éloigne de la zone de convergence, on a une tangente hyperbolique qui sature à une valeur que l'on peut donner en paramètre. 
 
@@ -247,6 +261,12 @@ torque_type = tanh_indep
 indep_cz = 3.0 ! AU
 saturation_torque = 1.0 ! in Gamma_0
 \end{verbatim}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.65\linewidth]{figure/migration_map/tanh_indep.pdf}
+\caption{Cette carte représente l'effet du disque dans le cas de l'option \textbf{tanh\_indep} pour une planète en fonction de sa position en abscisse et de sa masse en ordonnée. La ligne noire représente la zone de couple nul, c'est à dire une zone où la migration de la planète s'arrête.}
+\end{figure}
 
 \subsubsection{manual}
 Il est aussi possible de rentrer manuellement un couple total en fonction de la position de la planète dans le disque. 

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="533.6" height="351.9" viewBox="0 0 533.6 351.9" id="svg2" version="1.1" inkscape:version="0.48.3.1 r9886" sodipodi:docname="linear_indep.svg">
+  <metadata id="metadata346">
+    <rdf:RDF>
+      <cc:Work rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-width="1615" inkscape:window-height="1026" id="namedview344" showgrid="false" inkscape:object-nodes="true" inkscape:zoom="1.391" inkscape:cx="399.1" inkscape:cy="124.7" inkscape:window-x="65" inkscape:window-y="24" inkscape:window-maximized="1" inkscape:current-layer="svg2" fit-margin-top="0" fit-margin-left="0" fit-margin-right="0" fit-margin-bottom="0" />
+  <desc id="desc4">Produced by GNUPLOT 4.4 patchlevel 3 </desc>
+  <defs id="defs6">
+    <linearGradient id="linearGradient4464">
+      <stop id="stop4466" offset="0" style="stop-color:#ff0000;stop-opacity:1;" />
+      <stop style="stop-color:#ff5300;stop-opacity:1;" offset="0.1024" id="stop4478" />
+      <stop style="stop-color:#ffd100;stop-opacity:1;" offset="0.3009" id="stop4474" />
+      <stop style="stop-color:#7aff2c;stop-opacity:1;" offset="0.496" id="stop4472" />
+      <stop id="stop4476" offset="0.6939" style="stop-color:#00cd90;stop-opacity:1;" />
+      <stop id="stop4468" offset="1" style="stop-color:#0000ff;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient4464" id="linearGradient4006" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.5925,0,0,0.3718,-83.91,298.2)" x1="977.3" y1="-685.4" x2="977.3" y2="-27.4" />
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient4464" id="linearGradient4053" gradientUnits="userSpaceOnUse" gradientTransform="translate(-34.21,-74.8)" x1="109.1" y1="240.4" x2="486.7" y2="240.4" />
+  </defs>
+  <g style="color:#ffffff;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" id="g22" transform="translate(35.29,448.5)" />
+  <a xlink:title="Plot #1" id="a44" transform="translate(51.1,-146)">
+    <g style="color:#000000;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" id="g46" />
+  </a>
+  <path style="color:#000000;fill:url(#linearGradient4053);fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" inkscape:connector-curvature="0" id="path310" d="m 74.79,42.8 0,245.3 381.91,0 0,-245.3 -381.91,0 z" />
+  <g id="g4079" transform="translate(35.29,448.5)">
+    <path id="path4077" d="m 39.61,-364.6 381.79,0" style="color:#808080;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:6, 6;stroke-dashoffset:0" inkscape:connector-curvature="0" />
+    <path id="path4075" d="m 39.61,-323.7 381.79,0" style="color:#808080;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:6, 6;stroke-dashoffset:0" inkscape:connector-curvature="0" />
+    <path id="path4073" d="m 39.61,-282.9 381.79,0" style="color:#808080;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:6, 6;stroke-dashoffset:0" inkscape:connector-curvature="0" />
+    <path id="path4071" d="m 39.61,-242.1 381.79,0" style="color:#808080;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:6, 6;stroke-dashoffset:0" inkscape:connector-curvature="0" />
+    <path id="path4069" d="m 39.61,-201.2 381.79,0" style="color:#808080;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:6, 6;stroke-dashoffset:0" inkscape:connector-curvature="0" />
+  </g>
+  <g id="g4178" transform="translate(35.29,448.5)">
+    <path inkscape:connector-curvature="0" id="path270-0" d="m 39.58,-160.5 0,-245.2" style="color:#808080;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:6, 6;stroke-dashoffset:0" />
+    <use x="0" y="0" xlink:href="#path270-0" id="use4181" transform="translate(38.18,0)" width="600" height="480" />
+    <use height="480" width="600" transform="translate(76.36,0)" id="use4183" xlink:href="#path270-0" y="0" x="0" />
+    <use x="0" y="0" xlink:href="#path270-0" id="use4185" transform="translate(152.7,0)" width="600" height="480" />
+    <use height="480" width="600" transform="translate(190.9,0)" id="use4187" xlink:href="#path270-0" y="0" x="0" />
+    <use x="0" y="0" xlink:href="#path270-0" id="use4189" transform="translate(229.1,0)" width="600" height="480" />
+    <use height="480" width="600" transform="translate(267.3,0)" id="use4191" xlink:href="#path270-0" y="0" x="0" />
+    <use x="0" y="0" xlink:href="#path270-0" id="use4193" transform="translate(305.4,0)" width="600" height="480" />
+    <use height="480" width="600" transform="translate(343.6,0)" id="use4195" xlink:href="#path270-0" y="0" x="0" />
+    <use x="0" y="0" xlink:href="#path270-0" id="use4197" transform="translate(381.8,0)" width="600" height="480" />
+    <use x="0" y="0" xlink:href="#path270-0" id="use4235" transform="translate(114.5,0)" width="600" height="480" />
+  </g>
+  <g style="color:#ffffff;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" id="g22-8" transform="translate(-34.2,-74.6)" />
+  <text style="font-size:20px;text-anchor:middle;color:#000000;fill:#000000;stroke:none" id="text64-2" x="265.88855" y="314.91864">
+    <tspan id="tspan66-9" style="font-size:20px">5</tspan>
+  </text>
+  <text style="font-size:20px;text-anchor:middle;color:#000000;fill:#000000;stroke:none" id="text80-2" x="456.24036" y="315.05048">
+    <tspan id="tspan82-5" style="font-size:20px">10</tspan>
+  </text>
+  <g id="g4128" transform="translate(-59.53,448.3)">
+    <path id="path4114" d="m 134.4,-405.5 0,9.8" style="color:#000000;fill:none;stroke:currentColor;stroke-width:0.7085;stroke-linecap:butt;stroke-linejoin:miter" inkscape:connector-curvature="0" />
+    <use x="0" y="0" xlink:href="#path4114" id="use4138" transform="translate(381.8,0)" width="600" height="480" />
+    <use height="480" width="600" transform="translate(343.6,0)" id="use4140" xlink:href="#path4114" y="0" x="0" />
+    <use x="0" y="0" xlink:href="#path4114" id="use4142" transform="translate(305.4,0)" width="600" height="480" />
+    <use height="480" width="600" transform="translate(267.3,0)" id="use4144" xlink:href="#path4114" y="0" x="0" />
+    <use x="0" y="0" xlink:href="#path4114" id="use4146" transform="translate(229.1,0)" width="600" height="480" />
+    <use height="480" width="600" transform="translate(190.9,0)" id="use4148" xlink:href="#path4114" y="0" x="0" />
+    <use x="0" y="0" xlink:href="#path4114" id="use4150" transform="translate(152.7,0)" width="600" height="480" />
+    <use height="480" width="600" transform="translate(76.36,0)" id="use4152" xlink:href="#path4114" y="0" x="0" />
+    <use x="0" y="0" xlink:href="#path4114" id="use4154" transform="translate(38.18,0)" width="600" height="480" />
+    <use x="0" y="0" xlink:href="#path4114" id="use4233" transform="translate(114.5,0)" width="600" height="480" />
+  </g>
+  <text style="font-size:20px;text-anchor:middle;color:#000000;fill:#000000;stroke:none" id="text184" x="265.79532" y="347.69409">
+    <tspan id="tspan186" style="font-size:20px">Semi-major axis (AU)</tspan>
+  </text>
+  <text style="font-size:20px;text-anchor:end;color:#000000;fill:#000000;stroke:none" id="text198" x="66.762604" y="295.73413">
+    <tspan id="tspan200" style="font-size:20px">0</tspan>
+  </text>
+  <text style="font-size:20px;text-anchor:end;color:#000000;fill:#000000;stroke:none" id="text214" x="66.762604" y="254.83411">
+    <tspan id="tspan216" style="font-size:20px">10</tspan>
+  </text>
+  <text style="font-size:20px;text-anchor:end;color:#000000;fill:#000000;stroke:none" id="text230-7" x="66.762604" y="213.93414">
+    <tspan id="tspan232-0" style="font-size:20px">20</tspan>
+  </text>
+  <text style="font-size:20px;text-anchor:end;color:#000000;fill:#000000;stroke:none" id="text246-6" x="66.762604" y="173.13416">
+    <tspan id="tspan248-5" style="font-size:20px">30</tspan>
+  </text>
+  <text style="font-size:20px;text-anchor:end;color:#000000;fill:#000000;stroke:none" id="text262-7" x="66.762604" y="132.33411">
+    <tspan id="tspan264-3" style="font-size:20px">40</tspan>
+  </text>
+  <text style="font-size:20px;text-anchor:end;color:#000000;fill:#000000;stroke:none" id="text278-4" x="66.762604" y="91.434143">
+    <tspan id="tspan280-7" style="font-size:20px">50</tspan>
+  </text>
+  <path id="path290-5" style="color:#000000;fill:none;stroke:currentColor;stroke-width:0.6914;stroke-linecap:butt;stroke-linejoin:miter" d="m 74.75,42.9 9.3,0 m -9.3,40.9 9.3,0 m -9.3,40.9 9.3,0 m -9.3,40.9 9.3,0 m -9.3,40.9 9.3,0 m -9.3,40.9 9.3,0 m -9.3,41 9.3,0" inkscape:connector-curvature="0" />
+  <text style="font-size:20px;text-anchor:end;color:#000000;fill:#000000;stroke:none" id="text294-8" x="66.762604" y="50.534119">
+    <tspan id="tspan296-9" style="font-size:20px">60</tspan>
+  </text>
+  <path id="path298-5" style="color:#000000;fill:none;stroke:currentColor;stroke-width:0.6914;stroke-linecap:butt;stroke-linejoin:miter" d="m 456.7,42.8 -9.4,0 m 9.4,40.9 -9.4,0 m 9.4,40.9 -9.4,0 m 9.4,40.9 -9.4,0 m 9.4,40.9 -9.4,0 m 9.4,40.9 -9.4,0 m 9.4,41 -9.4,0" inkscape:connector-curvature="0" />
+  <text style="font-size:20px;text-anchor:middle;color:#000000;fill:#000000;stroke:none" id="text302" transform="matrix(0,-1,1,0,0,0)" x="-165.43414" y="15.195312">Planet mass (M<tspan style="font-size:65.0009%;baseline-shift:sub" id="tspan4713">⊕</tspan>
+)</text>
+  <rect style="fill:url(#linearGradient4006);fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" id="rect3694" width="19.06" height="244.8" x="466.6" y="43" />
+  <path style="fill:#00cd90;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" d="m 466.6,67.5 6.4,0 m 6.3,0 6.4,0" id="path4669" inkscape:connector-curvature="0" sodipodi:nodetypes="cccc" />
+  <use x="0" y="0" xlink:href="#path4669" id="use4671" transform="translate(0,48.6)" width="600" height="480" />
+  <use x="0" y="0" xlink:href="#path4669" id="use4675" transform="translate(0,97.1)" width="600" height="480" />
+  <use x="0" y="0" xlink:href="#path4669" id="use4677" transform="translate(0,145.7)" width="600" height="480" />
+  <use height="480" width="600" transform="translate(0,194.3)" id="use4673" xlink:href="#path4669" y="0" x="0" />
+  <text xml:space="preserve" style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans" x="497.19534" y="69.334106" id="text4679" sodipodi:linespacing="125%"><tspan sodipodi:role="line" id="tspan4681" x="497.19534" y="69.334106" /></text>
+  <text xml:space="preserve" style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans" x="533.67291" y="74.824219" id="text4683" sodipodi:linespacing="125%"><tspan sodipodi:role="line" id="tspan4685" x="533.67291" y="74.824219">0.2</tspan></text>
+  <text xml:space="preserve" style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans" x="534.77155" y="123.53101" id="text4687" sodipodi:linespacing="125%"><tspan sodipodi:role="line" id="tspan4689" x="534.77155" y="123.53101">0</tspan></text>
+  <text xml:space="preserve" style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans" x="533.92926" y="171.96442" id="text4691" sodipodi:linespacing="125%"><tspan sodipodi:role="line" id="tspan4693" x="533.92926" y="171.96442">-0.2</tspan></text>
+  <text xml:space="preserve" style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans" x="534.77155" y="220.68103" id="text4695" sodipodi:linespacing="125%"><tspan sodipodi:role="line" id="tspan4697" x="534.77155" y="220.68103">-0.4</tspan></text>
+  <text xml:space="preserve" style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans" x="533.67291" y="269.12415" id="text4699" sodipodi:linespacing="125%"><tspan sodipodi:role="line" id="tspan4701" x="533.67291" y="269.12415">-0.6</tspan></text>
+  <text xml:space="preserve" style="font-size:25px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans" x="50.006878" y="18.994141" id="text4705" sodipodi:linespacing="125%"><tspan sodipodi:role="line" id="tspan4707" x="50.006878" y="18.994141">Evolution of the total torque Γ<tspan style="font-size:65.0009%;baseline-shift:sub" id="tspan4711">tot</tspan>/Γ<tspan style="font-size:65.0009%;baseline-shift:sub" id="tspan4709">0</tspan></tspan></text>
+  <g transform="translate(-59.51,684)" id="g4156">
+    <path inkscape:connector-curvature="0" style="color:#000000;fill:none;stroke:currentColor;stroke-width:0.7085;stroke-linecap:butt;stroke-linejoin:miter" d="m 134.4,-405.5 0,9.8" id="path4158" />
+    <use height="480" width="600" transform="translate(381.8,0)" id="use4160" xlink:href="#path4114" y="0" x="0" />
+    <use x="0" y="0" xlink:href="#path4114" id="use4162" transform="translate(343.6,0)" width="600" height="480" />
+    <use height="480" width="600" transform="translate(305.4,0)" id="use4164" xlink:href="#path4114" y="0" x="0" />
+    <use x="0" y="0" xlink:href="#path4114" id="use4166" transform="translate(267.3,0)" width="600" height="480" />
+    <use height="480" width="600" transform="translate(229.1,0)" id="use4168" xlink:href="#path4114" y="0" x="0" />
+    <use x="0" y="0" xlink:href="#path4114" id="use4170" transform="translate(190.9,0)" width="600" height="480" />
+    <use height="480" width="600" transform="translate(152.7,0)" id="use4172" xlink:href="#path4114" y="0" x="0" />
+    <use x="0" y="0" xlink:href="#path4114" id="use4174" transform="translate(114.5,0)" width="600" height="480" />
+    <use height="480" width="600" transform="translate(38.18,0)" id="use4176" xlink:href="#path4114" y="0" x="0" />
+    <use x="0" y="0" xlink:href="#path4114" id="use4231" transform="translate(76.36,0)" width="600" height="480" />
+  </g>
+  <text y="315.05048" x="418.57037" id="text4199" style="font-size:20px;text-anchor:middle;color:#000000;fill:#000000;stroke:none">
+    <tspan style="font-size:20px" id="tspan4201">9</tspan>
+  </text>
+  <text xml:space="preserve" style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans" x="373.95703" y="315.05048" id="text4203" sodipodi:linespacing="125%"><tspan sodipodi:role="line" id="tspan4205" x="373.95703" y="315.05048">8</tspan></text>
+  <text xml:space="preserve" style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans" x="335.80856" y="315.06024" id="text4207" sodipodi:linespacing="125%"><tspan sodipodi:role="line" id="tspan4209" x="335.80856" y="315.06024">7</tspan></text>
+  <text xml:space="preserve" style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans" x="297.52823" y="315.05048" id="text4211" sodipodi:linespacing="125%"><tspan sodipodi:role="line" id="tspan4213" x="297.52823" y="315.05048">6</tspan></text>
+  <text xml:space="preserve" style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans" x="221.31429" y="315.06024" id="text4215" sodipodi:linespacing="125%"><tspan sodipodi:role="line" id="tspan4217" x="221.31429" y="315.06024">4</tspan></text>
+  <text xml:space="preserve" style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans" x="183.10233" y="315.05048" id="text4219" sodipodi:linespacing="125%"><tspan sodipodi:role="line" id="tspan4221" x="183.10233" y="315.05048">3</tspan></text>
+  <text xml:space="preserve" style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans" x="145.15404" y="315.19208" id="text4223" sodipodi:linespacing="125%"><tspan sodipodi:role="line" id="tspan4225" x="145.15404" y="315.19208">2</tspan></text>
+  <text xml:space="preserve" style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans" x="106.53192" y="315.06024" id="text4227" sodipodi:linespacing="125%"><tspan sodipodi:role="line" id="tspan4229" x="106.53192" y="315.06024">1</tspan></text>
+  <path d="m 74.87,42.8 0,245.2 381.83,0 0,-245.2 -381.83,0 z" id="path4703" inkscape:connector-curvature="0" style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path d="m 189.4,42.8 c 0,81.6 0,163.3 0,244.9" id="path48" inkscape:connector-curvature="0" style="stroke:#000000" />
+</svg>
