@@ -1,6 +1,45 @@
 
 \section{Décalage de la Zone de Convergence}
-%TODO 
+Cette partie a fait l'objet d'un article, publié dans le journal Astronomy \& Astrophysics : \cite{cossou2013convergence}.
+
+Le but de cette partie est de montrer que quand on met plusieurs planètes dans disque de gaz possédant une zone de convergence, ces dernières ne migrent pas individuellement mais au contraire se comportent comme un système ayant une migration globale. 
+
+\subsection{Introduction}
+Des planètes de l'ordre de quelques unités à quelques dizaines de masses terrestres interagissent avec le disque de gaz dans lequel elles se forment et génèrent des ondes de densité dans le disque \citep{goldreich1979excitation}. La planète elle même est influencée par cette onde de densité et migre par migration de Type I \citep{ward1997protoplanet}.
+
+Dans les disques isothermes, la migration de Type I est gouvernée par le couple différentiel dû aux ondes de Lindblad. Pour les planètes, la migration qui en résulte est rapide et dirigée vers l'étoile centrale \citep{tanaka2002three}. Dans les disques radiatifs, un couple apparait dans la zone en fer-à-cheval de la planète. Ce dernier peut contrebalancer le couple différentiel de Lindblad au point de transformer la migration vers l'intérieur précédemment présentée en migration vers l'extérieur. Ainsi, dans de tels disques, la migration peut être dirigée soit vers l'intérieur soit vers l'extérieur \citep{paardekooper2006halting, kley2008migration}. Ceci rend possible l'existence de zone dans les disques où la migration est convergente. Ces dernières sont appelées zone de convergence \citep[CZs;][]{lyra2010orbital, paardekooper2011torque}.
+
+\bigskip
+
+À la zone de convergence, le couple de corotation (positif) compense exactement le couple différentiel de Lindblad (négatif). Ainsi, à la zone de convergence, une planète ne migre pas. Les zones de convergences pourraient ainsi concentrer les embryons planétaires et être le lieu de formation de planètes (ou cœeurs) massives \citep{lyra2010orbital, horn2012orbital}. 
+
+Cependant, durant leur migration vers la zone de convergence les planètes vont interagir entre elles et se placer en résonance de moyen mouvement (Mean Motion Resonance : MMR), s'opposant ainsi à l'accrétion illimitée de matière à la zone de convergence \citep{morbidelli2008building, sandor2011formation}. Malgré cela, des collisions ont bien lieu à la zone de convergence quand les embryons sont emprisonnés dans une chaine de résonance avec suffisamment de corps pour engendrer des perturbations. De plus, la turbulence pourrait casser les résonances et augmenter le taux d'accrétion.
+
+\bigskip
+
+\cite{bitsch2010orbital} a montré que le couple de corotation était atténué quand une planète avait une excentricité telle que son orbite oscille sur une distance de l'ordre de la demi-largueur de la zone fer-à-cheval $x_s$. 
+
+Quand deux planètes sont en résonance à cause de la migration convergente, leurs excentricités sont excités de manière continues malgré la présence du disque qui a tendance à amortir les excentricités et circulariser les orbites. \citep[par exemple ][]{cresswell2008three}. Ce phénomène devrait à son tour modifier le couple de corotation et ainsi modifier l'équilibre entre couple différentiel de Lindblad et couple de corotation. En conséquence, la migration de la planète elle-même devrait être modifiée.
+
+\bigskip
+
+Nous présentons des simulations de migration convergentes de planètes de faible masse ($M=1--10\unit{M_\oplus}$) dans un disque de gaz idéalisé (voir \refsec{sec:tanh_indep}). On utilise un modèle simplifié de rétroaction de l'excentricité sur le couple de corotation. Nous montrons que les planètes qui prisent de manière isolées migrent à la zone de convergence, ne migrent plus au même endroit quand il y a plusieurs planètes. Au lieu de ça, elles migrent à une position d'équilibre décalée vers l'intérieur du disque qui correspond à une somme nulle des couples exercées sur le système. 
+
+La position de cet zone d'équilibre dépend de l'excentricité maintenue par perturbation mutuelle de chaque planète constituante du système.
+
+\subsection{Méthode}
+On modélise une Zone de Convergence (CZ : Convergence Zone) artificielle, qui imite une zone de convergence indépendante de la masse (c'est à dire que la position de la zone de convergence est la même pour toutes les planètes quelle que soit leur masse) telle que celle que l'on peut trouver à une transition d'opacité, représentée \reffig{fig:eccentricity-influencea}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.49\linewidth]{figure/shifted/torque_zoom_CZ1.pdf}\hfill
+\includegraphics[width=0.49\linewidth]{figure/shifted/corotation_damping_profile.pdf}
+\caption{{\bf Left:} The total torque profile of our standard disk in units of $\Gamma_0$ is shown in red. The dashed blue curve shows the true torque profile for a $10m_\oplus$ planet near an opacity transition, calculated using the equations in~\cite{paardekooper2011torque}. {\bf Right:} Decrease in the corotation torque $\Gamma_C$ as a function of planetary eccentricity $e$. We assume that the damping ($0<D<1$) of the corotation torque as a function of eccentricity is the same for isothermal and fully radiative disc. Then, we derived $D$ from Fig. 2 of \cite{bitsch2010orbital} by taking the difference between their fully radiative and isothermal case, and normalizing to 1 the ``$e=0$ case".}
+
+\label{fig:eccentricity-influence}
+\end{figure}
+
+%TODO transformer la figure avec des subfig. Changer la référence et faire une ref pour chaque sous figure. Changer les captions. Continuer la traduction de ''méthode``
 \section{Formation des super terre chaude}
 %TODO 
 %Observations : contraintes en fonction de la masse des planètes, séparation (en delta, et en p2/p1)
