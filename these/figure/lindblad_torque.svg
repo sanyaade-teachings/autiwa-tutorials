@@ -62,39 +62,6 @@
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient4033"
-       id="radialGradient6368"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.3296497,0,0,1.3296497,-93.074866,-123.75106)"
-       cx="282.34476"
-       cy="375.4017"
-       fx="282.34476"
-       fy="375.4017"
-       r="35.820995" />
-    <radialGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient4033"
-       id="radialGradient6473"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.3296497,0,0,1.3296497,-93.074866,-123.75106)"
-       cx="282.34476"
-       cy="375.4017"
-       fx="282.34476"
-       fy="375.4017"
-       r="35.820995" />
-    <radialGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient4033"
-       id="radialGradient6494"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.3296497,0,0,1.3296497,-93.074866,-123.75106)"
-       cx="282.34476"
-       cy="375.4017"
-       fx="282.34476"
-       fy="375.4017"
-       r="35.820995" />
-    <radialGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient4033"
        id="radialGradient6593"
        gradientUnits="userSpaceOnUse"
        gradientTransform="matrix(1.3296497,0,0,1.3296497,-93.074866,-123.75106)"
@@ -111,9 +78,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.22490234"
-     inkscape:cx="698.63538"
-     inkscape:cy="603.70879"
+     inkscape:zoom="0.5780693"
+     inkscape:cx="704.11697"
+     inkscape:cy="178.89654"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -135,7 +102,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -401,7 +368,10 @@
        xlink:href="#path6523"
        id="use6557"
        width="1745.348"
-       height="564.3717" />
+       height="564.3717"
+       inkscape:transform-center-x="-18.756522"
+       inkscape:transform-center-y="21.001278"
+       transform="matrix(-0.5,0.8660254,-0.8660254,-0.5,609.06421,914.9863)" />
     <path
        inkscape:connector-curvature="0"
        d="m 153.32023,632.93312 c 0,62.21625 -50.43624,112.65249 -112.652486,112.65249 -62.21625,0 -112.65249,-50.43624 -112.65249,-112.65249 0,-62.21625 50.43624,-112.65249 112.65249,-112.65249 62.216246,0 112.652486,50.43624 112.652486,112.65249 z m 36.41026,0 c 0,82.32508 -66.73767,149.06274 -149.062736,149.06274 -82.32508,0 -149.062744,-66.73766 -149.062744,-149.06274 0,-82.32508 66.737664,-149.06273 149.062744,-149.06273 82.325066,0 149.062736,66.73765 149.062736,149.06273 z"

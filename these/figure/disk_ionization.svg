@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.5444796"
-     inkscape:cx="181.26853"
-     inkscape:cy="86.675525"
+     inkscape:zoom="1.6350269"
+     inkscape:cx="253.31156"
+     inkscape:cy="40.053918"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -53,7 +53,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -111,7 +111,7 @@
        sodipodi:cy="107.3568"
        sodipodi:rx="25.892857"
        sodipodi:ry="5.1785712"
-       d="m 67.500001,102.17823 a 25.892857,5.1785712 0 0 1 0,10.35714 L 67.5,107.3568 z"
+       d="m 67.500001,102.17823 c 14.300229,0 25.892856,2.31852 25.892856,5.17857 -1e-6,2.86004 -11.592627,5.17857 -25.892856,5.17857 L 67.5,107.3568 z"
        transform="matrix(1.134129,0,0,0.70689654,-52.815124,232.11605)"
        sodipodi:start="4.712389"
        sodipodi:end="7.8539816" />
@@ -242,5 +242,26 @@
          y="410.49194">Décroissance de <tspan
    style="font-size:65.00091553%;baseline-shift:super"
    id="tspan3013">26</tspan>Al</tspan></text>
+    <path
+       sodipodi:type="arc"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:8, 8;stroke-dashoffset:0"
+       id="path3009"
+       sodipodi:cx="176.44969"
+       sodipodi:cy="100.56398"
+       sodipodi:rx="59.020435"
+       sodipodi:ry="15.596074"
+       d="m 235.47013,100.56398 a 59.020435,15.596074 0 1 1 -118.04087,0 59.020435,15.596074 0 1 1 118.04087,0 z"
+       transform="matrix(1.1653482,0,0,1,-37.429597,207.44222)" />
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="168.27875"
+       y="315.15463"
+       id="text3779"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3781"
+         x="168.27875"
+         y="315.15463">Zone morte</tspan></text>
   </g>
 </svg>

@@ -8,9 +8,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="760.11426"
-   height="563.05005"
-   viewBox="0 0 760.11428 563.05005"
+   width="772.43079"
+   height="564.3313"
+   viewBox="0 0 772.43081 564.3313"
    id="svg3031"
    version="1.1"
    inkscape:version="0.48.2 r9819"
@@ -40,9 +40,9 @@
      inkscape:window-height="480"
      id="namedview3077"
      showgrid="false"
-     inkscape:zoom="0.39158982"
-     inkscape:cx="754.04805"
-     inkscape:cy="23.793685"
+     inkscape:zoom="1.0065082"
+     inkscape:cx="440.13964"
+     inkscape:cy="301.98315"
      inkscape:current-layer="svg3031"
      fit-margin-top="0"
      fit-margin-left="0"
@@ -84,28 +84,6 @@
          style="stop-color:#0000ff;stop-opacity:1;"
          offset="1"
          id="stop3988" />
-    </linearGradient>
-    <radialGradient
-       gradientTransform="matrix(1.3296497,0,0,1.3296497,-93.074866,-123.75106)"
-       gradientUnits="userSpaceOnUse"
-       r="35.820995"
-       fy="375.4017"
-       fx="282.34476"
-       cy="375.4017"
-       cx="282.34476"
-       id="radialGradient4039"
-       xlink:href="#linearGradient4033"
-       inkscape:collect="always" />
-    <linearGradient
-       id="linearGradient4033">
-      <stop
-         id="stop4035"
-         offset="0"
-         style="stop-color:#ffff00;stop-opacity:1;" />
-      <stop
-         id="stop4037"
-         offset="1"
-         style="stop-color:#ff8800;stop-opacity:1;" />
     </linearGradient>
     <marker
        style="overflow:visible"
@@ -155,14 +133,14 @@
   <g
      style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
      id="text6004"
-     transform="translate(-121.69306,-710.34504)" />
+     transform="translate(-122.88904,-709.06379)" />
   <g
      style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
      id="text6004-9"
-     transform="translate(99.826544,-711.34218)" />
+     transform="translate(98.630564,-710.06093)" />
   <g
      id="g7266"
-     transform="translate(729.38525,46.555529)">
+     transform="translate(728.18927,47.836779)">
     <rect
        y="1.6884999"
        x="-728.18927"
@@ -383,11 +361,15 @@
          y="471.47919"
          x="-622.05713"
          id="tspan7207"
-         sodipodi:role="line">Pas de couple</tspan></text>
+         sodipodi:role="line">Valeur</tspan><tspan
+         y="511.47919"
+         x="-622.05713"
+         sodipodi:role="line"
+         id="tspan3075">linéaire</tspan></text>
   </g>
   <g
      id="g7244"
-     transform="translate(733.96815,46.555529)">
+     transform="translate(732.77217,47.836779)">
     <rect
        style="fill:url(#linearGradient7303);fill-opacity:1;stroke:none"
        id="rect6891"
@@ -508,7 +490,7 @@
   </g>
   <g
      id="g7221"
-     transform="translate(729.38525,46.555529)">
+     transform="translate(728.18927,47.836779)">
     <rect
        y="1.6884999"
        x="-202.94617"
@@ -604,7 +586,7 @@
        style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        xml:space="preserve"><tspan
          y="-24.086786"
-         x="-95.956223"
+         x="-95.956207"
          id="tspan7197"
          sodipodi:role="line">t<tspan
    id="tspan7203"
@@ -612,7 +594,7 @@
    id="tspan7201"
    style="font-size:20.80029297px;baseline-shift:sub">diff</tspan> &lt; t<tspan
    id="tspan7199"
-   style="font-size:20.80029297px;baseline-shift:sub">lib</tspan></tspan></text>
+   style="font-size:20.80029297px;baseline-shift:sub">lib</tspan>/2</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text7215"

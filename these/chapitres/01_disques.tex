@@ -1,3 +1,16 @@
+%remarques générales : Les équations sont trop détaillées, il vaut mieux les mettre en annexe. 
+%il manque beaucoup de références
+%il faut que tous les arguments évoqués dans la thèse soient étayés par une référence
+%sur le style : éviter que ce soit trop littéraire (du style les comparaisons avec les mains pour 
+%la figure de "formation stellaire" est trop petite, mais cette partie convient
+%pout autogravité, reformuler, c'est pas clair
+% en général, on note le rayon cylindrique en majuscule, et le rayon sphérique en minuscule
+
+%garder les flux du bilan de masse, et essayer d'aller plus vite dans la démonstration, vers la fin en particulier, quand on arrive à l'équation 1.7
+
+
+
+
 \section{Formation stellaire}
 Les étoiles se forment à partir de l'effondrement gravitationnel d'un nuage de gaz. Quand ce dernier est suffisamment massif (masse au delà d'une masse critique dite masse de Jeans, de l'ordre de quelques masses solaires, même si ça dépend de la configuration, du volume etc\dots), son autogravité initie un effondrement du nuage sur lui même, qui peu à peu se fragmente en système découplés. 
 
@@ -14,7 +27,7 @@ Ces dénominations en classe peuvent sembler étrange mais elles proviennent en 
  
 \begin{figure}[htb]
 \centering
-\includegraphics[width=0.45\linewidth]{figure/star_formation.pdf}
+\includegraphics[width=\linewidth]{figure/star_formation.pdf}
 \caption{Classification empirique des différents stades de formation des étoiles de faible masse, du cœur dense pré-stellaire à la classe III. Schéma basé sur \citep{andre2002initial}. }\label{fig:star_formation}
 \end{figure}
 
@@ -33,40 +46,42 @@ Initialement, il est hautement improbable que le moment angulaire du nuage soit 
 \subsection{Évolution hydrodynamique du disque}
 \begin{figure}[htb]
 \centering
-\includegraphics[width=0.45\linewidth]{figure/disk_scheme.pdf}
+\includegraphics[width=0.6\linewidth]{figure/disk_scheme.pdf}
 \caption{Représentation de la répartition radiale et azimutale de gaz dans un disque protoplanétaire.}\label{fig:disk_scheme}
 \end{figure}
 
 Avant de considérer l'évolution d'un disque, il est important de regarder sa masse par rapport à la masse de l'étoile centrale. En effet, si la masse du disque est de l'ordre de la masse de l'étoile, alors des instabilités se développent et on ne peut plus négliger l'autogravité du disque. 
 
-Le \gras{paramètre de Toomre} $Q$, défini par :
+Le \gras{paramètre de Toomre} $Q$, défini par \citep{toomre1964gravitational, goldreich1965gravitational}:
 \begin{align}
-Q &= \frac{\kappa {c_{s}}^2}{\pi G \Sigma}
+Q &= \frac{\kappa c_{s}}{\pi G \Sigma}
 \end{align}\index{$Q$}
 est un indicateur de la stabilité du disque par rapport à l'autogravité.
+%TODO utiliser les réfs page 4 de la thèse d'arnaud. Pour la comparaison des masses, dire que le rapport d'aspect apparait naturellement des équations.
 
-La densité de surface $\Sigma$\index{$\Sigma$} mesure l'importance de l'\gras{auto-gravité}. La vitesse du son $c_{s}$ est liée à la pression thermique ; la \gras[fréquence!epicyclique@épicyclique]{fréquence épicyclique} $\kappa$ détermine quant à elle la force du cisaillement dans le disque.
+Dans ce paramètre, $\pi G \Sigma$ représente l'importance de la gravité. La vitesse du son $c_{s}$ est liée à la pression thermique ; la \gras[fréquence!epicyclique@épicyclique]{fréquence épicyclique} $\kappa$ détermine quant à elle la force du cisaillement dans le disque.
 
 \bigskip
 
-Si $Q<1$ alors le gaz est instable gravitationnellement et il commence à s'effondrer sur lui même et former des \og tas\fg de matière.
+Si $Q<1$ alors le gaz est instable gravitationnellement et il commence à s'effondrer sur lui même et former des surdensités \citep{gammie2001nonlinear}.
 Si $Q>1$, le disque est stable.
 
 %\begin{remarque}
 %Dans les disques protoplanétaires, $Q\gg 1$ ce qui implique que leur auto-gravité n'est pas importante \citep{masset2008planet}.
 %\end{remarque}
 
-Nous ne considérerons que des disques dont la masse $M_\text{d}$ est faible devant la masse de l'étoile $M_\star$ :
+À partir du paramètre $Q$, on peut dériver une condition sur le rapport de masse entre étoile et disque pour que l'auto-gravité soit négligeable, ce qui donne \citep{gammie2001nonlinear} : 
 \begin{align}
-\frac{M_\text{d}}{M_\star} &\lesssim 0.1
+\frac{M_\text{d}}{M_\star} &\lesssim \frac{H}{R}
 \end{align}
-Si tel n'était pas le cas, le temps pour que le disque perde suffisamment de masse pour se retrouver dans le cas qui nous intéresse sera court devant la vie du disque et le temps de formation planétaire. Étant donné qu'on ne s'intéresse qu'aux derniers stades de la formation planétaire, à savoir quand les embryons planétaires ont une masse de l'ordre du dixième de masse terrestre au minimum, il est raisonnable de penser que le disque sera dans un stade peu dense où l'approximation $Q>1$ sera valable.
+
+Nous ne considérerons que des disques dont la masse $M_\text{d}$ est faible devant la masse de l'étoile $M_\star$. Si tel n'était pas le cas, le temps pour que le disque perde suffisamment de masse pour se retrouver dans le cas qui nous intéresse sera court devant la vie du disque et le temps de formation planétaire. Étant donné qu'on ne s'intéresse qu'aux derniers stades de la formation planétaire, à savoir quand les embryons planétaires ont une masse de l'ordre du dixième de masse terrestre au minimum, il est raisonnable de penser que le disque sera dans un stade peu dense où l'approximation $Q>1$ sera valable.
 
 Dans un tel cas, c'est le potentiel gravitationnel de l'étoile qui domine la dynamique du gaz. En négligeant l'effet de la pression de ce dernier, on peut donc écrire la vitesse angulaire du gaz comme étant égale à la vitesse angulaire képlerienne : 
 \begin{align}
-\Omega &= \sqrt{\frac{GM_\star}{r^3}}
+\Omega &= \sqrt{\frac{GM_\star}{R^3}}
 \end{align}
-où $G$ est la constante de gravitation, et $r$ la distance à l'étoile. Dans la pratique, il est à noter que la vitesse est légèrement sous-képlerienne. 
+où $G$ est la constante de gravitation, et $R$ la distance à l'étoile. Dans la pratique, il est à noter que la vitesse est légèrement sous-képlerienne. 
 
 \bigskip
 
@@ -76,7 +91,7 @@ où $G$ est la constante de gravitation, et $r$ la distance à l'étoile. Dans l
 
 La première conséquence est qu'un terme visqueux va apparaître dans l'équation de l'énergie, comme nous le verrons par la suite. 
 
-La deuxième conséquence, c'est que le gaz perds de l'énergie, et donc dérive lentement vers l'étoile centrale qui accrète petit à petit le gaz du disque. 
+La deuxième conséquence, c'est que le gaz perd de l'énergie, et donc dérive lentement vers l'étoile centrale qui accrète petit à petit le gaz du disque. 
 
 On définit donc une vitesse de dérive négative $\vect{v_d} = v_r \hat{e}_r$, orientée vers l'étoile, qui entraine petit à petit le gaz du disque (avec $v_r$ négatif).
 
@@ -84,14 +99,27 @@ Dans la suite de la section, nous allons nous intéresser à la conservation de 
 
 \bigskip
 
-Afin de décrire l'évolution hydrodynamique du disque de gaz, nous allons utiliser successivement la \textbf{conservation de la masse}, et la \textbf{conservation du moment angulaire.} Les démonstrations qui vont suivre ont été déjà faites de nombreuses fois, notamment par \citep{pringle1981accretion}. L'intérêt ici n'est pas de réinventer la roue, mais de montrer un calcul encore plus détaillé, montrant en particulier les approximations faites, ces calculs étaient loin d'être évident pour moi quand je les ai découvert et je n'ai trouvé nulle part une démonstration détaillée.
+Afin de décrire l'évolution hydrodynamique du disque de gaz, nous allons utiliser successivement la \textbf{conservation de la masse}, et la \textbf{conservation du moment angulaire.} Les démonstrations qui vont suivre ont été déjà faites de nombreuses fois, notamment par \citep{pringle1981accretion}. %TODO modifier ça une fois que j'aurai changé le contenu des parties suivantes?
 
+\subsubsection{Structure verticale du disque}
+%TODO 
+On écrit l(équilibez hydrostatique dans 
+
+P = rho R T sur mu
+Reprendre la partie 8.4 de resume.pdf, mais ne pas reprendre toutes les équations. 
+On dit que T est isotherme verticalement
+
+puis à la fin, montrer la relation entre ça et la vitesse du son, sachant que R T sur mu égale à cs
+
+On peut aussi définir la densité surfacique en montrant l'équivalence avec rho
+
+fromang & nelson 2006 à propos de la conversion rho en sigma
 
 \subsubsection{Bilan de masse}
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.7\linewidth]{figure/disk_ring.pdf}
-\caption{Représentation d'un anneau de largeur $\Delta r$ et du bilan de moment angulaire de ce dernier.}\label{fig:disk_ring}
+\caption{Représentation d'un anneau de largeur $\Delta R$ et du bilan de moment angulaire de ce dernier.}\label{fig:disk_ring}
 \end{figure}
 
 On cherche dans un premier temps à faire le bilan de masse de l'anneau considéré. Sa masse s'écrit :
@@ -111,7 +139,7 @@ Au bord interne $R$, par unité de temps, la masse entrant ou sortant de l'annea
 \end{align}
 En effet, en multipliant la circonférence de l'anneau par la vitesse, on obtient une sorte de surface par unité de temps qui représente ce qui sort de la frontière virtuelle représentée par l'anneau en $r=R$. 
 
-On note aussi qu'on effectue le produit scalaire entre $\vect{\dif S}$, le vecteur élément de surface, orienté vers l'extérieur de l'anneau et la vitesse. Un signe moins est appliqué, car si le vecteur vitesse et l'élément de surface sont colinéaires, alors la masse sort de l'anneau, c'est donc un flux négatif.
+La flux de matière doit être négatif si la masse sort de l'anneau. Les éléments de surface étant orientés vers l'extérieur, un vecteur vitesse colinéaire à $\vect{\dif S}$ implique que la matière sort de l'anneau. Ceci explique la présence du signe négatif dans l'expression du flux de matière.
 
 On a ainsi aux deux bords de l'anneau :
 \begin{subequations}
@@ -151,9 +179,9 @@ On obtient alors :
 On cherche maintenant à faire le bilan de moment cinétique de ce même anneau. Son moment cinétique est défini par :
 \begin{align}
 \vect{J_a} &= \vect{R} \wedge (m_a\vect{v(R)}) \nonumber\\
-&= m_a \cdot R \cdot R\Omega(R)\nonumber\\
-&= 2\pi R \Delta R \Sigma(R)\cdot R \cdot R\Omega(R)\nonumber\\
-\vect{J_a} &= 2\pi R^3 \Delta R \Sigma(R)\Omega(R)\label{eq:J_a}
+&= m_a \cdot R \cdot R\Omega(R)\hat{e}_z\nonumber\\
+&= 2\pi R \Delta R \Sigma(R)\cdot R \cdot R\Omega(R)\hat{e}_z\nonumber\\
+\vect{J_a} &= 2\pi R^3 \Delta R \Sigma(R)\Omega(R)\hat{e}_z\label{eq:J_a}
 \end{align}
 où $\Sigma$ et $\Omega$ sont la densité de surface et la vitesse angulaire du gaz à la position $R$ dans le disque.
 
@@ -165,7 +193,7 @@ Le flux de moment cinétique est simplement défini comme la quantité de moment
 \dif J(R) &= 2\pi v_r(R) \Sigma(R)\cdot R^3\Omega(R)\hat{e}_z\label{eq:dJ_in}\\
 \dif J(R+\Delta R) &= \vect{r} \wedge \left(\dif M(R+\Delta R) \vect{v}(R+\Delta R)\right)\nonumber\\
  &= \dif F_M(R+\Delta R) \cdot \left(R+\Delta R\right)^2\Omega(R+\Delta R)\hat{e}_z\nonumber\\
-\dif J(R+\Delta R) &= 2\pi v_r(R+\Delta R) \Sigma(R+\Delta R)\cdot \left(R+\Delta R\right)^3\Omega(R+\Delta R)\hat{e}_z\label{eq:dJ_out}
+\dif J(R+\Delta R) &= -2\pi v_r(R+\Delta R) \Sigma(R+\Delta R)\cdot \left(R+\Delta R\right)^3\Omega(R+\Delta R)\hat{e}_z\label{eq:dJ_out}
 \end{align}\label{eq:dJ}
 \end{subequations}
 
@@ -177,7 +205,14 @@ Le taux de cisaillement $A$ est donné par :
 \begin{align}
 A &= r \dod{\Omega}{r}
 \end{align}
-et est une illustration de la viscosité d'un fluide. Plus le fluide est visqueux, et moins le cisaillement est important. C'est à dire que plus un fluide est visqueux, et plus son comportement se rapproche de celui d'un solide. En conséquence, par frottement, les éléments fluides sont agglomérés, et le gradient de vitesse est très faible, le cisaillement l'est aussi par extension. 
+et représente les frottements induits par la rotation différentielle.
+
+%TODO le détail des calculs sur cette équation, le mettre en annexe et laisser à la fin 1.19, qui estl'équivalent de navier-stokes pour les disques
+
+%TODO mais dans la partie principale, on peut faire ça : 
+%TODO illustrer l'équation 1.20 par l'expérience où on fait diffuser un anneau (figure de pringles, 1981), et on peut introduire le temps visqueux.
+
+%TODO on peut dire quelques mots sur la photoévaporation
 
 La force visqueuse par unité de longueur est définie par :
 \begin{align}
@@ -465,6 +500,15 @@ Dans la pratique, c'est une équation de l'on résout de manière numérique, pa
 Ce calcul est lui même extrêmement dépendant de la définition que l'on choisi pour l'opacité $\kappa$ et de la dépendance de cette dernière en fonction de la température, la densité ou la pression. 
 
 \subsection{La viscosité du disque}\label{sec:viscosite}\index{viscosité}% (Franck et al. 1992)
+%TODO il faut parler de la MRI !
+%parler du paramètre de raileigh
+%TODO parler des valeurs typiques des taux d'accrétions ref? (Hartmann, 1998), Haich et al. 2001
+% Pour expliquer ces valeurs la, la viscvosité moléculaire n'est pas suffisante
+%Il faut donc une viscosité turublence
+%le criotère de raileigh nous dit que un disque est stable d'un point de vue hydro si blabla. Dnas le disque c'est vérifié car le moment angulaire croit avec le rayon
+%En présence de champ magnétioqeu le critère là devient (il faut que le critère soit faible) : (Balbus & Hawley, 1991 ; c'est dans ce papier qu'est démontré l'instabilité MRI) Et donc le disque est linéairement instable : le critère c'est d(Omega^2)/R>0, mais ce n'est pas satisfait
+%TODO mettre plus de détails sur la viscosité (voir armitahge 2011 et 2007, le lecture note)
+%TODO il faut des références pour les dead zones (suggère les dead zones dans Gammie 1993)
 Quand on parle de viscosité $\nu$ dans un disque, ce n'est pas la viscosité moléculaire classique, bien trop faible aux densités rencontrées. On suppose généralement une viscosité due aux turbulences qui est beaucoup plus importante que la viscosité moléculaire, mais qui peut être traitée par les mêmes équations. 
 
 Ceci implique par contre qu'il y ait de l'ionisation. En effet, sans ionisation, il n'y a pas de couplage entre le champ magnétique et la matière, et donc pas de turbulence induite par ce même champ. 
@@ -584,7 +628,7 @@ Généralement, on considère donc que la taille verticale du disque est égale 
 Je vais ici essayer de récapituler les approximations qui ont été faites jusque là sur la physique des disques, et qui vont se retrouver implicitement dans tout code qui implémente les équations décrites ci-dessus : 
 \begin{enumerate}
 \item On suppose que les disques évoluent de manière isolée. Les études suggèrent que les étoiles se forment majoritairement dans des amas (clusters) à l'intérieur desquels la plupart des étoiles font partie de systèmes binaires ou multiples \citep{duquennoy1991multiplicity}. Même si cette approximation permet la modélisation de l'évolution du disque, il est probable que des effets de voisinages aient des conséquences dans tout ou partie des systèmes stellaires.
-\item On néglige l'autogravité du disque ($M_d \lesssim 0.1M_\star$) en considérant que la période où ce n'est pas le cas est courte devant le temps de vie du disque, et que ce dernier temps rapidement vers une configuration où l'autogravité est négligeable.
+\item On néglige l'autogravité du disque ($M_d \lesssim \frac{H}{R}M_\star$) en considérant que la période où ce n'est pas le cas est courte devant le temps de vie du disque, et que ce dernier tend rapidement vers une configuration où l'autogravité est négligeable.
 \item On considère que le gaz est en rotation képlerienne $\Omega=\sqrt{\frac{GM_\star}{r^3}}$. Pour cela, on néglige la pression du gaz qui a tendance à rendre la rotation légèrement sous-képlerienne.
 \item On considère qu'il n'y a pas de variation de la gravité dû à la variation de masse de l'étoile induite par l'accrétion. Ça entraîne alors $\pd{\Omega}{t} = 0$.
 \item Dans le calcul du chauffage visqueux, on néglige la vitesse azimuthale, la vitesse radiale ainsi que toutes les dérivées en $\varphi$ compte tenu que le disque est axisymétrique.
@@ -629,7 +673,8 @@ Si le couple est positif, la planète migre vers l'extérieur, cette dernière p
 \end{attention}
 
 \subsubsection{Couple de Lindblad}
-La présence d'une planète dans un disque de gaz entraine la création d'ondes de densités aux \gras[résonnance!de Lindblad]{résonances de Lindblad} \citep{goldreich1979excitation}. Le couplage gravitationnel entre les ondes de densité et la planète qui les crées abouti à un \gras{couple} qui agit sur la planète.
+%TODO donner des références, par exemple Ward, 1997
+La présence d'une planète dans un disque de gaz entraine la création d'ondes de densités aux \gras[résonance!de Lindblad]{résonances de Lindblad} \citep{goldreich1979excitation}. Le couplage gravitationnel entre les ondes de densité et la planète qui les crées abouti à un \gras{couple} qui agit sur la planète.
 
 \bigskip
 
@@ -656,7 +701,7 @@ Pour l'interaction entre une planète et un disque protoplanétaire, c'est exact
 \begin{figure}[htb]
 \centering
 \includegraphics[width=\linewidth]{figure/lindblad_torque.pdf}
-\caption{Génération d'ondes de densité dans le disque protoplanétaire dû à la présence d'une planète. Chaque mode $m$ émet des ondes de densité à partir de deux positions entourant la planète. Un anneau interne  aux positions du mode $m$ est dénué de toute onde dû à ce même mode. Les interférences entres toutes les ondes de densités de tous les modes donne deux ondes de densités que l'on observe dans des simulations hydrodynamique.}\label{fig:lindblad_torque}
+\caption{Génération d'ondes de densité dans le disque protoplanétaire dû à la présence d'une planète. Chaque mode $m$ émet $m$ ondes de densité de part et d'autre de la position radiale de la planète. Un anneau interne  aux positions du mode $m$ est dénué de toute onde dû à ce même mode. Les interférences entre toutes les ondes de densités de tous les modes donne deux ondes de densités que l'on observe dans des simulations hydrodynamique.}\label{fig:lindblad_torque}
 \end{figure}
 
 
@@ -666,11 +711,11 @@ Pour l'interaction entre une planète et un disque protoplanétaire, c'est exact
 
 Le potentiel gravitationnel de la planète peut se décomposer en série de Fourier où chaque mode $m$ (entier) a une dépendance sinusoïdale en azimut et possède $m$ maxima et $m$ minima. 
 
-Pour chaque mode $m$ du potentiel gravitationnel de la planète, on définit deux résonances, une résonance interne (ILR : Inner Lindblad Resonance) et une résonance externe (OLR : Outer Lindblad Resonance) associées aux positions suivantes : 
+Pour chaque mode $m$ du potentiel gravitationnel de la planète, on définit deux résonances, une résonance interne (ILR : Inner Lindblad Resonance) et une résonance externe (OLR : Outer Lindblad Resonance) associées aux positions suivantes dans le cas d'un disque froid ($h/R\ll 1$ ; \cite{ward1997protoplanet}) : 
 \begin{subequations}
 \begin{align}
-r_{OLR}(m) &= \left(\frac{m+1}{m}\right)^\sfrac{2}{3}\\
-r_{ILR}(m) &= \left(\frac{m-1}{m}\right)^\sfrac{2}{3}
+r_{OLR}(m) &= \left(\frac{m+1}{m}\right)^\sfrac{2}{3}r_p\\
+r_{ILR}(m) &= \left(\frac{m-1}{m}\right)^\sfrac{2}{3}r_p
 \end{align}
 \end{subequations}
 
@@ -678,21 +723,23 @@ Pour un mode $m$ donnée, à partir des anneaux de rayon $r_{ILR}(m)$ et $r_{OLR
 
 Dans le cas des bras spiraux dans une galaxie, c'est principalement un mode $m=2$ qui propage une onde spirale de part et d'autre d'une barre centrale source des ondes de densité. Dans le cas d'une planète dans un disque, des ondes de densité sont lancées pour chaque mode $m$. 
 
-Par interférence constructive, la somme de toutes les ondes de densités émises par tous les modes du potentiel gravitationnel vont résulter en la formation d'une onde de densité résultante \reffig{fig:lindblad_torque}. 
+Par interférence constructive \citep{ogilvie2002wake}, la somme de toutes les ondes de densités émises par tous les modes du potentiel gravitationnel vont résulter en la formation d'une onde de densité résultante \reffig{fig:lindblad_torque}. 
 
 \bigskip
 
 Il est important de remarquer que la position de la résonance externe d'ordre $m$ est systématiquement plus proche que la résonance interne associée. Ainsi, en sommant sur tous les modes, on arrive à la conclusion que le couple total externe l'emporte toujours sur le couple total interne \citep{ward1997protoplanet}. 
 
-Ainsi, le couple de Lindblad est toujours négatif dans un disque protoplanétaire. De plus, c'est un résultat qui dépend peu ou pas du tout des paramètres du disque \citep{ward1997protoplanet}.
+Ainsi, le couple de Lindblad est toujours négatif dans un disque protoplanétaire. De plus, ce couple négatif est une tendance qui dépend peu ou pas du tout des paramètres du disque \citep{ward1997protoplanet}.
+
+%TODO donner la formule analytique du couple de Lindblad
 
 Notons aussi que le processus physique du transport du moment angulaire de la planète est réalisé par l'onde de densité. Le moment angulaire est emporté par l'onde de densité qui l'échange avec le gaz environnant à mesure que ce dernière amorti et dissipe l'onde.
 
 \subsubsection{Couple co-orbital ou de corotation}\index{co-orbital!couple|see{couple}}\index{couple!co-orbital}
 \begin{figure}[htb]
 \centering
-\includegraphics[width=\linewidth]{figure/corotation_principle.pdf}
-\caption{À partir de la décomposition en série de Fourier du potentiel gravitationnel de la planète, chaque mode $m$ a pour conséquence $m$ zones de libration dans la zone de corotation avec la planète. Les interférences entres l'infinité de modes $m$ fait apparaître des orbites fer-à-cheval (\og horseshoe orbits\fg) dans la référentiel tournant avec la planète. La zone de corotation a ici été exagérée pour plus de lisibilité.}\label{fig:corotation_torque}
+\includegraphics[width=\linewidth]{figure/corotation_modes.pdf}
+\caption{À partir de la décomposition en série de Fourier du potentiel gravitationnel de la planète, chaque mode $m$ a pour conséquence $m$ zones de libration dans la zone de corotation avec la planète. Les interférences entre l'infinité de modes $m$ fait apparaître des orbites fer-à-cheval (\og horseshoe orbits\fg) dans la référentiel tournant avec la planète. La zone de corotation a ici été exagérée pour plus de lisibilité.}\label{fig:corotation_torque}
 \end{figure}
 
 De la même manière que précédemment pour le couple de Lindblad, on peut repartir de la décomposition en série de Fourier du potentiel gravitationnel de la planète. Pour chaque mode $m$ de la décomposition, on voit apparaître $m$ zones de libration, centrées sur le rayon de la planète, et réparties en azimut. \reffig*{fig:corotation_torque} représente le mode $m=3$, puis une juxtaposition de mode et finalement le résultat des interférences constructives entre tous les modes $m$ de la décomposition.
@@ -728,7 +775,7 @@ t_\text{rad} &= \frac{{x_s}^2}{\chi}
 \end{align}
 où $x_s$ est la demi-largeur de la zone de corotation et $\chi$ est la diffusivité thermique.
  
-$t_\text{visc}$ représente la diffusion d'une quantité physique par la viscosité. Ce temps est plus court quand on se rapproche de l'étoile. La densité et la vitesse angulaire étant plus grandes, les frottements visqueux sont plus importants. Le temps visqueux à la zone de corotation $t_\text{visc}$ est  de l'ordre de \citep{masset2001coorbital, masset2002coorbital, ogilvie2003saturation}
+$t_\text{visc}$ représente la diffusion d'une quantité physique par la viscosité. Ce temps est plus court quand on se rapproche de l'étoile. Le temps visqueux à la zone de corotation $t_\text{visc}$ est  de l'ordre de \citep{masset2001coorbital, masset2002coorbital, ogilvie2003saturation}
 \begin{align}
 \tau_\nu &\sim \frac{{x_s}^2}{\nu}
 \end{align}
@@ -737,9 +784,9 @@ Pour la grandeur physique considérée est la vortensité (ou vorticité spécif
 
 \bigskip
 
-Pour que le couple de corotation soit positif, on doit satisfaire aux inéquations suivantes :
+Pour que le couple de corotation soit non saturé, on doit satisfaire aux inéquations suivantes \citep[eq. (31)]{baruteau2013recent} :
 \begin{align}
-t_\text{u-turn} < t_\text{diff} < t_\text{lib}
+t_\text{u-turn} < t_\text{diff} < \frac{t_\text{lib}}{2}
 \end{align}
 $t_\text{u-turn}$ est le temps nécessaire pour faire le demi tour devant la planète (en gros, pour traverser la zone égale à $2x_s$). $t_\text{lib}$ est le temps de libration, c'est à dire le temps mis par une particule fluide pour faire le tour de la zone en fer-à-cheval. $t_\text{diff}$ quant à lui est le temps de diffusion de la quantité physique considérée. Suivant les cas, il peut y avoir plusieurs temps de diffusion qui sont important, auquel cas les inégalités doivent être satisfaites pour tous les temps de diffusions mis en jeux.
 
@@ -783,6 +830,8 @@ Compte tenu que la planète a une masse de l'ordre de\footnote{Quand la masse de
 
 \subsubsection{Type III}\index{migration!type III}
 La migration de type III est un type de migration intermédiaire aux migrations de type I et II. Le principe est que la planète commence à migrer par type I, tout en accrétant du gaz. À mesure que la masse de la planète augmente, elle creuse petit à petit un gap et la migration devient une migration de type II \citep{masset2003runaway}. 
+
+%TODO dire que ça s'applique plutôt à des masses de type jovien. Regarder dans masset et papaloizou 2003. Il faut préciser ça, parler des conditions etc...
 
 
 \subsection{L'amortissement de l'excentricité}%circularisation
