@@ -104,13 +104,13 @@ Afin de décrire l'évolution hydrodynamique du disque de gaz, nous allons utili
 \subsubsection{Structure verticale du disque}
 On s'intéresse à la répartition de masse verticalement dans le disque. Afin de définir les quantités importantes qui s'y rapporte, nous allons écrire l'équation de l'équilibre hydrostatique. On a alors :
 \begin{align}
-\inv{\rho}\pd{P}{z} &= - \vect{g}.\hat{e}_z\\
-&= \left(\frac{GM}{R^3}\hat{e}_r\right).\hat{e}_z\\
+\inv{\rho}\dpd{P}{z} &= - \vect{g}.\hat{e}_z\\
+&= \left(\frac{GM}{R^3}\hat{e}_r\right).\hat{e}_z
 \end{align}
 
 $\vect{g}$ est orienté vers l'étoile centrale, selon la direction $r$ (en sphérique). En projetant sur l'axe $z$ pour effectuer le produit scalaire, et en faisant l'approximation que $r\sim a$ on obtient alors :
 \begin{align}
-\inv{\rho}\pd{P}{z} &= -\Omega^2 z
+\inv{\rho}\dpd{P}{z} &= -\Omega^2 z
 \end{align}
 
 En considérant un disque isotherme selon $z$ et d'après la loi des gazs parfaits
@@ -119,7 +119,7 @@ p &= \frac{\rho k_B T}{\mu m_H}
 \end{align}
 il vient
 \begin{align}
-\pd{\rho}{z} &= -\frac{\mu m_H\Omega^2}{k_B T}\rho z
+\dpd{\rho}{z} &= -\frac{\mu m_H\Omega^2}{k_B T}\rho z
 \end{align}
 
 On obtient alors :
