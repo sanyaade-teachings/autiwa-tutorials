@@ -48,7 +48,7 @@ Le couple total est la somme du couple différentiel de Lindblad $\Gamma_L$ --- 
 
 Nous avons élaboré une formule simple qui reproduit l'effet de l'excentricité sur $\Gamma_C$ par une simple calibration des simulations 3D de \cite{bitsch2010orbital} : 
 \begin{align}
-D &= \frac{\Gamma_C(e)}{\Gamma_C (e=0)} = 1 + a \cdot \left[\tanh(c) - \tanh\left(\frac{b * e}{x_s}+c\right)\right]\label{eq:eccentricity-influence}
+D &= \frac{\Gamma_C(e)}{\Gamma_C (e=0)} = 1 + a \cdot \left[\tanh(c) - \tanh\left(\frac{b * e}{x_s}+c\right)\right]\label{eq:shifted-eccentricity-influence}
 \end{align}
 où $x_s$ représente la demi-largeur de la région fer-à-cheval en unité de distance orbitale de la planète considérée, $e$ est l'excentricité de la planète, et notre ajustement statistique donne les valeurs suivantes pour les paramètres de la fonction :
 \begin{align}
@@ -61,7 +61,7 @@ x_s &= \frac{1.1}{\gamma^{1/4}} \left(\frac{0.4}{b/h}\right)^{1/4} \sqrt{\frac{q
 \end{align}
 où $\gamma$ est l'indice adiabatique, $q$ le rapport entre les masses de la planète et de l'étoile, $h$ le rapport d'aspect et $b/h$ la longueur de lissage du potentiel gravitationnel de la planète, afin d'éviter une divergence du potentiel au voisinage de la position de la planète (problème issu des simulations hydrodynamiques 2D qui se répercute sur les formules de \cite{paardekooper2011torque}).
 
-\reffig{fig:shifted_CZ_D_profile} montre que notre formule simple \refeq{eq:eccentricity-influence} correspond bien à la tendance des simulations hydrodynamiques de l'effet de $e$ sur $\Gamma_C$, en particulier pour les excentricités faibles. Il faut tout de même noter qu'il y a peu de points \og expérimentaux\fg et qu'il semble y avoir des fluctuations aléatoires influençant les valeurs mesurées.
+\reffig{fig:shifted_CZ_D_profile} montre que notre formule simple \refeq{eq:shifted-eccentricity-influence} correspond bien à la tendance des simulations hydrodynamiques de l'effet de $e$ sur $\Gamma_C$, en particulier pour les excentricités faibles. Il faut tout de même noter qu'il y a peu de points \og expérimentaux\fg et qu'il semble y avoir des fluctuations aléatoires influençant les valeurs mesurées.
 
 \begin{figure}[htb]
 \centering
@@ -71,7 +71,7 @@ où $\gamma$ est l'indice adiabatique, $q$ le rapport entre les masses de la pla
 
 \bigskip
 
-Afin de réaliser nos simulations, nous avons utilisé une version modifiée de l'intégrateur \textbf{Mercury}\citep{chambers1999hybrid}. Nous avons inclu à la fois une zone de convergence artificielle (où $\Gamma = \Gamma_L+\Gamma_C$) et le fait que $\Gamma_C$ est modifiée par l'excentricité selon \refeq{eq:eccentricity-influence}. L'amortissement de l'excentricité et de l'inclinaison est modélisé via les formulées décrites dans \cite{cresswell2008three}. 
+Afin de réaliser nos simulations, nous avons utilisé une version modifiée de l'intégrateur \textbf{Mercury}\citep{chambers1999hybrid}. Nous avons inclu à la fois une zone de convergence artificielle (où $\Gamma = \Gamma_L+\Gamma_C$) et le fait que $\Gamma_C$ est modifiée par l'excentricité selon \refeq{eq:shifted-eccentricity-influence}. L'amortissement de l'excentricité et de l'inclinaison est modélisé via les formulées décrites dans \cite{cresswell2008three}. 
 
 Nous supposons que le disque possède le profil de densité de surface suivant :
 \begin{align}

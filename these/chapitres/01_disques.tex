@@ -102,18 +102,56 @@ Dans la suite de la section, nous allons nous intéresser à la conservation de 
 Afin de décrire l'évolution hydrodynamique du disque de gaz, nous allons utiliser successivement la \textbf{conservation de la masse}, et la \textbf{conservation du moment angulaire.} Les démonstrations qui vont suivre ont été déjà faites de nombreuses fois, notamment par \citep{pringle1981accretion}. %TODO modifier ça une fois que j'aurai changé le contenu des parties suivantes?
 
 \subsubsection{Structure verticale du disque}
-%TODO 
-On écrit l(équilibez hydrostatique dans 
+On s'intéresse à la répartition de masse verticalement dans le disque. Afin de définir les quantités importantes qui s'y rapporte, nous allons écrire l'équation de l'équilibre hydrostatique. On a alors :
+\begin{align}
+\inv{\rho}\pd{P}{z} &= - \vect{g}.\hat{e}_z\\
+&= \left(\frac{GM}{R^3}\hat{e}_r\right).\hat{e}_z\\
+\end{align}
 
-P = rho R T sur mu
-Reprendre la partie 8.4 de resume.pdf, mais ne pas reprendre toutes les équations. 
-On dit que T est isotherme verticalement
+$\vect{g}$ est orienté vers l'étoile centrale, selon la direction $r$ (en sphérique). En projetant sur l'axe $z$ pour effectuer le produit scalaire, et en faisant l'approximation que $r\sim a$ on obtient alors :
+\begin{align}
+\inv{\rho}\pd{P}{z} &= -\Omega^2 z
+\end{align}
 
-puis à la fin, montrer la relation entre ça et la vitesse du son, sachant que R T sur mu égale à cs
+En considérant un disque isotherme selon $z$ et d'après la loi des gazs parfaits
+\begin{align}
+p &= \frac{\rho k_B T}{\mu m_H}
+\end{align}
+il vient
+\begin{align}
+\pd{\rho}{z} &= -\frac{\mu m_H\Omega^2}{k_B T}\rho z
+\end{align}
 
-On peut aussi définir la densité surfacique en montrant l'équivalence avec rho
+On obtient alors :
+\begin{align}
+\rho(z) &= \rho_0\exp\left(-\frac{z^2}{2H^2}\right)
+\end{align}
+où $\rho_0$ est la densité volumique du disque de gaz dans le plan médian et $H$ l'échelle de hauteur du disque est définie par : 
+\begin{align}
+H &= \sqrt{\frac{k_B T}{\Omega^2 \mu m_H}}
+\end{align}
 
-fromang & nelson 2006 à propos de la conversion rho en sigma
+\bigskip
+
+Sachant que la vitesse du son, définie par :
+\begin{align}
+{c_s}^2=\frac{P}{\rho} &= \frac{k_B T}{\mu m_H}
+\end{align}
+dans le cas d'un gaz parfait, on peut alors écrire la relation suivante entre l'échelle de hauteur et la vitesse du son : 
+\begin{align}
+c_s &= H\Omega
+\end{align}
+
+\bigskip
+
+On considèrera dans la suite les quantités moyennées selon $z$, et en particulier on défini la densité de surface $\Sigma$ de la façon suivante : 
+\begin{align}
+\Sigma &= \int_{-\infty}^{+\infty} \rho \dif z\nonumber\\
+&=\rho_0 \int_{-\infty}^{+\infty}  \exp\left(-\frac{z^2}{2H^2}\right)\dif z\nonumber\\
+\Sigma &= \sqrt{2\pi}\rho_0 H
+\end{align}
+
+% fromang & nelson 2006 donnent une formule, après l'équation (20), mais elle ne correspond pas à ça, peut-être lié à un truc magnétique ou je sais pas quoi
 
 \subsubsection{Bilan de masse}
 \begin{figure}[htb]
@@ -176,11 +214,14 @@ On obtient alors :
 \end{important}
 
 \subsubsection{Bilan de moment cinétique/angulaire}
-On cherche maintenant à faire le bilan de moment cinétique de ce même anneau. Son moment cinétique est défini par :
+On fait maintenant un bilan des variations de moment angulaire pour l'anneau de gaz. Pour cela on dit que la variation de moment angulaire (que l'on écrit en dérivant $J_a(t)$) est égale aux variations de moment angulaires induites aux bords de l'anneau par échange de masse à laquelle s'ajoute la différence entre les deux couples visqueux qui s'appliquent au bord externe et interne. Ce qui donne : 
+\begin{align}
+\dod{J_a}{t} &= \dif J(R+\Delta R) + \dif J(R) + \Gamma_\text{out} - \Gamma_\text{in}\label{eq:cons_J_a}
+\end{align}
+
+Le moment cinétique de l'anneau est défini par :
 \begin{align}
 \vect{J_a} &= \vect{R} \wedge (m_a\vect{v(R)}) \nonumber\\
-&= m_a \cdot R \cdot R\Omega(R)\hat{e}_z\nonumber\\
-&= 2\pi R \Delta R \Sigma(R)\cdot R \cdot R\Omega(R)\hat{e}_z\nonumber\\
 \vect{J_a} &= 2\pi R^3 \Delta R \Sigma(R)\Omega(R)\hat{e}_z\label{eq:J_a}
 \end{align}
 où $\Sigma$ et $\Omega$ sont la densité de surface et la vitesse angulaire du gaz à la position $R$ dans le disque.
@@ -188,11 +229,7 @@ où $\Sigma$ et $\Omega$ sont la densité de surface et la vitesse angulaire du 
 Le flux de moment cinétique est simplement défini comme la quantité de moment cinétique emportée ou apportée par le flux de masse définis précédemment \refeq{eq:dif_F_M} :
 \begin{subequations}
 \begin{align}
-\dif J(R) &= \vect{r} \wedge \left(\dif F_M(R) \vect{v}(R)\right)\nonumber\\
- &= \dif F_M(R) \cdot R^2\Omega(R)\hat{e}_z\nonumber\\
 \dif J(R) &= 2\pi v_r(R) \Sigma(R)\cdot R^3\Omega(R)\hat{e}_z\label{eq:dJ_in}\\
-\dif J(R+\Delta R) &= \vect{r} \wedge \left(\dif M(R+\Delta R) \vect{v}(R+\Delta R)\right)\nonumber\\
- &= \dif F_M(R+\Delta R) \cdot \left(R+\Delta R\right)^2\Omega(R+\Delta R)\hat{e}_z\nonumber\\
 \dif J(R+\Delta R) &= -2\pi v_r(R+\Delta R) \Sigma(R+\Delta R)\cdot \left(R+\Delta R\right)^3\Omega(R+\Delta R)\hat{e}_z\label{eq:dJ_out}
 \end{align}\label{eq:dJ}
 \end{subequations}
@@ -200,12 +237,6 @@ Le flux de moment cinétique est simplement défini comme la quantité de moment
 \bigskip
 
 À ceci s'ajoute la variation de moment cinétique induite par la friction entre anneaux concentriques, en d'autres termes, dus à la viscosité du disque. Cette variation de moment cinétique est représentée sous la forme d'un couple exercé par les anneaux internes et externes à celui considéré. 
-
-Le taux de cisaillement $A$ est donné par : 
-\begin{align}
-A &= r \dod{\Omega}{r}
-\end{align}
-et représente les frottements induits par la rotation différentielle.
 
 %TODO le détail des calculs sur cette équation, le mettre en annexe et laisser à la fin 1.19, qui estl'équivalent de navier-stokes pour les disques
 
@@ -218,13 +249,12 @@ La force visqueuse par unité de longueur est définie par :
 \begin{align}
 \dif F_\text{vis} &= \nu \Sigma A = \nu \Sigma r \dod{\Omega}{r}
 \end{align}
+où $A=r \dod{\Omega}{r}$ est le taux de cisaillement.
 
 La force visqueuse induite par les anneaux entourant l'anneau considéré est alors : 
 \begin{subequations}
 \begin{align}
-\vect{F_\text{in}}(R) &= 2\pi R \times \dif F_\text{vis}(R) \nonumber\\
 \vect{F_\text{in}}(R)&= 2\pi\nu \Sigma R^2 \dod{\Omega}{r}(R) \hat{e}_\theta\\
-\vect{F_\text{out}}(R+\Delta R) &= 2\pi (R+\Delta R) \times \dif F_\text{vis}(R+\Delta R) \nonumber\\
 \vect{F_\text{out}}(R+\Delta R)&= 2\pi\nu \Sigma (R+\Delta R)^2 \dod{\Omega}{r}(R+\Delta R) \cdot \hat{e}_\theta
 \end{align}
 \end{subequations}
@@ -235,103 +265,38 @@ L'anneau interne tournant plus vite, la force est dirigée dans le sens de rotat
 Ainsi, le couple $\vect{\Gamma}=\vect{r}\wedge\vect{F}$ issu de chacun des anneaux entourant celui de référence s'écrit :
 \begin{subequations}
 \begin{align}
-\vect{\Gamma_\text{in}} &= R\hat{e}_r\wedge\vect{F_\text{in}}\nonumber\\
 \vect{\Gamma_\text{in}} &= 2\pi\nu \Sigma R^3 \dod{\Omega}{r}(R) \hat{e}_z\label{eq:G_in}\\
-\vect{\Gamma_\text{out}} &= (R+\Delta R)\hat{e}_r\wedge\vect{F_\text{out}}\nonumber\\
 \vect{\Gamma_\text{out}} &= 2\pi\nu \Sigma (R+\Delta R)^3 \dod{\Omega}{r}(R+\Delta R) \hat{e}_z\label{eq:G_out}
 \end{align}\label{eq:J_torques}
 \end{subequations}
 
 \bigskip
 
-On fait maintenant un bilan des variations de moment angulaire pour l'anneau de gaz. Pour celà on dit que la variation de moment angulaire (que l'on écrit en dérivant $J_a(t)$) est égale aux variations de moment angulaires induites aux bords de l'anneau par échange de masse à laquelle s'ajoute la différence entre les deux couples visqueux qui s'appliquent au bord externe et interne. Ce qui donne : 
-\begin{align}
-\dod{J_a}{t} &= \dif J(R+\Delta R) + \dif J(R) + \Gamma_\text{out} - \Gamma_\text{in}\label{eq:cons_J_a}
-\end{align}
-
-En utilisant \refeq{eq:J_a}, \refeq{eq:dJ}, \refeq{eq:J_torques}, dans \refeq{eq:cons_J_a}
-\begin{align*}
-\begin{split}
-\dpd{}{t}\left(2\pi R^3 \Delta R \Sigma(R)\Omega(R)\right) &= -\left(R+\Delta R\right)^3v_R(R+\Delta R) \Sigma(R+\Delta R) \Omega(R+\Delta R)\\
-& + R^3 v_R(R) \Sigma(R) \Omega(R) + \left[\nu(R+\Delta R)^3\Sigma(R+\Delta R)\right.\\
-&\left. \dod{\Omega}{r}(R+\Delta R)-\nu \Sigma(R) R^3 \dod{\Omega}{r}(R)\right]
-\end{split}
-\end{align*}
-
-
-
-On fait tendre $\Delta R$ vers 0, et de manière similaire au bilan de masse obtenu précédemment, il vient alors 
-\begin{align*}
-\dpd{}{t}\left(R^3 \Sigma\Omega\right) &= -\dpd{}{r}\left(R^3 v_R \Sigma \Omega\right) + \dpd{}{r}\left(\nu \Sigma R^3 \dod{\Omega}{r}\right)\\
-\intertext{$R$ et $t$ sont des variables indépendantes, on peut donc sortir $R$ de la dérivée partielle temporelle afin de faire apparaître une forme qui fait penser à une équation de continuité.}
-R\dpd{}{t}\left(R^2 \Sigma\Omega\right) &= -\dpd{}{r}\left(R^3 v_R \Sigma \Omega\right) + \dpd{}{r}\left(\nu \Sigma R^3 \dod{\Omega}{r}\right)
-\end{align*}
-
-$R$ et $t$ étant des variables indépendantes, on peut écrire :
-\begin{align}
-R\dpd{}{t}\left(\Sigma R^2\Omega\right) + \dpd{}{r}\left(R^3 v_R \Sigma \Omega\right) &= \dpd{}{r}\left(\nu \Sigma R^3 \dod{\Omega}{r}\right)\label{eq:ang_mom_01}
-\end{align}
-
-\bigskip
-
-On suppose que $\dpd{\Omega}{t}=0$ vu que le potentiel gravitationnel est indépendant du temps (on ne considère pas une masse variable de l'étoile due à l'accrétion), et sachant que $R$ ne dépend pas explicitement de $t$, en utilisant la formule : 
-\begin{align*}
-\dpd{uv}{x} &= \dpd{u}{x}v + u\dpd{v}{x}
-\end{align*}
-on peut écrire :
-\begin{align}
-\dpd{}{t}\left(\Sigma\cdot R^2\Omega\right) &= \left(R^2\Omega\right)\dpd{\Sigma}{t} + \Sigma\cancelto{0}{\dpd{R^2\Omega}{t}}\label{eq:ang_mom_tmp_01}
-\end{align}
-
-De même : 
-\begin{align}
-\dpd{}{r}\left(R^3 v_R \Sigma \Omega\right) &= \dpd{}{r}\left(R v_R \Sigma \cdot R^2\Omega\right)\nonumber\\
-&= \left(R^2\Omega\right)\dpd{}{r}\left(R v_R \Sigma\right) + R \Sigma v_R \dpd{}{r}\left(R^2\Omega\right)\label{eq:ang_mom_tmp_02}
-\end{align}
-
-En utilisant \refeq{eq:ang_mom_tmp_01} et \refeq{eq:ang_mom_tmp_02} dans \refeq{eq:ang_mom_01}, on fait alors apparaître \refeq{eq:conservation_masse}, ce qui donne : 
-\begin{align}
-R\left(R^2\Omega\right)\dpd{\Sigma}{t} + \left(R^2\Omega\right)\dpd{}{r}\left(R v_R \Sigma\right) + R \Sigma v_R \dpd{}{r}\left(R^2\Omega\right) &= \dpd{}{r}\left(\nu \Sigma R^3 \dod{\Omega}{r}\right)\nonumber\\
-\left(R^2\Omega\right)\cancelto{0}{\left[R\dpd{\Sigma}{t} + \dpd{}{r}\left(R v_R \Sigma\right)\right]} + R \Sigma v_R \dpd{}{r}\left(R^2\Omega\right) &= \dpd{}{r}\left(\nu \Sigma R^3 \dod{\Omega}{r}\right)\nonumber\\
-R \Sigma v_R \dpd{}{r}\left(R^2\Omega\right) &= \dpd{}{r}\left(\nu \Sigma R^3 \dod{\Omega}{r}\right)\nonumber\\
-R \Sigma v_R &= \inv{\dpd{}{r}\left(r^2\Omega\right)} \dpd{}{r}\left(\nu \Sigma R^3 \dod{\Omega}{r}\right)\label{eq:r_sigma_vr}
-\end{align}
-
-\bigskip
-
-On injecte alors \refeq{eq:r_sigma_vr} dans \refeq{eq:conservation_masse} afin de supprimer $v_r$ de l'expression et obtenir finalement : 
-\begin{align*}
-\dpd{\Sigma}{t} &= -\inv{r}\dpd{}{r}\left[\inv{\dpd{}{r}\left(R^2\Omega\right)} \dpd{}{r}\left(\nu \Sigma r^3 \dod{\Omega}{r}\right)\right]
-\end{align*}
-
-On décale le signe moins au niveau de la dérivée de la vitesse angulaire, cette dernière étant généralement négative, ça permet d'avoir un terme positif :
-\begin{important}
-\begin{align}
-\dpd{\Sigma}{t} &= \inv{r}\dpd{}{r}\left\{\inv{\dpd{}{r}\left(r^2\Omega\right)} \dpd{}{r}\left[\nu \Sigma r^3 \left(-\dod{\Omega}{r}\right)\right]\right\}
-\end{align}
-\end{important}
-
-\bigskip
-
-On fait maintenant l'approximation que le mouvement est képlérien, avec pour première conséquence que $\Omega = \sqrt{\frac{GM}{r^3}}$. On peut alors simplifier l'équation : 
-\begin{align*}
-\dpd{\Sigma}{t} &= \inv{r}\dpd{}{r}\left\{\inv{\inv{2}\sqrt{\frac{GM}{r}}} \dpd{}{r}\left[\nu \Sigma r^3 \left(\frac{3}{2}\sqrt{\frac{GM}{r^5}}\right)\right]\right\}\nonumber\\
-&= \inv{R}\dpd{}{r}\left\{\bcancel{2}\sqrt{\frac{r}{\cancel{GM}}} \dpd{}{r}\left[\nu \Sigma \frac{3}{\bcancel{2}}\cancel{\sqrt{GM}}r^\sfrac{1}{2}\right]\right\}\nonumber\\
-\end{align*}
-
-\subsubsection{Conclusion de la partie}
-On obtient alors l'équation suivante : 
+En utilisant \refeq{eq:J_a}, \refeq{eq:dJ}, \refeq{eq:J_torques}, dans \refeq{eq:cons_J_a} il vient alors :
 \begin{important}
 \begin{align}
 \dpd{\Sigma}{t} &=\frac{3}{r}\dpd{}{r}\left[\sqrt{r} \dpd{}{r}\left(\nu \Sigma r^\sfrac{1}{2}\right)\right]
 \end{align}
 \end{important}
 
+Le calcul détaillé est disponible \refsec{app:equation_angular_momentum}.
+
 Cette équation a nécessité les approximations suivantes : 
 \begin{enumerate}
 \item On suppose que le potentiel gravitationnel est indépendant du temps ($\dod{\Omega}{t}=0$), c'est à dire que la masse de l'étoile est constante, l'accrétion ayant un effet négligeable.
 \item On suppose que le mouvement du gaz est képlerien $\Omega=\sqrt{\frac{GM}{r^3}}$, ce qui n'est pas rigoureusement vrai, la pression du gaz rendant le mouvement légèrement sous-képlerien.
 \end{enumerate}
+
+Cette équation permet de modéliser l'évolution visqueuse d'un disque au cours du temps. \reffig{fig:pringle_viscous_dissipation}, tirée de \cite{pringle1981accretion} et recalculée illustre l'évolution visqueuse d'un anneau de matière de masse $m$ dans des unités adimensionnées de distance et de temps.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.45\linewidth]{figure/pringle_viscous_dissipation.pdf}
+\caption{Évolution visqueuse d'un anneau de matière de masse $m$ et de rayon $R_0$. La densité de surface est montrée comme une fonction de la longueur dédimensionnée $x=R/R_0$ et du temps adimensionné $\tau=12\nu t / {R_0}^2$.}\label{fig:pringle_viscous_dissipation}
+\end{figure}
+
+%TODO parler de la photoévaporation, l'introduire par rapport à la dissipation visqueuse
+
 
 \subsection{Profil de température}
 Du point de vue de la température, il y a principalement deux types de disques : 
@@ -372,7 +337,8 @@ $T_\text{eff}$ est une estimation de la température effective du disque à sa s
 \tau_\text{eff} &= \frac{3}{8}\tau + \frac{\sqrt{3}}{4} + \inv{4\tau}
 \end{align}
 \end{subequations}
-où $\tau$ est la profondeur optique verticale moyenne.
+où $\tau=\kappa\Sigma/2$ est la profondeur optique verticale moyenne, $\kappa$ étant l'opacité du disque (l'opacité sera détaillée dans \refsec{sec:opacity}).
+%TODO ref pour l'expression de la profondeur optique?
 
 Cette température effective est le résultat d'un transfert de rayonnement depuis le cœur du disque, à une température $T$ qui se refroidit, et chauffe les différentes couches successives jusqu'à atteindre le bord du disque. Il résulte alors une température $T_\text{eff}$ plus faible que la température dans le plan du disque. 
 
@@ -425,7 +391,7 @@ Dans le cadre d'un disque optiquement épais, il devient possible de considérer
 \subsubsection{Chauffage visqueux}
 On considère un fluide incompressible. Il peut paraître étonnant de considérer un disque de gaz comme étant un fluide incompressible. Mais en fait l'aspect compressible va surtout se manifester lors de la mise à l'équilibre, générant des ondes de chocs par exemple. Mais une fois le disque stabilisé tout se passe comme si on avait un fluide incompressible. C'est matérialisé par le fait que la vitesse dans le disque est considérée comme inférieure à la vitesse du son dans le milieu $c_s$, au delà de laquelle on aura des ondes des chocs ayant une incidence sur le bilan thermique. Ainsi donc, en considérant un fluide incompressible, on peut partir de l'expression de la variation d'énergie cinétique (qui est l'inverse du chauffage, les pertes cinétiques étant converties en chaleur par la viscosité) \citep[(16.3)]{landau1989mecanique} : 
 \begin{align}
-\dod{E_c}{t} &= - \frac{1}{2}\int \eta(T_{ik})^2\dif V\\
+\dpd{E_c}{t} &= - \frac{1}{2}\int \eta(T_{ik})^2\dif V\\
 T_{ik} &= \left(\dpd{v_i}{x_k} + \dpd{v_k}{x_i}\right)\nonumber
 \end{align}
 où $\eta = \rho\nu$ est la viscosité dynamique\footnote{$\nu$ étant la viscosité cinématique et $\rho$ la densité volumique de gaz.}
@@ -468,7 +434,7 @@ T_{r\varphi} &= r\dod{\Omega}{r}
 
 Il vient alors :
 \begin{align*}
-\dod{E_c}{t} &= - \frac{1}{2}\int \eta(T_{ik})^2\dif V\\
+\dpd{E_c}{t} &= - \frac{1}{2}\int \eta(T_{ik})^2\dif V\\
 &= - \frac{1}{2}\int \eta\sum_{i=1}^3\sum_{j=1}^3 {T_{ij}}^2\dif V\\
 &= - \frac{1}{2}\int \eta\left({T_{r\varphi}}^2+{T_{\varphi r}}^2\right)\dif V\\
 \intertext{Le tenseur est symétrique, on a donc $T_{r\varphi} = T_{\varphi r}$}
@@ -476,12 +442,12 @@ Il vient alors :
 &= - \iint \rho\nu \left(r\dod{\Omega}{r}\right)^2\dif S\dif z\\
 \intertext{En utilisant une vitesse angulaire képlerienne $\Omega=\sqrt{\frac{GM}{r^3}}$ on obtient alors :}
 &= - \int \Sigma\nu \left(-\frac{3}{2}\Omega\right)^2\dif S\\
-\dod{E_c}{t} &= - \frac{9}{4} \int \Sigma\nu \Omega^2\dif S
+\dpd{E_c}{t} &= - \frac{9}{4} \int \Sigma\nu \Omega^2\dif S
 \end{align*}
 
 La variation d'énergie cinétique est négative, cette perte est convertie en chaleur par chauffage visqueux. Le chauffage visqueux intégré sur toute la surface du disque peut ainsi être défini comme : 
 \begin{align*}
-C_\text{vis/tot} &= - \dod{E_c}{t}
+C_\text{vis/tot} &= - \dpd{E_c}{t}
 \end{align*}
 de sorte qu'on peut écrire le chauffage visqueux par unité de surface comme étant égal à :
 \begin{align}
@@ -489,6 +455,7 @@ C_\text{vis} &= \frac{9}{4} \nu\Sigma\Omega^2
 \end{align}
 
 \subsubsection{Bilan}
+%TODO écrire le bilan de l'énergie interne, puis se ramener au cas stationnaire que j'ai écrit plus bas, en disant qu'on se place à l'équilibre entre perte et sources.
 On cherche maintenant la température d'équilibre du disque, compte tenu de tous les termes rentrant dans l'équation bilan de l'énergie du disque. Il vient alors, en considérant le chauffage visqueux, l'irradiation de l'étoile centrale, le chauffage par l'enveloppe et les pertes par radiation à la surface du disque : 
 \begin{align}
 0 &= P_\text{cn} + C_\text{en} + C_\text{irr} + C_\text{vis}\nonumber\\
@@ -509,7 +476,7 @@ Ce calcul est lui même extrêmement dépendant de la définition que l'on chois
 %En présence de champ magnétioqeu le critère là devient (il faut que le critère soit faible) : (Balbus & Hawley, 1991 ; c'est dans ce papier qu'est démontré l'instabilité MRI) Et donc le disque est linéairement instable : le critère c'est d(Omega^2)/R>0, mais ce n'est pas satisfait
 %TODO mettre plus de détails sur la viscosité (voir armitahge 2011 et 2007, le lecture note)
 %TODO il faut des références pour les dead zones (suggère les dead zones dans Gammie 1993)
-Quand on parle de viscosité $\nu$ dans un disque, ce n'est pas la viscosité moléculaire classique, bien trop faible aux densités rencontrées. On suppose généralement une viscosité due aux turbulences qui est beaucoup plus importante que la viscosité moléculaire, mais qui peut être traitée par les mêmes équations. 
+Quand on parle de viscosité $\nu$ dans un disque, ce n'est pas la viscosité moléculaire classique, bien trop faible aux densités rencontrées. On suppose généralement une viscosité due à la turbulence qui est beaucoup plus importante que la viscosité moléculaire, mais qui peut être traitée par les mêmes équations. 
 
 Ceci implique par contre qu'il y ait de l'ionisation. En effet, sans ionisation, il n'y a pas de couplage entre le champ magnétique et la matière, et donc pas de turbulence induite par ce même champ. 
 
@@ -527,11 +494,11 @@ On peut introduire un paramètre adimensionné $\alpha$ \citep{shakura1973black}
 \item On considère que les turbulences sont sub-soniques.
 \item L'échelle des tourbillons des turbulences est plus petite que l'échelle de hauteur du disque
 \end{itemize}
-Le mécanisme qui a le plus de chance d'être à l'origine de la viscosité alpha est l'\gras{Instabilité Magnéto-Rotationnelle} (MRI). 
+Le mécanisme qui a le plus de chance d'être à l'origine de la viscosité alpha est l'\gras{Instabilité Magnéto-Rotationnelle} (MRI) \citep{balbus1991powerful}. 
 
 \bigskip
 
-En conséquence, on peut définir la viscosité $\nu$ associée aux turbulences comme étant 
+En conséquence, on peut définir la viscosité $\nu$ associée à la turbulence comme étant 
 \begin{align}
 \nu &= \alpha c_s H
 \end{align}
@@ -548,12 +515,13 @@ Ceci justifie donc que l'on mette ces deux modèles en concurrence, sans placer 
 \subsubsection{Ionisation et dead-zones}\index{ionisation}\index{dead zone}
 Pour qu'une instabilité magnéto rotationnelle ait lieu, c'est à dire qu'il y ait un couplage entre le champ magnétique et les mouvements du disque, il faut qu'une partie au moins du disque soit ionisé. Dans ces régions ionisées, on pourra alors avoir transport du moment angulaire via la viscosité due au champ magnétique (et turbulences engendrées). 
 
-Or, comment ioniser? Que ce soit le rayonnement X de l'étoile centrale, des rayons cosmiques ou l'ionisation thermique, il n'est pas si évident que ça de se représenter l'ionisation totale du disque de gaz. Il est donc probable que certaines zones du disques ne soient pas ionisés, et donc que le transport du moment angulaire s'y fasse peu ou pas du tout. Ces zones, appelées \index{dead zone}, sont donc des zones sans viscosité magnétique. 
+Or, comment ioniser? \reffig{fig:ionization} représente les différents processus d'ionisation dominants en fonction de la zone du disque considérée. Mais si le taux d'ionisation décroit en fonction de la distance orbitale \citep{ilgner2006ionisation1} comme le montre \reffig{fig:ilgner_ionisation}, il en va de même avec la densité de surface du disque. Il est donc probable que certaines zones du disques ne soient pas ionisés (en pourcentage du nombre total d'atomes disponibles), et donc que le transport du moment angulaire s'y fasse peu ou pas du tout \citep{gammie1996layered}. Ces zones, appelées \gras{dead zone}, sont donc des zones sans viscosité magnétique. 
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width=0.7\linewidth]{figure/disk_ionization.pdf}
-\caption{Représentation des différentes zones d'un disque en fonction du mécanisme principal d'ionisation. La nature du mode d'ionisation n'indique pas le taux d'ionisation pour autant. Et ce dernier va donc fluctuer dans le disque. Les zones où l'ionisation est très faible, appelées \og dead-zones\fg sont des positions où on pense que la viscosité turbulente est extrêmement faible.}\label{fig:ionization}
+\subfloat[Mécanisme principal d'ionisation de différentes zones du disque. Les zones où l'ionisation est très faible, appelées \og dead-zones\fg sont des positions où on pense que la viscosité turbulente est extrêmement faible.]{\label{fig:ionization}\includegraphics[width=0.49\textwidth]{figure/disk_ionization.pdf}}\hfill
+\subfloat[Taux effectif d'ionisation $\zeta_\text{eff}$ par atome d'hydrogène pour un disque avec $\alpha=10^{-2}$ et $\dot{M}=10^{-7}\unit{M_\odot yr^{-1}}$. Les lignes de référence correspondent aux valeurs de $\zeta_\text{eff}$ suivante : $10^{-19}$, $10^{-21}$ et $10^{-23}\unit{s^{-1}}$. Cette figure est basée sur la figure 6 de \cite{ilgner2006ionisation1}.]{\label{fig:ilgner_ionisation}\includegraphics[width=0.49\textwidth]{figure/ilgner_ionization_rate.pdf}}
+\caption{Représentation de l'ionisation dans un disque protoplanétaire}
 \end{figure}
 
 On voit donc que les modèles de viscosité constante ou alpha sont incapables de rendre compte de la présence de ces zones de manière intrinsèque. Il est possible de modifier artificiellement les profils de viscosité pour faire apparaître de telles zones mais ça reste ad-hoc. Dans la suite, je n'ai pas modélisé de dead-zone même s'il est probable qu'elles aient un effet sur la migration, le modèle sans dead-zone n'est encore pas suffisamment bien compris pour que le rajout de ces zones sans ionisations soit pertinent.
@@ -825,10 +793,11 @@ Quand une planète dans un disque devient suffisamment massive, la réponse du d
 
 Une fois que la cavité est formée, la planète est dite en migration de \emph{type II} : son orbite agit alors essentiellement comme une barrière entre les deux parties du disque de gaz, \emph{interne} et \emph{externe}. Du gaz peut parfois sauter le gap, ou être accrêté par la planète mais cette dernière voit son mouvement régit par le disque de gaz, se retrouvant entraînée par la migration de celui-ci.
 
-Compte tenu que la planète a une masse de l'ordre de\footnote{Quand la masse de la planète devient supérieure à la masse du disque local, l'inertie de celle-ci devient importante afin de déterminer son taux de migration} la masse du disque local (avec lequel elle interagit), la migration se passe sur des temps de l'ordre du \gras{temps visqueux} du disque.
+Quand la planète creuse un sillon et que sa masse est inférieure ou de l'ordre de la masse locale du disque ($M_p \lesssim M_\text{d,loc}$ avec lequel elle interagit, alors le temps de migration de la planète est contrôlé par le \gras{temps visqueux} du disque, car cette dernière se comporte comme une particule de ce disque \citep{nelson2000migration}.
 
 
 \subsubsection{Type III}\index{migration!type III}
+%TODO réécrire ou supprimer cette partie
 La migration de type III est un type de migration intermédiaire aux migrations de type I et II. Le principe est que la planète commence à migrer par type I, tout en accrétant du gaz. À mesure que la masse de la planète augmente, elle creuse petit à petit un gap et la migration devient une migration de type II \citep{masset2003runaway}. 
 
 %TODO dire que ça s'applique plutôt à des masses de type jovien. Regarder dans masset et papaloizou 2003. Il faut préciser ça, parler des conditions etc...
