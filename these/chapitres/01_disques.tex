@@ -669,7 +669,7 @@ Pour l'interaction entre une planète et un disque protoplanétaire, c'est exact
 \begin{figure}[htb]
 \centering
 \includegraphics[width=\linewidth]{figure/lindblad_torque.pdf}
-\caption{Génération d'ondes de densité dans le disque protoplanétaire dû à la présence d'une planète. Chaque mode $m$ émet $m$ ondes de densité de part et d'autre de la position radiale de la planète. Un anneau interne  aux positions du mode $m$ est dénué de toute onde dû à ce même mode. Les interférences entre toutes les ondes de densités de tous les modes donne deux ondes de densités que l'on observe dans des simulations hydrodynamique.}\label{fig:lindblad_torque}
+\caption{Génération d'ondes de densité dans le disque protoplanétaire dû à la présence d'une planète. Chaque mode $m$ émet $m$ ondes de densité de part et d'autre de la position radiale de la planète. Un anneau interne  aux positions du mode $m$ est dénué de toute onde dû à ce même mode. Les interférences entre toutes les ondes de densités de tous les modes donne deux ondes de densités que l'on observe dans des simulations hydrodynamique. Les positions successives des interférences constructives sont données par \cite[eq. (13) et (24)]{ogilvie2002wake}}\label{fig:lindblad_torque}
 \end{figure}
 
 
@@ -699,7 +699,16 @@ Il est important de remarquer que la position de la résonance externe d'ordre $
 
 Ainsi, le couple de Lindblad est toujours négatif dans un disque protoplanétaire. De plus, ce couple négatif est une tendance qui dépend peu ou pas du tout des paramètres du disque \citep{ward1997protoplanet}.
 
-%TODO donner la formule analytique du couple de Lindblad
+La résolution numérique des équations linéarisées permet de trouver une formule analytique pour le couple de Lindblad $\Gamma_L$. Dû à la résolution numérique qui doit s'affranchir de la divergence du potentiel gravitationnel en $r=r_0$, cette formule introduit une longueur de lissage permettant de s'affranchir du noyau du Green du potentiel gravitationnel \citep[eq. (14)]{paardekooper2010torque} : 
+\begin{align}
+\gamma \Gamma_L/\Gamma_0 &= - \left(2.5 +1.7\beta -0.1d\right) \left(\frac{0.4}{b/h}\right)^{0.71}
+\end{align}
+où $\gamma$ est l'indice adiabatique, et $\beta$ et $d$ sont les exposants des lois de puissance pour les profils de température et de densité de surface. 
+
+Le couple est ici exprimé en unité de $\Gamma_0$, couple de référence défini par : 
+\begin{align}
+\Gamma_0 &= \left(\frac{q}{h}\right)^2\Sigma_p {r_p}^4 {\Omega_p}^2
+\end{align}
 
 Notons aussi que le processus physique du transport du moment angulaire de la planète est réalisé par l'onde de densité. Le moment angulaire est emporté par l'onde de densité qui l'échange avec le gaz environnant à mesure que ce dernière amorti et dissipe l'onde.
 
@@ -713,9 +722,11 @@ Notons aussi que le processus physique du transport du moment angulaire de la pl
 De la même manière que précédemment pour le couple de Lindblad, on peut repartir de la décomposition en série de Fourier du potentiel gravitationnel de la planète. Pour chaque mode $m$ de la décomposition, on voit apparaître $m$ zones de libration, centrées sur le rayon de la planète, et réparties en azimut. \reffig*{fig:corotation_torque} représente le mode $m=3$, puis une juxtaposition de mode et finalement le résultat des interférences constructives entre tous les modes $m$ de la décomposition.
 
 
-Le couple de corotation provient des échanges gravitationnels que va avoir une particule fluide en co-orbite avec une planète. Il existe deux types de couples, provenant de deux quantités physiques distinctes, la vorticité spécifique (vorticité divisée par la densité de surface) appelée parfois vortensité et l'entropie. 
+Le couple de corotation provient des échanges gravitationnels que va avoir une particule fluide en co-orbite avec une planète. Il existe deux types de couples, issus du gradient de deux quantités physiques distinctes, la vorticité spécifique (vorticité divisée par la densité de surface) appelée parfois vortensité et l'entropie. 
 
-Sans considérer de grandeur thermodynamique particulière, il convient de définir certains temps caractéristiques afin de comprendre l'origine du couple de corotation. \reffig*{fig:corotation_orbits} représente schématiquement les 3 temps principaux mis en jeux. 
+Chacun de ces deux couples possède une partie qui peut saturer en fonction des conditions physiques. 
+
+Pour illustrer le principe de la saturation, et sans considérer un couple en particulier, il convient de définir certains temps caractéristiques afin de comprendre l'origine de ce couple non saturé, et pourquoi ce dernier peut saturer. \reffig*{fig:corotation_orbits} représente schématiquement les 3 temps principaux mis en jeux. 
 
 \begin{figure}[htb]
 \centering
@@ -748,15 +759,15 @@ $t_\text{visc}$ représente la diffusion d'une quantité physique par la viscosi
 \tau_\nu &\sim \frac{{x_s}^2}{\nu}
 \end{align}
 
-Pour la grandeur physique considérée est la vortensité (ou vorticité spécifique), seul $t_\text{visc}$ est à prendre en compte. Quand c'est l'entropie, les deux temps $t_\text{visc}$ et $t_\text{rad}$ sont importants. \reffig*{fig:corotation_orbits} récapitule les temps mis en jeux et à quoi ils correspondent.
+Quand la grandeur physique considérée est la vortensité (ou vorticité spécifique), seul $t_\text{visc}$ est à prendre en compte. Quand c'est l'entropie, les deux temps $t_\text{visc}$ et $t_\text{rad}$ sont importants. \reffig*{fig:corotation_orbits} récapitule les temps mis en jeux et à quoi ils correspondent.
 
 \bigskip
 
 Pour que le couple de corotation soit non saturé, on doit satisfaire aux inéquations suivantes \citep[eq. (31)]{baruteau2013recent} :
 \begin{align}
-t_\text{u-turn} < t_\text{diff} < \frac{t_\text{lib}}{2}
+t_\text{U-turn} < t_\text{diff} < \frac{t_\text{lib}}{2}
 \end{align}
-$t_\text{u-turn}$ est le temps nécessaire pour faire le demi tour devant la planète (en gros, pour traverser la zone égale à $2x_s$). $t_\text{lib}$ est le temps de libration, c'est à dire le temps mis par une particule fluide pour faire le tour de la zone en fer-à-cheval. $t_\text{diff}$ quant à lui est le temps de diffusion de la quantité physique considérée. Suivant les cas, il peut y avoir plusieurs temps de diffusion qui sont important, auquel cas les inégalités doivent être satisfaites pour tous les temps de diffusions mis en jeux.
+$t_\text{U-turn}$ est le temps nécessaire pour faire le demi tour devant la planète (en gros, pour traverser la zone égale à $2x_s$). $t_\text{lib}$ est le temps de libration, c'est à dire le temps mis par une particule fluide pour faire le tour de la zone en fer-à-cheval. $t_\text{diff}$ quant à lui est le temps de diffusion de la quantité physique considérée. Suivant les cas, il peut y avoir plusieurs temps de diffusion qui sont important, auquel cas les inégalités doivent être satisfaites pour tous les temps de diffusions mis en jeux.
 
 \begin{figure}[htb]
 \centering
@@ -765,10 +776,37 @@ $t_\text{u-turn}$ est le temps nécessaire pour faire le demi tour devant la pla
 \end{figure}
 
 \reffig*{fig:corotation_principle} illustre les trois cas possibles en fonction des commensurabilités entre les différents temps caractéristiques mis en jeux.
+%TODO revoir ces explications plus bas, c'est pas clair les explications sur les temps caractéristiques
 
-Si le temps de diffusion $t_\text{diff}$ est plus grand que le temps de libration $t_\text{lib}$, alors une particule fluide verra ses propriétés physique converger vers une valeur moyenne qui restera plus ou moins constante au cours d'une orbite. Le couple de corotation va ainsi saturer, celui-ci étant issu de différence de propriétés physiques entre les différentes zones de l'orbite fer-à-cheval. Afin que le couple de corotation ne sature pas, il faut que le temps de diffusion $t_\text{diff}$ soit suffisamment court pour que l'état de l'élément fluide soit remis à zéro avant d'atteindre de nouveau la zone de U-turn. 
+L'idée générale afin d'éviter la saturation, c'est qu'on doit restaurer le gradient dans la zone \og U-turn\fg d'une orbite à l'autre. Il faut donc que les processus diffusifs soient suffisamment efficace pour qu'en arrivant à la région de \og U-turn\fg de l'autre coté, l'élément fluide ait pu équilibrer ses conditions physiques avec le milieu environnant. Cette condition est illustrée par l'inégalité suivante : 
+\begin{align}
+t_\text{diff} < \frac{t_\text{lib}}{2}
+\end{align}
 
-Si le temps de diffusion $t_\text{diff}$ est plus court que le temps pour effectuer le demi tour $t_\text{U-turn}$, alors la particule fluide aura le temps de s'équilibrer avec le disque avant même d'avoir fait un demi tour. Il n'y aura donc pas de différence avec le reste du disque, et donc pas de couple issu de différence de propriété physique à la zone de corotation.
+Mais il faut de plus que la diffusion ne soit pas trop efficace, sous peine d'homogénéiser la quantité physique au sein même de la région \og U-turn\fg. Ceci donne alors la deuxième inéquation : 
+\begin{align}
+t_\text{U-turn} < t_\text{diff}
+\end{align}
+
+\bigskip
+
+De la même manière que pour le couple de Lindblad, la résolution numérique des équations nous permet d'avoir des expressions analytiques pour les couples de corotation. 
+
+Il y a d'une part les couples soumis à saturation \citep[eq. (45)]{paardekooper2010torque} :
+\begin{subequations}
+\begin{align}
+\gamma \Gamma_\text{c,hs,baro}/\Gamma_0 &= 1.1\left( \frac{3}{2} - d\right)\left(\frac{0.4}{b/h}\right)\\
+\gamma \Gamma_\text{c,hs,ent}/\Gamma_0 &= \frac{\xi}{\gamma}\left(10.1\sqrt{\frac{0.4}{b/h}} - 2.2\right)\left(\frac{0.4}{b/h}\right)
+\end{align}
+\end{subequations}
+et les couples non soumis à saturation, dits linéaires \citep[eq. (17)]{paardekooper2010torque} :
+\begin{subequations}
+\begin{align}
+\gamma \Gamma_\text{c,lin,baro}/\Gamma_0 &= 0.7\left( \frac{3}{2} - d\right)\left(\frac{0.4}{b/h}\right)^{1.26}\\
+\gamma \Gamma_\text{c,lin,ent}/\Gamma_0 &= \xi\left[2.2\left(\frac{0.4}{b/h}\right)^{0.71} - \frac{1.4}{\gamma}\left(\frac{0.4}{b/h}\right)^{1.26}\right]
+\end{align}
+\end{subequations}
+$d$ et $\xi$ sont respectivement les exposants des lois de puissance pour les profils 1D de densité de surface et d'entropie.
 
 \bigskip
 
@@ -783,12 +821,13 @@ S'il n'y a pas de diffusion (temps de diffusion $t_\text{diff}$ très long), alo
 \subsubsection{Modélisation dans le code N-corps}
 Les couples de Lindblad et de Corotation ont été intégrés aux simulations numériques en utilisant le modèle de \cite{paardekooper2011torque}. Plus de détails sur l'implémentation de ces formules et le modèle de disque utilisé dans la section \refsec{sec:code_n-corps}.
 
-\subsection{Migration des planètes massives}
+\subsection{Migration des planètes massives : type II}\index{migration!type II}
 Par massive, on entend une planète qui va induire des modifications importantes du profil de densité du disque. L'approximation du régime linéaire n'est alors plus valable. 
 
-Je présente ici très succinctement ces deux types de migration que je n'ai pas considéré tout au long de ma thèse. Je me place dans le régime linéaire et me suis concentré sur les cœurs de planète géante et les planètes telluriques. J'ai donc négligé tous les effets non linéaires dû aux grandes masses, et en particulier la création d'un sillon par les planètes.
+Je présente ici très succinctement ce type de migration que je n'ai pas considéré tout au long de ma thèse. Je me place dans le régime linéaire et me suis concentré sur les cœurs de planète géante et les planètes telluriques. J'ai donc négligé tous les effets non linéaires dû aux grandes masses, et en particulier la création d'un sillon par les planètes.
 
-\subsubsection{Type II}\index{migration!type II}
+\bigskip
+
 Quand une planète dans un disque devient suffisamment massive, la réponse du disque n'est plus linéaire, et des ondes de densité induites par la planète forment des chocs non loin de là où elles sont émises. La répulsion entre le disque et la planète devient si forte qu'une cavité annulaire se forme autour de l'orbite de la planète, creusant le disque de gaz \citep{lin1986tidal}.
 
 Une fois que la cavité est formée, la planète est dite en migration de \emph{type II} : son orbite agit alors essentiellement comme une barrière entre les deux parties du disque de gaz, \emph{interne} et \emph{externe}. Du gaz peut parfois sauter le gap, ou être accrêté par la planète mais cette dernière voit son mouvement régit par le disque de gaz, se retrouvant entraînée par la migration de celui-ci.
@@ -796,24 +835,20 @@ Une fois que la cavité est formée, la planète est dite en migration de \emph{
 Quand la planète creuse un sillon et que sa masse est inférieure ou de l'ordre de la masse locale du disque ($M_p \lesssim M_\text{d,loc}$ avec lequel elle interagit, alors le temps de migration de la planète est contrôlé par le \gras{temps visqueux} du disque, car cette dernière se comporte comme une particule de ce disque \citep{nelson2000migration}.
 
 
-\subsubsection{Type III}\index{migration!type III}
-%TODO réécrire ou supprimer cette partie
-La migration de type III est un type de migration intermédiaire aux migrations de type I et II. Le principe est que la planète commence à migrer par type I, tout en accrétant du gaz. À mesure que la masse de la planète augmente, elle creuse petit à petit un gap et la migration devient une migration de type II \citep{masset2003runaway}. 
+\subsection{L'amortissement de l'excentricité et de l'inclinaison}%circularisation
+%TODO refaire cette partie. Utiliser pour cela les papiers cresswell et al. 2007 et tanaka et al. 2004
+Une planète sur une orbite non circulaire $i\neq 0$ génère des ondes supplémentaire à cause de son excentricité. De même, une orbite légèrement inclinée induit des ondes à cause de l'inclinaison $I$ de la planète. 
 
-%TODO dire que ça s'applique plutôt à des masses de type jovien. Regarder dans masset et papaloizou 2003. Il faut préciser ça, parler des conditions etc...
+Des calculs analytiques sur les équations linéarisées (valables quand $e$ et $I$ sont faibles) montrent que les ondes dues à l'excentricité ou l'inclinaison ont tendance à amortir l'élément orbital qui est à leur origine. 
 
+Le temps caractéristique d'amortissement pour l'excentricité et l'inclinaison est similaire et est de l'ordre de \citep{tanaka2004three} :
+\begin{align}
+\tau_e \sim \tau_I &\sim h^2 \tau_\text{mig}
+\end{align}
 
-\subsection{L'amortissement de l'excentricité}%circularisation
-Je ne vais pas chercher à détailler ici le mécanisme mathématiquement. Le principe de la décomposition en série de Fourier détaillé pour le calcul des couples de Lindblad et Corotation est toujours le même. Mais au delà des couples, il y a un effet subtil sur les paramètres orbitaux de la planète que je vais essayer de détailler avec une image pour l'excentricité et l'inclinaison. 
-
-Quand une planète possède une excentricité, elle oscille autour de sa position moyenne qu'est son demi-grand axe. En conséquence, elle passe dans des zones du disques où la vitesse du disque est légèrement supérieure ou légèrement inférieure à sa propre vitesse orbitale. Ainsi, quand la planète est en dessous de son demi-grand axe, elle est dans une zone où la vitesse orbitale est plus grande que sa vitesse, cette dernière est donc accélérée. 
-
-À l'inverse, quand la planète est dans les parties externes du disques, proche de son apo-astre, la rotation du disque est plus faible, elle est donc freinée. Ces effets ont tendance à réduire l'excentricité d'une planète et à circulariser son orbite, sur des temps qui vont de la centaine au millier d'années dépendant des propriétés du disque.
-
-
-\subsection{L'amortissement de l'inclinaison}%coplanarisation
-Le principe est le même pour l'inclinaison d'une planète. Au cours de l'orbite, la planète va passer tantôt au dessus ou en dessous du disque. L'attraction gravitationnelle du gaz sur la planète n'étant plus symétrique, elle va avoir tendance à ramener la planète dans le plan du disque. 
-%TODO parler de l'amortissement de l'inclinaison, 
+%TODO expliquer à grande valeur les principes que j'ai surlignés dans cresswell et dirken 2007
+%TODO donner les formules à la limite, à voir.
+%TODO finir de rédiger cette partie. 
 
 \subsection{L'accrétion du gaz}\label{sec:accretion_coeur}
 Dans le modèle d'\gras[modèle!accrétion de c\oe ur]{accrétion de c\oe ur}, les planètes géantes sont d'abord des c\oe urs rocheux qui grossissent jusqu'à atteindre une masse critique de l'ordre de $15 M_{\oplus}$. Une fois cette masse atteinte, le c\oe ur commence à accréter rapidement du gaz jusqu'à former une géante gazeuse.
