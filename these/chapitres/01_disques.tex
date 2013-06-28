@@ -287,16 +287,29 @@ Cette équation a nécessité les approximations suivantes :
 \item On suppose que le mouvement du gaz est képlerien $\Omega=\sqrt{\frac{GM}{r^3}}$, ce qui n'est pas rigoureusement vrai, la pression du gaz rendant le mouvement légèrement sous-képlerien.
 \end{enumerate}
 
-Cette équation permet de modéliser l'évolution visqueuse d'un disque au cours du temps. \reffig{fig:pringle_viscous_dissipation}, tirée de \cite{pringle1981accretion} et recalculée illustre l'évolution visqueuse d'un anneau de matière de masse $m$ dans des unités adimensionnées de distance et de temps.
+\subsubsection{Temps de vie et dispersion du disque}
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width=0.45\linewidth]{figure/pringle_viscous_dissipation.pdf}
+\includegraphics[width=0.65\linewidth]{figure/pringle_viscous_dissipation.pdf}
 \caption{Évolution visqueuse d'un anneau de matière de masse $m$ et de rayon $R_0$. La densité de surface est montrée comme une fonction de la longueur dédimensionnée $x=R/R_0$ et du temps adimensionné $\tau=12\nu t / {R_0}^2$.}\label{fig:pringle_viscous_dissipation}
 \end{figure}
 
-%TODO parler de la photoévaporation, l'introduire par rapport à la dissipation visqueuse
+Cette équation permet de modéliser l'évolution visqueuse d'un disque au cours du temps. \reffig{fig:pringle_viscous_dissipation}, tirée de \cite{pringle1981accretion} et recalculée illustre l'évolution visqueuse d'un anneau de matière de masse $m$ dans des unités adimensionnées de distance et de temps.
 
+\bigskip
+
+On situe généralement le temps de vie d'un disque protoplanétaire autour de quelques millions d'années. Cette information est obtenue de plusieurs études de d'amas d'étoiles d'âges différents dans lesquelles on mesure le taux d'étoiles possédant un excès infrarouge (signe de présence d'un disque) \citep{williams2011protoplanetary}. 70\% à 80\% des étoiles jeunes ($t<1\unit{Myr}$) possèdent un disque \citep{winston2007combined, gutermuth2008spitzer}, 40 à 50\% des étoiles dans des amas d'âge compris entre 2 et 3 millions d'années en possèdent un \citep{lada2006spitzer, sung2009spitzer} tandis que moins de 20\% des étoiles dans des amas d'environ 5 millions d'années ont un disque \citep{currie2009last}. 
+
+Par la rareté des disques en train de se dissiper, les observations suggèrent aussi que les disques se dissipent très rapidement, avec un temps de dispersion d'environ $10^5$ ans \citep{simon1995disk, wolk1996search}. La dissipation visqueuse n'explique alors pas comment le disque peut subsister pendant plusieurs millions d'années, mais se dissiper complètement en \nombre{500 000} ans. \cite{clarke2001dispersal} ont montré qu'il était possible d'expliquer ce comportement à deux temps caractéristiques à l'aide de la photoévaporation. 
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.65\linewidth]{figure/disk_dispersion.pdf}
+\caption{Évolution de la densité de surface en fonction du temps dans une simulation qui modélise la dissipation du disque protoplanétaire par évolution visqueuse et photoévaporation. À $t=6.20\unit{Myr}$ le disque est totalement dissipé. Figure adaptée de \cite{alexander2006photoevaporation}.}\label{fig:disk_dispersion}
+\end{figure}
+
+Le principe de la photoévaporation est que le rayonnement de l'étoile permet de dissocier le dihydrogène ainsi que de fournir de l'énergie cinétique aux atomes du gaz. À partir d'un rayon $r_g$ qui représente la distance à partir de laquelle l'énergie fournie par les photons de l'étoile devient suffisante pour contrebalancer les effets de sa gravité, la photoévaporation permet d'évaporer une partie du gaz superficiel du disque. Le disque va alors se creuser jusqu'à séparer le disque en deux. Les parties internes du disques ne sont alors plus alimentées par les parties externes. Des simulations montrent que les parties externes se dispersent rapidement une fois les parties internes accrétées \citep{alexander2006photoevaporation}. \reffig{fig:disk_dispersion} montre l'évolution du profil radial de densité en fonction du temps en présence de l'évolution visqueuse et de la photoévaporation.
 
 \subsection{Profil de température}
 Du point de vue de la température, il y a principalement deux types de disques : 
@@ -837,25 +850,35 @@ Quand la planète creuse un sillon et que sa masse est inférieure ou de l'ordre
 
 \subsection{L'amortissement de l'excentricité et de l'inclinaison}%circularisation
 %TODO refaire cette partie. Utiliser pour cela les papiers cresswell et al. 2007 et tanaka et al. 2004
-Une planète sur une orbite non circulaire $i\neq 0$ génère des ondes supplémentaire à cause de son excentricité. De même, une orbite légèrement inclinée induit des ondes à cause de l'inclinaison $I$ de la planète. 
+Une planète sur une orbite non circulaire $e\neq 0$ génère des ondes supplémentaires à cause de son excentricité. De même, une orbite légèrement inclinée induit des ondes à cause de l'inclinaison $I$ de la planète. 
 
-Des calculs analytiques sur les équations linéarisées (valables quand $e$ et $I$ sont faibles) montrent que les ondes dues à l'excentricité ou l'inclinaison ont tendance à amortir l'élément orbital qui est à leur origine. 
+Des calculs analytiques sur les équations linéarisées (valables quand $e$ et $I$ sont faibles $e,i \ll H/R$) montrent que les ondes dues à l'excentricité ou l'inclinaison ont tendance à amortir l'élément orbital qui est à leur origine. \cite[eqs. (45), (47)]{tanaka2004three} trouvent un amortissement exponentiel dont les temps caractéristiques sont : 
+\begin{subequations}
+\begin{align}
+\frac{\overline{\dot{e}}}{e} &= -\frac{0.780}{t_\text{wave}}\\
+\frac{\overline{\dot{I}}}{I} &= -\frac{0.544}{t_\text{wave}}
+\end{align}
+\end{subequations}
+où le temps caractéristique de l'évolution orbitale $t_\text{wave}$ est donné par \cite[eq. (49)]{tanaka2004three} :
+\begin{align}
+t_\text{wave} &= \frac{M_\star}{M_p}\frac{M_\star}{\Sigma_p a^2} \left(\frac{H}{R}\right)^4 {\Omega_p}^{-1}
+\end{align}
 
-Le temps caractéristique d'amortissement pour l'excentricité et l'inclinaison est similaire et est de l'ordre de \citep{tanaka2004three} :
+Le temps caractéristique d'amortissement pour l'excentricité et l'inclinaison est similaire et de l'ordre de \citep{tanaka2004three} :
 \begin{align}
 \tau_e \sim \tau_I &\sim h^2 \tau_\text{mig}
 \end{align}
 
-%TODO expliquer à grande valeur les principes que j'ai surlignés dans cresswell et dirken 2007
-%TODO donner les formules à la limite, à voir.
-%TODO finir de rédiger cette partie. 
+Des simulations hydrodynamiques montrent que le même phénomène d'amortissement se produit pour des valeurs plus grandes de $e$ et $I$, tout en étant dans un régime différent que celui à faible valeurs ($e,i \ll H/R$) \citep{cresswell2007evolution}. On explique cela pour l'inclinaison par le fait qu'à grande inclinaison, la planète peut sortir du disque est ressentir un amortissement réduit. Pour l'excentricité quant à elle, on invoque le fait que durant son orbite la planète va voir sa vitesse varier par rapport à celle du disque de gaz \citep{papaloizou2000orbital}.
 
 \subsection{L'accrétion du gaz}\label{sec:accretion_coeur}
 Dans le modèle d'\gras[modèle!accrétion de c\oe ur]{accrétion de c\oe ur}, les planètes géantes sont d'abord des c\oe urs rocheux qui grossissent jusqu'à atteindre une masse critique de l'ordre de $15 M_{\oplus}$. Une fois cette masse atteinte, le c\oe ur commence à accréter rapidement du gaz jusqu'à former une géante gazeuse.
+%TODO ref?
 
-Ceci implique que la formation des planètes géantes doive se passer avant que le disque de gaz ne se dissipe (ce qui intervient au bout de $10^7$ ans environ).
+Ceci implique que la formation des planètes géantes doive se passer avant que le disque de gaz ne se dissipe (ce qui intervient au bout de quelques millions d'années).
+%TODO ref?
 
-Les noyaux de ces planètes sont supposés se former au delà de la ligne des glaces (limite radiale virtuelle au delà de laquelle on peut trouver de l'eau sous forme solide ; autour de $4\unit{ua}$). En effet, au delà de cette limite, la quantité de matière solide augmente, et donc le taux d'accrétion augmente aussi.
+Les noyaux de ces planètes sont supposés se former au delà de la ligne des glaces (limite radiale virtuelle au delà de laquelle on peut trouver de l'eau sous forme solide ; autour de $4\unit{UA}$). En effet, au delà de cette limite, la quantité de matière solide augmente, et donc le taux d'accrétion augmente aussi.
 
 \begin{attention}
 La formation des embryons de planètes géantes n'est toujours pas clair. On ne sait pas vraiment s'il y a une zone privilégiée ou non, la limite virtuelle de la ligne des glaces pourrait ne pas être valable, la glace ne rajoutant qu'environ 50\% de masse en plus.\index{ligne des glaces}\index{snowline|see{ligne des glaces}}
