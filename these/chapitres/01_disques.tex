@@ -59,7 +59,7 @@ Q &= \frac{\kappa c_{s}}{\pi G \Sigma}
 est un indicateur de la stabilité du disque par rapport à l'autogravité.
 %TODO utiliser les réfs page 4 de la thèse d'arnaud. Pour la comparaison des masses, dire que le rapport d'aspect apparait naturellement des équations.
 
-Dans ce paramètre, $\pi G \Sigma$ représente l'importance de la gravité. La vitesse du son $c_{s}$ est liée à la pression thermique ; la \gras[fréquence!epicyclique@épicyclique]{fréquence épicyclique} $\kappa$ détermine quant à elle la force du cisaillement dans le disque.
+Dans ce paramètre, $\pi G \Sigma$ représente la masse du disque. La vitesse du son $c_{s}$ est liée à la pression thermique ; la \gras[fréquence!epicyclique@épicyclique]{fréquence épicyclique} $\kappa$ détermine quant à elle la force du cisaillement dans le disque.
 
 \bigskip
 
@@ -85,7 +85,7 @@ où $G$ est la constante de gravitation, et $R$ la distance à l'étoile. Dans l
 
 \bigskip
 
-À l'instar des planètes du système solaire qui orbitent autour du Soleil d'autant plus vite qu'elle sont proche de ce dernier, les éléments fluides du disques de gaz vont orbiter beaucoup plus vite au bord interne qu'ils ne le font au bord externe. Il existe donc une force de cisaillement entre deux anneaux de gaz concentriques, dûs à leur différence de vitesse. Cette différence de vitesse génère des frottements à cause de la viscosité du disque $\nu$ (dont nous parlerons plus en détail plus loin \refsec{sec:viscosite}) qui chauffe le gaz en lui faisant perdre de l'énergie. En conséquence, une partie de l'énergie gravitationnelle du gaz est convertie en chaleur, qui est ensuite évacuée par le rayonnement de corps noir du gaz. 
+Il existe une force de cisaillement entre deux anneaux de gaz concentriques, dûs à leur différence de vitesse. Cette différence de vitesse génère des frottements à cause de la viscosité du disque $\nu$ (dont nous parlerons plus en détail plus loin \refsec{sec:viscosite}) qui chauffe le gaz en lui faisant perdre de l'énergie. En conséquence, une partie de l'énergie gravitationnelle du gaz est convertie en chaleur, qui est ensuite évacuée par le rayonnement de corps noir du gaz. 
 
 \bigskip
 
@@ -104,8 +104,8 @@ Afin de décrire l'évolution hydrodynamique du disque de gaz, nous allons utili
 \subsubsection{Structure verticale du disque}
 On s'intéresse à la répartition de masse verticalement dans le disque. Afin de définir les quantités importantes qui s'y rapporte, nous allons écrire l'équation de l'équilibre hydrostatique. On a alors :
 \begin{align}
-\inv{\rho}\dpd{P}{z} &= - \vect{g}.\hat{e}_z\\
-&= \left(\frac{GM}{R^3}\hat{e}_r\right).\hat{e}_z
+\inv{\rho}\dpd{P}{z} &= \vect{g}.\hat{e}_z\\
+&= \left(-\frac{GM}{R^3}\hat{e}_r\right).\hat{e}_z
 \end{align}
 
 $\vect{g}$ est orienté vers l'étoile centrale, selon la direction $r$ (en sphérique). En projetant sur l'axe $z$ pour effectuer le produit scalaire, et en faisant l'approximation que $r\sim a$ on obtient alors :
@@ -126,7 +126,7 @@ On obtient alors :
 \begin{align}
 \rho(z) &= \rho_0\exp\left(-\frac{z^2}{2H^2}\right)
 \end{align}
-où $\rho_0$ est la densité volumique du disque de gaz dans le plan médian et $H$ l'échelle de hauteur du disque est définie par : 
+où $\rho_0$ est la densité volumique du disque de gaz dans le plan médian et $H$ l'échelle de hauteur du disque est définie par (dans la limite isotherme) : 
 \begin{align}
 H &= \sqrt{\frac{k_B T}{\Omega^2 \mu m_H}}
 \end{align}
@@ -190,23 +190,10 @@ $v_r$ étant négatif, on a bien une perte de masse en $r=R$ et un gain de masse
 
 La conservation de la masse implique alors que la dérivée temporelle de la masse de l'anneau est égale au flux de masse à travers sa surface. On a ainsi : 
 \begin{align*}
-\dpd{}{t}\left(2\pi R \Delta R \Sigma(R)\right) &= \dif F_M(R) + \dif F_M(R+\Delta R)\\
-\dpd{}{t}\left(\cancel{2\pi}R \Delta R \Sigma(R)\right) &= \Sigma(R) \cdot \cancel{2\pi} R \cdot v_r(R) - \cancel{2\pi} (R+\Delta R) \cdot v_r(R+\Delta R) \cdot \Sigma(R+\Delta R)
+\dpd{}{t}\left(2\pi R \Delta R \Sigma(R)\right) &= \dif F_M(R) + \dif F_M(R+\Delta R)
 \end{align*}
 
-$R$ et $\Delta R$ sont des variables indépendantes du temps. On peut donc les sortir de la dérivée partielle en fonction du temps. 
-
-En faisant passer le terme $\Delta R$ dans le second membre de l'équation, on fait apparaître des termes de la forme 
-\begin{align*}
-\frac{U(R+\Delta R) - U(R)}{\Delta R}
-\end{align*}
-
-En faisant tendre l'épaisseur $\Delta R$ de l'anneau vers 0, on fait ainsi apparaitre une forme différentielle : 
-\begin{align*}
-\lim_{\Delta R \rightarrow 0} \frac{U(R+\Delta R) - U(R)}{\Delta R} &= \dpd{U}{r}(R)
-\end{align*}
-
-On obtient alors :
+En faisant tendre l'épaisseur $\Delta R$ de l'anneau vers 0, on obtient alors :
 \begin{important}
 \begin{align}
 \dpd{\Sigma}{t} + \inv{R}\dpd{}{r}\left(R v_r \Sigma\right)&=0\label{eq:conservation_masse}
@@ -273,6 +260,11 @@ Ainsi, le couple $\vect{\Gamma}=\vect{r}\wedge\vect{F}$ issu de chacun des annea
 \bigskip
 
 En utilisant \refeq{eq:J_a}, \refeq{eq:dJ}, \refeq{eq:J_torques}, dans \refeq{eq:cons_J_a} il vient alors :
+\begin{align}
+\dpd{\Sigma}{t} &= \inv{r}\dpd{}{r}\left\{\inv{\dpd{}{r}\left(r^2\Omega\right)} \dpd{}{r}\left[\nu \Sigma r^3 \left(-\dod{\Omega}{r}\right)\right]\right\}
+\end{align}
+
+Dans le cas d'un disque Képlerien ($\Omega = \sqrt{\frac{GM}{r^3}}$) on obtient finalement :
 \begin{important}
 \begin{align}
 \dpd{\Sigma}{t} &=\frac{3}{r}\dpd{}{r}\left[\sqrt{r} \dpd{}{r}\left(\nu \Sigma r^\sfrac{1}{2}\right)\right]
@@ -324,7 +316,7 @@ Un disque peut à la fois être actif et passif, mais généralement on essaie d
 
 Afin de déterminer le profil de température, il faut écrire l'équation de conservation de l'énergie, qui va tenir compte de tous les termes source et toutes les pertes, par unité de surface.
 
-On a tout d'abord les pertes par rayonnement de corps noir. Ensuite, il y a les termes sources, qui peuvent dépendre en fonction de la physique que l'on considère. Pour notre cas, il y a un terme dû à l'enveloppe du disque, un dû à l'irradiation de l'étoile centrale, et enfin un dernier dû au chauffage visqueux.
+On a tout d'abord les pertes par rayonnement de corps noir. Ensuite, il y a les termes sources. Pour un disque actif, le terme source est le chauffage visqueux. Pour un disque passif, c'est l'irradiation de l'étoile \citep{chiang1997spectral}. Dans notre cas, il y a un terme dû à l'enveloppe du disque, un dû à l'irradiation de l'étoile centrale, et enfin un dernier dû au chauffage visqueux.
 
 
 \begin{figure}[htb]
@@ -441,7 +433,6 @@ Seul le terme $T_{r\varphi}$ reste :
 \begin{align}
 T_{r\varphi} &= \dpd{v_\varphi}{r} - \frac{v_\varphi}{r}\nonumber\\
 \intertext{avec $v_\varphi=r\Omega$}
-&= \cancel{\Omega} + r\dod{\Omega}{r} - \cancel{\frac{r\Omega}{r}}\nonumber\\
 T_{r\varphi} &= r\dod{\Omega}{r}
 \end{align}
 
@@ -493,7 +484,7 @@ Quand on parle de viscosité $\nu$ dans un disque, ce n'est pas la viscosité mo
 
 Ceci implique par contre qu'il y ait de l'ionisation. En effet, sans ionisation, il n'y a pas de couplage entre le champ magnétique et la matière, et donc pas de turbulence induite par ce même champ. 
 
-Dans la pratique, il est rare que la viscosité soit calculée de manière cohérente, ce qui serait beaucoup trop couteux en calculs, sans apporter forcément beaucoup plus de précisions étant donné les nombreuses incertitudes sur la poussière, le couplage et le champ magnétique. 
+Il est rare que la viscosité soit calculée de manière cohérente. L'importante augmentation du temps de calcul n'apporterait pas forcément beaucoup plus de précisions étant donné les nombreuses incertitudes sur la poussière, le couplage et le champ magnétique. 
 
 \bigskip
 
@@ -504,7 +495,7 @@ Un autre modèle très répandu pour la viscosité du disque est la prescription
 \subsubsection{Les disques alpha}
 On peut introduire un paramètre adimensionné $\alpha$ \citep{shakura1973black}. Dans ce formalisme, plusieurs hypothèses sont faites : 
 \begin{itemize}
-\item On considère que les turbulences sont sub-soniques.
+\item On considère que la turbulence est sub-sonique.
 \item L'échelle des tourbillons des turbulences est plus petite que l'échelle de hauteur du disque
 \end{itemize}
 Le mécanisme qui a le plus de chance d'être à l'origine de la viscosité alpha est l'\gras{Instabilité Magnéto-Rotationnelle} (MRI) \citep{balbus1991powerful}. 
@@ -528,7 +519,7 @@ Ceci justifie donc que l'on mette ces deux modèles en concurrence, sans placer 
 \subsubsection{Ionisation et dead-zones}\index{ionisation}\index{dead zone}
 Pour qu'une instabilité magnéto rotationnelle ait lieu, c'est à dire qu'il y ait un couplage entre le champ magnétique et les mouvements du disque, il faut qu'une partie au moins du disque soit ionisé. Dans ces régions ionisées, on pourra alors avoir transport du moment angulaire via la viscosité due au champ magnétique (et turbulences engendrées). 
 
-Or, comment ioniser? \reffig{fig:ionization} représente les différents processus d'ionisation dominants en fonction de la zone du disque considérée. Mais si le taux d'ionisation décroit en fonction de la distance orbitale \citep{ilgner2006ionisation1} comme le montre \reffig{fig:ilgner_ionisation}, il en va de même avec la densité de surface du disque. Il est donc probable que certaines zones du disques ne soient pas ionisés (en pourcentage du nombre total d'atomes disponibles), et donc que le transport du moment angulaire s'y fasse peu ou pas du tout \citep{gammie1996layered}. Ces zones, appelées \gras{dead zone}, sont donc des zones sans viscosité magnétique. 
+Or, comment ioniser? \reffig{fig:ionization} représente les différents processus d'ionisation dominants en fonction de la zone du disque considérée. Mais si le taux d'ionisation décroit en fonction de la distance orbitale \citep{ilgner2006ionisation1} comme le montre \reffig{fig:ilgner_ionisation}, il en va de même avec la densité de surface du disque. Il est donc probable que certaines zones du disques ne soient pas ionisés (en pourcentage du nombre total d'atomes disponibles), et donc que le transport du moment angulaire s'y fasse peu ou pas du tout \citep{gammie1996layered}. Ces zones, appelées \gras{dead zone}, sont donc des zones où la turbulence est faible ou inexistante, et où la viscosité et par conséquent beaucoup plus faible. 
 
 \begin{figure}[htb]
 \centering
@@ -542,9 +533,9 @@ On voit donc que les modèles de viscosité constante ou alpha sont incapables d
 \subsection{La poussière}
 Le disque protplanétaire est principalement composé de gaz, hydrogène et hélium en majorité. Pourtant, même si la poussière ne représente qu'environ 1\% de la masse du disque elle joue un rôle au moins aussi important que le gaz lui même.
 
-À cause de la pression quasi inexistante dans le disque en raison des faibles densités, solide et gaz sont les seules phases existantes, il n'y a pas de liquides dans l'espace. La poussière représente la matière solide du disque, en grain plus ou moins fin, allant du nanomètre, micromètre, jusqu'à des tailles planétaires en fin de formation. 
+À cause de la pression quasi inexistante dans le disque en raison des faibles densités, solide et gaz sont les seules phases existantes, il n'y a pas de liquides dans l'espace. La poussière représente la matière solide du disque, en grains plus ou moins fin, allant du nanomètre, micromètre, jusqu'à des tailles planétaires en fin de formation. 
 
-Cette poussière est un composé extrêmement complexe à manipuler. Elle contient différents composés solides en fonction de la température (à certaines températures et densité des composés se volatilisent et d'autres non). La ligne des glaces est une ligne imaginaire au delà de laquelle de la glace d'eau apparait, augmentant de manière drastique la quantité de poussière dans le disque. 
+Cette poussière est un composé extrêmement complexe à manipuler. Elle contient différents composés solides en fonction de la température (à certaines températures et densité des composés se volatilisent et d'autres non). La ligne des glaces représente la distance à partir de laquelle de la glace d'eau apparait, augmentant de manière drastique la quantité de poussière dans le disque. 
 
 \bigskip
 
@@ -622,9 +613,7 @@ Je vais ici essayer de récapituler les approximations qui ont été faites jusq
 \end{enumerate}
 
 \section{Interaction disque-planète}
-Au même titre qu'on rencontre de la résistance quand on essaie de courir en ayant les jambes dans l'eau, les planètes sont sujettes aux mêmes effets dans le disque protoplanétaire. 
-
-Ce seul fait explique pourquoi il est si difficile de comprendre la formation des planètes dans le disque de gaz. On ne peut étudier séparément le disque ou les planètes, c'est un système global, en interaction, qui évolue depuis la formation du disque (et les poussières qu'ils contient) jusqu'à la dissipation du disque (et la possible présence d'une ou plusieurs planètes).
+On ne peut étudier séparément le disque ou les planètes, c'est un système global, en interaction, qui évolue depuis la formation du disque (et les poussières qu'ils contient) jusqu'à la dissipation du disque (et la possible présence d'une ou plusieurs planètes).
 
 Étant donné que j'ai implémenté les interactions disque-planète à partir de modèles calibrés sur des simulations hydrodynamiques, je ne vais pas redémontrer ici les formules analytiques, mais plutôt m'attacher à présenter, avec les mains, le principe de chacun des phénomènes physiques mis en jeux.
 
@@ -637,13 +626,7 @@ Ce type de migration ne concerne que les planètes de faible masse (de l'ordre d
 %\end{remarque}
 
 \subsubsection{Couple du disque sur la planète}
-Un couple gravitationnel peut-être vu comme le vecteur énergie associé à une interaction gravitationnelle. Un couple positif d'un corps 1 sur un corps 2 signifie que le premier corps va donner de l'énergie au deuxième.
-
-Inversement, si ce couple est négatif, le corps 1 va prendre de l'énergie au corps 2.
-
-\bigskip
-
-Le couplage gravitationnel entre les ondes de densité et la planète qui les crées abouti à un couple qui agit sur la planète.
+Un couple gravitationnel représente l'échange d'énergie associé à une force gravitationnelle.  Le couplage gravitationnel entre les ondes de densité et la planète qui les crées abouti à un couple qui agit sur la planète.
 
 \begin{attention}
 À chaque fois qu'il sera mentionné \og couple\fg, celui-ci fera référence au couple \emph{du} disque \emph{sur} la planète.
@@ -659,15 +642,22 @@ La présence d'une planète dans un disque de gaz entraine la création d'ondes 
 
 \bigskip
 
+%TODO remarques de Laurent sur cette partie
+%TODO il est possible que les onde de densité s'auto entretienne 
+% c'est trop rentré dans les détails. Ce n'est pas une onde matérielle rigide qui tourne, mais le bras spiral n'est rien de plus qu'une onde statistique.
+%résumer le premier paragraphe en 3 lignes, et le deuxième pareil. 
+%Les bras spiraux dans une galaxie ne sont pas une onde rigide qui tourne, mais une onde de densité qui s'entretient par les orbites excentriques. 
+
 Il est tout d'abord intéressant de remarquer l'origine des bras spiraux dans les galaxies. Ce sont essentiellement des phénomènes statistiques que l'on peut résumer en deux points : 
 \begin{enumerate}
-\item Une onde de densité se forme par la présence de sur-densité locales comme des nuages de gaz géants \citep{donghia2013self}. Mais une fois les nuages dissipés, il y a un phénomène d'auto-interaction. L'onde de densité, formée par l'excitation cohérente des excentricité et orientation d'orbites excentriques \reffig{fig:spiral_arms} entretient elle-même les excentricités des éléments qui la composent.
+\item Une onde de densité se forme par la présence de sur-densité locales comme des nuages de gaz géants \citep{donghia2013self}. Une fois formée, il est possible que l'onde de densité s'auto-entretienne en modifiant les excentricités des éléments qui la composent \citep{binney2008book}.
 
-La sur-densité a tendance à s'auto-entretenir en modifiant les orbites des étoiles de sorte à augmenter leur excentricité ainsi qu'orienter de manière cohérente les arguments du périhélie (la direction du grand axe de l'orbite).
-\item Les étoiles qui constituent le bras spiral ne seront pas les mêmes en fonction de l'instant d'analyse, le bras spiral n'est rien de plus qu'une sur-densité statistique. Pour une orbite excentrique, la vitesse d'une étoile est plus grande au périastre qu'à l'apoastre. Ainsi elle passera plus de temps loin de son étoile. L'excitation cohérente des excentricités des étoiles crée donc des ondes de densité dû à la présence statistique des étoiles. Le bras spiral n'est ainsi pas constitué d'une population fixe d'étoile, mais plutôt d'une population statistique. Les étoiles constituant le bras spiral changent avec le temps, mais statistiquement, la position des étoiles dans la galaxie dessine une onde de densité où le nombre d'étoiles est plus grand.
+\item L'onde ainsi créée n'est pas une onde matérielle rigide en rotation, mais une onde de densité statistique. Le bras spiral n'est ainsi pas constitué d'une population fixe d'étoile. Les étoiles constituant le bras spiral changent avec le temps, mais statistiquement, la position des étoiles dans la galaxie dessine une onde de densité où le nombre d'étoiles est plus grand. 
 \end{enumerate}
 
-\reffig{fig:spiral_arms} schématise l'apparition d'onde de densité. Dans le cas à gauche, des orbites concentriques parfaitement circulaires sont ajoutés. On ne voit rien de particulier. Par contre, dans le cas à droite, on choisi des orbites très légèrement excentriques. À chaque étape, on rajoute une orbite en agrandissant l'orbite précédente et en la tournant légèrement. On voit ainsi apparaître deux ondes de densités dans le disques simplement dues à l'orientation des orbites excentriques.
+\reffig{fig:spiral_arms} schématise l'apparition d'onde de densité. Dans le cas à gauche, des orbites concentriques parfaitement circulaires sont ajoutés. On ne voit rien de particulier. Par contre, dans le cas à droite, on choisi des orbites très légèrement excentriques. À chaque étape, on rajoute une orbite en agrandissant l'orbite précédente et en la tournant légèrement. On voit ainsi apparaître deux ondes de densités dans le disque simplement dues à l'orientation des orbites excentriques.
+
+Ça signifie en particulier que la vitesse de rotation de l'onde de densité n'est pas liée à la vitesse de rotation des étoiles qui la composent. Ceci permet de résoudre le \og winding problem\fg c'est à dire le fait que si l'onde de densité était rigide, elle s'enroulerait sur elle-même au bout de quelques orbites seulement, ce qui n'est pas le cas ici \citep{binney2008book}.
 
 \begin{figure}[htb]
 \centering
@@ -692,7 +682,7 @@ Pour l'interaction entre une planète et un disque protoplanétaire, c'est exact
 
 Le potentiel gravitationnel de la planète peut se décomposer en série de Fourier où chaque mode $m$ (entier) a une dépendance sinusoïdale en azimut et possède $m$ maxima et $m$ minima. 
 
-Pour chaque mode $m$ du potentiel gravitationnel de la planète, on définit deux résonances, une résonance interne (ILR : Inner Lindblad Resonance) et une résonance externe (OLR : Outer Lindblad Resonance) associées aux positions suivantes dans le cas d'un disque froid ($h/R\ll 1$ ; \cite{ward1997protoplanet}) : 
+Pour chaque mode $m$ du potentiel gravitationnel de la planète, on définit deux résonances, une résonance interne (ILR : Inner Lindblad Resonance) et une résonance externe (OLR : Outer Lindblad Resonance) associées aux positions suivantes dans le cas d'un disque froid ($H/R\ll 1$ ; \cite{ward1997protoplanet}) : 
 \begin{subequations}
 \begin{align}
 r_{OLR}(m) &= \left(\frac{m+1}{m}\right)^\sfrac{2}{3}r_p\\
@@ -712,7 +702,7 @@ Il est important de remarquer que la position de la résonance externe d'ordre $
 
 Ainsi, le couple de Lindblad est toujours négatif dans un disque protoplanétaire. De plus, ce couple négatif est une tendance qui dépend peu ou pas du tout des paramètres du disque \citep{ward1997protoplanet}.
 
-La résolution numérique des équations linéarisées permet de trouver une formule analytique pour le couple de Lindblad $\Gamma_L$. Dû à la résolution numérique qui doit s'affranchir de la divergence du potentiel gravitationnel en $r=r_0$, cette formule introduit une longueur de lissage permettant de s'affranchir du noyau du Green du potentiel gravitationnel \citep[eq. (14)]{paardekooper2010torque} : 
+La résolution numérique des équations linéarisées permet de trouver une formule analytique pour le couple de Lindblad $\Gamma_L$. Dû à la résolution numérique qui doit s'affranchir de la divergence du potentiel gravitationnel en $r=r_0$, cette formule introduit une longueur de lissage permettant de s'affranchir de la singularité du noyau du Green du potentiel gravitationnel \citep[eq. (14)]{paardekooper2010torque} : 
 \begin{align}
 \gamma \Gamma_L/\Gamma_0 &= - \left(2.5 +1.7\beta -0.1d\right) \left(\frac{0.4}{b/h}\right)^{0.71}
 \end{align}
@@ -747,21 +737,25 @@ Pour illustrer le principe de la saturation, et sans considérer un couple en pa
 \caption{Dans le référentiel tournant avec la planète (qui est donc fixe dans ce repère), représentation d'une orbite de corotation ainsi que des différents temps caractéristiques mis en jeux. $t_\text{lib}$ est le temps mis par un élément fluide pour effectuer une orbite de corotation (temps qui peut être égal à 130 fois la période orbitale de la planète). $t_\text{U-turn}$ est le temps mis par un élément fluide pour effectuer un demi tour devant la planète. $t_\text{diff}$ peut être suivant le cas le temps radiatif $t_\text{rad}$ ou le temps visqueux $t_\text{vis}$ nécessaire pour homogénéiser les propriétés thermodynamiques de l'élément fluide avec son environnement.}\label{fig:corotation_orbits}
 \end{figure}
 
-On définit tout d'abord $t_\text{lib}$ comme le temps mis par un élément fluide pour effectuer une co-orbite complète dans le fer à cheval. Ceci dépend de la distance de l'élément fluide au rayon de corotation. Mais le temps de libration le plus court est obtenu à la distance $x_s$ de la corotation, où $x_s$ est la demi-largeur de la zone de fer-à-cheval (\og half-width of the horseshoe region\fg) et vaut \citep[eq. (52)]{baruteau2008corotation} : 
+On définit tout d'abord $t_\text{lib}$ comme le temps mis par un élément fluide pour effectuer une co-orbite complète dans la zone de fer-à-cheval. Ceci dépend de la distance de l'élément fluide au rayon de corotation. Mais le temps de libration le plus court est obtenu à la distance $x_s$ de la corotation, et vaut \citep[eq. (52)]{baruteau2008corotation} : 
 \begin{align}
 t_\text{lib} &= \frac{4\pi}{x_s\abs{\od{\Omega}{r}}} = \frac{8\pi r_p}{3\Omega_p x_s}
 \end{align}
-Ce temps de libration est généralement de quelques dizaines de fois la période orbitale de la planète, $t_\text{lib} \sim 50 T_\text{orb}$. 
+où $x_s$ est la demi-largeur de la zone de fer-à-cheval (\og half-width of the horseshoe region\fg) \citep[eq. (44)]{paardekooper2010torque} :
+\begin{align}
+x_s &= \frac{1.1}{\gamma^{1/4}} \left(\frac{0.4}{b/h}\right)^{1/4} \sqrt{\frac{q}{h}}
+\end{align}
+Dans le cas d'une planète de $20\unit{M_\oplus}$ à $1\unit{AU}$ dans un disque avec $h=0.05$ et $M_\star=1M_\odot$, ce temps de libration vaut $t_\text{lib}\sim 38 p_\text{orbital}$. 
 
 Le temps $t_\text{U-turn}$ représente quant à lui la durée nécessaire à un élément fluide pour effectuer un demi tour devant la planète, c'est à dire pour parcourir la zone de longueur $2x_s$\footnote{$x_s$ est la demi-largeur de la zone de fer-à-cheval (\og half-width of the horseshoe region\fg)} devant la planète. Il est définit par \citep[eq. (64)]{baruteau2008corotation}
 \begin{align}
 t_\text{U-turn} &\simeq \frac{4}{\Omega_p}\left[\frac{H(r_p)}{R_H}\right]^\sfrac{3}{2}
 \end{align}
-Ce temps est généralement de l'ordre de $t_\text{U-turn} \sim 10 T_\text{orb}$. 
+où $R_H=r_p (q/3)^{1/3}$ est le rayon de Hill de la planète. Dans le cas d'une planète de $20\unit{M_\oplus}$ à $1\unit{AU}$ dans un disque avec $h=0.05$ et $M_\star=1M_\odot$, ce temps vaut $t_\text{U-turn} \sim 1.6 p_\text{orbital}$.
 
 Un troisième est dernier temps $t_\text{diff}$ rentre en jeu, c'est le temps de diffusion. Selon le processus physique mis en jeu, ce temps peut être $t_\text{rad}$ ou $t_\text{visc}$.
 
-$t_\text{rad}$ représente le temps de diffusion par refroidissement radiatif. Ce temps est plus long quand on se rapproche de l'étoile car le rayonnement est plus rapidement ré-absorbé. Le temps radiatif à la zone de corotation est de l'ordre de :
+$t_\text{rad}$ représente le temps de diffusion par refroidissement radiatif. Ce temps est plus long quand on se rapproche de l'étoile car le rayonnement est plus rapidement ré-absorbé. Le temps radiatif au travers de la zone de corotation est de l'ordre de :
 \begin{align}
 t_\text{rad} &= \frac{{x_s}^2}{\chi}
 \end{align}
@@ -789,9 +783,8 @@ $t_\text{U-turn}$ est le temps nécessaire pour faire le demi tour devant la pla
 \end{figure}
 
 \reffig*{fig:corotation_principle} illustre les trois cas possibles en fonction des commensurabilités entre les différents temps caractéristiques mis en jeux.
-%TODO revoir ces explications plus bas, c'est pas clair les explications sur les temps caractéristiques
 
-L'idée générale afin d'éviter la saturation, c'est qu'on doit restaurer le gradient dans la zone \og U-turn\fg d'une orbite à l'autre. Il faut donc que les processus diffusifs soient suffisamment efficace pour qu'en arrivant à la région de \og U-turn\fg de l'autre coté, l'élément fluide ait pu équilibrer ses conditions physiques avec le milieu environnant. Cette condition est illustrée par l'inégalité suivante : 
+L'idée générale afin d'éviter la saturation, c'est qu'on doit restaurer le gradient d'entropie / de vortensité au travers de la zone fer-à-cheval. Il faut donc que les processus diffusifs soient suffisamment efficace pour qu'en arrivant à la région de \og U-turn\fg de l'autre coté, l'élément fluide ait pu équilibrer ses conditions physiques avec le milieu environnant. Cette condition est illustrée par l'inégalité suivante : 
 \begin{align}
 t_\text{diff} < \frac{t_\text{lib}}{2}
 \end{align}

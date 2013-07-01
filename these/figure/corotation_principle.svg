@@ -8,9 +8,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="772.43079"
-   height="564.3313"
-   viewBox="0 0 772.43081 564.3313"
+   width="569.46716"
+   height="366.42175"
+   viewBox="0 0 569.46718 366.42175"
    id="svg3031"
    version="1.1"
    inkscape:version="0.48.2 r9819"
@@ -40,9 +40,9 @@
      inkscape:window-height="480"
      id="namedview3077"
      showgrid="false"
-     inkscape:zoom="1.0065082"
-     inkscape:cx="440.13964"
-     inkscape:cy="301.98315"
+     inkscape:zoom="0.91465698"
+     inkscape:cx="414.87576"
+     inkscape:cy="124.71547"
      inkscape:current-layer="svg3031"
      fit-margin-top="0"
      fit-margin-left="0"
@@ -129,18 +129,28 @@
        y1="220.1459"
        x2="-88.147316"
        y2="220.1459" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3984"
+       id="linearGradient3862"
+       x1="791.46277"
+       y1="49.525276"
+       x2="791.46277"
+       y2="486.44006"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.64930256,0,0,0.64930256,-2.8117872e-6,-1.630387e-6)" />
   </defs>
   <g
      style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
      id="text6004"
-     transform="translate(-122.88904,-709.06379)" />
+     transform="translate(-270.16906,-808.01856)" />
   <g
      style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
      id="text6004-9"
-     transform="translate(98.630564,-710.06093)" />
+     transform="translate(-48.649462,-809.0157)" />
   <g
      id="g7266"
-     transform="translate(728.18927,47.836779)">
+     transform="matrix(0.64930256,0,0,0.64930256,472.81516,31.060541)">
     <rect
        y="1.6884999"
        x="-728.18927"
@@ -369,7 +379,7 @@
   </g>
   <g
      id="g7244"
-     transform="translate(732.77217,47.836779)">
+     transform="matrix(0.64930256,0,0,0.64930256,475.79084,31.060541)">
     <rect
        style="fill:url(#linearGradient7303);fill-opacity:1;stroke:none"
        id="rect6891"
@@ -490,7 +500,7 @@
   </g>
   <g
      id="g7221"
-     transform="translate(728.18927,47.836779)">
+     transform="matrix(0.64930256,0,0,0.64930256,472.81516,31.060541)">
     <rect
        y="1.6884999"
        x="-202.94617"
@@ -611,4 +621,28 @@
          x="-96.759346"
          sodipodi:role="line">ne sature pas</tspan></text>
   </g>
+  <rect
+     style="fill:url(#linearGradient3862);fill-opacity:1;stroke:#000000;stroke-width:0.64930254;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+     id="rect3074"
+     width="21.724482"
+     height="283.68988"
+     x="503.03656"
+     y="32.156879" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#Arrow2Lend)"
+     d="m 542.50821,315.84677 0,-283.689879"
+     id="path3864"
+     inkscape:connector-curvature="0" />
+  <text
+     xml:space="preserve"
+     style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+     x="-174.03703"
+     y="565.30701"
+     id="text4050"
+     sodipodi:linespacing="125%"
+     transform="matrix(0,-1,1,0,0,0)"><tspan
+       sodipodi:role="line"
+       id="tspan4052"
+       x="-174.03703"
+       y="565.30701">Entropie ou vortensité</tspan></text>
 </svg>
