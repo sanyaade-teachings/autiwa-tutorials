@@ -665,7 +665,10 @@ Ce type de migration ne concerne que les planètes de faible masse (de l'ordre d
 %\end{remarque}
 
 \subsubsection{Couple du disque sur la planète}
-Un couple gravitationnel représente l'échange d'énergie associé à une force gravitationnelle.  Le couplage gravitationnel entre les ondes de densité et la planète qui les crées abouti à un couple qui agit sur la planète.
+Un couple gravitationnel représente l'échange d'énergie associé à une force gravitationnelle.  Le couplage gravitationnel entre les ondes de densité et la planète qui les crées abouti à un couple qui agit sur la planète : 
+\begin{align}
+\Gamma &= - \iint_\text{disc} \left(\vect{r}\grad{\Phi_p}\right)\Sigma r \dif r \dif \theta
+\end{align}
 
 \begin{attention}
 À chaque fois qu'il sera mentionné \og couple\fg, celui-ci fera référence au couple \emph{du} disque \emph{sur} la planète.
@@ -818,7 +821,7 @@ $t_\text{U-turn}$ est le temps nécessaire pour faire le demi tour devant la pla
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.75\linewidth]{figure/corotation_principle.pdf}
-\caption{Dans le référentiel tournant avec la planète (qui est donc fixe dans ce repère), représentation du mécanisme général à l'origine du couple de corotation. Les trois schémas représentent les différents cas de figure suivant les valeurs de $t_\text{lib}$, $t_\text{U-turn}$ et $t_\text{diff}$. Un couple apparaît quand le temps mis par un élément fluide pour faire demi tour devant la planète $t_\text{U-turn}$ est plus court que le temps nécessaire pour qu'il s'homogénéise avec son environnement ($t_\text{diff}$). Ce couple ne sature pas quand le temps $t_\text{lib}$ mis par l'élément fluide pour effectuer une orbite complète est plus long que le temps $t_\text{diff}$ nécessaire pour qu'il s'homogénéise avec le gaz environnant. }\label{fig:corotation_principle}
+\caption{Dans le référentiel tournant avec la planète, représentation du mécanisme général à l'origine du couple de corotation. Lorsque les temps de diffusion $t_\text{diff}$ sont plus grande que le temps de libration $t_\text{lib}$, le couple de corotation sature car le gradient de vortensité/entropie au travers de la région fer-à-cheval tend à s'aplatir. Ce dernier est restauré quand les temps de diffusion $t_\text{diff}$ sont plus courts que le temps de libration $t_\text{lib}$. Dans ce cas, la valeur optimale du couple de corotation est obtenue lorsque les temps de diffusion $t_\text{diff}$ sont de l'ordre de la moitié du temps de libration $t_\text{lib}/2$. Dans la limite où les temps de diffusion $t_\text{diff}$ sont plus courts que le temps de demi-tour $t_\text{U-turn}$, l'amplitude du couple de corotation décroit pour atteindre la valeur prédite par une analyse linéaire.}\label{fig:corotation_principle}
 \end{figure}
 
 \reffig*{fig:corotation_principle} illustre les trois cas possibles en fonction des commensurabilités entre les différents temps caractéristiques mis en jeux.

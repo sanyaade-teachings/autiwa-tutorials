@@ -23,7 +23,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -40,9 +40,9 @@
      inkscape:window-height="480"
      id="namedview3077"
      showgrid="false"
-     inkscape:zoom="1.1754771"
-     inkscape:cx="241.30213"
-     inkscape:cy="132.32187"
+     inkscape:zoom="1.0682062"
+     inkscape:cx="249.55689"
+     inkscape:cy="203.20477"
      inkscape:current-layer="svg3031"
      fit-margin-top="0"
      fit-margin-left="0"
@@ -397,7 +397,7 @@
          y="471.47919"
          x="-622.05713"
          id="tspan7207"
-         sodipodi:role="line">Valeur</tspan><tspan
+         sodipodi:role="line">Cas</tspan><tspan
          y="511.47919"
          x="-622.05713"
          sodipodi:role="line"
@@ -518,11 +518,15 @@
          y="469.83826"
          x="-362.97949"
          id="tspan7211"
-         sodipodi:role="line">Saturation</tspan><tspan
-         id="tspan7213"
+         sodipodi:role="line">Cas</tspan><tspan
          y="509.83826"
          x="-362.97949"
-         sodipodi:role="line">du couple</tspan></text>
+         sodipodi:role="line"
+         id="tspan3112">saturé</tspan><tspan
+         id="tspan7213"
+         y="549.83826"
+         x="-362.97949"
+         sodipodi:role="line" /></text>
   </g>
   <g
      id="g7221"
@@ -638,14 +642,14 @@
        x="-96.759346"
        style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        xml:space="preserve"><tspan
+         id="tspan7219"
          y="467.37683"
          x="-96.759346"
-         id="tspan7217"
-         sodipodi:role="line">Couple qui</tspan><tspan
-         id="tspan7219"
+         sodipodi:role="line">Cas</tspan><tspan
          y="507.37683"
          x="-96.759346"
-         sodipodi:role="line">ne sature pas</tspan></text>
+         sodipodi:role="line"
+         id="tspan3116">non saturé</tspan></text>
   </g>
   <rect
      style="fill:url(#linearGradient3862);fill-opacity:1;stroke:#000000;stroke-width:0.64930254;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
