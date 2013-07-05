@@ -228,7 +228,7 @@ Il faut préciser l'ID du commit à \og revert \fg. Il n'est pas obligatoire d'i
 
 Une fois que c'est enregistré, le commit d'annulation est créé. Il ne vous reste plus qu'à vérifier que tout est bon et à le publier (avec un git push).
 
-\subsubsection{Mettre de coté et reprendre un travail en cours : stash}\index{git!stash}
+\subsubsection{Mettre de coté et reprendre un travail en cours : stash}\index{git!stash}\label{sec:stash}
 Si on est en train de faire une modification, sans faire de commit, mais qu'on doit faire des modifications plus urgentes, et surtout immédiate, on peut souhaiter ne pas perdre le travail déjà effectué. Au lieu de faire un commit on peut simplement faire une sauvegarde de l'état modifié, pour le restituer plus tard.
 
 \begin{verbatim}
@@ -416,6 +416,11 @@ qui montre que la branche \textbf{test\_01} est maintenant active.
 Vous pouvez changer d'une branche à l'autre, faire des commits (éventuellement des push) sur la branche principale, mais ceux ci ne seront pas propagés aux autres branches, c'est d'ailleurs le principe des branches. 
 \end{attention}
 
+\subsection{Déplacer des modifications non commités dans une autre branche}
+Parfois, on peut se tromper de branche quand on fait des modifications. Deux solutions. Soit on change directement de branche, les modifications qui ne font pas partie d'un \gras[git!commit]{commit} sont alors déplacées automatiquement, il ne reste plus qu'à faire un commit. 
+
+Soit on utilise \gras[git!stash]{git stash} \refsec{sec:stash}.
+
 \subsection{Fusionner une branche avec la branche principale}
 Pour celà, il faut se placer dans la branche principale et demander d'intégrer les changements d'une autre branche en faisant : 
 \begin{verbatim}
@@ -432,7 +437,9 @@ Une fois fusionné, vous pouvez supprimer la branche \textbf{test\_01} (voir la 
 \caption{Avec git rebase, on peut inclure les dernières modifications d'une branche dans une autre branche, afin de décaler la \og base\fg de cette branche. En résumé, c'est comme si on faisait bifurquer la branche concernée à la fin de la branche de laquelle on veut inclure les modifications}
 \end{figure}
 
-
+\begin{attention}
+Ceci n'est utile que si on souhaite plus tard fusionner cette branche avec la branche principale. Sinon, \gras[git!merge]{merge} est suffisant, et beaucoup plus pratique à utiliser. \gras[git!rebase]{rebase} est loin d'être une opération anodine.
+\end{attention}
 
 Pour inclure les dernières modifications de \textbf{master} dans \textbf{devel}, il faut se placer dans la branche \textbf{devel}, et faire :
 \begin{verbatim}
