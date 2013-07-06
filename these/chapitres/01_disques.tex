@@ -63,7 +63,7 @@ Dans ce paramètre, $\pi G \Sigma$ représente la masse du disque. La vitesse du
 
 \bigskip
 
-Si $Q<1$ alors le gaz est instable gravitationnellement et il commence à s'effondrer sur lui même et former des surdensités \citep{gammie2001nonlinear}.
+Si $Q<1$ alors le gaz est instable gravitationnellement et il commence à s'effondrer sur lui même et former des surdensités à condition que le temps de refroidissement soit inférieur à 3 fois la période orbitale ($\tau_c \lesssim 3 \Omega^{-1}$) \citep{gammie2001nonlinear}.
 Si $Q>1$, le disque est stable.
 
 %\begin{remarque}
@@ -148,7 +148,7 @@ On considèrera dans la suite les quantités moyennées selon $z$, et en particu
 \begin{align}
 \Sigma &= \int_{-\infty}^{+\infty} \rho \dif z\nonumber\\
 &=\rho_0 \int_{-\infty}^{+\infty}  \exp\left(-\frac{z^2}{2H^2}\right)\dif z\nonumber\\
-\Sigma &= \sqrt{2\pi}\rho_0 H
+\Sigma &= \sqrt{2\pi}\rho_0 H\label{eq:surface-to-volume}
 \end{align}
 
 % fromang & nelson 2006 donnent une formule, après l'équation (20), mais elle ne correspond pas à ça, peut-être lié à un truc magnétique ou je sais pas quoi
@@ -321,7 +321,7 @@ On a tout d'abord les pertes par rayonnement de corps noir. Ensuite, il y a les 
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width=0.45\linewidth]{figure/disk_energy.pdf}
+\includegraphics[width=0.65\linewidth]{figure/disk_energy.pdf}
 \caption{Représentation du bilan thermique d'un disque}\label{fig:energy_equilibrium}
 \end{figure}
 
@@ -480,9 +480,41 @@ Ce calcul est lui même extrêmement dépendant de la définition que l'on chois
 %En présence de champ magnétioqeu le critère là devient (il faut que le critère soit faible) : (Balbus & Hawley, 1991 ; c'est dans ce papier qu'est démontré l'instabilité MRI) Et donc le disque est linéairement instable : le critère c'est d(Omega^2)/R>0, mais ce n'est pas satisfait
 %TODO mettre plus de détails sur la viscosité (voir armitahge 2011 et 2007, le lecture note)
 %TODO il faut des références pour les dead zones (suggère les dead zones dans Gammie 1993)
-Quand on parle de viscosité $\nu$ dans un disque, ce n'est pas la viscosité moléculaire classique, bien trop faible aux densités rencontrées. On suppose généralement une viscosité due à la turbulence qui est beaucoup plus importante que la viscosité moléculaire, mais qui peut être traitée par les mêmes équations. 
 
-Ceci implique par contre qu'il y ait de l'ionisation. En effet, sans ionisation, il n'y a pas de couplage entre le champ magnétique et la matière, et donc pas de turbulence induite par ce même champ. 
+% cf section 3.3.2 shakura-sunyaev alpha-prescription dans le livre "astrophysics of planet formation" d'armitage
+La viscosité moléculaire, viscosité généralement considérée quand on étudie la dynamique d'un fluide, peut être définie par : 
+\begin{align}
+\nu_m &\sim \lambda c_s
+\end{align}
+où $c_s$ est la vitesse du son dans le milieu et $\lambda$, libre parcours moyen dans le gaz avec une concentration de particule $n$ est :
+\begin{align}
+\lambda &= \inv{n\sigma_\text{mol}}
+\end{align}
+
+On cherche ici à faire un calcul d'ordre de grandeur, on ne se préoccupe pas des détails plus fins qui seraient normalement nécessaire pour calculer une viscosité moléculaire. 
+
+On prend pour section efficace de collisions celle de l'hydrogène moléculaire \citep{chapman1970mathematical} :
+\begin{align}
+\sigma_\text{mol} &= 2\times 10^{-15}\unit{cm^2}
+\end{align}
+
+On considère ensuite un disque dont la densité de surface $\Sigma$ à $1\unit{AU}$ vaut $\Sigma_0 = 500\unit{g/cm^2}$. En utilisant \refeq{eq:surface-to-volume} on a alors $\rho=2.67\cdot 10^{-10}\unit{g/cm^{-3}}$. Il vient la concentration $n=6.8\cdot 10^{13}\unit{cm^{-3}}$. On obtient alors une viscosité moléculaire à $1\unit{AU}$ de l'ordre de : 
+\begin{align}
+\nu_m &\sim 1.0\times 10^6\unit{cm^2/s}
+\end{align}
+
+Le temps caractéristique de l'évolution visqueuse qui en découle est alors : 
+\begin{align}
+t_\nu &\simeq \frac{r^2}{\nu_m} &= 6.5\times 10^{12}\unit{ans}
+\end{align}
+c'est à dire plus d'un million de fois le temps de vie observé des disques protoplanétaires qui se situe autour du million d'années \citep{williams2011protoplanetary}.
+
+En conséquence, quand on parle de viscosité $\nu$\footnote{Viscosité cinématique} dans un disque, ce n'est pas la viscosité moléculaire classique, bien trop faible aux densités rencontrées. On suppose généralement une viscosité due à la turbulence qui est beaucoup plus importante que la viscosité moléculaire, mais qui peut être traitée par les mêmes équations. 
+
+
+%TODO Et calculer le taux d'accrétion (3 pi nu sigma) et comparer aux valeurs typiques de 1e-8 masses solaires par an. Je n'ai pas compris cette partie, du coup j'ai plutôt fait le temps d'évolution visqueux par rapport au temps de vie des disques observés.
+
+
 
 Il est rare que la viscosité soit calculée de manière cohérente. L'importante augmentation du temps de calcul n'apporterait pas forcément beaucoup plus de précisions étant donné les nombreuses incertitudes sur la poussière, le couplage et le champ magnétique. 
 
@@ -491,6 +523,9 @@ Il est rare que la viscosité soit calculée de manière cohérente. L'important
 La première hypothèse est de considérer une viscosité constante. Ce n'est certainement pas satisfaisant, sûrement éloigné de la vérité, mais on n'a ainsi qu'un seul paramètre et on n'ajoute pas de surcouche de complexité apportant son lot supplémentaire d'incertitude. Reste qu'une viscosité constante dans un disque très étendu, par exemple allant de $0.1\unit{AU}$ à $100\unit{AU}$ n'est certainement pas cohérent avec la physique du disque. 
 
 Un autre modèle très répandu pour la viscosité du disque est la prescription $\alpha$.
+
+%le critère de rayleigh dit que le disque est stable hydrodynamiquement si l
+%rien ne dit que la turbulence n'est pas engendrée par une instabilité non linéaire
 
 \subsubsection{Les disques alpha}
 On peut introduire un paramètre adimensionné $\alpha$ \citep{shakura1973black}. Dans ce formalisme, plusieurs hypothèses sont faites : 
@@ -517,7 +552,11 @@ Ceci justifie donc que l'on mette ces deux modèles en concurrence, sans placer 
 %TODO there is a plot of evolution of alpha in function of stellar age, in \citep{guilloteau2011dual}
 
 \subsubsection{Ionisation et dead-zones}\index{ionisation}\index{dead zone}
-Pour qu'une instabilité magnéto rotationnelle ait lieu, c'est à dire qu'il y ait un couplage entre le champ magnétique et les mouvements du disque, il faut qu'une partie au moins du disque soit ionisé. Dans ces régions ionisées, on pourra alors avoir transport du moment angulaire via la viscosité due au champ magnétique (et turbulences engendrées). 
+Pour qu'une instabilité magnéto rotationnelle ait lieu, c'est à dire qu'il y ait un couplage entre le champ magnétique et les mouvements du disque, il faut qu'une partie au moins du disque soit ionisé. Dans ces régions ionisées, on pourra alors avoir transport du moment angulaire via la viscosité turbulente. 
+
+\bigskip
+
+Sans ionisation, il n'y a pas de couplage entre le champ magnétique et la matière, et donc pas de turbulence induite par ce même champ. 
 
 Or, comment ioniser? \reffig{fig:ionization} représente les différents processus d'ionisation dominants en fonction de la zone du disque considérée. Mais si le taux d'ionisation décroit en fonction de la distance orbitale \citep{ilgner2006ionisation1} comme le montre \reffig{fig:ilgner_ionisation}, il en va de même avec la densité de surface du disque. Il est donc probable que certaines zones du disques ne soient pas ionisés (en pourcentage du nombre total d'atomes disponibles), et donc que le transport du moment angulaire s'y fasse peu ou pas du tout \citep{gammie1996layered}. Ces zones, appelées \gras{dead zone}, sont donc des zones où la turbulence est faible ou inexistante, et où la viscosité et par conséquent beaucoup plus faible. 
 
@@ -626,7 +665,10 @@ Ce type de migration ne concerne que les planètes de faible masse (de l'ordre d
 %\end{remarque}
 
 \subsubsection{Couple du disque sur la planète}
-Un couple gravitationnel représente l'échange d'énergie associé à une force gravitationnelle.  Le couplage gravitationnel entre les ondes de densité et la planète qui les crées abouti à un couple qui agit sur la planète.
+Un couple gravitationnel représente l'échange d'énergie associé à une force gravitationnelle.  Le couplage gravitationnel entre les ondes de densité et la planète qui les crées abouti à un couple qui agit sur la planète : 
+\begin{align}
+\Gamma &= - \iint_\text{disc} \left(\vect{r}\wedge\grad{\Phi_p}\right)\Sigma r \dif r \dif \theta
+\end{align}
 
 \begin{attention}
 À chaque fois qu'il sera mentionné \og couple\fg, celui-ci fera référence au couple \emph{du} disque \emph{sur} la planète.
@@ -700,7 +742,7 @@ Par interférence constructive \citep{ogilvie2002wake}, la somme de toutes les o
 
 Il est important de remarquer que la position de la résonance externe d'ordre $m$ est systématiquement plus proche que la résonance interne associée. Ainsi, en sommant sur tous les modes, on arrive à la conclusion que le couple total externe l'emporte toujours sur le couple total interne \citep{ward1997protoplanet}. 
 
-Ainsi, le couple de Lindblad est toujours négatif dans un disque protoplanétaire. De plus, ce couple négatif est une tendance qui dépend peu ou pas du tout des paramètres du disque \citep{ward1997protoplanet}.
+Ainsi, le couple de Lindblad est généralement négatif pour des modèles typiques de disques protoplanétaires \citep{ward1997protoplanet}.
 
 La résolution numérique des équations linéarisées permet de trouver une formule analytique pour le couple de Lindblad $\Gamma_L$. Dû à la résolution numérique qui doit s'affranchir de la divergence du potentiel gravitationnel en $r=r_0$, cette formule introduit une longueur de lissage permettant de s'affranchir de la singularité du noyau du Green du potentiel gravitationnel \citep[eq. (14)]{paardekooper2010torque} : 
 \begin{align}
@@ -779,7 +821,7 @@ $t_\text{U-turn}$ est le temps nécessaire pour faire le demi tour devant la pla
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.75\linewidth]{figure/corotation_principle.pdf}
-\caption{Dans le référentiel tournant avec la planète (qui est donc fixe dans ce repère), représentation du mécanisme général à l'origine du couple de corotation. Les trois schémas représentent les différents cas de figure suivant les valeurs de $t_\text{lib}$, $t_\text{U-turn}$ et $t_\text{diff}$. Un couple apparaît quand le temps mis par un élément fluide pour faire demi tour devant la planète $t_\text{U-turn}$ est plus court que le temps nécessaire pour qu'il s'homogénéise avec son environnement ($t_\text{diff}$). Ce couple ne sature pas quand le temps $t_\text{lib}$ mis par l'élément fluide pour effectuer une orbite complète est plus long que le temps $t_\text{diff}$ nécessaire pour qu'il s'homogénéise avec le gaz environnant. }\label{fig:corotation_principle}
+\caption{Dans le référentiel tournant avec la planète, représentation du mécanisme général à l'origine du couple de corotation. Lorsque les temps de diffusion $t_\text{diff}$ sont plus grande que le temps de libration $t_\text{lib}$, le couple de corotation sature car le gradient de vortensité/entropie au travers de la région fer-à-cheval tend à s'aplatir. Ce dernier est restauré quand les temps de diffusion $t_\text{diff}$ sont plus courts que le temps de libration $t_\text{lib}$. Dans ce cas, la valeur optimale du couple de corotation est obtenue lorsque les temps de diffusion $t_\text{diff}$ sont de l'ordre de la moitié du temps de libration $t_\text{lib}/2$. Dans la limite où les temps de diffusion $t_\text{diff}$ sont plus courts que le temps de demi-tour $t_\text{U-turn}$, l'amplitude du couple de corotation décroit pour atteindre la valeur prédite par une analyse linéaire.}\label{fig:corotation_principle}
 \end{figure}
 
 \reffig*{fig:corotation_principle} illustre les trois cas possibles en fonction des commensurabilités entre les différents temps caractéristiques mis en jeux.
@@ -789,7 +831,7 @@ L'idée générale afin d'éviter la saturation, c'est qu'on doit restaurer le g
 t_\text{diff} < \frac{t_\text{lib}}{2}
 \end{align}
 
-Mais il faut de plus que la diffusion ne soit pas trop efficace, sous peine d'homogénéiser la quantité physique au sein même de la région \og U-turn\fg. Ceci donne alors la deuxième inéquation : 
+Mais il faut de plus que la diffusion ne soit pas trop efficace, sous peine que la valeur du couple de corotation diminue pour atteindre la valeur prédite par une analyse linéaire. Ceci donne alors la deuxième inéquation : 
 \begin{align}
 t_\text{U-turn} < t_\text{diff}
 \end{align}
