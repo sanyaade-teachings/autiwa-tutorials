@@ -37,6 +37,8 @@ Dans mercury, il y a cinq algorithmes différents à notre disposition :
 
 Il y a donc principalement deux catégories : les codes symplectiques dont la priorité est la conservation parfaite de l'énergie (ils sont réputés rapides) et les codes numériques qui intègrent les orbites en faisant évoluer les positions et vitesses petit à petit. Ici, seuls MVS et HYBRID utilisent une partie symplectique alors que BS, BS2 et RADAU sont purement numériques.
 
+%TODO à partir de là et jusqu'à la fin de la subsection, il faut que je contrôle ce que je dis au regard des simulations lancées et des parties surlignées dans le papier sur hybrid. Notamment à propos de la tolérance aux collisions.
+
 \subsection{Note technique}
 Le code est en grande partie le code mercury \cite{chambers1999hybrid}. Les effets du disque ont été inclus dans la partie \textbf{mfo\_user} prévue pour inclure des effets propre à chaque utilisateur. 
 
