@@ -32,10 +32,57 @@ Dans mercury, il y a cinq algorithmes différents à notre disposition :
 \item BS \citep{stoer1980introduction} : un algorithme à pas de temps variable, réputé robuste et plutôt long à tourner.
 \item BS2 \citep{press1992numerical} : Basé sur BS, il présente l'inconvénient de ne pas fonctionner pour les systèmes non conservatifs. Il est censé être deux fois plus rapide que BS.
 \item RADAU \citep{everhart1985efficient} : Ne fonctionne pas bien pour les rencontres proches et les orbites très excentriques. Est censé être deux à trois fois plus rapide que BS.
-\item HYBRID \citep{chambers1999hybrid} : Ce code utilise MVS en temps normal, puis lors d'une rencontre proche, utilise BS afin de résoudre correctement les orbites.
+\item HYBRID \citep{chambers1999hybrid} : Ce code utilise MVS en temps normal, puis lors d'une rencontre proche, utilise BS2 afin de résoudre correctement les orbites.
 \end{itemize}
 
-Il y a donc principalement deux catégories : les codes symplectiques dont la priorité est la conservation parfaite de l'énergie (ils sont réputés rapides) et les codes numériques qui intègrent les orbites en faisant évoluer les positions et vitesses petit à petit. Ici, seuls MVS et HYBRID utilisent une partie symplectique alors que BS, BS2 et RADAU sont purement numériques.
+Il y a donc principalement deux catégories : les intégrateurs symplectiques où le paramètre fixe est le pas de temps ($h=\cte$) et les intégrateurs N-corps où le paramètre est la précision en terme de conservation d'énergie d'un pas de temps à l'autre (le pas de temps varie). Ici, seuls MVS et HYBRID utilisent une partie symplectique alors que BS, BS2 et RADAU sont purement N-corps.
+
+\bigskip
+
+On défini le Hamiltonien $H$ de notre problème N-corps comme étant la somme des énergies cinétiques et potentielles de chaque corps : 
+\begin{align}
+H &= \sum_{i=1}^N\frac{{p_i}^2}{2m_i} -G\sum_{i=1}^N\sum_{j=i+1}^N\frac{m_im_j}{r_{ij}}
+\end{align}
+où $m_i$ est la masse du corps $i$, $p_i$ son impulsion et $r_{ij}$ la séparation entre les corps $i$ et $j$.
+
+Un intégrateur symplectique est un intégrateur qui au lieu d'appliquer directement le hamiltonien $H$ sur le système, va séparer ce dernier en deux (ou plusieurs parties) et appliquer ces sous-hamiltoniens séparément. Un intégrateur symplectique résoud donc le problème de manière approchée en négligeant les termes croisés des sous-hamiltoniens.
+
+Afin de minimiser l'erreur dû à cette approximation, il faut choisir judicieusement la séparation du hamiltonien afin d'avoir une partie dominante par rapport à l'autre.
+
+Par définition, un algorithme symplectique conserve l'énergie au cours du temps, même si l'énergie fluctue au cours du temps autour d'une valeur moyenne. 
+
+Les intégrateurs symplectiques ont deux avantages importants sur les intégrateurs classiques : 
+\begin{enumerate}
+\item L'erreur sur l'énergie ne croit pas au cours du temps. \cite{chambers1999hybrid} a montré que l'erreur sur l'énergie augmentait linéairement avec le temps dans le cas de l'algorithme BS contrairement à l'algorithme HYBRID \citep[voir Fig. 3]{chambers1999hybrid}, même si ce dernier entraine des variations d'énergie instantanée beaucoup plus importantes
+\item Ils sont moins couteux en temps de calcul, en particulier quand la majeure partie de la masse est contenue dans un seul corps (bien adapté pour l'étude d'un système planétaire autour d'une étoile donc).
+\end{enumerate}
+
+Les algorithmes symplectiques ont cependant un inconvénient. Le pas de temps fixe d'un intégrateur symplectique ne permet pas de résoudre correctement les rencontres proches entre les corps du système. Chaque fois que le pas de temps d'un algorithme symplectique est changé, son hamiltonien change aussi, et entraine une variation d'énergie du système (dont l'énergie va osciller autour d'une nouvelle valeur moyenne). 
+
+\bigskip
+
+Nous cherchons maintenant à déterminer l'algorithme le plus approprié pour notre étude. Nous souhaitons faire évoluer un système avec plusieurs dizaines d'embryons planétaire pour plusieurs millions d'années, le système n'étant pas conservatif à cause des divers effets du disque que nous implémentons. 
+
+Nous souhaitons résoudre correctement les orbites, mais avoir un temps de calcul raisonnable. 
+
+La première contrainte est la dissipation. En effet, notre système n'est pas conservatif. Tous les algorithmes N-corps disponibles (BS, BS2 et RADAU) ne fonctionnent donc pas correctement, ces derniers réclament un pas de temps extrêmement faible qui n'est pas représentatif de la précision demandée pour l'intégration N-corps, la variation d'énergie numérique étant masquée par la variation d'énergie induite par les effets du disque. 
+
+Il nous reste les algorithmes MVS et HYBRID. La deuxième contrainte, ce sont les rencontres proches et les collisions. Nous savons qu'un algorithme symplectique ne les traite pas correctement, et si c'est une erreur négligeable dans le cas où il y en a peu, ça ne l'est absolument plus dans notre cas, le nombre de rencontre proche pouvant être très important, notamment dans la phrase d'accrétion en début de simulation. L'algorithme MVS ne parait donc pas adapté contrairement à HYBRID qui a été construit pour être à la fois symplectique et gérer correctement les rencontres proches correctement moyennant une erreur plus importante lors du changement d'algorithme. 
+
+L'algorithme HYBRID est l'algorithme MVS, à pas de temps constant la majorité du temps. Il a donc les avantages d'un algorithme symplectique, à savoir la conservation de l'énergie et la rapidité d'exécution. Lors de rencontres proches (déterminées par une distance minimale d'approche entre deux corps, soit en rayon de Hill, soit en nombre de pas de temps), l'algorithme BS2 est utilisé, le pas de temps devient donc variable afin de résoudre correctement la rencontre et éventuellement la collision. Une fois fini, c'est de nouveau MVS qui prend le relai. 
+
+Dans notre cas, plusieurs approximations sont faites : 
+\begin{itemize}
+\item L'algorithme BS2 ne fonctionne que pour les systèmes conservatifs. On suppose que la variation d'énergie induite par la migration est totalement négligeable pendant le bref labs de temps de la rencontre proche
+\item Le nombre de collisions est suffisamment faible pour que les propriétés symplectiques de l'intégrateur soient conservées. On suppose de plus que les variations d'énergies induites par ce biais sont négligeables devant la dissipation induite par le disque (qui est de l'ordre de l'énergie initiale du système planétaire)
+\end{itemize}
+
+Il reste alors une chose à déterminer, c'est le pas de temps fixe que l'on doit choisir afin de résoudre correctement les orbites. Pour cela on se place dans un cas simplifié, sans les effets du disque, et on souhaite savoir la condition sur le pas de temps afin que l'orbite soit correctement calculée. 
+
+%TODO faire des tests numériques, montrer une courbe et donner le nombre minimal de pas de temps nécessaire pour résoudre une orbite correctement et expliquer comme c'est choisi en fonction du bord interne du disque (qui est l'orbite la plus petite atteignable dans notre simulation.
+
+
+
 
 %TODO à partir de là et jusqu'à la fin de la subsection, il faut que je contrôle ce que je dis au regard des simulations lancées et des parties surlignées dans le papier sur hybrid. Notamment à propos de la tolérance aux collisions.
 
