@@ -13,19 +13,7 @@ La raison de ce changement est assez simple. MVS est un algorithme symplectique,
 
 Dans le cadre de mes simulations, j'ai accordé une importance limitée aux variations d'énergie, étant donné que les couples que l'on rajoute pour simuler la présence du disque de gaz font que l'énergie n'est pas conservée pour une planète donnée. Cependant, il est important de bien résoudre les orbites et c'est ce point qui est le plus crucial ici. En effet, quelques tests ont permis de contraindre le pas de temps minimal qu'il est nécessaire d'avoir en fonction de la distance orbitale d'une planète. La contrainte de pas de temps dans mes simulations vient donc d'une distance minimale en dessous de laquelle les orbites ne sont pas correctement calculées. Cette limite, afin d'éviter tout problème, est choisie pour être en dessous du bords interne du disque de gaz que je défini.
 
-%TODO Simulation lancées dans le dossier $sse/test_mercury, sur une même simulation mais avec différents algorithmes pour voir l'évolution de la conservation de l'énergie au cours du temps
-
-%TODO parler de la précision de conservation de l'énergie
-%TODO parler du pas de temps qui a une influence sur les orbites, et des tests effectués pour contraindre le pas de temps par rapport à l'orbite minimale accessible.
-
-\section{Mode d'emploi du code N-corps modifié}
-À part la première section qui donne quelques détails techniques, le but de cette partie est de présenter les différentes options du code modifié. Ces options sont lues à partir d'un fichier commun \textbf{disk.in}. Si une option n'est pas présente, la valeur par défaut sera lue à partir du code. Le fichier \textbf{disk.out} récapitule toutes les valeurs de toutes les options et paramètres importants du code. 
-
-\begin{remarque}
-Il est possible de mettre des commentaires dans le fichier \textbf{disk.in}, que ce soit pour commenter une ligne entière, ou pour mettre en fin de ligne après un paramètre, à l'aide du caractère \og !\fg exactement comme en Fortran90.
-\end{remarque}
-
-\subsection{Algorithmes d'intégration}
+\section{Algorithmes d'intégration}
 Dans mercury, il y a cinq algorithmes différents à notre disposition :
 \begin{itemize}
 \item MVS \citep{wisdom1991symplectic} : un code symplectique\footnote{Basiquement, un code symplectique est un code qui conserve parfaitement l'énergie de par sa définition en terme d'hamiltoniens.}, c'est-à-dire qui conserve l'énergie au cours du temps et dont le pas de temps est fixe (c'est le seul à avoir un pas de temps fixe)
@@ -35,7 +23,7 @@ Dans mercury, il y a cinq algorithmes différents à notre disposition :
 \item HYBRID \citep{chambers1999hybrid} : Ce code utilise MVS en temps normal, puis lors d'une rencontre proche, utilise BS2 afin de résoudre correctement les orbites.
 \end{itemize}
 
-Il y a donc principalement deux catégories : les intégrateurs symplectiques où le paramètre fixe est le pas de temps ($h=\cte$) et les intégrateurs N-corps où le paramètre est la précision en terme de conservation d'énergie d'un pas de temps à l'autre (le pas de temps varie). Ici, seuls MVS et HYBRID utilisent une partie symplectique alors que BS, BS2 et RADAU sont purement N-corps.
+Il y a donc principalement deux catégories : les intégrateurs symplectiques où le paramètre fixe est le pas de temps ($h=\cte$) et les intégrateurs N-corps où le paramètre est la précision en terme de conservation d'énergie d'un pas de temps à l'autre (le pas de temps n'étant pas fixe). Ici, seuls MVS et HYBRID utilisent une partie symplectique alors que BS, BS2 et RADAU sont purement N-corps.
 
 \bigskip
 
@@ -45,7 +33,7 @@ H &= \sum_{i=1}^N\frac{{p_i}^2}{2m_i} -G\sum_{i=1}^N\sum_{j=i+1}^N\frac{m_im_j}{
 \end{align}
 où $m_i$ est la masse du corps $i$, $p_i$ son impulsion et $r_{ij}$ la séparation entre les corps $i$ et $j$.
 
-Un intégrateur symplectique est un intégrateur qui au lieu d'appliquer directement le hamiltonien $H$ sur le système, va séparer ce dernier en deux (ou plusieurs parties) et appliquer ces sous-hamiltoniens séparément. Un intégrateur symplectique résoud donc le problème de manière approchée en négligeant les termes croisés des sous-hamiltoniens.
+Un intégrateur symplectique est un intégrateur qui au lieu d'appliquer directement le hamiltonien $H$ sur le système, va séparer ce dernier en deux (ou plusieurs parties) et appliquer ces sous-hamiltoniens successivement. Un intégrateur symplectique résoud donc le problème de manière approchée en négligeant les termes croisés des sous-hamiltoniens.
 
 Afin de minimiser l'erreur dû à cette approximation, il faut choisir judicieusement la séparation du hamiltonien afin d'avoir une partie dominante par rapport à l'autre.
 
@@ -53,9 +41,15 @@ Par définition, un algorithme symplectique conserve l'énergie au cours du temp
 
 Les intégrateurs symplectiques ont deux avantages importants sur les intégrateurs classiques : 
 \begin{enumerate}
-\item L'erreur sur l'énergie ne croit pas au cours du temps. \cite{chambers1999hybrid} a montré que l'erreur sur l'énergie augmentait linéairement avec le temps dans le cas de l'algorithme BS contrairement à l'algorithme HYBRID \citep[voir Fig. 3]{chambers1999hybrid}, même si ce dernier entraine des variations d'énergie instantanée beaucoup plus importantes
+\item Les fluctuations \og instantanées\fg de l'énergie dues à un algorithme symplectiques sont plus grandes que celles d'un algorithme N-corps, mais à la différence de ces derniers, l'erreur ne croit pas au cours du temps \reffig{fig:energy_error}.
 \item Ils sont moins couteux en temps de calcul, en particulier quand la majeure partie de la masse est contenue dans un seul corps (bien adapté pour l'étude d'un système planétaire autour d'une étoile donc).
 \end{enumerate}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.65\linewidth]{figure/energy_error.pdf}
+\caption{Évolution de l'erreur au cours du temps pour une simulation contenant trois planètes d'une masse terrestre chacune, cette simulation étant lancée successivement avec chacun des algorithmes disponibles dans \textbf{Mercury}.}\label{fig:energy_error}
+\end{figure}
 
 Les algorithmes symplectiques ont cependant un inconvénient. Le pas de temps fixe d'un intégrateur symplectique ne permet pas de résoudre correctement les rencontres proches entre les corps du système. Chaque fois que le pas de temps d'un algorithme symplectique est changé, son hamiltonien change aussi, et entraine une variation d'énergie du système (dont l'énergie va osciller autour d'une nouvelle valeur moyenne). 
 
@@ -67,7 +61,7 @@ Nous souhaitons résoudre correctement les orbites, mais avoir un temps de calcu
 
 La première contrainte est la dissipation. En effet, notre système n'est pas conservatif. Tous les algorithmes N-corps disponibles (BS, BS2 et RADAU) ne fonctionnent donc pas correctement, ces derniers réclament un pas de temps extrêmement faible qui n'est pas représentatif de la précision demandée pour l'intégration N-corps, la variation d'énergie numérique étant masquée par la variation d'énergie induite par les effets du disque. 
 
-Il nous reste les algorithmes MVS et HYBRID. La deuxième contrainte, ce sont les rencontres proches et les collisions. Nous savons qu'un algorithme symplectique ne les traite pas correctement, et si c'est une erreur négligeable dans le cas où il y en a peu, ça ne l'est absolument plus dans notre cas, le nombre de rencontre proche pouvant être très important, notamment dans la phrase d'accrétion en début de simulation. L'algorithme MVS ne parait donc pas adapté contrairement à HYBRID qui a été construit pour être à la fois symplectique et gérer correctement les rencontres proches correctement moyennant une erreur plus importante lors du changement d'algorithme. 
+Il nous reste les algorithmes MVS et HYBRID. La deuxième contrainte, ce sont les rencontres proches et les collisions. Nous savons qu'un algorithme symplectique ne les traite pas correctement, et si c'est une erreur négligeable dans le cas où il y en a peu, ça ne l'est absolument plus dans notre cas, le nombre de rencontre proche pouvant être très important, notamment dans la phrase d'accrétion en début de simulation. L'algorithme MVS ne parait donc pas adapté contrairement à HYBRID qui a été construit pour être à la fois symplectique et gérer correctement les rencontres proches moyennant une erreur plus importante lors du changement d'algorithme. 
 
 L'algorithme HYBRID est l'algorithme MVS, à pas de temps constant la majorité du temps. Il a donc les avantages d'un algorithme symplectique, à savoir la conservation de l'énergie et la rapidité d'exécution. Lors de rencontres proches (déterminées par une distance minimale d'approche entre deux corps, soit en rayon de Hill, soit en nombre de pas de temps), l'algorithme BS2 est utilisé, le pas de temps devient donc variable afin de résoudre correctement la rencontre et éventuellement la collision. Une fois fini, c'est de nouveau MVS qui prend le relai. 
 
@@ -85,6 +79,20 @@ Il reste alors une chose à déterminer, c'est le pas de temps fixe que l'on doi
 
 
 %TODO à partir de là et jusqu'à la fin de la subsection, il faut que je contrôle ce que je dis au regard des simulations lancées et des parties surlignées dans le papier sur hybrid. Notamment à propos de la tolérance aux collisions.
+
+%TODO Simulation lancées dans le dossier $sse/test_mercury, sur une même simulation mais avec différents algorithmes pour voir l'évolution de la conservation de l'énergie au cours du temps
+
+%TODO parler de la précision de conservation de l'énergie
+%TODO parler du pas de temps qui a une influence sur les orbites, et des tests effectués pour contraindre le pas de temps par rapport à l'orbite minimale accessible.
+
+
+
+\section{Mode d'emploi du code N-corps modifié}
+À part la première section qui donne quelques détails techniques, le but de cette partie est de présenter les différentes options du code modifié. Ces options sont lues à partir d'un fichier commun \textbf{disk.in}. Si une option n'est pas présente, la valeur par défaut sera lue à partir du code. Le fichier \textbf{disk.out} récapitule toutes les valeurs de toutes les options et paramètres importants du code. 
+
+\begin{remarque}
+Il est possible de mettre des commentaires dans le fichier \textbf{disk.in}, que ce soit pour commenter une ligne entière, ou pour mettre en fin de ligne après un paramètre, à l'aide du caractère \og !\fg exactement comme en Fortran90.
+\end{remarque}
 
 \subsection{Note technique}
 Le code est en grande partie le code mercury \cite{chambers1999hybrid}. Les effets du disque ont été inclus dans la partie \textbf{mfo\_user} prévue pour inclure des effets propre à chaque utilisateur. 
