@@ -870,6 +870,20 @@ for patch in patches:
   autiwa.lancer_commande(cmd)
 \end{lstlisting}
 
+\subsection{Visualiser les modifications d'un fichier entre deux révisions}
+Si on souhaite visualiser les modifications qui ont été effectuées sur un fichier particulier, entre deux révisions, pas forcément consécutives, et les stocker dans un fichier .log, il faut faire :
+\begin{verbatim}
+git diff --no-prefix 29769f6dd8dd HEAD fichier.tex>modifs.log
+\end{verbatim}
+
+Pour info, en affichant ce fichier \textbf{modifs.log} avec \textbf{vim}, la coloration syntaxique met en valeur les suppressions ou ajouts.
+
+Ce fichier contient donc d'une part les morceaux qui ont été supprimés (avec un \og-\fg devant) et les ajouts (avec un \og + \fg devant). 
+
+\begin{remarque}
+C'est ce que j'ai utilisé quand, après avoir modifié un chapitre de ma thèse en suivant les corrections de mon directeur, je devais lui montrer ce que j'avais changé. Très pratique pour pouvoir lui montrer uniquement les points modifiés, et non les 40 pages du chapitre.
+\end{remarque}
+
 
 \section{FAQ}
 \subsection{fatal: git checkout: updating paths is incompatible}
