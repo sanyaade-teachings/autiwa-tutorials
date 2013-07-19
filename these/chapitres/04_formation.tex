@@ -408,6 +408,11 @@ Je vais montrer dans les paragraphes qui suivent que la migration est extrêmeme
 \subsection{Viscosité du disque}
 
 %TODO 
+
+Le couple de migration est sensible à la valeur de la viscosité $\nu$. En particulier, c'est le temps de diffusion visqueux qui modifie le niveau de saturation de la zone de corotation, et donc la valeur du couple de corotation. 
+
+Pourtant, la carte de migration possède une deuxième sensibilité au modèle de viscosité. Selon que l'on choisi une viscosité constante ou une prescription alpha dans laquelle la viscosité $\nu$ croit avec la distance, cela a une influence sur l'évolution du couple en fonction de la position dans le disque. 
+
 \subsection{Profil de densité de surface}
 %TODO 
 \subsection{Profil de température}
@@ -417,8 +422,46 @@ Je vais montrer dans les paragraphes qui suivent que la migration est extrêmeme
 \subsection{Table d'opacité}
 %TODO 
 \subsection{Longueur de lissage}
-%TODO parler du travail d'audrey, essayer de la citer. Présenter le fait qu'on ne sait pas quelles valeurs donner à ce paramètre, et montrer les implications sur la migration. 
+Dans les modèles numériques des disques protoplanétaires, le potentiel gravitationnel doit être modifié afin ne pas diverger aux très faibles distances mutuelles. En particulier, des problèmes peuvent survenir quand on modélise des objets, tels des planètes, par des masses ponctuelles. 
 
-%TODO voir pierens et huré où ils prennent un cas de disque 2D avec un b/h et comparer avec un disque 3D pour trouver le bon b/h
-%TODO voir aussi muller & kley 2012, il devrait y avoir des informations
-%TODO essayer de parler du fait qu'il y a deux longueurs de lissage, une pour le potentiel de la planète, et une pour le potentiel du disque. Le premier génère les ondes de densité, le deuxième génère le couple sur la planète
+De même, dans le cas de simulations hydrodynamiques 2D, le modèle se base sur des moyennes azimutales des différentes quantités physiques. Le lissage du potentiel gravitationnel est ici nécessaire afin de diluer la densité de surface et reproduire au mieux l'aspect 3D du disque. On comprend alors aisément que la longueur de lissage va être reliée à l'échelle de hauteur du disque qui est elle aussi une mesure de l'extension azimutale du disque. 
+
+Plusieurs groupes ont cherché à étudier la longueur de lissage en détail, en particulier pour trouver la valeur optimale à utiliser \citep{hure2009local, muller2012treating}. Ces études cherchent à trouver la longueur de lissage qui permet de reproduire les simulations 3D à l'aide des simulations 2D. 
+
+Une longueur de lissage relativement importante $b/h = 0.75$ est nécessaire pour reproduire correctement le couple de Lindblad \citep{masset2002coorbital}. Pour le couple de corotation, la zone fer-à-cheval étant très proche de la planète, ce dernier est extrêmement sensible à la longueur de lissage. En effet, \cite{masset2002coorbital} a montré que dans certains cas le couple de corotation pouvait être plus d'un ordre de grandeur plus important en fonction de la valeur du lissage que l'on applique. La valeur préconisée est alors autour de $b/h\sim 0.5-0.6$. Ainsi, \cite{masset2002coorbital} conclue qu'il est peu probable de trouver une valeur optimale pour la longueur de lissage, les valeurs optimales pour les couples de Lindblad et de corotation étant incompatible. 
+
+\cite{muller2012treating} suggère d'utiliser une longueur de lissage $b/h = 0.7$ tout en notant que des différences notables subsistent avec les simulations 3D. 
+
+\cite{hure2009local}, en étudiant des disques sans planètes conseillent la plage de valeur suivante $0.13 \lesssim b/h \lesssim 0.29$.
+
+\bigskip
+
+\cite{paardekooper2010torque, paardekooper2011torque} et les formules analytiques ou semi-analytiques qu'ils fournissent pour décrire la migration de type I \refeq{eq:lindblad-torque, eq:saturated-corotation-torque, eq:linear-corotation-torque} introduisent une telle dépendance. 
+
+\begin{figure}[htb]
+\centering
+\subfloat[$b/h = 0.2$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/smoothing/smoothing_0_2.pdf}}\hfill
+\subfloat[$b/h = 0.4$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/smoothing/smoothing_0_4.pdf}}\\
+\subfloat[$b/h = 0.6$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/smoothing/smoothing_0_6.pdf}}\hfill
+\subfloat[$b/h = 0.7$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/smoothing/smoothing_0_7.pdf}}\\
+\caption{Effet de la longueur de lissage $b/h$ du potentiel gravitationnel sur la carte de migration du disque de référence. Ici seule la longueur de lissage change.  Pour plus de détails sur les cartes de migration \refsec{sec:migrations-maps}.}\label{fig:migration_map_smoothing}
+\end{figure}
+
+\reffig{fig:migration_map_smoothing} montre qu'en fonction de la longueur de lissage, on peut se trouver dans un cas où il y a migration systématique vers l'intérieur ($b/h=0.7$) ou migration quasi systématique vers l'extérieur ($b/h=0.2$). Si une valeur de $0.2$ semble peu réaliste au regard de la migration planétaire \citep{muller2012treating}, il est courant de voir des simulations effectuées avec $b/h=0.3-0.6$ \citep{masset2002coorbital, devalborro2006comparative, paardekooper2009corotation}. 
+
+Une longueur de lissage $0.6 \leqslant b/h \leqslant 0.76$ sous estime le couple de corotation et sur-estime le couple de Lindblad \citep{masset2002coorbital}. Même si les valeurs préconisées par les études de sensibilités se situent autour de $0.6-0.7$, les études faisant des simulations hydrodynamiques utilisent plus couramment une valeur de $b/h=0.4$ \citep{paardekooper2011torque}. Il n'existe donc pas de valeur optimale pour la longueur de lissage quand le disque que l'on modélise est utilisé pour étudier la migration planétaire. Si cette section ne conclue pas quant à une valeur à utiliser pour $b/h$ c'est avant tout pour insister sur le fait que la seule conclusion à tirer, c'est que la longueur de lissage est une source importance d'incertitude dans nos modèles. Une longueur de lissage importante (resp. faible) a tendance à favoriser la migration vers l'intérieur (resp. l'extérieur). 
+
+\begin{figure}[htb]
+\centering
+\subfloat[$b/h = 0.5$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/smoothing/smoothing_0_5.pdf}}\hfill
+\subfloat[$b/h = 0.76$ pour $\Gamma_L$ et $0.5$ pour $\Gamma_C$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/smoothing/smoothing_0_5_modified.pdf}}
+\caption{Comparaison d'un cas où la longueur de lissage est fixée à $b/h=0.5$, et d'un autre cas où la longueur de lissage a été fixée à $0.76$ pour le couple de Lindblad et à $0.5$ pour le couple de Corotation, correspondant aux valeurs conseillées pour les deux couples séparés \citep{masset2002coorbital}. Pour plus de détails sur les cartes de migration \refsec{sec:migrations-maps}.}\label{fig:modified_smoothing}
+\end{figure}
+
+Inclure des formules pour la migration de type I nous offre une liberté supplémentaire par rapport aux simulations hydrodynamique, celle de fixer une longueur de lissage $b/h$ différente pour le couple de Lindblad et pour le couple de Corotation. Suivant les prescriptions données par \cite{masset2002coorbital} j'ai donc calculé la carte de migration d'une simulation où je fixe une longueur de lissage $b/h=0.76$ pour le couple de Lindblad, et une longueur de lissage $b/h=0.5$ pour le couple de Corotation. J'obtiens alors les cartes représentées \reffig{fig:modified_smoothing}, toujours dans le cas du disque de référence. %TODO décrire le disque de référence en section 3, et en particulier penser à emttre une référence ici vers la bonne section.
+
+%TODO proposer cette idée d'utiliser une longueur de lissage différente pour lindblad et corotation? En discuter avec Sean et Arnaud.
+
+
+%TODO parler du travail d'audrey? Je voudrais en parler avec elle, lui montrer cette section et savoir ce qu'elle en pense. 
+% En particulier, j'aimerais discuter avec elle du fait que la longueur de lissage qu'elle calcule ne peut pas s'appliquer dans mon cas à moi. J'aimerais voir si elle saurait m'expliquer pourquoi (dans mon cas j'ai une planète, et pas elle)

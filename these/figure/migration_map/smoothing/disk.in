@@ -1,0 +1,134 @@
+!# ------------------------------------------------
+!# Parameter file for various properties of the disk. 
+!# ------------------------------------------------
+!# blanck line or with spaces will be skipped. 
+!# In fact, the only lines that matter are non commented lines with a
+!# '=' character to distinguish the identificator and the value(s)
+!# (each value must be separated with at least one space. 
+!# Line must not be longer than 80 character, but comments can be far
+!# bigger than that, even on line with a parameter to read.
+
+!*****************************
+!*      Disk Parameters      *
+!*****************************
+
+!# the adiabatic index for the gas equation of state
+adiabatic_index = 1.4
+
+!# Alpha value used for alpha prescription of the viscosity (adimensioned)
+alpha = 0.005
+
+!# the smoothing length for the planet's potential
+b/h = 0.4
+
+!# Here we define the radius_min and radius_max for the radius sample of the disk 
+!# (used for temperature profile for instance)
+disk_edges = 0.1 100.0
+
+! Value of the exponential decay timescale for the dissipation of the disk
+! (only if dissipation_type = 2)
+!disk_exponential_decay = 1000000.0
+
+! (years) the time when we switch from viscous to photoevap (dissipation_type = 3)
+!dissipation_time_switch = 2000000.0
+
+!# integer to tell if there is dissipation of the disk or not. 
+!# 0 for no dissipation
+!# (1) for viscous dissipation (Not implemented anymore)
+!# 2 for exponential decay of the initial profile
+!# 3 for mixed exponential decay (viscous then photoevap)
+dissipation_type = 0
+
+!# ['open', 'closed'] Condition at the inner boundary of the gas disk for dissipation
+inner_boundary_condition = open
+
+!# The width (in unit of the inner boundary radius) of the region right after
+!# the inner edge where the surface density is damped so
+!# that the surface density at the inner edge will be 0
+inner_smoothing_width = 0.05
+
+!# (0, False) if there is no stellar irradiation to compute temperature profile
+!, (1, True) if there is stellar irradiation
+is_irradiation = 1
+
+!# (0, False) if there is no turbulence, (1, True) if there is turbulence
+is_turbulence = 0
+
+!# the mean molecular weight in mass of a proton
+mean_molecular_weight = 2.35
+
+!# ['bell', 'zhu', 'chambers', 'hure'] define the torque type.
+!# bell : from bell & lin 1994
+!# chambers : from chambers 2009
+!# hure : opacity table from (hure, 2000)
+!# zhu : From zhu & hartmann 2009
+opacity_type = hure
+
+!# ['open', 'closed'] Condition at the outer boundary of the gas disk for dissipation
+outer_boundary_condition = open
+
+!# number of point to the 1D radial grid of the disk
+sample = 1000
+
+!# Here we define the power law for surface density 
+!#  sigma(R) = sigma_0 * R^(-sigma_index) 
+!#  where sigma_0 is the surface density at (R=1AU) [g/cm^2] and sigma_index
+!#  is the negative slope of the surface density power law (alpha in the paper)
+!# If 'manual' is specified, then the surface density profile will instead be
+!#  read from 'surface_density_profile.dat', two columns, the first being 
+!#  orbital distance and the second the surface density in g/cm^2
+surface_density = 300.0 0.5
+!surface_density = manual
+
+!# (years) exponential decay for photoevaporation phase (dissipation_type = 3)
+!tau_photoevap = 30000.0
+
+!# (years) the exponential decay for the viscous phase (dissipation_type = 3)
+!tau_viscous = 10000000.0
+
+!# The value of the adimensioned parameter that control the strength of the resonance. 
+!# If not specified, an auto value, based on the value of the viscosity is used.
+!turbulent_forcing = 0.00013
+
+!# Constant viscosity of the disk [cm^2/s]
+viscosity = 1e+15
+
+!# ['constant', 'alpha'] define the viscosity
+!# constant : constant viscosity (being defined with the 'viscosity' parameter
+!# alpha : alpha prescription, (alpha being defined with the 'alpha' parameter
+viscosity_type = alpha
+!*****************************
+!* Interactions disk/planets *
+!*****************************
+
+!# The position of the convergence zone in the 'mass_independant' torque case
+!indep_cz = 3.0
+
+!# position of the convergence zone for the top mass ('mass_dependant' case)
+!mass_dep_cz_m_max = 30
+
+!# position of the convergence zone for the lower mass ('mass_dependant' case)
+!mass_dep_cz_m_min = 4
+
+!# top mass for the 'mass_dependant' convergence zone
+!mass_dep_m_max = 60
+
+!# lower mass for the 'mass_dependant' convergence zone
+!mass_dep_m_min = 1
+
+!# the assymptot for the arctan mass indep convergence zone
+!saturation_torque = 1.0
+
+!# Gamma = a * x + b. Here is the steeness 'a' of the linear torque profile, both mass-(in)dependant
+!torque_profile_steepness = 1.0
+
+!# ['real', 'mass_dependant', 'linear_indep', 'tanh_indep', 'manual'] define the torque type.
+!# real : The torque from (pardekooper et al., 2011)
+!# linear_indep : Mass independant convergence zone with a linear torque profile
+!# tanh_indep : Mass independant convergence zone with a 
+!#              tanh torque profile that saturate at a given value
+!# mass_dependant : Mass dependant convergence zone where for a 
+!#                  given mass the torque profile is linear with distance
+!# manual : the code will read the file 'torque_profile.dat' that must contain 2
+!# columns, the first being the semi major axis in AU, and the second the torque
+torque_type = real

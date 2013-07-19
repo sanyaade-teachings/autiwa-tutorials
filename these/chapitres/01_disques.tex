@@ -746,7 +746,7 @@ Ainsi, le couple de Lindblad est généralement négatif pour des modèles typiq
 
 La résolution numérique des équations linéarisées permet de trouver une formule analytique pour le couple de Lindblad $\Gamma_L$. Dû à la résolution numérique qui doit s'affranchir de la divergence du potentiel gravitationnel en $r=r_0$, cette formule introduit une longueur de lissage permettant de s'affranchir de la singularité du noyau du Green du potentiel gravitationnel \citep[eq. (14)]{paardekooper2010torque} : 
 \begin{align}
-\gamma \Gamma_L/\Gamma_0 &= - \left(2.5 +1.7\beta -0.1d\right) \left(\frac{0.4}{b/h}\right)^{0.71}
+\gamma \Gamma_L/\Gamma_0 &= - \left(2.5 +1.7\beta -0.1d\right) \left(\frac{0.4}{b/h}\right)^{0.71}\label{eq:lindblad-torque}
 \end{align}
 où $\gamma$ est l'indice adiabatique, et $\beta$ et $d$ sont les exposants des lois de puissance pour les profils de température et de densité de surface. 
 
@@ -845,14 +845,14 @@ Il y a d'une part les couples soumis à saturation \citep[eq. (45)]{paardekooper
 \begin{align}
 \gamma \Gamma_\text{c,hs,baro}/\Gamma_0 &= 1.1\left( \frac{3}{2} - d\right)\left(\frac{0.4}{b/h}\right)\\
 \gamma \Gamma_\text{c,hs,ent}/\Gamma_0 &= \frac{\xi}{\gamma}\left(10.1\sqrt{\frac{0.4}{b/h}} - 2.2\right)\left(\frac{0.4}{b/h}\right)
-\end{align}
+\end{align}\label{eq:saturated-corotation-torque}
 \end{subequations}
 et les couples non soumis à saturation, dits linéaires \citep[eq. (17)]{paardekooper2010torque} :
 \begin{subequations}
 \begin{align}
 \gamma \Gamma_\text{c,lin,baro}/\Gamma_0 &= 0.7\left( \frac{3}{2} - d\right)\left(\frac{0.4}{b/h}\right)^{1.26}\\
 \gamma \Gamma_\text{c,lin,ent}/\Gamma_0 &= \xi\left[2.2\left(\frac{0.4}{b/h}\right)^{0.71} - \frac{1.4}{\gamma}\left(\frac{0.4}{b/h}\right)^{1.26}\right]
-\end{align}
+\end{align}\label{eq:linear-corotation-torque}
 \end{subequations}
 $d$ et $\xi$ sont respectivement les exposants des lois de puissance pour les profils 1D de densité de surface et d'entropie.
 
