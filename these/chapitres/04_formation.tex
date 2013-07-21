@@ -334,7 +334,8 @@ L'effet décrit \refsec{sec:shifted_CZ} s'applique alors. La migration différen
 \caption{Formation d'un cœur de planète géante. La planète dont l'évolution est notée en bleu devient massive suffisamment vite pour pouvoir migrer vers l'extérieur. Les cercles représentent des collisions. Les autres courbes bleu qui disparaissent sont des embryons qui rentrent en collision avec la planète considérée et fusionnent avec elle. }\label{fig:single_outward}%/sse/cossou/HSE/disk_param/300_05/simu00010
 \end{figure}
 
-\reffig{fig:single_outward} illustre ce scénario. Cette dernière atteint par collisions la masse de $6\mearth$ au bout de $300 000\unit{ans}$ alors qu'elle se trouve à $1.2\unit{AU}$ ce qui est suffisant pour qu'elle puisse migrer vers l'extérieur. Cependant, les perturbations gravitationnelles des autres corps qui eux migrent vers l'intérieur l'empêchent de se comporter comme une planète isolée. Dans les quelques dizaines de milliers d'années suivants, 3 nouvelles collisions ont lieu. La planète fait maintenant $13\mearth$. La différence de masse avec ses voisins immédiats lui permet de migrer vers l'extérieur malgré les perturbations résonantes qui augmentent son excentricité. Comme détaillé \refsec{sec:mass-ratio-effect}, plus le rapport de masse est important, et plus la migration est dominée par la planète massive. Dans un système résonant avec rapport de masse élevé, la petite planète a une excentricité importante, son couple de corotation est fortement atténué, ce qui n'est pas le cas de la planète massive. Cette dernière migre comme si elle n'était pas en résonance, et à partir de là, soit elle emporte le système avec elle, soit, comme dans le cas présent, la résonance fini par se briser et les deux planètes continuent leur migration séparément.
+\reffig{fig:single_outward} illustre ce scénario. Cette dernière atteint par collisions la masse de $6\mearth$ au bout de $300 000\unit{ans}$ alors qu'elle se trouve à $1.2\unit{AU}$ ce qui est suffisant pour qu'elle puisse migrer vers l'extérieur. Cependant, les perturbations gravitationnelles des autres corps qui eux migrent vers l'intérieur l'empêchent de se comporter comme une planète isolée. Dans les quelques dizaines de milliers d'années suivants, 3 nouvelles collisions ont lieu. La planète fait maintenant $13\mearth$. La différence de masse avec ses voisins immédiats lui permet de migrer vers l'extérieur malgré les perturbations résonantes qui augmentent son excentricité. Comme détaillé \refsec{sec:mass-ratio-effect}, plus le rapport de masse est important, et plus la migration est dominée par la planète massive. Dans un système résonant avec rapport de masse élevé, la petite planète a une excentricité importante, son couple de corotation est fortement atténué, ce qui n'est pas le cas de la planète 
+massive. Cette dernière migre comme si elle n'était pas en résonance, et à partir de là, soit elle emporte le système avec elle, soit, comme dans le cas présent, la résonance fini par se briser et les deux planètes continuent leur migration séparément.
 
 Dans la suite de la simulation, la planète est trop massive pour être arrêtée. La planète massive migrant vers l'extérieur, elle capture en résonance un embryon de faible masse. Les deux planètes migrent alors vers l'extérieur, emportées par la migration de la planète la plus massive. Pourtant le système n'est pas stable. Les perturbations finissent par briser le système de deux planètes qui a alors deux possibilités. Soit une collision survient, augmentant sa masse, soit la brève rencontre se termine par un échange d'orbite. Dans cet exemple, les deux planètes continuent leur migration séparément.
 
@@ -419,8 +420,98 @@ Pourtant, la carte de migration possède une deuxième sensibilité au modèle d
 %TODO 
 \subsection{Masse du disque}
 %TODO 
-\subsection{Table d'opacité}
-%TODO 
+\subsection{Table d'opacité}\label{sec:influence_opacity_table}
+Le modèle utilisé pour déterminer les opacités dans un disque est bien souvent à peine nommé, et très peu discuté. Pourtant,
+l'opacité est une grandeur physique qui a une influence très importante sur la physique du disque et la migration des planètes. 
+
+Dans toute la suite, quand je parlerai de table d'opacité, je désigne le fait d'utiliser un tableau à deux dimensions,
+proposant des valeurs de l'opacité pour différentes températures et densité. La table d'opacité est donc définie ici par
+opposition à ce que j'appelle des lois d'opacité, modèles dans lesquels l'opacité est définie par des lois de puissance,
+fonction de la température et de la densité, dans différents régimes de température et densité.
+
+Ainsi une table d'opacité est simplement une tabulation de l'opacité, alors qu'une loi d'opacité correspond à un ajustement par
+une loi de puissance. 
+
+\bigskip
+
+Généralement, c'est la loi d'opacité \cite{bell1994FU} qui est utilisée, aussi bien dans les simulations hydrodynamiques 2D et
+3D que dans les simulations N-corps. 
+
+Une autre loi d'opacité existante est \cite{zhu2009nonsteady}, loi quelque peu améliorée par rapport à \cite{bell1994FU},
+l'augmentation des capacités des ordinateurs ayant permis de faire des calculs plus précis. 
+
+De plus, nous utilisons aussi le modèle d'opacité très simple décrit par \cite{chambers2009analytic} dans lequel l'opacité est
+constante et égale à $\kappa=3$ jusqu'à $1380\unit{K}$ où une transition s'opère vers une loi de puissance. Ce modèle nous
+permet de voir l'effet d'un modèle par rapport à un cas où l'opacité est constante. En effet, dans le cas d'un disque
+protoplanétaire, seules les régions les plus internes sont susceptibles d'atteindre des températures supérieures à
+$1000\unit{K}$. 
+
+Enfin, j'ai souhaité comparer ces deux lois d'opacité avec une table d'opacité, \cite{hure2000transition}. Cette table
+d'opacité de Rosseland correspond à la composition suivante $X=0.70$, $Y=0.28$ et $Z=0.02$ et est basée sur
+\cite{seaton1994opacities, alexander1994low, henning1996dust}.
+
+\begin{figure}[htb]
+\centering
+\subfloat[\citep{bell1994FU}]{\includegraphics[width=0.49\textwidth]{figure/migration_map/opacity/opacity_bell.pdf}}\hfill
+\subfloat[\citep{chambers2009analytic}]{\includegraphics[width=0.49\textwidth]{%
+figure/migration_map/opacity/opacity_chambers.pdf}}
+
+\subfloat[\citep{zhu2009nonsteady}]{\includegraphics[width=0.49\textwidth]{figure/migration_map/opacity/opacity_zhu.pdf}}\hfill
+\subfloat[\citep{hure2000transition}]{\label{fig:opacity_hure}\includegraphics[width=0.49\textwidth]{%
+figure/migration_map/opacity/opacity_hure.pdf}}
+\caption{Cartes de migration obtenues pour le même disque, mais avec un modèle d'opacité différent. Notez que les échelles ne
+sont pas identiques.}
+\end{figure}\label{fig:opacity_tables}
+
+\reffig{fig:opacity_tables} montre les différentes cartes de migration que l'on obtient avec le même disque de référence mais
+pour les 4 modèles d'opacité considérés. 
+
+On considère la carte avec la table d'opacité \reffig{fig:opacity_hure} comme référence. En effet, les lois d'opacités utilisent
+une table d'opacité en amont à partir de laquelle elles déduisent des lois de puissances par morceau afin de reproduire au mieux
+la table d'opacité. 
+
+L'importance de l'opacité se manifeste au travers du temps de diffusion radiatif. Une opacité plus grande induit un temps de
+diffusion radiatif plus important. 
+
+%TODO
+
+\subsection{Effet de l'irradiation}
+En choisissant ou non d'inclure l'irradiation dans l'équation de l'énergie permettant de calculer le profil de température, on
+change de manière importante la carte de migration. 
+
+\begin{figure}[htb]
+\centering
+\subfloat[Avec irradiation]{\includegraphics[width=0.49\textwidth]{figure/migration_map/bell_irr.pdf}}\hfill
+\subfloat[Sans irradiation]{\includegraphics[width=0.49\textwidth]{%
+figure/migration_map/bell_noirr.pdf}}
+
+\caption{Influence de l'irradiation sur la carte de migration à travers le profil de température. Afin de visualiser plus
+facilement les effets, \cite{bell1994FU} a été utilisé pour l'opacité.}\label{fig:irradiation}
+\end{figure}
+
+Afin de visualiser l'effet de l'irradiation, nous avons utilisé les lois d'opacités de \cite{bell1994FU}. En effet,
+le principal effet de l'irradiation est de lisser le profil de température. Sans irradiation, une transition d'opacité marquée
+comme celles de \cite{bell1994FU} se répercute directement sur le profil de température \reffig{fig:temp_profile_irradiation}.
+On voit donc apparaître des zone de convergences dues à des transitions d'opacités qui sont totalement déformées par
+l'irradiation comme on peut le constater sur \reffig{fig:irradiation}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.6\linewidth]{figure/migration_map/temperature_with_irradiation.pdf}
+\caption{Profil de température avec ou sans irradiation. L'irradiation est calculée avec les paramètres $T_\star =
+5700\unit{K}$, $R_\star = 4.65\cdot 10^-3\unit{AU}$, disk albedo $\varepsilon =
+0.5$.}\label{fig:temp_profile_irradiation}
+\end{figure}
+
+Ainsi, sans irradiation, les deux transitions d'opacités à $1.3$ et $2.9\unit{UA}$ induisent un changement brutal de la pente
+du profil de température, ce qui a pour effet de changer le sens de migration (de positif à négatif, puis l'inverse).
+
+Dans les parties externes, l'irradiation a pour effet de diminuer la pente du profil de température qui tend vers un profil en
+$R^{-0.5}$ quand le disque est purement passif.
+
+%TODO expliquer pourquoi les parties externes ``montent'' en masse. En clair, au lieu d'avoir une décroissance de la zone de
+% couple nul avec la masse, c'est l'inverse qui se produit quand on active l'irradiation.
+
 \subsection{Longueur de lissage}
 Dans les modèles numériques des disques protoplanétaires, le potentiel gravitationnel doit être modifié afin ne pas diverger aux très faibles distances mutuelles. En particulier, des problèmes peuvent survenir quand on modélise des objets, tels des planètes, par des masses ponctuelles. 
 
@@ -436,7 +527,9 @@ Une longueur de lissage relativement importante $b/h = 0.75$ est nécessaire pou
 
 \bigskip
 
-\cite{paardekooper2010torque, paardekooper2011torque} et les formules analytiques ou semi-analytiques qu'ils fournissent pour décrire la migration de type I \refeq{eq:lindblad-torque, eq:saturated-corotation-torque, eq:linear-corotation-torque} introduisent une telle dépendance. 
+\cite{paardekooper2010torque, paardekooper2011torque} et les formules analytiques ou semi-analytiques qu'ils fournissent pour
+décrire la migration de type I (\refeq{eq:lindblad-torque}, \refeq{eq:saturated-corotation-torque},
+\refeq{eq:linear-corotation-torque}) introduisent une telle dépendance. 
 
 \begin{figure}[htb]
 \centering
