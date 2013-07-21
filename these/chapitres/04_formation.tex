@@ -459,8 +459,9 @@ figure/migration_map/opacity/opacity_chambers.pdf}}
 \subfloat[\citep{zhu2009nonsteady}]{\includegraphics[width=0.49\textwidth]{figure/migration_map/opacity/opacity_zhu.pdf}}\hfill
 \subfloat[\citep{hure2000transition}]{\label{fig:opacity_hure}\includegraphics[width=0.49\textwidth]{%
 figure/migration_map/opacity/opacity_hure.pdf}}
-\caption{Cartes de migration obtenues pour le même disque, mais avec un modèle d'opacité différent. Notez que les échelles ne
-sont pas identiques.}
+\caption{Cartes de migration obtenues pour le même disque, mais avec un modèle d'opacité différent. L'irradiation ayant un
+effet important sur la carte de migration, elle a été désactivée ici afin de mieux mettre en valeur les différences entre
+les modèles d'opacités. Notez que les échelles ne sont pas identiques.}
 \end{figure}\label{fig:opacity_tables}
 
 \reffig{fig:opacity_tables} montre les différentes cartes de migration que l'on obtient avec le même disque de référence mais
@@ -468,10 +469,40 @@ pour les 4 modèles d'opacité considérés.
 
 On considère la carte avec la table d'opacité \reffig{fig:opacity_hure} comme référence. En effet, les lois d'opacités utilisent
 une table d'opacité en amont à partir de laquelle elles déduisent des lois de puissances par morceau afin de reproduire au mieux
-la table d'opacité. 
+la table d'opacité. La table d'opacité se traduit par une carte de migration complexe où chaque aspect de la table se traduit
+sur la carte par une variation brutale de la migration. L'opacité a une grande influence sur la migration, que ce soit au
+niveau du temps de diffusion qui régi la saturation que vis à vis du profil de température.
 
 L'importance de l'opacité se manifeste au travers du temps de diffusion radiatif. Une opacité plus grande induit un temps de
 diffusion radiatif plus important. 
+
+On constate par ailleurs que les lois d'opacité lissent fortement la carte de migration (comparer la carte pour la table
+d'opacité d'\cite{hure2000transition} avec les 3 autres). Notons en particulier une transition d'opacité dans \cite{bell1994FU}
+qui n'existe pas dans les autres modèles et qui entraine une zone de convergence indépendante de la masse (dans le cas présent
+à $1.3\unit{UA}$). Cette transition d'opacité, liée à l'évaporation des grains de glace d'eau, n'est en effet introduite que
+dans ce modèle, les autres modèles considérant qu'elle n'illustre aucune réalité physique 
+%TODO Ref sur la transition d'opacité fantome
+
+Le modèle d'opacité choisi a donc une grande influence sur la carte de migration et donc le comportement des planètes dans un
+disque. À l'heure actuelle, compte tenu de la puissance des ordinateurs, le choix d'une loi d'opacité par rapport à une table
+d'opacité ne se justifie absolument plus. En effet, les approximations supplémentaires qu'engendrent une loi d'opacité comparé
+à une table brute ne sont absolument pas compensées par le gain de temps de calcul que cela engendre. Dans mon cas, la routine
+implémentant la table d'opacité est même plus rapide que la routine pour les lois d'opacités. La seule différence est qu'il
+faut stocker un tableau contenant la table d'opacité, ce qui n'est absolument pas limitatif avec les ordinateurs actuels.
+
+Les modèles d'opacités étant une source d'incertitude pour toutes les simulations numériques, que ce soit des simulations
+N-corps ou des simulations hydrodynamiques 2D ou 3D, je pense qu'il est important d'apporter une attention particulière au
+choix du modèle. 
+
+À l'heure actuelle, dans le cas particulier de la migration planétaire, la valeur de l'opacité ainsi que la pente qu'elle
+engendre sur le profil de température sont des sources importantes d'incertitudes. Il pourrait être intéressant de réaliser une
+étude d'envergure afin de réaliser une table d'opacité tenant compte des nouvelles capacités des ordinateurs, afin de coller au
+mieux à ce que l'on sait des disques. 
+
+Il restera pourtant toujours des incertitudes quant aux propriétés des poussières, taille et quantité, ainsi que son évolution
+au cours du temps. La poussière étant une source majeure d'opacité dans le disque, son évolution au cours du temps doit avoir
+une influence toute aussi majeure que nous ne pouvons que négliger à l'heure actuelle malgré les implications que cela peut
+avoir sur la formation des planètes.
 
 %TODO
 
@@ -557,4 +588,29 @@ Inclure des formules pour la migration de type I nous offre une liberté supplé
 
 
 %TODO parler du travail d'audrey? Je voudrais en parler avec elle, lui montrer cette section et savoir ce qu'elle en pense. 
-% En particulier, j'aimerais discuter avec elle du fait que la longueur de lissage qu'elle calcule ne peut pas s'appliquer dans mon cas à moi. J'aimerais voir si elle saurait m'expliquer pourquoi (dans mon cas j'ai une planète, et pas elle)
+% En particulier, j'aimerais discuter avec elle du fait que la longueur de lissage qu'elle calcule ne peut pas s'appliquer dans
+mon cas à moi. J'aimerais voir si elle saurait m'expliquer pourquoi (dans mon cas j'ai une planète, et pas elle)
+
+\subsection{Masse moléculaire moyenne}
+La masse moléculaire moyenne $\mu$ va varier dans le disque, principalement à cause de l'évaporation de certaines
+espèces chimiques à différentes températures. La plupart sont totalement négligeable vu leur abondance limitée. Le problème
+aurait pu se poser au bord interne du disque, où la température est très importante. Dans cette région là, la masse moléculaire
+moyenne peut varier à cause de la photodissociation de la molécule $\mathrm{H_2}$. En supposant que le rapport d'abondance
+$\mathrm{He/H}=0.1$, la masse moléculaire, initialement de $\mu=2.35$ passe alors à environ $\mu\sim 1.3$
+
+\begin{figure}[htb]
+\centering
+\subfloat[$\mu=2.35$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/mmw_fully_molecular.pdf}}\hfill
+\subfloat[$\mu=1.3$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/mmw_HI.pdf}}
+\caption{Influence de la masse moléculaire moyenne $\mu$ sur la carte de migration. Seules les
+parties très internes du disque sont ici représentées. Le même disque est utilisé, seule la masse
+moléculaire change afin de refléter l'influence de la photodissociation de $\mathrm{H_2}$ en
+$\mathrm{HI}$ quand la température devient importante. }\label{fig:migration_map_mmw}
+\end{figure}
+
+\reffig{fig:migration_map_mmw} montre l'influence de la masse moléculaire moyenne sur la carte de migration pour un disque
+donné. On s'attend à ce que la photodissociation de $\mathrm{H_2}$ ne devienne importante que dans les parties très internes,
+bien en dessous de $1\unit{UA}$. Dans ces régions là, on constate que la variation de la masse moléculaire moyenne n'a que peu
+d'effet. Il ne nous est donc pas apparu important de prendre cette variation en compte, les changements induits sur la carte de
+migration étant bien inférieur à l'influence du modèle d'opacité par exemple. Cette effet nous parait donc totalement
+négligeable au regard des incertitudes de notre modèle.
