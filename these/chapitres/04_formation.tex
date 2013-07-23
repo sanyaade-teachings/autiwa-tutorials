@@ -434,37 +434,6 @@ Pourtant, la carte de migration possède une deuxième sensibilité au modèle d
 
 Avec un modèle alpha $\alpha=5.10^{-3}$, la viscosité à $0.2\unit{UA}$ est $\nu=10^{14}\unit{cm^2/s}$, tandis qu'elle est de $\nu=10^{15}\unit{cm^2/s}$ à $6\unit{UA}$. Les deux modèles à viscosité constante permettent donc de voir à quoi ressemblait la carte de migration si c'était la viscosité au bord ou au milieu du disque qui était prise comme référence. En effet, dans le modèle alpha, la viscosité varie de plusieurs ordres de grandeur, depuis $\nu=3.10^{13}\unit{cm^2/s}$ au bord interne ($0.1\unit{UA}$) jusqu'à $\nu=10^{16}\unit{cm^2/s}$ au bord externe ($100\unit{UA}$).
 
-
-
-\subsection{Densité de surface}
-Dans notre modèle, le profil de la densité de surface est notre plus grande incertitude. Les contraintes observationnelles ne restreignent pas suffisamment le profil de densité. Il y a peu de chance que la densité de surface d'un disque réel puisse être défini par une loi de puissance d'un bout à l'autre, et surtout par la même loi de puissance. 
-
-On défini la loi de puissance pour la densité de surface de la façon suivante : 
-\begin{align}
-\Sigma(R) &= \Sigma_0 * R^{-d}
-\end{align}
-où $\Sigma_0$ est la densité de surface à $1\unit{UA}$.
-
-Je cherche à étudier l'influence de l'indice $d$ de la loi de puissance sur la carte de migration. Je vais me concentrer sur deux cas particulier. Dans le premier cas \reffig{fig:map_constant_sigma_0}, je vais étudier la variation de l'indice sans changer $\Sigma_0$, c'est à dire que la masse totale du disque va varier en même temps que l'indice. Dans un deuxième cas \reffig{fig:map_constant_total_mass}, la masse totale du disque entre $0.1$ et $100\unit{UA}$ est constante, et on varie la densité de surface à $1\unit{UA}$, $\Sigma_0$ en même temps que l'indice $d$ de la loi de puissance
-
-\begin{figure}[htb]
-\centering
-\subfloat[$d=1$]{\includegraphics[width=0.49\textwidth]{%
-figure/migration_map/index/300_10.pdf}}\hfill
-\subfloat[$d=\sfrac{3}{2}$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/index/300_15.pdf}}
-
-\caption{Influence de l'indice $d$ de la loi de puissance définissant la densité de surface du disque sur la carte de migration. Ici la densité à $1\unit{UA}$ est constante $\Sigma_0=\cte$, la masse totale du disque varie donc avec l'indice $d$.}\label{fig:map_constant_sigma_0}
-\end{figure}
-
-\begin{figure}[htb]
-\centering
-\subfloat[$d=1$ ; $\Sigma_0=2000\unit{g/cm^2}$]{\includegraphics[width=0.49\textwidth]{%
-figure/migration_map/index/2000_10.pdf}}\hfill
-\subfloat[$d=\sfrac{3}{2}$ ; $\Sigma_0=10^4\unit{g/cm^2}$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/index/10000_15.pdf}}
-
-\caption{Influence de l'indice $d$ de la loi de puissance définissant la densité de surface du disque sur la carte de migration. Ici la densité à $1\unit{UA}$ $\Sigma_0$ varie afin que la masse totale du disque soit la même quel que soit l'indice $d$.}\label{fig:map_constant_total_mass}
-\end{figure}
-
 \subsection{Masse du disque}
 \begin{figure}[htb]
 \centering
@@ -482,6 +451,49 @@ Pendant la dissipation, la zone de convergence externe va peu à peu se déplace
 On pourrait penser que cette étude de l'influence de la masse du disque sur la carte de migration nous permet de comprendre l'influence de la dissipation du disque sur la migration. Il n'y a rien de plus faux. En particulier la deuxième phase de la dissipation du disque, rapide et que l'on pense due à la photoévaporation n'est absolument pas uniforme. Elle ne conserve pas la pente d'une loi de puissance, si tant est qu'on puisse définir le profil original en terme de loi de puissance. Au lieu de ça, le disque va se creuser à partir d'un certain rayon, optimal vis à vis de la photoévaporation. Ce dernier va alors ce scinder en deux, la partie interne va rapidement tomber sur l'étoile centrale et dans un dernier stade les parties externes vont aussi se dissiper. Si les détails de la dissipation ne sont pas connus, il est clair qu'on ne peut absolument pas considérer une dissipation exponentielle pour toutes les phases de la dissipation. La modification du profil radial va avoir une importance cruciale sur la dissipation d'une part, et sur la migration et la survie des planètes d'autre part. 
 
 La dispersion du disque a été discutée brièvement \refsec{sec:dispersion}.
+
+\subsection{Densité de surface}
+Dans notre modèle, le profil de la densité de surface est notre plus grande incertitude. Les contraintes observationnelles ne restreignent pas suffisamment le profil de densité. Il y a peu de chance que la densité de surface d'un disque réel puisse être défini par une loi de puissance d'un bout à l'autre, et surtout par la même loi de puissance. 
+
+On défini la loi de puissance pour la densité de surface de la façon suivante : 
+\begin{align}
+\Sigma(R) &= \Sigma_0 * R^{-d}
+\end{align}
+où $\Sigma_0$ est la densité de surface à $1\unit{UA}$.
+
+Je cherche à étudier l'influence de l'indice $d$ de la loi de puissance sur la carte de migration. Je vais me concentrer sur deux cas particulier. Dans le premier cas, je vais étudier la variation de l'indice sans changer $\Sigma_0$, c'est à dire que la masse totale du disque va varier en même temps que l'indice. Dans un deuxième cas, la masse totale du disque entre $0.1$ et $100\unit{UA}$ est constante, et on varie la densité de surface à $1\unit{UA}$, $\Sigma_0$ en même temps que l'indice $d$ de la loi de puissance.
+
+\begin{figure}[htb]
+\centering
+\subfloat[$d=0.6$ ; $\Sigma_0=300\unit{g/cm^2}$]{\label{fig:d06}\includegraphics[width=0.49\textwidth]{%
+figure/migration_map/index/300_06.pdf}}\hfill
+\subfloat[$d=0.7$ ; $\Sigma_0=300\unit{g/cm^2}$]{\label{fig:d07}\includegraphics[width=0.49\textwidth]{figure/migration_map/index/300_07.pdf}}
+
+\caption{Influence de l'indice $d$ de la loi de puissance définissant la densité de surface du disque sur la carte de migration. Ici, $\Sigma_0=\cte=300\unit{g/cm^2}$, seul l'indice du profil de densité de surface varie. }\label{fig:map_index}
+\end{figure}
+
+Un profil de densité de surface plus raide a tendance à écraser la forme de la carte de migration. En effet, les parties externes sont dues à la partie barotropique du couple de corotation. Si $d$ augmente, alors cette partie barotropique est moins positive. En conséquence le couple de corotation sature plus vite à mesure qu'on s'éloigne de l'étoile centrale. L'augmentation de $d$ dans \reffig{fig:map_index} illustre cet aspect. 
+
+On peut remarquer que l'augmentation de l'indice du profil de densité de surface va avoir un impact sur la masse totale du disque. On a vu précédemment que la masse totale du disque avait un effet inverse par rapport à l'indice $d$. Si on augmente l'indice $d$, on compresse la zone de migration externe vers l'étoile centrale. Au contraire, si on augmente la masse totale, on dilate cette zone radialement. 
+
+\begin{figure}[htb]
+\centering
+\subfloat[$d=0.6$ ; $\Sigma_0=444\unit{g/cm^2}$]{\label{fig:d06iso}\includegraphics[width=0.49\textwidth]{%
+figure/migration_map/index/444_06.pdf}}\hfill
+\subfloat[$d=0.7$ ; $\Sigma_0=653\unit{g/cm^2}$]{\label{fig:d07iso}\includegraphics[width=0.49\textwidth]{figure/migration_map/index/653_07.pdf}}
+
+\caption{Influence de l'indice $d$ du profil de densité de surface tout en maintenant la masse totale du disque constante. }\label{fig:map_index_mtot}
+\end{figure}
+
+On constate sur \reffig{fig:map_index_mtot} que dans ce cas là, l'étendue spatiale de la zone de migration vers l'extérieur reste équivalente. On remarque cependant des variations complexes dans les parties internes du disques, difficiles à attribuer à un seul effet isolé. 
+
+Néanmoins, de cette analyse on remarque qu'à masse constante du disque, la migration est similaire d'un disque à l'autre dans les parties externes où les différences de densité sont très faibles localement. Seules les parties internes présentent des différences notables de densité. Ceci s'explique par le fait que dans mon cas, j'ai tenu à maintenir une masse constante dans la totalité du disque, c'est à dire de $0.1$ à $100\unit{UA}$. 
+
+\bigskip
+
+Un examen détaillé de ces cartes de migration nous montre ainsi deux choses. Premièrement que la zone de migration vers l'extérieur est tronquée dans les parties externes à mesure que le gradient de densité de surface augmente. Cet effet s'oppose à la tendance inverse qui est observée quand on augmente la densité de surface locale (ce qui augmente la température, puis la diffusivité thermique). 
+
+Deuxièmement, en conservant une densité locale sensiblement égale comme c'est le cas entre $6$ et $18\unit{UA}$ pour les disques \reffig{fig:map_index_mtot} on conserve aussi la carte de migration. Cependant, la sensibilité très forte aux transitions d'opacité et au profil de température rendent difficile l'interprétation des parties internes du disque. 
 
 %TODO 
 \subsection{Table d'opacité}\label{sec:influence_opacity_table}
