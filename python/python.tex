@@ -213,6 +213,22 @@ Voici des exemples concrêts pour l'affichage d'un flottant normal :
  2.35
 \end{verbatim}
 
+D'autres exemples pour l'affichage de chiffres significatifs (à l'aide de la forme hybride): 
+\begin{verbatim}
+>>> t=0.01
+>>> print("%.1g"%t)
+0.01
+>>> t=0.1
+>>> print("%.1g"%t)
+0.1
+>>> t=1.
+>>> print("%.1g"%t)
+1.
+>>> t=10.
+>>> print("%.1g"%t)
+1e+01
+\end{verbatim}
+
 En voici d'autres pour un réels déclaré sous la forme d'une exponentielle :
 \begin{verbatim}
 >>> t=3.875786e17
