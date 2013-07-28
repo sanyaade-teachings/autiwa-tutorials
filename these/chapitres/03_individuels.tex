@@ -1,27 +1,49 @@
+\section{Les Zones de Convergence}
+%TODO 
+\subsection{Existence et intérêt}
+%Je sais pas quoi mettre, mais il faudrait que j'affiche les comparaisons entre les temps particuliers, U-turn et libration ,
+% avec les temps de diffusion. 
+%TODO 
+\subsection{Les différents types}\label{sec:CZ-types}
+%TODO 
+\subsection{Diagrammes de couple a-m}\label{sec:migrations-maps}
+%TODO parler des raisons pour lesquelles la zone de convergence dépend de la masse et de la distance parfois, avec les
+comparaisons des temps (dynamique, de U-turn and de diffusion)
+\subsection{Résonances et Accrétions}
+%TODO 
+
 \section{Les Résonances de Moyen Mouvement (MMR)}
 \subsection{Définition}\index{résonance!de Moyen Mouvement}\index{Mean Motion Resonance|see{résonance}}
-Les \gras[resonance@résonance]{résonances de moyen mouvement} sont des configurations orbitales particulières de deux planètes dans lesquelles il existe un lien entre les périodes orbitales des planètes. Exemple, si deux planètes sont en résonance $3:2$, ça signifie que la planète interne effectuera 3 orbites pendant que la planète externe en effectuera 2.
+Les \gras[resonance@résonance]{résonances de moyen mouvement} sont des configurations orbitales particulières de deux planètes
+dans lesquelles il existe un lien entre les périodes orbitales des planètes. Exemple, si deux planètes sont en résonance
+\MMR{3}{2}, ça signifie que la planète interne effectuera 3 orbites pendant que la planète externe en effectuera 2.
 
 Ces configurations particulières confèrent une stabilité accrue aux planètes. Plus la résonance est forte et plus il sera difficile pour les planètes d'en sortir.
 
 \bigskip
 
-On met généralement une résonance sous la forme $(p+q):p$ où $p$ et $q$ sont des entiers. Cette forme permet de mettre en évidence un des paramètres qui permet de rendre compte de la force de la résonance. En effet, plus $q$ est petit et plus la résonance est forte. Ainsi, les résonances d'ordre 1 ($q=1$) sont les plus fortes. On dit que $q$ est l'ordre de la résonance (plus l'ordre est petit et plus la résonance est forte). De même, $p$ est le degré de la résonance.
+On met généralement une résonance sous la forme \MMR{(p+q)}{p} où $p$ et $q$ sont des entiers. Cette forme permet de mettre en
+évidence un des paramètres qui permet de rendre compte de la force de la résonance. En effet, plus $q$ est petit et plus la
+résonance est forte. Ainsi, les résonances d'ordre 1 ($q=1$) sont les plus fortes. On dit que $q$ est l'ordre de la résonance
+(plus l'ordre est petit et plus la résonance est forte). De même, $p$ est le degré de la résonance.
 
 \begin{attention}
 Mais ce n'est pas le seul paramètre à prendre en compte pour évaluer la force d'une résonance et je suis bien incapable de tous les décrire.
 \end{attention}
 
-Pour une résonance $(p+q):p$ on définit un certain nombre d'angles $\theta_i$ dits \gras[angle de résonance]{angles de résonance} de la forme :
+Pour une résonance \MMR{(p+q)}{p} on définit un certain nombre d'angles $\theta_i$ dits \gras[angle de résonance]{angles de
+résonance} de la forme :
 \begin{align}
 \theta_{i+1} &=(p+q)\lambda_2 -p\lambda_1 - \left[i\varpi_{1} + (q-i)\varpi_2\right]
 \end{align}
-avec $i$ allant de $0$ à $q$ ; où $\lambda$ sont les longitudes moyennes, $\varpi$ les longitudes du péricentre et les indices $1$ et $2$ se réfèrent respectivement à la planète interne et externe. Pour une résonance $(p+q):p$ on a donc $q+1$ angles de résonance.
+avec $i$ allant de $0$ à $q$ ; où $\lambda$ sont les longitudes moyennes, $\varpi$ les longitudes du péricentre et les indices
+$1$ et $2$ se réfèrent respectivement à la planète interne et externe. Pour une résonance \MMR{(p+q)}{p} on a donc $q+1$ angles
+de résonance.
 
 Les angles de résonances mesurent l'angle entre les deux planètes au point de conjonction. Si un seul de ces angles est en libration (oscillation autour d'une valeur moyenne) au lieu de circuler librement de $0$ à $2\pi$ alors on dit que les planètes sont en résonances. Le nombre d'angles en libration permettra aussi d'avoir une idée de la force de la résonance.
 
 \begin{exemple}
-Soit une résonance $7:2$, les angles de résonances sont :
+Soit une résonance \MMR{7}{2}, les angles de résonances sont :
 \begin{align*}
 \theta_1 &= 7 \lambda_2 -2\lambda_1 - 5 \varpi_1\\
 \theta_2 &= 7 \lambda_2 -2\lambda_1 - \left( 4 \varpi_1 + 1\varpi_2 \right)\\
@@ -52,34 +74,79 @@ Nous n'allons pas détailler ici le fonctionnement précis des résonances. Plus
 
 Il est difficile de prendre pour exemple les cas N-corps classiques et essayer de les appliquer dans le disque de gaz. Dans notre cas, l'amortissement de $e$ et $I$ par le disque stabilise les résonances, empêchant les résonances normalement instables de se briser. Bien entendu, les résonances se brisent dans nos systèmes en formation, mais dans des cas beaucoup plus extrêmes, notamment quand on a une chaîne de résonance contenant plusieurs corps, tous en résonance. 
 
-Dans de tels systèmes, on constate plusieurs tendances. 
-
-\subsection{Effet du rapport de masse}
-%phd/MMR_mass_ratio
-
-%TODO
-\subsection{Effet du nombre de corps en résonance}
-
-
-
-
-%TODO 
 \subsection{Stabilité et ordre des résonances}
+\reffig{fig:MMR_statistique} montre l'influence du degré de la résonance sur l'excentricité des deux planètes mises en jeu. On
+constate tout d'abord que sur 250 simulations effectuées, aucune ne présente des résonances d'ordre $q\neq 1$. Dans le cas de la
+migration, où les planètes veulent sortir de la résonance au travers de leur migration différentielle, seules les migration
+d'ordre 1 sont assez fortes pour survivre. 
+
 
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.75\linewidth]{figure/MMR_statistique.pdf}
-\caption{Illustration des différentes résonances possibles et de l'augmentation de l'excentricité qu'elles entrainent. Chaque simulation contenait deux planètes de $1\mearth$ aléatoirement réparties entre $1$ et $10\unit{AU}$. Chaque point correspond à une planète. }\label{fig:MMR_statistique}
+\caption{Illustration des différentes résonances possibles et de l'augmentation de l'excentricité qu'elles entrainent. Chaque
+simulation contenait deux planètes de $1\mearth$ aléatoirement réparties entre $1$ et $10\unit{AU}$. Chaque point correspond à
+une planète. En haut, en fonction du rapport de période, la position finale des planètes est
+représentée. En bas, l'excentricité des planètes en fonction du rapport de période avec l'autre planète du système. Une zone de
+convergence artificielle à $3\unit{UA}$ a été appliquée. Elle n'a pas d'importance particulier sinon de permettre la formation
+de résonances, centrées autour de la même zone du disque, facilitant les études comparatives.}\label{fig:MMR_statistique}
 \end{figure}
-%TODO 
 
-\section{Les Zones de Convergence}
-%TODO 
-\subsection{Existence et intérêt}
-%TODO 
-\subsection{Les différents types}\label{sec:CZ-types}
-%TODO 
-\subsection{Diagrammes de couple a-m}\label{sec:migrations-maps}
-%TODO parler des raisons pour lesquelles la zone de convergence dépend de la masse et de la distance parfois, avec les comparaisons des temps (dynamique, de U-turn and de diffusion)
-\subsection{Résonances et Accrétions}
-%TODO 
+En fonction du degré de la résonance, l'excentricité des deux corps en résonance diffère. Contrairement à ce qu'on pourrait
+penser, ce ne sont pas les résonances de degré élevés qui engendrent les excentricités les plus grandes, même si la distance
+entre les deux corps diminue drastiquement. Ainsi, l'excentricité de deux corps sera plus grande s'ils sont en résonance
+\MMR{3}{2} par rapport à une \MMR{9}{8}. Ceci vient du fait que même si les planètes sont plus éloignées, dans le cas d'une
+résonance \MMR{3}{2}, les conjonctions à l'origine des perturbations gravitationnelles résonances sont beaucoup plus
+fréquentes. L'augmentation de l'excentricité est donc beaucoup plus importante \citep{murray2000solar}. 
+
+\subsection{Effet du rapport de masse}
+%phd/MMR_mass_ratio
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.75\linewidth]{figure/MMR_mass_ratio.pdf}
+\caption{Résultat de 250 simulations où la première planète, de $10\mearth$ est à $3\unit{UA}$, sur
+la zone de convergence artificielle. Une planète externe, placée à $4\unit{UA}$ a une masse
+déterminée aléatoirement entre $0.1$ et $10\mearth$. Dans la totalité des simulations, les planètes
+se placent en résonance \MMR{3}{2}.}\label{fig:MMR_mass_ratio}
+\end{figure}
+
+\reffig{fig:MMR_mass_ratio} se lit de gauche à droite, afin de voir l'effet de l'augmentation de la masse de la planète externe
+sur la distance orbitale, l'excentricité et le rapport de périodes orbitales. 
+
+Pour une seconde planète de $0.1\mearth$, on constate que la planète la plus massive se trouve à la position exacte de la
+résonance, tandis que la planète externe reste bloquée à $4\unit{UA}$ environ. Les deux planètes ressentent un couple de
+migration vers la zone de convergence à $3\unit{UA}$ mais l'inertie de la planète massive est beaucoup plus grande, raison pour
+laquelle la planète de $10\mearth$ est à la zone de convergence, la planète de faible masse étant simplement bloquée dans la
+résonance. 
+
+On constate de plus qu'en raison de la très grande différence de masse, pour une même résonance l'excentricité des deux
+planètes est très différente. La planète la plus massive a une excentricité extrêmement basse, cette dernière étant très peu
+sensible aux perturbations de la planète de faible masse. À l'inverse, la planète peu massive est très sensible aux
+perturbations de la plus grosse, et son excentricité est bien plus importante, plus de deux ordres de grandeur supérieure.
+
+Pour cette planète externe de $0.1\mearth$ on remarque une dernière chose. Bien qu'en résonance \MMR32, le rapport de période
+ne vaut pas exactement $1.5$ comme attendu, mais $1.503$. On retrouve là la divergence du rapport de période pour des
+résonances dans un système dissipatifs \citep{batygin2013dissipative}. 
+
+\bigskip
+
+À mesure que l'on augmente la masse de la planète externe, cette dernière pousse petit à petit la planète interne, le rapport
+de masse se rapprochant de $1$, elle a peu à peu suffisamment de force pour que l'équilibre des couples de migration se
+traduise par une répartition des planètes autour de la zone de convergence. 
+
+Dans le même temps, l'excentricité de la planète interne croit. À mesure que la masse de la planète externe augmente, les
+perturbations qu'elle engendre sur l'autre planète augmentent également. Sa masse augmentant, elle devient légèrement moins
+sensible aux perturbations de la planète interne et on constate une baisse ténue de l'excentricité de la planète externe. 
+
+Enfin, on remarque que l'écart du rapport de période par rapport à la valeur attendue de $1.5$ pour une résonance \MMR32
+augmente avec la masse du deuxième corps. En effet, à mesure que la masse de la planète externe augmente, l'amortissement de
+l'excentricité induit par le disque devient plus efficace \citep[eq. (9)]{cresswell2008three}. 
+
+\bigskip
+
+Une fois que le rapport de masse est égal à 1, alors les planètes se placent de part et d'autre de la zone de couple nul, et
+les excentricités induites par la résonances deviennent sensiblement égales.
+
+\subsection{Accretion dans une chaîne de résonance}
+
+%TODO
