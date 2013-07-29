@@ -1,14 +1,48 @@
 \section{Les Zones de Convergence}
+Dans les disques radiatifs, la migration de type I est gouvernée par le couple différentiel de Lindblad, qui induit généralement une migration vers l'intérieur \citep{tanaka2002three}, et le couple de corotation, qui peut contrebalancer le couple différentiel de Lindblad sous certaines conditions et ainsi inverser le sens de migration (vers l'extérieur) \citep{paardekooper2006halting, kley2008migration}. Il est donc possible d'avoir dans un disque des zones où la migration s'arrête. Ces zones sont appelées zone de convergence \citep[CZs;][]{lyra2010orbital, mordasini2011application, paardekooper2011torque}. 
+
+\bigskip
+
+À la zone de convergence, le couple de corotation (positif) compense exactement le couple différentiel de Lindblad (négatif). Ainsi, à la zone de convergence, une planète ne migre pas.
+
+De plus, autour de la zone de convergence, la migration tend à ramener les embryons vers la zone de couple nul s'ils s'en éloignent. La zone de convergence est donc une position stable dans le disque vers laquelle les embryons se rassemblent.
+
+Il peut exister de même des zones de couples nuls qui ne sont pas des zones de convergence quand, en s'éloignant légèrement, la migration tend à les éloigner davantage. Ces zones sont alors instables.
+
+Les zones de convergences pourraient ainsi concentrer les embryons planétaires et être le lieu de formation de planètes (ou cœurs) massives \citep{lyra2010orbital, horn2012orbital}. 
+
 %TODO 
-\subsection{Existence et intérêt}
 %Je sais pas quoi mettre, mais il faudrait que j'affiche les comparaisons entre les temps particuliers, U-turn et libration ,
 % avec les temps de diffusion. 
 %TODO 
-\subsection{Les différents types}\label{sec:CZ-types}
+\subsection{Différents types de zone de convergence}\label{sec:CZ-types}
+L'existence et la forme des zones de convergence est essentiellement dû à la variation du couple de corotation en fonction de divers paramètres. Ce sont les variations du couple de corotation qui engendrent un couple total positif ou négatif, selon qu'il est capable de contrebalancer ou non le couple différentiel de Lindblad. 
+
+Il existe essentiellement deux types de zone de convergence différents, dont les caractéristiques proviennent des raisons physiques à l'origine des variations du couple de corotation. 
+
+\bigskip
+
+Les zones de convergence indépendantes de la masse sont crées par transition d'opacité. La chute brutale de l'opacité engendre un fort gradient d'entropie. On passe alors d'un couple fortement positif à l'intérieur du rayon de la transition d'opacité, à un couple fortement négatif ensuite. Toutes les planètes, quelle que soit leur masse, migrent à la même position dans le disque, dans une certaine région donnée. 
+
+Les migrations modélisées \refsec{sec:linear_indep} et \refsec{sec:tanh_indep} permettent de modéliser de telles zones de convergences de manière artificielles, nous permettant de s'affranchir des cartes de migrations complexes d'un disque modélisée de manière cohérente.
+
+\begin{figure}[htb]
+\centering
+\subfloat[$t_\text{rad}/t_\text{U-turn}$]{\includegraphics[width=0.49\textwidth]{figure/timescales/linear_rad.pdf}}\hfill
+\subfloat[$t_\text{visc}/t_\text{U-turn}$]{\includegraphics[width=0.49\textwidth]{%
+figure/timescales/linear_visc.pdf}}
+
+\subfloat[$t_\text{lib}/(2*t_\text{rad})$]{\includegraphics[width=0.49\textwidth]{figure/timescales/sat_rad.pdf}}\hfill
+\subfloat[$t_\text{lib}/(2*t_\text{visc})$]{\includegraphics[width=0.49\textwidth]{%
+figure/timescales/sat_visc.pdf}}
+
+
+\caption{Comparaison des différents temps caractéristiques influençant le couple de corotation, notamment vis à vis de la saturation. Ces inéquations sont détaillées dans \refsec{sec:couple-corotation}.}\label{fig:timescales_maps}
+\end{figure}
 %TODO 
 \subsection{Diagrammes de couple a-m}\label{sec:migrations-maps}
 %TODO parler des raisons pour lesquelles la zone de convergence dépend de la masse et de la distance parfois, avec les
-comparaisons des temps (dynamique, de U-turn and de diffusion)
+%comparaisons des temps (dynamique, de U-turn and de diffusion)
 \subsection{Résonances et Accrétions}
 %TODO 
 
