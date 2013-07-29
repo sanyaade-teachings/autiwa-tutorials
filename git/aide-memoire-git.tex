@@ -241,6 +241,20 @@ On peut ensuite faire les modifications urgente, dans cette branche ou dans une 
 git stash apply
 \end{verbatim}
 
+\bigskip
+
+Le \textbf{stash} est bien entendu plus complet et puissant que ça. On peut par exemple lister les stash en faisant :
+\begin{verbatim}
+git stash list
+\end{verbatim}
+
+On peut visualiser le contenu d'un stash : 
+\begin{verbatim}
+git stash show stash@{1}
+\end{verbatim}
+
+On peut aussi supprimer un \textbf{stash} particulier, ou l'appliquer dans une nouvelle branche créée à cet effet.
+
 \subsubsection{Supprimer les fichiers inconnus de Git}\index{git!clean}
 Pour supprimer les fichiers \textbf{untracked}, il faut utiliser la commande \gras[git!clean]{clean}. 
 
