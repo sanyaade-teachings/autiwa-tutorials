@@ -2301,6 +2301,16 @@ dans le préambule, juste avant l'appel de tous les paquets.
 \subsubsection{TeX capacity exceeded, sorry [input stack size=5000]}
 Elle peut survenir pour plusieurs raisons. La raison pour laquelle je l'avais était que j'avais mis une commande \verb#\verb|[XYZ]STYLE|# dans un \gras{caption}
 
+\subsubsection{Reference in a caption}
+Pour pouvoir mettre une référence dans un caption de flottant, il faut protéger la commande en mettant \verb|\protect| juste avant : 
+\begin{verbatim}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.45\linewidth]{figure/figure.pdf}
+\caption{Voir \protect\ref{blabla}}\label{fig:label}
+\end{figure}
+\end{verbatim}
+
 \subsubsection{[PdfLaTeX] finished with exit code 1}
 Le détail du .log nous donne : 
 \begin{verbatim}
