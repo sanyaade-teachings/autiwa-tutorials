@@ -24,6 +24,29 @@ Les zones de convergences pourraient ainsi concentrer les embryons planétaires 
 
 \begin{figure}[htb]
 \centering
+\includegraphics[width=\linewidth]{figure/migration_map/fiducial.pdf}
+
+\caption{Carte de migration pour le disque fiducial. Cette carte montre le sens de migration d'une planète en fonction de sa position (abscisse) et de sa masse (ordonnée). La 3\ieme coordonnée est le couple total exercé par le disque sur la planète, exprimé en unité de $\Gamma_0 = \left(\frac{q}{h}\right)^2\Sigma_p {r_p}^4 {\Omega_p}^2$. Quand le couple est positif (resp. négatif), la migration est vers l'extérieur (resp. intérieur). La ligne noire représente la zone de couple nul, où la planète ne migre plus. }\label{fig:fiducial_migration_map}
+\end{figure}
+
+Afin d'étudier la migration dans les disques, il est pratique de regarder une \og carte de migration\fg, comme \reffig{fig:fiducial_migration_map}. Cette carte permet de voir rapidement les parties intéressantes et de prédire l'évolution d'une planète à partir de la position et masse initiales.
+
+\reffig{fig:fiducial_migration_map} montre la carte de migration du disque de référence que nous utiliserons de manière récurrente ici. Ce disque est obtenu à l'aide de la table d'opacité d'\cite{hure2000transition}. Le profil de température est calculé en tenant compte de l'irradiation, avec des paramètres solaires pour la température et le rayon de l'étoile ($T_\star = 5700\unit{K}$ ; $R_\star = 4.65\cdot 10^{-3}\unit{AU}$). L'albédo du disque est pris égal à $0.5$. La viscosité est calculée à partir d'une prescription alpha \citep{shakura1973black}. On considère un disque dont les bords internes et externes sont respectivement à $0.1$ et $100\unit{UA}$. Les autres paramètres du disques sont récapitulés \reftab{tab:fiducial_parameters}. 
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+$b/h = 0.4$ & $\gamma = 7/5$ & $\mu = 2.35$ & $\alpha = 5\cdot 10^{-3}$ \\\hline
+\multicolumn{2}{|c|}{Inner edge : $0.1\unit{UA}$} & \multicolumn{2}{c|}{Outer edge : $100\unit{UA}$}\\\hline
+\multicolumn{4}{|c|}{$\Sigma(R) = 300 \cdot R^{-1/2}\unit{g/cm^2}$}\\\hline
+$T_\star = 5700\unit{K}$ & $R_\star = 4.65\cdot 10^{-3}\unit{AU}$ & \multicolumn{2}{c|}{Disk albedo : $0.5$}\\\hline
+\end{tabular}
+\caption{Paramètres physiques du disque fiducial. Les opacités sont calculées à partir de la table d'opacité de \cite{hure2000transition}. La viscosité est calculée en suivant la prescription alpha de \cite{shakura1973black}.}\label{tab:fiducial_parameters}
+\end{table}
+
+\begin{figure}[htb]
+\centering
 \subfloat[Lindblad torque]{\includegraphics[width=0.49\textwidth]{figure/migration_map/details/lindblad_torque.pdf}}\hfill
 \subfloat[Horseshoe Entropy related torque]{\includegraphics[width=0.49\textwidth]{%
 figure/migration_map/details/ent_hs_torque.pdf}}
@@ -31,7 +54,7 @@ figure/migration_map/details/ent_hs_torque.pdf}}
 \caption{Evolution des deux couples les plus importants vis à vis de la carte de migration, le couple de Lindblad et la partie non saturée du couple de corotation liée au gradient d'entropie. En effet, ces deux couples sont quantitativement plus grand que tous les autres. Ici, seule la partie non-saturée du couple de corotation est représentée.}\label{fig:details_maps}
 \end{figure}
 
-Sur \reffig{fig:details_maps} sont représentés les deux couples les plus importants en terme d'amplitude (tant négative pour le couple de Lindblad $\Gamma_L$, que positive pour la partie du couple de corotation non saturée liée au gradient d'entropie $\Gamma_\text{ent,hs}$. Ici, c'est bien la partie non saturée qui est représentée \og fully unsaturated\fg. On ne tiens pas compte de la diffusion. On constate alors que sans tenir compte de la diffusion, les couples sont totalement indépendants de la masse. 
+Sur \reffig{fig:details_maps} sont représentés les deux couples les plus importants en terme d'amplitude (tant négative pour le couple de Lindblad $\Gamma_L$, que positive pour la partie du couple de corotation non saturée liée au gradient d'entropie $\Gamma_\text{ent,hs}$. Ici, c'est bien la partie non saturée qui est représentée \og fully unsaturated\fg. On ne tiens pas compte de la diffusion. On constate alors que sans tenir compte de la diffusion, les couples sont totalement indépendants de la masse. La transition que l'on constate dans les deux cartes, entre $6-8\unit{UA}$ correspond à la transition disque actif/passif. L'irradiation est le processus de chauffage principal à partir de $5\unit{UA}$ comme illustré par \reffig{fig:viscous_vs_irradiation}.
 
 \begin{figure}[htb]
 \centering
@@ -48,9 +71,18 @@ t_\text{U-turn} < t_\text{diff} < \frac{t_\text{lib}}{2}\\
 t_\text{U-turn} < t_\text{rad} < t_\text{visc} < \frac{t_\text{lib}}{2}
 \end{align}
 
-À partir de \reffig{fig:timescales_maps} on constate deux choses. La première c'est que la zone de couple nul du bas de la carte de migration, est régie par l'inéquation $t_\text{U-turn} < t_\text{rad}$ \reffig{fig:linear_rad}. C'est surtout visible dans la partie $0-4\unit{UA}$, mais cela reste le principal déterminant du reste cette ligne de couple nul. En dessous de cette ligne, c'est uniquement la partie linéaire du couple de corotation qui subsiste. Le temps de diffusion radiatif $t_\text{rad}$ est trop court pour que la zone fer-à-cheval induise une variation des propriétés du disque lors du demi-tour devant la planète. 
+À partir de \reffig{fig:timescales_maps} on constate deux choses. La première c'est que la zone de couple nul du bas de la carte de migration, est régie par l'inéquation $t_\text{U-turn} < t_\text{rad}$ \reffig{fig:linear_rad}. C'est surtout visible dans la partie $0-4\unit{UA}$ où l'irradiation ne domine pas encore le profil de température. En dessous de cette ligne, c'est uniquement la partie linéaire du couple de corotation qui subsiste. Le temps de diffusion radiatif $t_\text{rad}$ est trop court pour que la zone fer-à-cheval induise une variation des propriétés du disque lors du demi-tour devant la planète. 
 
-La partie supérieure de la carte, quant à elle, est due à la saturation du couple de corotation, illustrée par l'inégalité $(t_\text{lib}/2) > t_\text{visc}$ qui doit être vérifiée pour que le couple ne sature pas \reffig{fig:sat_visc}. C'est particulièrement visible dans la zone $0-4\unit{UA}$. 
+La partie supérieure de la carte, quant à elle, est due à la saturation du couple de corotation, illustrée par l'inégalité $(t_\text{lib}/2) > t_\text{visc}$ qui doit être vérifiée pour que le couple ne sature pas \reffig{fig:sat_visc}. Comme précédemment, au delà de $4\unit{UA}$ l'irradiation domine peu à peu le bilan énergétique du disque, et dilate la zone en masse pour laquelle une planète ressens un couple positif.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.75\textwidth]{figure/migration_map/viscous_vs_irradiation.pdf}
+
+\caption{Évolution du chauffage visqueux et de l'irradiation en fonction de la distance. Dans les parties internes, c'est le chauffage visqueux qui domine. Dans les parties externes c'est l'irradiation. À $5\unit{UA}$ les deux contributions sont équivalents.}\label{fig:viscous_vs_irradiation}
+\end{figure}
+
+\reffig{fig:viscous_vs_irradiation} montre qu'au delà de $5\unit{UA}$ l'irradiation domine le bilan énergétique du disque. Cela correspond à la distance à laquelle les cartes mettant en jeu les temps de diffusions n'expliquent plus la forme de la carte de migration. À partir de cette distance là, l'irradiation dilate la carte de migration
 
 Intéressons nous maintenant aux zones qui ferment verticalement les lignes de couple nul. Dans les parties externes, après $15\unit{UA}$, c'est la conjonction des deux processus de diffusion qui \og ferme\fg le profil de couple. Pour les masses faibles, en dessous de $15-20\mearth$, la migration vers l'intérieur est dur au fait que $t_\text{U-turn} > t_\text{rad}$, c'est alors la valeur linéaire du couple de corotation qui prévaut. Pour les masses plus importantes, le couple de corotation sature car $(t_\text{lib}/2) < t_\text{visc}$. 
 
