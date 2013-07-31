@@ -1129,6 +1129,40 @@ plot_hyperfocal.tick_params(axis='both', which='major', labelsize=10)
 plot_hyperfocal.tick_params(axis='both', which='minor', labelsize=8)
 \end{lstlisting}
 
+\subsubsection{Changer la style des labels des axes}
+On peut faire beaucoup de choses de ce coté là. Mais en voici deux principales. 
+
+Premièrement, on peut forcer le passage en texte scientifiques, avec des puissances de dix, et on active l'écriture en puissance de 10 au delà de certaines bornes (en dessous de $10^{-3}$ ou au dessus de $10^3$ par exemple) : 
+\begin{lstlisting}[language=python]
+from matplotlib.ticker import ScalarFormatter
+# We prepare the plot
+fig = pl.figure()
+# We define a fake subplot that is in fact only the plot.
+plot = fig.add_subplot(1, 1, 1)
+
+myxfmt = ScalarFormatter(useOffset=True)
+myxfmt._set_offset(1e5)
+myxfmt.set_scientific(True)
+myxfmt.set_powerlimits((-3, 3)) 
+plot.xaxis.set_major_formatter(myxfmt)
+\end{lstlisting}
+
+\bigskip
+
+Une autre technique très puissante est de spécifier directement le formatteur, de la façon suivante : 
+\begin{lstlisting}[language=python]
+from matplotlib.ticker import FormatStrFormatter
+# We prepare the plot
+fig = pl.figure()
+# We define a fake subplot that is in fact only the plot.
+plot = fig.add_subplot(1, 1, 1)
+
+myxfmt = FormatStrFormatter("%.3g")
+plot.xaxis.set_major_formatter(myxfmt)
+\end{lstlisting}
+
+Ici j'ai utilisé le formateur spécial \verb|"%.3g"|. Ce dernier n'affichera que 3 chiffres significatifs, extrêmement pratique quand on veut afficher correctement des nombres plus petits que 1, sans avoir des 0 en trop. En particulier pour une échelle log, j'avais donc correctement affiché les valeurs suivante : $0.01$, $0.1$, $1$, $10$, $100$
+
 \subsubsection{Changer la taille du texte d'un graphique}
 Afin de changer complètement les caractéristiques pour les graphiques, on peut modifier les paramètres de matplotlib en faisant : 
 \begin{lstlisting}[language=python]
@@ -1209,6 +1243,23 @@ y_bottom = 3
 y_top = 4
 
 myplot.fill([x_left, x_right, x_right, x_left],[y_bottom, y_bottom, y_top, y_top], fill=False, hatch='\\')
+\end{lstlisting}
+
+Il y a aussi une fonction pour tracer des rectangles, à partir du point en bas à gauche, de la largeur et de la hauteur du rectangle : 
+\begin{lstlisting}[language=python]
+from matplotlib.patches import Rectangle
+
+fig = pl.figure()
+myplot = fig.add_subplot(1, 1, 1)
+
+x = 1
+y = 2
+width = 3
+height = 4
+
+rect = Rectangle((x, y), width, height, color='#dddddd', label="Self Shadowing")
+
+myplot.add_patch(rect)
 \end{lstlisting}
 
 \subsubsection{Titre de graphique}
