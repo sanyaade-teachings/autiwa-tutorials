@@ -113,14 +113,10 @@ Nous pouvons appeler le deuxième type \og zone de convergence dépendant de la 
 
 \reffig{fig:total_torque_fixed_m} illustre les deux zones de convergences. La première près de $1\unit{UA}$, siège d'une variation brutale du couple de migration, et la deuxième (dont la position dépend de la masse de la planète) où la variation du couple de migration est continue. 
 
-Dans la suite, nous avons parfois utilisé des zones de convergences artificielles afin de simplifier les effets, et d'étudier plus facilement un phénomène particulier. Nous avons modélisé les zones de convergence indépendantes de la masse par une tangente hyperbolique dont le zéro se situe à la zone de convergence, et où le couple de migration (positif ou négatif) sature très loin de la zone de convergence \refsec{sec:tanh_indep}. 
+Dans la suite, nous avons parfois utilisé des zones de convergences artificielles afin de simplifier les effets, et d'étudier plus facilement un phénomène particulier. Dans le cas d'une transition d'opacité, nous avons modélisé les zones de convergence indépendantes de la masse par une tangente hyperbolique dont le zéro se situe à la zone de convergence, et où le couple de migration (positif ou négatif) sature très loin de la zone de convergence \refsec{sec:tanh_indep}. Pour modéliser une zone de convergence indépendante de la masse où le couple varie peu autour de la zone de convergence, nous avons utilisé une variation linéaire du couple de migration \refsec{sec:linear_indep}.
 
 Les zones de convergence dépendantes de la masse peuvent être approximées par une variation linéaire de la position de la zone de couple nul en fonction de la masse. Le couple de migration varie quant à lui linéairement en fonction de la distance \refsec{sec:mass_dependant}. 
 
-
-\subsection{Résonances et Accrétions}
-%TODO talk about the difference between mass dep and mass indep accretion, in particular the fact that planet of different masses migrate to different position has an influence on the convergent migration. 
-% In particular, mass indep with linear migration can be equivalent to mass-indep with steep transition.
 
 \section{Les Résonances de Moyen Mouvement (MMR)}
 \subsection{Définition}\index{résonance!de Moyen Mouvement}\index{Mean Motion Resonance|see{résonance}}
@@ -257,6 +253,15 @@ l'excentricité induit par le disque devient plus efficace \citep[eq. (9)]{cress
 Une fois que le rapport de masse est égal à 1, alors les planètes se placent de part et d'autre de la zone de couple nul, et
 les excentricités induites par la résonances deviennent sensiblement égales.
 
-\subsection{Accretion dans une chaîne de résonance}
-
+\section{Zones de convergence et Résonances}
+%TODO talk about the difference between mass dep and mass indep accretion, in particular the fact that planet of different masses migrate to different position has an influence on the convergent migration. 
+% In particular, mass indep with linear migration can be equivalent to mass-indep with steep transition.
 %TODO
+
+Nous cherchons à comprendre comment l'accrétion est influencée par une zone de convergence. Cette convergence des embryons planétaire vers une zone préférentielle ne résulte pas en la formation d'une super planète, résultat de la collision de tous les embryons de la zone de convergence \citep{morbidelli2008building, sandor2011formation}. Au lieu de cela, les planètes interagissent entre elles et sont piégées dans des résonances de moyen mouvement. 
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.75\linewidth]{figure/MMR_number.pdf}
+\caption{Stabilisation d'un système planétaire autour d'une zone de convergence artificielle à $6\unit{UA}$ en fonction du nombre de planètes qui le composent initialement. Les eccentricités sont représentées par les barres d'erreurs autour des points symbolisant les planètes, dont le diamètre est proportionnel au rayon (en considérant qu'elles ont toutes la même densité).}\label{fig:MMR_number}
+\end{figure}

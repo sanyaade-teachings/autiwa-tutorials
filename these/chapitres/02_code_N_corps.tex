@@ -79,7 +79,7 @@ On réalise deux tests. Dans le premier test, on fait évoluer une planète de $
 
 Dans un deuxième test, on procède exactement de la même manière, à ceci près qu'on place une planète de $1\unit{M_\text{jup}}$ à $5\unit{UA}$. 
 
-\reffig{fig:accuracy_maps} montre l'évolution de la conservation de l'énergie dans ces deux tests pour deux pas de temps différents, $h=1\unit{jour}$ et $h=0.4\unit{jour}$.
+\reffig{fig:accuracy_maps} montre l'évolution de la conservation de l'énergie dans ces deux tests pour deux pas de temps différents, $h=1\unit{jour}$ et $h=0.4\unit{jour}$. Pour un pas de temps donné, nous ne pouvons pas donner simplement de position en dessous de laquelle l'orbite n'est pas correctement résolue. L'excentricité a une influence. En effet, la distance minimale entre l'étoile et la planète se situe au périhélie, mais suivant l'excentricité, la planète passera plus ou moins de temps au périastre. Ainsi, une très grande excentricité va diminuer drastiquement le temps passé au périastre, pour un périastre donné. 
 
 \begin{figure}[htb]
 \centering
@@ -92,21 +92,14 @@ figure/accuracy_10_jup.pdf}}
 figure/accuracy_04_jup.pdf}}
 
 
-\caption{Tests pour $h=1\unit{jour}$ et $h=0.4\unit{jour}$ de la conservation de l'énergie pour une planète de $1\mearth$ isolée ou avec un compagnon de la taille de Jupiter. Les cartes montrent la conservation de l'énergie pour différentes valeurs du demi-grand axe $a$ et de l'excentricité $e$.}\label{fig:accuracy_maps}
+\caption{Tests pour $h=1\unit{jour}$ et $h=0.4\unit{jour}$ de la conservation de l'énergie pour une planète de $1\mearth$ isolée ou avec un compagnon de la taille de Jupiter. Les cartes montrent la conservation de l'énergie pour différentes valeurs du demi-grand axe $a$ et de l'excentricité $e$. La ligne noire correspond à un $\dif E/E=10^{-6}$, valeur en dessous de laquelle on considère que la précision sur l'orbite est suffisante. La partie hachurée correspond à la collision de la planète interne avec l'étoile centrale donc le rayon est $R_\star=0.005\unit{UA}$.}\label{fig:accuracy_maps}
 \end{figure}
 
-%TODO faire des tests numériques, montrer une courbe et donner le nombre minimal de pas de temps nécessaire pour résoudre une orbite correctement et expliquer comme c'est choisi en fonction du bord interne du disque (qui est l'orbite la plus petite atteignable dans notre simulation.
+Si un pas de temps plus grand ($h=1\unit{jour}$) semble convenir pour une planète isolée, la conservation de l'énergie est différente dans le cas avec des perturbations gravitationnelles (cas avec Jupiter). À $0.1\unit{UA}$, qui correspond au bord interne, zone particulièrement importante pour notre étude, ce pas de temps ne convient plus. Dès que l'excentricité augmente un peu, la précision sur l'orbite diminue, et les orbites les plus internes,  ne sont pas correctement résolue.
 
+Même si le disque amortie les excentricités, nous souhaitons résoudre correctement les orbites légèrement excentriques, même au bord interne à $0.1\unit{UA}$. Le pas de temps qui nous semble convenir le mieux à notre problème est $h=0.4\unit{jour}$. C'est donc celui que nous utiliserons par défaut.
 
-
-
-%TODO à partir de là et jusqu'à la fin de la subsection, il faut que je contrôle ce que je dis au regard des simulations lancées et des parties surlignées dans le papier sur hybrid. Notamment à propos de la tolérance aux collisions.
-
-%TODO Simulation lancées dans le dossier $sse/test_mercury, sur une même simulation mais avec différents algorithmes pour voir l'évolution de la conservation de l'énergie au cours du temps
-
-%TODO parler de la précision de conservation de l'énergie
-%TODO parler du pas de temps qui a une influence sur les orbites, et des tests effectués pour contraindre le pas de temps par rapport à l'orbite minimale accessible.
-
+Un moyen mnémotechnique pour calculer le pas de temps minimal pour une simulation est de considérer qu'il faut résoudre l'orbite la plus proche avec un minimum de $10$ pas de temps. Ceci n'est valable que dans l'approximation où l'excentricité n'est pas trop élevée ($e<0.4$). Si nous faisons ce calcul ici, nous obtenons qu'avec un demi-grand axe minimal de $a=0.1\unit{UA}$ et une excentricité maximale de $e=0.4$, la distance minimal d'approche est $q=0.06$. La période d'une orbite $a=0.06$ est de $5\unit{jours}$ environ, ce qui donne un pas de temps maximal de $h=0.5\unit{jour}$. 
 
 
 \section{Mode d'emploi du code N-corps modifié}
@@ -388,6 +381,13 @@ Le profil de densité de surface est le paramètre d'entrée le plus important. 
 
 Le profil étant une loi de puissance, un amortissement est effectué au bord interne du disque afin que la valeur de la densité au bord interne soit proche de zéro. 
 
+Le profil de densité de notre disque de référence (dont nous parlerons plus en détail \refsec{sec:migrations-maps}) est représenté \reffig{fig:fiducial_density}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.75\linewidth]{figure/fiducial_density_profile.pdf}
+\caption{Profil de densité de surface pour notre disque de référence \protect\reftab{tab:fiducial_parameters}.}\label{fig:fiducial_density}
+\end{figure}
 
 \subsection{Table d'opacité}
 Afin de pouvoir calculer le profil de température, on a besoin de choisir un modèle pour l'opacité. Je ne détaillerai pas ici les différents modèles car une étude complète sur le sujet a été effectuée, afin de comprendre l'influence du choix du modèle sur les résultats des simulations. 
@@ -401,6 +401,14 @@ Afin de construire le profil de température point par point, on résout, pour c
 De manière consistante, cette équation a pour paramètre d'entrée la position, et on cherche à trouver les valeurs de la température $T$, échelle de hauteur $H$, profondeur optique $\tau$, diffusivité thermique $\chi$. Toutes ces valeurs sont fixées une fois qu'un ensemble cohérent de valeurs satisfont l'équation.
 
 Afin de résoudre cette équation du type $f(x)=0$, j'ai utilisé une version modifiée de la méthode \textbf{zbrent} de \textbf{Numerical Recipes} \citep{press1992numerical}
+
+Le profil de température que nous obtenons dans notre disque de référence (dont nous parlerons plus en détail \refsec{sec:migrations-maps}) est représenté \reffig{fig:fiducial_temperature}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.75\linewidth]{figure/fiducial_temperature_profile.pdf}
+\caption{Profil de température pour notre disque de référence \protect\reftab{tab:fiducial_parameters}.}\label{fig:fiducial_temperature}
+\end{figure}
 
 %TODO 
 \section{Migration type I}
