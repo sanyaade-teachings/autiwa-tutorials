@@ -1,3 +1,7 @@
+%TODO REMARQUES GENERALES DE SEAN
+% Ne dis pas ce que tu ne peux pas faire mais ce que tu peux (avec limitations expliquées)
+% Mélanger les chapitres 3 et 4. Faire un chapitre 3 concentré sur le disque et un chapitre 4 concentré sur les mécanismes de formations
+% Dans la section 4.2, faire plusieurs disques et montrer les différences
 
 \section{Décalage de la Zone de Convergence}\label{sec:shifted_CZ}
 Cette partie a fait l'objet d'un article, publié dans le journal Astronomy \& Astrophysics : \cite{cossou2013convergence}.
@@ -229,16 +233,16 @@ Les détections d'exoplanètes par vitesse radiale et transit montrent que $30$ 
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.8\linewidth]{figure/multiplanet_systems_stats.pdf}
-\caption{Propriétés des exoplanètes détectées dans des systèmes multiples ($N\geqslant 2$). Données (01/01/2013) : \url{http://exoplanets.org/}}\label{fig:multiplanet_stats}
+\caption{Propriétés de toutes les exoplanètes détectées dans des systèmes multiples ($N\geqslant 2$). Données (01/01/2013) : \url{http://exoplanets.org/}}\label{fig:multiplanet_stats}
 \end{figure}
 
 \bigskip
 
 Plusieurs mécanismes de formations tentent d'expliquer la présence de super Terres, ces planètes ayant une masse de $1$ à $10\mearth$, tout en étant compatible avec les contraintes observationnelles. Deux modèles principaux peuvent à ce jour expliquer la formation de ces planètes. 
 
-Le premier modèle, la \og formation \textit{in-situ}\fg \citep{chiang2013minimum} n'est possible que si le disque est suffisamment massif localement pour permettre la formation de planète de plusieurs masses terrestres. La formation est alors semblable à celle des planètes telluriques dans le système solaire \citep{wetherill1990formation, kenyon2006terrestrial}.
+Le premier modèle, la \og formation \textit{in-situ}\fg \citep{chiang2013minimum} n'est possible que si le disque est suffisamment massif localement pour permettre la formation de planète de plusieurs masses terrestres. Les dernières phases de la formation sont alors semblables à celles des planètes telluriques dans le système solaire \citep{wetherill1990formation, kenyon2006terrestrial}.
 
-Le deuxième modèle implique la migration de type 1 \citep{terquem2007migration}. Dans ce cas là, il n'est pas nécessaire de supposer un disque extrêmement massif afin de former plusieurs super terres. 
+Le deuxième modèle implique la migration de type I \citep{terquem2007migration}. Dans ce cas là, il n'est pas nécessaire de supposer un disque extrêmement massif afin de former plusieurs super terres. 
 
 Les deux modèles permettent d'expliquer l'espacement observé. Le modèle impliquant la migration de type 1 prédit aussi que les systèmes multiples vont être proches de résonances de moyen mouvement. On peut en effet observer des pics sur \reffig{fig:multiplanet_stats} autour des résonances \MMR{3}{2} et \MMR{2}{1}. Dans le cas de la formation \textit{in-situ}, on s'attend à des planètes assez pauvres en eau, alors qu'en impliquant la migration, la variété de composition des planètes ainsi formées est beaucoup plus grande \citep{raymond2008observable}.
 
@@ -295,7 +299,8 @@ Un zoom sur le bord interne du disque \reffig{fig:HSE_mig_zoom-in} montre la zon
 \subsection{Conditions initiales}
 Initialement dans le système, on génère des embryons dont la masse varie de $0.1$ à $2\mearth$, pour une masse totale allant de $30$ à $100\mearth$. Des masses aléatoires différentes d'un embryon à l'autre permettent d'éviter les biais dûs aux masses égales. En effet, deux embryons de même masse migrent à la même vitesse, ce qui n'a aucune raison physique de se produire systématiquement dans un disque. Deux planètes migrant à la même vitesse ne peuvent pas entrer en collision, ou se placer en résonance, deux évènements cruciaux pour notre mécanisme de formation. 
 
-De plus, quand deux corps sont en résonance, il y a un effet du rapport de masse sur les niveaux réciproques d'excentricité. Des masses égales maximisent les perturbations gravitationnelle de deux corps en résonance \refsec{sec:mass-ratio-effect}. Quand ce n'est pas le cas, le plus gros corps est celui qui a l'excentricité la plus faible, mais c'est aussi celui qui impose la stabilisation du système de deux corps là où lui ressent le couple du disque le plus faible.
+De plus, quand deux corps sont en résonance, il y a un effet du rapport de masse sur les niveaux réciproques d'excentricité. Des masses égales maximisent les perturbations gravitationnelles de deux corps en résonance \refsec{sec:mass-ratio-effect}. Sinon, c'est le plus gros corps qui impose la stabilisation du système de deux corps, le corps moins massif étant piégé dans une zone où il ne pourrait pas rester sans la présence du compagnon. Le corps le plus massif est aussi celui qui a l'excentricité la plus faible. En s'écartant d'un système de deux planètes de masse égale, on diminue ainsi le décalage vers l'intérieur de la zone de stabilisation.
+
 %TODO parler du fait qu'il ne faut pas prendre des masses fixes, expliquer pourquoi. Montrer des statistiques de simulations. 
 
 \subsection{Systèmes possibles}
@@ -314,7 +319,13 @@ En raison de la diminution rapide de la densité de surface près du bord intern
 
 Un système de planètes en résonance se forme alors, les planètes internes migrant vers l'extérieur, les planètes externes migrant elles vers l'intérieur. Ce système en résonance va naturellement chercher à s'équilibrer. Cet équilibre est dicté par le fait que chaque planète ressent un couple non nul, elle possède aussi une excentricité à cause des autres corps en résonance, et ce système compact est continuellement soumis à des perturbations d'autant plus importantes que le nombre de corps en résonance est grand. 
 
-Des collisions et réarrangements ont alors lieu, diminuant ainsi le nombre de corps et augmentant la stabilité du système global. 
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.45\linewidth]{figure/HSE/inner_system.pdf}
+\caption{Zoom sur l'évolution des planètes près du bord interne du disque situé à $0.1\unit{UA}$. }\label{fig:HSE_inner_system}
+\end{figure}
+
+Des collisions et réarrangements ont alors lieu, diminuant ainsi le nombre de corps et augmentant la stabilité du système global \reffig{fig:HSE_inner_system}. Ces réarrangements peuvent en particulier être déclenchés par l'arrivée au bord interne d'une ou plusieurs planètes qui migraient moins rapidement que les autres. Par la compression supplémentaire qu'elles apportent au système, elles déclenchent des perturbations qui peuvent engendrer des collisions. C'est ce qu'il se produit sur  \reffig{fig:HSE_inner_system}, notamment à 3 millions d'années. 
 
 \bigskip
 
@@ -365,7 +376,7 @@ On a enfin un troisième et dernier cas où une planète grossit suffisamment ra
 Quand les embryons sont plus petits qu'une certaine masse critique dépendant des propriétés du disque, la migration est systématiquement vers l'intérieur. Un système compact de planètes qui grossissent par collisions se forme alors au bord interne qui retient ce système par le fort couple de corotation positif qui s'exerce juste avant le bord interne en raison de la forte décroissante de la densité de surface \citep{masset2006disk}.
 %TODO le fait que le couple de lindblad est alors principalement égale au couple externe très fortement négatif ne suffit pas à contrebalancer le couple de corotation très positif. 
 
-Pendant la migration vers l'intérieur, si un embryon grossit suffisamment vite, il peut commencer à migrer vers l'intérieur. Durant cette migration, des résonances vont se former avec les corps qui migrent pour la plupart vers l'intérieur. Par excitation résonante, la migration vers l'extérieur peut être ralentie voire stoppée, et les planètes peuvent de nouveau migrer vers l'intérieur. 
+Pendant la migration vers l'intérieur, si un embryon grossit suffisamment vite, il peut commencer à migrer vers l'extérieur. Durant cette migration, des résonances vont se former avec les corps qui migrent pour la plupart vers l'intérieur. Par excitation résonante, la migration vers l'extérieur peut être ralentie voire stoppée, et les planètes peuvent de nouveau migrer vers l'intérieur. 
 
 Pourtant, dans certains cas, une planète suffisamment massive peut migrer vers l'intérieur, emprisonnant des corps plus petits dans des résonances orbitales, avant de se placer à une zone de couple nul dans les parties externes du disque (dans celui présenté ici, vers $15\unit{UA}$.
 
@@ -392,6 +403,7 @@ Ce que notre modèle montre en plus du modèle de \cite{terquem2007migration}, c
 \section{Effets des paramètres du disque}
 %TODO see kretke2012importance
 %TODO regarder le papier de Bitsch 2013 et celui de 2012 où il regarde l'influence de l'indice adiabatique
+%TODO essayer des gammes beaucoup plus larges de paramètres
 
 Jusqu'à présent, je me suis concentré sur des cas particuliers. Dans le cas de la formation de super-Terres, je n'ai considéré qu'un seul disque \refsec{sec:4.2}. Dans le cas du décalage de la zone de convergence, j'ai montré un disque artificiel modélisant une zone de convergence \refsec{sec:shifted_CZ}. 
 
@@ -435,6 +447,7 @@ Pourtant, la carte de migration possède une deuxième sensibilité au modèle d
 Avec un modèle alpha $\alpha=5.10^{-3}$, la viscosité à $0.2\unit{UA}$ est $\nu=10^{14}\unit{cm^2/s}$, tandis qu'elle est de $\nu=10^{15}\unit{cm^2/s}$ à $6\unit{UA}$. Les deux modèles à viscosité constante permettent donc de voir à quoi ressemblait la carte de migration si c'était la viscosité au bord ou au milieu du disque qui était prise comme référence. En effet, dans le modèle alpha, la viscosité varie de plusieurs ordres de grandeur, depuis $\nu=3.10^{13}\unit{cm^2/s}$ au bord interne ($0.1\unit{UA}$) jusqu'à $\nu=10^{16}\unit{cm^2/s}$ au bord externe ($100\unit{UA}$).
 
 \subsection{Masse du disque}
+%TODO discuter la dissipation plus en détail, en particulier reprendre la partie dissipation phtooévaporation du début, et discuter de ce qu'il pourrait se passer au niveau de la migration par rapport à ce que j'ai extrait des effets du disque.
 \begin{figure}[htb]
 \centering
 \subfloat[$\Sigma_0=400\unit{g/cm^2}$]{\label{fig:map_low_mass}\includegraphics[width=0.49\textwidth]{%
@@ -496,6 +509,44 @@ Néanmoins, de cette analyse on remarque qu'à masse constante du disque, la mig
 Un examen détaillé de ces cartes de migration nous montre ainsi deux choses. Premièrement que la zone de migration vers l'extérieur est tronquée dans les parties externes à mesure que le gradient de densité de surface augmente. Cet effet s'oppose à la tendance inverse qui est observée quand on augmente la densité de surface locale (ce qui augmente la température, puis la diffusivité thermique). 
 
 Deuxièmement, en conservant une densité locale sensiblement égale comme c'est le cas entre $6$ et $18\unit{UA}$ pour les disques \reffig{fig:map_index_mtot} on conserve aussi la carte de migration. Cependant, la sensibilité très forte aux transitions d'opacité et au profil de température rendent difficile l'interprétation des parties internes du disque. 
+
+\subsection{Effet de l'irradiation}
+En choisissant ou non d'inclure l'irradiation dans l'équation de l'énergie permettant de calculer le profil de température, on
+change de manière importante la carte de migration. 
+
+%TODO dire que l'irradiation transforme la zone dépendante de la masse en zone indépendante de la masse
+%TODO faire référence à hasegawa et pudritz 2011. Dnas leur papier ils font référence à un piège à planète au moment de la transition disque actif/passif
+
+\begin{figure}[htb]
+\centering
+\subfloat[Avec irradiation]{\includegraphics[width=0.49\textwidth]{figure/migration_map/bell_irr.pdf}}\hfill
+\subfloat[Sans irradiation]{\includegraphics[width=0.49\textwidth]{%
+figure/migration_map/bell_noirr.pdf}}
+
+\caption{Influence de l'irradiation sur la carte de migration à travers le profil de température. Afin de visualiser plus
+facilement les effets, \cite{bell1994FU} a été utilisé pour l'opacité.}\label{fig:irradiation}
+\end{figure}
+
+Afin de visualiser l'effet de l'irradiation, nous avons utilisé les lois d'opacités de \cite{bell1994FU}. En effet,
+le principal effet de l'irradiation est de lisser le profil de température. Sans irradiation, une transition d'opacité marquée
+comme celles de \cite{bell1994FU} se répercute directement sur le profil de température \reffig{fig:temp_profile_irradiation}.
+On voit donc apparaître des zone de convergences dues à des transitions d'opacités qui sont totalement déformées par
+l'irradiation comme on peut le constater sur \reffig{fig:irradiation}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.6\linewidth]{figure/migration_map/temperature_with_irradiation.pdf}
+\caption{Profil de température avec ou sans irradiation. Les paramètres du disque et de l'étoile pour l'irradiation sont ceux du disque de référence \protect\reffig{tab:fiducial_parameters}.}\label{fig:temp_profile_irradiation}
+\end{figure}
+
+Ainsi, sans irradiation, les deux transitions d'opacités à $1.3$ et $2.9\unit{UA}$ induisent un changement brutal de la pente
+du profil de température, ce qui a pour effet de changer le sens de migration (de positif à négatif, puis l'inverse).
+
+Dans les parties externes, l'irradiation a pour effet de diminuer la pente du profil de température qui tend vers un profil en
+$R^{-0.5}$ quand le disque est purement passif.
+
+%TODO expliquer pourquoi les parties externes ``montent'' en masse. En clair, au lieu d'avoir une décroissance de la zone de
+% couple nul avec la masse, c'est l'inverse qui se produit quand on active l'irradiation.
 
 %TODO 
 \subsection{Table d'opacité}\label{sec:influence_opacity_table}
@@ -583,44 +634,6 @@ une influence toute aussi majeure que nous ne pouvons que négliger à l'heure a
 avoir sur la formation des planètes.
 
 %TODO
-
-\subsection{Effet de l'irradiation}
-En choisissant ou non d'inclure l'irradiation dans l'équation de l'énergie permettant de calculer le profil de température, on
-change de manière importante la carte de migration. 
-
-%TODO dire que l'irradiation transforme la zone dépendante de la masse en zone indépendante de la masse
-%TODO faire référence à hasegawa et pudritz 2011. Dnas leur papier ils font référence à un piège à planète au moment de la transition disque actif/passif
-
-\begin{figure}[htb]
-\centering
-\subfloat[Avec irradiation]{\includegraphics[width=0.49\textwidth]{figure/migration_map/bell_irr.pdf}}\hfill
-\subfloat[Sans irradiation]{\includegraphics[width=0.49\textwidth]{%
-figure/migration_map/bell_noirr.pdf}}
-
-\caption{Influence de l'irradiation sur la carte de migration à travers le profil de température. Afin de visualiser plus
-facilement les effets, \cite{bell1994FU} a été utilisé pour l'opacité.}\label{fig:irradiation}
-\end{figure}
-
-Afin de visualiser l'effet de l'irradiation, nous avons utilisé les lois d'opacités de \cite{bell1994FU}. En effet,
-le principal effet de l'irradiation est de lisser le profil de température. Sans irradiation, une transition d'opacité marquée
-comme celles de \cite{bell1994FU} se répercute directement sur le profil de température \reffig{fig:temp_profile_irradiation}.
-On voit donc apparaître des zone de convergences dues à des transitions d'opacités qui sont totalement déformées par
-l'irradiation comme on peut le constater sur \reffig{fig:irradiation}.
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width=0.6\linewidth]{figure/migration_map/temperature_with_irradiation.pdf}
-\caption{Profil de température avec ou sans irradiation. Les paramètres du disque et de l'étoile pour l'irradiation sont ceux du disque de référence \protect\reffig{tab:fiducial_parameters}.}\label{fig:temp_profile_irradiation}
-\end{figure}
-
-Ainsi, sans irradiation, les deux transitions d'opacités à $1.3$ et $2.9\unit{UA}$ induisent un changement brutal de la pente
-du profil de température, ce qui a pour effet de changer le sens de migration (de positif à négatif, puis l'inverse).
-
-Dans les parties externes, l'irradiation a pour effet de diminuer la pente du profil de température qui tend vers un profil en
-$R^{-0.5}$ quand le disque est purement passif.
-
-%TODO expliquer pourquoi les parties externes ``montent'' en masse. En clair, au lieu d'avoir une décroissance de la zone de
-% couple nul avec la masse, c'est l'inverse qui se produit quand on active l'irradiation.
 
 \subsection{Longueur de lissage}
 Dans les modèles numériques des disques protoplanétaires, le potentiel gravitationnel doit être modifié afin ne pas diverger aux très faibles distances mutuelles. En particulier, des problèmes peuvent survenir quand on modélise des objets étendus par des masses ponctuelles. 
