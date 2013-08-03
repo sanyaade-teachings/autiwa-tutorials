@@ -1,3 +1,7 @@
+%TODO REMARQUES GENERALES DE SEAN
+% Ne dis pas ce que tu ne peux pas faire mais ce que tu peux (avec limitations expliquées)
+% Mélanger les chapitres 3 et 4. Faire un chapitre 3 concentré sur le disque et un chapitre 4 concentré sur les mécanismes de formations
+% Dans la section 4.2, faire plusieurs disques et montrer les différences
 
 \section{Décalage de la Zone de Convergence}\label{sec:shifted_CZ}
 Cette partie a fait l'objet d'un article, publié dans le journal Astronomy \& Astrophysics : \cite{cossou2013convergence}.
@@ -229,16 +233,16 @@ Les détections d'exoplanètes par vitesse radiale et transit montrent que $30$ 
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.8\linewidth]{figure/multiplanet_systems_stats.pdf}
-\caption{Propriétés des exoplanètes détectées dans des systèmes multiples ($N\geqslant 2$). Données (01/01/2013) : \url{http://exoplanets.org/}}\label{fig:multiplanet_stats}
+\caption{Propriétés de toutes les exoplanètes détectées dans des systèmes multiples ($N\geqslant 2$). Données (01/01/2013) : \url{http://exoplanets.org/}}\label{fig:multiplanet_stats}
 \end{figure}
 
 \bigskip
 
 Plusieurs mécanismes de formations tentent d'expliquer la présence de super Terres, ces planètes ayant une masse de $1$ à $10\mearth$, tout en étant compatible avec les contraintes observationnelles. Deux modèles principaux peuvent à ce jour expliquer la formation de ces planètes. 
 
-Le premier modèle, la \og formation \textit{in-situ}\fg \citep{chiang2013minimum} n'est possible que si le disque est suffisamment massif localement pour permettre la formation de planète de plusieurs masses terrestres. La formation est alors semblable à celle des planètes telluriques dans le système solaire \citep{wetherill1990formation, kenyon2006terrestrial}.
+Le premier modèle, la \og formation \textit{in-situ}\fg \citep{chiang2013minimum} n'est possible que si le disque est suffisamment massif localement pour permettre la formation de planète de plusieurs masses terrestres. Les dernières phases de la formation sont alors semblables à celles des planètes telluriques dans le système solaire \citep{wetherill1990formation, kenyon2006terrestrial}.
 
-Le deuxième modèle implique la migration de type 1 \citep{terquem2007migration}. Dans ce cas là, il n'est pas nécessaire de supposer un disque extrêmement massif afin de former plusieurs super terres. 
+Le deuxième modèle implique la migration de type I \citep{terquem2007migration}. Dans ce cas là, il n'est pas nécessaire de supposer un disque extrêmement massif afin de former plusieurs super terres. 
 
 Les deux modèles permettent d'expliquer l'espacement observé. Le modèle impliquant la migration de type 1 prédit aussi que les systèmes multiples vont être proches de résonances de moyen mouvement. On peut en effet observer des pics sur \reffig{fig:multiplanet_stats} autour des résonances \MMR{3}{2} et \MMR{2}{1}. Dans le cas de la formation \textit{in-situ}, on s'attend à des planètes assez pauvres en eau, alors qu'en impliquant la migration, la variété de composition des planètes ainsi formées est beaucoup plus grande \citep{raymond2008observable}.
 
@@ -295,7 +299,8 @@ Un zoom sur le bord interne du disque \reffig{fig:HSE_mig_zoom-in} montre la zon
 \subsection{Conditions initiales}
 Initialement dans le système, on génère des embryons dont la masse varie de $0.1$ à $2\mearth$, pour une masse totale allant de $30$ à $100\mearth$. Des masses aléatoires différentes d'un embryon à l'autre permettent d'éviter les biais dûs aux masses égales. En effet, deux embryons de même masse migrent à la même vitesse, ce qui n'a aucune raison physique de se produire systématiquement dans un disque. Deux planètes migrant à la même vitesse ne peuvent pas entrer en collision, ou se placer en résonance, deux évènements cruciaux pour notre mécanisme de formation. 
 
-De plus, quand deux corps sont en résonance, il y a un effet du rapport de masse sur les niveaux réciproques d'excentricité. Des masses égales maximisent les perturbations gravitationnelle de deux corps en résonance \refsec{sec:mass-ratio-effect}. Quand ce n'est pas le cas, le plus gros corps est celui qui a l'excentricité la plus faible, mais c'est aussi celui qui impose la stabilisation du système de deux corps là où lui ressent le couple du disque le plus faible.
+De plus, quand deux corps sont en résonance, il y a un effet du rapport de masse sur les niveaux réciproques d'excentricité. Des masses égales maximisent les perturbations gravitationnelles de deux corps en résonance \refsec{sec:mass-ratio-effect}. Sinon, c'est le plus gros corps qui impose la stabilisation du système de deux corps, le corps moins massif étant piégé dans une zone où il ne pourrait pas rester sans la présence du compagnon. Le corps le plus massif est aussi celui qui a l'excentricité la plus faible. En s'écartant d'un système de deux planètes de masse égale, on diminue ainsi le décalage vers l'intérieur de la zone de stabilisation.
+
 %TODO parler du fait qu'il ne faut pas prendre des masses fixes, expliquer pourquoi. Montrer des statistiques de simulations. 
 
 \subsection{Systèmes possibles}
@@ -314,7 +319,13 @@ En raison de la diminution rapide de la densité de surface près du bord intern
 
 Un système de planètes en résonance se forme alors, les planètes internes migrant vers l'extérieur, les planètes externes migrant elles vers l'intérieur. Ce système en résonance va naturellement chercher à s'équilibrer. Cet équilibre est dicté par le fait que chaque planète ressent un couple non nul, elle possède aussi une excentricité à cause des autres corps en résonance, et ce système compact est continuellement soumis à des perturbations d'autant plus importantes que le nombre de corps en résonance est grand. 
 
-Des collisions et réarrangements ont alors lieu, diminuant ainsi le nombre de corps et augmentant la stabilité du système global. 
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.45\linewidth]{figure/HSE/inner_system.pdf}
+\caption{Zoom sur l'évolution des planètes près du bord interne du disque situé à $0.1\unit{UA}$. }\label{fig:HSE_inner_system}
+\end{figure}
+
+Des collisions et réarrangements ont alors lieu, diminuant ainsi le nombre de corps et augmentant la stabilité du système global \reffig{fig:HSE_inner_system}. Ces réarrangements peuvent en particulier être déclenchés par l'arrivée au bord interne d'une ou plusieurs planètes qui migraient moins rapidement que les autres. Par la compression supplémentaire qu'elles apportent au système, elles déclenchent des perturbations qui peuvent engendrer des collisions. C'est ce qu'il se produit sur  \reffig{fig:HSE_inner_system}, notamment à 3 millions d'années. 
 
 \bigskip
 
@@ -365,7 +376,7 @@ On a enfin un troisième et dernier cas où une planète grossit suffisamment ra
 Quand les embryons sont plus petits qu'une certaine masse critique dépendant des propriétés du disque, la migration est systématiquement vers l'intérieur. Un système compact de planètes qui grossissent par collisions se forme alors au bord interne qui retient ce système par le fort couple de corotation positif qui s'exerce juste avant le bord interne en raison de la forte décroissante de la densité de surface \citep{masset2006disk}.
 %TODO le fait que le couple de lindblad est alors principalement égale au couple externe très fortement négatif ne suffit pas à contrebalancer le couple de corotation très positif. 
 
-Pendant la migration vers l'intérieur, si un embryon grossit suffisamment vite, il peut commencer à migrer vers l'intérieur. Durant cette migration, des résonances vont se former avec les corps qui migrent pour la plupart vers l'intérieur. Par excitation résonante, la migration vers l'extérieur peut être ralentie voire stoppée, et les planètes peuvent de nouveau migrer vers l'intérieur. 
+Pendant la migration vers l'intérieur, si un embryon grossit suffisamment vite, il peut commencer à migrer vers l'extérieur. Durant cette migration, des résonances vont se former avec les corps qui migrent pour la plupart vers l'intérieur. Par excitation résonante, la migration vers l'extérieur peut être ralentie voire stoppée, et les planètes peuvent de nouveau migrer vers l'intérieur. 
 
 Pourtant, dans certains cas, une planète suffisamment massive peut migrer vers l'intérieur, emprisonnant des corps plus petits dans des résonances orbitales, avant de se placer à une zone de couple nul dans les parties externes du disque (dans celui présenté ici, vers $15\unit{UA}$.
 
@@ -392,15 +403,17 @@ Ce que notre modèle montre en plus du modèle de \cite{terquem2007migration}, c
 \section{Effets des paramètres du disque}
 %TODO see kretke2012importance
 %TODO regarder le papier de Bitsch 2013 et celui de 2012 où il regarde l'influence de l'indice adiabatique
+%TODO essayer des gammes beaucoup plus larges de paramètres
 
-Jusqu'à présent, je me suis concentré sur des cas particuliers. Dans le cas de la formation de super-Terres, je n'ai montré qu'un seul disque \refsec{sec:4.2}. Dans le cas du décalage de la zone de convergence, j'ai montré un disque artificiel modélisant une zone de convergence \refsec{sec:shifted_CZ}. 
+Jusqu'à présent, je me suis concentré sur des cas particuliers. Dans le cas de la formation de super-Terres, je n'ai considéré qu'un seul disque \refsec{sec:4.2}. Dans le cas du décalage de la zone de convergence, j'ai montré un disque artificiel modélisant une zone de convergence \refsec{sec:shifted_CZ}. 
 
 Je vais montrer dans les paragraphes qui suivent que la migration est extrêmement sensible aux paramètres du disque.
 
-\cite{kretke2012importance} ont déjà étudié l'influence des paramètres du disque sur la migration. Cependant, s'ils ont inclus des effets fins sur le bord interne et la migration, l'opacité est par exemple une simple loi de puissance. Nous montrerons que l'opacité est un paramètre sensible du modèle et qu'il est important de la modéliser le plus finement possible. 
+\cite{kretke2012importance} ont déjà étudié l'influence des paramètres du disque sur la migration. Cependant, s'ils ont inclus des effets fins sur le bord interne et la migration, la dépendance de l'opacité en fonction de la température et de la densité est approximée par différentes lois de puissance. Nous montrerons que l'opacité est un paramètre sensible du modèle et qu'il est important de la modéliser le plus finement possible. 
 
 \cite{bitsch2013influence} ont étudié en particulier l'effet de la viscosité $\nu$ et l'indice adiabatique $\gamma$ sur la migration dans le disque, au travers de simulations 3D. 
 
+Afin d'étudier séparément l'effet des paramètres du disque, j'ai choisi un disque de référence, décrit \refsec{sec:migrations-maps}. Dans cette section je présente les cartes de migration et comment les interpréter. En particulier je présente la carte de migration du disque de référence \reffig{fig:fiducial_migration_map}. Pour chaque paramètre, je vais donc conserver les valeurs du disque fiducial, et faire varier le paramètre en question autour de la valeur de référence. Sauf mention contraire, un seul paramètre est donc modifié à la fois, seuls les paramètres qui changent sont précisés, les autres sont regroupés \reftab{tab:fiducial_parameters}.
 
 %TODO continuer
 
@@ -409,7 +422,7 @@ Je vais montrer dans les paragraphes qui suivent que la migration est extrêmeme
 
 %TODO 
 
-Le couple de migration est sensible à la valeur de la viscosité $\nu$. En particulier, c'est le temps de diffusion visqueux qui modifie le niveau de saturation de la zone de corotation, et donc la valeur du couple de corotation. 
+Le couple de migration est sensible à la valeur de la viscosité $\nu$. En particulier, c'est l'efficacité de la diffusion visqueuse qui modifie le niveau de saturation du couple de corotation. 
 
 \begin{figure}[htb]
 \centering
@@ -420,7 +433,7 @@ figure/migration_map/viscosity/alpha_dz.pdf}}
 \subfloat[$\nu=10^{14}\unit{cm^2/s}$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/viscosity/constant_1e14.pdf}}\hfill
 \subfloat[$\nu=10^{15}\unit{cm^2/s}$]{\includegraphics[width=0.49\textwidth]{%
 figure/migration_map/viscosity/constant_1e15.pdf}}
-\caption{Cartes de migration obtenues pour le même disque, mais avec une viscosité différente. Dans la première carte, la viscosité est régie par un modèle alpha où $\alpha=5.10^{-3}$. Dans la deuxième carte, on rajoute en plus une zone morte où la valeur de alpha est plus faible $\alpha=10^{-4}$. Plus de détails sur la modélisation de la zone morte \refsec{sec:dead_zone}. Enfin, deux modèles à viscosité constante $\nu=10^{14}\unit{cm^2/s}$ et $\nu=10^{15}\unit{cm^2/s}$ sont aussi représentés.}
+\caption{Cartes de migration obtenues pour le disque de référence \protect\reffig{fig:fiducial_migration_map} dans lequel on ne modifie que la viscosité. Dans la première carte, la viscosité est régie par un modèle alpha où $\alpha=5.10^{-3}$ (ce qui est utilisé dans le disque de référence). Dans la deuxième carte, on rajoute en plus une zone morte où la valeur de alpha est plus faible $\alpha=10^{-4}$. Plus de détails sur la modélisation de la zone morte \protect\refsec{sec:dead_zone}. Enfin, deux modèles à viscosité constante $\nu=10^{14}\unit{cm^2/s}$ et $\nu=10^{15}\unit{cm^2/s}$ sont aussi représentés.}
 \end{figure}\label{fig:viscosity_comparison}
 
 Pourtant, la carte de migration possède une deuxième sensibilité au modèle de viscosité. Selon que l'on choisi une viscosité constante ou une prescription alpha dans laquelle la viscosité $\nu$ croit avec la distance, cela a une influence sur l'évolution du couple en fonction de la position dans le disque. 
@@ -434,6 +447,7 @@ Pourtant, la carte de migration possède une deuxième sensibilité au modèle d
 Avec un modèle alpha $\alpha=5.10^{-3}$, la viscosité à $0.2\unit{UA}$ est $\nu=10^{14}\unit{cm^2/s}$, tandis qu'elle est de $\nu=10^{15}\unit{cm^2/s}$ à $6\unit{UA}$. Les deux modèles à viscosité constante permettent donc de voir à quoi ressemblait la carte de migration si c'était la viscosité au bord ou au milieu du disque qui était prise comme référence. En effet, dans le modèle alpha, la viscosité varie de plusieurs ordres de grandeur, depuis $\nu=3.10^{13}\unit{cm^2/s}$ au bord interne ($0.1\unit{UA}$) jusqu'à $\nu=10^{16}\unit{cm^2/s}$ au bord externe ($100\unit{UA}$).
 
 \subsection{Masse du disque}
+%TODO discuter la dissipation plus en détail, en particulier reprendre la partie dissipation phtooévaporation du début, et discuter de ce qu'il pourrait se passer au niveau de la migration par rapport à ce que j'ai extrait des effets du disque.
 \begin{figure}[htb]
 \centering
 \subfloat[$\Sigma_0=400\unit{g/cm^2}$]{\label{fig:map_low_mass}\includegraphics[width=0.49\textwidth]{%
@@ -443,24 +457,26 @@ figure/migration_map/total_mass/high_mass.pdf}}\hfill
 \caption{Par rapport au disque de référence, possédant un profil de densité de surface $\Sigma(R) = 300 \cdot R^{-\sfrac{1}{2}}\unit{g/cm^2}$ nous représentons la carte de migration dans un cas un peu moins et un peu plus massif, avec le même indice de la loi de puissance. Les échelles ne sont pas les mêmes, elles ont été choisies pour montrer que la forme reste globalement conservée, si on s'affranchi de l'échelle absolue de la taille de cette dernière.}\label{fig:map_total_mass}
 \end{figure}
 
-Diminuer la masse du disque au cours du temps sans changer son indice de loi de puissance revient à dissiper le disque par une exponentielle décroissante. 
+Dissiper le disque par une exponentielle décroissante signifie changer la masse du disque au cours du temps sans modifier l'indice $d$ de la loi de puissance pour la densité de surface.
 
-Pendant la dissipation, la zone de convergence externe va peu à peu se déplacer vers l'intérieur du disque. La zone de convergence qui était à $20\unit{UA}$ environ pour des planètes dont la masse est comprise entre $15$ et $40\mearth$ \reffig{fig:map_high_mass} va se retrouver à $10\unit{UA}$ environ avec un disque moins massif \reffig{fig:map_low_mass}. Dans le même temps, les planètes de $30$ à $45\mearth$ n'ont plus de zone de convergence dans le cas où le disque s'est dissipé. De même, les planètes de faibles masses vont pouvoir migrer vers l'extérieur à mesure que le disque se dissipe. Dans le cas présent, La masse critique permettant d'avoir une migration vers l'extérieur à un endroit quelconque du disque passe de $5$ à $4\unit{UA}$ entre le disque massif \reffig{fig:map_high_mass} et le disque peu massif \reffig{fig:map_low_mass}.
+Pendant la dissipation, la zone de convergence externe va peu à peu se déplacer vers l'intérieur du disque. La zone de convergence externe qui était à $20\unit{UA}$ environ pour des planètes dont la masse est comprise entre $15$ et $40\mearth$ \reffig{fig:map_high_mass} va se retrouver à $10\unit{UA}$ environ avec un disque moins massif \reffig{fig:map_low_mass}. 
 
-On pourrait penser que cette étude de l'influence de la masse du disque sur la carte de migration nous permet de comprendre l'influence de la dissipation du disque sur la migration. Il n'y a rien de plus faux. En particulier la deuxième phase de la dissipation du disque, rapide et que l'on pense due à la photoévaporation n'est absolument pas uniforme. Elle ne conserve pas la pente d'une loi de puissance, si tant est qu'on puisse définir le profil original en terme de loi de puissance. Au lieu de ça, le disque va se creuser à partir d'un certain rayon, optimal vis à vis de la photoévaporation. Ce dernier va alors ce scinder en deux, la partie interne va rapidement tomber sur l'étoile centrale et dans un dernier stade les parties externes vont aussi se dissiper. Si les détails de la dissipation ne sont pas connus, il est clair qu'on ne peut absolument pas considérer une dissipation exponentielle pour toutes les phases de la dissipation. La modification du profil radial va avoir une importance cruciale sur la dissipation d'une part, et sur la migration et la survie des planètes d'autre part. 
+À partir de la carte de migration d'un disque donné nous pouvons définir la masse critique supérieure (resp. inférieur) au dessus (resp. en dessous) de laquelle on a systématiquement migration vers l'intérieur des planètes, quelle que soit leur position. À mesure que le disque se dissipe,  les masses critiques diminuent. Ainsi, les planètes entre $30$ et $45\mearth$ qui pouvaient auparavant migrer vers l'extérieur dans certaines zones du disque \reffig{fig:map_high_mass} ne peuvent plus le faire dans un disque un peu moins massif \reffig{fig:map_low_mass}. Les planètes entre $3$ et $5\mearth$ qui ne pouvaient que migrer vers l'intérieur \reffig{fig:map_high_mass} peuvent maintenant migrer vers l'extérieur dans certaines zones du disque moins massif \reffig{fig:map_low_mass}. 
+
+On pourrait penser que cette étude de l'influence de la masse du disque sur la carte de migration nous permet de comprendre l'influence de la dissipation du disque sur la migration. Il n'y a rien de plus faux. En particulier la deuxième phase de la dissipation du disque, rapide et que l'on pense due à la photoévaporation n'est absolument pas uniforme. Elle ne conserve pas la pente d'une loi de puissance, si tant est qu'on puisse définir le profil original en terme de loi de puissance. Au lieu de ça, le disque va se creuser à partir d'un certain rayon, optimal vis à vis de la photoévaporation. Ce dernier va alors se scinder en deux, la partie interne va rapidement tomber sur l'étoile centrale et dans un dernier stade les parties externes vont aussi se dissiper. Si les détails de la dissipation ne sont pas connus, il est clair qu'on ne peut absolument pas considérer une dissipation exponentielle pour toutes les phases de la dissipation. La modification du profil radial va avoir une importance cruciale sur la dissipation d'une part, et sur la migration et la survie des planètes d'autre part. 
 
 La dispersion du disque a été discutée brièvement \refsec{sec:dispersion}.
 
 \subsection{Densité de surface}
 Dans notre modèle, le profil de la densité de surface est notre plus grande incertitude. Les contraintes observationnelles ne restreignent pas suffisamment le profil de densité. Il y a peu de chance que la densité de surface d'un disque réel puisse être défini par une loi de puissance d'un bout à l'autre, et surtout par la même loi de puissance. 
 
-On défini la loi de puissance pour la densité de surface de la façon suivante : 
+On définit la loi de puissance pour la densité de surface de la façon suivante : 
 \begin{align}
-\Sigma(R) &= \Sigma_0 * R^{-d}
+\Sigma(R) &= \Sigma_0 * \left(\frac{R}{R_0}\right)^{-d}
 \end{align}
-où $\Sigma_0$ est la densité de surface à $1\unit{UA}$.
+où $\Sigma_0$ est la densité de surface à $R_0=1\unit{UA}$.
 
-Je cherche à étudier l'influence de l'indice $d$ de la loi de puissance sur la carte de migration. Je vais me concentrer sur deux cas particulier. Dans le premier cas, je vais étudier la variation de l'indice sans changer $\Sigma_0$, c'est à dire que la masse totale du disque va varier en même temps que l'indice. Dans un deuxième cas, la masse totale du disque entre $0.1$ et $100\unit{UA}$ est constante, et on varie la densité de surface à $1\unit{UA}$, $\Sigma_0$ en même temps que l'indice $d$ de la loi de puissance.
+Je cherche à étudier l'influence de l'indice $d$ de la loi de puissance sur la carte de migration. Je vais me concentrer sur deux cas particuliers. Dans le premier cas, je vais étudier la variation de l'indice sans changer $\Sigma_0$, c'est à dire que la masse totale du disque va varier en même temps que l'indice. Dans un deuxième cas, la masse totale du disque entre $0.1$ et $100\unit{UA}$ est constante, et on varie la densité de surface à $1\unit{UA}$, $\Sigma_0$ en même temps que l'indice $d$ de la loi de puissance.
 
 \begin{figure}[htb]
 \centering
@@ -471,7 +487,7 @@ figure/migration_map/index/300_06.pdf}}\hfill
 \caption{Influence de l'indice $d$ de la loi de puissance définissant la densité de surface du disque sur la carte de migration. Ici, $\Sigma_0=\cte=300\unit{g/cm^2}$, seul l'indice du profil de densité de surface varie. }\label{fig:map_index}
 \end{figure}
 
-Un profil de densité de surface plus raide a tendance à écraser la forme de la carte de migration. En effet, les parties externes sont dues à la partie barotropique du couple de corotation. Si $d$ augmente, alors cette partie barotropique est moins positive. En conséquence le couple de corotation sature plus vite à mesure qu'on s'éloigne de l'étoile centrale. L'augmentation de $d$ dans \reffig{fig:map_index} illustre cet aspect. 
+Si l'indice $d$ du profil de densité de surface augmente, la forme de la carte de migration aura tendance à se compresser vers les parties internes du disque. En effet, en dessous de $R_0=1\unit{UA}$ la densité de surface sera plus importante si $d$ augmente. Mais dans les parties externes, au delà de $R_0=1\unit{UA}$ la densité de surface sera plus faible. La température dans ces régions là sera alors plus faible. La diffusivité thermique $\chi$ étant extrêmement sensible à la température, si $T$ diminue cela entraine la diminution de $\chi$. Le temps de diffusion radiatif $t_\text{rad}$ étant inversement proportionnel à la diffusivité thermique $\chi$, si l'indice du profil de densité de surface augmente, le temps de diffusion radiatif augmente. En fonction de la distance, le couple de corotation sature ainsi plus rapidement. L'augmentation de $d$ dans \reffig{fig:map_index} illustre cet aspect. 
 
 On peut remarquer que l'augmentation de l'indice du profil de densité de surface va avoir un impact sur la masse totale du disque. On a vu précédemment que la masse totale du disque avait un effet inverse par rapport à l'indice $d$. Si on augmente l'indice $d$, on compresse la zone de migration externe vers l'étoile centrale. Au contraire, si on augmente la masse totale, on dilate cette zone radialement. 
 
@@ -494,13 +510,51 @@ Un examen détaillé de ces cartes de migration nous montre ainsi deux choses. P
 
 Deuxièmement, en conservant une densité locale sensiblement égale comme c'est le cas entre $6$ et $18\unit{UA}$ pour les disques \reffig{fig:map_index_mtot} on conserve aussi la carte de migration. Cependant, la sensibilité très forte aux transitions d'opacité et au profil de température rendent difficile l'interprétation des parties internes du disque. 
 
+\subsection{Effet de l'irradiation}
+En choisissant ou non d'inclure l'irradiation dans l'équation de l'énergie permettant de calculer le profil de température, on
+change de manière importante la carte de migration. 
+
+%TODO dire que l'irradiation transforme la zone dépendante de la masse en zone indépendante de la masse
+%TODO faire référence à hasegawa et pudritz 2011. Dnas leur papier ils font référence à un piège à planète au moment de la transition disque actif/passif
+
+\begin{figure}[htb]
+\centering
+\subfloat[Avec irradiation]{\includegraphics[width=0.49\textwidth]{figure/migration_map/bell_irr.pdf}}\hfill
+\subfloat[Sans irradiation]{\includegraphics[width=0.49\textwidth]{%
+figure/migration_map/bell_noirr.pdf}}
+
+\caption{Influence de l'irradiation sur la carte de migration à travers le profil de température. Afin de visualiser plus
+facilement les effets, \cite{bell1994FU} a été utilisé pour l'opacité.}\label{fig:irradiation}
+\end{figure}
+
+Afin de visualiser l'effet de l'irradiation, nous avons utilisé les lois d'opacités de \cite{bell1994FU}. En effet,
+le principal effet de l'irradiation est de lisser le profil de température. Sans irradiation, une transition d'opacité marquée
+comme celles de \cite{bell1994FU} se répercute directement sur le profil de température \reffig{fig:temp_profile_irradiation}.
+On voit donc apparaître des zone de convergences dues à des transitions d'opacités qui sont totalement déformées par
+l'irradiation comme on peut le constater sur \reffig{fig:irradiation}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.6\linewidth]{figure/migration_map/temperature_with_irradiation.pdf}
+\caption{Profil de température avec ou sans irradiation. Les paramètres du disque et de l'étoile pour l'irradiation sont ceux du disque de référence \protect\reffig{tab:fiducial_parameters}.}\label{fig:temp_profile_irradiation}
+\end{figure}
+
+Ainsi, sans irradiation, les deux transitions d'opacités à $1.3$ et $2.9\unit{UA}$ induisent un changement brutal de la pente
+du profil de température, ce qui a pour effet de changer le sens de migration (de positif à négatif, puis l'inverse).
+
+Dans les parties externes, l'irradiation a pour effet de diminuer la pente du profil de température qui tend vers un profil en
+$R^{-0.5}$ quand le disque est purement passif.
+
+%TODO expliquer pourquoi les parties externes ``montent'' en masse. En clair, au lieu d'avoir une décroissance de la zone de
+% couple nul avec la masse, c'est l'inverse qui se produit quand on active l'irradiation.
+
 %TODO 
 \subsection{Table d'opacité}\label{sec:influence_opacity_table}
 Le modèle utilisé pour déterminer les opacités dans un disque est bien souvent à peine nommé, et très peu discuté. Pourtant,
 l'opacité est une grandeur physique qui a une influence très importante sur la physique du disque et la migration des planètes. 
 
 Dans toute la suite, quand je parlerai de table d'opacité, je désigne le fait d'utiliser un tableau à deux dimensions,
-proposant des valeurs de l'opacité pour différentes températures et densité. La table d'opacité est donc définie ici par
+proposant des valeurs de l'opacité pour différentes températures et densités. La table d'opacité est donc définie ici par
 opposition à ce que j'appelle des lois d'opacité, modèles dans lesquels l'opacité est définie par des lois de puissance,
 fonction de la température et de la densité, dans différents régimes de température et densité.
 
@@ -581,51 +635,14 @@ avoir sur la formation des planètes.
 
 %TODO
 
-\subsection{Effet de l'irradiation}
-En choisissant ou non d'inclure l'irradiation dans l'équation de l'énergie permettant de calculer le profil de température, on
-change de manière importante la carte de migration. 
-
-\begin{figure}[htb]
-\centering
-\subfloat[Avec irradiation]{\includegraphics[width=0.49\textwidth]{figure/migration_map/bell_irr.pdf}}\hfill
-\subfloat[Sans irradiation]{\includegraphics[width=0.49\textwidth]{%
-figure/migration_map/bell_noirr.pdf}}
-
-\caption{Influence de l'irradiation sur la carte de migration à travers le profil de température. Afin de visualiser plus
-facilement les effets, \cite{bell1994FU} a été utilisé pour l'opacité.}\label{fig:irradiation}
-\end{figure}
-
-Afin de visualiser l'effet de l'irradiation, nous avons utilisé les lois d'opacités de \cite{bell1994FU}. En effet,
-le principal effet de l'irradiation est de lisser le profil de température. Sans irradiation, une transition d'opacité marquée
-comme celles de \cite{bell1994FU} se répercute directement sur le profil de température \reffig{fig:temp_profile_irradiation}.
-On voit donc apparaître des zone de convergences dues à des transitions d'opacités qui sont totalement déformées par
-l'irradiation comme on peut le constater sur \reffig{fig:irradiation}.
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width=0.6\linewidth]{figure/migration_map/temperature_with_irradiation.pdf}
-\caption{Profil de température avec ou sans irradiation. L'irradiation est calculée avec les paramètres $T_\star =
-5700\unit{K}$, $R_\star = 4.65\cdot 10^{-3}\unit{AU}$, disk albedo $\varepsilon =
-0.5$.}\label{fig:temp_profile_irradiation}
-\end{figure}
-
-Ainsi, sans irradiation, les deux transitions d'opacités à $1.3$ et $2.9\unit{UA}$ induisent un changement brutal de la pente
-du profil de température, ce qui a pour effet de changer le sens de migration (de positif à négatif, puis l'inverse).
-
-Dans les parties externes, l'irradiation a pour effet de diminuer la pente du profil de température qui tend vers un profil en
-$R^{-0.5}$ quand le disque est purement passif.
-
-%TODO expliquer pourquoi les parties externes ``montent'' en masse. En clair, au lieu d'avoir une décroissance de la zone de
-% couple nul avec la masse, c'est l'inverse qui se produit quand on active l'irradiation.
-
 \subsection{Longueur de lissage}
-Dans les modèles numériques des disques protoplanétaires, le potentiel gravitationnel doit être modifié afin ne pas diverger aux très faibles distances mutuelles. En particulier, des problèmes peuvent survenir quand on modélise des objets, tels des planètes, par des masses ponctuelles. 
+Dans les modèles numériques des disques protoplanétaires, le potentiel gravitationnel doit être modifié afin ne pas diverger aux très faibles distances mutuelles. En particulier, des problèmes peuvent survenir quand on modélise des objets étendus par des masses ponctuelles. 
 
-De même, dans le cas de simulations hydrodynamiques 2D, le modèle se base sur des moyennes azimutales des différentes quantités physiques. Le lissage du potentiel gravitationnel est ici nécessaire afin de diluer la densité de surface et reproduire au mieux l'aspect 3D du disque. On comprend alors aisément que la longueur de lissage va être reliée à l'échelle de hauteur du disque qui est elle aussi une mesure de l'extension azimutale du disque. 
+De même, dans le cas de simulations hydrodynamiques 2D, le modèle se base sur des moyennes verticales des différentes quantités physiques. Le lissage du potentiel gravitationnel est ici nécessaire afin de diluer le potentiel et reproduire au mieux l'aspect 3D du disque. On comprend alors aisément que la longueur de lissage va être reliée à l'échelle de hauteur du disque qui est elle aussi une mesure de l'extension verticale du disque. 
 
 Plusieurs groupes ont cherché à étudier la longueur de lissage en détail, en particulier pour trouver la valeur optimale à utiliser \citep{hure2009local, muller2012treating}. Ces études cherchent à trouver la longueur de lissage qui permet de reproduire les simulations 3D à l'aide des simulations 2D. 
 
-Une longueur de lissage relativement importante $b/h = 0.75$ est nécessaire pour reproduire correctement le couple de Lindblad \citep{masset2002coorbital}. Pour le couple de corotation, la zone fer-à-cheval étant très proche de la planète, ce dernier est extrêmement sensible à la longueur de lissage. En effet, \cite{masset2002coorbital} a montré que dans certains cas le couple de corotation pouvait être plus d'un ordre de grandeur plus important en fonction de la valeur du lissage que l'on applique. La valeur préconisée est alors autour de $b/h\sim 0.5-0.6$. Ainsi, \cite{masset2002coorbital} conclue qu'il est peu probable de trouver une valeur optimale pour la longueur de lissage, les valeurs optimales pour les couples de Lindblad et de corotation étant incompatible. 
+Une longueur de lissage relativement importante $b/h = 0.75$ est nécessaire pour reproduire correctement le couple de Lindblad \citep{masset2002coorbital}. Pour le couple de corotation, la zone fer-à-cheval étant très proche de la planète, ce dernier est extrêmement sensible à la longueur de lissage. En effet, \cite{masset2002coorbital} a montré que dans certains cas le couple de corotation pouvait être plus d'un ordre de grandeur plus important en fonction de la valeur du lissage que l'on applique. La valeur préconisée est alors autour de $b/h\sim 0.5-0.6$. Ainsi, \cite{masset2002coorbital} conclue qu'il est peu probable de trouver une valeur optimale pour la longueur de lissage, les valeurs optimales pour les couples de Lindblad et de corotation étant incompatibles. 
 
 \cite{muller2012treating} suggère d'utiliser une longueur de lissage $b/h = 0.7$ tout en notant que des différences notables subsistent avec les simulations 3D. 
 
@@ -643,7 +660,7 @@ décrire la migration de type I (\refeq{eq:lindblad-torque}, \refeq{eq:saturated
 \subfloat[$b/h = 0.4$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/smoothing/smoothing_0_4.pdf}}\\
 \subfloat[$b/h = 0.6$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/smoothing/smoothing_0_6.pdf}}\hfill
 \subfloat[$b/h = 0.7$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/smoothing/smoothing_0_7.pdf}}\\
-\caption{Effet de la longueur de lissage $b/h$ du potentiel gravitationnel sur la carte de migration du disque de référence. Ici seule la longueur de lissage change.  Pour plus de détails sur les cartes de migration \refsec{sec:migrations-maps}.}\label{fig:migration_map_smoothing}
+\caption{Effet de la longueur de lissage $b/h$ du potentiel gravitationnel sur la carte de migration du disque de référence. Ici seule la longueur de lissage change par rapport au disque de référence \protect\reffig{fig:fiducial_migration_map} pour lequel $b/h=0.4$.  Pour plus de détails sur les cartes de migration \protect\refsec{sec:migrations-maps}.}\label{fig:migration_map_smoothing}
 \end{figure}
 
 \reffig{fig:migration_map_smoothing} montre qu'en fonction de la longueur de lissage, on peut se trouver dans un cas où il y a migration systématique vers l'intérieur ($b/h=0.7$) ou migration quasi systématique vers l'extérieur ($b/h=0.2$). Si une valeur de $0.2$ semble peu réaliste au regard de la migration planétaire \citep{muller2012treating}, il est courant de voir des simulations effectuées avec $b/h=0.3-0.6$ \citep{masset2002coorbital, devalborro2006comparative, paardekooper2009corotation}. 
@@ -664,7 +681,7 @@ Inclure des formules pour la migration de type I nous offre une liberté supplé
 
 %TODO parler du travail d'audrey? Je voudrais en parler avec elle, lui montrer cette section et savoir ce qu'elle en pense. 
 % En particulier, j'aimerais discuter avec elle du fait que la longueur de lissage qu'elle calcule ne peut pas s'appliquer dans
-mon cas à moi. J'aimerais voir si elle saurait m'expliquer pourquoi (dans mon cas j'ai une planète, et pas elle)
+%mon cas à moi. J'aimerais voir si elle saurait m'expliquer pourquoi (dans mon cas j'ai une planète, et pas elle)
 
 \subsection{Masse moléculaire moyenne}
 La masse moléculaire moyenne $\mu$ va varier dans le disque, principalement à cause de l'évaporation de certaines

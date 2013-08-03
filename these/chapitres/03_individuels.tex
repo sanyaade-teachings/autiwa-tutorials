@@ -1,16 +1,122 @@
 \section{Les Zones de Convergence}
+Dans les disques radiatifs, la migration de type I est gouvernée par le couple différentiel de Lindblad, qui induit généralement une migration vers l'intérieur \citep{tanaka2002three}, et le couple de corotation, qui peut contrebalancer le couple différentiel de Lindblad sous certaines conditions et ainsi inverser le sens de migration (vers l'extérieur) \citep{paardekooper2006halting, kley2008migration}. Il est donc possible d'avoir dans un disque des zones où la migration s'arrête. Ces zones sont appelées zone de convergence \citep[CZs;][]{lyra2010orbital, mordasini2011application, paardekooper2011torque}. 
+
+\bigskip
+
+À la zone de convergence, le couple de corotation (positif) compense exactement le couple différentiel de Lindblad (négatif). Ainsi, à la zone de convergence, une planète ne migre pas.
+
+De plus, autour de la zone de convergence, la migration tend à ramener les embryons vers la zone de couple nul s'ils s'en éloignent. La zone de convergence est donc une position stable dans le disque vers laquelle les embryons se rassemblent.
+
+Il peut exister de même des zones de couples nuls qui ne sont pas des zones de convergence quand, en s'éloignant légèrement, la migration tend à les éloigner davantage. Ces zones sont alors instables.
+
+Les zones de convergences pourraient ainsi concentrer les embryons planétaires et être le lieu de formation de planètes (ou cœurs) massives \citep{lyra2010orbital, horn2012orbital}. 
+
 %TODO 
-\subsection{Existence et intérêt}
 %Je sais pas quoi mettre, mais il faudrait que j'affiche les comparaisons entre les temps particuliers, U-turn et libration ,
 % avec les temps de diffusion. 
 %TODO 
-\subsection{Les différents types}\label{sec:CZ-types}
+
+
 %TODO 
 \subsection{Diagrammes de couple a-m}\label{sec:migrations-maps}
 %TODO parler des raisons pour lesquelles la zone de convergence dépend de la masse et de la distance parfois, avec les
-comparaisons des temps (dynamique, de U-turn and de diffusion)
-\subsection{Résonances et Accrétions}
-%TODO 
+%comparaisons des temps (dynamique, de U-turn and de diffusion)
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\linewidth]{figure/migration_map/fiducial.pdf}
+
+\caption{Carte de migration pour le disque fiducial. Cette carte montre le sens de migration d'une planète en fonction de sa position (abscisse) et de sa masse (ordonnée). La 3\ieme coordonnée est le couple total exercé par le disque sur la planète, exprimé en unité de $\Gamma_0 = \left(\frac{q}{h}\right)^2\Sigma_p {r_p}^4 {\Omega_p}^2$. Quand le couple est positif (resp. négatif), la migration est vers l'extérieur (resp. intérieur). La ligne noire représente la zone de couple nul, où la planète ne migre plus. Le détail des paramètres du disque de référence est donné \reftab{tab:fiducial_parameters}. }\label{fig:fiducial_migration_map}
+\end{figure}
+
+Afin d'étudier la migration dans les disques, il est pratique de regarder une \og carte de migration\fg, comme \reffig{fig:fiducial_migration_map}. Cette carte permet de voir rapidement les parties intéressantes et de prédire l'évolution d'une planète à partir de la position et masse initiales.
+
+\reffig{fig:fiducial_migration_map} montre la carte de migration du disque de référence que nous utiliserons de manière récurrente ici. Ce disque est obtenu à l'aide de la table d'opacité d'\cite{hure2000transition}. Le profil de température est calculé en tenant compte de l'irradiation, avec des paramètres solaires pour la température et le rayon de l'étoile ($T_\star = 5700\unit{K}$ ; $R_\star = 4.65\cdot 10^{-3}\unit{AU}$). L'albédo du disque est pris égal à $0.5$. La viscosité est calculée à partir d'une prescription alpha \citep{shakura1973black}. On considère un disque dont les bords internes et externes sont respectivement à $0.1$ et $100\unit{UA}$. Les autres paramètres du disques sont récapitulés \reftab{tab:fiducial_parameters}. 
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+$b/h = 0.4$ & $\gamma = 7/5$ & $\mu = 2.35$ & $\alpha = 5\cdot 10^{-3}$ \\\hline
+\multicolumn{2}{|c|}{Inner edge : $0.1\unit{UA}$} & \multicolumn{2}{c|}{Outer edge : $100\unit{UA}$}\\\hline
+\multicolumn{4}{|c|}{$\Sigma(R) = 300 \cdot R^{-1/2}\unit{g/cm^2}$}\\\hline
+$T_\star = 5700\unit{K}$ & $R_\star = 4.65\cdot 10^{-3}\unit{AU}$ & \multicolumn{2}{c|}{Disk albedo : $0.5$}\\\hline
+\end{tabular}
+\caption{Paramètres physiques du disque fiducial. Les opacités sont calculées à partir de la table d'opacité de \cite{hure2000transition}. La viscosité est calculée en suivant la prescription alpha de \cite{shakura1973black}.}\label{tab:fiducial_parameters}
+\end{table}
+
+\begin{figure}[htb]
+\centering
+\subfloat[Lindblad torque]{\includegraphics[width=0.49\textwidth]{figure/migration_map/details/lindblad_torque.pdf}}\hfill
+\subfloat[Horseshoe Entropy related torque]{\includegraphics[width=0.49\textwidth]{%
+figure/migration_map/details/ent_hs_torque.pdf}}
+
+\caption{Evolution des deux couples les plus importants vis à vis de la carte de migration, le couple de Lindblad et la partie non saturée du couple de corotation liée au gradient d'entropie. En effet, ces deux couples sont quantitativement plus grand que tous les autres. Ici, seule la partie non-saturée du couple de corotation est représentée.}\label{fig:details_maps}
+\end{figure}
+
+Sur \reffig{fig:details_maps} sont représentés les deux couples les plus importants en terme d'amplitude (tant négative pour le couple de Lindblad $\Gamma_L$, que positive pour la partie du couple de corotation non saturée liée au gradient d'entropie $\Gamma_\text{ent,hs}$. Ici, c'est bien la partie non saturée qui est représentée \og fully unsaturated\fg. On ne tiens pas compte de la diffusion. On constate alors que sans tenir compte de la diffusion, les couples sont totalement indépendants de la masse. La transition que l'on constate dans les deux cartes, entre $6-8\unit{UA}$ correspond à la transition disque actif/passif. L'irradiation est le processus de chauffage principal à partir de $5\unit{UA}$ comme illustré par \reffig{fig:viscous_vs_irradiation}.
+
+\begin{figure}[htb]
+\centering
+\subfloat[$t_\text{rad}/t_\text{U-turn}$]{\label{fig:linear_rad}\includegraphics[width=0.49\textwidth]{figure/timescales/linear_rad.pdf}}\hfill
+\subfloat[$(t_\text{lib}/2)/t_\text{visc}$]{\label{fig:sat_visc}\includegraphics[width=0.49\textwidth]{%
+figure/timescales/sat_visc.pdf}}
+
+\caption{Comparaison des différents temps caractéristiques influençant le couple de corotation. Ces inéquations sont détaillées dans \refsec{sec:couple-corotation}. Dans le cas présent, le temps de diffusion radiative est toujours plus court que le temps de diffusion visqueuse, $t_\text{rad}<t_\text{visc}$. Ainsi il ne reste plus que les deux inégalités représentées ici.}\label{fig:timescales_maps}
+\end{figure}
+
+\reffig{fig:timescales_maps} représente l'effet de la diffusion sur la carte de migration. Seuls deux cartes sont montrées, contrairement aux quatres que nous pourrions attendre, car $t_\text{rad}<t_\text{visc}$. Ainsi, la double inégalité, qui était scindable en 4 sous-inégalités (deux pour chaque temps de diffusion) devient :
+\begin{align}
+t_\text{U-turn} < t_\text{diff} < \frac{t_\text{lib}}{2}\\
+t_\text{U-turn} < t_\text{rad} < t_\text{visc} < \frac{t_\text{lib}}{2}
+\end{align}
+
+À partir de \reffig{fig:timescales_maps} on constate deux choses. La première c'est que la zone de couple nul du bas de la carte de migration, est régie par l'inéquation $t_\text{U-turn} < t_\text{rad}$ \reffig{fig:linear_rad}. C'est surtout visible dans la partie $0-4\unit{UA}$ où l'irradiation ne domine pas encore le profil de température. En dessous de cette ligne, c'est uniquement la partie linéaire du couple de corotation qui subsiste. Le temps de diffusion radiatif $t_\text{rad}$ est trop court pour que la zone fer-à-cheval induise une variation des propriétés du disque lors du demi-tour devant la planète. 
+
+La partie supérieure de la carte, quant à elle, est due à la saturation du couple de corotation, illustrée par l'inégalité $(t_\text{lib}/2) > t_\text{visc}$ qui doit être vérifiée pour que le couple ne sature pas \reffig{fig:sat_visc}. Comme précédemment, au delà de $4\unit{UA}$ l'irradiation domine peu à peu le bilan énergétique du disque, et dilate la zone en masse pour laquelle une planète ressens un couple positif.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.75\textwidth]{figure/migration_map/viscous_vs_irradiation.pdf}
+
+\caption{Évolution du chauffage visqueux et de l'irradiation en fonction de la distance. Dans les parties internes, c'est le chauffage visqueux qui domine. Dans les parties externes c'est l'irradiation. À $5\unit{UA}$ les deux contributions sont équivalents.}\label{fig:viscous_vs_irradiation}
+\end{figure}
+
+\reffig{fig:viscous_vs_irradiation} montre qu'au delà de $5\unit{UA}$ l'irradiation domine le bilan énergétique du disque. Cela correspond à la distance à laquelle les cartes mettant en jeu les temps de diffusions n'expliquent plus la forme de la carte de migration. À partir de cette distance là, l'irradiation dilate la carte de migration
+
+Intéressons nous maintenant aux zones qui ferment verticalement les lignes de couple nul. Dans les parties externes, après $15\unit{UA}$, c'est la conjonction des deux processus de diffusion qui \og ferme\fg le profil de couple. Pour les masses faibles, en dessous de $15-20\mearth$, la migration vers l'intérieur est dur au fait que $t_\text{U-turn} > t_\text{rad}$, c'est alors la valeur linéaire du couple de corotation qui prévaut. Pour les masses plus importantes, le couple de corotation sature car $(t_\text{lib}/2) < t_\text{visc}$. 
+
+Avant $1\unit{UA}$, les deux régions de couples positifs sont séparés. C'est une transition d'opacité à $1\unit{UA}$ environ qui en est la cause, et qui change brusquement les couples de migration, quelle que soit leur origine \reffig{fig:details_maps}. Ce brusque changement d'opacité et de température est la raison de la séparation de la zone de couple positif en deux. Ainsi, les raisons valables à $15\unit{UA}$ le sont ici aussi, mais la variation du couple en fonction de la distance est beaucoup plus grande, de sorte que la position de la zone de convergence semble ne pas dépendre de la masse, contrairement aux parties externes de la carte de migration.
+
+\subsection{Différents types de zone de convergence}\label{sec:CZ-types}
+En fonction de la distance, nous pouvons définir des masses critiques extrémales au delà desquelles la migration vers l'extérieur est impossible en raison du temps de diffusion qui est soit trop grand (saturation) soit trop petit (couple linéaire) pour qu'un couple de corotation non saturé puisse exister.
+
+Mais l'information la plus importante de ces cartes de migration est certainement l'évolution du couple en fonction de la distance. Nous pouvons dégager deux types particulier de zones de convergence. 
+
+Le premier type de zone de convergence est ce que nous appellerons une zone de convergence indépendante de la masse. C'est une zone qui se trouve plutôt dans les parties interne du disque. Cette ligne de couple nul dépend très peu de la masse de la planète car une transition d'opacité induit de brusques changements de température. Les couples varient ainsi fortement sur une distance très courte. Cette zone de convergence a deux caractéristiques importantes : 
+\begin{enumerate}
+\item La position de la zone de convergence ne dépend pas ou peu de la masse de planète
+\item La variation du couple de migration autour de la zone de convergence est très forte
+\end{enumerate}
+
+Nous pouvons appeler le deuxième type \og zone de convergence dépendant de la masse\fg. En effet, dans les parties externes, le couple varie plus doucement en fonction de la distance. L'influence de la masse est donc plus marqué dans la position de la zone de couple nul. Ce type de zone de convergence a deux caractéristiques importantes : 
+\begin{enumerate}
+\item La position de la zone de convergence dépend de la masse de la planète. 
+\item Le couple de migration varie doucement en fonction de la distance à la zone de convergence
+\end{enumerate}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.75\linewidth]{figure/total_torque_fixed_m.pdf}
+\caption{Évolution du couple total exercé par le disque sur une planète de $7.5\mearth$. }\label{fig:total_torque_fixed_m}
+\end{figure}
+
+\reffig{fig:total_torque_fixed_m} illustre les deux zones de convergences. La première près de $1\unit{UA}$, siège d'une variation brutale du couple de migration, et la deuxième (dont la position dépend de la masse de la planète) où la variation du couple de migration est continue. 
+
+Dans la suite, nous avons parfois utilisé des zones de convergences artificielles afin de simplifier les effets, et d'étudier plus facilement un phénomène particulier. Dans le cas d'une transition d'opacité, nous avons modélisé les zones de convergence indépendantes de la masse par une tangente hyperbolique dont le zéro se situe à la zone de convergence, et où le couple de migration (positif ou négatif) sature très loin de la zone de convergence \refsec{sec:tanh_indep}. Pour modéliser une zone de convergence indépendante de la masse où le couple varie peu autour de la zone de convergence, nous avons utilisé une variation linéaire du couple de migration \refsec{sec:linear_indep}.
+
+Les zones de convergence dépendantes de la masse peuvent être approximées par une variation linéaire de la position de la zone de couple nul en fonction de la masse. Le couple de migration varie quant à lui linéairement en fonction de la distance \refsec{sec:mass_dependant}. 
+
 
 \section{Les Résonances de Moyen Mouvement (MMR)}
 \subsection{Définition}\index{résonance!de Moyen Mouvement}\index{Mean Motion Resonance|see{résonance}}
@@ -147,6 +253,17 @@ l'excentricité induit par le disque devient plus efficace \citep[eq. (9)]{cress
 Une fois que le rapport de masse est égal à 1, alors les planètes se placent de part et d'autre de la zone de couple nul, et
 les excentricités induites par la résonances deviennent sensiblement égales.
 
-\subsection{Accretion dans une chaîne de résonance}
-
+\section{Zones de convergence et Résonances}
+%TODO talk about the difference between mass dep and mass indep accretion, in particular the fact that planet of different masses migrate to different position has an influence on the convergent migration. 
+% In particular, mass indep with linear migration can be equivalent to mass-indep with steep transition.
 %TODO
+
+Nous cherchons à comprendre comment l'accrétion est influencée par une zone de convergence. Cette convergence des embryons planétaire vers une zone préférentielle ne résulte pas en la formation d'une super planète, résultat de la collision de tous les embryons de la zone de convergence \citep{morbidelli2008building, sandor2011formation}. Au lieu de cela, les planètes interagissent entre elles et sont piégées dans des résonances de moyen mouvement. 
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.75\linewidth]{figure/MMR_number.pdf}
+\caption{Stabilisation d'un système planétaire autour d'une zone de convergence artificielle à $6\unit{UA}$ en fonction du nombre de planètes qui le composent initialement. Les eccentricités sont représentées par les barres d'erreurs autour des points symbolisant les planètes, dont le diamètre est proportionnel au rayon (en considérant qu'elles ont toutes la même densité).}\label{fig:MMR_number}
+\end{figure}
+
+%TODO présenter que si on augmente la force de migration ou le nombre d'embryons on augmente la compression (visible avec un diagramme des resonnances)
