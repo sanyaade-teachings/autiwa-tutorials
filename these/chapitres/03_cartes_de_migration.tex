@@ -1,5 +1,5 @@
 Dans les disques radiatifs, la migration de type I est gouvernée par le couple différentiel de Lindblad, qui induit généralement
-une migration vers l'intérieur \citep{tanaka2002three}, et le couple de corotation, qui peut contrebalancer le couple
+une migration vers l'intérieur \citep{tanaka2002three}, et le couple de corotation qui peut contrebalancer le couple
 différentiel de Lindblad sous certaines conditions et ainsi inverser le sens de migration (vers l'extérieur)
 \citep{paardekooper2006halting, kley2008migration}. Il est donc possible d'avoir dans un disque des zones où la migration
 s'arrête. Ces zones sont appelées zone de convergence \citep[CZs;][]{lyra2010orbital, mordasini2011application,
@@ -25,7 +25,7 @@ cœurs) massives \citep{lyra2010orbital, horn2012orbital}.
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width=\linewidth]{figure/migration_map/fiducial.pdf}
+\includegraphics[width=0.75\linewidth]{figure/migration_map/fiducial.pdf}
 
 \caption{Carte de migration pour le disque fiducial. Cette carte montre le sens de migration d'une planète en fonction de sa
 position (abscisse) et de sa masse (ordonnée). La 3\ieme coordonnée est le couple total exercé par le disque sur la planète,
@@ -74,9 +74,9 @@ non saturée du couple de corotation liée au gradient d'entropie. En effet, ces
 tous les autres. Ici, seule la partie non-saturée du couple de corotation est représentée.}\label{fig:details_maps}
 \end{figure}
 
-Sur \reffig{fig:details_maps} sont représentés les deux couples les plus importants en terme d'amplitude (tant négative pour le
-couple de Lindblad $\Gamma_L$, que positive pour la partie du couple de corotation non saturée liée au gradient d'entropie
-$\Gamma_\text{ent,hs}$. Ici, c'est bien la partie non saturée qui est représentée \og fully unsaturated\fg. On ne tiens pas
+Sur \reffig{fig:details_maps} sont représentés les deux couples les plus importants en terme d'amplitude. D'une part le couple négatif dominant, le
+couple de Lindblad $\Gamma_L$. Et d'autre part le couple positif dominant, la partie du couple de corotation non saturée liée au gradient d'entropie
+$\Gamma_\text{ent,hs}$. Ici, c'est bien la partie non saturée qui est représentée \og fully unsaturated\fg. On ne tient pas
 compte de la diffusion. On constate alors que sans tenir compte de la diffusion, les couples sont totalement indépendants de la
 masse. La transition que l'on constate dans les deux cartes, entre $6-8\unit{UA}$ correspond à la transition disque
 actif/passif. L'irradiation est le processus de chauffage principal à partir de $5\unit{UA}$ comme illustré par
@@ -86,33 +86,24 @@ actif/passif. L'irradiation est le processus de chauffage principal à partir de
 \centering
 \subfloat[$t_\text{rad}/t_\text{U-turn}$]{\label{fig:linear_rad}\includegraphics[width=0.49\textwidth]{%
 figure/timescales/linear_rad.pdf}}\hfill
-\subfloat[$(t_\text{lib}/2)/t_\text{visc}$]{\label{fig:sat_visc}\includegraphics[width=0.49\textwidth]{%
+\subfloat[Saturation : $(t_\text{lib}/2)/t_\text{visc}$]{\label{fig:sat_visc}\includegraphics[width=0.49\textwidth]{%
 figure/timescales/sat_visc.pdf}}
 
 \caption{Comparaison des différents temps caractéristiques influençant le couple de corotation. Ces inéquations sont détaillées
 dans \refsec{sec:couple-corotation}. Dans le cas présent, le temps de diffusion radiative est toujours plus court que le temps
 de diffusion visqueuse, $t_\text{rad}<t_\text{visc}$. Ainsi il ne reste plus que les deux inégalités représentées
-ici.}\label{fig:timescales_maps}
+ici. La saturation est ainsi gouvernée par le temps de diffusion visqueux $t_\text{visc}$. La transition couple non-saturé/couple linéaire est elle déterminée par le temps de diffusion radiatif $t_\text{rad}$.}\label{fig:timescales_maps}
 \end{figure}
 
-\reffig{fig:timescales_maps} représente l'effet de la diffusion sur la carte de migration. Seuls deux cartes sont montrées,
-contrairement aux quatres que nous pourrions attendre, car $t_\text{rad}<t_\text{visc}$. Ainsi, la double inégalité, qui était
-scindable en 4 sous-inégalités (deux pour chaque temps de diffusion) devient :
+\reffig{fig:timescales_maps} représente l'effet de la diffusion sur la carte de migration. Comme $t_\text{rad}<t_\text{visc}$, la saturation est gouvernée par le temps de diffusion visqueux $t_\text{visc}$ et la transition couple non-saturé/couple linéaire est déterminée par le temps de diffusion radiatif $t_\text{rad}$. Ainsi, seules deux inégalités sont ici nécessaires pour étudier le couple de corotation :
 \begin{align}
-t_\text{U-turn} < t_\text{diff} < \frac{t_\text{lib}}{2}\\
+t_\text{U-turn} < t_\text{diff} < \frac{t_\text{lib}}{2}\\\nonumber
 t_\text{U-turn} < t_\text{rad} < t_\text{visc} < \frac{t_\text{lib}}{2}
 \end{align}
 
-À partir de \reffig{fig:timescales_maps} on constate deux choses. La première c'est que la zone de couple nul du bas de la carte
-de migration, est régie par l'inéquation $t_\text{U-turn} < t_\text{rad}$ \reffig{fig:linear_rad}. C'est surtout visible dans la
-partie $0-4\unit{UA}$ où l'irradiation ne domine pas encore le profil de température. En dessous de cette ligne, c'est
-uniquement la partie linéaire du couple de corotation qui subsiste. Le temps de diffusion radiatif $t_\text{rad}$ est trop court
-pour que la zone fer-à-cheval induise une variation des propriétés du disque lors du demi-tour devant la planète. 
+Sur \reffig{fig:timescales_maps} on remarque que les parties active et passive du disque sont distinctes. En dessous de $4\unit{UA}$, la partie supérieure de la carte de migration s'explique par la saturation du couple de corotation. La ligne de couple nul suit en effet l'équation $(t_\text{lib}/2) = t_\text{visc}$ \reffig{fig:sat_visc}.
 
-La partie supérieure de la carte, quant à elle, est due à la saturation du couple de corotation, illustrée par l'inégalité
-$(t_\text{lib}/2) > t_\text{visc}$ qui doit être vérifiée pour que le couple ne sature pas \reffig{fig:sat_visc}. Comme
-précédemment, au delà de $4\unit{UA}$ l'irradiation domine peu à peu le bilan énergétique du disque, et dilate la zone en masse
-pour laquelle une planète ressens un couple positif.
+La partie inférieure quant à elle, s'explique par la transition entre le couple non saturé et le couple linéaire pour le couple de corotation. La ligne de couple nul suit en effet l'équation $t_\text{U-turn} = t_\text{rad}$ \reffig{fig:linear_rad}. Le couple de corotation devient linéaire quand le temps de diffusion radiatif est trop court pour permettre à un gradient de s'installer dans la zone de \og U-turn\fg.
 
 \begin{figure}[htb]
 \centering
@@ -120,23 +111,26 @@ pour laquelle une planète ressens un couple positif.
 
 \caption{Évolution du chauffage visqueux et de l'irradiation en fonction de la distance. Dans les parties internes, c'est le
 chauffage visqueux qui domine. Dans les parties externes c'est l'irradiation. À $5\unit{UA}$ les deux contributions sont
-équivalents.}\label{fig:viscous_vs_irradiation}
+égales. La partie grisée correspond à la zone où l'irradiation est forcée à 0 car l'angle d'interception des rayons solaires est négatif (l'échelle de hauteur diminue). Ce n'est donc pas à proprement parler un \og Self-Shadowing\fg qui concerne une zone beaucoup plus étendue.}\label{fig:viscous_vs_irradiation}
 \end{figure}
 
 \reffig{fig:viscous_vs_irradiation} montre qu'au delà de $5\unit{UA}$ l'irradiation domine le bilan énergétique du disque. Cela
 correspond à la distance à laquelle les cartes mettant en jeu les temps de diffusions n'expliquent plus la forme de la carte de
-migration. À partir de cette distance là, l'irradiation dilate la carte de migration
+migration. À partir de cette distance là, l'irradiation modifie la carte de migration. 
 
-Intéressons nous maintenant aux zones qui ferment verticalement les lignes de couple nul. Dans les parties externes, après
-$15\unit{UA}$, c'est la conjonction des deux processus de diffusion qui \og ferme\fg le profil de couple. Pour les masses
+À partir de $4\unit{UA}$, ce n'est plus seulement les temps de diffusions qui permettent de trouver la zone de couple nul dans le disque, mais les valeurs des couples eux mêmes. La saturation influe sur le couple de corotation, afin d'en atténuer la valeur en fonction des rapports des temps caractéristiques. Mais au delà de $4\unit{UA}$, les couples augmentent (sans tenir compte de la saturation). 
+
+La fermeture des parties externes de la carte de migration s'explique par l'action conjointe des deux temps de diffusions. Pour les masses
 faibles, en dessous de $15-20\mearth$, la migration vers l'intérieur est dur au fait que $t_\text{U-turn} > t_\text{rad}$, c'est
 alors la valeur linéaire du couple de corotation qui prévaut. Pour les masses plus importantes, le couple de corotation sature
 car $(t_\text{lib}/2) < t_\text{visc}$. 
 
-Avant $1\unit{UA}$, les deux régions de couples positifs sont séparés. C'est une transition d'opacité à $1\unit{UA}$ environ qui
+Les couples dominants variant très fortement avec la distance au delà de $4\unit{UA}$ \reffig{fig:details_maps}, la ligne de couple nul n'est plus confondue avec celle de l'égalité des temps caractéristiques \reffig{fig:timescales_maps}.
+
+Avant $1\unit{UA}$, deux régions de couples positifs sont séparés par une région peu étendue où la migration est vers l'intérieur. C'est une transition d'opacité à $1\unit{UA}$ environ qui
 en est la cause, et qui change brusquement les couples de migration, quelle que soit leur origine \reffig{fig:details_maps}. Ce
 brusque changement d'opacité et de température est la raison de la séparation de la zone de couple positif en deux. Ainsi, les
-raisons valables à $15\unit{UA}$ le sont ici aussi, mais la variation du couple en fonction de la distance est beaucoup plus
+raisons qui expliquent la fermeture de la carte de migration à $15\unit{UA}$ sont les mêmes ici. Mais la variation du couple en fonction de la distance est beaucoup plus
 grande, de sorte que la position de la zone de convergence semble ne pas dépendre de la masse, contrairement aux parties
 externes de la carte de migration.
 
@@ -145,10 +139,10 @@ En fonction de la distance, nous pouvons définir des masses critiques extrémal
 l'extérieur est impossible en raison du temps de diffusion qui est soit trop grand (saturation) soit trop petit (couple
 linéaire) pour qu'un couple de corotation non saturé puisse exister.
 
-Mais l'information la plus importante de ces cartes de migration est certainement l'évolution du couple en fonction de la
-distance. Nous pouvons dégager deux types particulier de zones de convergence. 
+Mais l'information la plus importante de ces cartes de migration est l'évolution des différentes zones de couple nul en fonction de la
+distance. Ces zones sont représentées par une ligne noire. Nous pouvons dégager deux types particulier de zones de convergence. 
 
-Le premier type de zone de convergence est ce que nous appellerons une zone de convergence indépendante de la masse. C'est une
+Le premier type de zone de convergence est ce que nous appellerons une \textbf{zone de convergence indépendante de la masse}. C'est une
 zone qui se trouve plutôt dans les parties interne du disque. Cette ligne de couple nul dépend très peu de la masse de la
 planète car une transition d'opacité induit de brusques changements de température. Les couples varient ainsi fortement sur une
 distance très courte. Cette zone de convergence a deux caractéristiques importantes : 
@@ -157,7 +151,7 @@ distance très courte. Cette zone de convergence a deux caractéristiques import
 \item La variation du couple de migration autour de la zone de convergence est très forte
 \end{enumerate}
 
-Nous pouvons appeler le deuxième type \og zone de convergence dépendant de la masse\fg. En effet, dans les parties externes, le
+Nous pouvons appeler le deuxième type \textbf{zone de convergence dépendant de la masse}. En effet, dans les parties externes, le
 couple varie plus doucement en fonction de la distance. L'influence de la masse est donc plus marqué dans la position de la zone
 de couple nul. Ce type de zone de convergence a deux caractéristiques importantes : 
 \begin{enumerate}
@@ -186,7 +180,76 @@ Les zones de convergence dépendantes de la masse peuvent être approximées par
 de couple nul en fonction de la masse. Le couple de migration varie quant à lui linéairement en fonction de la distance
 \refsec{sec:mass_dependant}. 
 
+\section{Influence de la viscosité du disque}
+\subsection{Viscosité constante}
 
+\begin{figure}[htb]
+\centering
+\subfloat[$\nu=10^{14}\unit{cm^2/s}$]{\label{fig:nu_1e14}\includegraphics[width=0.49\textwidth]{figure/migration_map/viscosity/constant_1e14.pdf}}
+\hfill
+\subfloat[$\nu=5\cdot 10^{14}\unit{cm^2/s}$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/viscosity/constant_5e14.pdf}}
+
+
+\subfloat[$\nu=10^{15}\unit{cm^2/s}$]{\label{fig:nu_1e15}\includegraphics[width=0.49\textwidth]{%
+figure/migration_map/viscosity/constant_1e15.pdf}}\hfill
+\subfloat[$\nu=5\cdot 10^{15}\unit{cm^2/s}$]{\label{fig:nu_5e15}\includegraphics[width=0.49\textwidth]{figure/migration_map/viscosity/constant_5e15.pdf}}
+\caption{Influence de la viscosité sur la carte de migration. \refdisk}
+\end{figure}\label{fig:constant_viscosity}
+
+Le couple de migration est sensible à la valeur de la viscosité $\nu$ \reffig{fig:constant_viscosity}. La viscosité, en modifiant le temps de diffusion visqueux, agit sur la saturation du couple de corotation. Quand la viscosité augmente, le temps de diffusion visqueux $t_\text{visc}$ diminue. Le couple de corotation ne sature pas tant que $(T_\text{visc} < t_\text{lib}/2)$. Si on augmente la viscosité $\nu$, le couple de corotation sature moins facilement à mesure que la masse de la planète augmente. La partie supérieure de la carte de migration se décale vers le haut quand la viscosité augmente. 
+
+Mais l'augmentation de la viscosité a un effet indirect sur le temps de diffusion radiatif $t_\text{rad}$. Si la viscosité augmente, le chauffage visqueux augmente. La température augmente, et la diffusivité thermique $\chi$ avec. Ainsi, quand la viscosité augmente, le temps de diffusion radiatif $t_\text{rad}$ diminue. Le couple de corotation est linéaire quand $t_\text{rad} < t_\text{U-turn}$. Quand la viscosité $\nu$ augmente, le couple de corotation se linéarise plus rapidement à mesure que la masse de la planète diminue. La partie inférieur de la carte de migration se décale elle aussi vers le haut. Des planètes de faibles masses qui migraient vers l'extérieur ne peuvent plus migrer que vers l'intérieur à mesure que la viscosité augmente. 
+
+\subsection{Viscosité alpha}
+La prescription alpha \citep{shakura1973black} est une autre manière de définir la viscosité, à partir d'un paramètre adimensionné $\alpha$ \refsec{sec:viscosite-alpha}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.6\linewidth]{figure/migration_map/viscosity/alpha_profiles.pdf}
+\caption{Profils de viscosité du disque en fonction de la valeur de alpha. Ces profils correspondent à chacune des quatre cartes de migration
+présentées \protect\reffig{fig:alpha_viscosity}. \refdisk}\label{fig:alpha_profiles}
+\end{figure}
+
+Par rapport à un modèle où la viscosité est constante, la prescription alpha entraine une augmentation continue de la viscosité en fonction de la distance \reffig{fig:alpha_profiles}. Pourtant ce n'est pas un simple facteur multiplicateur de la viscosité en raison du fait qu'il y a maintenant une dépendance en température au travers de l'échelle de hauteur et la vitesse du son. Les variations de $\alpha$ peuvent ainsi faire apparaître des transitions d'opacités au sein même du profil de viscosité. 
+
+\begin{figure}[htb]
+\centering
+\subfloat[$\alpha=10^{-2}$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/viscosity/alpha_1e-2.pdf}}
+\hfill
+\subfloat[$\alpha=5\cdot 10^{-3}$]{\label{fig:alpha_5e-3}\includegraphics[width=0.49\textwidth]{figure/migration_map/viscosity/alpha_5e-3.pdf}}
+
+\subfloat[$\alpha=10^{-3}$]{\includegraphics[width=0.49\textwidth]{%
+figure/migration_map/viscosity/alpha_1e-3.pdf}}\hfill
+\subfloat[$\alpha=5\cdot 10^{-4}$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/viscosity/alpha_5e-4.pdf}}
+\caption{Influence de la valeur de $\alpha$ dans le cadre d'une prescription alpha pour la viscosité. \refdisk}
+\end{figure}\label{fig:alpha_viscosity}
+
+On fait varier la valeur de $\alpha$ dans une plage de valeur tirée des observations \citep{guilloteau2011dual}. Dans les disques jeunes, $\alpha$ peut atteindre $10^{-2}$, tandis que dans les disques un peu plus âgés, \cite[fig. 16]{guilloteau2011dual} montre des valeurs plus basses. Nous prenons comme plage de valeur à étudier $\alpha\in[5\cdot 10^{-4} ; 10^{-2}]$. 
+
+Pour un alpha donné, la viscosité varie à travers le disque. Si on prend l'exemple de $\nu=10^{14}\unit{cm^2/s}$ \reffig{fig:nu_1e14}, cette viscosité est atteinte à $0.2\unit{UA}$ pour notre disque de référence avec $\alpha=5\cdot 10^{-3}$. La carte de migration dans cette région, autour de $0.2\unit{UA}$ est similaire dans le cas de la viscosité constante ou du modèle alpha. On remarque la même chose si on s'intéresse maintenant à $\nu=10^{15}\unit{cm^2/s}$ \reffig{fig:nu_1e15}, ce qui correspond à la zone autour de $6\unit{UA}$ pour notre disque de référence \reffig{fig:alpha_5e-3}.
+
+Par contre, si nous cherchons à comparer $\nu=5\cdot 10^{15}\unit{cm^2/s}$ \reffig{fig:nu_5e15} avec le modèle $\alpha=5\cdot 10^{-3}$ \reffig{fig:alpha_5e-3}, cela ne fonctionne pas. Le fait est que cela correspond à la zone autour de $45\unit{UA}$, région dans laquelle l'irradiation domine. Nous voyons donc qu'à viscosité équivalente, nous ne pouvons comparer un modèle alpha avec un modèle à viscosité constante uniquement dans les régions actives du disque, là où le chauffage visqueux domine. En effet, dans ces régions là, la viscosité étant l'origine principale de la température, c'est elle qui gouverne la carte de migration. 
+
+\subsection{Dead zone}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.6\linewidth]{figure/migration_map/viscosity/dead_zone_profile.pdf}
+\caption{Profils de viscosité du disque selon qu'une zone morte est modélisée ou pas. En dehors de la zone morte $\alpha=5\cdot 10^{-3}$. Dans la zone morte, $\alpha=10^{-4}$. Ces profils correspondent à chacune des deux cartes de migration
+présentées \protect\reffig{fig:viscosity_DZ}. \refdisk}\label{fig:dead_zone_profile}
+\end{figure}
+
+Dans la zone morte, la viscosité chute rapidement, et augmente en fonction de la distance dans un régime différent que dans le reste du disque \reffig{fig:dead_zone_profile}. 
+
+\begin{figure}[htb]
+\centering
+\subfloat[Sans dead zone]{\includegraphics[width=0.49\textwidth]{figure/migration_map/viscosity/alpha_5e-3.pdf}}\hfill
+\subfloat[Avec dead zone]{\includegraphics[width=0.49\textwidth]{%
+figure/migration_map/viscosity/alpha_dz.pdf}}
+
+\caption{Effet d'une zone morte sur la carte de migration. Au cœur de la dead zone, $\alpha=10^{-4}$. En dehors, $\alpha=5\cdot 10^{-3}$. Dans les zones de transitions, la valeur de $\alpha$ est lissée. La zone morte s'étend de $1$ à $10\unit{UA}$. Plus de détails sur la modélisation de la zone morte \protect\refsec{sec:dead_zone}. \refdisk}\label{fig:viscosity_DZ}
+\end{figure}
+
+Sur les cartes de migration \reffig{fig:viscosity_DZ}, l'entrée dans la dead-zone modifie en profondeur la carte de migration en creusant une zone de migration vers l'intérieur en raison de la viscosité très faible. Le temps de diffusion visqueux $t_\text{visc}$ augmente alors brusquement, engendrant la saturation rapide du couple de corotation quelle que soit la masse de la planète. Ainsi, dans la zone morte, la possibilité de migration vers l'extérieur est fortement réduite. En dehors de la zone morte, la carte de migration est quasi inchangée. 
 
 \section{Effets des paramètres du disque}
 %TODO see kretke2012importance
@@ -217,47 +280,47 @@ sont regroupés \reftab{tab:fiducial_parameters}.
 %TODO continuer
 
 %TODO 
-\subsection{Viscosité du disque}
 
-%TODO 
+\subsection{Effet de l'irradiation}
+En choisissant ou non d'inclure l'irradiation dans l'équation de l'énergie permettant de calculer le profil de température, on
+change de manière importante la carte de migration \citep{bitsch2013stellar}. 
 
-Le couple de migration est sensible à la valeur de la viscosité $\nu$. En particulier, c'est l'efficacité de la diffusion
-visqueuse qui modifie le niveau de saturation du couple de corotation. 
-
-\begin{figure}[htb]
-\centering
-\subfloat[$\alpha=5.10^{-3}$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/viscosity/alpha.pdf}}\hfill
-\subfloat[$\alpha=5.10^{-3}$ + dead zone]{\includegraphics[width=0.49\textwidth]{%
-figure/migration_map/viscosity/alpha_dz.pdf}}
-
-\subfloat[$\nu=10^{14}\unit{cm^2/s}$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/viscosity/constant_1e14.pdf}}
-\hfill
-\subfloat[$\nu=10^{15}\unit{cm^2/s}$]{\includegraphics[width=0.49\textwidth]{%
-figure/migration_map/viscosity/constant_1e15.pdf}}
-\caption{Cartes de migration obtenues pour le disque de référence \protect\reffig{fig:fiducial_migration_map} dans lequel on ne
-modifie que la viscosité. Dans la première carte, la viscosité est régie par un modèle alpha où $\alpha=5.10^{-3}$ (ce qui est
-utilisé dans le disque de référence). Dans la deuxième carte, on rajoute en plus une zone morte où la valeur de alpha est plus
-faible $\alpha=10^{-4}$. Plus de détails sur la modélisation de la zone morte \protect\refsec{sec:dead_zone}. Enfin, deux
-modèles à viscosité constante $\nu=10^{14}\unit{cm^2/s}$ et $\nu=10^{15}\unit{cm^2/s}$ sont aussi représentés. \refdisk}
-\end{figure}\label{fig:viscosity_comparison}
-
-Pourtant, la carte de migration possède une deuxième sensibilité au modèle de viscosité. Selon que l'on choisi une viscosité
-constante ou une prescription alpha dans laquelle la viscosité $\nu$ croit avec la distance, cela a une influence sur
-l'évolution du couple en fonction de la position dans le disque. 
+%TODO dire que l'irradiation transforme la zone dépendante de la masse en zone indépendante de la masse
+%TODO faire référence à hasegawa et pudritz 2011. Dnas leur papier ils font référence à un piège à planète au moment de la
+%transition disque actif/passif
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width=0.6\linewidth]{figure/migration_map/viscosity_profile.pdf}
-\caption{Profils de viscosité du disque en fonction des modèles, deux où la viscosité est constante, un avec une viscosité
-alpha, et un dernier qui modélise en plus une zone morte. Ces profils correspondent à chacune des quatres cartes de migration
-présentées Figure~\ref{fig:viscosity_comparison}. \refdisk}\label{fig:viscosity_profiles}
+\subfloat[Avec irradiation]{\includegraphics[width=0.49\textwidth]{figure/migration_map/bell_irr.pdf}}\hfill
+\subfloat[Sans irradiation]{\includegraphics[width=0.49\textwidth]{%
+figure/migration_map/bell_noirr.pdf}}
+
+\caption{Influence de l'irradiation sur la carte de migration à travers le profil de température. Afin de visualiser plus
+facilement les effets, \cite{bell1994FU} a été utilisé pour l'opacité. \refdisk}\label{fig:irradiation}
 \end{figure}
 
-Avec un modèle alpha $\alpha=5.10^{-3}$, la viscosité à $0.2\unit{UA}$ est $\nu=10^{14}\unit{cm^2/s}$, tandis qu'elle est de
-$\nu=10^{15}\unit{cm^2/s}$ à $6\unit{UA}$. Les deux modèles à viscosité constante permettent donc de voir à quoi ressemblait la
-carte de migration si c'était la viscosité au bord ou au milieu du disque qui était prise comme référence. En effet, dans le
-modèle alpha, la viscosité varie de plusieurs ordres de grandeur, depuis $\nu=3.10^{13}\unit{cm^2/s}$ au bord interne
-($0.1\unit{UA}$) jusqu'à $\nu=10^{16}\unit{cm^2/s}$ au bord externe ($100\unit{UA}$).
+Afin de visualiser l'effet de l'irradiation, nous avons utilisé les lois d'opacités de \cite{bell1994FU}. En effet,
+le principal effet de l'irradiation est de lisser le profil de température. Sans irradiation, une transition d'opacité marquée
+comme celles de \cite{bell1994FU} se répercute directement sur le profil de température \reffig{fig:temp_profile_irradiation}.
+On voit donc apparaître des zone de convergences dues à des transitions d'opacités qui sont déformées par
+l'irradiation comme on peut le constater sur \reffig{fig:irradiation}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.6\linewidth]{figure/migration_map/temperature_with_irradiation.pdf}
+\caption{Profil de température avec ou sans irradiation. \refdisk}\label{fig:temp_profile_irradiation}
+\end{figure}
+
+Ainsi, sans irradiation, les deux transitions d'opacités à $1.3$ et $2.9\unit{UA}$ induisent un changement brutal de la pente
+du profil de température, ce qui a pour effet de changer le sens de migration (de positif à négatif, puis l'inverse).
+
+Dans les parties externes, l'irradiation a pour effet de diminuer la pente du profil de température qui tend vers un profil en
+$R^{-0.5}$ quand le disque est purement passif.
+
+%TODO expliquer pourquoi les parties externes ``montent'' en masse. En clair, au lieu d'avoir une décroissance de la zone de
+% couple nul avec la masse, c'est l'inverse qui se produit quand on active l'irradiation.
+
+
 
 \subsection{Masse du disque}
 %TODO discuter la dissipation plus en détail, en particulier reprendre la partie dissipation phtooévaporation du début, et
@@ -272,14 +335,14 @@ figure/migration_map/total_mass/low_mass.pdf}}
 \caption{Par rapport au disque de référence, possédant un profil de densité de surface $\Sigma(R) = 300 \cdot
 R^{-\sfrac{1}{2}}\unit{g/cm^2}$ nous représentons la carte de migration dans un cas un peu moins et un peu plus massif, avec le
 même indice de la loi de puissance. Les échelles ne sont pas les mêmes, elles ont été choisies pour montrer que la forme reste
-globalement conservée, si on s'affranchi de l'échelle absolue de la taille de cette dernière.
+globalement conservée, si on s'affranchit de l'échelle absolue de la taille de cette dernière.
 \refdisk}\label{fig:map_total_mass}
 \end{figure}
 
 Dissiper le disque par une exponentielle décroissante signifie changer la masse du disque au cours du temps sans modifier
-l'indice $d$ de la loi de puissance pour la densité de surface.
+son profil de densité de surface.
 
-Pendant la dissipation, la zone de convergence externe va peu à peu se déplacer vers l'intérieur du disque. La zone de
+Pendant la dissipation, la zone de convergence externe va peu à peu se déplacer vers l'intérieur du disque. À mesure que la masse diminue, le chauffage visqueux diminue aussi. La température diminue alors. Même si c'est l'irradiation qui domine dans les parties externes, la diminution du chauffage visqueux influe sur la position de la zone de couple nul. La zone de
 convergence externe qui était à $20\unit{UA}$ environ pour des planètes dont la masse est comprise entre $15$ et $40\mearth$
 \reffig{fig:map_high_mass} va se retrouver à $10\unit{UA}$ environ avec un disque moins massif \reffig{fig:map_low_mass}. 
 
@@ -291,16 +354,10 @@ dans un disque un peu moins massif \reffig{fig:map_low_mass}. Les planètes entr
 vers l'intérieur \reffig{fig:map_high_mass} peuvent maintenant migrer vers l'extérieur dans certaines zones du disque moins
 massif \reffig{fig:map_low_mass}. 
 
-On pourrait penser que cette étude de l'influence de la masse du disque sur la carte de migration nous permet de comprendre
-l'influence de la dissipation du disque sur la migration. Il n'y a rien de plus faux. En particulier la deuxième phase de la
-dissipation du disque, rapide et que l'on pense due à la photoévaporation n'est pas uniforme. Elle ne conserve pas la pente
-d'une loi de puissance, si tant est qu'on puisse définir le profil original en terme de loi de puissance. Au lieu de ça, le
-disque va se creuser à partir d'un certain rayon, optimal vis à vis de la photoévaporation. Ce dernier va alors se scinder en
+Étudier l'influence de la masse du disque nous permet de remonter à l'effet de la dissipation du disque. En particulier dans la première phase de la dissipation, quand le profil de densité de surface n'évolue pas beaucoup. Dans la seconde partie gouvernée par la photo-évaporation, la dissipation ne conserve pas le profil en loi de puissance de la densité de surface (en faisant que ce dernier en est un initialement) \reffig{fig:disk_dispersion}. Au lieu de ça, le
+disque va se creuser à partir d'un certain rayon, optimal vis à vis de la photo-évaporation. Le disque va alors se scinder en
 deux, la partie interne va rapidement tomber sur l'étoile centrale et dans un dernier stade les parties externes vont aussi se
-dissiper. Si les détails de la dissipation ne sont pas connus, il est clair qu'on ne peut pas considérer une
-dissipation exponentielle pour toutes les phases de la dissipation. La modification du profil radial va avoir une importance
-cruciale sur la 
-dissipation d'une part, et sur la migration et la survie des planètes d'autre part. 
+dissiper. Si les détails de la dissipation ne sont pas connus, il apparait malgré tout qu'une unique décroissance exponentielle du disque tout au long de sa vie ne représente pas fidèlement l'évolution du disque. Dans le cadre de la migration planétaire où les profils de densité et de températures jouent un rôle fondamental, nous nous limitons donc à l'étude des premiers millions d'années d'évolution du disque. 
 
 La dispersion du disque a été discutée brièvement \refsec{sec:dispersion}.
 
@@ -378,44 +435,6 @@ Deuxièmement, en conservant une densité locale sensiblement égale comme c'est
 \reffig{fig:map_index_mtot} on conserve aussi la carte de migration. Cependant, la sensibilité très forte aux transitions
 d'opacité et au profil de température rendent difficile l'interprétation des parties internes du disque. 
 
-\subsection{Effet de l'irradiation}
-En choisissant ou non d'inclure l'irradiation dans l'équation de l'énergie permettant de calculer le profil de température, on
-change de manière importante la carte de migration \citep{bitsch2013stellar}. 
-
-%TODO dire que l'irradiation transforme la zone dépendante de la masse en zone indépendante de la masse
-%TODO faire référence à hasegawa et pudritz 2011. Dnas leur papier ils font référence à un piège à planète au moment de la
-%transition disque actif/passif
-
-\begin{figure}[htb]
-\centering
-\subfloat[Avec irradiation]{\includegraphics[width=0.49\textwidth]{figure/migration_map/bell_irr.pdf}}\hfill
-\subfloat[Sans irradiation]{\includegraphics[width=0.49\textwidth]{%
-figure/migration_map/bell_noirr.pdf}}
-
-\caption{Influence de l'irradiation sur la carte de migration à travers le profil de température. Afin de visualiser plus
-facilement les effets, \cite{bell1994FU} a été utilisé pour l'opacité. \refdisk}\label{fig:irradiation}
-\end{figure}
-
-Afin de visualiser l'effet de l'irradiation, nous avons utilisé les lois d'opacités de \cite{bell1994FU}. En effet,
-le principal effet de l'irradiation est de lisser le profil de température. Sans irradiation, une transition d'opacité marquée
-comme celles de \cite{bell1994FU} se répercute directement sur le profil de température \reffig{fig:temp_profile_irradiation}.
-On voit donc apparaître des zone de convergences dues à des transitions d'opacités qui sont déformées par
-l'irradiation comme on peut le constater sur \reffig{fig:irradiation}.
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width=0.6\linewidth]{figure/migration_map/temperature_with_irradiation.pdf}
-\caption{Profil de température avec ou sans irradiation. \refdisk}\label{fig:temp_profile_irradiation}
-\end{figure}
-
-Ainsi, sans irradiation, les deux transitions d'opacités à $1.3$ et $2.9\unit{UA}$ induisent un changement brutal de la pente
-du profil de température, ce qui a pour effet de changer le sens de migration (de positif à négatif, puis l'inverse).
-
-Dans les parties externes, l'irradiation a pour effet de diminuer la pente du profil de température qui tend vers un profil en
-$R^{-0.5}$ quand le disque est purement passif.
-
-%TODO expliquer pourquoi les parties externes ``montent'' en masse. En clair, au lieu d'avoir une décroissance de la zone de
-% couple nul avec la masse, c'est l'inverse qui se produit quand on active l'irradiation.
 
 %TODO 
 \subsection{Table d'opacité}\label{sec:influence_opacity_table}
