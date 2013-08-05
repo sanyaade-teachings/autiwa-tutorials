@@ -1,7 +1,8 @@
-\chapter{Physique des disques}
+\chapter{Démonstration complète de l'évolution visqueuse du disque}\label{app:equation_angular_momentum}
 Ce chapitre est destiné à détailler les calculs redémontrant les équations fondamentales de la physique des disques. Dans le premier chapitre de la thèse, je fais des démonstrations somme toute assez succinctes mais durant ma thèse j'ai été amené à les redémontrer et j'ai eu besoin de bien plus d'étapes détaillées de calcul que ce que j'ai pu trouver dans les papiers. J'ai donc entrepris de le refaire en détail, et je regroupe ici les étapes de calcul et les astuces nécessaires pour arriver aux équations.
 
-\section{Bilan de moment angulaire}\label{app:equation_angular_momentum}
+\bigskip
+
 On cherche à faire le bilan de moment cinétique sur l'anneau décrit \reffig{fig:disk_ring}. Son moment cinétique est défini par :
 \begin{align}
 \vect{J_a} &= \vect{R} \wedge (m_a\vect{v(R)}) \nonumber\\
@@ -138,7 +139,6 @@ On fait maintenant l'approximation que le mouvement est képlerien, avec pour pr
 &= \inv{R}\dpd{}{r}\left\{\bcancel{2}\sqrt{\frac{r}{\cancel{GM}}} \dpd{}{r}\left[\nu \Sigma \frac{3}{\bcancel{2}}\cancel{\sqrt{GM}}r^\sfrac{1}{2}\right]\right\}\nonumber\\
 \end{align*}
 
-\subsubsection{Conclusion de la partie}
 On obtient alors l'équation suivante : 
 \begin{important}
 \begin{align}
