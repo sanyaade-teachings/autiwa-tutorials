@@ -20,16 +20,16 @@ Les zones de convergences pourraient ainsi concentrer les embryons planétaires 
 cœurs) massives \citep{lyra2010orbital, horn2012orbital}. 
 
 \section{Disque de référence}\label{sec:migrations-maps}\label{sec:reference_disk}
-%TODO parler des raisons pour lesquelles la zone de convergence dépend de la masse et de la distance parfois, avec les
-%comparaisons des temps (dynamique, de U-turn and de diffusion)
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width=0.75\linewidth]{figure/migration_map/fiducial.pdf}
+\subfloat[Couple Adimensionné]{\label{fig:fiducial_adim}\includegraphics[width=0.49\textwidth]{figure/migration_map/fiducial.pdf}}\hfill
+\subfloat[Couple Réel]{\label{fig:fiducial_units}\includegraphics[width=0.49\textwidth]{%
+figure/migration_map/fiducial_units.pdf}}
 
 \caption{Carte de migration pour le disque fiducial. Cette carte montre le sens de migration d'une planète en fonction de sa
 position (abscisse) et de sa masse (ordonnée). La 3\ieme coordonnée est le couple total exercé par le disque sur la planète,
-exprimé en unité de $\Gamma_0 = \left(\frac{q}{h}\right)^2\Sigma_p {r_p}^4 {\Omega_p}^2$. Quand le couple est positif (resp.
+exprimé en unité de $\Gamma_0 = \left(\frac{q}{h}\right)^2\Sigma_p {r_p}^4 {\Omega_p}^2$ pour la carte de gauche, et en \unit{M_\odot.AU^2/jour^2} pour la carte de droite. Quand le couple est positif (resp.
 négatif), la migration est vers l'extérieur (resp. intérieur). La ligne noire représente la zone de couple nul, où la planète ne
 migre plus. Le détail des paramètres du disque de référence est donné \reftab{tab:fiducial_parameters}.
 }\label{fig:fiducial_migration_map}
@@ -40,7 +40,7 @@ planètes. Ce disque de référence servira aussi de comparaison quand nous étu
 
 Afin d'étudier la migration dans les disques, il est pratique de regarder une \og carte de migration\fg, comme
 \reffig{fig:fiducial_migration_map}. Cette carte permet de voir rapidement les parties intéressantes et de prédire l'évolution
-d'une planète à partir de la position et masse initiales.
+d'une planète à partir de la position et masse initiales. Le couple adimensionné \reffig{fig:fiducial_adim} sera préférentiellement utilisé quand nous représenterons une carte de migration ensuite, car plus intuitif à lire, mais la carte \reffig{fig:fiducial_units} que le couple total a des dépendances complexes au travers de $\Gamma_0$. Il dépend notamment de la masse de la planète, du rapport d'aspect et de la densité locale du disque. 
 
 \reffig{fig:fiducial_migration_map} montre la carte de migration du disque de référence que nous utiliserons de manière
 récurrente ici. Ce disque est obtenu à l'aide de la table d'opacité d'\cite{hure2000transition}. Le profil de température est
@@ -222,10 +222,14 @@ du profil de température, ce qui a pour effet de changer le sens de migration (
 Dans les parties externes, l'irradiation a pour effet de diminuer la pente du profil de température qui tend vers un profil en
 $R^{-0.5}$ quand le disque est purement passif.
 
-%TODO expliquer pourquoi les parties externes ``montent'' en masse. En clair, au lieu d'avoir une décroissance de la zone de
-% couple nul avec la masse, c'est l'inverse qui se produit quand on active l'irradiation.
 
 \subsection{Effet de l'ombre du disque sur lui même.}
+Tout au long de ma thèse, j'ai considéré un modèle d'irradiation dans lequel la gestion des ombres restait sommaire. En effet, la seule ombre que je considérais était l'ombre directe. C'est à dire les parties du disques pour lesquelles l'échelle de hauteur décroit avec la distance. Ces zones où l'angle d'interception des rayons de l'étoile était négatif étaient détectées et l'irradiation était forcée à zéro. 
+
+Ici nous cherchons à comparer ce modèle avec un modèle plus complexe où l'ombre du disque est gérée de manière plus consistante. 
+
+Dans ce nouveau modèle, on calcule une première fois le profil de température du disque et on stocke la valeur de l'irradiation en chaque point du disque. Ensuite, on détecte les ombres du disques en cherchants les maximums locaux du profil d'échelle de hauteur. Pour chaque maximum local, on cherche l'ombre qu'il projette sur le disque et dans cette ombre là, l'irradiation est forcée à 0. Dans les 10 derniers pourcents de l'étendue de l'ombre, on lisse linéairement l'irradiation en considérant que 10\% avant la fin de l'ombre, l'irradiation est égale à $0 * F_\text{irr}$ (où $F_\text{irr}$ est le chauffage d'irradiation local) et à la toute fin de l'ombre, l'irradiation vaut $1 * F_\text{irr}$. Ainsi, à la position $R_b + 0.95 * l_s$ (où $R_b$ est le rayon du \og bump\fg et $l_s$ est la longueur de l'ombre qu'il projette), l'irradiation faut la moitié de l'irradiation calculée précédemment $0.5 * F_\text{irr}$. 
+
 %TODO
 \subsection{Effet des propriétés de l'étoile}
 %TODO
@@ -490,15 +494,15 @@ Enfin, \reffig{fig:map_index_mtot} montre deux cartes de migrations où la masse
 En résumé, quand on change l'indice $d$ du profil de densité, il faut définir le rayon auquel les densités des deux profils sont égales pour interpréter la carte de migration. En dessous de cette distance, la masse locale du profil le plus abrupt sera la plus grande, et inversement dans les parties externes. Ainsi, on se ramène à l'interprétation en terme de masse locale que nous avions utilisée pour étudier la dissipation du disque. C'est l'effet le plus important que la densité de surface apporte, car elle influe directement sur le profil de température. Les variations du couple de migration induites directement par la valeu de $d$ restent en deçà des variations indirectes via la température. En effet la diffusivité thermique $\chi$ a une dépendance en $T^4$.
 
 \subsection{Table d'opacité}\label{sec:influence_opacity_table}
-Nous l'avons vu dans les parties précédentes, le profil de température est crucial pour évaluer la migration dans le disque. L'opacité constitue un lien entre la densité et la température, l'opacité dépendante de la densité. Nous allons maintenant montrer que le choix du modèle a une influence considérable sur la migration, le modèle choisi pour l'opacité étant une source importante d'incertitude.
+Nous l'avons vu dans les parties précédentes, le profil de température est crucial pour évaluer la migration dans le disque. La densité a notamment un effet indirect sur la température au travers de l'opacité. Nous allons maintenant montrer que le choix du modèle a une influence considérable sur la migration, le modèle choisi pour l'opacité étant une source importante d'incertitude.
 
 Dans toute la suite, quand je parlerai de table d'opacité, je désigne le fait d'utiliser un tableau à deux dimensions,
 proposant des valeurs de l'opacité pour différentes températures et densités. La table d'opacité est donc définie ici par
 opposition à ce que j'appelle des lois d'opacité, modèles dans lesquels l'opacité est définie par des lois de puissance,
 fonction de la température et de la densité, dans différents régimes de température et densité.
 
-Ainsi une table d'opacité est simplement une tabulation de l'opacité, alors qu'une loi d'opacité correspond à un ajustement par
-une loi de puissance. 
+Ainsi une table d'opacité est simplement une tabulation de l'opacité, alors qu'une loi d'opacité correspond à un ajustement d'une table d'opacité par
+une ou plusieurs lois de puissance. 
 
 \bigskip
 
@@ -509,14 +513,50 @@ Une autre loi d'opacité existante est \cite{zhu2009nonsteady}, loi quelque peu 
 l'augmentation des capacités des ordinateurs ayant permis de faire des calculs plus précis. 
 
 De plus, nous utilisons aussi le modèle d'opacité très simple décrit par \cite{chambers2009analytic} dans lequel l'opacité est
-constante et égale à $\kappa=3$ jusqu'à $1380\unit{K}$ où une transition s'opère vers une loi de puissance. Ce modèle nous
+constante et égale à $\kappa=3$ jusqu'à $1380\unit{K}$ où une transition s'opère vers une loi de puissance pour les hautes températures. Ce modèle nous
 permet de voir l'effet d'un modèle par rapport à un cas où l'opacité est constante. En effet, dans le cas d'un disque
 protoplanétaire, seules les régions les plus internes sont susceptibles d'atteindre des températures supérieures à
 $1000\unit{K}$. 
 
-Enfin, j'ai souhaité comparer ces deux lois d'opacité avec une table d'opacité, \cite{hure2000transition}. Cette table
+Enfin, j'ai souhaité comparer ces deux lois d'opacité avec une table d'opacité, \cite{hure2000transition} \reffig{fig:hure_profile}. Cette table
 d'opacité de Rosseland correspond à la composition suivante $X=0.70$, $Y=0.28$ et $Z=0.02$ et est basée sur
 \cite{seaton1994opacities, alexander1994low, henning1996dust}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.65\linewidth]{figure/hure_opacity_table.pdf}
+\caption{Représentation de la table d'opacité \cite{hure2000transition} dans des coordonnées qui permettent d'obtenir une bonne précision lors de l'interpolation. Ici, $\log(R)=\log(\rho) + 18 -3\log(T)$ où la densité volumique $\rho$ est exprimée en \unit{g/cm^3} et la température $T$ en K.}\label{fig:hure_profile}
+\end{figure}
+
+Afin de comparer les modèles d'opacité, nous avons utilisé un disque où l'irradiation est modélisée, avec une prescription alpha pour la viscosité et avec les paramètres détaillés \reftab{tab:opacity_disk_parameters}. Nous obtenons alors différents profils de température qui influent notamment sur le rapport d'aspect du disque \reffig{fig:opacity_profiles}. 
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+$b/h = 0.4$ & $\gamma = 7/5$ & $\mu = 2.35$ & $\alpha = 5\cdot 10^{-3}$ \\\hline
+\multicolumn{2}{|c|}{Inner edge : $0.1\unit{UA}$} & \multicolumn{2}{c|}{Outer edge : $100\unit{UA}$}\\\hline
+\multicolumn{4}{|c|}{$\Sigma(R) = 1700 \cdot R^{-3/2}\unit{g/cm^2}$}\\\hline
+$T_\star = 5700\unit{K}$ & $R_\star = 4.65\cdot 10^{-3}\unit{AU}$ & \multicolumn{2}{c|}{Disk albedo : $0.5$}\\\hline
+\end{tabular}
+\caption{Paramètres physiques du disque utilisé pour comparer les différents modèles d'opacité. La viscosité est calculée en suivant la prescription alpha de
+\cite{shakura1973black}.}\label{tab:opacity_disk_parameters}
+\end{table}
+
+\begin{figure}[htb]
+\centering
+\subfloat[Profils de température]{\includegraphics[width=0.49\textwidth]{%
+figure/migration_map/opacity/temperature_profile.pdf}}\hfill
+\subfloat[Rapport d'aspect]{\includegraphics[width=0.49\textwidth]{figure/migration_map/opacity/scaleheight_profile.pdf}}
+
+\caption{Profils de température et rapport d'aspect pour le même disque, mais en utilisant des modèles d'opacité différents.}\label{fig:opacity_profiles}
+\end{figure}
+
+On remarque en particulier l'unique changement de régime du modèle d'opacité \cite{chambers2009analytic} autour de $0.8\unit{UA}$. Pour les profils de température correspondants à \cite{bell1994FU, zhu2009nonsteady} présentent eux plus de changements de régimes, mais la variation de l'indice $\beta$ pour le profil de température est brutal, puis constant dans un régime donné. À l'inverse, le profil de température de la table d'opacité \cite{hure2000transition} montre une variation beaucoup plus douce et continue de la température. 
+
+À part pour le modèle simpliste de \cite{chambers2009analytic}, tous les profils présentent une zone de très haute température ($T>30000\unit{K}$) au bord interne du disque, dû au fait que le profil en $R^{-1.5}$ entraine des densités très importantes au bord interne. Il est probable que la physique que nous obtenons en dessous de $0.2\unit{UA}$ soit très éloignée de la physique d'un disque protoplanétaire, et due à l'approximation que nous faisons que le profil de densité de surface est une loi de puissance de même indice $d$ depuis les parties les plus internes jusqu'aux parties externes. 
+
+En nous intéressant aux rayons supérieurs à $1\unit{UA}$, nous pouvons maintenant comparer les cartes de migration que nous obtenons pour chacun des modèles d'opacité considérés \reffig{fig:opacity_tables}, et ce avec le même disque décrit \reftab{tab:opacity_disk_parameters}.
 
 \begin{figure}[htb]
 \centering
@@ -527,52 +567,34 @@ figure/migration_map/opacity/opacity_chambers.pdf}}
 \subfloat[\citep{zhu2009nonsteady}]{\includegraphics[width=0.49\textwidth]{figure/migration_map/opacity/opacity_zhu.pdf}}\hfill
 \subfloat[\citep{hure2000transition}]{\label{fig:opacity_hure}\includegraphics[width=0.49\textwidth]{%
 figure/migration_map/opacity/opacity_hure.pdf}}
-\caption{Cartes de migration obtenues pour le même disque, mais avec un modèle d'opacité différent. L'irradiation ayant un
-effet important sur la carte de migration, elle a été désactivée ici afin de mieux mettre en valeur les différences entre
-les modèles d'opacités. Notez que les échelles ne sont pas identiques. \refdisk}
-\end{figure}\label{fig:opacity_tables}
+\caption{Cartes de migration obtenues pour le même disque détaillé \protect\reftab{tab:opacity_disk_parameters}, mais avec un modèle d'opacité différent.}\label{fig:opacity_tables}
+\end{figure}
 
-\reffig{fig:opacity_tables} montre les différentes cartes de migration que l'on obtient avec le même disque de référence mais
-pour les 4 modèles d'opacité considérés. 
+Le modèle simplifié de \cite{chambers2009analytic} ne présente pas de zone de convergence du tout. Quelle que soit sa position ou sa masse, la planète migrera vers l'intérieur. Les lois d'opacités de \cite{bell1994FU} font apparaître deux zones de convergence à $2$ et $5\unit{UA}$. Les lois d'opacités plus récentes de \cite{zhu2009nonsteady} ne font plus apparaître qu'une seule zone de convergence, située à $4\unit{UA}$ pour des planètes de masses comprises entre $5$ et $20\mearth$ puis qui se déplace progressivement vers l'intérieur à mesure que la masse de la planète augmente. 
 
-On considère la carte avec la table d'opacité \reffig{fig:opacity_hure} comme référence. En effet, les lois d'opacités utilisent
-une table d'opacité en amont à partir de laquelle elles déduisent des lois de puissances par morceau afin de reproduire au mieux
-la table d'opacité. La table d'opacité se traduit par une carte de migration complexe où chaque aspect de la table se traduit
-sur la carte par une variation brutale de la migration. L'opacité a une grande influence sur la migration, que ce soit au
-niveau du temps de diffusion qui régi la saturation que vis à vis du profil de température.
+Enfin, la table d'opacité \cite{hure2000transition} fait apparaître 3 zones de convergence à $1$, $2$ et $5\unit{UA}$. En conservant le même disque, mais en changeant simplement le modèle d'opacité, nous obtenons 0, 1, 2 ou 3 zones de convergences. 
 
-L'importance de l'opacité se manifeste au travers du temps de diffusion radiatif. Une opacité plus grande induit un temps de
-diffusion radiatif plus important. 
+Les lois d'opacités utilisent en amont des tables d'opacités qu'elles lissent et approximent par des lois de puissances dans différentes régions. Dans le cas de la migration planétaire, ce n'est pas seulement la valeur de la température, mais comment elle varie avec le rayon qui est important. Les lois d'opacités lissent donc complètement les comportements complexes d'un profil de températures en fixant les variations à des indices données dans des régions particulières. 
 
-On constate par ailleurs que les lois d'opacité lissent fortement la carte de migration (comparer la carte pour la table
-d'opacité d'\cite{hure2000transition} avec les 3 autres). Notons en particulier une transition d'opacité dans \cite{bell1994FU}
-qui n'existe pas dans les autres modèles et qui entraine une zone de convergence indépendante de la masse (dans le cas présent
-à $1.3\unit{UA}$). Cette transition d'opacité, liée à l'évaporation des grains de glace d'eau, n'est en effet introduite que
-dans ce modèle, les autres modèles considérant qu'elle n'illustre aucune réalité physique 
-%TODO Ref sur la transition d'opacité fantome
+Pour l'étude de la migration planétaire où les gradients sont importants pour le calcul des couples de migration, il est important non seulement d'avoir une opacité aussi précise que possible, mais de lisser le moins possible le profil d'opacité, car ce dernier induit des modifications importantes de la migration, et fait apparaître des zones d'intérêt pour la formation planétaire. 
+
+De plus, les zones où l'opacité varie beaucoup, notamment lors de la sublimation des grains de glace d'eau ou de métaux génèrent des zones de convergence qui sont totalement dépendantes de l'opacité. Dans ces régions où une approximation donne lieu à une loi de puissance très abrupte, un lissage a des conséquences très importantes sur la migration. 
+
+En comparant les variations des zones de couple nul en fonction de la position et masse de la planète dans les différentes cartes de migration \reffig{fig:opacity_tables}, on constate que les lois d'opacités \citep{bell1994FU, zhu2009nonsteady, chambers2009analytic} donnent lieu à des formes beaucoup plus artificielles qu'une table d'opacité \citep{hure2000transition} n'introduisant aucune approximation en loi de puissance.
+
+\bigskip
+
+Les modèles d'opacités sont une source d'incertitude pour tous les types de simulations numériques. Les simulations hydrodynamiques 2D ou 3D, bien qu'ayant une physique des disques bien plus réalistes que mes simulations N-corps avec un disque 1+1D présentent les mêmes incertitudes au niveau des opacités.
 
 Le modèle d'opacité choisi a donc une grande influence sur la carte de migration et donc le comportement des planètes dans un
 disque. À l'heure actuelle, compte tenu de la puissance des ordinateurs, le choix d'une loi d'opacité par rapport à une table
 d'opacité ne se justifie plus. En effet, les approximations supplémentaires qu'engendrent une loi d'opacité comparé
-à une table brute ne sont pas compensées par le gain de temps de calcul que cela engendre. Dans mon cas, la routine
-implémentant la table d'opacité est même plus rapide que la routine pour les lois d'opacités. La seule différence est qu'il
+à une table brute ne sont pas compensées par le gain de temps de calcul que cela engendre. Par exemple, dans le cas de mon programme, la routine
+implémentant la table d'opacité \cite{hure2000transition} est du même ordre de rapidité que les routines pour les lois d'opacités \citep{bell1994FU, zhu2009nonsteady, chambers2009analytic}. La seule différence est qu'il
 faut stocker un tableau contenant la table d'opacité, ce qui n'est pas limitatif avec les ordinateurs actuels.
 
-Les modèles d'opacités étant une source d'incertitude pour toutes les simulations numériques, que ce soit des simulations
-N-corps ou des simulations hydrodynamiques 2D ou 3D, je pense qu'il est important d'apporter une attention particulière au
-choix du modèle. 
-
-À l'heure actuelle, dans le cas particulier de la migration planétaire, la valeur de l'opacité ainsi que la pente qu'elle
-engendre sur le profil de température sont des sources importantes d'incertitudes. Il pourrait être intéressant de réaliser une
-étude d'envergure afin de réaliser une table d'opacité tenant compte des nouvelles capacités des ordinateurs, afin de coller au
-mieux à ce que l'on sait des disques. 
-
-Il restera pourtant toujours des incertitudes quant aux propriétés des poussières, taille et quantité, ainsi que son évolution
-au cours du temps. La poussière étant une source majeure d'opacité dans le disque, son évolution au cours du temps doit avoir
-une influence toute aussi majeure que nous ne pouvons que négliger à l'heure actuelle malgré les implications que cela peut
-avoir sur la formation des planètes.
-
-%TODO
+Malgré tout, il restera toujours des incertitudes liées aux propriétés des poussières, taille et quantité, ainsi que son évolution
+au cours du temps. 
 
 \subsection{Longueur de lissage}
 Dans les modèles numériques des disques protoplanétaires, le potentiel gravitationnel doit être modifié afin ne pas diverger aux
@@ -652,16 +674,7 @@ hydrodynamique, celle de fixer une longueur de lissage $b/h$ différente pour le
 Corotation. Suivant les prescriptions données par \cite{masset2002coorbital} j'ai donc calculé la carte de migration d'une
 simulation où je fixe une longueur de lissage $b/h=0.76$ pour le couple de Lindblad, et une longueur de lissage $b/h=0.5$ pour
 le couple de Corotation. J'obtiens alors les cartes représentées \reffig{fig:modified_smoothing}, toujours dans le cas du disque
-de référence. %TODO décrire le disque de référence en section 3, et en particulier penser à emttre une référence ici vers la
-bonne section.
-
-%TODO proposer cette idée d'utiliser une longueur de lissage différente pour lindblad et corotation? En discuter avec Sean et
-%Arnaud.
-
-
-%TODO parler du travail d'audrey? Je voudrais en parler avec elle, lui montrer cette section et savoir ce qu'elle en pense. 
-% En particulier, j'aimerais discuter avec elle du fait que la longueur de lissage qu'elle calcule ne peut pas s'appliquer dans
-%mon cas à moi. J'aimerais voir si elle saurait m'expliquer pourquoi (dans mon cas j'ai une planète, et pas elle)
+de référence \refsec{sec:reference_disk}. 
 
 \subsection{Masse moléculaire moyenne}
 La masse moléculaire moyenne $\mu$ va varier dans le disque, principalement à cause de l'évaporation de certaines
