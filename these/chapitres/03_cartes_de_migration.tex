@@ -224,15 +224,105 @@ $R^{-0.5}$ quand le disque est purement passif.
 
 
 \subsection{Effet de l'ombre du disque sur lui même.}
-Tout au long de ma thèse, j'ai considéré un modèle d'irradiation dans lequel la gestion des ombres restait sommaire. En effet, la seule ombre que je considérais était l'ombre directe. C'est à dire les parties du disques pour lesquelles l'échelle de hauteur décroit avec la distance. Ces zones où l'angle d'interception des rayons de l'étoile était négatif étaient détectées et l'irradiation était forcée à zéro. 
+Tout au long de ma thèse, j'ai considéré un modèle d'irradiation dans lequel la gestion des ombres restait sommaire. En effet, la seule ombre que je considérais était l'ombre directe. C'est à dire les parties du disques pour lesquelles l'échelle de hauteur décroit avec la distance. Ces zones où l'angle d'interception des rayons de l'étoile était négatif étaient détectées et l'irradiation était forcée à zéro. Nous appellerons ce modèle le \textbf{modèle direct}. C'est un modèle qui découle naturellement de la modélisation du disque. En effet, pour calculer le profil de température, on doit calculer la température point par point en partant du bord externe pour que le calcul de la température converge. Nous n'avons donc pas accès à l'ombre réelle du disque lors du calcul de l'irradiation. L'ombre est simplement la zone où l'angle entre les rayons de l'étoile et la surface du disque est nul.
 
-Ici nous cherchons à comparer ce modèle avec un modèle plus complexe où l'ombre du disque est gérée de manière plus consistante. 
+Ici nous cherchons à comparer ce modèle avec deux modèles plus complexes où l'ombre du disque est gérée de manière plus cohérente. 
 
-Dans ce nouveau modèle, on calcule une première fois le profil de température du disque et on stocke la valeur de l'irradiation en chaque point du disque. Ensuite, on détecte les ombres du disques en cherchants les maximums locaux du profil d'échelle de hauteur. Pour chaque maximum local, on cherche l'ombre qu'il projette sur le disque et dans cette ombre là, l'irradiation est forcée à 0. Dans les 10 derniers pourcents de l'étendue de l'ombre, on lisse linéairement l'irradiation en considérant que 10\% avant la fin de l'ombre, l'irradiation est égale à $0 * F_\text{irr}$ (où $F_\text{irr}$ est le chauffage d'irradiation local) et à la toute fin de l'ombre, l'irradiation vaut $1 * F_\text{irr}$. Ainsi, à la position $R_b + 0.95 * l_s$ (où $R_b$ est le rayon du \og bump\fg et $l_s$ est la longueur de l'ombre qu'il projette), l'irradiation faut la moitié de l'irradiation calculée précédemment $0.5 * F_\text{irr}$. 
+Dans ces nouveaux modèles, on calcule une première fois le profil de température du disque et on stocke la valeur de l'irradiation en chaque point du disque. Ensuite, on détecte les ombres du disque en cherchant les maxima locaux du profil d'échelle de hauteur. Pour chaque maximum local, on cherche l'ombre qu'il projette sur le disque et dans cette ombre là, l'irradiation est forcée à 0. Dans les 10 derniers pourcents de l'étendue de l'ombre, on lisse linéairement l'irradiation en considérant que 10\% avant la fin de l'ombre, l'irradiation est égale à $0 * F_\text{irr}$ (où $F_\text{irr}$ est le chauffage d'irradiation local) et à la toute fin de l'ombre, l'irradiation vaut $1 * F_\text{irr}$. Ainsi, à la position $R_b + 0.95 * l_s$ (où $R_b$ est le rayon de la bosse du disque considérée et $l_s$ est la longueur de l'ombre qu'il projette), l'irradiation vaut la moitié de l'irradiation calculée précédemment $0.5 * F_\text{irr}$. 
 
-%TODO
+J'ai testé deux cas, un cas où l'étoile est considérée ponctuelle, que nous nommerons \textbf{modèle ponctuel}, et un cas où on prend en compte le rayon de l'étoile que nous appelerons le \textbf{modèle étendu}. Dans ce dernier cas, on néglige totalement le fait qu'en sortant de l'ombre, on ne voit quasiment pas l'étoile. Dans tous les modèles, l'irradiation considère que l'étoile n'est pas ponctuelle, c'est simplement pour le calcul des ombres a posteriori que l'on considèrera dans un cas que l'étoile est ponctuelle, ou est une source étendue. 
+
+\reffig{fig:shadow_temp_profile} montre l'évolution du profil de température en fonction des différents modèles de l'ombre du disque. Le profil de température du \textbf{modèle direct} est simplement celui du disque de référence. L'ombre est simplement constituée des zones où l'angle de réception des rayons de l'étoile est nul. Dans ce cas, la zone d'ombre est située entre $1.46$ et $1.75\unit{UA}$.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.49\textwidth]{figure/shadow/fiducial_temperature_profile.pdf}
+
+\caption{Profils de température pour différents modèles où l'ombre du disque sur lui-même est calculée différemment.  Les profils des modèles \textbf{direct} et \textbf{étendu} sont confondus. \refdisk}\label{fig:shadow_temp_profile}
+\end{figure}
+
+Ensuite, le \textbf{modèle ponctuel} considère l'étoile centrale comme ponctuelle, et cherche \textit{a posteriori} les ombres du disques, avant de recalculer une nouvelle fois le profil de température. Le profil de température du disque de référence dans lequel on ne tient pas compte de l'irradiation (\textbf{pure viscous}) est représenté, afin de pouvoir comparer. Dans la zone d'ombre ainsi calculée, le profil de température est équivalent à un profil purement visqueux, sans tenir compte de l'irradiation de l'étoile. En effet, dans cette région là, l'irradiation est forcée à 0. 
+
+Maintenant, en considérant que l'étoile possède un rayon $R_\star=R_\odot$, \textbf{modèle étendu}. L'ombre qui s'étendait auparavant de $0.93$ à $7.35\unit{UA}$ dans le \textbf{modèle ponctuel} n'est plus que de $1.65$ à $1.78\unit{UA}$. L'ombre commence plus loin, car les rayons de l'étoile centrale partent de plus haut. Ils ne partent plus de $z=0$ mais de $z=0.0046\unit{UA}$. De même, la surface du disque sort beaucoup plus rapidement de l'ombre pour les mêmes raisons. En conséquence, le \textbf{modèle étendu} possède exactement le même profil que le \textbf{modèle direct}. L'ombre est dans ce cas située dans une partie totalement dominée par le chauffage visqueux et l'irradiation n'a aucune incidence sur la température du disque. 
+
+\begin{figure}[htb]
+\centering
+\subfloat[Modèle ponctuel]{\includegraphics[width=0.49\textwidth]{figure/shadow/fiducial_shadow.pdf}}\hfill
+\subfloat[Modèle étendu]{\includegraphics[width=0.49\textwidth]{%
+figure/shadow/fiducial_r_star_shadow.pdf}}
+
+\caption{Influence de la modélisation de l'ombre sur la carte de migration.  \refdisk}\label{fig:map_shadow_effect}
+\end{figure}
+
+Les profils de températures avec les deux nouveaux modèles testés, à savoir les modèles \textbf{ponctuel} et \textbf{étendu}, nous donnent les cartes de migration \reffig{fig:map_shadow_effect}. dans le cadre du \textbf{modèle ponctuel}, la région d'ombre de la carte de migration est équivalente à la carte de migration que nous obtenons pour le disque de référence sans tenir compte de l'irradiation. Ailleurs, la carte de migration ne change pas. 
+
+Dans le cas du \textbf{modèle étendu}, la carte de migration ne change pas par rapport au disque de référence. Dans ce modèle, l'ombre n'est pas suffisamment étendue pour atteindre les parties passives du disque, où l'irradiation est importante. Ainsi, désactiver l'irradiation ne change pas le profil de température et la migration n'est ainsi pas affectée. 
+
+Le modèle le plus abouti pour le calcul de l'ombre est le \textbf{modèle étendu} qui recalcule l'ombre a posteriori mais prend en compte la non ponctualité de l'étoile. 
+
+Pour que le calcul de l'ombre du disque ait une importance sur la carte de migration, il faut que la bosse du disque soit suffisamment importante pour qu'une partie de l'ombre soit projetée dans la partie passive du disque, là où l'irradiation est importante. \reffig{fig:shadow-example} montre un exemple d'un disque où la modélisation de l'ombre a une importance. Dans ce disque, nous avons toujours les propriétés du disque de référence, à ceci près que le profil de densité est maintenant $\Sigma(R) = 1700 * R^{-1.5}\unit{g/cm^2}$. 
+
+\begin{figure}[htb]
+\centering
+\subfloat[Modèle direct]{\label{fig:label1}\includegraphics[width=0.49\textwidth]{figure/shadow/example_with_direct_shadow.pdf}}\hfill
+\subfloat[Modèle étendu]{\label{fig:label2}\includegraphics[width=0.49\textwidth]{figure/shadow/example_with_shadow.pdf}}
+\caption{Effet des modèles pour l'ombre du disque sur la carte de migration dans un cas où la densité de surface vaut $\Sigma(R) = 1700 * R^{-1.5}\unit{g/cm^2}$. \refdisk}\label{fig:shadow-example}
+\end{figure}
+
+Dans ce cas, la température extrêmement élevée au bord interne cause l'apparition d'une bosse très importante au bord interne du disque qui masque totalement l'étoile dans le cas où le calcul de l'ombre du disque se fait a posteriori. Les deux profils de température et les ombres correspondantes sont représentés \reffig{fig:example_shadow_temp_profile}. 
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.65\linewidth]{figure/shadow/example_shadow_temp_profile.pdf}
+\caption{Profil de température et ombre du disque dans le cas du modèle direct ou étendu pour la modélisation de l'ombre. La densité de surface vaut $\Sigma(R) = 1700 * R^{-1.5}\unit{g/cm^2}$. \refdisk}\label{fig:example_shadow_temp_profile}
+\end{figure}
+
+Malgré tout, le \textbf{modèle étendu} ne prend pas en compte le fait qu'au delà de cette zone d'ombre, il y a toute une zone où l'irradiation de l'étoile est partielle, dû au fait qu'une partie de l'étoile est masquée par le disque. Il ne prend pas non plus en compte l'auto-irradiation, c'est à dire le fait que des parties du disques peuvent en illuminer d'autres, compte tenu du fait qu'on a le profil d'échelle de hauteur qui se creuse à cet endroit là. Cet effet sera d'autant plus marqué que la température du disque est importante et que la bosse du disque est grande. 
+
+De plus, les cas où ce nouveau modèle pour l'ombre du disque a un effet important sont des cas limites. En effet, dans l'exemple présenté ici \reffig{fig:shadow-example}, la température au bord interne dépasse $50 000\unit{K}$. Dans des disques beaucoup plus classiques, avec des températures inférieures à $10 000\unit{K}$ au bord interne, nous avons vu que le modèle classique pour l'ombre du disque marchait bien, car l'ombre se trouvait dans la partie active du disque, là où l'irradiation joue un rôle mineur sur le profil de température.
+
 \subsection{Effet des propriétés de l'étoile}
-%TODO
+Dans le disque de référence, l'irradiation est celle du soleil, même rayon, même température. Mais les propriétés des étoiles au moment de la formation planétaire ne sont pas celles d'une étoile évoluée comme le Soleil. Elles ont tendance à être moins chaudes, et plus grosses que le Soleil. À partir de \cite[Table 2]{hartigan1995disk}, \reffig{fig:TTauri_sample} représente 42 étoiles TTauri dans un diagramme avec leur rayon en abscisse et leur température en ordonnée. 
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.5\linewidth]{figure/TTauri_sample.pdf}
+\caption{Représentation d'un échantillon d'étoiles TTauri \citep{hartigan1995disk}. }\label{fig:TTauri_sample}
+\end{figure}
+
+Nous souhaitons voir l'influence des propriétés de l'étoile vis à vis de l'irradiation. Nous allons maintenant faire varier le rayon $R_\star$ et la température $T_\star$ de l'étoile au centre du disque. 
+
+\begin{figure}[htb]
+\centering
+\subfloat[$R_\star=1.5\unit{R_\odot}$ ; $T=4000\unit{K}$]{\label{fig:low_TTauri}\includegraphics[width=0.49\textwidth]{figure/migration_map/TTauri/R_15_T_4000.pdf}}
+\hfill
+\subfloat[$R_\star=2.5\unit{R_\odot}$ ; $T=3500\unit{K}$]{\includegraphics[width=0.49\textwidth]{%
+figure/migration_map/TTauri/R_25_T_3500.pdf}}
+
+\subfloat[$R_\star=2.5\unit{R_\odot}$ ; $T=4000\unit{K}$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/TTauri/R_25_T_4000.pdf}}\hfill
+\subfloat[$R_\star=2.5\unit{R_\odot}$ ; $T=4500\unit{K}$]{\label{fig:high_TTauri}\includegraphics[width=0.49\textwidth]{figure/migration_map/TTauri/R_25_T_4500.pdf}}
+\caption{Influence du rayon $R_\star$ et de la température $T_\star$ de l'étoile centrale sur la carte de migration au travers de l'irradiation. Les luminosités correspondantes pour les cartes (a), (b), (c) et (d) sont respectivement $0.5\unit{L_\odot}$, $0.84\unit{L_\odot}$, $1.43\unit{L_\odot}$ et $2.30\unit{L_\odot}$. \refdisk}
+\end{figure}\label{fig:map_TTauri}
+
+À partir des 4 étoiles TTauri typiques que nous avons choisis, nous avons l'effet de la luminosité de l'étoile sur la carte de migration. En effet, il y a une dégénérescence entre le rayon et la température de l'étoile, si on considère une étoile ponctuelle. Les cartes ont été classées de la plus faible à la plus grande luminosité, les luminosités allant de $0.5\unit{L_\odot}$ à $2.30\unit{L_\odot}$. À mesure que l'irradiation de l'étoile augmente, le profil de température augmente au travers du disque de manière quasi uniforme. L'irradiation joue ici sur les masses critiques minimales et maximales au delà desquelles la migration vers l'intérieur est systématique. En particulier, les planètes de $4\mearth$ peuvent migrer vers l'extérieur dans le premier disque \reffig{fig:low_TTauri}, alors qu'il faut qu'elle aient au minimum $8\mearth$ pour pouvoir migrer dans le dernier disque \reffig{fig:high_TTauri} où l'irradiation est la plus forte. 
+
+\bigskip
+
+Nous avons vu dans la section précédente l'effet de l'ombre du disque. Nous souhaitons maintenant voir ce qu'il en est quand, à luminosité constante, on varie le rayon et la température de l'étoile. À mesure que le rayon de l'étoile augmente, les ombres du disque s'amenuisent car les parties supérieures de la sphère stellaire deviennent visibles \reffig{fig:map_TTauri_radius}. Ainsi, on remarque que la bosse sur la carte de migration disparait à mesure que le rayon de l'étoile augmente. 
+
+\begin{figure}[htb]
+\centering
+\subfloat[$R_\star=0.5\unit{R_\odot}$ ; $T=8061\unit{K}$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/TTauri/R_05_T_8061.pdf}}
+\hfill
+\subfloat[$R_\star=\unit{R_\odot}$ ; $T=5700\unit{K}$]{\includegraphics[width=0.49\textwidth]{%
+figure/migration_map/TTauri/R_10_T_5700.pdf}}
+
+\subfloat[$R_\star=2\unit{R_\odot}$ ; $T=4031\unit{K}$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/TTauri/R_20_T_4031.pdf}}\hfill
+\subfloat[$R_\star=4\unit{R_\odot}$ ; $T=2850\unit{K}$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/TTauri/R_40_T_2850.pdf}}
+\caption{Influence du rayon $R_\star$ de l'étoile centrale sur la carte de migration tandis que la luminosité de l'étoile est conservée en variant la température. \refdisk}
+\end{figure}\label{fig:map_TTauri_radius}
+
+Le rayon supérieur des TTauri par rapport à des étoiles évoluées, $R=2.5R_\odot$ n'est pas rare \reffig{fig:TTauri_sample}, tendent à atténuer les régions ombrées (\og self-shadowing\fg) du disque. Au cours de son évolution, une étoile TTauri se contracte. À mesure que son rayon diminue, des ombres pourraient donc apparaître dans le disque, modifiant brutalement la carte de migration qui évoluait via la dissipation du disque.
 
 \section{Influence de la viscosité du disque}
 \subsection{Viscosité constante}
