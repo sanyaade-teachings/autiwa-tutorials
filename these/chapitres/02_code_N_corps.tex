@@ -357,9 +357,7 @@ Il est aussi possible de rentrer manuellement un couple total en fonction de la 
 
 Les valeurs seront alors lues à partir du fichier \textbf{torque\_profile.dat}. La première colonne sera les positions dans le disque en AU tandis que la deuxième colonne sera le couple exercé par le disque en unité de $\Gamma_0$ (c'est à dire que l'effet de la masse de la planète sur la vitesse de migration sera toujours pris en compte dans le code au travers de la dépendance de $\Gamma_0$ en fonction de la masse de la planète et de la masse du disque.
 
-%TODO j'en suis là
-
-\section{Disque 1D}
+\section{Disque (1+1)D}
 Afin de calculer les effets d'un disque de gaz, une modélisation de ce dernier est nécessaire. Le but étant d'avoir une grande souplesse, le disque implémenté est bien entendu très simplifié. Toutes les quantités sont intégrées et invariantes selon la hauteur z et la position azimutale $\theta$ dans le disque, résultant en un modèle radial 1D de toutes les quantités. 
 
 Dans la mesure du possible, les quantités du disque ont été calculées de manière consistante. Je vais présenter dans la suite de manière chronologique comment sont calculées les grandeurs physiques du disque.

@@ -25,7 +25,7 @@ Un million d'années environ après la formation de la proto-étoile, le disque 
 
 Ces dénominations en classe peuvent sembler étrange mais elles proviennent en premier lieu de l'étude des spectres d'étoiles jeunes qui présentent différentes caractéristiques en fonction du stade d'évolution de l'étoile. \reffig{fig:star_formation} résume la formation stellaire, les différentes phases et en particulier les caractéristiques du spectre d'émission de ces objets.
  
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{figure/star_formation.pdf}
 \caption{Classification empirique des différents stades de formation des étoiles de faible masse, du cœur dense pré-stellaire à la classe III. Schéma basé sur \citep{andre2002initial}. }\label{fig:star_formation}
@@ -44,7 +44,7 @@ Durant les différentes phases de formation de l'étoile, alors même que le dis
 Initialement, il est hautement improbable que le moment angulaire du nuage soit parfaitement nul. C'est ainsi que même si sa rotation est imperceptible lors des premiers stades de son effondrement gravitationnel, le disque d'accrétion fini toujours en rotation. 
 
 \subsection{Évolution hydrodynamique du disque}
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.6\linewidth]{figure/disk_scheme.pdf}
 \caption{Représentation de la répartition radiale et azimutale de gaz dans un disque protoplanétaire.}\label{fig:disk_scheme}
@@ -155,7 +155,7 @@ On considèrera dans la suite les quantités moyennées selon $z$, et en particu
 % fromang & nelson 2006 donnent une formule, après l'équation (20), mais elle ne correspond pas à ça, peut-être lié à un truc magnétique ou je sais pas quoi
 
 \subsubsection{Bilan de masse}
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\linewidth]{figure/disk_ring.pdf}
 \caption{Représentation d'un anneau de largeur $\Delta R$ et du bilan de moment angulaire de ce dernier.}\label{fig:disk_ring}
@@ -282,7 +282,7 @@ Cette équation a nécessité les approximations suivantes :
 
 \subsubsection{Temps de vie et dispersion du disque}\label{sec:dispersion}
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.65\linewidth]{figure/pringle_viscous_dissipation.pdf}
 \caption{Évolution visqueuse d'un anneau de matière de masse $m$ et de rayon $R_0$. La densité de surface est montrée comme une fonction de la longueur dédimensionnée $x=R/R_0$ et du temps adimensionné $\tau=12\nu t / {R_0}^2$.}\label{fig:pringle_viscous_dissipation}
@@ -296,7 +296,7 @@ On situe généralement le temps de vie d'un disque protoplanétaire autour de q
 
 Par la rareté des disques en train de se dissiper, les observations suggèrent aussi que les disques se dissipent très rapidement, avec un temps de dispersion d'environ $10^5$ ans \citep{simon1995disk, wolk1996search}. La dissipation visqueuse n'explique alors pas comment le disque peut subsister pendant plusieurs millions d'années, mais se dissiper complètement en \nombre{500 000} ans. \cite{clarke2001dispersal} ont montré qu'il était possible d'expliquer ce comportement à deux temps caractéristiques à l'aide de la photoévaporation. 
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.65\linewidth]{figure/disk_dispersion.pdf}
 \caption{Évolution de la densité de surface en fonction du temps dans une simulation qui modélise la dissipation du disque protoplanétaire par évolution visqueuse et photoévaporation. À $t=6.20\unit{Myr}$ le disque est totalement dissipé. Figure adaptée de \cite{alexander2006photoevaporation}.}\label{fig:disk_dispersion}
@@ -322,7 +322,7 @@ Afin de déterminer le profil de température, il faut écrire l'équation de co
 On a tout d'abord les pertes par rayonnement de corps noir. Ensuite, il y a les termes sources. Pour un disque actif, le terme source est le chauffage visqueux. Pour un disque passif, c'est l'irradiation de l'étoile \citep{chiang1997spectral}. Dans notre cas, il y a un terme dû à l'enveloppe du disque, un dû à l'irradiation de l'étoile centrale, et enfin un dernier dû au chauffage visqueux.
 
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.65\linewidth]{figure/disk_energy.pdf}
 \caption{Représentation du bilan thermique d'un disque}\label{fig:energy_equilibrium}
@@ -351,7 +351,7 @@ où $\tau=\kappa\Sigma/2$ est la profondeur optique verticale moyenne, $\kappa$ 
 Cette température effective est le résultat d'un transfert de rayonnement depuis le cœur du disque, à une température $T$ qui se refroidit, et chauffe les différentes couches successives jusqu'à atteindre le bord du disque. Il résulte alors une température $T_\text{eff}$ plus faible que la température dans le plan du disque. 
 
 \subsubsection{Chauffage par l'enveloppe}
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.45\linewidth]{figure/disk_envelope.pdf}
 \caption{Représentation de l'effondrement d'un nuage moléculaire et des différentes parties qui composent le système en effondrement.}\label{fig:envelope}
@@ -559,7 +559,7 @@ Sans ionisation, il n'y a pas de couplage entre le champ magnétique et la mati�
 
 Or, comment ioniser? \reffig{fig:ionization} représente les différents processus d'ionisation dominants en fonction de la zone du disque considérée. Mais si le taux d'ionisation décroit en fonction de la distance orbitale \citep{ilgner2006ionisation1} comme le montre \reffig{fig:ilgner_ionisation}, il en va de même avec la densité de surface du disque. Il est donc probable que certaines zones du disques ne soient pas ionisés (en pourcentage du nombre total d'atomes disponibles), et donc que le transport du moment angulaire s'y fasse peu ou pas du tout \citep{gammie1996layered}. Ces zones, appelées \gras{dead zone}, sont donc des zones où la turbulence est faible ou inexistante, et où la viscosité et par conséquent beaucoup plus faible. 
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
 \subfloat[Mécanisme principal d'ionisation de différentes zones du disque. Les zones où l'ionisation est très faible, appelées \og dead-zones\fg sont des positions où on pense que la viscosité turbulente est extrêmement faible.]{\label{fig:ionization}\includegraphics[width=0.49\textwidth]{figure/disk_ionization.pdf}}\hfill
 \subfloat[Taux effectif d'ionisation $\zeta_\text{eff}$ par atome d'hydrogène pour un disque avec $\alpha=10^{-2}$ et $\dot{M}=10^{-7}\unit{M_\odot yr^{-1}}$. Les lignes de référence correspondent aux valeurs de $\zeta_\text{eff}$ suivante : $10^{-19}$, $10^{-21}$ et $10^{-23}\unit{s^{-1}}$. Cette figure est basée sur la figure 6 de \cite{ilgner2006ionisation1}.]{\label{fig:ilgner_ionisation}\includegraphics[width=0.49\textwidth]{figure/ilgner_ionization_rate.pdf}}
@@ -700,7 +700,7 @@ Il est tout d'abord intéressant de remarquer l'origine des bras spiraux dans le
 
 Ça signifie en particulier que la vitesse de rotation de l'onde de densité n'est pas liée à la vitesse de rotation des étoiles qui la composent. Ceci permet de résoudre le \og winding problem\fg c'est à dire le fait que si l'onde de densité était rigide, elle s'enroulerait sur elle-même au bout de quelques orbites seulement, ce qui n'est pas le cas ici \citep{binney2008book}.
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\linewidth]{figure/spiral_arms.pdf}
 \caption{Illustration de l'origine des bras spiraux dans une galaxie au travers de l'exitation cohérente de l'excentricité par les bras eux mêmes. Dans le cas \og $e=0$\fg, les orbites des étoiles, représentées par les traits noir sont des cercles parfaits. Dans le cas \og $0<e\ll 1$\fg, les orbites sont toutes très légèrement excentriques, et les arguments du périhélies légèrement décalés à mesure que les demi-grands axes augmentent.}\label{fig:spiral_arms}
@@ -710,7 +710,7 @@ Il est tout d'abord intéressant de remarquer l'origine des bras spiraux dans le
 
 Pour l'interaction entre une planète et un disque protoplanétaire, c'est exactement le même principe. Le potentiel de la planète excite les excentricités des éléments fluides voisins jusqu'à former une onde de densité autour de la planète. La différence principale est que le perturbateur est un potentiel gravitationnel tournant, ce qui modifie la forme des ondes de densité comme illustré \reffig{fig:lindblad_torque}. 
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{figure/lindblad_torque.pdf}
 \caption{Génération d'ondes de densité dans le disque protoplanétaire dû à la présence d'une planète. Chaque mode $m$ émet $m$ ondes de densité de part et d'autre de la position radiale de la planète. Un anneau interne  aux positions du mode $m$ est dénué de toute onde dû à ce même mode. Les interférences entre toutes les ondes de densités de tous les modes donne deux ondes de densités que l'on observe dans des simulations hydrodynamique. Les positions successives des interférences constructives sont données par \cite[eq. (13) et (24)]{ogilvie2002wake}}\label{fig:lindblad_torque}
@@ -757,7 +757,7 @@ Le couple est ici exprimé en unité de $\Gamma_0$, couple de référence défin
 Notons aussi que le processus physique du transport du moment angulaire de la planète est réalisé par l'onde de densité. Le moment angulaire est emporté par l'onde de densité qui l'échange avec le gaz environnant à mesure que ce dernière amorti et dissipe l'onde.
 
 \subsubsection{Couple co-orbital ou de corotation}\index{co-orbital!couple|see{couple}}\index{couple!co-orbital}\label{sec:couple-corotation}
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{figure/corotation_modes.pdf}
 \caption{À partir de la décomposition en série de Fourier du potentiel gravitationnel de la planète, chaque mode $m$ a pour conséquence $m$ zones de libration dans la zone de corotation avec la planète. Les interférences entre l'infinité de modes $m$ fait apparaître des orbites fer-à-cheval (\og horseshoe orbits\fg) dans la référentiel tournant avec la planète. La zone de corotation a ici été exagérée pour plus de lisibilité.}\label{fig:corotation_torque}
@@ -772,7 +772,7 @@ Chacun de ces deux couples possède une partie qui peut saturer en fonction des 
 
 Pour illustrer le principe de la saturation, et sans considérer un couple en particulier, il convient de définir certains temps caractéristiques afin de comprendre l'origine de ce couple non saturé, et pourquoi ce dernier peut saturer. \reffig*{fig:corotation_orbits} représente schématiquement les 3 temps principaux mis en jeux. 
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.75\linewidth]{figure/corotation_times.pdf}
 \caption{Dans le référentiel tournant avec la planète (qui est donc fixe dans ce repère), représentation d'une orbite de corotation ainsi que des différents temps caractéristiques mis en jeux. $t_\text{lib}$ est le temps mis par un élément fluide pour effectuer une orbite de corotation. $t_\text{U-turn}$ est le temps mis par un élément fluide pour effectuer un demi tour devant la planète. $t_\text{diff}$ peut être suivant le cas le temps radiatif $t_\text{rad}$ ou le temps visqueux $t_\text{vis}$ nécessaire pour homogénéiser les propriétés thermodynamiques de l'élément fluide avec son environnement.}\label{fig:corotation_orbits}
@@ -817,7 +817,7 @@ t_\text{U-turn} < t_\text{diff} < \frac{t_\text{lib}}{2}
 \end{align}
 $t_\text{U-turn}$ est le temps nécessaire pour faire le demi tour devant la planète (pour traverser une zone égale approximativement à $2x_s$). $t_\text{lib}$ est le temps de libration, c'est à dire le temps mis par une particule fluide pour faire le tour de la zone en fer-à-cheval. $t_\text{diff}$ quant à lui est le temps de diffusion de la quantité physique considérée. Suivant les cas, il peut y avoir plusieurs temps de diffusion qui sont importants, auquel cas les inégalités doivent être satisfaites pour tous les temps de diffusions mis en jeux.
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.75\linewidth]{figure/corotation_principle.pdf}
 \caption{Dans le référentiel tournant avec la planète, représentation du mécanisme général à l'origine du couple de corotation. Lorsque les temps de diffusion $t_\text{diff}$ sont plus grande que le temps de libration $t_\text{lib}$, le couple de corotation sature car le gradient de vortensité/entropie au travers de la région fer-à-cheval tend à s'aplatir. Ce dernier est restauré quand les temps de diffusion $t_\text{diff}$ sont plus courts que le temps de libration $t_\text{lib}$. Dans ce cas, la valeur optimale du couple de corotation est obtenue lorsque les temps de diffusion $t_\text{diff}$ sont de l'ordre de la moitié du temps de libration $t_\text{lib}/2$. Dans la limite où les temps de diffusion $t_\text{diff}$ sont plus courts que le temps de demi-tour $t_\text{U-turn}$, l'amplitude du couple de corotation décroit pour atteindre la valeur prédite par une analyse linéaire.}\label{fig:corotation_principle}
