@@ -537,7 +537,7 @@ Un système de planètes en résonance se forme alors, les planètes internes mi
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.45\linewidth]{figure/HSE/inner_system.pdf}
+\includegraphics[width=0.7\linewidth]{figure/HSE/inner_system.pdf}
 \caption{Zoom sur l'évolution des planètes près du bord interne du disque situé à $0.1\unit{UA}$. }\label{fig:HSE_inner_system}
 \end{figure}
 
@@ -580,13 +580,70 @@ Dans cette même simulation, deux autres planètes massives sont formées (en ve
 
 \bigskip
 
-On a enfin un troisième et dernier cas où une planète grossit suffisamment rapidement pour migrer vers l'extérieur, mais est entrainée vers l'intérieur en étant capturée en résonance avec une planète de l'ordre de sa propre masse ce qui inverse son sens de migration. 
+On a enfin un troisième et dernier cas où une planète grossit suffisamment rapidement pour migrer vers l'extérieur, mais est entrainée vers l'intérieur en étant capturée en résonance avec une planète ce qui inverse son sens de migration \reffig{fig:HSE_forced_in}. Dans ce système, la planète en rouge dans la figure ressent un couple de migration qui la pousse vers l'extérieur à partir de \nombre{229000} ans, quand une collision lui fait dépasser $5\mearth$. À ce stade, si elle avait été isolée dans le disque, elle aurait alors migrée vers l'extérieur jusqu'à se stabiliser autour de $9\unit{UA}$. Au lieu de cela, son excentricité reste élevée à cause des perturbations gravitationnelles des corps environnants. Son couple de migration est atténué jusqu'à que le sens en soit changé. La planète migre alors vers l'intérieur, entrainée par des résonances successives avec ses voisins. Même si les résonances changent, l'effet net est une migration vers l'intérieur car l'excentricité n'est jamais suffisamment amortie pour que la migration vers l'extérieur puisse s'effectuer.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.65\linewidth]{figure/HSE/forced_in.pdf}
+\caption{Migration forcée d'une planète (en rouge) vers l'intérieur par excitation de son excentricité. Les planètes en bleu rentrent en collision avec la planète qui nous intéresse (en rouge). La figure en bas montre l'évolution des masses au cours du temps. On remarque en particulier les deux collisions qui augmentent la masse de la planète rouge.}\label{fig:HSE_forced_in}
+%/sse/cossou/phd/HSE_cond_inits/fiducials/simu00004
+\end{figure}
 
 %TODO regarder la simulation %/sse/cossou/HSE/disk_param/300_05/simu00001/hires pour celà
 
 %TODO chercher un cas où j'ai un système résonant à l'extérieur
 
-%TODO chercher un cas où j'ai une planète qui grossi rapidement, qui veut migrer vers l'extérieur mais qui est emportéer à l'intérieur.
+\subsection{Propriétés statistiques}
+\subsubsection{Systèmes finaux}
+\begin{figure}[htbp]
+\centering
+\subfloat[Rapports de période orbitale entre planètes]{\label{fig:HSE_stat_pr}\includegraphics[width=0.49\textwidth]{figure/HSE/stat_pr_all.pdf}}\hfill
+\subfloat[Masses finales]{\includegraphics[width=0.49\textwidth]{figure/HSE/hist_m.pdf}}
+
+\caption{Histogramme des rapports de période et masse des planètes pour les 200 systèmes simulés.}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.7\textwidth]{figure/HSE/hist_ad.pdf}
+\caption{Histogramme des positions et sép}\label{fig:HSE_stat_dist}
+\end{figure}
+
+Pour les conditions initiales décrites plus haut, nous avons simulé 200 systèmes différents. Nous cherchons maintenant à en étudier les propriétés de manière statistique. Nous observons que la plupart des planètes sont en résonance \reffig{fig:HSE_stat_pr}. La résonance la plus probable est \MMR43. Nous remarquons aussi que la grande majorité des résonances observées dans nos systèmes sont d'ordre 1. Quelques pics d'ordre $q>1$ sont visibles mais d'intensité beaucoup plus faibles que les résonances d'ordre 1 dont la visibilité a été privilégiée. 
+
+Nous avons chercher à comparer la répartition des planètes simulées par rapport aux observations, tant au niveau de distances orbitales que des séparations en rayon de Hill mutuels \reffig{fig:HSE_stat_dist}. Ces données sont à comparer aux observations \reffig{fig:multiplanet_stats}. Les observations semblent montrer que les planètes ont plus de chance d'être séparées par $12$ rayons de Hill mutuels. Nous trouvons $10$, valeur très proche de la valeur observée dans les systèmes multiples. 
+
+Malgré les limites du disques ($R\in[0.1;100]\unit{UA}$), nous reproduisons correctement la répartition orbitale des planètes entre $0.01$ et $1\unit{UA}$. Notons que la présence du bord interne du disque à $0.1\unit{UA}$ génère un loi bimodale autour, avec un pic avant et après le bord interne. Un fort couple de migration dans une zone du disque très restreinte pourrait expliquer la loi bimodale souvent évoquée pour représenter les observations. 
+
+Nous avons ensuite une surdensité de planètes autour de $10\unit{UA}$ à cause de la zone de convergence qui se trouve autour de cette zone. Entre $1$ et $10\unit{UA}$ nous avons un déficit de planète dû à la migration qui entraine les faibles masses vers l'intérieur, et les masses plus importantes ($m>5\mearth$) vers l'extérieur. Les planètes ne sont donc pas stable dans cette zone. 
+
+La migration seule, sans dissipation du disque explique relativement bien les observations au bord interne du disque, mais reproduit assez mal les planètes plus externes. Notons toutefois que nous n'avons pas modélisé l'accrétion de gaz qui doit être importante pour les embryons planétaire d'une dizaine de masses terrestres qui migrent jusqu'à $10\unit{UA}$. 
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\linewidth]{figure/HSE/m_fct_a.pdf}
+\caption{Position finale des planètes dans les 200 systèmes simulés dans un diagramme a-m où la carte de migration est représentée. Les planètes représentés en rouge sont chacune respectivement la plus massive d'une simulation.}\label{fig:HSE_fid_mfcta}
+\end{figure}
+
+\reffig{fig:HSE_fid_mfcta} représente sur un diagramme similaire aux cartes de migration la position finale de toutes les planètes des 200 simulations effectuées. En rouge sont représentées les planètes les plus massives de chaque simulation (200 planètes en tout) et en bleu toutes les autres planètes. Les planètes les plus massives sont essentiellement situées à des zones stables où leur couple de migration est nul. Étant les plus massives, il est difficile pour les autres planètes de les écarter de leur zone de stabilité. 
+
+Nous avons une population de planètes au bord interne du disque ou en résonance avec une planète au bord interne. Toutes les planètes en dessous de $0.25\unit{UA}$ sont dans ce cas. Une population de planète est présente autour de chaque zone de convergence, à la fois à $0.4\unit{UA}$ et $10\unit{UA}$. À $10\unit{UA}$ nous remarquons une population de planète massives qui sont en dessous de leur zone de convergence. Ces dernières sont maintenues en deçà de leur position d'équilibre par des planètes externes en résonances qui via perturbation, amortissent leur couple de migration. En effet, cette carte ne représente que le couple de migration dans le cas où la planète ne possède pas d'excentricité. 
+
+Les résonances se manifestent aussi par la présence, en dessous de chaque population de planète massive à une zone de résonance, d'une population de planètes peu massives à des positions où elles ne sont pas censés être stable. 
+
+Enfin, nous avons une population de planètes qui ont été expulsées du disque au bord interne. Elles sont sur les orbites les plus internes. Leur excentricité et inclinaison ne sont plus amorties par le disque, et elles ne ressentent pas non plus de couple de migration de ce dernier. Une fois sorties du disques, les planètes peuvent continuer à migrer vers l'intérieur du disque via des résonances avec des planètes qui elles sont encore dans le disque. 
+
+\subsubsection{Influence des paramètres initiaux}
+
+\begin{figure}[htbp]
+\centering
+\subfloat[$0.1<m_i<2\mearth$]{\includegraphics[width=0.49\textwidth]{figure/HSE/hist_m.pdf}}\hfill
+\subfloat[$1<m_i<2\mearth$]{\includegraphics[width=0.49\textwidth]{figure/HSE/massive_embryos.pdf}}
+
+\caption{Influence des masses initiales $m_i$ (la répartition est uniforme sur l'intervalle) sur la distribution des masses finales.}
+\end{figure}
+
+%TODO look at that. Must I keep this? Not very pretty to show and a bit confusing. must use normed histogram to compare things.
 
 \subsection{Discussion}
 Quand les embryons sont plus petits qu'une certaine masse critique dépendant des propriétés du disque, la migration est systématiquement vers l'intérieur. Un système compact de planètes qui grossissent par collisions se forme alors au bord interne qui retient ce système par le fort couple de corotation positif qui s'exerce juste avant le bord interne en raison de la forte décroissante de la densité de surface \citep{masset2006disk}.
