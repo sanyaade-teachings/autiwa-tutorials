@@ -513,11 +513,15 @@ Un zoom sur le bord interne du disque \reffig{fig:HSE_mig_zoom-in} montre la zon
 \end{figure}
 
 \subsection{Conditions initiales}
+Les planètes sont sur des orbites quasi circulaires et coplanaires initialement. De plus, elles sont placées aléatoirement sur leur orbite dont l'orientation est elle aussi aléatoire.
+
+Les positions des planètes sont choisies de manière aléatoire et uniforme entre $1$ et $20\unit{UA}$. Un court épisode d'instabilité et de collisions peut survenir dès le début des simulations dans le cas où deux planètes se trouvent extrêmement proches. Il résulte en la formation d'une planète légèrement plus massive que les autres. 
+
 Initialement dans le système, on génère des embryons dont la masse varie de $0.1$ à $2\mearth$, pour une masse totale allant de $30$ à $100\mearth$. Des masses aléatoires différentes d'un embryon à l'autre permettent d'éviter les biais dûs aux masses égales. En effet, deux embryons de même masse migrent à la même vitesse, ce qui n'a aucune raison physique de se produire systématiquement dans un disque. Deux planètes migrant à la même vitesse ne peuvent pas entrer en collision, ou se placer en résonance, deux évènements cruciaux pour notre mécanisme de formation. 
 
 De plus, quand deux corps sont en résonance, il y a un effet du rapport de masse sur les niveaux réciproques d'excentricité. Des masses égales maximisent les perturbations gravitationnelles de deux corps en résonance \refsec{sec:mass-ratio-effect}. Sinon, c'est le plus gros corps qui impose la stabilisation du système de deux corps, le corps moins massif étant piégé dans une zone où il ne pourrait pas rester sans la présence du compagnon. Le corps le plus massif est aussi celui qui a l'excentricité la plus faible. En s'écartant d'un système de deux planètes de masse égale, on diminue ainsi le décalage vers l'intérieur de la zone de stabilisation.
 
-%TODO parler du fait qu'il ne faut pas prendre des masses fixes, expliquer pourquoi. Montrer des statistiques de simulations. 
+Les masses sont choisies de telle sorte que l'on puisse avoir un nombre relativement importante de planètes initialement (autour de 60) pour une masse planétaire totale n'excédant pas $60\mearth$. En effet, il est essentiel d'avoir un nombre important d'embryons afin de mettre en évidence l'effet des résonances et des perturbations gravitationnelles. 
 
 \subsection{Systèmes possibles}
 En dessous d'une certaine masse limite qui dépend des paramètres du disque mais qui se situe généralement entre $2$ et $10\mearth$, les planètes migrent toutes vers l'intérieur, quelle que soit leur position initiale dans le disque. Pour le disque considéré ici \reffig{fig:migration_map_HSE}, cette limite se situe environ à $4\mearth$.
@@ -645,13 +649,33 @@ Enfin, nous avons une population de planètes qui ont été expulsées du disque
 
 %TODO look at that. Must I keep this? Not very pretty to show and a bit confusing. must use normed histogram to compare things.
 
+\subsubsection{Effet du disque}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\linewidth]{figure/HSE/HSE_disk_effect.pdf}
+\caption{Position finale des planètes pour différents types de disques. Le disque normal est celui présenté plus haut. Seule la masse change dans le disque de faible masse ($\Sigma_0=150\unit{g/cm^2}$) et massif ($\Sigma_0=600\unit{g/cm^2}$).}\label{fig:HSE_disk_effect}
+\end{figure}
+
+Par rapport au disque de référence où $\Sigma(R) = \Sigma_0 * R^{-\sfrac12}$, nous avons lancé 100 simulations avec un disque moitié moins massif ($\Sigma_0=150\unit{g/cm^2}$) ou moitié plus ($\Sigma_0=600\unit{g/cm^2}$) \reffig{fig:HSE_disk_effect}.
+
+Avec le disque massif, la population de planètes au delà de $10\unit{UA}$ a disparu \reffig{fig:HSE_hist_a_disk}. Pourtant, une zone de convergence existe dans cette région, mais la masse minimale pour y accéder est de l'ordre de $10\mearth$. C'est cette augmentation de la masse critique minimale qui est la cause de l'absence de planètes au delà de $2\unit{UA}$.
+
+Avec le disque peu massif, la population externe de planètes ($a>2\unit{UA}$) est toujours présente \reffig{fig:HSE_hist_a_disk}. La zone de convergence s'est légèrement déplacée vers l'intérieur, de l'ordre de $2\unit{UA}$ environ. Les planètes dépassent la masse critique suffisamment rapidement pour accéder à la zone de migration vers l'extérieur. De plus, la masse critique a diminué, le nombre de planètes accédant à cette zone du disque augmente donc d'autant.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\linewidth]{figure/HSE/hist_a_disk.pdf}
+\caption{Distribution des orbites finales des planètes pour trois disques différents. Seule la masse change dans le disque de faible masse ($\Sigma_0=150\unit{g/cm^2}$) et massif ($\Sigma_0=600\unit{g/cm^2}$).}\label{fig:HSE_hist_a_disk}
+\end{figure}
+
+La formation de systèmes compacts au bord interne est elle peu affectée par la variation de la masse du disque. Le fort couple positif au bord interne est stable et les planètes sont maintenues dans le disque. La distribution des positions des planètes pour la partie interne du disque $a<2\unit{UA}$ est similaire dans les trois disques. 
+
 \subsection{Discussion}
-Quand les embryons sont plus petits qu'une certaine masse critique dépendant des propriétés du disque, la migration est systématiquement vers l'intérieur. Un système compact de planètes qui grossissent par collisions se forme alors au bord interne qui retient ce système par le fort couple de corotation positif qui s'exerce juste avant le bord interne en raison de la forte décroissante de la densité de surface \citep{masset2006disk}.
-%TODO le fait que le couple de lindblad est alors principalement égale au couple externe très fortement négatif ne suffit pas à contrebalancer le couple de corotation très positif. 
+Quand les embryons sont plus petits qu'une certaine masse critique dépendant des propriétés du disque, la migration est systématiquement vers l'intérieur. Un système compact de planètes qui grossissent par collisions se forme alors au bord interne qui retient ce système par le fort couple de corotation positif qui s'exerce juste avant le bord interne en raison de la forte décroissance de la densité de surface \citep{masset2006disk}. Au bord interne, l'onde de densité interne due au couple de Lindblad n'existe plus, étant donné qu'il n'y a plus de gaz. Le couple différentiel de Lindblad est alors simplement égal à l'onde de densité externe. La migration est malgré tout vers l'extérieur en raison du très fort couple de Corotation \citep{masset2006disk}.
 
 Pendant la migration vers l'intérieur, si un embryon grossit suffisamment vite, il peut commencer à migrer vers l'extérieur. Durant cette migration, des résonances vont se former avec les corps qui migrent pour la plupart vers l'intérieur. Par excitation résonante, la migration vers l'extérieur peut être ralentie voire stoppée, et les planètes peuvent de nouveau migrer vers l'intérieur. 
 
-Pourtant, dans certains cas, une planète suffisamment massive peut migrer vers l'intérieur, emprisonnant des corps plus petits dans des résonances orbitales, avant de se placer à une zone de couple nul dans les parties externes du disque (dans celui présenté ici, vers $15\unit{UA}$.
+Pourtant, dans certains cas, une planète suffisamment massive peut migrer vers l'extérieur, emprisonnant des corps plus petits dans des résonances orbitales, avant de se placer à une zone de couple nul dans les parties externes du disque (dans celui présenté ici, vers $15\unit{UA}$.
 
 \bigskip
 
