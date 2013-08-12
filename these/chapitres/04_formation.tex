@@ -584,16 +584,14 @@ Dans cette même simulation, deux autres planètes massives sont formées (en ve
 
 \bigskip
 
-On a enfin un troisième et dernier cas où une planète grossit suffisamment rapidement pour migrer vers l'extérieur, mais est entrainée vers l'intérieur en étant capturée en résonance avec une planète ce qui inverse son sens de migration \reffig{fig:HSE_forced_in}. Dans ce système, la planète en rouge dans la figure ressent un couple de migration qui la pousse vers l'extérieur à partir de \nombre{229000} ans, quand une collision lui fait dépasser $5\mearth$. À ce stade, si elle avait été isolée dans le disque, elle aurait alors migrée vers l'extérieur jusqu'à se stabiliser autour de $9\unit{UA}$. Au lieu de cela, son excentricité reste élevée à cause des perturbations gravitationnelles des corps environnants. Son couple de migration est atténué jusqu'à que le sens en soit changé. La planète migre alors vers l'intérieur, entrainée par des résonances successives avec ses voisins. Même si les résonances changent, l'effet net est une migration vers l'intérieur car l'excentricité n'est jamais suffisamment amortie pour que la migration vers l'extérieur puisse s'effectuer.
+On a enfin un troisième et dernier cas où une planète grossit suffisamment rapidement pour migrer vers l'extérieur, mais est entrainée vers l'intérieur en étant capturée en résonance avec une planète ce qui inverse son sens de migration \reffig{fig:HSE_forced_in_AM}. Dans ce système, la planète en bleu dans la figure ressent un couple de migration qui la pousse vers l'extérieur à partir de \nombre{229000} ans, quand une collision lui fait dépasser $5\mearth$. À ce stade, si elle avait été isolée dans le disque, elle aurait alors migré vers l'extérieur jusqu'à se stabiliser autour de $9\unit{UA}$. Au lieu de cela, son excentricité reste élevée à cause des perturbations gravitationnelles des corps environnants \reffig{fig:HSE_forced_in_vois}. Son couple de migration est atténué jusqu'à que le sens en soit changé. La planète migre alors vers l'intérieur, entrainée par des résonances successives avec ses voisins. Même si les résonances changent, l'effet net est une migration vers l'intérieur car l'excentricité n'est jamais suffisamment amortie pour que la migration vers l'extérieur puisse s'effectuer.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.65\linewidth]{figure/HSE/forced_in.pdf}
-\caption{Migration forcée d'une planète (en rouge) vers l'intérieur par excitation de son excentricité. Les planètes en bleu rentrent en collision avec la planète qui nous intéresse (en rouge). La figure en bas montre l'évolution des masses au cours du temps. On remarque en particulier les deux collisions qui augmentent la masse de la planète rouge.}\label{fig:HSE_forced_in}
-%/sse/cossou/phd/HSE_cond_inits/fiducials/simu00004
-\end{figure}
-
-%TODO regarder la simulation %/sse/cossou/HSE/disk_param/300_05/simu00001/hires pour celà
+\subfloat[Évolution $m=f(a)$]{\label{fig:HSE_forced_in_AM}\includegraphics[width=0.49\linewidth]{figure/HSE/forced_in_AM.pdf}}\hfill
+\subfloat[Voisinage de la planète]{\label{fig:HSE_forced_in_vois}\includegraphics[width=0.49\linewidth]{figure/HSE/forced_in.pdf}}
+\caption{Migration forcée d'une planète (en bleu) vers l'intérieur par excitation de son excentricité.}\label{fig:HSE_forced_in}
+\end{figure}%/sse/cossou/phd/HSE_cond_inits/fiducials/simu00004
 
 %TODO chercher un cas où j'ai un système résonant à l'extérieur
 
@@ -602,7 +600,7 @@ On a enfin un troisième et dernier cas où une planète grossit suffisamment ra
 \begin{figure}[htbp]
 \centering
 \subfloat[Rapports de période orbitale entre planètes]{\label{fig:HSE_stat_pr}\includegraphics[width=0.49\textwidth]{figure/HSE/stat_pr_all.pdf}}\hfill
-\subfloat[Masses finales]{\includegraphics[width=0.49\textwidth]{figure/HSE/hist_m.pdf}}
+\subfloat[Masses finales]{\label{fig:HSE_stat_m}\includegraphics[width=0.49\textwidth]{figure/HSE/hist_m.pdf}}
 
 \caption{Histogramme des rapports de période et masse des planètes pour les 200 systèmes simulés.}
 \end{figure}
@@ -613,9 +611,9 @@ On a enfin un troisième et dernier cas où une planète grossit suffisamment ra
 \caption{Histogramme des positions et sép}\label{fig:HSE_stat_dist}
 \end{figure}
 
-Pour les conditions initiales décrites plus haut, nous avons simulé 200 systèmes différents. Nous cherchons maintenant à en étudier les propriétés de manière statistique. Nous observons que la plupart des planètes sont en résonance \reffig{fig:HSE_stat_pr}. La résonance la plus probable est \MMR43. Nous remarquons aussi que la grande majorité des résonances observées dans nos systèmes sont d'ordre 1. Quelques pics d'ordre $q>1$ sont visibles mais d'intensité beaucoup plus faibles que les résonances d'ordre 1 dont la visibilité a été privilégiée. 
+Pour les conditions initiales décrites plus haut, nous avons simulé 200 systèmes différents. Nous cherchons maintenant à en étudier les propriétés de manière statistique. Nous observons que la plupart des planètes sont en résonance \reffig{fig:HSE_stat_pr}. La résonance la plus probable est \MMR43. Nous remarquons aussi que la grande majorité des résonances observées dans nos systèmes sont d'ordre 1. Quelques pics d'ordre $q>1$ sont visibles mais d'intensité beaucoup plus faibles que les résonances d'ordre 1 dont la visibilité a été privilégiée. Il est intéressant de noter qu'en fin de simulation, il y a toute une population d'embryons planétaires de faible masses qui n'ont pas subi de collisions \reffig{fig:HSE_stat_m}. Cette population a donc des propriétés dépendantes des conditions initiales, puisque leur masse finale sera égale à leur masse initiale. 
 
-Nous avons chercher à comparer la répartition des planètes simulées par rapport aux observations, tant au niveau de distances orbitales que des séparations en rayon de Hill mutuels \reffig{fig:HSE_stat_dist}. Ces données sont à comparer aux observations \reffig{fig:multiplanet_stats}. Les observations semblent montrer que les planètes ont plus de chance d'être séparées par $12$ rayons de Hill mutuels. Nous trouvons $10$, valeur très proche de la valeur observée dans les systèmes multiples. 
+Nous avons cherché à comparer la répartition des planètes simulées par rapport aux observations, tant au niveau de distances orbitales que des séparations en rayon de Hill mutuels \reffig{fig:HSE_stat_dist}. Ces données sont à comparer aux observations \reffig{fig:multiplanet_stats}. Les observations semblent montrer que les planètes ont plus de chance d'être séparées par $12$ rayons de Hill mutuels. Nous trouvons $10$, valeur très proche de la valeur observée dans les systèmes multiples. 
 
 Malgré les limites du disques ($R\in[0.1;100]\unit{UA}$), nous reproduisons correctement la répartition orbitale des planètes entre $0.01$ et $1\unit{UA}$. Notons que la présence du bord interne du disque à $0.1\unit{UA}$ génère un loi bimodale autour, avec un pic avant et après le bord interne. Un fort couple de migration dans une zone du disque très restreinte pourrait expliquer la loi bimodale souvent évoquée pour représenter les observations. 
 
@@ -638,16 +636,29 @@ Les résonances se manifestent aussi par la présence, en dessous de chaque popu
 Enfin, nous avons une population de planètes qui ont été expulsées du disque au bord interne. Elles sont sur les orbites les plus internes. Leur excentricité et inclinaison ne sont plus amorties par le disque, et elles ne ressentent pas non plus de couple de migration de ce dernier. Une fois sorties du disques, les planètes peuvent continuer à migrer vers l'intérieur du disque via des résonances avec des planètes qui elles sont encore dans le disque. 
 
 \subsubsection{Influence des paramètres initiaux}
+\begin{figure}[htbp]
+\centering
+\subfloat[$M_\text{tot}=30\mearth$]{\includegraphics[width=0.49\textwidth]{figure/HSE/low_mass_am.pdf}}\hfill
+\subfloat[$M_\text{tot}=120\mearth$]{\includegraphics[width=0.49\textwidth]{figure/HSE/high_mass_am.pdf}}
+
+\caption{Influence de la masse totale des embryons sur les propriétés statistiques des planètes formées, en particulier leur répartition dans un diagramme masse-distance. Les parties de la carte de migration où la migration se fait vers l'extérieur sont dessinées en rouge.}\label{fig:HSE_m_tot_influence}
+\end{figure}
+
+Tous les paramètres de génération aléatoire, en particulier la distribution de masse initiale des embryons est conservée, mais on teste maintenant l'influence de la masse totale des embryons sur les propriétés statistiques des systèmes obtenus. Par rapport aux simulations de référence où $M_\text{tot}=60\mearth$, on lance des simulations avec $M_\text{tot}=30\mearth$ et $M_\text{tot}=120\mearth$. La masse moyenne initiale étant de $1\mearth$, le nombre moyen d'embryons est environ égal à la masse totale. Quand le nombre d'embryons et la masse totale est divisé par deux, le nombre des planètes qui se trouvent dans les parties externes de la carte de migration, au delà de $2\unit{UA}$ est très faible. Sur 100 simulations, seules 3 ont au moins une planète dans cette région. 
+
+Dans le cas où le nombre d'embryons et la masse totale est multiplié par deux, le nombre de planètes dans les parties externes augmente. Le nombre d'embryons et la masse totale contenue dans ceux-ci étant plus grande, il est plus probable pour l'un d'entre eux d'atteindre la masse critique de $5\mearth$ avant de descendre en dessous de $1\unit{UA}$. 
 
 \begin{figure}[htbp]
 \centering
-\subfloat[$0.1<m_i<2\mearth$]{\includegraphics[width=0.49\textwidth]{figure/HSE/hist_m.pdf}}\hfill
-\subfloat[$1<m_i<2\mearth$]{\includegraphics[width=0.49\textwidth]{figure/HSE/massive_embryos.pdf}}
+\includegraphics[width=0.49\textwidth]{figure/HSE/m_tot_hist_m.pdf}
 
-\caption{Influence des masses initiales $m_i$ (la répartition est uniforme sur l'intervalle) sur la distribution des masses finales.}
+\caption{Distribution des masses finales des planètes pour 3*100 simulations dans lesquelles la masse totale contenue dans les embryons initialement est respectivement $30$, $60$ et $120\mearth$.}\label{fig:HSE_m_tot_hist_m}
 \end{figure}
 
-%TODO look at that. Must I keep this? Not very pretty to show and a bit confusing. must use normed histogram to compare things.
+La distribution des masses finales \reffig{fig:HSE_m_tot_hist_m} montre que la quantité d'embryons de très faible masse augmente quand la masse totale $M_\text{tot}$ augmente. Ces embryons font partie d'une population initialement de faible masse et qui ont très peu accrêté de masse par collision. Cette population froide conserve donc sa masse au cours de la migration planétaire. Une deuxième population, formée par collision, dépend de la masse total. En particulier, la masse maximale formée par collision tend à augmenter avec la masse totale disponible dans les embryons. De même, la masse minimale de cette population tend à augmenter avec la masse totale. Ainsi, à mesure que la masse totale augmente, les deux populations se scindent et on observe une distribution bimodale pour $M_\text{tot}=120\mearth$ dont les maximums sont situés autour de $0.5\mearth$ et $11\mearth$ alors que dans le cas $M_\text{tot}=30\mearth$ les deux sous populations étaient quasiment confondues et on observait deux pics autour de $0.5$ et $3.5\mearth$ avec un minimum entre les deux beaucoup moins marqué.
+
+%TODO write something about semi major axis initial values and 
+%TODO Talk about constant mass compared to uniform random distribution
 
 \subsubsection{Effet du disque}
 \begin{figure}[htbp]
@@ -700,3 +711,6 @@ cresswell2008three}), c'est que même avec migration vers l'extérieur, des syst
 avec des propriétés très similaires aux propriétés des systèmes observés. Mais de plus, dans le même modèle, la formation de
 cœurs de planètes géantes dans les parties externes est possible. 
 
+\bigskip
+
+Enfin, dans nos systèmes, il y a toute une population d'embryons dits froids, c'est à dire n'ayant pas subi de collisions durant toute la durée des simulations. Leurs masses sont donc égales aux masses prises initialement pour ces embryons. Ces embryons pourraient constituer, une fois les planètes géantes formées, la population des planètes telluriques et lunes d'un système stellaire. 

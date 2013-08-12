@@ -7,18 +7,20 @@ Dans la thèse, j'utilise couramment les mêmes notations pour une propriété p
 \begin{table}[htb]
 \centering
 \begin{tabular}{|>{$}c<{$}|p{7cm}|}
-\nu & Viscosité du disque\\
-c_s & vitesse du son\\
-\alpha & paramètre adimensionné pour la prescription $\alpha$ du disque, permettant de définir une viscosité fonction de la vitesse du son\\
-H & Échelle de hauteur du disque\\
-h=H/R & rapport d'aspect du disque\\
-\Omega & vitesse angulaire d'une particule fluide ou d'une planète dans le disque\\
-k_B & constante de Boltzmann \\
-T & Température\\
-\mu & Masse moléculaire moyenne du gaz constituant principal du disque\\
-\Sigma & Densité de surface du disque de gaz\\
-\rho & Densité volumique du disque de gaz\\
-q & rapport adimensionné entre la masse de la planète et la masse de son étoile\\
+\hline
+\nu & Viscosité du disque\\\hline
+b/h & Longueur de lissage du potentiel gravitationnel de la planète en unité de son rayon de Hill\\\hline
+c_s & vitesse du son\\\hline
+\alpha & paramètre adimensionné pour la prescription $\alpha$ du disque, permettant de définir une viscosité fonction de la vitesse du son\\\hline
+H & Échelle de hauteur du disque\\\hline
+h=H/R & rapport d'aspect du disque\\\hline
+\Omega & vitesse angulaire d'une particule fluide ou d'une planète dans le disque\\\hline
+k_B & constante de Boltzmann \\\hline
+T & Température\\\hline
+\mu & Masse moléculaire moyenne du gaz constituant principal du disque\\\hline
+\Sigma & Densité de surface du disque de gaz\\\hline
+\rho & Densité volumique du disque de gaz\\\hline
+q & rapport adimensionné entre la masse de la planète et la masse de son étoile\\\hline
 
 \end{tabular}
 \caption{Liste de la plupart des variables utilisées tout au long de la thèse. Les paramètres avec un $p$ en indice indiquent simplement que c'est la valeur du paramètre à la position orbitale de la planète.}
@@ -47,4 +49,34 @@ On considère que la densité de surface est égale à la densité volumique, in
 \end{align}
 
 \section{Propriétés des orbites képleriennes}
-%valeur de \Omega, 
+Soit une planète de demi-grand axe $a$, d'excentricité $e$, de masse $m_p$, de période orbitale $T$ orbitant autour d'une étoile de masse $m_\star$. 
+
+Il y a une relation entre sa période orbitale $T$ et son demi-grand axe :
+\begin{align}
+\frac{T^2}{a^3} &= \frac{4\pi}{G(m_\star + m_p)}
+\end{align}
+où $G$ est la constante de gravitation universelle.
+
+On défini le périastre $q$ et l'apoastre $Q$ comme étant les distances minimales et maximales entre l'étoile et la planète : 
+\begin{subequations}
+\begin{align}
+q &= a (1 - e)\\
+Q &= a (1 + e)
+\end{align}
+\end{subequations}
+
+La vitesse angulaire moyenne $\Omega$ (ou instantanée en supposant que $e\ll 1$) est définie par : 
+\begin{align}
+\Omega &= \sqrt{\frac{G(m_\star + m_p)}{a^3}}
+\end{align}
+
+La vitesse linéaire moyenne $v$ est définie par : 
+\begin{align}
+v &= \sqrt{\frac{G(m_\star + m_p)}{a}}
+\end{align}
+
+L'énergie $E$ et la norme du moment cinétique $J$ d'une orbite képlerienne de demi-grand axe $a$ et d'excentricité $e$ sont donnés par :
+\begin{align}
+E &= \inv{2}v^2 - \frac{G(m_\star + m_p)}{r} = \frac{G(m_\star + m_p)}{2a}\\
+\norm{\vect{J}} &= G(m_\star + m_p) a (1-e^2)
+\end{align}
