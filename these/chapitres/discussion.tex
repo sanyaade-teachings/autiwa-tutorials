@@ -1,14 +1,44 @@
-\section{Modélisation du disque}
-%TODO 
-\subsection{Profil de densité du gaz en 2D}
-L'étude que j'ai mené utilise un modèle de disque aussi proche de la réalité que possible, mais qui reste néanmoins numérique et simplifié. En particulier notre modèle est un modèle à une seule dimension, la distance à l'étoile centrale. La dimension verticale apparaît parfois, quand on tient compte de l'échelle de hauteur notamment. 
+\section{Migration de type I}
+\subsection{Formules semi-analytiques}
+La migration de type I que nous utilisons est issue des formules de \cite{paardekooper2011torque}. Même si ces formules sont utilisées ici dans un disque 1D modélisé où le profil de température, densité de surface, rapport d'aspect change en fonction de la distance, la formule originelle est calculée pour un disque où le rapport d'aspect est constant et indépendant de la température et où les profils de densité de surface et de température ont un indice constant. 
 
-En particulier, le calcul de l'opacité fait intervenir la densité volumique de matière. D'une part nous avons une relation simple entre la densité surfacique de notre modèle et la densité volumique nous permettant d'avoir l'opacité, mais surtout nous ne tenons pas compte du fait que la température et la densité varient verticalement. Ceci a en particulier un impact quand les planètes sont sur des orbites inclinées légèrement inclinées. 
+Ces formules analytiques ont été calculées puis ajustées à des simulations hydrodynamiques 2D. Une comparaison indépendante des formules avec d'autres simulations hydrodynamiques 2D trouve un bon accord avec ces formules, excepté un temps de migration plus court dans le cas des formules \citep{pierens2013makingaccepted}. 
 
+Le biais le plus important introduit par cette formule est qu'elle dépend fortement de la longueur de lissage $b/h$. Le problème est qu'il n'existe pas de valeur optimale de la longueur de lissage à la fois pour les couples de Lindblad et de corotation \citep{masset2002coorbital}. En effet, le couple de corotation provient de régions au plus proche de la planète, qui sont totalement modifiées par la taille de la zone lissée autour de la planète. La longueur de lissage tend à être plus petite si on veut modéliser correctement le couple de corotation, alors qu'elle doit être légèrement supérieure si on veut modéliser correctement le couple de Lindblad. 
 
-%TODO Nous sommes dans un profil (1+1D) c'est à dire qu'il n'y a pas d'intéraction radiale/verticale dans notre disque. Les valeurs sont moyennées en particulier pour le calcul de la température, on ne résoud pas l'équilibre hydrostatique. 
-%TODO 
-\subsection{Systèmes compacts de super-Terres chaudes}
+Il semble impossible de modéliser une migration doublement lissée dans un code hydrodynamique qui modélise le disque et la migration avec précision. Une solution approchée serait de modéliser artificiellement deux longueurs de lissages dans les codes N-corps, une pour le couple de Corotation et une pour le couple de Lindblad. Il faut toutefois vérifier que le résultat permet de contourner une limitation numérique en n'introduisant pas de biais ou d'erreur plus importante que le gain que l'on cherche à obtenir. Une étude des simulations 2D et N-corps semble donc nécessaire pour s'en assurer et de trouver les valeurs optimales pour la longueur de lissage ainsi que la manière d'implémenter cela dans un code N-corps. 
+
+\subsection{Modèle de disque (1+1)D}
+La formule du couple de migration dépend des paramètres du disque et de leur évolution au sein de ce dernier. 
+
+Notre modèle consiste en un disque avec un profil de densité de surface en loi de puissance fixe, puis nous calculons le profil de température $T$, de rapport d'aspect $h=H/R$, de diffusivité thermique $\chi$; d'opacité $\kappa$ et de profondeur optique $\tau$ en fonction du rayon. Nous avons donc un disque 1D. Nous n'avons pas de dépendance explicite en fonction de la hauteur du disque. 
+
+La plus grand incertitude de notre modèle est l'approximation qui consiste à dire que depuis le bord interne jusqu'au bord externe, nous avons une évolution en loi de puissance de la densité de surface dont l'indice $d$ est fixe. Quand $d>1$, pour une masse de disque constante, la densité de surface au bord interne augmente d'autant, résultant en des températures $T>100 000\unit{K}$ dans certaines conditions. Dans de tels disques, la modélisation atteint ses limites.
+
+D'autres modèles fixent au contraire le profil de température pour calculer le profil de densité de surface. Enfin, dans les simulations hydrodynamiques, une viscosité $\nu$ constante est souvent choisie afin de simplifier la modélisation. Aucune de ces approximations n'est réaliste pour des distances allant de $0.1$ à $100\unit{UA}$. 
+%TODO ref !!!!!
+
+Une étude intéressante serait de voir si un modèle simplifié 1D ne pourrait pas modéliser de manière cohérente le profil de densité de surface, de température et de viscosité. La migration est maintenant disponible pour les modèles N-corps à l'aide de formules analytiques. Peut-être que la modélisation des rétroactions entre densité de surface, viscosité et température peut être modélisé à l'aide d'un disque simplifié, sans dépendance ni azimutale ni verticale. En effet, à l'heure actuelle, quel que soit le type de simulation considéré, l'incertitude la plus élevée réside toujours dans la valeur que l'on attribue à l'un des trois profils que l'on prend pour paramètre libre, que ce soit la température, la densité de surface ou la viscosité.
+
+\section{Effet indirect des ondes de densité sur les autres planètes}
+La migration et le couple de Lindblad est calculé et étudié dans des simulations où la planète est isolée. Mais comment réagi une planète aux ondes de densité d'une autre planète? 
+
+A priori, une planète n'est pas sensible à l'onde de densité de Lindblad d'une autre planète car elle n'est pas résonante avec la planète. En effet, ce qui génère le couple de Lindblad est d'une part la présence de l'onde, mais aussi et surtout le fait que l'onde tourne dans le disque à la fréquence épicyclique de la planète considérée. Dans le cas de deux planètes possédant deux périodes orbitales différentes, l'onde de la deuxième planète n'est donc pas en interaction résonante avec la première. 
+
+La question reste cependant posée dans le cas où les planètes sont en résonances. Dans ce cas il existe un rapport entier entre leurs deux périodes orbitales et ce même rapport entier existe entre les vitesses angulaires. Le cas particulier des résonances coorbitales est intéressant car les planètes ont le même demi-grand axe et la même vitesse angulaire en première approximation.
+
+\section{Modèle d'opacité}
+L'opacité joue un rôle majeur dans la migration planétaire. Cette dernière a une influence majeure sur le profil de température et sur le couple de Corotation. 
+
+En fonction du modèle d'opacité choisi, la migration d'une planète dans un disque ayant les mêmes propriétés peut être très différente \refsec{sec:influence_opacity_table}. 
+
+De plus, le cadre dans lequel l'opacité est calculé est souvent négligé. Afin de calculer l'opacité, il est nécessaire de connaître les propriétés des poussières, tant leur distribution que leur composition. L'abondance de métaux est susceptible de varier d'une étoile à l'autre et avant d'avoir un effet sur la quantité de masse disponible pour la formation planétaire, ce paramètre aura un impact direct sur l'opacité dans le disque. 
+
+Ensuite, les propriétés de la poussière sont susceptible de varier au cours de la dissipation du disque et de la formation des planètes, même si les collisions peuvent régénérer la population de poussière.
+
+L'abondance de planètes semble dépendre de la métallicité des étoiles autour desquelles elles orbitent \citep{fischer2005planet}. Une étude sur le sujet devrait aussi s'intéresser à l'influence de la métallicité sur l'opacité dans le disque, compte tenu du fait que ça aura une incidence sur la carte de migration qui en découle.
+
+\section{Systèmes compacts de super-Terres chaudes}
 Le bord interne est une partie importante du disque. C'est la partie grâce à laquelle les systèmes compacts de super-Terres chaudes que nous formons survivent dans le disque. 
 
 Dans notre cas, nous avons fait décroitre brutalement la densité de surface au bord interne sur une instance égale à environ une échelle de hauteur du disque. Cette décroissance induit des modifications importantes du couple de migration, à la fois pour le couple de Lindblad et pour le couple de corotation. 
@@ -20,36 +50,6 @@ Lors de la dissipation du disque, en particulier dans la deuxième phase où la 
 De plus, dans notre modèle nous n'avons pas pris en compte l'accrétion de gaz. Or une partie au moins des planètes que nous formons ont des masses à partir desquelles l'accrétion de gaz commence. Dans le même temps, la proximité des super-Terres chaudes avec leur étoile doit aussi avoir une influence sur leur atmosphère. 
 
 Une étude ultérieure est nécessaire afin de comprendre les effets de la dissipation du disque et de l'accrétion de gaz sur la formation des super-Terres qui sont dans des conditions (masse et distance) où ces deux effets peuvent êtres importants.
-
-\subsection{Migration de type I}
-La migration de type I que nous utilisons est issue des formules de \cite{paardekooper2011torque}. Même si ces formules sont utilisées ici dans un disque 1D modélisé où le profil de température, densité de surface, rapport d'aspect change en fonction de la distance, la formule originelle est calculée pour un disque où le rapport d'aspect est constant et indépendant de la température et où les profils de densité de surface et de température ont un indice constant. 
-
-Ces formules analytiques ont été calculées puis ajustées à des simulations hydrodynamiques 2D. Une comparaison indépendante des formules avec d'autres simulations hydrodynamiques 2D trouve un bon accord avec ces formules, excepté un temps de migration plus court dans le cas des formules \citep{pierens2013makingaccepted}. 
-
-Le biais le plus important introduit par cette formule est qu'elle dépend fortement de la longueur de lissage $b/h$. Le problème est qu'il n'existe pas de valeur optimale de la longueur de lissage à la fois pour les couples de Lindblad et de corotation \citep{masset2002coorbital}. En effet, le couple de corotation provient de régions au plus proche de la planète, qui sont totalement modifiées par la taille de la zone lissée autour de la planète. La longueur de lissage tend à être plus petite si on veut modéliser correctement le couple de corotation, alors qu'elle doit être légèrement supérieure si on veut modéliser correctement le couple de Lindblad. 
-
-Il semble impossible de modéliser une migration doublement lissée dans un code hydrodynamique qui modélise le disque et la migration avec précision. Une solution approchée serait de modéliser artificiellement deux longueurs de lissages dans les codes N-corps, une pour le couple de Corotation et une pour le couple de Lindblad. Il faut toutefois vérifier que le résultat permet de contourner une limitation numérique en n'introduisant pas de biais ou d'erreur plus importante que le gain que l'on cherche à obtenir. Une étude des simulations 2D et N-corps semble donc nécessaire pour s'en assurer et de trouver les valeurs optimales pour la longueur de lissage ainsi que la manière d'implémenter cela dans un code N-corps. 
-
-\subsection{Effet indirect des ondes de densité sur les autres planètes}
-La migration et le couple de Lindblad est calculé et étudié dans des simulations où la planète est isolée. Mais comment réagi une planète aux ondes de densité d'une autre planète? 
-
-A priori, une planète n'est pas sensible à l'onde de densité de Lindblad d'une autre planète car elle n'est pas résonante avec la planète. En effet, ce qui génère le couple de Lindblad est d'une part la présence de l'onde, mais aussi et surtout le fait que l'onde tourne dans le disque à la fréquence épicyclique de la planète considérée. Dans le cas de deux planètes possédant deux périodes orbitales différentes, l'onde de la deuxième planète n'est donc pas en interaction résonante avec la première. 
-
-La question reste cependant posée dans le cas où les planètes sont en résonances. Dans ce cas il existe un rapport entier entre leurs deux périodes orbitales et ce même rapport entier existe entre les vitesses angulaires. Le cas particulier des résonances coorbitales est intéressant car les planètes ont le même demi-grand axe et la même vitesse angulaire en première approximation.
-
-\subsection{Modèle d'opacité}
-L'opacité joue un rôle majeur dans la migration planétaire. Cette dernière a une influence majeure sur le profil de température et sur le couple de Corotation. 
-
-En fonction du modèle d'opacité choisi, la migration d'une planète dans un disque ayant les mêmes propriétés peut être très différente \refsec{sec:influence_opacity_table}. 
-
-De plus, le cadre dans lequel l'opacité est calculé est souvent négligé. Afin de calculer l'opacité, il est nécessaire de connaître les propriétés des poussières, tant leur distribution que leur composition. L'abondance de métaux est susceptible de varier d'une étoile à l'autre et avant d'avoir un effet sur la quantité de masse disponible pour la formation planétaire, ce paramètre aura un impact direct sur l'opacité dans le disque. 
-
-Ensuite, les propriétés de la poussière sont susceptible de varier au cours de la dissipation du disque et de la formation des planètes, même si les collisions peuvent régénérer la population de poussière.
-
-L'abondance de planètes semble dépendre de la métallicité des étoiles autour desquelles elles orbitent \citep{fischer2005planet}. Une étude sur le sujet devrait aussi s'intéresser à l'influence de la métallicité sur l'opacité dans le disque, compte tenu du fait que ça aura une incidence sur la carte de migration qui en découle.
-
-\subsection{Auto-gravité}
-%TODO 
 
 \section{Idées}
 %TODO
