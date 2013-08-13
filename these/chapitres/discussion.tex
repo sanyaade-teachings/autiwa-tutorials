@@ -25,7 +25,7 @@ La migration et le couple de Lindblad est calculé et étudié dans des simulati
 
 A priori, une planète n'est pas sensible à l'onde de densité de Lindblad d'une autre planète car elle n'est pas résonante avec la planète. En effet, ce qui génère le couple de Lindblad est d'une part la présence de l'onde, mais aussi et surtout le fait que l'onde tourne dans le disque à la fréquence épicyclique de la planète considérée. Dans le cas de deux planètes possédant deux périodes orbitales différentes, l'onde de la deuxième planète n'est donc pas en interaction résonante avec la première. 
 
-La question reste cependant posée dans le cas où les planètes sont en résonances. Dans ce cas il existe un rapport entier entre leurs deux périodes orbitales et ce même rapport entier existe entre les vitesses angulaires. Le cas particulier des résonances coorbitales est intéressant car les planètes ont le même demi-grand axe et la même vitesse angulaire en première approximation.
+La question reste cependant posée dans le cas où les planètes sont en résonances. Dans ce cas il existe un rapport entier entre leurs deux périodes orbitales et ce même rapport entier existe entre les vitesses angulaires. Le cas particulier des résonances coorbitales est intéressant car les planètes ont le même demi-grand axe et la même vitesse angulaire en première approximation. \cite{podlewska2012outward, baruteau2013disk} ont étudié cet aspect pour des planètes perturbées par l'onde de densité d'une planète massive. Dans un tel système, la réponse du disque n'est pas linéaire pour la deuxième planète. Aucune étude n'a été faite à ce jour sur cet effet dans le cas de deux planètes de masses comparables.  
 
 \section{Modèle d'opacité}
 L'opacité joue un rôle majeur dans la migration planétaire. Cette dernière a une influence majeure sur le profil de température et sur le couple de Corotation. 
@@ -50,6 +50,15 @@ Lors de la dissipation du disque, en particulier dans la deuxième phase où la 
 De plus, dans notre modèle nous n'avons pas pris en compte l'accrétion de gaz. Or une partie au moins des planètes que nous formons ont des masses à partir desquelles l'accrétion de gaz commence. Dans le même temps, la proximité des super-Terres chaudes avec leur étoile doit aussi avoir une influence sur leur atmosphère. 
 
 Une étude ultérieure est nécessaire afin de comprendre les effets de la dissipation du disque et de l'accrétion de gaz sur la formation des super-Terres qui sont dans des conditions (masse et distance) où ces deux effets peuvent êtres importants.
+
+\subsection{Self-shadowing}
+Nous avons vu \refsec{sec:shadow} que l'ombre du disque, modélisée de façon cohérente, n'était susceptible d'avoir une influence sur la carte de migration que dans une région où l'irradiation domine le profil de température. Or, typiquement, la zone d'ombre d'un disque se situe justement dans les parties internes du disques, là où le chauffage visqueux domine. 
+
+Cependant, la zone morte modifie le disque de telle sorte qu'une légère surdensité se produit au bord interne de cette dernière. De plus, dû à la soudaine chute de la viscosité, le chauffage visqueux est beaucoup moins important et la zone morte est une région où l'irradiation peut dominer, bien que nous soyons dans les parties internes du disques. 
+
+La zone morte pourrait donc être une région privilégiée du disque où l'irradiation et le \og self-shadowing\fg ont une grande importance. C'est de plus une zone d'intérêt pour la formation planétaire par le piège à planète qu'elle peut constituer \citep{hasegawa2011origin}.
+
+Il serait intéressant d'étudier l'effet conjoint de l'ombre du disque et de la zone morte sur la carte de migration et les conséquences que cela a sur la migration et formation planétaire. En effet, il semble que les deux effets résultent en la création d'une zone de convergence pour les masses très faibles \reffig{fig:dz_shadow_map} qui pourrait constituer un piège à planète de faible masse au cours de la vie du disque. Ce piège à planète se situe au niveau du bord interne de la zone morte, c'est à dire de l'ordre de $1\unit{UA}$.
 
 \section{Idées}
 %TODO

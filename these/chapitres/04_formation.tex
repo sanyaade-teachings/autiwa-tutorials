@@ -543,33 +543,34 @@ Un système de planètes en résonance se forme alors, les planètes internes mi
 \centering
 \includegraphics[width=0.7\linewidth]{figure/HSE/inner_system.pdf}
 \caption{Zoom sur l'évolution des planètes près du bord interne du disque situé à $0.1\unit{UA}$. }\label{fig:HSE_inner_system}
-\end{figure}
+\end{figure}%/sse/cossou/phd/HSE_cond_inits/fiducials/simu00014
 
-Des collisions et réarrangements ont alors lieu, diminuant ainsi le nombre de corps et augmentant la stabilité du système global \reffig{fig:HSE_inner_system}. Ces réarrangements peuvent en particulier être déclenchés par l'arrivée au bord interne d'une ou plusieurs planètes qui migraient moins rapidement que les autres. Par la compression supplémentaire qu'elles apportent au système, elles déclenchent des perturbations qui peuvent engendrer des collisions. C'est ce qu'il se produit sur  \reffig{fig:HSE_inner_system}, notamment à 3 millions d'années. 
+Des collisions et réarrangements ont alors lieu, diminuant ainsi le nombre de corps et augmentant la stabilité du système global \reffig{fig:HSE_inner_system}. Ces réarrangements peuvent en particulier être déclenchés par l'arrivée au bord interne d'une ou plusieurs planètes qui migraient moins rapidement que les autres. Par la compression supplémentaire qu'elles apportent au système, elles déclenchent des perturbations qui peuvent engendrer des collisions. C'est ce qu'il se produit sur  \reffig{fig:HSE_inner_system}, notamment à 6 millions d'années, suite à l'arrivée de 3 planètes supplémentaire au bord interne à 3 millions d'années. 
 
 \bigskip
 
 Certaines planètes peuvent entrer dans la cavité interne du disque, poussées par le système non encore stabilisé. Elles ne perçoivent alors plus aucun effet du disque, que ce soit la migration ou l'amortissement de l'excentricité et de l'inclinaison. Dans ce cas de figure, elles peuvent ne plus être en résonance avec le reste du système. 
 
-Même si durant l'évolution, il est possible que la planète la plus interne sorte du disque, entre en collision avec l'étoile centrale, ou soit ejectée, il est très facile de maintenir un système compact au bord interne en raison du fort couple positif qui va s'exercer sur le planète la plus interne du système alors que ce dernier cherche à migrer vers l'intérieur.
+Même si durant l'évolution, il est possible que la planète la plus interne sorte du disque, entre en collision avec l'étoile centrale, ou soit éjectée, il est très facile de maintenir un système compact au bord interne en raison du fort couple positif qui va s'exercer sur le planète la plus interne du système alors que ce dernier cherche à migrer vers l'intérieur.
 
 \subsubsection{Migration vers l'extérieur : candidats de planètes géantes}\label{sec:outward-case}
-Lors de la migration vers l'intérieur de tous les embryons, il est possible pour une planète de grossir suffisamment vite pour ressentir un couple positif. Ce couple positif est censé entrainer une migration vers l'extérieur de la planète, ce serait systématiquement le cas si cette dernière était isolée. Mais dans son voisinage se trouvent d'autres planètes qui elles migrent vers l'intérieur. Très rapidement la planète va entrer en résonance avec un embryon planétaire qui migre vers l'intérieur.
+Lors de la migration vers l'intérieur de tous les embryons, il est possible pour une planète de grossir suffisamment vite pour ressentir un couple positif \reffig{fig:single_outward_am}. Ce couple positif est censé entrainer une migration vers l'extérieur de la planète, ce serait systématiquement le cas si cette dernière était isolée. Mais dans son voisinage se trouvent d'autres planètes qui elles migrent vers l'intérieur. Très rapidement la planète va entrer en résonance avec un embryon planétaire qui migre vers l'intérieur.
 
 L'effet décrit \refsec{sec:shifted_CZ} s'applique alors. La migration différentielle et le rapport de masse ont ici une importance capitale. Si la différence de vitesse est trop grande, alors les deux planètes ne peuvent pas former un système en résonance. La résonance est rapidement cassée et les deux corps continuent leur migration. Ceci est d'autant plus vrai si le rapport de masse est important, car la brève augmentation d'excentricité qui a lieu lors d'une capture en résonance n'aura que peu d'effet sur la plus grosse planète. Cette dernière sera très peu sensible aux perturbations gravitationnelle de son compagnon résonant et continuera sa migration vers l'extérieur sans quasiment ralentir. 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.65\linewidth]{figure/HSE/single_outward.pdf}
-\caption{Formation d'un cœur de planète géante. La planète dont l'évolution est notée en bleu devient massive suffisamment vite pour pouvoir migrer vers l'extérieur. Les cercles représentent des collisions. Les autres courbes bleu qui disparaissent sont des embryons qui rentrent en collision avec la planète considérée et fusionnent avec elle. }\label{fig:single_outward}%/sse/cossou/HSE/disk_param/300_05/simu00010
+\subfloat[Orbites et masses en fonction du temps]{\label{fig:single_outward}\includegraphics[width=0.49\linewidth]{figure/HSE/single_outward.pdf}}\hfill
+\subfloat[Évolution $m=f(a)$]{\label{fig:single_outward_am}\includegraphics[width=0.49\linewidth]{figure/HSE/single_outward_am.pdf}}
+\caption{Formation d'un cœur de planète géante. La planète dont l'évolution est notée en bleu devient massive suffisamment vite pour pouvoir migrer vers l'extérieur. Les cercles représentent des collisions. Les autres courbes bleu qui disparaissent sont des embryons qui rentrent en collision avec la planète considérée et fusionnent avec elle. }%/sse/cossou/phd/HSE_cond_inits/fiducials/simu00141
 \end{figure}
 
-\reffig{fig:single_outward} illustre ce scénario. Cette dernière atteint par collisions la masse de $6\mearth$ au bout de $300 000\unit{ans}$ alors qu'elle se trouve à $1.2\unit{AU}$ ce qui est suffisant pour qu'elle puisse migrer vers l'extérieur. Cependant, les perturbations gravitationnelles des autres corps qui eux migrent vers l'intérieur l'empêchent de se comporter comme une planète isolée. Dans les quelques dizaines de milliers d'années suivants, 3 nouvelles collisions ont lieu. La planète fait maintenant $13\mearth$. La différence de masse avec ses voisins immédiats lui permet de migrer vers l'extérieur malgré les perturbations résonantes qui augmentent son excentricité. Comme détaillé \refsec{sec:mass-ratio-effect}, plus le rapport de masse est important, et plus la migration est dominée par la planète massive. Dans un système résonant avec rapport de masse élevé, la petite planète a une excentricité importante, son couple de corotation est fortement atténué, ce qui n'est pas le cas de la planète 
+\reffig{fig:single_outward} illustre ce scénario. Cette dernière atteint par collisions la masse de $5.5\mearth$ au bout de $155 000\unit{ans}$ alors qu'elle se trouve à $2\unit{UA}$ ce qui est suffisant pour qu'elle puisse migrer vers l'extérieur. Cependant, les perturbations gravitationnelles des autres corps qui eux migrent vers l'intérieur l'empêchent de se comporter comme une planète isolée. \nombre{23000} ans plus tard, une autre collision survient et elle fait maintenant $7.3\mearth$. La différence de masse avec ses voisins immédiats lui permet de migrer vers l'extérieur malgré les perturbations résonantes qui augmentent son excentricité. Comme détaillé \refsec{sec:mass-ratio-effect}, plus le rapport de masse est important, et plus la migration est dominée par la planète massive. Dans un système résonant avec rapport de masse élevé, la petite planète a une excentricité importante, son couple de corotation est fortement atténué, ce qui n'est pas le cas de la planète 
 massive. Cette dernière migre comme si elle n'était pas en résonance, et à partir de là, soit elle emporte le système avec elle, soit, comme dans le cas présent, la résonance fini par se briser et les deux planètes continuent leur migration séparément.
 
-Dans la suite de la simulation, la planète est trop massive pour être arrêtée. La planète massive migrant vers l'extérieur, elle capture en résonance un embryon de faible masse. Les deux planètes migrent alors vers l'extérieur, emportées par la migration de la planète la plus massive. Pourtant le système n'est pas stable. Les perturbations finissent par briser le système de deux planètes qui a alors deux possibilités. Soit une collision survient, augmentant sa masse, soit la brève rencontre se termine par un échange d'orbite. Dans cet exemple, les deux planètes continuent leur migration séparément.
+Dans la suite de la simulation, la planète est trop massive pour être arrêtée. La planète massive migrant vers l'extérieur, elle capture successivement plusieurs planètes pendan de brèves périodes de résonances où un système de deux planètes se forme. Les deux planètes migrent alors vers l'extérieur, emportées par la migration de la planète la plus massive. Pourtant le système n'est pas stable. Les perturbations finissent par briser le système de deux planètes qui a alors deux possibilités. Soit une collision survient, augmentant sa masse, soit la brève rencontre se termine par un échange d'orbite. Dans cet exemple, les deux planètes continuent leur migration séparément.
 
-À la fin de la simulation, la planète de $17.4\mearth$ est à sa zone de couple nul, à $15.7\unit{AU}$. 
+À la fin de la simulation, la planète de $14.2\mearth$ est à sa zone de couple nul, à $15.7\unit{AU}$. 
 
 \bigskip
 
@@ -577,10 +578,10 @@ Il est aussi possible pour la planète migrant vers l'extérieur de capturer en 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.65\linewidth]{figure/HSE/2-body_outward.pdf}
-\caption{Formation d'un cœur de planète géante (en rouge) qui capture en résonance une planète de faible masse migrant très lentement vers l'intérieur.}\label{fig:2-body_outward}%/sse/cossou/HSE/disk_param/300_05/simu00038
+\caption{Formation d'un cœur de planète géante (en rouge) qui capture en résonance une planète de faible masse migrant très lentement vers l'intérieur.}\label{fig:2-body_outward}%/sse/cossou/phd/HSE_cond_inits/fiducials/simu00098
 \end{figure}
 
-Dans cette même simulation, deux autres planètes massives sont formées (en vert et bleu) au bord interne, mais elles n'étaient pas massives suffisamment tôt pour migrer vers l'intérieur. Ainsi le même mécanisme, par un simple effet de timing, permet de créer soit des systèmes compacts de super terres chaudes, soit des embryons de planète géante qui pourront accréter du gaz dans les parties externes du disques, au delà de la ligne des glaces.
+Dans cette même simulation, deux autres planètes massives sont formées (en vert et bleu) au bord interne, mais elles n'étaient pas massives suffisamment tôt pour migrer vers l'intérieur. Ainsi le même mécanisme, par un simple effet de timing, permet de créer soit des systèmes compacts de super-Terres chaudes, soit des embryons de planète géante qui pourront accréter du gaz dans les parties externes du disques, au delà de la ligne des glaces.
 
 \bigskip
 
@@ -592,6 +593,8 @@ On a enfin un troisième et dernier cas où une planète grossit suffisamment ra
 \subfloat[Voisinage de la planète]{\label{fig:HSE_forced_in_vois}\includegraphics[width=0.49\linewidth]{figure/HSE/forced_in.pdf}}
 \caption{Migration forcée d'une planète (en bleu) vers l'intérieur par excitation de son excentricité.}\label{fig:HSE_forced_in}
 \end{figure}%/sse/cossou/phd/HSE_cond_inits/fiducials/simu00004
+
+La migration par type I vers l'extérieur peut donc être inversée par une capture en résonance. Ce résultat est l'opposé de ce qu'il se passe dans le cas de migration de type II \citep[grand tack model]{morbidelli2007dynamics, pierens2011twophase}. Cependant, comme nous l'avons vu, des conditions particulières sont requises de sortes que ce ne peut être un résultat systématique.
 
 %TODO chercher un cas où j'ai un système résonant à l'extérieur
 
@@ -657,8 +660,27 @@ Dans le cas où le nombre d'embryons et la masse totale est multiplié par deux,
 
 La distribution des masses finales \reffig{fig:HSE_m_tot_hist_m} montre que la quantité d'embryons de très faible masse augmente quand la masse totale $M_\text{tot}$ augmente. Ces embryons font partie d'une population initialement de faible masse et qui ont très peu accrêté de masse par collision. Cette population froide conserve donc sa masse au cours de la migration planétaire. Une deuxième population, formée par collision, dépend de la masse total. En particulier, la masse maximale formée par collision tend à augmenter avec la masse totale disponible dans les embryons. De même, la masse minimale de cette population tend à augmenter avec la masse totale. Ainsi, à mesure que la masse totale augmente, les deux populations se scindent et on observe une distribution bimodale pour $M_\text{tot}=120\mearth$ dont les maximums sont situés autour de $0.5\mearth$ et $11\mearth$ alors que dans le cas $M_\text{tot}=30\mearth$ les deux sous populations étaient quasiment confondues et on observait deux pics autour de $0.5$ et $3.5\mearth$ avec un minimum entre les deux beaucoup moins marqué.
 
-%TODO write something about semi major axis initial values and 
-%TODO Talk about constant mass compared to uniform random distribution
+\bigskip
+
+On cherche maintenant à étudier l'influence des masses initiales sur les résultats des simulations et en particulier la distribution de masses finales. Par rapport aux simulations classiques où pour une masse totale de $M_\text{tot}$ la masse des embryons est déterminée uniformément sur l'intervalle $m\in[0.1 ; 2]\mearth$, on conserve la masse totale, mais avec des embryons de masse initiale identique et égale à $3\mearth$. Il y a donc 20 planètes initialement dans chaque simulation. 
+
+\begin{figure}[htbp]
+\centering
+\subfloat[Position et masses finales]{\label{fig:HSE_equal_mass_am}\includegraphics[width=0.49\textwidth]{figure/HSE/equal_mass_am.pdf}}\hfill
+\subfloat[Histogramme des masses]{\label{fig:HSE_equal_mass_hist_m}\includegraphics[width=0.49\textwidth]{figure/HSE/equal_mass_hist_m.pdf}}
+
+\caption{Position et masses finales des planètes dans un cas où initialement, les embryons planétaires ont tous la même masse $==3\mearth$.}\label{fig:HSE_equal_mass_influence}
+\end{figure}
+
+Dans ces simulations, il n'existe pas d'embryons ayant une masse plus petite que $3\mearth$. Chaque collision augmente au minimum la masse de la planète restante de $3\mearth$. Une seule collision est donc nécessaire à une planète pour qu'elle puisse migrer vers l'extérieur. Le taux d'excitation mutuelle des excentricités pour deux planètes en résonance dépend à la fois du type de résonance et du rapport de masse. Ici le rapport de masse entre les deux planètes est forcément égal tant que ces dernières ne subissent pas de collisions. Or, des masses égales maximisent les perturbations pour les deux corps et ainsi le décalage de la zone de convergence. Nous observons ainsi une population plus importante de planètes qui sont en équilibre grâce aux résonances, en dehors de toute zone de couple nul \reffig{fig:HSE_equal_mass_am}. 
+
+La plus grande différence se situe au niveau de l'histogramme des masses \reffig{fig:HSE_equal_mass_hist_m} (à comparer avec \reffig{fig:HSE_stat_m}). Dans le cas aléatoire, les faibles masses sont de loin les plus nombreuses, une partie des embryons initiaux ne subissant aucune collision tout au long de l'évolution du système. Cette population disparait et ne laisse plus qu'une décroissance de l'abondance en fonction de la masse quand initialement tous les embryons ont la même masse. La masse moyenne $\mu_m$ passe de $6$ à presque $9\mearth$ entre le cas aléatoire et le cas $m=3\mearth$ (la statistique la moins bonne s'effectuant sur 100 simulations, et presque $700$ planètes dans le cas des masses fixes). Cependant, les planètes les plus massives de chaque systèmes sont moins affectées par ce changement de conditions initiales. En effet la masse minimale tous systèmes confondus pour la planète la plus massive formée est de $9\mearth$ dans les deux cas. Dans le cas des masses fixes, la masse maximale tout système confondu est légèrement supérieure toutefois, passant de $29$ à $36\mearth$. 
+
+Les abondances relatives de planète en fonction de la masse ne sont pas du tout conservés entre les deux cas (aléatoire et masse fixe) \reffig{fig:HSE_equal_mass_hist_m}.
+
+\bigskip
+
+%TODO write something about semi major axis initial values 
 
 \subsubsection{Effet du disque}
 \begin{figure}[htbp]
