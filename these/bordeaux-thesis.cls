@@ -94,7 +94,7 @@
 % Base class and packages
 %########################################################################
 
-\LoadClass[a4paper,twoside,12pt]{report}
+\LoadClass[a4paper,twoside, openright,12pt]{report}
 
 \RequirePackage[Lenny]{fncychap} % beaux chapitres ; Sonny, Lenny, Glenn, Conny, Rejne, Bjarne
 
@@ -250,7 +250,6 @@
   \fi%
   \let\@phd@old@part=\@part%
   \def\@part[#1]#2{%
-    \newpage%
     \@phd@old@part[#1]{#2}%
     \if@phd@chaptertoc\vfill\minitoc\fi%
     \vfill%
@@ -258,7 +257,6 @@
   }%
   \let\@phd@old@chapter=\@chapter%
   \def\@chapter[#1]#2{%
-    \newpage%
     \@phd@old@chapter[#1]{#2}%
     \if@phd@chaptertoc\vfill\minitoc\fi%
     \vfill%
@@ -287,9 +285,16 @@
 \renewcommand\theequation{\thechapter.\arabic{equation}}
 \@addtoreset{equation}{chapter}
 
+% Definition of a command allowing us to make a completely blanck page before a chapter if necessary, to ensure that the chapter begin on an odd page (i.e, the left page on a double page)
+ 
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+\hbox{} 
+\thispagestyle{empty}
+\newpage
+\if@twocolumn\hbox{}\newpage\fi\fi\fi} 
 
 %########################################################################
-% Title page
+% Title page macros
 %########################################################################
 
 \renewcommand\title[2][\@phd@language]{%
@@ -333,6 +338,11 @@
     \includegraphics[#1]{logos/#2.eps}%
   \fi%
 }
+
+
+%########################################################################
+% Title Page
+%########################################################################
 
 \renewcommand\maketitle{
   \selectlanguage{frenchb}
