@@ -680,7 +680,13 @@ Les abondances relatives de planète en fonction de la masse ne sont pas du tout
 
 \bigskip
 
-%TODO write something about semi major axis initial values 
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.65\linewidth]{figure/HSE/a_influence.pdf}
+\caption{Comparaison des distributions de demi-grand axes des planètes de 100 simulations effectuées dans un cas avec des orbites initiales entre $1$ et $20\unit{UA}$ et dans l'autre avec des orbites concentrées entre $0.1$ et $5\unit{UA}$.}\label{fig:HSE_a_influence}
+\end{figure}
+
+Afin de déterminer l'influence des positions initiales sur les propriétés finales des systèmes, j'ai lancé 100 simulations où initialement, les orbites sont réparties uniformément entre $0.1$ et $5$ et non pas entre $1$ et $20\unit{UA}$ comme précédemment. Aucune des propriétés statistiques ne change significativement. On observe légèrement moins de planètes dans les parties externes, et légèrement plus dans les parties interne \reffig{fig:HSE_a_influence}, mais c'est bien en dessous des variations auxquelles on pouvait s'attendre. En effet, si les planètes restent statistiquement bien moins longtemps dans les parties externes où la migration peut s'inverser, la probabilité de collision est elle beaucoup plus importante car la même quantité de masse et de planètes est répartie sur approximativement quatre fois moins de distance. Les deux effets se compensent en majeure partie. 
 
 \subsubsection{Effet du disque}
 \begin{figure}[htbp]
