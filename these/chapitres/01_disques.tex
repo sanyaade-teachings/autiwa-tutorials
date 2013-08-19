@@ -96,7 +96,7 @@ La deuxième conséquence, c'est que le gaz perd de l'énergie, et donc dérive 
 
 On définit donc une vitesse de dérive négative $\vect{v_d} = v_r \hat{e}_r$, orientée vers l'étoile, qui entraine petit à petit le gaz du disque (avec $v_r$ négatif).
 
-Dans la suite de la section, nous allons nous intéresser à la conservation de différentes quantités, que ce soit la masse ou le moment angulaire. Pour cela nous allons définir un anneau de référence, portion du disque sur laquelle nous allons faire le bilan. Le but est ici de présenter d'où viennent les équations et plus précisément d'où viennent les termes des équations. 
+Dans la suite, nous allons nous intéresser à la conservation de différentes quantités, que ce soit la masse ou le moment angulaire. Pour cela nous allons définir un anneau de référence, portion du disque sur laquelle nous allons faire le bilan. Le but est ici de présenter d'où viennent les équations et plus précisément d'où viennent les termes des équations. 
 
 \bigskip
 
@@ -600,7 +600,7 @@ où $B_\nu$ et $\kappa_\nu$ sont l'intensité et l'opacité spécifique (dépend
 \end{align}
 où $\int_0^\infty B_\nu\dif \nu$ représente l'intensité totale, tandis que $B_\nu$ et $\kappa_\nu$ sont l'intensité et l'opacité spécifique (dépendant de la fréquence).
 
-Dans la pratique, on fait bien souvent l'approximation que le disque est optiquement épais, ce qui est généralement vrai dans les parties internes du disque ($0.1-15\unit{AU}$), lieu de formation des planètes. Pour autant, le calcul des opacités est loin d'être trivial et plusieurs modèles proposent des tables d'opacités dont le détail des propriétés est différent. Le choix du modèle a donc des implications importantes sur le modèle de formation planétaire comme je le détaillerai dans la section \refsec{sec:influence_opacity_table}. 
+Dans la pratique, on fait bien souvent l'approximation que le disque est optiquement épais, ce qui est généralement vrai dans les parties internes du disque ($0.1-15\unit{AU}$), lieu de formation des planètes. Pour autant, le calcul des opacités est loin d'être trivial et plusieurs modèles proposent des tables d'opacités dont le détail des propriétés est différent. Le choix du modèle a donc des implications importantes sur le modèle de formation planétaire comme je le détaillerai dans la partie \refsec{sec:influence_opacity_table}. 
 
 En formation planétaire, le modèle le plus utilisé est \citep{bell1994FU}. Mais dans mes études, j'ai utilisé en tout et pour tout 4 modèles différents \citep{bell1994FU, zhu2009nonsteady, chambers2009analytic, hure2000transition}. À noter que \citep{bell1994FU, zhu2009nonsteady} sont des modèles qui proposent différents fonctions analytiques pour définir une opacité par morceaux. \citep{chambers2009analytic} propose un modèle très simple à opacité constante $\kappa=3$ tant que la température est inférieure à $1380\unit{K}$, puis une simple loi de puissance, fonction uniquement de la température au delà. Enfin, le modèle dans \citep{hure2000transition} ne définit pas de fonctions par morceaux mais utilise simplement une table d'opacité fonction de la température et de la densité. L'avantage de ce type de méthode est qu'on ne rajoute pas d'incertitudes par des fits en loi de puissance, c'est donc principalement pour ça que j'ai choisi cette table d'opacité pour mon modèle standard. 
 
