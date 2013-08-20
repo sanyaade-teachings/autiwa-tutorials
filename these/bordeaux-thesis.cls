@@ -318,17 +318,17 @@
 
 \newcommand\addcommissionmember[4]{%
   \stepcounter{@member}%
-  \expandafter\def\csname @member@\the@member\endcsname{#1 \textsc{#2}&#3\dotfill & #4}%
+  \expandafter\def\csname @member@\the@member\endcsname{#2 \textsc{#3}&#4\dotfill & #1}%
 }
 
-\newcommand\addreferee[3]{%
+\newcommand\addreferee[4][Rapporteur]{%
   \stepcounter{@referee}%
   \ifnum\value{@referee}=1\relax
-\expandafter\def\csname @referee@\the@referee\endcsname{& #1 \textsc{#2} \dotfill & Rapporteurs}%
+\expandafter\def\csname @referee@\the@referee\endcsname{& #2 \textsc{#3} \dotfill & Rapporteurs}%
 \else
-\expandafter\def\csname @referee@\the@referee\endcsname{& #1 \textsc{#2}\dotfill &}%
+\expandafter\def\csname @referee@\the@referee\endcsname{& #2 \textsc{#3}\dotfill &}%
 \fi
-  \addcommissionmember{#1}{#2}{#3}{Rapporteur}
+  \addcommissionmember{#1}{#2}{#3}{#4}
 }
 
 \newcommand\includelogo[2][]{%
