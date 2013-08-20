@@ -13,6 +13,36 @@
 \newcommand{\object}[1]{#1}
 \newcommand{\mearth}{\unit{M_\oplus}}
 
+\usepackage{listings}
+
+\lstset{%
+%Basic Appearance%
+  basicstyle=\footnotesize\ttfamily,
+  commentstyle=\itshape\color{gray},
+  keywordstyle=\color{purple}\bfseries,
+  stringstyle=\color{blue}\rmfamily,
+%Basic Layout%
+  tabsize=4,
+  showtabs=false,
+  showspaces=false,
+  showstringspaces=false,
+%Numbering%
+  numbers=left,
+  stepnumber=1,
+  numberstyle=\scriptsize,
+  numbersep=5pt,
+%Margins%
+  xleftmargin=0.02\textwidth,
+  xrightmargin=0.02\textwidth,
+  breaklines=true,
+%Frame%
+  frame=leftline,
+  framerule=0.5pt,
+  rulecolor=\color{purple},
+  framexleftmargin=0em,
+%Captions, Index, and so on passed as arguments%
+  }
+
 %########################################################################
 % Title page
 %########################################################################
@@ -159,6 +189,10 @@ Fusce convallis dolor sit amet dolor. Nulla sit amet pede. Maecenas et ante vita
 \input{chapitres/formulaire.tex}
 
 \input{chapitres/physique_des_disques.tex}
+
+\input{chapitres/nbody_howto.tex}
+
+\input{chapitres/programmation.tex}
 
 %\thispagestyle{empty}
 %\strut\newpage
