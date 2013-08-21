@@ -57,9 +57,9 @@
 
 
 %Keywords for main language (french)
-\keywords{Blabla, blabla, blabla, blabla, blabla, blabla, blabla}
+\keywords{Formation planétaire, migration, Disques protoplanétaires, Interactions Disque-Planète, Systèmes Planétaires, Simulations numériques}
 %Keywords for other languages languages
-\keywords[english]{Blabla, blabla, blabla, blabla, blabla, blabla, blabla}
+\keywords[english]{Planets and satellites: formation, Protoplanetary disks, Planet-disk interactions, planetary systems, Methods: numerical}
 
 %Order number of the thesis
 \ordernumber{1234}
@@ -68,19 +68,20 @@
 \date{xx Xxxxxxxxx xxxx}
 \submityear{2013}
 
-%You define the commission member list using \addcommissionmember (mandatory) with an optional role (eg: president, supervisor, etc...)
-%\addcommissionmember{Président du Jury}{Aaaaa}{Bbbbbbbb}{Astronome, Université Paris VI, LESIA}
-\addcommissionmember{Directeur de thèse}{Sean N.}{Raymond}{Chargé de recherche, Université Bordeaux 1, LAB}
-\addcommissionmember{Directeur de thèse}{Arnaud}{Pierens}{Maître de conférence, Université Bordeaux 1, LAB}
-\addcommissionmember{Examinateur}{Richard P.}{Nelson}{Professor, Queen Mary, University of London}
-\addcommissionmember{Examinateur}{Aurélien}{Crida}{Maître de conférence, Nice, OCA}
-
 %If some referees are not part of the commission, you can add them in a separate list with \addreferee (optional)
 % One can specify the optional title if, for instance, one is also the jury chairman
 % EX : \addreferee[Rapporteur et Président du Jury]{Alessandro}{Morbidelli}{Chargé de Recherche, Nice, OCA}
-\addreferee[Rapporteur et Président du Jury]{Alessandro}{Morbidelli}{Chargé de Recherche, Nice, OCA}
+%\addreferee[Rapporteur et Président du Jury]{Alessandro}{Morbidelli}{Chargé de Recherche, Nice, OCA}
+\addreferee{Alessandro}{Morbidelli}{Chargé de Recherche, Nice, OCA}
 \addreferee{Caroline}{Terquem}{Lecturer, Oxford, University of Oxford}
-%\addreferee{toto}{Pppppppp}{Maître de conférence, Université Bordeaux 1, LAB}
+
+%You define the commission member list using \addcommissionmember (mandatory) with an optional role (eg: president, supervisor, etc...)
+%\addcommissionmember{Président du Jury}{Aaaaa}{Bbbbbbbb}{Astronome, Université Paris VI, LESIA}
+\addcommissionmember{Examinateur}{Richard P.}{Nelson}{Professor, Queen Mary, University of London}
+\addcommissionmember{Examinateur}{Aurélien}{Crida}{Maître de conférence, Nice, OCA}
+\addcommissionmember{Directeur de thèse}{Sean N.}{Raymond}{Chargé de recherche, Université Bordeaux 1, LAB}
+\addcommissionmember{Directeur de thèse}{Arnaud}{Pierens}{Maître de conférence, Université Bordeaux 1, LAB}
+
 
 \newcommand{\dummytext}{
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus blandit massa non tellus. Pellentesque blandit. Etiam sapien. Quisque sed massa ac tortor accumsan bibendum. Donec et orci quis mi sollicitudin consectetuer. Donec malesuada. Pellentesque bibendum pellentesque elit. Morbi et diam ac wisi auctor fringilla. Cras nec arcu sed velit dapibus blandit. Maecenas mollis aliquet quam. In eget sem nec orci fringilla sagittis. Suspendisse cursus placerat massa. Pellentesque non metus. Morbi congue tellus eget tellus. Suspendisse justo. Suspendisse potenti. Praesent interdum lorem in velit. Nullam sit amet nisl eget wisi consectetuer consequat. Mauris vel felis. Nulla sed neque.
@@ -100,7 +101,6 @@ Fusce convallis dolor sit amet dolor. Nulla sit amet pede. Maecenas et ante vita
 %########################################################################
 
 \begin{document}
-\pagenumbering{roman}
 %Print title NOW
 \maketitle%
 
@@ -113,7 +113,7 @@ Fusce convallis dolor sit amet dolor. Nulla sit amet pede. Maecenas et ante vita
 
 %French abstract:
 \begin{abstract}
-\dummytext
+Presque 1000 planètes peuplent le catalogue des planètes extrasolaires détectées à ce jour. La diversité des propriétés et systèmes détectées et un défi pour les modèles de formation planétaire. En effet, il ne suffit de trouver un mécanisme pour expliquer les Jupiter chauds, ou les super-Terres par exemple, mais il faut de plus qu'un cadre plus général permette de reproduire l'ensemble des systèmes détectés. Avant, le système Solaire était le seul et unique système que nous cherchions à reproduire. Maintenant nous avons bien d'autres systèmes à récréer dans les laboratoires que sont les simulations numériques. La migration planétaire est un phénomène indissociable de la formation des planètes. Toute la subtilité se trouve dans le sens de migration des planètes en fonction des propriétés du disque ou de la planète. J'ai cherché à étudier cette sensibilité là, et comprendre comment un même modèle permet la formation de systèmes très divers. Je montre en particulier qu'un même disque peut parfaitement former des systèmes compacts de super-Terres chaudes comme \object{Kepler 11} tout en n'excluant pas la formation du système Solaire.
 \end{abstract}
 
 %Horizontal rule
@@ -123,6 +123,7 @@ Fusce convallis dolor sit amet dolor. Nulla sit amet pede. Maecenas et ante vita
 \begin{abstract}[english]
 \dummytext
 \end{abstract}
+%TODO traduire l'abstract français quand il aura été finalisé
 
 %########################################################################
 % Acknowledgments
@@ -160,7 +161,7 @@ Fusce convallis dolor sit amet dolor. Nulla sit amet pede. Maecenas et ante vita
 
 %Enable page numbering
 \pagestyle{fancy}
-\pagenumbering{arabic}
+
 \chapter*{Introduction}
 \addstarredchapter{Introduction}% To be used instead of addcontentsline in order to have the good minitoc. If not, the starred chapter create a shift in the minitocs.
 %%\addcontentsline{toc}{chapter}{Introduction}

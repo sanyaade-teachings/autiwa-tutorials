@@ -255,7 +255,7 @@ Les tests que l'on souhaite effectuer sont sélectionnable dans la routine \text
 
 \subsection{Tests de fonctions}
 \subsubsection{test\_alpha\_dz}
-Teste la fonction de calcul du paramètre alpha de la viscosité en fonction de la distance. Permet de vérifier, via le script \textbf{alpha\_dz.gnuplot}, que le profil de alpha est correct.
+Teste la fonction de calcul du paramètre alpha de la viscosité en fonction de la distance, quand une zone morte est modélisée à l'aide de l'option \verb|viscosity = alpha_dz|. Permet de vérifier, via le script \textbf{alpha\_dz.gnuplot}, que le profil de alpha est correct.
 
 
 \begin{figure}[htbp]
@@ -274,7 +274,7 @@ Teste l'interpolation de la densité de surface entre les valeurs tabulées stoc
 \end{figure}
 
 \subsubsection{test\_function\_zero\_temperature}
-test la routine qui permet de trouver la température d'équilibre du disque à un point donné, à partir de l'équation de l'énergie. Permet de voir la bistabilité du disque (le fait que plusieurs températures puissent donner lieu à un équilibre, ou le fait qu'une température ne donne d'équilibre dans la gamme de température donnée via le script \textbf{function\_zero\_temperature.gnuplot}.
+Teste la routine qui permet de trouver la température d'équilibre du disque à un point donné, à partir de l'équation de l'énergie. Permet de voir la bistabilité du disque (le fait que plusieurs températures puissent donner lieu à un équilibre, ou le fait qu'aucune température ne donne d'équilibre dans la gamme de température donnée. Le script Gnuplot \textbf{function\_zero\_temperature.gnuplot} affiche le graphique.
 
 \begin{figure}[htbp]
 \centering
@@ -283,7 +283,7 @@ test la routine qui permet de trouver la température d'équilibre du disque à 
 \end{figure}
 
 \subsubsection{test\_functions\_FGK}
-affiche les fonctions, $F$, $G$, et $K$ définies dans \cite{paardekooper2011torque} via le script \textbf{functions\_FGK.gnuplot}.
+Affiche les fonctions $F$, $G$, et $K$ définies dans \cite{paardekooper2011torque} via le script \textbf{functions\_FGK.gnuplot}.
 
 \begin{figure}[htbp]
 \centering
@@ -292,7 +292,7 @@ affiche les fonctions, $F$, $G$, et $K$ définies dans \cite{paardekooper2011tor
 \end{figure}
 
 \subsubsection{test\_manual\_torque\_interpolation}
-dans le cas où le profil de couple en fonction de la distance est manuel, teste l'interpolation du couple entre les points de la discrétisation de ce dernier. Le script Gnuplot \textbf{torque\_interpolation.gnuplot} permet d'afficher les résultats du test.
+Dans le cas où le profil de couple en fonction de la distance est manuel, teste l'interpolation du couple entre les points de la discrétisation de ce dernier. Le script Gnuplot \textbf{torque\_interpolation.gnuplot} permet d'afficher les résultats du test.
 
 \begin{figure}[htbp]
 \centering
@@ -313,7 +313,7 @@ Teste si pour des orbites circulaires de demi-grand axes différents, les élém
 \end{figure}
 
 \subsubsection{test\_temperature\_interpolation}
-teste l'interpolation de la température entre les points de la discrétisation radiale du profil. Le script Gnuplot correspondant est \textbf{temperature\_interpolation.gnuplot}.
+Teste l'interpolation de la température entre les points de la discrétisation radiale du profil. Le script Gnuplot correspondant est \textbf{temperature\_interpolation.gnuplot}.
 
 \begin{figure}[htbp]
 \centering
@@ -323,8 +323,9 @@ teste l'interpolation de la température entre les points de la discrétisation 
 
 \subsection{Test de paramètres physiques}
 Les tests ont été effectués pour les valeurs du disque de référence \refsec{sec:reference_disk}.
+
 \subsubsection{study\_ecc\_corot}
-pour une planète donnée (masse et position fixés), évolution du préfacteur d'atténuation du couple de corotation $E$ (où $\Gamma_\text{tot}=\Gamma_0 (\Gamma_L + E * \Gamma_c)$. Le fichier Gnuplot correspondant est \textbf{ecc\_corot.gnuplot}. 
+Pour une planète de masse et position fixés, évolution du préfacteur d'atténuation du couple de corotation $E$, où $\Gamma_\text{tot}=\Gamma_0 (\Gamma_L + E * \Gamma_c)$. Le fichier Gnuplot correspondant est \textbf{ecc\_corot.gnuplot}. 
 
 \begin{figure}[htbp]
 \centering
@@ -333,7 +334,7 @@ pour une planète donnée (masse et position fixés), évolution du préfacteur 
 \end{figure}
 
 \subsubsection{study\_eccentricity\_effect\_on\_corotation}
-pour une planète donnée (masse et position fixée), évolution du couple de corotation en fonction de l'excentricité. Le fichier Gnuplot correspondant est \textbf{eccentricity\_effect\_on\_corotation.gnuplot}. 
+Pour une planète de masse et position fixés, évolution du couple de corotation en fonction de l'excentricité. Le fichier Gnuplot correspondant est \textbf{eccentricity\_effect\_on\_corotation.gnuplot}. 
 
 \begin{figure}[htbp]
 \centering
@@ -342,7 +343,7 @@ pour une planète donnée (masse et position fixée), évolution du couple de co
 \end{figure}
 
 \subsubsection{study\_opacity\_profile}
-affiche pour différentes densités volumique, le profil d'opacité en fonction de la température.  Le fichier Gnuplot correspondant est \textbf{opacity.gnuplot}. Le fichier \textbf{opacity\_comparison.gnuplot} compare quant à lui les opacités de \cite{bell1994FU} et \cite{zhu2009nonsteady}. 
+Affiche pour différentes densités volumique, le profil d'opacité $\kappa$ en fonction de la température.  Le fichier Gnuplot correspondant est \textbf{opacity.gnuplot}. Le fichier \textbf{opacity\_comparison.gnuplot} compare quant à lui les opacités de \cite{bell1994FU} et \cite{zhu2009nonsteady}. 
 
 \begin{figure}[htbp]
 \centering
@@ -362,7 +363,7 @@ Affiche le profil de profondeur optique $\tau$ du disque. Le fichier Gnuplot cor
 \end{figure}
 
 \subsubsection{study\_scaleheight\_profile}
-Affiche le profil d'échelle de hauteur et de rapport d'aspect du disque, respectivement via les fichiers Gnuplot \textbf{scaleheight\_profile.gnuplot} et \textbf{aspect\_ratio.gnuplot}.
+Affiche le profil d'échelle de hauteur $H$et de rapport d'aspect $h$ du disque, respectivement via les fichiers Gnuplot \textbf{scaleheight\_profile.gnuplot} et \textbf{aspect\_ratio.gnuplot}.
 
 \begin{figure}[htbp]
 \centering
@@ -396,7 +397,7 @@ Affiche la carte de migration du disque via les fichiers gnuplot \textbf{corotat
 Les cartes de migration sont présentées \refsec{sec:chap3}.
 
 \subsubsection{study\_torques\_fixed\_a}
-s'intéresse au couple pour une planète de masse variable, mais dont la position est fixe. \textbf{torques\_fixed\_a.gnuplot}, \textbf{ref\_torque\_fixed\_a.gnuplot}, \textbf{torques\_fixed\_a\_units.gnuplot} et \textbf{specific\_torque\_fixed\_a.gnuplot} affichent respectivement $Gamma_\text{tot}/\Gamma_0$, $\Gamma_0$, $\Gamma_\text{tot}$ et le couple total spécifique, en unité de Jupiter (distance notamment). 
+Affichage du couple pour une planète de masse variable, mais dont la position est fixe. \textbf{torques\_fixed\_a.gnuplot}, \textbf{ref\_torque\_fixed\_a.gnuplot}, \textbf{torques\_fixed\_a\_units.gnuplot} et \textbf{specific\_torque\_fixed\_a.gnuplot} affichent respectivement $Gamma_\text{tot}/\Gamma_0$, $\Gamma_0$, $\Gamma_\text{tot}$ et le couple total spécifique, en unité de Jupiter (distance notamment). 
 
 \begin{figure}[htbp]
 \centering
@@ -421,7 +422,7 @@ Le couple total ressenti par une planète de masse donnée est affiché via les 
 \end{figure}
 
 \subsubsection{study\_viscosity}
-affiche le profil de viscosité du disque via \textbf{viscosity.gnuplot}.
+Affiche le profil de viscosité du disque via \textbf{viscosity.gnuplot}.
 
 \begin{figure}[htbp]
 \centering
@@ -430,10 +431,10 @@ affiche le profil de viscosité du disque via \textbf{viscosity.gnuplot}.
 \end{figure}
 
 \subsubsection{test\_turbulence\_mode}
-génère et stocke les valeurs de $10000$ modes de turbulence, afin d'en vérifier les propriétés statistiques. Les données sont stockées dans le fichier \textbf{turbulence\_mode.dat} où dans l'ordre des colonnes sont stockés le mode $m$, les positions $(r;\phi)$ du mode, le temps de vie du mode, l'extension radiale $\Delta R$ du mode ainsi que le préfacteur adimensionné $\chi$ correspondant \citep[pour plus de détails]{ogihara2007accretion}. 
+Génère et stocke les valeurs de $10000$ modes de turbulence, afin d'en vérifier les propriétés statistiques. Les données sont stockées dans le fichier \textbf{turbulence\_mode.dat} où dans l'ordre des colonnes sont stockés le mode $m$, les positions $(r;\phi)$ du mode, le temps de vie du mode, l'extension radiale $\Delta R$ du mode ainsi que le préfacteur adimensionné $\chi$ correspondant \citep[pour plus de détails]{ogihara2007accretion}. 
 
 \subsubsection{test\_turbulence\_torque}
-teste la turbulence. En particulier le script Gnuplot \textbf{turbulence\_torque.gnuplot} affiche l'histogramme du couple turbulent et le compare à l'histogramme attendu. 
+Teste la turbulence. En particulier le script Gnuplot \textbf{turbulence\_torque.gnuplot} affiche l'histogramme du couple turbulent et le compare à l'histogramme attendu. 
 
 \begin{figure}[htbp]
 \centering
@@ -448,15 +449,15 @@ Certains tests doivent être effectués à part. Pour chacun des tests suivants,
 L'évolution de la densité de surface en un point donné du disque quand la dissipation est active (quel que soit le type de dissipation). Le fichier Gnuplot correspondant est \textbf{local\_density\_dissipation.gnuplot}. 
 
 \subsubsection{study\_influence\_of\_dissipation\_on\_torque}
-Montre l'évolution de la carte de migration au fur et à mesure de la dissipation du disque. Les cartes sont stockées dans un sous-dossier "dissipation" du dossier courant. Le fichier Gnuplot correspondant est \textbf{total\_torque.gnuplot} dans le dossier \textbf{dissipation}. 
+Montre l'évolution de la carte de migration au fur et à mesure de la dissipation du disque. Les cartes sont stockées dans un sous-dossier \textbf{dissipation} du dossier courant. Le fichier Gnuplot correspondant est \textbf{total\_torque.gnuplot} dans le dossier \textbf{dissipation}. 
 
 
 \subsubsection{test\_disk\_dissipation}
-teste la dissipation du disque dans un sous-dossier \textbf{dissipation} du dossier \textbf{unitary\_tests}. Le script Gnuplot \textbf{density.gnuplot} génère différentes images du profil de densité de surface du disque au cours du temps.
+Teste la dissipation du disque dans un sous-dossier \textbf{dissipation} du dossier \textbf{unitary\_tests}. Le script Gnuplot \textbf{density.gnuplot} génère différentes images du profil de densité de surface du disque au cours du temps.
 
 
 \subsection{Débug}
-Afin de débuguer le code, certaines routines ont été créées spécialement à cet effet. 
+Afin de déboguer le code, certaines routines ont été créées spécialement à cet effet. 
 
 Dans le module \textbf{turbulence.f90}, la routine \textbf{print\_turbulencemode\_properties} permet d'afficher les propriétés d'un mode donné, passé en argument. Ce mode est alors une instance de la structure de type \texttt{TurbulenceMode}. 
 
@@ -480,13 +481,3 @@ if (time.gt.365.25) then
   stop
 end if
 \end{lstlisting}
-
-%TODO Pour chaque test unitaire, montrer les courbes?
-
-
-
-
-
-
-
-%TODO compléter cette section

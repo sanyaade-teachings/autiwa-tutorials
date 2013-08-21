@@ -1,12 +1,12 @@
-\chapter{Trucs et astuce de programmation}
-Je n'ai pas la prétention d'être un dieu de la programmation, mais que ce soit pour moi quand j'aurai la mémoire courtes ou pour d'autres, je souhaite regrouper dans une annexe toutes les astuces de programmation et aides diverses que je trouve utiles à l'organisation du travail quotidien et à la rédaction d'un code propre, pratique, à la fois rapide et présentant de véritables aides à la programmation. 
+\chapter{Trucs et astuces de programmation}
+Je n'ai pas la prétention d'être un dieu de la programmation, mais que ce soit pour moi quand j'aurai la mémoire courte ou pour d'autres, je souhaite regrouper dans une annexe toutes les astuces de programmation et aides diverses que je trouve utiles à l'organisation du travail quotidien et à la rédaction d'un code propre, pratique, à la fois rapide et présentant de véritables aides à la programmation. 
 
 
 \section{Astuces pour la rédaction du code}
 \subsection{B-A-BA}
 Cette partie s'adresse plutôt à ceux qui débutent en programmation, au hasard les stagiaires et doctorants. 
 
-Trois petites règles de bases : 
+Trois petites règles de base : 
 \begin{enumerate}
 \item Indenter son code pour plus de lisibilité.
 \item Mettre des commentaires, en particulier quand il y a des astuces de calcul, des petits tours de passe passe pour éviter un bug, etc\dots
@@ -14,7 +14,7 @@ Trois petites règles de bases :
 \end{enumerate}
 
 \subsection{Tests unitaires}
-Une chose fondamentale, et qui s'applique aussi aux codes scientifique, ce sont les tests unitaires. Le principe est de créer une fonction de test pour chaque fonction séparée du code. L'idée derrière est que la fonction de test permet de vérifier que la fonction que l'on a créé fait bien ce qu'on attend d'elle. 
+Une chose fondamentale, et qui s'applique aussi aux codes scientifiques, ce sont les tests unitaires. Le principe est de créer une fonction de test pour chaque fonction séparée du code. L'idée derrière est que la fonction de test permet de vérifier que la fonction que l'on a créé fait bien ce qu'on attend d'elle. 
 
 Ça peut sembler redondant comme ça, mais quand on créée un gros code, et qu'on le modifie au fil du temps, rien ne dit qu'il ne va pas y avoir des interactions entre fonctions que l'on n'avait pas prévu, ces fonctions de tests sont là pour ça. 
 
@@ -91,8 +91,8 @@ d109d47732cb85652b79d679edd7bfe2379e5707 is first bad commit
 \end{verbatim}
 
 
-\subsubsection{Débuguer}
-Il arrive souvent qu'un code scientifique ne plante pas, mais renvoie des informations aberrantes. Git permet de faciliter le processus de débuggage. 
+\subsubsection{Déboguer}
+Il arrive souvent qu'un code scientifique ne plante pas, mais renvoie des informations aberrantes. Git permet de faciliter le processus de débug. 
 
 On peut ainsi rajouter des \og print\fg sans soucis, un peu partout dans le code, sans ce soucier du nettoyage. Deux commandes sont là pour nous aider. 
 
@@ -227,9 +227,6 @@ def write_infos_in_f90_file(main_branch='master'):
 
 Ensuite, dans le code, il faut faire écrire ces informations dans un fichier de sortie. Dans mon cas c'est le fichier \textbf{disk.out}. Ça me permet de vérifier que c'est bien la branche que je veux qui s'exécute, et ça me permet de reproduire la simulation à coup sur, en réutilisant l'exacte même version du code. 
 
-
-
-%TODO donner l'astuce un peu barbare de récupérer la version du code directement dans le binaire.
 \subsection{Ne pas négliger les tests au sein même du code}
 On souhaite souvent que le code soit rapide, et on évite de mettre des tests un peu partout. mais dans la partie initialisation du code, rien n'empêche de mettre des tests, notamment sur la compatibilité des options que l'on a passé en argument. 
 
