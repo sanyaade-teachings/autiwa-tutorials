@@ -100,7 +100,7 @@ Fusce convallis dolor sit amet dolor. Nulla sit amet pede. Maecenas et ante vita
 %########################################################################
 
 \begin{document}
-
+\pagenumbering{roman}
 %Print title NOW
 \maketitle%
 
@@ -148,6 +148,10 @@ Fusce convallis dolor sit amet dolor. Nulla sit amet pede. Maecenas et ante vita
 
 \tableofcontents
 
+% List of figures and tables must be right after the table of contents
+\listoffigures
+\listoftables
+
 \newpage
 
 %########################################################################
@@ -156,7 +160,7 @@ Fusce convallis dolor sit amet dolor. Nulla sit amet pede. Maecenas et ante vita
 
 %Enable page numbering
 \pagestyle{fancy}
-
+\pagenumbering{arabic}
 \chapter*{Introduction}
 \addstarredchapter{Introduction}% To be used instead of addcontentsline in order to have the good minitoc. If not, the starred chapter create a shift in the minitocs.
 %%\addcontentsline{toc}{chapter}{Introduction}
@@ -185,6 +189,14 @@ Fusce convallis dolor sit amet dolor. Nulla sit amet pede. Maecenas et ante vita
 \chapter{Conclusion et persectives}\label{sec:discussion}
 \input{chapitres/discussion.tex}
 
+\bibliographystyle{plainnat}
+\bibliography{these}%.bib
+
+% If any, the index must be right after the bibliography, and before appendixes
+%\makeindex
+
+% Appendixes must be after bibliography
+% no changes of numbering because this causes overfull hbox in tableofcontents, because there's too many pages in the appendixes
 \appendix
 \input{chapitres/formulaire.tex}
 
@@ -197,7 +209,6 @@ Fusce convallis dolor sit amet dolor. Nulla sit amet pede. Maecenas et ante vita
 %\thispagestyle{empty}
 %\strut\newpage
 
-\bibliographystyle{plainnat}
-\bibliography{these}%.bib
+
 
 \end{document}
