@@ -151,7 +151,10 @@ Presque 1000 planètes peuplent le catalogue des planètes extrasolaires détect
 
 % List of figures and tables must be right after the table of contents
 \listoffigures
+\mtcaddchapter % To have correct minitocs
+
 \listoftables
+\mtcaddchapter % To have correct minitocs
 
 \newpage
 
@@ -164,13 +167,8 @@ Presque 1000 planètes peuplent le catalogue des planètes extrasolaires détect
 
 \chapter*{Introduction}
 \addstarredchapter{Introduction}% To be used instead of addcontentsline in order to have the good minitoc. If not, the starred chapter create a shift in the minitocs.
-%%\addcontentsline{toc}{chapter}{Introduction}
 
 \input{chapitres/introduction.tex}
-
-
-
-
 
 \chapter{Formation Planétaire}\label{sec:chap1}
 \input{chapitres/01_disques.tex}
@@ -192,13 +190,16 @@ Presque 1000 planètes peuplent le catalogue des planètes extrasolaires détect
 
 \bibliographystyle{plainnat}
 \bibliography{these}%.bib
+\adjustmtc % To have correct minitocs, we must place this command right after bibliography
 
 % If any, the index must be right after the bibliography, and before appendixes
 %\makeindex
+%\mtcfixindex % To have correct minitoc after the index
 
 % Appendixes must be after bibliography
 % no changes of numbering because this causes overfull hbox in tableofcontents, because there's too many pages in the appendixes
 \appendix
+
 \input{chapitres/formulaire.tex}
 
 \input{chapitres/physique_des_disques.tex}
@@ -207,8 +208,6 @@ Presque 1000 planètes peuplent le catalogue des planètes extrasolaires détect
 
 \input{chapitres/programmation.tex}
 
-%\thispagestyle{empty}
-%\strut\newpage
 
 
 
