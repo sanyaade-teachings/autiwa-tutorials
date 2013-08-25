@@ -2121,6 +2121,34 @@ Pour ne pas réserver d'espace, et ainsi pouvoir remplacer une chose par une aut
 \end{verbatim}
 
 \subsection{Astuces}
+\subsubsection{Éviter les problèmes avec Acrobat Reader}
+Il m'est arrivé d'avoir l'erreur suivante en ouvrant la présentation en .pdf avec Adobe Acrobat Reader : 
+\begin{verbatim}
+There was an error processing a page. There was a problem reading this document (131).
+\end{verbatim}
+
+Afin de résoudre ce problème complexe qui fait carrément planter acrobat Reader, il y a plusieurs solutions, qui reviennent essentiellement à contourner la même chose : La compression des objets dans un .pdf qu'acrobat reader semble ne pas aimer. 
+
+Pour celà, il faut rajouter une option avant même l'appel de la classe !
+
+Soit un force la version du .pdf à être au plus égale à la v1.4 : 
+\begin{verbatim}
+\pdfminorversion=4
+\end{verbatim}
+
+Soit on annule (0) ou limite (1) la compression des objets : 
+\begin{verbatim}
+\pdfobjcompresslevel=1
+\end{verbatim}
+
+Ainsi donc, pour résoudre le problème, on aura le début de préambule suivant : 
+\begin{verbatim}
+%/!\ To avoid error 131 in acrobat reader, you must set this option before 
+%    defining the class of the source file !
+\pdfobjcompresslevel=1
+\documentclass{beamer}
+\end{verbatim}
+
 \subsubsection{Utiliser des environnements verbatim dans une page}
 Par défaut, vous obtiendrez des erreurs de compilation. Il faut utiliser l'option suivante dans la page qui vous intéresse afin de pouvoir utiliser des environnements verbatim (\gras{environnement!lstlisting} compris) :
 \begin{lstlisting}[{language=tex}]

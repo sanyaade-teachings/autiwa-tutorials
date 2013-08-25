@@ -2,28 +2,64 @@
 Ici sont répertoriées bon nombre de formules que j'ai utilisé et qui relient des grandeurs physique entre elles. Dans la mesure du possible, une source est donnée où la formule est mentionnée. Ceci a pour but de centraliser ces formules, liées à la physique des disques, et que j'ai parfois eu du mal à retrouver parmis la quantité d'articles ou de livres traitant du sujet. 
 
 \section{Variables usuelles}\label{sec:variables}
-Dans la thèse, j'utilise couramment les mêmes notations pour une propriété physique donnée. Ici je fais un inventaire des notations, afin qu'on puisse s'y référer, et pour gagner en clarté dans le texte en m'évitant de redéfinir à chaque fois les mêmes unités :
+Dans la thèse, j'utilise couramment les mêmes notations pour une propriété physique donnée. Ici je fais un inventaire des notations, afin qu'on puisse s'y référer, et pour gagner en clarté dans le texte en m'évitant de redéfinir à chaque fois les mêmes unités. Les paramètres avec un $p$ en indice indiquent simplement que c'est la valeur du paramètre à la position orbitale de la planète.
 
-\begin{table}[htb]
+\begin{table}[htbp]
 \centering
 \begin{tabular}{|>{$}c<{$}|p{7cm}|}
 \hline
-\nu & Viscosité du disque\\\hline
+k_B & constante de Boltzmann \\\hline
+\sigma & constante de Stefan-Boltzmann\\\hline
+G & Constante de gravitation universelle\\\hline
 b/h & Longueur de lissage du potentiel gravitationnel de la planète en unité de son rayon de Hill\\\hline
-c_s & vitesse du son\\\hline
+\mu & Masse moléculaire moyenne du gaz constituant principal du disque\\\hline
+\unit{M_\odot} & Masse solaire (unité de masse)\\\hline
+\unit{M_\oplus} & Masse terrestre\\\hline
+\gamma & Indice adiabatique du gaz\\\hline
+\end{tabular}
+\caption{Liste des constantes et notations associées.}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|>{$}c<{$}|p{7cm}|}
+\hline
 \alpha & paramètre adimensionné pour la prescription $\alpha$ du disque, permettant de définir une viscosité fonction de la vitesse du son\\\hline
 H & Échelle de hauteur du disque\\\hline
 h=H/R & rapport d'aspect du disque\\\hline
-\Omega & vitesse angulaire d'une particule fluide ou d'une planète dans le disque\\\hline
-k_B & constante de Boltzmann \\\hline
+\nu & Viscosité cinématique du disque\\\hline
 T & Température\\\hline
-\mu & Masse moléculaire moyenne du gaz constituant principal du disque\\\hline
+c_s & vitesse du son\\\hline
 \Sigma & Densité de surface du disque de gaz\\\hline
 \rho & Densité volumique du disque de gaz\\\hline
-q & rapport adimensionné entre la masse de la planète et la masse de son étoile\\\hline
+\Omega & vitesse angulaire d'une particule fluide ou d'une planète dans le disque\\\hline
+\kappa & Fréquence épicyclique\\\hline
+\chi & Diffusivité thermique\\\hline
+d & Indice négatif du profil de densité de surface\\\hline
+\beta & Indice négatif du profil de température\\\hline
 
 \end{tabular}
-\caption{Liste de la plupart des variables utilisées tout au long de la thèse. Les paramètres avec un $p$ en indice indiquent simplement que c'est la valeur du paramètre à la position orbitale de la planète.}
+\caption{Liste des paramètres du disque et notations associées.}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|>{$}c<{$}|p{7cm}|}
+\hline
+M_p & Masse de la planète\\\hline
+M_\star & Masse de l'étoile centrale\\\hline
+q & $M_p/M_\star$\\\hline
+\Gamma_\text{tot} & Couple total exercé par le disque sur la planète\\\hline
+\Gamma_L & Couple différentiel de Lindblad\\\hline
+\Gamma_C & Couple de corotation\\\hline
+J & Moment cinétique\\\hline
+t_\text{rad} & Temps de diffusion radiatif du disque\\\hline
+t_\text{visc} & Temps de diffusion visqueux du disque\\\hline
+t_\text{diff} & Temps de diffusion du disque (peut être le temps radiatif ou visqueux, ou les deux, selon le problème considéré)\\\hline
+t_\text{lib} & Temps mis par une particule en corotation pour effectuer une orbite de corotation complète\\\hline
+t_\text{U-turn} & Temps mis par une particule en corotation pour effectuer un demi tour devant ou derrière la planète\\\hline
+\end{tabular}
+\caption{Liste des variables et notations associées. Les paramètres avec un $p$ en indice indiquent simplement que c'est la valeur du paramètre à la position orbitale de la planète.}
 \end{table}
 
 \section{Propriétés du disque}
@@ -43,9 +79,14 @@ H &= \inv{\Omega}\sqrt{\frac{k_B T}{\mu m_H}}\\
 \end{align}
 où $m_H$ est la masse d'un atome d'hydrogène.
 
-On considère que la densité de surface est égale à la densité volumique, intégrée sur la taille verticale $2H$ du disque. 
+La densité de surface $\Sigma$ est calculée en intégrant verticalement la densité volumique, $\rho_0$ étant la densité volumique dans le plan équatorial : 
 \begin{align}
-\Sigma &= 2\rho H
+\Sigma &= \sqrt{2\pi}\rho_0 H
+\end{align}
+
+La diffusivité thermique $\chi$ est définie par (il y a une erreur dans \cite[eq. (33)]{paardekooper2011torque}) : 
+\begin{align}
+\chi &= \frac{16\gamma (\gamma - 1) \sigma T^4}{3\kappa\rho^2H^2\Omega^2}
 \end{align}
 
 \section{Propriétés des orbites képleriennes}
@@ -80,3 +121,14 @@ L'énergie $E$ et la norme du moment cinétique $J$ d'une orbite képlerienne de
 E &= \inv{2}v^2 - \frac{G(m_\star + m_p)}{r} = \frac{G(m_\star + m_p)}{2a}\\
 \norm{\vect{J}} &= G(m_\star + m_p) a (1-e^2)
 \end{align}
+
+\bigskip
+
+Une astuce qui peut être utile. Si on souhaite connaître les coordonnées polaires $(r,\theta)$ d'une orbite à partir des coordonnées cartésiennes $(x,y)$, il y a les formules suivantes : 
+\begin{subequations}
+\begin{align}
+r &= \sqrt{x^2 + y^2}\\
+\theta &= 2 \arctan\left(\frac{y}{x} + r\right)
+\end{align}
+\end{subequations}
+En particulier, la formule pour $\theta$ permet d'éviter les problèmes de validité des formules dans un certain domaine restreint d'angle. 

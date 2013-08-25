@@ -1,0 +1,649 @@
+\chapter{Trucs et astuces de programmation}
+Je n'ai pas la prétention d'être un dieu de la programmation, mais que ce soit pour moi quand j'aurai la mémoire courte ou pour d'autres, je souhaite regrouper dans une annexe toutes les astuces de programmation et aides diverses que je trouve utiles à l'organisation du travail quotidien et à la rédaction d'un code propre, pratique, à la fois rapide et présentant de véritables aides à la programmation. 
+
+
+\section{Astuces pour la rédaction du code}
+\subsection{B-A-BA}
+Cette partie s'adresse plutôt à ceux qui débutent en programmation, au hasard les stagiaires et doctorants. 
+
+Trois petites règles de base : 
+\begin{enumerate}
+\item Indenter son code pour plus de lisibilité.
+\item Mettre des commentaires, en particulier quand il y a des astuces de calcul, des petits tours de passe passe pour éviter un bug, etc\dots
+\item Mettre des noms explicites aux fonctions et variables. Ne pas hésiter à mettre des noms à rallonge qui explique bien ce qui se cache derrière. 
+\end{enumerate}
+
+\subsection{Tests unitaires}
+Une chose fondamentale, et qui s'applique aussi aux codes scientifiques, ce sont les tests unitaires. Le principe est de créer une fonction de test pour chaque fonction séparée du code. L'idée derrière est que la fonction de test permet de vérifier que la fonction que l'on a créé fait bien ce qu'on attend d'elle. 
+
+Ça peut sembler redondant comme ça, mais quand on créée un gros code, et qu'on le modifie au fil du temps, rien ne dit qu'il ne va pas y avoir des interactions entre fonctions que l'on n'avait pas prévu, ces fonctions de tests sont là pour ça. 
+
+\begin{remarque}
+Une bonne technique en particulier, est de créer une fonction de test pour un bug quand on le rencontre. En plus de le corriger, faire cette fonction de test permet d'éviter qu'il se reproduise à l'avenir. 
+\end{remarque}
+
+Les choses que l'on peut tester dans un code scientifique, ce sont par exemple les interpolations quand on a une discrétisation de certaines valeurs. Afficher certains paramètres physique, des fonctions, des cartes. 
+
+Mais on peut bien évidemment faire des tests unitaires plus classiques où on teste une fonction qui n'a rien de physique, on vérifie simplement qu'elle renvoie ce qu'on veut dans certains cas typiques prévus à l'avance. 
+
+J'ai détaillé les tests unitaires que j'ai fait dans le cas du code de migration utilisé dans cette thèse \refsec{sec:unitary_tests}.
+
+\subsection{Gestionnaire de version : Git}
+Quand on fait un code scientifique, il arrive souvent qu'on fasse des tests, qu'on rajoute des modifications, qu'on ait plusieurs versions du code ayant une base commune. 
+
+Les gestionnaires de versions, et Git en particulier, sont très bien adaptés à ce genre de situations. Ce n'est pas un tutoriel complet, mais voici quelques exemples pour lesquels Git devrait être utilisé systématiquement pour les codes numériques.
+
+\subsubsection{Créer plusieurs versions du code}
+Pour créer une branche \textbf{test\_01}, il faut utiliser la commande :
+\begin{verbatim}
+git branch test_01
+\end{verbatim}
+
+Si vous listez alors les branches, vous aurez :
+\begin{verbatim}
+$ git branch
+* master
+  test_01
+\end{verbatim}
+où on voit que \textbf{master} est toujours la branche active. Il faut donc changer de branche pour pouvoir modifier les fichiers et faire des commits dans cette branche.
+
+\bigskip
+
+On peut passer aisément d'une branche à l'autre, rajouter les modifications d'une branche vers une autre, faire des mises à jour si la branche principale a été modifiée. Tout ceci permet de garder le contrôle sur le code, de ne pas perdre de modifications et de gérer proprement le code source. 
+
+\subsubsection{Comparer deux versions du code}
+On peut facilement comparer deux versions du code entre elles, sur un fichier en particulier ou sur tous les fichiers : 
+\begin{verbatim}
+git diff
+\end{verbatim}
+
+\begin{remarque}
+Il est possible de regarder les différences sur un fichier en particulier.
+\end{remarque}
+
+Pour regarder les différences avec le commit précédent, il suffit de faire :
+\begin{verbatim}
+git diff HEAD^
+\end{verbatim}
+
+\bigskip
+
+On peut faire des diff entre des branches 
+\begin{verbatim}
+git diff master branch_devel
+\end{verbatim}
+ou entre deux versions en spécifiant leur hashtag : 
+\begin{verbatim}
+git diff dqsfg54qsdf35dqs4f ze9r8az7er3azer2
+\end{verbatim}
+
+J'utilise personnellement \gras[git!difftool]{difftool}, ça me permet d'utiliser \gras{meld} que j'affectionne particulièrement.
+
+\subsubsection{Rechercher un bug en utilisant bisect}\index{git!bisect}
+Vous avez un bug dans votre code, vous ne savez pas d'où vient le bug, \textbf{bisect} est fait pour vous. 
+
+Le principe est le suivant : Vous avez une révision que vous savez ne pas fonctionner (la dernière par exemple) et une qui fonctionne (au pire la première si vous en avez peu, sinon vous en trouvez une assez ancienne et qui fonctionne. Personnellement j'ai fini par y aller franco, et je suis remonté six mois en arrière, une centaine de révisions à tester, mais avec \textbf{bisect} c'est rapide. 
+
+Une fois fait, on peut exploiter la puissance de \textbf{bisect}, qui va nous aider à trouver par dichotomie la révision qui a introduit le bug. On part donc d'un encadrement en ayant une version bonne de référence et une version mauvaise, et on sait donc que la révision fautive se trouve au milieu.
+Une fois qu'il aura trouvé LA révision fautive, il le dira par :
+\begin{verbatim}
+d109d47732cb85652b79d679edd7bfe2379e5707 is first bad commit
+\end{verbatim}
+
+
+\subsubsection{Déboguer}
+Il arrive souvent qu'un code scientifique ne plante pas, mais renvoie des informations aberrantes. Git permet de faciliter le processus de débug. 
+
+On peut ainsi rajouter des \og print\fg sans soucis, un peu partout dans le code, sans ce soucier du nettoyage. Deux commandes sont là pour nous aider. 
+
+\begin{verbatim}
+git stash
+\end{verbatim}
+permet de stocker dans une mémoire tampon les modifications apportées au code, mais pas encore enregistrées. Il remet alors le code en l'état, mais les modifications peuvent ensuite être appliquées de nouveau via 
+\begin{verbatim}
+git stash apply
+\end{verbatim}
+
+\bigskip
+
+\begin{verbatim}
+git checkout mon_fichier
+\end{verbatim}
+permet de remettre le fichier \textbf{mon\_fichier} comme avant. 
+
+\bigskip
+
+Grâce à ces deux fonctions, on peut afficher l'état des variables, puis nettoyer le code très facilement, sans risque de laisser des bouts de code un peu partout. 
+
+On peut même utiliser une branche contenant uniquement des ajouts pour des tests, et faire inclure les dernières modifications de \textbf{master} chaque fois que l'on veut vérifier l'état du code. 
+
+\subsubsection{Connaître la version du code}. 
+Une autre astuce, mais qui nécessite un peu de bidouillage consiste à faire stocker au code la version avec laquelle une simulation tourne. 
+
+Il faut savoir pour cela que j'ai un script Python qui me permet de compiler mon code. Dans ce script, j'ai une fonction qui va chercher le nom de la branche active ainsi que le hashtag de la version courante. 
+
+La partie bidouillage consiste à générer un module fortran contenant ces informations, qui vont donc être contenues dans le code lors de la compilation. La fonction est la suivante :
+\begin{lstlisting}[language=python]
+import subprocess
+import pdb
+
+def run_command(commande):
+  """lance une commande qui sera typiquement soit une liste, soit une 
+  commande seule. La fonction renvoit un tuple avec la sortie, 
+  l'erreur et le code de retour"""
+  if (type(commande)==list):
+    process = subprocess.Popen(commande, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+  elif (type(commande)==str):
+    process = subprocess.Popen(commande, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+  else:
+    raise TypeError("The command is neither a string nor a list.")
+  (process_stdout, process_stderr) = process.communicate()
+  returncode = process.poll()
+  # there is .poll() or .wait() but I don't remember the difference. For some kind of things, one of the two was not working
+  return (process_stdout, process_stderr, returncode)
+
+def get_current_branch():
+  """function that return as a string the current branch of the git repository"""
+  (stdout, stderr, returnCode) = run_command("git branch")
+  
+  if (returnCode != 0):
+    return None
+  
+  lines = stdout.split("\n")
+  for line in lines:
+    if (line[0] == '*'):
+      return line[2:]
+
+def get_current_revision():
+  """function that return as a string the current revision of the git repository"""
+  (stdout, stderr, returnCode) = run_command("git log|head -1")
+  
+  if (returnCode != 0):
+    return None
+  
+  commit = stdout.split()[1]
+  return commit
+
+def is_non_committed_modifs():
+  """function that return as a boolean if theere is non committed modifications in the repository"""
+  (stdout, stderr, returnCode) = run_command("git diff|wc -l")
+  
+  if (returnCode != 0):
+    return None
+  
+  nbLines = int(stdout)
+  
+  return (nbLines != 0)
+  
+def list_tag(commit):
+  """list the tags that exists linking towar the considered commit
+  
+  Return :
+  The list of tags corresponding to 'commit'. If none, an empty list is returned.
+  """
+  (stdout, stderr, returnCode) = run_command("git tag -l --contains %s" % commit)
+  
+  tags = stdout.split("\n")[0:-1] # We do not include the extra "" in the end.
+  
+  return tags 
+
+def write_infos_in_f90_file(main_branch='master'):
+  """This function will create a fortran file that will store, as variable, some infos about a git repository"""
+  
+  F90_BEGIN = "module git_infos\n" + \
+              "! Automatically generated file through Makefile.py, do not modify manually !\n" + \
+              "implicit none\n\n"
+
+  F90_END = "\nend module git_infos"
+
+  
+  branch = get_current_branch()
+  commit = get_current_revision()
+  isModifs = is_non_committed_modifs()
+  tags = list_tag(commit)
+  
+  if (branch != main_branch):
+    print("Warning: The current branch is %s" % branch)
+  
+  f90source = open("git_infos.f90", 'w')
+  f90source.write(F90_BEGIN)
+  f90source.write("character(len=40), parameter :: commit = '%s'\n" % commit)
+  f90source.write("character(len=%d), parameter :: branch = '%s'\n" % (len(branch), branch))
+  if (isModifs):
+    f90source.write("character(len=80), parameter :: modifs = '/!\ There is non committed modifications'\n")
+  else:
+    f90source.write("character(len=80), parameter :: modifs = 'This is a pure version (without any local modifs)'\n")
+    
+  
+  if (len(tags)==0):
+    tag_text = "There is no tag"
+  else:
+    tag_text = " ; ".join(tags)
+  
+  f90source.write("character(len=%d), parameter :: tags = '%s'\n" % (len(tag_text), tag_text))
+  f90source.write(F90_END)
+  f90source.close()
+\end{lstlisting}
+
+Ensuite, dans le code, il faut faire écrire ces informations dans un fichier de sortie. Dans mon cas c'est le fichier \textbf{disk.out}. Ça me permet de vérifier que c'est bien la branche que je veux qui s'exécute, et ça me permet de reproduire la simulation à coup sur, en réutilisant l'exacte même version du code. 
+
+\subsection{Ne pas négliger les tests au sein même du code}
+On souhaite souvent que le code soit rapide, et on évite de mettre des tests un peu partout. mais dans la partie initialisation du code, rien n'empêche de mettre des tests, notamment sur la compatibilité des options que l'on a passé en argument. 
+
+L'initialisation se faisant une seule fois, elle ne va pas ralentir le code outre mesure.
+
+\subsection{Faire des modules}
+Dans la mesure du possible, il faut que les fonctions aient une tâche aussi simple que possible, et regrouper les fonctions de même thème dans un module. C'est ainsi plus facile de s'y retrouver, et plus facile aussi de débuguer et contrôler la qualité du code. 
+
+\section{Astuces en Fortran 90}
+
+\subsection{Créer un fichier de paramètre}
+C'est souvent un casse tête de coder une fonction pour lire un fichier de paramètres. Voici ma technique. 
+
+Je défini un caractère qui autorise des commentaires (dans mon exemple, \og !\fg). Les lignes blanches ou avec espaces sont ignorées quant à elle, vu que l'élément déclencheur est la présence du séparateur entre nom de paramètre et valeur. 
+
+Je défini aussi un séparateur pour les paramètres (dans mon exemple \og =\fg). Chaque paramètre doit posséder un nom, sans espaces. L'ordre des paramètres n'a pas d'importance. 
+
+\begin{remarque}
+Dans le reste du programme je défini des valeurs par défaut qui seront alors écrasées lors de la lecture du fichier si le paramètre y est défini. Je défini en effet les variables en tant que variables globales du module, vu qu'elles sont constantes dans le programme (même si le fait que je ne les connaisse pas à priori m'empêche de les définir en tant que \texttt{parameter}.
+\end{remarque}
+
+
+\begin{lstlisting}[language=Fortran]
+subroutine read_disk_properties()
+! subroutine that read the 'disk.in' file to retrieve disk properties. 
+! Default value exist, if a parameter is not defined
+
+  implicit none
+  
+  character(len=80) :: line
+
+  ! character that will indicate that the reste of the line is a comment
+  character(len=1) :: comment_character = '!' 
+  
+  ! the index of the comment character on the line. 
+  ! If zero, there is none on the current string
+  integer :: comment_position 
+
+  integer :: error ! to store the state of a read instruction
+  
+  logical :: isParameter, isDefined
+  character(len=80) :: identificator, value
+  !-----------------------------------------------------
+  
+  open(10, file='disk.in', status='old')
+  
+  do
+    read(10, '(a80)', iostat=error), line
+    if (error /= 0) exit
+      
+    ! We get only what is on the left of an eventual comment parameter
+      comment_position = index(line, comment_character)
+    
+    ! If there are comments on the current line, we get rid of them
+    if (comment_position.ne.0) then
+      line = line(1:comment_position - 1)
+    end if
+    
+    call get_parameter_value(line, isParameter, identificator, value)
+      
+    if (isParameter) then
+      select case(identificator)
+      case('b/h')
+	read(value, *) b_over_h
+      
+      case('adiabatic_index')
+	read(value, *) adiabatic_index
+
+      case('temperature')
+	read(value, *) temperature_0, temperature_index
+	
+      case default
+	write(*,*) 'Warning: An unknown parameter has been found'
+	write(*,*) "identificator='", trim(identificator),&
+                   "' ; value(s)='", trim(value),"'"
+      end select
+    end if
+  end do
+  
+  close(10)
+    
+end subroutine read_disk_properties
+\end{lstlisting}
+
+Dans cet exemple, je montre comment définir un paramètre ne contenant qu'une seule valeur, ou un paramètre contenant plusieurs valeurs (ici deux, mais il peut y en avoir plus). 
+
+\begin{attention}
+Notez que je ne lis que les 80 premiers caractères d'une ligne. Il ne peut donc pas y avoir de valeur définie au delà du 80\ieme caractère. Par contre, la longueur des commentaires est arbitraire, y compris sur les lignes qui contiennent des paramètres en début de ligne.
+\end{attention}
+
+
+Je défini ensuite la subroutine qui me permet de récupérer l'identificateur et la (ou les) valeur(s) associée(s) : 
+\begin{lstlisting}[language=Fortran]
+subroutine get_parameter_value(line, isParameter, id, value)
+! subroutine that try to split the line in two part, given a separator value (set in parameter of the subroutine)
+! The routine return 3 values : 
+!
+! Return
+! isParameter : is a boolean to say whether or not there is a parameter on this line. 
+!               i.e if there is an occurence of the separator in the input line
+! id : a string that contain the name of the parameter
+! value : a string that contains the value(s) associated with the parameter name. 
+!         Note that a special attention is given to the fact that the first character of 'value' must NOT be a 'space'
+
+  implicit none
+  
+  ! Input
+  character(len=80), intent(in) :: line
+  
+  ! Output
+  logical, intent(out) :: isParameter
+  character(len=80), intent(out) :: id, value
+  
+  ! Local
+  character(len=1), parameter :: SEP = '=' ! the separator of a parameter line
+  
+  character(len=1) :: first_character
+  integer :: id_first_char
+
+  integer :: sep_position ! an integer to get the position of the separator
+
+  !-------------------------------------------------------
+
+  sep_position = index(line, SEP)
+  
+  if (sep_position.ne.0) then
+    isParameter = .true.
+    id = line(1:sep_position-1)
+    
+    id_first_char = sep_position +1
+    first_character = line(id_first_char:id_first_char)
+    do while (first_character.eq.' ')
+      id_first_char = id_first_char +1
+			first_character = line(id_first_char:id_first_char)
+    end do
+    value = line(id_first_char:)
+  else
+    isParameter = .false.
+  end if
+
+end subroutine get_parameter_value
+\end{lstlisting}
+
+\begin{attention}
+J'ai rajouté une partie où j'oblige le premier caractère de value à ne pas être un espace, car si on teste cette valeur, le premier espace peut poser des problèmes, chose qui n'arrive normalement pas pour les clés, vu qu'on commence la ligne avec, alors que dans le cas de la valeur, le séparateur (le signe égal '=') peut être entouré d'espaces.
+
+Ainsi, sans les modifs que j'ai faite, 
+\begin{verbatim}
+surface density = manual
+\end{verbatim}
+ne fonctionnera pas, alors que
+\begin{verbatim}
+surface density =manual
+\end{verbatim}
+fonctionnera.
+\end{attention}
+
+
+Le fichier de paramètre est quelque chose du genre :
+\begin{verbatim}
+! ------------------------------------------------
+! Parameter file for various properties of the disk. 
+! ------------------------------------------------
+
+adiabatic_index = 1.4
+temperature = 510 1
+b/h = 0.4
+\end{verbatim}
+
+\subsubsection{Fichier de paramètres : le petit plus}
+J'ai une technique supplémentaire, que je trouve très pratique. Le fichier de paramètre n'est pas sensible à l'ordre, et possède des valeurs par défaut. De plus, au fur et à mesure de l'évolution du code, des paramètres supplémentaires peuvent apparaître. 
+
+Dans mon code, je lis le fichier de paramètres, puis je le réécris. Je lis donc une fois le fichier \textbf{disk.in}, je stocke les valeurs, puis je réécris par dessus le fichier \textbf{disk.in}. Je fais ceci pour plusieurs raisons : 
+\begin{itemize}
+\item Compte tenu du nombre de paramètres que j'ai (plusieurs dizaines), ça me permet de les ordonner automatiquement à l'aide du code, de les classer dans des sous-rubriques. 
+\item Les paramètres manquant sont automatiquement rajoutés
+\item Les paramètres par défaut sont ajoutés, la valeur spécifiée
+\item Ça permet de nettoyer les fichiers de paramètres des éventuels spécifications désuètes, pour une transition transparente vers la toute dernière version du fichier de paramètre.
+\end{itemize}
+
+Il y a cependant deux défauts : 
+\begin{itemize}
+\item Les commentaires écrits par l'utilisateur sont supprimés dans ce processus, remplacés par les commentaires automatiques générés par le code
+\item les paramètres qui ne sont pas reconnus par le code sont supprimés dans le processus. 
+\end{itemize}
+
+\subsection{Pointeurs de fonction}
+Prenons un cas concrêt. En fonction du paramètre du programme, je veux exécuter différentes fonctions (par exemple pour différents types d'intéractions disque planète (dans mon cas). 
+
+Avant, je faisais à chaque pas de temps dans mon programme un test pour choisir quelle fonction lancer, sachant que toutes les fonctions ont le même nombre d'arguments. 
+
+\bigskip
+
+Voici ce que je fais maintenant. Dans le programme, je définis une variable globale qui est un pointeur, qui va pointer vers une procédure. Je définis une interface pour montrer à quoi va ressembler la procédure, en particulier les entrées sorties. 
+
+Et enfin, dans une routine d'initialisation, je teste la valeur du paramètre et attribue une valeur au pointeur. Dans le reste du programme, j'ai simplement à appeler le pointeur, sans me préoccuper de savoir vers quoi il pointe.
+
+Voici la définition du pointeur en tant que variable globale : 
+\begin{lstlisting}[language=Fortran]
+procedure(get_torques_interface), pointer :: get_torques
+
+abstract interface 
+subroutine get_torques_interface(stellar_mass, mass, p_prop, corotation_torque, lindblad_torque, Gamma_0, ecc_corot)
+  import 
+  
+  implicit none
+  real(double_precision), intent(in) :: stellar_mass ! the mass of the central body [Msun * K2]
+  ! Properties of the planet
+  real(double_precision), intent(in) :: mass ! the mass of the planet [Msun * K2]
+  type(PlanetProperties), intent(in) :: p_prop ! various properties of the planet
+  
+  
+  real(double_precision), intent(out) :: corotation_torque
+  real(double_precision), intent(out) :: lindblad_torque !  lindblad torque exerted by the disk on the planet [\Gamma_0]
+  real(double_precision), intent(out) :: Gamma_0 ! canonical torque value [Ms.AU^2](equation (8) of Paardekooper, Baruteau, 2009)
+  real(double_precision), intent(out) :: ecc_corot ! prefactor that turns out the corotation torque if the eccentricity is too high (Bitsch & Kley, 2010)
+end subroutine get_torques_interface
+end interface
+\end{lstlisting}
+
+Dans la routine d'initialisation, j'écris : 
+\begin{lstlisting}[language=Fortran]
+select case(TORQUE_TYPE)
+  case('real') ! The normal torque profile, calculated form properties of the disk
+    get_torques => get_corotation_torque
+  
+  case('linear_indep', 'mass_independant') ! a defined torque profile to get a mass independant convergence zone
+    get_torques => get_corotation_torque_linear_indep
+  
+  case('tanh_indep') ! a defined torque profile to get a mass independant convergence zone
+    get_torques => get_corotation_torque_tanh_indep
+  
+  case('mass_dependant')
+    get_torques => get_corotation_torque_mass_dep_CZ
+    
+  case('manual')
+    get_torques => get_corotation_torque_manual
+    
+  case default
+    stop 'Error in user_module : The "torque_type" cannot be found. &
+    &Values possible : real ; linear_indep ; tanh_indep ; mass_dependant ; manual'
+ end select
+\end{lstlisting}
+sachant que \textbf{TORQUE\_TYPE} est une variable contenant le paramètre du programme.
+
+Et enfin, dans le programme, je fais : 
+\begin{lstlisting}[language=Fortran]
+! Calculation of the acceleration due to migration
+ call get_torques(mass(1), mass(planet), p_prop, & ! input
+                  corotation_torque=corotation_torque, lindblad_torque=lindblad_torque, Gamma_0=torque_ref, ecc_corot=ecc_corot) ! Output
+\end{lstlisting}
+
+\subsection{Utiliser des objets}
+Dans mon cas, j'ai défini un objet \textbf{PlanetProperties} dans lequel je stocke toutes les informations qui m'intéressent. L'intérêt principale de cette technique est qu'on passe une seule variable en paramètre d'une fonction, on évite les lignes à rallonge avec 25 paramètres. 
+
+Pour définir la structure on fait : 
+\begin{lstlisting}[language=Fortran]
+  ! We define a new type for the properties of the planet
+  type PlanetProperties
+    ! Properties of the planet
+    real(double_precision) :: angular_momentum ! the angular momentum of the planet [Ms.AU^2.day^-1]
+    real(double_precision) :: radius ! the radial position of the planet [AU]
+    real(double_precision) :: velocity ! the norm of the speed [AU/day]
+    real(double_precision) :: omega ! the angular rotation [day-1]
+    real(double_precision) :: semi_major_axis ! semi major axis of the planet [AU]
+    real(double_precision) :: eccentricity ! the eccentricity of the planet
+    real(double_precision) :: inclination ! the inclination of the planet [rad]
+    real(double_precision) :: mass ! the mass of the planet [Msun * K2]
+    
+    ! Properties of the disk at the location of the planet
+    real(double_precision) :: sigma ! the surface density of the gas disk at the planet location [MSUN.AU^-2]
+    real(double_precision) :: sigma_index ! the negative slope of the surface density profile at the location of the planet.
+    real(double_precision) :: scaleheight ! the scaleheight of the disk at the location of the planet [AU]
+    ! the scaleheight and/or aspect ratio is not used in the calculation of the turbulence, where the value 0.05 is used directly into the code
+    real(double_precision) :: aspect_ratio ! the aspect_ratio of the gas disk at the location of the planet [no dim]
+    real(double_precision) :: chi ! the thermal diffusion coefficient at the location of the planet [AU^2.day^-1]
+    real(double_precision) :: nu ! the viscosity of the disk at the location of the planet [AU^2.day^-1]
+    real(double_precision) :: temperature ! the temperature of the disk at the location of the planet [K] 
+    real(double_precision) :: temperature_index ! the negative temperature index of the disk at the location of the planet [no dim] 
+  end type PlanetProperties
+\end{lstlisting}
+
+Pour définir une variable : 
+\begin{lstlisting}[language=Fortran]
+  type(PlanetProperties) :: p_prop ! various properties of a planet
+\end{lstlisting}
+et pour en appeler le contenu : 
+\begin{lstlisting}[language=Fortran]
+write(*,*) p_prop%radius
+\end{lstlisting}
+
+
+
+\section{Utilisation du code}
+\subsection{Personnnaliser le Shell}
+Je personnalise le Shell afin de faciliter l'utilisation des serveurs en rajoutant quelques informations dans le fichier \textbf{\~/.bash\_profile}
+
+Je définis une variable pour pointer vers le dossier contenant le code source, dans mon cas vers le dossier du dépôt Git : 
+\begin{verbatim}
+mercury="$HOME/bin/mercury"
+export mercury
+\end{verbatim}
+qui s'utilise de la façon suivante : 
+\begin{verbatim}
+$ cd $mercury
+\end{verbatim}
+
+\bigskip
+
+Je définis des raccourcis vers les programmes usuels : 
+\begin{verbatim}
+alias mercury="$HOME/bin/mercury/mercury"
+alias element="$HOME/bin/mercury/element"
+alias close="$HOME/bin/mercury/close"
+export mercury element close
+\end{verbatim}
+qui s'utilisent de la façon suivante : 
+\begin{verbatim}
+$ mercury
+\end{verbatim}
+
+\bigskip
+
+Je souhaite afficher des informations liées au dépot Git directement dans la console. J'ajoute alors : 
+\begin{footnotesize}
+\begin{verbatim}
+git_branch_name_prompt() {
+    git_status_output=$(git status 2> /dev/null) || return
+
+    branch_name() {
+        sed -n 's/# On branch //p' <<< "$git_status_output"
+    }
+
+    echo -e "($(branch_name))"
+}
+
+git_branch_colour_prompt() {
+    git_status_output=$(git status 2> /dev/null) || return
+
+    find_pattern_in_status() {
+        local pattern="$1"
+        [[ "$git_status_output" =~ ${pattern} ]]
+    }
+
+    is_clean() {
+        find_pattern_in_status '(working directory clean)'
+    }
+
+    is_local_changes() {
+        local added='# Changes to be committed'
+        local not_added='# Changes not staged for commit'
+        find_pattern_in_status "($added|$not_added)"
+    }
+
+    is_untracked() {
+        find_pattern_in_status '# Untracked files'
+    }
+
+    # local bold="\033[1m"
+    local no_colour="\033[0m"
+
+    local red="\033[31m"
+    local green="\033[32m"
+    local yellow="\033[33m"
+    local branch_colour=""
+
+    if is_untracked
+    then
+        branch_colour=$red
+    elif is_local_changes
+    then
+        branch_colour=$yellow
+    elif is_clean
+    then
+        branch_colour=$green
+    fi
+
+    echo -e "$branch_colour"
+}
+
+PS1="\h.\u\[\$(git_branch_colour_prompt)\]\$(git_branch_name_prompt)\[\033[0m\]> "
+\end{verbatim}
+\end{footnotesize}
+
+Pour que les modifications soient prises en compte sans avoir à se déconnecter, il suffit de faire :
+\begin{verbatim}
+source ~/.bash_profile
+\end{verbatim}
+
+\subsection{Raccourcis en ligne de commande}
+Beaucoup d'astuces afin de faciliter le quotidien avec la console. En vrac : 
+\begin{itemize}
+\item user et abuser de l'autocomplétion (avec la touche \touche{Tab}), qui permet de compléter automatiquement un début de commande quand la fin de pose pas d'ambiguïté
+\item \touche{Ctrl} + \touche{R} permet de rechercher une commande dans l'historique. \touche{Ctrl} + \touche{R} permet de remonter dans les résultats
+\item On peut exécuter plusieurs commandes à la fois à l'aide de \verb|&&|. Les parenthèses permettent de changer de dossier pour une commande seulement. Exemple : \\
+\begin{verbatim}
+maketest.py && test_disk && (cd unitary_tests && gplot.py)
+\end{verbatim}
+
+Cette commande permet de compiler, puis effectuer les tests, ensuite se déplacer dans le dossier contenant les résultats puis lancer le script Python permettant de les afficher. Une fois terminé, nous serons toujours dans le dossier courant.
+\end{itemize}
+
+\subsection{Les options de compilation}
+J'utilise \textbf{gfortran} pour compiler et j'ai essentiellement deux cas de figures. 
+
+Soit je cherche à débuguer le code, et j'utilise les options de compilation suivantes : 
+\begin{verbatim}
+"-pedantic-errors -Wall -Wconversion -Wunderflow -Wextra 
+-Wunreachable-code -fbacktrace -g3 -fbounds-check
+-ffpe-trap=invalid,zero,overflow,underflow -O0
+-fstack-protector-all -fno-automatic 
+-Wuninitialized -ftrapv -fno-automatic"
+\end{verbatim}
+
+Soit je cherche à utiliser le code, et je veux optimiser pour que ce soit le plus rapide possible. C'est en particulier nécessaire dans le cas où des modules sont utilisés, pour rassembler les fonctions dans le fichier principal : 
+\begin{verbatim}
+"-O3 -march=native -pipe -finit-real=nan"
+\end{verbatim}
+
+
