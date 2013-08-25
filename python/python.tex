@@ -1262,6 +1262,34 @@ rect = Rectangle((x, y), width, height, color='#dddddd', label="Self Shadowing")
 myplot.add_patch(rect)
 \end{lstlisting}
 
+\bigskip
+
+\gras{Line2D}, \gras{Arrow} sont aussi des fonctions intéressantes dans \textbf{matplotlib.lines} et \textbf{matplotlib.patches}
+respectivement. 
+
+Il est possible de forcer l'apparition de ces objets même en dehors de la zone de plot avec l'option : 
+\begin{verbatim}
+clip_on=False
+\end{verbatim}
+
+\bigskip
+
+Une autre possibilité est de changer les coordonnées. C'est à dire qu'on peut soit spécifier les coordonnées dans les axes des
+données, du graphique (auquel cas, le coin en bas à gauche a pour coordonnée (0,0) et celui en haut à droite (1,1)), de la
+figure (même chose que pour le graphique mais d'un bord à l'autre de la fenêtre graphique).
+
+Pour cela, il faut utiliser l'option \gras{transform} qui vaudra l'une des trois valeurs suivante selon qu'on veut les axes des
+données (par défaut), du graphique ou de la fenêtre graphique : 
+\begin{verbatim}
+fig = pl.figure()
+plot_orbits = fig.add_subplot(1, 1, 1)
+
+transform = plot_orbits.transData
+transform = plot_orbits.transAxes
+transform = fig.transFigure
+\end{verbatim}
+
+
 \subsubsection{Titre de graphique}
 Pour donner un titre à un graphique, il suffit d'utiliser la commande : 
 \begin{lstlisting}[language=python]
