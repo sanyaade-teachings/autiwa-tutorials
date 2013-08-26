@@ -709,6 +709,27 @@ Avec le disque peu massif, la population externe de planètes ($a>2\unit{UA}$) e
 
 La formation de systèmes compacts au bord interne est elle peu affectée par la variation de la masse du disque. Le fort couple positif au bord interne est stable et les planètes sont maintenues dans le disque. La distribution des positions des planètes pour la partie interne du disque $a<2\unit{UA}$ est similaire dans les trois disques. 
 
+\bigskip
+
+Nous avons vu dans \refsec{sec:shifted_CZ} que la zone de migration effective pouvait être modifiée quand l'excentricité d'une planète était non nulle. En effet, l'excentricité, en modifiant la forme de la zone de corotation, modifie le couple qui en est issu. J'ai donc cherché à voir statistiquement l'influence de cet effet sur la formation des planètes. Pour cela j'ai lancé 100 simulations identiques aux simulations de référence, mais j'ai supprimé l'effet d'amortissement du couple de corotation via l'excentricité, tout le reste est identique. Les figures \reffig{fig:HSE_no_damping} montrent la comparaison des histogrammes de masse et distance orbitales des planètes en fin de simulation.
+
+\begin{figure}[htb]
+\centering
+\subfloat[Histogramme des masses]{\includegraphics[width=0.49\textwidth]{figure/HSE/no_damping_hist_m.pdf}}\hfill
+\subfloat[histogramme des positions]{\includegraphics[width=0.49\textwidth]{figure/HSE/no_damping_hist_a.pdf}}
+\caption{Comparaison des propriétés statistique de deux séries de simulation avec (fiducial) ou sans (No damping) l'effet de l'excentricité sur le couple de corotation.}\label{fig:HSE_no_damping}
+\end{figure}
+
+Sans l'amortissement du couple de corotation, les parties externes du disques sont beaucoup plus peuplées. Il y a toute une population de planètes au delà d'une unité astronomique qui n'existent pas dans le cas classique. Cette population se situe principalement entre 1 et 10 UA, région où avec l'effet de l'excentricité sur le couple de corotation, les planètes sont entrainées vers l'intérieur. Toutes ces planètes permettent de former au bord interne des planètes plus massive par l'augmentation des collisions qu'elles entrainent en migrant vers l'intérieur. 
+
+Dans le cas sans amortissement du couple de migration, on a essentiellement trois pics dans l'histogramme des distances orbitales. Deux dus à des zones de convergence, autour de 1 et 10 UA, et un dernier autour de 0.1 UA, au bord interne du disque. En introduisant l'amortissement du couple de corotation par l'excentricité, le pic à 10 UA est drastiquement atténué. Ceux à 0.1 et 1 UA sont plus ou moins fusionnés ou étalés, les zones de stabilités n'étant plus globales mais dépendant des configurations. Et enfin, une population de planètes qui sortent du disque et se retrouvent en dessous de 0.1 UA apparait, l'effet d'atténuation par l'excentricité permettant de passer la barrière du bord interne du disque, où la migration vers l'extérieur est très importante.
+
+On a donc deux effets principaux de l'amortissement du couple de corotation par l'excentricité : 
+\begin{enumerate}
+\item Beaucoup de planètes qui sont censées se stabiliser dans les parties externes, au delà de 1 AU, sont entrainées vers l'intérieur par l'excitation résonnante de leur excentricité. 
+\item Les masses finales sont plus importantes, car le nombre de planètes au bord interne augmente, créant donc statistiquement des planètes plus massives. 
+\end{enumerate}
+
 \subsection{Discussion}
 Quand les embryons sont plus petits qu'une certaine masse critique dépendant des propriétés du disque, la migration est systématiquement vers l'intérieur. Un système compact de planètes qui grossissent par collisions se forme alors au bord interne qui retient ce système par le fort couple de corotation positif qui s'exerce juste avant le bord interne en raison de la forte décroissance de la densité de surface \citep{masset2006disk}. Au bord interne, l'onde de densité interne due au couple de Lindblad n'existe plus, étant donné qu'il n'y a plus de gaz. Le couple différentiel de Lindblad est alors simplement égal à l'onde de densité externe. La migration est malgré tout vers l'extérieur en raison du très fort couple de Corotation \citep{masset2006disk}.
 
