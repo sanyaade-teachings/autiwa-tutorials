@@ -9,7 +9,7 @@ Ce choix a bien entendu introduit son lot d'incertitudes et d'approximations qui
 \section{Présentation de mercury}
 Le code N-corps choisi est le code \textbf{mercury} \citep{chambers1999hybrid}. Ce code offre la possibilité de choisir un algorithme parmi 5 différents (BS, BS2, RADAU, MVS et HYBRID), ayant des propriétés diverses. Dans le cadre de ma thèse, je n'ai utilisé que l'algorithme HYBRID, qui utilise l'algorithme MVS la plupart du temps, mais change pour l'algorithme BS2 lors de rencontres proches. Il est possible de déterminer à quel moment on considère qu'une rencontre est "proche" dans le fichier de paramètre de programme, j'ai laissé le paramètre par défaut. 
 
-La raison de ce changement est assez simple. MVS est un algorithme symplectique, c'est à dire à pas de temps constant, dans lequel on défini un hamiltonien que l'on résout pour faire évoluer les orbites. La conservation de l'énergie est moins bonne que pour un algorithme à pas de temps adaptatif, mais le point très important est que cette conservation de l'énergie est bien meilleure au cours du temps. C'est à dire que là où les algorithmes tels que BS, BS2 et RADAU verront leur erreur sur l'énergie augmenter au cours du temps, les algorithmes symplectiques vont eux voir leur erreur rester plus ou moins constante au cours du temps. 
+La raison de ce changement est assez simple. MVS est un algorithme symplectique, c'est à dire à pas de temps constant, dans lequel on définit un hamiltonien que l'on résout pour faire évoluer les orbites. La conservation de l'énergie est moins bonne que pour un algorithme à pas de temps adaptatif, mais le point très important est que cette conservation de l'énergie est bien meilleure au cours du temps. C'est à dire que là où les algorithmes tels que BS, BS2 et RADAU verront leur erreur sur l'énergie augmenter au cours du temps, les algorithmes symplectiques vont eux voir leur erreur rester plus ou moins constante au cours du temps. 
 
 Dans le cadre de mes simulations, j'ai accordé une importance limitée aux variations d'énergie, étant donné que les couples que l'on rajoute pour simuler la présence du disque de gaz font que l'énergie n'est pas conservée pour une planète donnée. Cependant, il est important de bien résoudre les orbites et c'est ce point qui est le plus crucial ici. En effet, quelques tests ont permis de contraindre le pas de temps minimal qu'il est nécessaire d'avoir en fonction de la distance orbitale d'une planète. La contrainte de pas de temps dans mes simulations vient donc d'une distance minimale en dessous de laquelle les orbites ne sont pas correctement calculées. Cette limite, afin d'éviter tout problème, est choisie pour être en dessous du bords interne du disque de gaz que je défini.
 
@@ -29,7 +29,7 @@ Il y a donc principalement deux catégories : les intégrateurs symplectiques o�
 
 \bigskip
 
-On défini le Hamiltonien $H$ de notre problème N-corps comme étant la somme des énergies cinétiques et potentielles de chaque corps : 
+On définit le Hamiltonien $H$ de notre problème N-corps comme étant la somme des énergies cinétiques et potentielles de chaque corps : 
 \begin{align}
 H &= \sum_{i=1}^N\frac{{p_i}^2}{2m_i} -G\sum_{i=1}^N\sum_{j=i+1}^N\frac{m_im_j}{r_{ij}}
 \end{align}
@@ -57,19 +57,19 @@ Les algorithmes symplectiques ont cependant un inconvénient. Le pas de temps fi
 
 \bigskip
 
-Nous cherchons maintenant à déterminer l'algorithme le plus approprié pour notre étude. Nous souhaitons faire évoluer un système avec plusieurs dizaines d'embryons planétaire pour plusieurs millions d'années, le système n'étant pas conservatif à cause des divers effets du disque que nous implémentons. 
+Nous cherchons maintenant à déterminer l'algorithme le plus approprié pour notre étude. Nous souhaitons faire évoluer un système avec plusieurs dizaines d'embryons planétaires pour plusieurs millions d'années, le système n'étant pas conservatif à cause des divers effets du disque que nous implémentons. 
 
 Nous souhaitons résoudre correctement les orbites, mais avoir un temps de calcul raisonnable. 
 
 La première contrainte est la dissipation. En effet, notre système n'est pas conservatif. Tous les algorithmes N-corps disponibles (BS, BS2 et RADAU) ne fonctionnent donc pas correctement, ces derniers réclament un pas de temps extrêmement faible qui n'est pas représentatif de la précision demandée pour l'intégration N-corps, la variation d'énergie numérique étant masquée par la variation d'énergie induite par les effets du disque. 
 
-Il nous reste les algorithmes MVS et HYBRID. La deuxième contrainte, ce sont les rencontres proches et les collisions. Nous savons qu'un algorithme symplectique ne les traite pas correctement, et si c'est une erreur négligeable dans le cas où il y en a peu, ça ne l'est absolument plus dans notre cas, le nombre de rencontre proche pouvant être très important, notamment dans la phrase d'accrétion en début de simulation. L'algorithme MVS ne parait donc pas adapté contrairement à HYBRID qui a été construit pour être à la fois symplectique et gérer correctement les rencontres proches moyennant une erreur plus importante lors du changement d'algorithme. 
+Il nous reste les algorithmes MVS et HYBRID. La deuxième contrainte, ce sont les rencontres proches et les collisions. Nous savons qu'un algorithme symplectique ne les traite pas correctement, et si c'est une erreur négligeable dans le cas où il y en a peu, ça ne l'est absolument plus dans notre cas, le nombre de rencontres proches pouvant être très important, notamment dans la phrase d'accrétion en début de simulation. L'algorithme MVS ne parait donc pas adapté contrairement à HYBRID qui a été construit pour être à la fois symplectique et gérer correctement les rencontres proches moyennant une erreur plus importante lors du changement d'algorithme. 
 
 L'algorithme HYBRID est l'algorithme MVS, à pas de temps constant la majorité du temps. Il a donc les avantages d'un algorithme symplectique, à savoir la conservation de l'énergie et la rapidité d'exécution. Lors de rencontres proches (déterminées par une distance minimale d'approche entre deux corps, soit en rayon de Hill, soit en nombre de pas de temps), l'algorithme BS2 est utilisé, le pas de temps devient donc variable afin de résoudre correctement la rencontre et éventuellement la collision. Une fois fini, c'est de nouveau MVS qui prend le relai. 
 
 Dans notre cas, plusieurs approximations sont faites : 
 \begin{itemize}
-\item L'algorithme BS2 ne fonctionne que pour les systèmes conservatifs. On suppose que la variation d'énergie induite par la migration est totalement négligeable pendant le bref labs de temps de la rencontre proche
+\item L'algorithme BS2 ne fonctionne que pour les systèmes conservatifs. On suppose que la variation d'énergie induite par la migration est totalement négligeable pendant le bref laps de temps de la rencontre proche
 \item Le nombre de collisions est suffisamment faible pour que les propriétés symplectiques de l'intégrateur soient conservées. On suppose de plus que les variations d'énergies induites par ce biais sont négligeables devant la dissipation induite par le disque (qui est de l'ordre de l'énergie initiale du système planétaire)
 \end{itemize}
 
@@ -99,12 +99,12 @@ figure/accuracy_04_jup.pdf}}
 
 Si un pas de temps plus grand ($h=1\unit{jour}$) semble convenir pour une planète isolée, la conservation de l'énergie est différente dans le cas avec des perturbations gravitationnelles (cas avec Jupiter). À $0.1\unit{UA}$, qui correspond au bord interne, zone particulièrement importante pour notre étude, ce pas de temps ne convient plus. Dès que l'excentricité augmente un peu, la précision sur l'orbite diminue, et les orbites les plus internes,  ne sont pas correctement résolue.
 
-Même si le disque amortie les excentricités, nous souhaitons résoudre correctement les orbites légèrement excentriques, même au bord interne à $0.1\unit{UA}$. Le pas de temps qui nous semble convenir le mieux à notre problème est $h=0.4\unit{jour}$. C'est donc celui que nous utiliserons par défaut.
+Même si le disque amortit les excentricités, nous souhaitons résoudre correctement les orbites légèrement excentriques, même au bord interne à $0.1\unit{UA}$. Le pas de temps qui nous semble convenir le mieux à notre problème est $h=0.4\unit{jour}$. C'est donc celui que nous utiliserons par défaut.
 
-Un moyen mnémotechnique pour calculer le pas de temps minimal pour une simulation est de considérer qu'il faut résoudre l'orbite la plus proche avec un minimum de $10$ pas de temps. Ceci n'est valable que dans l'approximation où l'excentricité n'est pas trop élevée ($e<0.4$). Si nous faisons ce calcul ici, nous obtenons qu'avec un demi-grand axe minimal de $a=0.1\unit{UA}$ et une excentricité maximale de $e=0.4$, la distance minimal d'approche est $q=0.06$. La période d'une orbite $a=0.06$ est de $5\unit{jours}$ environ, ce qui donne un pas de temps maximal de $h=0.5\unit{jour}$. 
+Un moyen mnémotechnique pour calculer le pas de temps minimal pour une simulation est de considérer qu'il faut résoudre l'orbite la plus proche avec un minimum de $10$ pas de temps. Ceci n'est valable que dans l'approximation où l'excentricité n'est pas trop élevée ($e<0.4$). Si nous faisons ce calcul ici, nous obtenons qu'avec un demi-grand axe minimal de $a=0.1\unit{UA}$ et une excentricité maximale de $e=0.4$, la distance minimale d'approche est $q=0.06$. La période d'une orbite $a=0.06$ est de $5\unit{jours}$ environ, ce qui donne un pas de temps maximal de $h=0.5\unit{jour}$. 
 
 \section{Disque (1+1)D}
-Afin de calculer les effets d'un disque de gaz, une modélisation de ce dernier est nécessaire. Le but étant d'avoir une grande souplesse, le disque implémenté est bien entendu très simplifié. Toutes les quantités sont intégrées et invariantes selon la hauteur z et la position azimutale $\theta$ dans le disque, résultant en un modèle radial 1D de toutes les quantités. 
+Afin de calculer les effets d'un disque de gaz, une modélisation de ce dernier est nécessaire. Le but étant d'avoir une grande souplesse, le disque implémenté est bien entendu très simplifié. Toutes les quantités sont intégrées selon la hauteur $z$ et la position azimutale $\theta$ dans le disque, résultant en un modèle radial 1D de toutes les quantités. 
 
 Dans la mesure du possible, les quantités du disque ont été calculées de manière consistante. Je vais présenter dans la suite de manière chronologique comment sont calculées les grandeurs physiques du disque.
 
@@ -115,7 +115,7 @@ Le profil de densité de surface est défini au début de la simulation comme un
 \end{align}
 où $\Sigma_0$ est la densité de surface à $1\unit{AU}$ et $d$ l'indice de la loi de puissance. 
 
-Ce profil de densité de surface est défini pour une certaine étendue radiale. On défini donc un bord interne $R_\text{in}$ et un bord externe $R_\text{out}$. Le bord interne est généralement à $0.1\unit{AU}$ et le bord externe à $100\unit{AU}$. 
+Ce profil de densité de surface est défini pour une certaine étendue radiale. On définit donc un bord interne $R_\text{in}$ et un bord externe $R_\text{out}$. Le bord interne est généralement à $0.1\unit{AU}$ et le bord externe à $100\unit{AU}$. 
 
 Afin de calculer les valeurs suivantes, ce disque est échantillonné et toutes les valeurs nécessaires sont ensuite calculées à chacun de ces points. 
 
@@ -144,7 +144,7 @@ Afin de construire le profil de température point par point, on résout, pour c
 
 De manière consistante, cette équation a pour paramètre d'entrée la position, et on cherche à trouver les valeurs de la température $T$, échelle de hauteur $H$, profondeur optique $\tau$, diffusivité thermique $\chi$. Toutes ces valeurs sont fixées une fois qu'un ensemble cohérent de valeurs satisfont l'équation.
 
-Afin de résoudre cette équation du type $f(x)=0$, j'ai utilisé une version modifiée de la méthode \textbf{zbrent} de \textbf{Numerical Recipes} \citep{press1992numerical}
+Afin de résoudre cette équation du type $f(x)=0$, j'ai utilisé une version modifiée de la routine \textbf{zbrent} de \textbf{Numerical Recipes} \citep{press1992numerical}. Cette routine utilise la méthode de Van Wijngaarden-Dekker-Brent. Cette méthode est une combinaison de plusieurs méthodes et permet d'assurer la convergence tout en étant relativement rapide.
 
 Le profil de température que nous obtenons dans notre disque de référence (dont nous parlerons plus en détail \refsec{sec:migrations-maps}) est représenté \reffig{fig:fiducial_temperature}
 
@@ -186,12 +186,12 @@ L'accélération due à la migration $\vect{a_\text{mig}}$ est alors donnée par
 où $\vect{v}$ est la vitesse instantanée de la planète.
 
 \section{Amortissement de e et I}
-L'amortissement de l'eccentricité $e$ et de l'inclinaison $I$ d'une planète plongée dans un disque protoplanétaire est modélisée dans le code via les formules de \cite[eq. (9), (11) et (12)]{cresswell2008three} : 
+L'amortissement de l'excentricité $e$ et de l'inclinaison $I$ d'une planète plongée dans un disque protoplanétaire est modélisée dans le code via les formules de \cite[eq. (9), (11) et (12)]{cresswell2008three} : 
 \begin{subequations}
 \begin{align}
-t_\text{wave} &= \frac{M_\star}{m_p}\frac{M_\star}{\Sigma_p {a_p}^2}\left(\frac{H}{r}\right)^4{\Omega_p}^{-1}\\
-t_e &= \frac{t_\text{wave}}{0.780}\left[1-0.14\left(\frac{e}{H/r}\right)^2 + 0.06 \left(\frac{e}{H/r}\right)^3 + 0.18\left(\frac{e}{H/r}\right)\left(\frac{i}{H/r}\right)^2\right]\\
-t_i &= \frac{t_\text{wave}}{0.544}\left[1-0.30\left(\frac{i}{H/r}\right)^2 + 0.24 \left(\frac{i}{H/r}\right)^3 + 0.14\left(\frac{e}{H/r}\right)^2\left(\frac{i}{H/r}\right)\right]
+t_e &= \frac{t_\text{wave}}{0.780}\left[1-0.14\left(\frac{e}{H/r}\right)^2 + 0.06 \left(\frac{e}{H/r}\right)^3 + 0.18\left(\frac{e}{H/r}\right)\left(\frac{I}{H/r}\right)^2\right]\\
+t_I &= \frac{t_\text{wave}}{0.544}\left[1-0.30\left(\frac{I}{H/r}\right)^2 + 0.24 \left(\frac{I}{H/r}\right)^3 + 0.14\left(\frac{e}{H/r}\right)^2\left(\frac{I}{H/r}\right)\right]\\
+t_\text{wave} &= \frac{M_\star}{m_p}\frac{M_\star}{\Sigma_p {a_p}^2}\left(\frac{H}{r}\right)^4{\Omega_p}^{-1}
 \end{align}
 \end{subequations}
 
@@ -201,7 +201,7 @@ L'amortissement de $I$ est arrêté quand l'inclinaison descend en dessous de $I
 \section{Effet de l'excentricité sur le couple de corotation}
 Afin de tenir compte d'un effet mis en évidence par \cite{bitsch2010orbital}, une petite modification a été effectuée dans le calcul du couple total $\Gamma$ exercé par le disque sur la planète. 
 
-En effet, il a été montré que l'excentricité d'une planète a une influence sur sa zone fer-à-cheval et par extension, sur son couple de corotation $\Gamma_C$. Un paramètre d'amortissement $D$, compris entre 0 et 1 a ainsi été ajouté au calcul du couple total :
+En effet, il a été montré que l'excentricité d'une planète a une influence sur sa zone fer-à-cheval et par extension, sur son couple de corotation $\Gamma_C$. Un paramètre d'amortissement $D$, compris entre 0 et 1 a ainsi été ajouté au calcul du couple total \citep{hellary2012global} :
 \begin{align}
 \Gamma &= \Gamma_0 \cdot (\Gamma_L + D\cdot \Gamma_C)
 \end{align}
@@ -214,17 +214,17 @@ D = \frac{\Gamma_C(e)}{\Gamma_C (e=0)} &= 1 + a \cdot \left[\tanh(c) - \tanh\lef
 a &= 0.45 \qquad b=3.46 \qquad c= -2.34
 \end{align}
 \end{subequations}
-où $x_s$ représente la demi-largeur de la zone fer-à-cheval divisée par le demi-grand axe.
+où $x_s$ représente la demi-largeur de la région fer-à-cheval adimensionnée.
 
 \section{Désactivation des effets du disque}
-Quand une planète sort des bornes du disques, les effets d'amortissement de $e$ et $I$ sont désactivés, au même titre que la migration dû à la présence du disque. Ce cas survient rarement au bord externe du disque (généralement à $100\unit{AU}$), mais est beaucoup plus probable au bord interne (généralement à $0.1\unit{AU}$).
+Quand une planète sort des bornes du disques, les effets d'amortissement de $e$ et $I$ sont désactivés, au même titre que la migration due à la présence du disque. Ce cas survient rarement au bord externe du disque (généralement à $100\unit{AU}$), mais est beaucoup plus probable au bord interne (généralement à $0.1\unit{AU}$).
 
 \section{Validité des éléments orbitaux}
-Lorsque d'une rencontre proche entre deux planètes, leurs interactions gravitationnelles rendent caduque les formules qui permettent de calculer les éléments orbitaux à partir des vitesses et positions car ceci suppose qu'on est dans le cas d'une orbite képlerienne isolée. 
+Lors d'une rencontre proche entre deux planètes, leurs interactions gravitationnelles rendent caduques les formules qui permettent de calculer les éléments orbitaux à partir des vitesses et positions car ceci suppose qu'on est dans le cas d'une orbite képlerienne isolée. 
 
-Dans de tels cas, on peut avoir des demi-grands axe négatifs, des excentricités supérieures à 1. Si c'est déjà en soit un problème physique, c'est aussi et surtout un problème numérique car cela fait apparaître des \textbf{Not A Number} (NaN) quand par exemple on a le demi-grand axe en argument d'une racine carrée. Ceci a donc pour conséquence concrète de faire planter le code, au mieux, ou pire, de le faire tourner avec tous les paramètres de la simulation peu à peu gangrénés par des \textbf{NaN}. 
+Dans de tels cas, on peut avoir des demi-grands axes négatifs, des excentricités supérieures à 1. Si c'est déjà en soit un problème physique, c'est aussi et surtout un problème numérique car cela fait apparaître des \textbf{Not A Number} (NaN) lorsque par exemple le demi-grand axe est en argument d'une racine carrée. Ceci a donc pour conséquence concrète de faire planter le code, au mieux, ou pire, de le faire tourner avec tous les paramètres de la simulation peu à peu gangrénés par des \textbf{NaN}. 
 
-En conséquence, j'ai décidé de remplacer dans la plupart des calculs de mes simulations, le demi-grand axe par le rayon $r=\sqrt{x^2+y^2+z^2}$ qui lui n'est pas sensible à ce genre de divergences. Quand il y a une excentricité, il est clair que le rayon est différent du demi-grand axe. Mais les excentricités étant généralement faible, l'erreur faite sur le demi-grand axe reste faible. De plus les rencontres proches représentent un temps négligeable de la simulation au regard des centaines de milliers d'années sur lesquelles on intègre les orbites. On considère donc que la migration induite sur les planètes pendant leur temps de rencontre proche est totalement négligeable au regard du reste de la simulation.
+En conséquence, j'ai décidé de remplacer dans la plupart des calculs de mes simulations, le demi-grand axe par le rayon $r=\sqrt{x^2+y^2+z^2}$ qui lui n'est pas sensible à ce genre de divergences. Quand l'excentricité est non nulle, il est clair que le rayon est différent du demi-grand axe. Mais les excentricités étant généralement faibles, l'erreur faite sur le demi-grand axe reste faible. De plus les rencontres proches représentent un temps négligeable de la simulation au regard des centaines de milliers d'années sur lesquelles on intègre les orbites. On considère donc que la migration induite sur les planètes pendant leur temps de rencontre proche est totalement négligeable au regard du reste de la simulation.
 
 
 %TODO j'en suis là.
