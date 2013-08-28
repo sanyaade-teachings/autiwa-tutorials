@@ -1807,7 +1807,17 @@ PYTHONPATH=$HOME/python/modules
 export PATH PYTHONPATH
 \end{lstlisting}
 
-\subsection{récupérer le nom ou l'extension d'un fichier}
+\subsection{Récupérer des infos à partir du chemin absolu}
+À l'aide du module \gras{os}, on peut manipuler le chemin d'un fichier ou dossier. 
+
+On peut par exemple récupérer le nom du dossier courant (sans le chemin) :
+\begin{lstlisting}[language=python]
+CWD_name = os.path.basename(os.getcwd()) # The name of the current directory
+\end{lstlisting}
+
+Il existe aussi les méthodes \textbf{os.path.dirname} et \textbf{os.path.pardirb}.
+
+\subsection{Récupérer le nom ou l'extension d'un fichier}
 Il existe une méthode dans le module \gras{os}
 \begin{lstlisting}[language=python]
 ext = os.path.splitext(file_name)[1]
