@@ -2196,6 +2196,55 @@ Ensuite, avec les commandes ci-dessous, seul le fond ne bouge pas, et est superp
 
 Ceci reprend un peu le principe de \refsec{sec:superposition-figure}.
 
+\subsubsection{Inclure des vidéos}
+Pour cela, j'ai testé beaucoup de solutions différentes, incluant les paquets \textbf{multimedia} et \textbf{media9} (successeur de \textbf{media15}. Aucun ne me convenait parfaitement. 
+
+En effet, je veux inclure les vidéos dans le fichier .pdf et ne pas dépendre d'un lecteur externe ou de codecs particuliers. 
+
+J'ai ainsi trouvé une solution qui me convient, c'est le paquet \gras[package!flashmovie]{flashmovie}. Ce paquet permet d'inclure des vidéos .flv, le lecteur de vidéos flash étant inclu dans le fichier .pdf. C'est parfait parce que ça ne dépend plus d'un lecteur externe. La seule chose qu'il faut, c'est avoir un lecteur acrobat reader avec une version au moins égale à la v9.0. 
+
+Ce n'est pas satisfaisant dans le sens où il faut acrobat reader et qu'on utilise des vidéos flashs, mais vu que ça concerne des vidéos dans des .pdf, il ne faut pas s'attendre à des solutions miracles. 
+
+Il faut faire attention à plusieurs choses cela dit. J'ai déjà eu des soucis avec un .pdf généré via LaTeX à cause d'options des .pdf. J'ai donc une option particulière à mettre en préambule, mais il faut aussi qu'une version minimale du .pdf soit active. Afin de palier à différents bugs, voici mon préambule : 
+\begin{lstlisting}[{language=tex}]
+%/!\ To avoid error 131 in acrobat reader, you must set the "\pdfobjcompresslevel=1" option before defining the class of the sourcefile !
+\pdfobjcompresslevel=1
+
+% We must import flashmovie before the document class with RequirePackage to avoid problems.
+\RequirePackage{flashmovie}
+
+\documentclass{beamer}
+\usepackage{autiwa-beamer}
+
+\begin{document}
+
+\begin{frame}
+\flashmovie[auto=1,loop=1,engine=flv-player, width=0.95\textwidth, height=0.95\textheight]{HSE_inner_system.flv}
+\end{frame}
+
+\end{document}
+\end{lstlisting}
+
+On peut spécifier le lecteur flash que l'on veut, mais il y a plusieurs problèmes à cela : 
+\begin{itemize}
+\item Il n'y a pas ou peu de documents sur le paquet \textbf{flashmovie.sty} ; 
+\item Tous les lecteurs ne sont pas libres et utilisables dans toutes les conditions.
+\end{itemize}
+
+Le lecteur par défaut me convient, et semble parfaitement remplir son rôle, c'est donc ce dernier que j'utilise. 
+
+\bigskip
+
+Enfin, la question se pose quant à la création des vidéos en .flv. J'utilise personnellement Avidemux, logiciel vidéo que j'affectionne particulièrement. Je génère mes frames en .png avec python. En les nommant avec un nom du style \textbf{frames\_00001.png} et ainsi de suite, il suffit d'importer la première frame et toutes les autres sont importées automatiquement. 
+
+J'utilise ensuite le conteneur \textbf{FLV}, et le codec vidéo \textbf{FLV1 (lavc)}. J'ai tendance à diminuer le framerate afin de ne pas avoir à générer trop de frames. Une vidéo de 30s utilisant 300 frames est ce vers quoi je tend. 
+
+\begin{attention}
+J'ai eu des soucis avec Avidemux, la nouvelle version buguait. C'est à dire que la vidéo se noircissait au fur et à mesure du temps, bug dû à l'utilisation d'image en .png apparemment. Pour palier ce problème, j'utilise la version 2.5.2. Si ça se trouve le bug a été résolu depuis, mais je laisse cette info là au cas où.
+\end{attention}
+
+
+
 \section{Faire un poster avec \LaTeX et beamerposter}
 \subsection{Les bases}
 Voici comment je fais
