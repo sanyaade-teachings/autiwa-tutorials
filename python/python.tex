@@ -110,7 +110,7 @@ Ce sont en fait des classes définies par défaut, et les classes personnalisée
 
 On peut bien entendu tester le type d'une variable et décider de la marche à suivre en fonction. Des exemples sont donnés dans \refsec{sec:test-type-variable}.
 
-\subsection{Formatter des chaînes de caractère}
+\subsection{Formater des chaînes de caractère}
 On peut bien entendu faire des choses de ce genre : 
 \begin{lstlisting}[language=python]
 print('Il y a '+str(count)+' choses.')
@@ -253,8 +253,37 @@ Et pour un entier :
 \end{verbatim}
 qui ici met en forme \texttt{value}, mais complète avec des 0 à gauche pour atteindre une longueur totale de \texttt{len}.
 
+\bigskip
+
+Il existe aussi une astuce extrêmement pratique, c'est d'écrire la chaîne sans passer de variable, pour les passer plus tard. Comme c'est difficile à expliquer, voici un exemple : 
+\begin{verbatim}
+error_message = "The variable %s is not well defined" 
+
+print(error_message % variable_name)
+\end{verbatim}
+Ceci permet de gérer des messages d'erreurs de manière propre sans avoir à marquer la même phrase partout et sans connaître \textit{a priori} les valeurs que l'on souhaite afficher. 
+
+Ceci marche aussi avec des chaînes de caractères très longues comme des fichiers de paramètres que l'on définirait ainsi : 
+\begin{verbatim}
+PARAMETER_FILE = """
+!# the smoothing length for the planet's potential
+b/h = %.2f
+
+!# the adiabatic index for the gas equation of state
+adiabatic_index = %.2f
+
+!# the mean molecular weight in mass of a proton
+mean_molecular_weight = %.2f"""
+\end{verbatim}
+et qu'on créerait de la manière suivante : 
+\begin{verbatim}
+object_file = open("parameter_file.in", 'w')
+object_file.write(PARAMETER_FILE % (b_h, adiabatic_index, mmw))
+object_file.close()
+\end{verbatim}
+
 \subsection{Lire un fichier de données}
-Ici je ne parle pas de lire un fichier de paramètres, mais bien des données, formattées en colonnes, avec un entête et des formats variés. 
+Ici je ne parle pas de lire un fichier de paramètres, mais bien des données, formatées en colonnes, avec un entête et des formats variés. 
 
 Je ne vais pas forcément détailler tout ce qu'on peut faire, mais simplement montrer la commande de base, du module numpy, ainsi que les options les plus utiles : 
 \begin{lstlisting}[language=python]
