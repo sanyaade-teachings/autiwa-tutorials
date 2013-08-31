@@ -218,13 +218,10 @@ change de manière importante la carte de migration \citep{bitsch2013stellar}.
 
 \begin{figure}[htbp]
 \centering
-\subfloat[Avec irradiation]{\includegraphics[width=0.49\textwidth]{figure/migration_map/bell_irr.pdf}}\hfill
-\subfloat[Sans irradiation]{\includegraphics[width=0.49\textwidth]{%
-figure/migration_map/bell_noirr.pdf}}
-
-\caption{Influence de l'irradiation sur la carte de migration à travers le profil de température. Afin de visualiser plus
-facilement les effets, l'opacité de \cite{bell1994FU} a été utilisée. \refdisk}\label{fig:irradiation}
+\includegraphics[width=0.6\linewidth]{figure/migration_map/temperature_with_irradiation.pdf}
+\caption{Profil de température avec ou sans irradiation. \refdisk}\label{fig:temp_profile_irradiation}
 \end{figure}
+
 
 Afin de visualiser l'effet de l'irradiation, nous avons utilisé les lois d'opacités de \cite{bell1994FU}. En effet,
 le principal effet de l'irradiation est de lisser le profil de température. Sans irradiation, une transition d'opacité marquée
@@ -234,8 +231,12 @@ l'irradiation comme on peut le constater sur \reffig{fig:irradiation}.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.6\linewidth]{figure/migration_map/temperature_with_irradiation.pdf}
-\caption{Profil de température avec ou sans irradiation. \refdisk}\label{fig:temp_profile_irradiation}
+\subfloat[Avec irradiation]{\includegraphics[width=0.49\textwidth]{figure/migration_map/bell_irr.pdf}}\hfill
+\subfloat[Sans irradiation]{\includegraphics[width=0.49\textwidth]{%
+figure/migration_map/bell_noirr.pdf}}
+
+\caption{Influence de l'irradiation sur la carte de migration à travers le profil de température. Afin de visualiser plus
+facilement les effets, l'opacité de \cite{bell1994FU} a été utilisée. \refdisk}\label{fig:irradiation}
 \end{figure}
 
 Ainsi, sans irradiation, les deux transitions d'opacités à $1.3$ et $2.9\unit{UA}$ induisent un changement brutal de la pente
@@ -269,14 +270,23 @@ Maintenant, en considérant que l'étoile possède un rayon $R_\star=R_\odot$, \
 
 \begin{figure}[htbp]
 \centering
-\subfloat[Modèle ponctuel]{\includegraphics[width=0.49\textwidth]{figure/shadow/fiducial_shadow.pdf}}\hfill
+\subfloat[Modèle
+ponctuel]{\label{fig:extended_shadow_map}\includegraphics[width=0.49\textwidth]{figure/shadow/fiducial_shadow.pdf}}\hfill
 \subfloat[Modèle étendu]{\includegraphics[width=0.49\textwidth]{%
 figure/shadow/fiducial_r_star_shadow.pdf}}
 
 \caption{Influence de la modélisation de l'ombre sur la carte de migration.  \refdisk}\label{fig:map_shadow_effect}
 \end{figure}
 
-Les profils de températures avec les deux nouveaux modèles testés, à savoir les modèles \textbf{ponctuel} et \textbf{étendu}, nous donnent les cartes de migration \reffig{fig:map_shadow_effect}. dans le cadre du \textbf{modèle ponctuel}, la région d'ombre de la carte de migration est équivalente à la carte de migration que nous obtenons pour le disque de référence sans tenir compte de l'irradiation. Ailleurs, la carte de migration ne change pas. 
+Les profils de températures avec les deux nouveaux modèles testés, à savoir les modèles \textbf{ponctuel} et \textbf{étendu},
+nous donnent les cartes de migration \reffig{fig:map_shadow_effect}. Dans le cadre du \textbf{modèle ponctuel}, la région
+d'ombre change la carte de migration. Dans l'ombre, et juste avant d'en sortir, la carte de migration est équivalente à un
+disque purement actif, sans irradiation. En dehors de l'ombre, la carte de migration ne change pas. Mais à la fin de l'ombre,
+près de $6\unit{UA}$, alors que le chauffage par irradiation remonte brusquement dans la région où l'ombre n'est plus
+complète, une zone de transition apparait. Dans cette zone, la température monte brusquement, et le profil s'inverse. Pour les
+très grandes ($m>25\mearth$) et très petite ($m<1\mearth$) masses, une zone de migration vers l'extérieur apparait, permettant
+de maintenir ces planètes dans le disque, alors que les masses intermédiaires ne peuvent pas migrer vers l'extérieur dans cette
+région de transition \reffig{fig:extended_shadow_map}. 
 
 Dans le cas du \textbf{modèle étendu}, la carte de migration ne change pas par rapport au disque de référence. Dans ce modèle, l'ombre n'est pas suffisamment étendue pour atteindre les parties passives du disque, où l'irradiation est importante. Ainsi, désactiver l'irradiation ne change pas le profil de température et la migration n'est ainsi pas affectée. 
 
@@ -330,7 +340,10 @@ figure/migration_map/TTauri/R_25_T_3500.pdf}}
 
 \bigskip
 
-Nous avons vu dans la partie précédente l'effet de l'ombre du disque. Nous souhaitons maintenant voir ce qu'il en est quand, à luminosité constante, on varie le rayon et la température de l'étoile. À mesure que le rayon de l'étoile augmente, les ombres du disque s'amenuisent car les parties supérieures de la sphère stellaire deviennent visibles \reffig{fig:map_TTauri_radius}. Ainsi, on remarque que la bosse sur la carte de migration disparait à mesure que le rayon de l'étoile augmente. 
+Nous avons vu dans la partie précédente l'effet de l'ombre du disque. Nous souhaitons maintenant voir ce qu'il en est quand, à
+luminosité constante, on varie le rayon et la température de l'étoile \reffig{fig:map_TTauri_radius}. À mesure que le rayon de
+l'étoile augmente, les ombres du disque s'amenuisent car les parties supérieures de la sphère stellaire deviennent visibles.
+Ainsi, on remarque que la bosse sur la carte de migration disparait à mesure que le rayon de l'étoile augmente. 
 
 \begin{figure}[htbp]
 \centering
@@ -341,8 +354,9 @@ figure/migration_map/TTauri/R_10_T_5700.pdf}}
 
 \subfloat[$R_\star=2\unit{R_\odot}$ ; $T=4031\unit{K}$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/TTauri/R_20_T_4031.pdf}}\hfill
 \subfloat[$R_\star=4\unit{R_\odot}$ ; $T=2850\unit{K}$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/TTauri/R_40_T_2850.pdf}}
-\caption{Influence du rayon $R_\star$ de l'étoile centrale sur la carte de migration tandis que la luminosité de l'étoile est conservée en variant la température. \refdisk}
-\end{figure}\label{fig:map_TTauri_radius}
+\caption{Influence du rayon $R_\star$ de l'étoile centrale sur la carte de migration tandis que la luminosité de l'étoile est
+conservée en variant la température. \refdisk}\label{fig:map_TTauri_radius}
+\end{figure}
 
 Le rayon supérieur des TTauri par rapport à des étoiles évoluées, $R=2.5R_\odot$ n'est pas rare \reffig{fig:TTauri_sample}, tendent à atténuer les régions ombrées (\og self-shadowing\fg) du disque. Au cours de son évolution, une étoile TTauri se contracte. À mesure que son rayon diminue, des ombres pourraient donc apparaître dans le disque, modifiant brutalement la carte de migration qui évoluait via la dissipation du disque.
 
