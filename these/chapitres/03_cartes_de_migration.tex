@@ -333,8 +333,8 @@ figure/migration_map/TTauri/R_25_T_3500.pdf}}
 
 \subfloat[$R_\star=2.5\unit{R_\odot}$ ; $T=4000\unit{K}$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/TTauri/R_25_T_4000.pdf}}\hfill
 \subfloat[$R_\star=2.5\unit{R_\odot}$ ; $T=4500\unit{K}$]{\label{fig:high_TTauri}\includegraphics[width=0.49\textwidth]{figure/migration_map/TTauri/R_25_T_4500.pdf}}
-\caption{Influence du rayon $R_\star$ et de la température $T_\star$ de l'étoile centrale sur la carte de migration au travers de l'irradiation. Les luminosités correspondantes pour les cartes (a), (b), (c) et (d) sont respectivement $0.5\unit{L_\odot}$, $0.84\unit{L_\odot}$, $1.43\unit{L_\odot}$ et $2.30\unit{L_\odot}$. \refdisk}
-\end{figure}\label{fig:map_TTauri}
+\caption{Influence du rayon $R_\star$ et de la température $T_\star$ de l'étoile centrale sur la carte de migration au travers de l'irradiation. Les luminosités correspondantes pour les cartes (a), (b), (c) et (d) sont respectivement $0.5\unit{L_\odot}$, $0.84\unit{L_\odot}$, $1.43\unit{L_\odot}$ et $2.30\unit{L_\odot}$. \refdisk}\label{fig:map_TTauri}
+\end{figure}
 
 À partir des 4 étoiles TTauri typiques que nous avons choisis, nous avons l'effet de la luminosité de l'étoile sur la carte de migration. En effet, il y a une dégénérescence entre le rayon et la température de l'étoile, si on considère une étoile ponctuelle. Les cartes ont été classées de la plus faible à la plus grande luminosité, les luminosités allant de $0.5\unit{L_\odot}$ à $2.30\unit{L_\odot}$. À mesure que l'irradiation de l'étoile augmente, le profil de température augmente au travers du disque de manière quasi uniforme. L'irradiation joue ici sur les masses critiques minimales et maximales au delà desquelles la migration vers l'intérieur est systématique. En particulier, les planètes de $4\mearth$ peuvent migrer vers l'extérieur dans le premier disque \reffig{fig:low_TTauri}, alors qu'il faut qu'elle aient au minimum $8\mearth$ pour pouvoir migrer dans le dernier disque \reffig{fig:high_TTauri} où l'irradiation est la plus forte. 
 
@@ -373,10 +373,19 @@ Le rayon supérieur des TTauri par rapport à des étoiles évoluées, $R=2.5R_\
 \subfloat[$\nu=10^{15}\unit{cm^2/s}$]{\label{fig:nu_1e15}\includegraphics[width=0.49\textwidth]{%
 figure/migration_map/viscosity/constant_1e15.pdf}}\hfill
 \subfloat[$\nu=5\cdot 10^{15}\unit{cm^2/s}$]{\label{fig:nu_5e15}\includegraphics[width=0.49\textwidth]{figure/migration_map/viscosity/constant_5e15.pdf}}
-\caption{Influence de la viscosité sur la carte de migration. \refdisk}
-\end{figure}\label{fig:constant_viscosity}
+\caption{Influence de la viscosité sur la carte de migration. \refdisk}\label{fig:constant_viscosity}
+\end{figure}
 
-Le couple de migration est sensible à la valeur de la viscosité $\nu$ \reffig{fig:constant_viscosity}. La viscosité agit sur la saturation du couple de corotation. Quand la viscosité augmente, le temps de diffusion visqueux $t_\text{visc}$ diminue. Le couple de corotation ne sature pas tant que $(T_\text{visc} < t_\text{lib}/2)$. Si on augmente la viscosité $\nu$, le couple de corotation sature moins facilement à mesure que la masse de la planète augmente. La partie supérieure de la carte de migration se décale vers le haut quand la viscosité augmente. 
+Le couple de migration est sensible à la valeur de la viscosité $\nu$ \reffig{fig:constant_viscosity}. À mesure que la
+viscosité augmente, le chauffage visqueux en fait autant. La température augmente de manière générale dans le disque. Les
+zones de migration vers l'extérieur se dilatent en même temps qu'elle se déplacent dans les parties externes du disque. Les
+transitions d'opacité se déplacent également vers l'extérieur. 
+
+De plus la viscosité agit sur la saturation du couple de corotation.
+Quand la viscosité augmente, le temps de diffusion visqueux $t_\text{visc}$ diminue. Le couple de corotation ne sature pas tant
+que $(T_\text{visc} < t_\text{lib}/2)$. Si on augmente la viscosité $\nu$, le couple de corotation sature moins facilement à
+mesure que la masse de la planète augmente. La partie supérieure de la carte de migration se décale vers le haut quand la
+viscosité augmente. 
 
 Mais l'augmentation de la viscosité a un effet indirect sur le temps de diffusion radiatif $t_\text{rad}$. Si la viscosité augmente, le chauffage visqueux augmente. La température augmente, et la diffusivité thermique $\chi$ avec. Ainsi, quand la viscosité augmente, le temps de diffusion radiatif $t_\text{rad}$ diminue. Le couple de corotation est linéaire quand $t_\text{rad} < t_\text{U-turn}$. Quand la viscosité $\nu$ augmente, le couple de corotation se linéarise plus rapidement à mesure que la masse de la planète diminue. La partie inférieur de la carte de migration se décale elle aussi vers le haut. Des planètes de faibles masses qui migraient vers l'extérieur ne peuvent plus migrer que vers l'intérieur à mesure que la viscosité augmente. 
 
@@ -398,17 +407,27 @@ Par rapport à un modèle où la viscosité est constante, la prescription alpha
 \hfill
 \subfloat[$\alpha=5\cdot 10^{-3}$]{\label{fig:alpha_5e-3}\includegraphics[width=0.49\textwidth]{figure/migration_map/viscosity/alpha_5e-3.pdf}}
 
-\subfloat[$\alpha=10^{-3}$]{\includegraphics[width=0.49\textwidth]{%
+\subfloat[$\alpha=10^{-3}$]{\label{fig:alpha_1e-3}\includegraphics[width=0.49\textwidth]{%
 figure/migration_map/viscosity/alpha_1e-3.pdf}}\hfill
-\subfloat[$\alpha=5\cdot 10^{-4}$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/viscosity/alpha_5e-4.pdf}}
-\caption{Influence de la valeur de $\alpha$ dans le cadre d'une prescription alpha pour la viscosité. \refdisk}
-\end{figure}\label{fig:alpha_viscosity}
+\subfloat[$\alpha=5\cdot
+10^{-4}$]{\label{fig:alpha_5e-4}\includegraphics[width=0.49\textwidth]{figure/migration_map/viscosity/alpha_5e-4.pdf}}
+\caption{Influence de la valeur de $\alpha$ dans le cadre d'une prescription alpha pour la viscosité. \refdisk}\label{fig:alpha_viscosity}
+\end{figure}
 
-On fait varier la valeur de $\alpha$ dans une plage de valeur tirée des observations \citep{guilloteau2011dual}. Dans les disques jeunes, $\alpha$ peut atteindre $10^{-2}$, tandis que dans les disques un peu plus âgés, \cite[fig. 16]{guilloteau2011dual} montre des valeurs plus basses. Nous prenons comme plage de valeur à étudier $\alpha\in[5\cdot 10^{-4} ; 10^{-2}]$. 
+On fait varier la valeur de $\alpha$ dans une plage de valeurs tirée des observations \citep{guilloteau2011dual}. Dans les
+disques jeunes, $\alpha$ peut atteindre $10^{-2}$, tandis que les disques un peu plus âgés \cite[fig.
+16]{guilloteau2011dual} montrent des valeurs plus basses. Nous prenons comme plage de valeurs à étudier $\alpha\in[5\cdot
+10^{-4} ; 10^{-2}]$. 
 
 Pour une valeur de alpha donnée, la viscosité varie à travers le disque. Si on prend l'exemple de $\nu=10^{14}\unit{cm^2/s}$ \reffig{fig:nu_1e14}, cette viscosité est atteinte à $0.2\unit{UA}$ pour notre disque de référence avec $\alpha=5\cdot 10^{-3}$. La carte de migration dans cette région, autour de $0.2\unit{UA}$ est similaire dans le cas de la viscosité constante ou du modèle alpha. On remarque la même chose si on s'intéresse maintenant à $\nu=10^{15}\unit{cm^2/s}$ \reffig{fig:nu_1e15}, ce qui correspond à la zone autour de $6\unit{UA}$ pour notre disque de référence \reffig{fig:alpha_5e-3}.
 
 Par contre, si nous cherchons à comparer $\nu=5\cdot 10^{15}\unit{cm^2/s}$ \reffig{fig:nu_5e15} avec le modèle $\alpha=5\cdot 10^{-3}$ \reffig{fig:alpha_5e-3} nous ne constatons aucune zone où la carte de migration est similaire. Le fait est que cela correspond à la zone autour de $45\unit{UA}$, région dans laquelle l'irradiation domine. Nous voyons donc qu'à viscosité équivalente, nous ne pouvons comparer un modèle alpha avec un modèle à viscosité constante uniquement dans les régions actives du disque, là où le chauffage visqueux domine. En effet, dans ces régions là, la viscosité étant l'origine principale de la température, c'est elle qui gouverne la carte de migration. 
+
+Enfin, les cartes où $\alpha$ est très faible \reffig{fig:alpha_1e-3} et \reffig{fig:alpha_5e-4} montrent qu'à mesure que alpha
+diminue, la viscosité fait de même de manière globale dans le disque. Dans ces disques là, on constate la disparition
+progressive de la totalité des zones de convergences. Ainsi, dans le disque où alpha est le plus faible ($\alpha=5 10^{-4}$),
+toutes les planètes migrent vers l'intérieur \reffig{fig:alpha_5e-4}, quelle que soit leur masse ou leur position dans le
+disque.
 
 \subsection{Dead zone}
 \begin{figure}[htbp]
@@ -417,6 +436,10 @@ Par contre, si nous cherchons à comparer $\nu=5\cdot 10^{15}\unit{cm^2/s}$ \ref
 \caption{Profils de viscosité du disque selon qu'une zone morte est modélisée ou pas. En dehors de la zone morte $\alpha=5\cdot 10^{-3}$. Dans la zone morte, $\alpha=10^{-4}$. Ces profils correspondent à chacune des deux cartes de migration
 présentées \protect\reffig{fig:viscosity_DZ}. \refdisk}\label{fig:dead_zone_profile}
 \end{figure}
+
+Une zone morte, ou \og dead zone\fg est une région d'un disque protoplanétaire où la turbulence est faible en raison d'un taux
+d'ionisation extrêmement bas empêchant tout couplage du gaz du disque avec le champ magnétique de l'étoile
+\refsec{sec:ionisation_DZ}.
 
 Dans la zone morte, la viscosité chute rapidement, et augmente en fonction de la distance dans un régime différent que dans le reste du disque \reffig{fig:dead_zone_profile}. 
 
@@ -448,13 +471,19 @@ figure/migration_map/viscosity/dz_shadow_temp_profile.pdf}}
 
 Cette soudaine chute de la température entraine une augmentation du temps de diffusion radiatif $t_\text{rad}$. Cette augmentation du temps de diffusion rend beaucoup plus difficile pour le couple de corotation de tendre vers sa valeur linéaire. Même pour des masse de planète faibles, le couple de corotation est non-linéaire et fait apparaître une zone de migration vers l'extérieur au début de la zone morte, peu après $1\unit{UA}$. 
 
-Cette zone de convergence ne sera sans doute pas très intéressante au niveau de l'accrétion de masse et de la formation des planètes car peu étendue, mais elle pourrait malgré tout jouer un rôle majeur en maintenant des planètes telluriques de faibles masses (de l'ordre de $1\mearth$) dans le disque, sans besoin d'aucun compagnon massif en résonance pour la maintenir.
+Cette zone de convergence sera sans doute très intéressante au niveau de l'accrétion de masse et de la formation des
+planètes car peu étendue, mais elle pourrait malgré tout jouer un rôle majeur en maintenant des planètes telluriques de faibles
+masses (de l'ordre de $1\mearth$) dans le disque, sans besoin d'aucun compagnon massif en résonance pour la maintenir.
 
-La modélisation poussée de l'ombre du disque et son effet sur l'irradiation pourrait donc jouer un rôle majeur au niveau des zones mortes où une zone locale où l'irradiation domine apparaît dû à la décroissance soudaine de la viscosité et du chauffage qui en découle.
+La modélisation poussée de l'ombre du disque et son effet sur l'irradiation pourrait donc jouer un rôle majeur au niveau des
+zones mortes où une zone locale où l'irradiation domine apparaît dû à la décroissance soudaine de la viscosité et du chauffage
+qui en découle \citep{matsumura2003origin}.
 
 \section{Profil de densité de surface}
 Dans notre modèle, le profil de la densité de surface est notre plus grande incertitude. Les contraintes observationnelles ne
-restreignent pas suffisamment le profil de densité \citep[Fig. 12]{guilloteau2011dual}. C'est à partir de ce profil de densité de surface que nous calculons toutes les propriétés du disque, en particulier la température et l'échelle de hauteur, puis la migration des planètes. 
+restreignent pas suffisamment le profil de densité \citep[Fig. 12]{andrews2007high, williams2011protoplanetary,
+guilloteau2011dual}. C'est à partir de ce profil de densité de surface que nous calculons toutes les propriétés du disque, en
+particulier la température et l'échelle de hauteur, puis la migration des planètes. 
 
 On définit la loi de puissance pour la densité de surface de la façon suivante : 
 \begin{align}
@@ -462,7 +491,48 @@ On définit la loi de puissance pour la densité de surface de la façon suivant
 \end{align}
 où $\Sigma_0$ est la densité de surface à $R_0=1\unit{UA}$.
 
-Je cherche à étudier l'influence de l'indice $d$ de la loi de puissance sur la carte de migration, soit en le faisant varier individuellement, soit en regardant, à masse du disque constante, ce que le profil de densité change.
+À l'instar de
+la viscosité $\Sigma$, le profil de densité de surface influence directement le chauffage visqueux. Cependant, changer la
+densité de surface permet de modifier le chauffage visqueux sans modifier le temps de diffusion visqueux $t_\nu$. Je cherche à
+étudier l'influence de l'indice $d$ de la loi de puissance sur la carte de migration, soit en le faisant varier
+individuellement, soit en regardant, à masse du disque constante, ce que le profil de densité change. 
+
+\subsection{Variation de l'indice d}
+\begin{figure}[htbp]
+\centering
+\subfloat[$d=0.6$]{\label{fig:d06}\includegraphics[width=0.49\textwidth]{%
+figure/migration_map/index/sigma/300_06.pdf}}\hfill
+\subfloat[$d=0.7$]{\label{fig:d07}\includegraphics[width=0.49\textwidth]{figure/migration_map/index/sigma/300_07.pdf}}
+
+\subfloat[$d=1$]{\includegraphics[width=0.49\textwidth]{%
+figure/migration_map/index/sigma/300_10.pdf}}\hfill
+\subfloat[$d=1.5$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/index/sigma/300_15.pdf}}
+
+\caption{Influence de l'indice $d$ de la loi de puissance définissant la densité de surface du disque sur la carte de migration.
+Ici, $\Sigma_0=\cte=300\unit{g/cm^2}$, seul l'indice $d$ du profil de densité de surface varie. \refdisk}\label{fig:map_index}
+\end{figure}
+
+Si l'indice $d$ du profil de densité de surface augmente, la forme de la carte de migration aura tendance à se compresser autour
+du rayon $R_0=1\unit{UA}$ où est défini la densité $\Sigma_0$ \reffig{fig:map_index}. En effet, pour $\Sigma_0$ fixé, si on
+augmente $d$, alors on augmente la masse du disque en dessous de $R_0$ tandis qu'on diminue sa masse au delà de $\Sigma_0$
+\reffig{fig:index_density}. Cette modification de la masse joue sur le chauffage visqueux et donc sur le profil de température
+qui décroit plus rapidement en fonction du rayon \reffig{fig:index_temp}. En dessous de $R_0$, la température est plus
+importante à mesure que $d$ augmente. Au delà de $R_0$ c'est l'inverse. Dans les parties externes où le chauffage visqueux ne
+joue aucun rôle, c'est l'irradiation qui détermine la température. La densité joue encore un rôle au travers de l'opacité dans
+la partie passive du disque, jusqu'à ce que l'opacité ne dépende quasiment plus de la densité (à température faible
+$T<100\unit{K}$).
+
+\begin{figure}[htbp]
+\centering
+\subfloat[Profils de densité]{\label{fig:index_density}\includegraphics[width=0.49\textwidth]{%
+figure/migration_map/index/sigma/density_profile.pdf}}\hfill
+\subfloat[Profils de
+température]{\label{fig:index_temp}\includegraphics[width=0.49\textwidth]{%
+figure/migration_map/index/sigma/temperature_profile.pdf}}
+
+\caption{Profils de densité et température pour les 4 cartes de migration présentées
+\protect\reffig{fig:map_index}.}\label{fig:index_profiles}
+\end{figure}
 
 \subsection{Dissipation du disque}
 
@@ -482,12 +552,16 @@ figure/migration_map/total_mass/150_05.pdf}}
 R^{-\sfrac{1}{2}}\unit{g/cm^2}$ nous représentons les cartes de migration pour des disques où nous avons changé la masse. D'en haut à gauche vers en bas à droite, ces cartes représentent les premiers stades de la dissipation du disque. \refdisk}\label{fig:map_total_mass}
 \end{figure}
 
-Étudier l'influence de la masse du disque nous permet de remonter à l'effet de la dissipation du disque. En particulier dans la première phase de la dissipation, quand le profil de densité de surface n'évolue pas beaucoup. Dans la seconde partie gouvernée par la photo-évaporation, la dissipation ne conserve pas le profil en loi de puissance de la densité de surface (en faisant que ce dernier en est un initialement) \reffig{fig:disk_dispersion}. Au lieu de ça, le
+Étudier l'influence de la masse du disque nous permet de remonter à l'effet de la dissipation du disque. En particulier dans la
+première phase de la dissipation, quand le profil de densité de surface n'évolue pas beaucoup. Dans la seconde partie gouvernée
+par la photo-évaporation, la dissipation ne conserve pas le profil en loi de puissance de la densité de surface (en faisant
+l'approximation que ce dernier en est un initialement) \reffig{fig:disk_dispersion}. Au lieu de ça, le
 disque va se creuser à partir d'un certain rayon, optimal vis à vis de la photo-évaporation. Le disque va alors se scinder en
 deux, la partie interne va rapidement tomber sur l'étoile centrale et dans un dernier stade les parties externes vont aussi se
-dissiper. Si les détails de la dissipation ne sont pas connus, il apparait malgré tout qu'une unique décroissance exponentielle du disque tout au long de sa vie ne représente pas fidèlement l'évolution du disque. Dans le cadre de la migration planétaire où les profils de densité et de températures jouent un rôle fondamental, nous nous limitons donc à l'étude des premiers millions d'années d'évolution du disque. 
-
-La dispersion du disque a été discutée brièvement \refsec{sec:dispersion}.
+dissiper. Si les détails de la dissipation ne sont pas connus, il apparait malgré tout qu'une unique décroissance exponentielle
+du disque tout au long de sa vie ne représente pas fidèlement l'évolution du disque \citep{alexander2006photoevaporation}. Dans
+le cadre de la migration planétaire où les profils de densité et de températures jouent un rôle fondamental, nous nous limitons
+donc à l'étude des premiers millions d'années d'évolution du disque. 
 
 À l'instar de la viscosité, la densité de surface $\Sigma_0$ agit sur le chauffage visqueux et donc indirectement sur le temps de diffusion radiatif $t_\text{rad}$. Par contre, quand on augmente la densité, on ne modifie pas le temps de diffusion visqueux qui influe sur la saturation. 
 
@@ -504,33 +578,9 @@ On note enfin que lors de la dissipation du disque, il semble que la viscosité 
 
 À mesure que le disque se dissipe, des planètes de faibles masses qui auparavant migraient inexorablement vers l'intérieur peuvent migrer vers l'extérieur sous certaines conditions. 
 
-Une manière de résumer l'effet de la dissipation du disque sur la carte de migration, c'est de dire que la carte de migration est compressée vers le coin en bas à gauche de la carte de migration, le point (0;0) dans le système de coordonnées (distance ; masse).
-
-\subsection{Variation de l'indice d}
-\begin{figure}[htbp]
-\centering
-\subfloat[$d=0.6$]{\label{fig:d06}\includegraphics[width=0.49\textwidth]{%
-figure/migration_map/index/sigma/300_06.pdf}}\hfill
-\subfloat[$d=0.7$]{\label{fig:d07}\includegraphics[width=0.49\textwidth]{figure/migration_map/index/sigma/300_07.pdf}}
-
-\subfloat[$d=1$]{\includegraphics[width=0.49\textwidth]{%
-figure/migration_map/index/sigma/300_10.pdf}}\hfill
-\subfloat[$d=1.5$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/index/sigma/300_15.pdf}}
-
-\caption{Influence de l'indice $d$ de la loi de puissance définissant la densité de surface du disque sur la carte de migration.
-Ici, $\Sigma_0=\cte=300\unit{g/cm^2}$, seul l'indice $d$ du profil de densité de surface varie. \refdisk}\label{fig:map_index}
-\end{figure}
-
-Si l'indice $d$ du profil de densité de surface augmente, la forme de la carte de migration aura tendance à se compresser autour du rayon $R_0=1\unit{UA}$ où est défini la densité $\Sigma_0$ \reffig{fig:map_index}. En effet, pour $\Sigma_0$ fixé, si on augmente $d$, alors on augmente la masse du disque en dessous de $R_0$ tandis qu'on diminue sa masse au delà de $\Sigma_0$ \reffig{fig:index_density}. Cette modification de la masse joue sur le chauffage visqueux et donc sur le profil de température qui décroit plus rapidement en fonction du rayon \reffig{fig:index_temp}. En dessous de $R_0$, la température est plus importante à mesure que $d$ augmente. Au delà de $R_0$ c'est l'inverse. Dans les parties externes où le chauffage visqueux ne joue aucun rôle, c'est l'irradiation qui détermine la température. La densité joue encore un rôle au travers de l'opacité dans la partie passive du disque, jusqu'à ce que l'opacité ne dépende quasiment plus de la densité (à température faible $T<100\unit{K}$).
-
-\begin{figure}[htbp]
-\centering
-\subfloat[Profils de densité]{\label{fig:index_density}\includegraphics[width=0.49\textwidth]{%
-figure/migration_map/index/sigma/density_profile.pdf}}\hfill
-\subfloat[Profils de température]{\label{fig:index_temp}\includegraphics[width=0.49\textwidth]{figure/migration_map/index/sigma/temperature_profile.pdf}}
-
-\caption{Profils de densité et température pour les 4 cartes de migration présentées \protect\reffig{fig:map_index}.}\label{fig:index_profiles}
-\end{figure}
+Une manière de résumer l'effet de la dissipation du disque sur la carte de migration, c'est de dire que la carte de migration
+est compressée vers le coin en bas à gauche de la carte de migration, le point (0;0) dans le système de coordonnées (distance ;
+masse).
 
 \subsection{Variation du profil à masse totale constante}
 On remarque que l'augmentation de l'indice $d$ du profil de densité de surface va avoir un impact sur la masse totale du
