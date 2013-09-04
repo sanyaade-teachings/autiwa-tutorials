@@ -57,20 +57,7 @@ migre plus. Le détail des paramètres du disque de référence est donné \reft
 Dans cette partie, nous allons présenter notre disque de référence et comment ses paramètres vont influencer la migration des
 planètes. Ce disque de référence servira aussi de comparaison quand nous étudierons les effets des paramètres du disque.
 
-Afin d'étudier la migration dans les disques, il est pratique de 
-regarder une \og carte de migration\fg, comme \reffig
-{fig:fiducial_migration_map}. Cette carte permet de voir rapidement 
-les parties intéressantes et de prédire l'évolution d'une planète à 
-partir des position et masse initiales. Le couple adimensionné 
-\reffig{fig:fiducial_adim} sera préférentiellement utilisé quand 
-nous représenterons une carte de migration ensuite, car plus intuitif 
-à lire. La carte \reffig{fig:fiducial_units} montre que le couple 
-total a des dépendances complexes au travers de $\Gamma_0$. Il 
-dépend notamment de la masse de la planète, du rapport d'aspect et 
-de la densité locale du disque. 
-
-\reffig{fig:fiducial_migration_map} montre la carte de migration du disque de référence que nous utiliserons de manière
-récurrente ici. Ce disque est obtenu à l'aide de la table d'opacité d'\cite{hure2000transition}. Le profil de température est
+Ce disque est obtenu à l'aide de la table d'opacité d'\cite{hure2000transition}. Le profil de température est
 calculé en tenant compte de l'irradiation, avec des paramètres solaires pour la température et le rayon de l'étoile ($T_\star =
 5700\unit{K}$ ; $R_\star = 4.65\cdot 10^{-3}\unit{AU}$). L'albédo du disque est pris égal à $0.5$. La viscosité est calculée à
 partir d'une prescription alpha \citep{shakura1973black}. On considère un disque dont les bords internes et externes sont
@@ -89,6 +76,23 @@ $T_\star = 5700\unit{K}$ & $R_\star = 4.65\cdot 10^{-3}\unit{AU}$ & \multicolumn
 \cite{hure2000transition}. La viscosité est calculée en suivant la prescription alpha de
 \cite{shakura1973black}.}\label{tab:fiducial_parameters}
 \end{table}
+
+La longueur de lissage $b/h$ est prise assez faible afin de ne pas sous-estimer le couple de corotation, qui est la partie la plus importante du couple dans notre cas car c'est celle qui permet d'inverser le sens de migration. En faisant cela, on sur-estime le couple de Lindblad, pour lequel une longueur de lissage de $b/h=0.75$ est conseillée \citep{masset2002coorbital}.
+En considérant que le gaz du disque est un gaz parfait diatomique, l'indice adiabatique vaut alors $\gamma=7/5$.
+La valeur de $\alpha$ correspond à une valeur typique observée. De plus, elle tient compte du fait que la viscosité diminue avec l'âge du disque et que nous considérons une époque où le disque a déjà évolué, puisque nous prenons des embryons relativement massifs (au minimum $0.1\mearth$). De même, le profil de densité de surface $\Sigma(R) = 300 \cdot R^{-1/2}\unit{g/cm^2}$ ne correspond pas à un disque très massif car on considère que le disque est déjà évolué. 
+
+Afin d'étudier la migration dans les disques, il est pratique de 
+regarder une \og carte de migration\fg, comme \reffig
+{fig:fiducial_migration_map}. Cette carte permet de voir rapidement 
+les parties intéressantes et de prédire l'évolution d'une planète à 
+partir des position et masse initiales. Le couple adimensionné 
+\reffig{fig:fiducial_adim} sera préférentiellement utilisé quand 
+nous représenterons une carte de migration ensuite, car plus intuitif 
+à lire. La carte \reffig{fig:fiducial_units} montre que le couple 
+total a des dépendances complexes au travers de $\Gamma_0$. Il 
+dépend notamment de la masse de la planète, du rapport d'aspect et 
+de la densité locale du disque. \reffig{fig:fiducial_migration_map} montre la carte de migration du disque de référence que nous utiliserons de manière
+récurrente ici. 
 
 \begin{figure}[htbp]
 \centering
@@ -247,13 +251,13 @@ $R^{-\sfrac37}$ quand le disque est purement passif.
 
 
 \subsection{Effet de l'ombre du disque sur lui même.}\label{sec:shadow}
-Tout au long de ma thèse, j'ai considéré un modèle d'irradiation dans lequel la gestion des ombres restait sommaire. En effet, la seule ombre que je considérais était l'ombre directe. C'est à dire les régions du disques pour lesquelles l'échelle de hauteur décroit avec la distance. Ces zones où l'angle d'interception des rayons de l'étoile était négatif étaient détectées et l'irradiation était forcée à zéro. Nous appellerons ce modèle le \textbf{modèle direct}. C'est un modèle qui découle naturellement de la modélisation du disque. En effet, pour calculer le profil de température, on doit calculer la température point par point en partant du bord externe pour que le calcul de la température converge. Nous n'avons donc pas accès à l'ombre réelle du disque lors du calcul de l'irradiation. L'ombre est simplement la zone où l'angle entre les rayons de l'étoile et la surface du disque est nul.
+Tout au long de ma thèse, j'ai considéré un modèle d'irradiation dans lequel la gestion des ombres restait sommaire. En effet, la seule ombre que je considérais était l'ombre directe. C'est à dire les régions du disque pour lesquelles l'échelle de hauteur décroit avec la distance. Ces zones où l'angle d'interception des rayons de l'étoile était négatif étaient détectées et l'irradiation était forcée à zéro. Nous appellerons ce modèle le \textbf{modèle direct}. C'est un modèle qui découle naturellement de la modélisation du disque. En effet, pour calculer le profil de température, on doit calculer la température point par point en partant du bord externe pour que le calcul de la température converge. Nous n'avons donc pas accès à l'ombre réelle du disque lors du calcul de l'irradiation. L'ombre est simplement la zone où l'angle entre les rayons de l'étoile et la surface du disque est nul.
 
 Ici nous cherchons à comparer ce modèle avec deux modèles plus complexes où l'ombre du disque est gérée de manière plus cohérente. 
 
 Dans ces nouveaux modèles, on calcule une première fois le profil de température du disque et on stocke la valeur de l'irradiation en chaque point du disque. Ensuite, on détecte les ombres du disque en cherchant les maxima locaux du profil d'échelle de hauteur. Pour chaque maximum local, on cherche l'ombre qu'il projette sur le disque et dans cette ombre là, l'irradiation est forcée à 0. Dans les 10 derniers pourcents de l'étendue de l'ombre, on lisse linéairement l'irradiation en considérant que 10\% avant la fin de l'ombre, l'irradiation est égale à $0 * F_\text{irr}$ (où $F_\text{irr}$ est le chauffage d'irradiation local) et à la toute fin de l'ombre, l'irradiation vaut $1 * F_\text{irr}$. Ainsi, à la position $R_b + 0.95 * l_s$ (où $R_b$ est le rayon de la bosse du disque considérée et $l_s$ est la longueur de l'ombre qu'il projette), l'irradiation vaut la moitié de l'irradiation calculée précédemment $0.5 * F_\text{irr}$. 
 
-J'ai testé deux cas, un cas où l'étoile est considérée ponctuelle, que nous nommerons \textbf{modèle ponctuel}, et un cas où on prend en compte le rayon de l'étoile que nous appelerons le \textbf{modèle étendu}. Dans ce dernier cas, on néglige totalement le fait qu'en sortant de l'ombre, on ne voit quasiment pas l'étoile. Dans tous les modèles, l'irradiation considère que l'étoile n'est pas ponctuelle, c'est simplement pour le calcul des ombres a posteriori que l'on considèrera dans un cas que l'étoile est ponctuelle, ou est une source étendue. 
+J'ai testé deux cas, un cas où l'étoile est considérée ponctuelle, que nous nommerons \textbf{modèle ponctuel}, et un cas où on prend en compte le rayon de l'étoile que nous appellerons le \textbf{modèle étendu}. Dans ce dernier cas, on néglige totalement le fait qu'en sortant de l'ombre, on ne voit quasiment pas l'étoile. Dans tous les modèles, l'irradiation considère que l'étoile n'est pas ponctuelle, c'est simplement pour le calcul des ombres a posteriori que l'on considèrera soit une étoile ponctuelle soit de rayon $R_\star$.
 
 \reffig{fig:shadow_temp_profile} montre l'évolution du profil de température en fonction des différents modèles de l'ombre du disque. Le profil de température du \textbf{modèle direct} est simplement celui du disque de référence. L'ombre est simplement constituée des zones où l'angle de réception des rayons de l'étoile est nul. Dans ce cas, la zone d'ombre est située entre $1.46$ et $1.75\unit{UA}$.
 
@@ -266,7 +270,7 @@ J'ai testé deux cas, un cas où l'étoile est considérée ponctuelle, que nous
 
 Ensuite, le \textbf{modèle ponctuel} considère l'étoile centrale comme ponctuelle, et cherche \textit{a posteriori} les ombres du disques, avant de recalculer une nouvelle fois le profil de température. Le profil de température du disque de référence dans lequel on ne tient pas compte de l'irradiation (\textbf{pure viscous}) est représenté, afin de pouvoir comparer. Dans la zone d'ombre ainsi calculée, le profil de température est équivalent à un profil purement visqueux, sans tenir compte de l'irradiation de l'étoile. En effet, dans cette région là, l'irradiation est forcée à 0. 
 
-Maintenant, en considérant que l'étoile possède un rayon $R_\star=R_\odot$, \textbf{modèle étendu}. L'ombre qui s'étendait auparavant de $0.93$ à $7.35\unit{UA}$ dans le \textbf{modèle ponctuel} n'est plus que de $1.65$ à $1.78\unit{UA}$. L'ombre commence plus loin, car les rayons de l'étoile centrale partent de plus haut. Ils ne partent plus de $z=0$ mais de $z=0.0046\unit{UA}$. De même, la surface du disque sort beaucoup plus rapidement de l'ombre pour les mêmes raisons. En conséquence, le \textbf{modèle étendu} possède exactement le même profil que le \textbf{modèle direct}. L'ombre est dans ce cas située dans une partie totalement dominée par le chauffage visqueux et l'irradiation n'a aucune incidence sur la température du disque. 
+Maintenant, on considère que l'étoile possède un rayon $R_\star=R_\odot$, \textbf{modèle étendu}. L'ombre qui s'étendait auparavant de $0.93$ à $7.35\unit{UA}$ dans le \textbf{modèle ponctuel} n'est plus que de $1.65$ à $1.78\unit{UA}$. L'ombre commence plus loin, car les rayons de l'étoile centrale partent de plus haut. Ils ne partent plus de $z=0$ mais de $z=0.0046\unit{UA}$. De même, la surface du disque sort beaucoup plus rapidement de l'ombre pour les mêmes raisons. En conséquence, le \textbf{modèle étendu} possède exactement le même profil que le \textbf{modèle direct}. L'ombre est dans ce cas située dans une partie totalement dominée par le chauffage visqueux et l'irradiation n'a aucune incidence sur la température du disque. 
 
 \begin{figure}[htbp]
 \centering
@@ -538,9 +542,9 @@ figure/migration_map/index/sigma/temperature_profile.pdf}}
 
 \begin{figure}[htbp]
 \centering
-\subfloat[$\Sigma_0=1200\unit{g/cm^2}$]{\includegraphics[width=0.49\textwidth]{%
+\subfloat[$\Sigma_0=1200\unit{g/cm^2}$]{\label{fig:1200_map}\includegraphics[width=0.49\textwidth]{%
 figure/migration_map/total_mass/1200_05.pdf}}\hfill
-\subfloat[$\Sigma_0=600\unit{g/cm^2}$]{\includegraphics[width=0.49\textwidth]{%
+\subfloat[$\Sigma_0=600\unit{g/cm^2}$]{\label{fig:600_map}\includegraphics[width=0.49\textwidth]{%
 figure/migration_map/total_mass/600_05.pdf}}
 
 \subfloat[$\Sigma_0=300\unit{g/cm^2}$]{\includegraphics[width=0.49\textwidth]{%
@@ -570,7 +574,7 @@ R^{-\sfrac{1}{2}}\unit{g/cm^2}$ et $\alpha=5\cdot 10^{-3}$. Si on multiplie la d
 
 Par contre, si on modifie la viscosité, on change aussi l'opacité, qui dépend de la densité. Ceci se répercute sur le profil de température, le disque est globalement plus chaud quand on modifie la densité que quand on change la valeur de alpha. Si on augmente la température, la diffusivité thermique est plus grande, le temps de diffusion radiatif $t_\text{rad}$ diminue. Le couple de corotation devient linéaire pour des masses plus grandes. 
 
-Quand la densité diminue, on observe les mêmes effets qu'avec la diminution de la viscosité \reffig{fig:map_total_mass}, mais ces effets sont amplifiés car la densité influe sur l'opacité du disque. Le profil de température diminue plus rapidement. La carte de migration se compresse plus rapidement vers l'intérieur du disque en variant la densité (par opposition à une variation de viscosité). Par contre, la viscosité n'évoluant pas, la partie supérieure de la carte de migration se compresse moins rapidement vers le bas. Des planètes massives conserveront donc une zone de migration vers l'extérieur plus longtemps si on diminue la densité au lieu de diminuer la viscosité. 
+Quand la densité diminue, on observe les mêmes effets qu'avec la diminution de la viscosité \reffig{fig:map_total_mass}, mais ces effets sont amplifiés car la densité influe sur l'opacité du disque. Le profil de température diminue plus rapidement. La carte de migration se compresse plus rapidement vers l'intérieur du disque en variant la densité (par opposition à une variation de viscosité). Par contre, la viscosité n'évoluant pas, la partie supérieure de la carte de migration se compresse moins rapidement vers le bas. Des planètes massives conserveront donc une zone de migration vers l'extérieur plus longtemps si on diminue la densité au lieu de diminuer la viscosité. On remarque que les deux disques les plus massifs présentent une transition d'opacité très marquée respectivement à $6$ \reffig{fig:600_map} et $12\unit{UA}$ \reffig{fig:1200_map}. 
 
 \bigskip
 
@@ -753,6 +757,8 @@ De plus, les zones où l'opacité varie beaucoup, notamment lors de la sublimati
 
 En comparant les variations des zones de couple nul en fonction des position et masse de la planète dans les différentes cartes de migration \reffig{fig:opacity_tables}, on constate que les lois d'opacités \citep{bell1994FU, zhu2009nonsteady, chambers2009analytic} donnent lieu à des formes beaucoup plus artificielles qu'une table d'opacité \citep{hure2000transition} n'introduisant aucune approximation en loi de puissance.
 
+Bien que les détails fins changent, on retrouve malgré tout la même transition d'opacité dans les profils \citep{bell1994FU, zhu2009nonsteady, hure2000transition} qui est respectivement à $4.5$, $4$ et $4.5\unit{UA}$ \reffig{fig:opacity_tables}. C'est en particulier vrai pour une planète de $10\mearth$.
+
 \bigskip
 
 Les modèles d'opacités sont une source d'incertitude pour tous les types de simulations numériques. Les simulations hydrodynamiques 2D ou 3D, bien qu'ayant une physique des disques bien plus réalistes que mes simulations N-corps avec un disque 1+1D présentent les mêmes incertitudes au niveau des opacités.
@@ -877,25 +883,25 @@ des incertitudes de notre modèle.
 
 \begin{figure}[htbp]
 \centering
-\subfloat[]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_01.pdf}}\hfill
-\subfloat[]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_02.pdf}}\hfill
-\subfloat[]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_03.pdf}}\hfill
-\subfloat[]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_04.pdf}}
+\subfloat[$\Sigma_0 =  300\unit{g/cm^2}$ ; $d=0.5$ ; $R_\star=2R_\odot$ ; $\alpha=10^{-3}$]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_01.pdf}}\hfill
+\subfloat[$\Sigma_0 =  300\unit{g/cm^2}$ ; $d=0.5$ ; $R_\star=2R_\odot$ ; $\alpha=10^{-2}$]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_02.pdf}}\hfill
+\subfloat[$\Sigma_0 =  300\unit{g/cm^2}$ ; $d=0.5$ ; $R_\star=3R_\odot$ ; $\alpha=10^{-3}$]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_03.pdf}}\hfill
+\subfloat[$\Sigma_0 =  300\unit{g/cm^2}$ ; $d=0.5$ ; $R_\star=3R_\odot$ ; $\alpha=10^{-2}$]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_04.pdf}}
 
-\subfloat[]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_05.pdf}}\hfill
-\subfloat[]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_06.pdf}}\hfill
-\subfloat[]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_07.pdf}}\hfill
-\subfloat[]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_08.pdf}}
+\subfloat[$\Sigma_0 =  300\unit{g/cm^2}$ ; $d=1.5$ ; $R_\star=2R_\odot$ ; $\alpha=10^{-3}$]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_05.pdf}}\hfill
+\subfloat[$\Sigma_0 =  300\unit{g/cm^2}$ ; $d=1.5$ ; $R_\star=2R_\odot$ ; $\alpha=10^{-2}$]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_06.pdf}}\hfill
+\subfloat[$\Sigma_0 =  300\unit{g/cm^2}$ ; $d=1.5$ ; $R_\star=3R_\odot$ ; $\alpha=10^{-3}$]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_07.pdf}}\hfill
+\subfloat[$\Sigma_0 =  300\unit{g/cm^2}$ ; $d=1.5$ ; $R_\star=3R_\odot$ ; $\alpha=10^{-2}$]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_08.pdf}}
 
-\subfloat[]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_09.pdf}}\hfill
-\subfloat[]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_10.pdf}}\hfill
-\subfloat[]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_11.pdf}}\hfill
-\subfloat[]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_12.pdf}}
+\subfloat[$\Sigma_0 = 1200\unit{g/cm^2}$ ; $d=0.5$ ; $R_\star=2R_\odot$ ; $\alpha=10^{-3}$]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_09.pdf}}\hfill
+\subfloat[$\Sigma_0 = 1200\unit{g/cm^2}$ ; $d=0.5$ ; $R_\star=2R_\odot$ ; $\alpha=10^{-2}$]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_10.pdf}}\hfill
+\subfloat[$\Sigma_0 = 1200\unit{g/cm^2}$ ; $d=0.5$ ; $R_\star=3R_\odot$ ; $\alpha=10^{-3}$]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_11.pdf}}\hfill
+\subfloat[$\Sigma_0 = 1200\unit{g/cm^2}$ ; $d=0.5$ ; $R_\star=3R_\odot$ ; $\alpha=10^{-2}$]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_12.pdf}}
 
-\subfloat[]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_13.pdf}}\hfill
-\subfloat[]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_14.pdf}}\hfill
-\subfloat[]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_15.pdf}}\hfill
-\subfloat[]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_16.pdf}}\hfill
+\subfloat[$\Sigma_0 = 1200\unit{g/cm^2}$ ; $d=1.5$ ; $R_\star=2R_\odot$ ; $\alpha=10^{-3}$]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_13.pdf}}\hfill
+\subfloat[$\Sigma_0 = 1200\unit{g/cm^2}$ ; $d=1.5$ ; $R_\star=2R_\odot$ ; $\alpha=10^{-2}$]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_14.pdf}}\hfill
+\subfloat[$\Sigma_0 = 1200\unit{g/cm^2}$ ; $d=1.5$ ; $R_\star=3R_\odot$ ; $\alpha=10^{-3}$]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_15.pdf}}\hfill
+\subfloat[$\Sigma_0 = 1200\unit{g/cm^2}$ ; $d=1.5$ ; $R_\star=3R_\odot$ ; $\alpha=10^{-2}$]{\includegraphics[width=0.24\textwidth]{figure/migration_map/parameter_space/total_torque_16.pdf}}\hfill
 \caption{Illustration de l'espace des paramètres du disque et des cartes de migration qui en découlent. Ici on explore toutes les combinaisons possibles entre les paramètres suivants : $\Sigma_0\in[300, 1200]\unit{g/cm^2}$, $d\in[0.5, 1.5]$, $R_\star\in[2, 3]R_\odot$ et $\alpha\in[10^{-3}, 10^{-2}]$}\label{fig:parameter_space}
 \end{figure}
 
