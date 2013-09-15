@@ -1190,7 +1190,40 @@ myxfmt = FormatStrFormatter("%.3g")
 plot.xaxis.set_major_formatter(myxfmt)
 \end{lstlisting}
 
-Ici j'ai utilisé le formateur spécial \verb|"%.3g"|. Ce dernier n'affichera que 3 chiffres significatifs, extrêmement pratique quand on veut afficher correctement des nombres plus petits que 1, sans avoir des 0 en trop. En particulier pour une échelle log, j'avais donc correctement affiché les valeurs suivante : $0.01$, $0.1$, $1$, $10$, $100$
+Ici j'ai utilisé le formateur spécial \verb|"%.3g"|. Ce dernier n'affichera que 3 chiffres significatifs, extrêmement pratique
+quand on veut afficher correctement des nombres plus petits que 1, sans avoir des 0 en trop. En particulier pour une échelle
+log, j'avais donc correctement affiché les valeurs suivante : $0.01$, $0.1$, $1$, $10$, $100$
+
+\bigskip
+
+Enfin, on peut directement appliquer une modification à l'aide d'une fonction personnalisée. Dans le cas ci-dessous j'avais
+besoin de tracer des histogrammes en échelle logarithmique. Or je devais en tracer plusieurs, et donc les normaliser. Afin
+d'avoir une normalisation correcte, j'ai dû faire l'histogramme directement sur les valeurs logarithmiques, mais je souhaitais
+modifier les labels afin qu'apparaisse la valeur originale, et non log. 
+
+L'exemple suivant permet de corriger cela : 
+\begin{lstlisting}[language=python]
+from matplotlib.ticker import FuncFormatter
+# We prepare the plot
+fig = pl.figure()
+# We define a fake subplot that is in fact only the plot.
+plot = fig.add_subplot(1, 1, 1)
+
+def transformLogToNormal(value, dummy):
+  """
+  Used for histogram that must be in log and normalized. We must consider directly the log values, but the labels are then
+wrong
+  Thus, we need to modify the labels afterward to go back to non log-scale values
+  """
+  
+  final_value = 10.**(value)
+  final_label = "%.3g" % final_value
+  
+  return final_label
+
+myxfmt = FuncFormatter(transformLogToNormal)
+plot.xaxis.set_major_formatter(myxfmt)
+\end{lstlisting}
 
 \subsubsection{Changer la taille du texte d'un graphique}
 Afin de changer complètement les caractéristiques pour les graphiques, on peut modifier les paramètres de matplotlib en faisant : 
