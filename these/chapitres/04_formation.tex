@@ -64,8 +64,8 @@ En particulier, l'excentricité de deux corps en résonance a tendance à varier
 (8.29)]{murray2000solar}. 
 
 Nous n'allons pas détailler ici le fonctionnement précis des résonances. Plusieurs auteurs traitent de ce sujet
-\citep{greenberg1977orbit, peale1986orbital, malhotra1988phd}. C'est un sujet extrêmement complexe, que je ne maitrise
-absolument pas dans les détails. De plus, dans le cadre de notre étude de la formation des planètes, nous sommes dans un cas un
+\citep{greenberg1977orbit, peale1986orbital, malhotra1988phd}. De plus, dans le cadre de notre étude de la formation des
+planètes, nous sommes dans un cas un
 peu différent. Les résonances entre planète ont lieu dans un système dissipatif, le disque protoplanétaire, qui agit sur les
 éléments orbitaux, par exemple en amortissant l'excentricité et l'inclinaison des planètes.
 
@@ -75,7 +75,8 @@ de se briser. Bien entendu, les résonances se brisent dans nos systèmes en for
 notamment quand on a une chaîne de résonance contenant plusieurs corps, tous en résonance. 
 
 \subsection{Stabilité et ordre des résonances}
-\reffig{fig:MMR_statistique} montre l'influence du degré de la résonance sur l'excentricité des deux planètes mises en jeu. On
+\reffig{fig:MMR_statistique} montre l'influence du degré de la résonance sur l'excentricité des deux planètes évoluant dans le
+disque. On
 constate tout d'abord que sur 250 simulations effectuées, aucune ne présente des résonances d'ordre $q\neq 1$. Dans le cas de la
 migration, où les planètes veulent sortir de la résonance au travers de leur migration différentielle, seules les migration
 d'ordre 1 sont assez fortes pour survivre. 
@@ -107,14 +108,17 @@ fréquentes. L'augmentation de l'excentricité est donc beaucoup plus importante
 \caption{Résultat de 250 simulations où la première planète, de $10\mearth$ est à $3\unit{UA}$, sur
 la zone de convergence artificielle. Une planète externe, placée à $4\unit{UA}$ a une masse
 déterminée aléatoirement entre $0.1$ et $10\mearth$. Dans la totalité des simulations, les planètes
-se placent en résonance \MMR{3}{2}.}\label{fig:MMR_mass_ratio}
+se placent en résonance \MMR{3}{2}. Dans cet exemple, il n'y a pas d'effet de l'excentricité sur le
+couple de corotation.}\label{fig:MMR_mass_ratio}
 \end{figure}
 
 \reffig{fig:MMR_mass_ratio} se lit de gauche à droite, afin de voir l'effet de l'augmentation de la masse de la planète externe
-sur la distance orbitale, l'excentricité et le rapport de périodes orbitales. 
+sur la distance orbitale, l'excentricité et le rapport de périodes orbitales. Dans cet exemple, il n'y a pas d'effet de
+l'excentricité sur le couple de corotation.
 
 Pour une seconde planète de $0.1\mearth$, on constate que la planète la plus massive se trouve à la position exacte de la
-résonance, tandis que la planète externe reste bloquée à $4\unit{UA}$ environ. Les deux planètes ressentent un couple de
+zone de convergence, tandis que la planète externe reste bloquée à $4\unit{UA}$ environ. Les deux planètes ressentent un couple
+de
 migration vers la zone de convergence à $3\unit{UA}$ mais l'inertie de la planète massive est beaucoup plus grande, raison pour
 laquelle la planète de $10\mearth$ est à la zone de convergence, la planète de faible masse étant simplement bloquée dans la
 résonance. 
@@ -312,7 +316,10 @@ Le décalage de la zone d'équilibre provient ici de l'équilibre nouveau entre 
 Il est clair que les excentricités des planètes --- excitées par les interactions entre planètes --- sont le facteur clé pour déterminer la force du couple de corotation et la position effective de la zone de stabilisation du système. Pour deux planètes de même masse, le même comportement qualitatif est observé, quelle que soit la masse ou la résonance considérée : Une plus grande excentricité implique un amortissement plus fort du couple de corotation $\Gamma_C$ et une stabilisation du système de plus en plus proche de leur étoile. 
 
 \subsection{Effet du rapport de masse}\label{sec:mass-ratio-effect}
-Nous étudions maintenant le cas de deux planètes de masses différentes. \reffig{fig:mass_ratio_final_pos} représente les positions finales d'une série de simulations simples dans lesquelles une planète de $10\unit{M_\oplus}$ est placée systématiquement à $3\unit{UA}$ en compagnie d'une autre planète, placée à $4\unit{UA}$ et dont la masse varie successivement entre $0.1$ et $3\unit{M_\oplus}$. 
+Nous étudions maintenant le cas de deux planètes de masses différentes. \reffig{fig:mass_ratio_final_pos} représente les
+positions finales d'une série de simulations simples dans lesquelles une planète de $10\unit{M_\oplus}$ est placée
+systématiquement à $3\unit{UA}$ en compagnie d'une autre planète, placée à $4\unit{UA}$ et dont la masse varie successivement
+entre $0.1$ et $3\unit{M_\oplus}$. 
 
 \begin{figure}[htbp]
 \centering
@@ -324,11 +331,20 @@ Nous étudions maintenant le cas de deux planètes de masses différentes. \reff
 
 Dans \reffig{fig:mass_ratio_final_pos}, la planète externe est systématiquement en résonance \MMR{3}{2} avec la planète interne. Ainsi, la position finale des planètes est déterminée par leur masse respective ou, pour cette expérience, par la masse de la planète externe vu que la masse de la planète interne est fixe. 
 
-Plus la deuxième planète est massive, et plus le décalage du système planétaire par rapport à la zone de convergence est important. En effet, une planète externe plus massive induit une excentricité plus importante pour la planète interne, ce qui correspond à un amortissement plus important de son couple de corotation $\Gamma_C$ et un décalage plus important de la zone d'équilibre du système. Compte tenu du fait que chaque planète possède une masse et une excentricité différentes, elles ressentent une zone de convergence différente (une pour chaque valeur de $e/x_s$). Pour autant, l'importance du décalage vers l'étoile centrale de la position d'équilibre est principalement déterminée par la dynamique de la planète la plus massive et de sa nouvelle zone de convergence.
+Plus la deuxième planète est massive, et plus le décalage du système planétaire par rapport à la zone de convergence est
+important. En effet, une planète externe plus massive induit une excentricité plus importante pour la planète interne, ce qui
+correspond à un amortissement plus important de son couple de corotation $\Gamma_C$ et un décalage plus important de la zone
+d'équilibre du système. Compte tenu du fait que chaque planète possède une masse et une excentricité différentes, elles
+ressentent une zone de convergence différente (une pour chaque valeur de $e/x_s$). Pour autant, l'importance du décalage vers
+l'étoile centrale de la position d'équilibre est principalement déterminé par la dynamique de la planète la plus massive et de
+sa nouvelle zone de convergence.
 
 \bigskip
 
-\reffig{fig:mass_ratio_final_pos} représente uniquement un sous-ensemble de toutes les simulations de cette expérience. Pour des masses plus importantes, les deux planètes étaient dans des résonances différentes, ce qui causait des discontinuités dans le diagramme, rendant difficile sa lecture. Malgré tout, le comportement du système de deux planètes est qualitativement le même.
+\reffig{fig:mass_ratio_final_pos} représente uniquement un sous-ensemble de toutes les simulations de cette expérience. Pour des
+masses plus importantes, les deux planètes étaient dans des résonances différentes, ce qui causait des discontinuités dans le
+diagramme, rendant difficile sa lecture. Malgré tout, le comportement du système de deux planètes est qualitativement le même.
+
 
 \subsection{Effet des résonances}
 Dans la position d'équilibre d'un système de deux planètes, le degré de la résonance entre les deux corps est aussi important (pour une résonance de moyen mouvement \MMR{(p+q)}{p}, $p$ est le degré, et $q$ l'ordre de la résonance). On ne considère ici que des résonances d'ordre 1 (\MMR{3}{2} ou \MMR{11}{10} par exemple).
@@ -439,11 +455,18 @@ Les détections d'exoplanètes par vitesse radiale et transit montrent que $30$ 
 
 Plusieurs mécanismes de formations tentent d'expliquer la présence de super-Terres, ces planètes ayant une masse de $1$ à $10\mearth$, tout en étant compatible avec les contraintes observationnelles. Deux modèles principaux peuvent à ce jour expliquer la formation de ces planètes. 
 
-Le premier modèle, la \og formation \textit{in-situ}\fg \citep{chiang2013minimum} n'est possible que si le disque est suffisamment massif localement pour permettre la formation de planète de plusieurs masses terrestres. Les dernières phases de la formation sont alors semblables à celles des planètes telluriques dans le système solaire \citep{wetherill1990formation, kenyon2006terrestrial}.
+Le premier modèle, la \og formation \textit{in-situ}\fg \citep{chiang2013minimum} n'est possible que si le disque est
+suffisamment massif localement pour permettre la formation de planète de plusieurs masses terrestres. Les dernières phases de la
+formation sont alors semblables à celles des planètes telluriques dans le système solaire \citep{wetherill1990formation,
+kenyon2006terrestrial, morbidelli2012building}.
 
 Le deuxième modèle implique la migration de type I \citep{terquem2007migration}. Dans ce cas là, il n'est pas nécessaire de supposer un disque extrêmement massif afin de former plusieurs super-Terres. 
 
-Les deux modèles permettent d'expliquer l'espacement observé. Le modèle impliquant la migration de type 1 prédit aussi que les systèmes multiples vont être proches de résonances de moyen mouvement. On peut en effet observer des pics sur \reffig{fig:multiplanet_stats} autour des résonances \MMR{3}{2} et \MMR{2}{1}. Dans le cas de la formation \textit{in-situ}, on s'attend à des planètes assez pauvres en eau, alors qu'en impliquant la migration, la variété de composition des planètes ainsi formées est beaucoup plus grande \citep{raymond2008observable}.
+Les deux modèles permettent d'expliquer l'espacement observé. Le modèle impliquant la migration de type 1 prédit aussi que les
+systèmes multiples vont être proches de résonances de moyen mouvement. On peut en effet observer des pics sur
+\reffig{fig:multiplanet_stats} autour des résonances \MMR{3}{2} et \MMR{2}{1} \citep{rein2012period}. Dans le cas de la
+formation \textit{in-situ}, on s'attend à des planètes assez pauvres en eau, alors qu'en impliquant la migration, la variété de
+composition des planètes ainsi formées est beaucoup plus grande \citep{raymond2008observable}.
 
 Il existe de plus d'autres modèles, impliquant des résonances séculaires avec des planètes géantes plus loin dans le système, la photo-évaporation de super Neptunes, circularisation des planètes excentriques. Ces modèles sont présentés et comparés dans \cite{raymond2008observable} et ne sont pas discutés ici. 
 
@@ -541,9 +564,12 @@ Des collisions et réarrangements ont alors lieu, diminuant ainsi le nombre de c
 
 Certaines planètes peuvent entrer dans la cavité interne du disque, poussées par le système non encore stabilisé. Elles ne perçoivent alors plus aucun effet du disque, que ce soit la migration ou l'amortissement de l'excentricité et de l'inclinaison. Dans ce cas de figure, elles peuvent ne plus être en résonance avec le reste du système. 
 
-Même si durant l'évolution, il est possible que la planète la plus interne sorte du disque, entre en collision avec l'étoile centrale, ou soit éjectée, il est très facile de maintenir un système compact au bord interne en raison du fort couple positif qui va s'exercer sur le planète la plus interne du système alors que ce dernier cherche à migrer vers l'intérieur.
+Même si durant l'évolution, il est possible que la planète la plus interne sorte du disque, entre en collision avec l'étoile
+centrale, ou soit éjectée, il est très facile de maintenir un système compact au bord interne en raison du fort couple positif
+qui va s'exercer sur la planète la plus interne du système alors que ce dernier cherche à migrer vers l'intérieur
+\citep{masset2006disk, morbidelli2008building, terquem2007migration}.
 
-\subsubsection{Migration vers l'extérieur : candidats de planètes géantes}\label{sec:outward-case}
+\subsubsection{Migration vers l'extérieur : noyaux de planètes géantes}\label{sec:outward-case}
 Lors de la migration vers l'intérieur de tous les embryons, il est possible pour une planète de grossir suffisamment vite pour ressentir un couple positif \reffig{fig:single_outward_am}. Ce couple positif est censé entrainer une migration vers l'extérieur de la planète, ce serait systématiquement le cas si cette dernière était isolée. Mais dans son voisinage se trouvent d'autres planètes qui elles migrent vers l'intérieur. Très rapidement la planète va entrer en résonance avec un embryon planétaire qui migre vers l'intérieur.
 
 L'effet décrit \refsec{sec:shifted_CZ} s'applique alors. La migration différentielle et le rapport de masse ont ici une importance capitale. Si la différence de vitesse est trop grande, alors les deux planètes ne peuvent pas former un système en résonance. La résonance est rapidement cassée et les deux corps continuent leur migration. Ceci est d'autant plus vrai si le rapport de masse est important, car la brève augmentation d'excentricité qui a lieu lors d'une capture en résonance n'aura que peu d'effet sur la plus grosse planète. Cette dernière sera très peu sensible aux perturbations gravitationnelle de son compagnon résonant et continuera sa migration vers l'extérieur sans quasiment ralentir. 
@@ -575,7 +601,8 @@ Dans cette même simulation, deux autres planètes massives sont formées (en ve
 
 \bigskip
 
-On a enfin un troisième et dernier cas où une planète grossit suffisamment rapidement pour migrer vers l'extérieur, mais est entrainée vers l'intérieur en étant capturée en résonance avec une planète ce qui inverse son sens de migration \reffig{fig:HSE_forced_in_AM}. Dans ce système, la planète en bleu dans la figure ressent un couple de migration qui la pousse vers l'extérieur à partir de \nombre{229000} ans, quand une collision lui fait dépasser $5\mearth$. À ce stade, si elle avait été isolée dans le disque, elle aurait alors migré vers l'extérieur jusqu'à se stabiliser autour de $9\unit{UA}$. Au lieu de cela, son excentricité reste élevée à cause des perturbations gravitationnelles des corps environnants \reffig{fig:HSE_forced_in_vois}. Son couple de migration est atténué jusqu'à que le sens en soit changé. La planète migre alors vers l'intérieur, entrainée par des résonances successives avec ses voisins. Même si les résonances changent, l'effet net est une migration vers l'intérieur car l'excentricité n'est jamais suffisamment amortie pour que la migration vers l'extérieur puisse s'effectuer.
+On a enfin un troisième et dernier cas où une planète grossit suffisamment rapidement pour migrer vers l'extérieur, mais est entrainée vers l'intérieur en étant capturée en résonance avec une planète ce qui inverse son sens de migration \reffig{fig:HSE_forced_in_AM}. Dans ce système, la planète en bleu dans la figure ressent un couple de migration qui la pousse vers l'extérieur à partir de \nombre{229000} ans, quand une collision lui fait dépasser $5\mearth$. À ce stade, si elle avait été isolée dans le disque, elle aurait alors migré vers l'extérieur jusqu'à se stabiliser autour de $9\unit{UA}$. Au lieu de cela, son excentricité reste élevée à cause des perturbations gravitationnelles des corps environnants \reffig{fig:HSE_forced_in_vois}. Son couple de migration est atténué jusqu'à que le sens en soit changé. La planète migre alors vers l'intérieur, entrainée par des résonances successives avec ses voisins. Même si les résonances changent, l'effet net est une migration vers l'intérieur car l'excentricité n'
+est jamais suffisamment amortie pour que la migration vers l'extérieur puisse s'effectuer.
 
 \begin{figure}[htbp]
 \centering
@@ -584,7 +611,10 @@ On a enfin un troisième et dernier cas où une planète grossit suffisamment ra
 \caption{Migration forcée d'une planète (en bleu) vers l'intérieur par excitation de son excentricité.}\label{fig:HSE_forced_in}
 \end{figure}%/sse/cossou/phd/HSE_cond_inits/fiducials/simu00004
 
-La migration par type I vers l'extérieur peut donc être inversée par une capture en résonance. Ce résultat est l'opposé de ce qu'il se passe dans le cas de migration de type II \citep[grand tack model]{morbidelli2007dynamics, pierens2011twophase}. Cependant, comme nous l'avons vu, des conditions particulières sont requises de sortes que ce ne peut être un résultat systématique.
+La migration par type I vers l'extérieur peut donc être inversée par une capture en résonance. Ce résultat est l'opposé de ce
+qu'il se passe parfois dans le cas de migration de type II \citep[grand tack model]{masset2001reversing, morbidelli2007dynamics,
+pierens2011twophase}. Cependant, comme nous l'avons vu, des conditions particulières sont requises de sortes que ce ne peut être
+un résultat systématique.
 
 %TODO chercher un cas où j'ai un système résonant à l'extérieur
 
@@ -601,16 +631,33 @@ La migration par type I vers l'extérieur peut donc être inversée par une capt
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\textwidth]{figure/HSE/hist_ad.pdf}
-\caption{Histogramme des positions et sép}\label{fig:HSE_stat_dist}
+\caption{Histogramme des positions et séparations en rayons de Hill mutuels pour les 200 systèmes
+simulés.}\label{fig:HSE_stat_dist}
 \end{figure}
 
-Pour les conditions initiales décrites plus haut, nous avons simulé 200 systèmes différents. Nous cherchons maintenant à en étudier les propriétés de manière statistique. Nous observons que la plupart des planètes sont en résonance \reffig{fig:HSE_stat_pr}. La résonance la plus probable est \MMR43. Nous remarquons aussi que la grande majorité des résonances observées dans nos systèmes sont d'ordre 1. Quelques pics d'ordre $q>1$ sont visibles mais d'intensité beaucoup plus faibles que les résonances d'ordre 1 dont la visibilité a été privilégiée. Il est intéressant de noter qu'en fin de simulation, il y a toute une population d'embryons planétaires de faible masses qui n'ont pas subi de collisions \reffig{fig:HSE_stat_m}. Cette population a donc des propriétés dépendantes des conditions initiales, puisque leur masse finale sera égale à leur masse initiale. 
+Pour les conditions initiales décrites plus haut, nous avons simulé 200 systèmes différents. Nous cherchons maintenant à en
+étudier les propriétés de manière statistique. Nous observons que la plupart des planètes sont en résonance
+\reffig{fig:HSE_stat_pr}. La résonance la plus probable est \MMR43, en accord avec \cite{rein2012traditional} qui trouve que si
+c'est un problème pour les planètes très massives, il est facile de former des planètes de faible masse en résonance \MMR43.
+Nous remarquons aussi que la grande majorité des résonances observées dans nos systèmes sont d'ordre 1. Quelques pics d'ordre
+$q>1$ sont visibles mais d'intensité beaucoup plus faibles que les résonances d'ordre 1 dont la visibilité a été privilégiée. Il
+est intéressant de noter qu'en fin de simulation, il y a toute une population d'embryons planétaires de faible masses qui n'ont
+pas subi de collisions \reffig{fig:HSE_stat_m}. Cette population a donc des propriétés dépendantes des conditions initiales,
+puisque leur masse finale sera égale à leur masse initiale. 
 
 Nous avons cherché à comparer la répartition des planètes simulées par rapport aux observations, tant au niveau de distances orbitales que des séparations en rayon de Hill mutuels \reffig{fig:HSE_stat_dist}. Ces données sont à comparer aux observations \reffig{fig:multiplanet_stats}. Les observations semblent montrer que les planètes ont plus de chance d'être séparées par $12$ rayons de Hill mutuels. Nous trouvons $10$, valeur très proche de la valeur observée dans les systèmes multiples. 
 
-Malgré les limites du disques ($R\in[0.1;100]\unit{UA}$), nous reproduisons correctement la répartition orbitale des planètes entre $0.01$ et $1\unit{UA}$. Notons que la présence du bord interne du disque à $0.1\unit{UA}$ génère un loi bimodale autour, avec un pic avant et après le bord interne. Un fort couple de migration dans une zone du disque très restreinte pourrait expliquer la loi bimodale souvent évoquée pour représenter les observations. 
+Notons que la présence du bord interne du disque à $0.1\unit{UA}$ génère un loi bimodale autour, avec un pic avant et après le
+bord interne. Un fort couple de migration dans une zone du disque très restreinte pourrait expliquer la loi bimodale souvent
+évoquée pour représenter les observations. 
 
-Nous avons ensuite une surdensité de planètes autour de $10\unit{UA}$ à cause de la zone de convergence qui se trouve autour de cette zone. Entre $1$ et $10\unit{UA}$ nous avons un déficit de planète dû à la migration qui entraine les faibles masses vers l'intérieur, et les masses plus importantes ($m>5\mearth$) vers l'extérieur. Les planètes ne sont donc pas stable dans cette zone. 
+Nous avons ensuite une surdensité de planètes autour de $10\unit{UA}$ à cause de la zone de convergence qui se trouve autour de
+cette zone. Entre $1$ et $10\unit{UA}$ nous avons un déficit de planète dû à la migration qui entraine les faibles masses vers
+l'intérieur, et les masses plus importantes ($m>5\mearth$) vers l'extérieur. Les planètes que nous formons ne sont donc pas
+stable dans cette zone. Toutefois, nous faisons évoluer les systèmes pendant 10 millions d'années, dans un disque statique. La
+dissipation du disque va moduler ces résultats et permettre l'arrêt de la migration avant que le système n'ait le temps
+d'atteindre l'état stationnaire que nous obtenons. De plus, nous ne modélisons ni les corps les plus massifs (planètes géantes)
+ni les moins massifs, trop petits pour migrer via migration de type I.
 
 La migration seule, sans dissipation du disque explique relativement bien les observations au bord interne du disque, mais reproduit assez mal les planètes plus externes. Notons toutefois que nous n'avons pas modélisé l'accrétion de gaz qui doit être importante pour les embryons planétaire d'une dizaine de masses terrestres qui migrent jusqu'à $10\unit{UA}$. 
 
@@ -631,13 +678,19 @@ Enfin, nous avons une population de planètes qui ont été expulsées du disque
 \subsubsection{Influence des paramètres initiaux}
 \begin{figure}[htbp]
 \centering
-\subfloat[$M_\text{tot}=30\mearth$]{\includegraphics[width=0.49\textwidth]{figure/HSE/low_mass_am.pdf}}\hfill
-\subfloat[$M_\text{tot}=120\mearth$]{\includegraphics[width=0.49\textwidth]{figure/HSE/high_mass_am.pdf}}
+\subfloat[$M_\text{tot}=30\mearth$]{\label{fig:mtot_30}\includegraphics[width=0.49\textwidth]{figure/HSE/low_mass_am.pdf}}\hfill
+\subfloat[$M_\text{tot}=120\mearth$]{\label{fig:mtot_120}\includegraphics[width=0.49\textwidth]{figure/HSE/high_mass_am.pdf}}
 
 \caption{Influence de la masse totale des embryons sur les propriétés statistiques des planètes formées, en particulier leur répartition dans un diagramme masse-distance. Les parties de la carte de migration où la migration se fait vers l'extérieur sont dessinées en rouge.}\label{fig:HSE_m_tot_influence}
 \end{figure}
 
-Tous les paramètres de génération aléatoire, en particulier la distribution de masse initiale des embryons est conservée, mais on teste maintenant l'influence de la masse totale des embryons sur les propriétés statistiques des systèmes obtenus. Par rapport aux simulations de référence où $M_\text{tot}=60\mearth$, on lance des simulations avec $M_\text{tot}=30\mearth$ et $M_\text{tot}=120\mearth$. La masse moyenne initiale étant de $1\mearth$, le nombre moyen d'embryons est environ égal à la masse totale. Quand le nombre d'embryons et la masse totale est divisé par deux, le nombre des planètes qui se trouvent dans les parties externes de la carte de migration, au delà de $2\unit{UA}$ est très faible. Sur 100 simulations, seules 3 ont au moins une planète dans cette région. 
+Tous les paramètres de génération aléatoire, en particulier la distribution de masse initiale des embryons est conservée, mais
+on teste maintenant l'influence de la masse totale des embryons sur les propriétés statistiques des systèmes obtenus. Par
+rapport aux simulations de référence où $M_\text{tot}=60\mearth$, on lance des simulations avec
+$M_\text{tot}=30\mearth$\reffig{fig:mtot_30} et $M_\text{tot}=120\mearth$\reffig{fig:mtot_120}. La masse moyenne initiale étant
+de $1\mearth$, le nombre moyen d'embryons est environ égal à la masse totale. Quand le nombre d'embryons et la masse totale est
+divisé par deux, le nombre des planètes qui se trouvent dans les parties externes de la carte de migration, au delà de
+$2\unit{UA}$ est très faible. Sur 100 simulations, seules 3 ont au moins une planète dans cette région. 
 
 Dans le cas où le nombre d'embryons et la masse totale est multiplié par deux, le nombre de planètes dans les parties externes augmente. Le nombre d'embryons et la masse totale contenue dans ceux-ci étant plus grande, il est plus probable pour l'un d'entre eux d'atteindre la masse critique de $5\mearth$ avant de descendre en dessous de $1\unit{UA}$. 
 
@@ -648,7 +701,8 @@ Dans le cas où le nombre d'embryons et la masse totale est multiplié par deux,
 \caption{Distribution des masses finales des planètes pour 3*100 simulations dans lesquelles la masse totale contenue dans les embryons initialement est respectivement $30$, $60$ et $120\mearth$.}\label{fig:HSE_m_tot_hist_m}
 \end{figure}
 
-La distribution des masses finales \reffig{fig:HSE_m_tot_hist_m} montre que la quantité d'embryons de très faible masse augmente quand la masse totale $M_\text{tot}$ augmente. Ces embryons font partie d'une population initialement de faible masse et qui ont très peu accrêté de masse par collision. Cette population froide conserve donc sa masse au cours de la migration planétaire. Une deuxième population, formée par collision, dépend de la masse total. En particulier, la masse maximale formée par collision tend à augmenter avec la masse totale disponible dans les embryons. De même, la masse minimale de cette population tend à augmenter avec la masse totale. Ainsi, à mesure que la masse totale augmente, les deux populations se scindent et on observe une distribution bimodale pour $M_\text{tot}=120\mearth$ dont les maximums sont situés autour de $0.5\mearth$ et $11\mearth$ alors que dans le cas $M_\text{tot}=30\mearth$ les deux sous populations étaient quasiment confondues et on observait deux pics autour de $0.5$ et $3.5\mearth$ avec un minimum entre les deux beaucoup moins marqué.
+La distribution des masses finales \reffig{fig:HSE_m_tot_hist_m} montre que la quantité d'embryons de très faible masse augmente quand la masse totale $M_\text{tot}$ augmente. Ces embryons font partie d'une population initialement de faible masse et qui ont très peu accrêté de masse par collision. Cette population froide conserve donc sa masse au cours de la migration planétaire. Une deuxième population, formée par collision, dépend de la masse total. En particulier, la masse maximale formée par collision tend à augmenter avec la masse totale disponible dans les embryons. De même, la masse minimale de cette population tend à augmenter avec la masse totale. Ainsi, à mesure que la masse totale augmente, les deux populations se scindent et on observe une distribution bimodale pour $M_\text{tot}=120\mearth$ dont les maximums sont situés autour de $0.5\mearth$ et $11\mearth$ alors que dans le cas $M_\text{tot}=30\mearth$ les deux sous populations étaient quasiment confondues et on observait deux pics autour de $0.
+5$ et $3.5\mearth$ avec un minimum entre les deux beaucoup moins marqué.
 
 \bigskip
 
@@ -659,12 +713,24 @@ On cherche maintenant à étudier l'influence des masses initiales sur les résu
 \subfloat[Position et masses finales]{\label{fig:HSE_equal_mass_am}\includegraphics[width=0.49\textwidth]{figure/HSE/equal_mass_am.pdf}}\hfill
 \subfloat[Histogramme des masses]{\label{fig:HSE_equal_mass_hist_m}\includegraphics[width=0.49\textwidth]{figure/HSE/equal_mass_hist_m.pdf}}
 
-\caption{Position et masses finales des planètes dans un cas où initialement, les embryons planétaires ont tous la même masse $==3\mearth$.}\label{fig:HSE_equal_mass_influence}
+\caption{Position et masses finales des planètes dans un cas où initialement, les embryons planétaires ont tous la même masse
+$M=3\mearth$.}\label{fig:HSE_equal_mass_influence}
 \end{figure}
 
 Dans ces simulations, il n'existe pas d'embryons ayant une masse plus petite que $3\mearth$. Chaque collision augmente au minimum la masse de la planète restante de $3\mearth$. Une seule collision est donc nécessaire à une planète pour qu'elle puisse migrer vers l'extérieur. Le taux d'excitation mutuelle des excentricités pour deux planètes en résonance dépend à la fois du type de résonance et du rapport de masse. Ici le rapport de masse entre les deux planètes est forcément égal tant que ces dernières ne subissent pas de collisions. Or, des masses égales maximisent les perturbations pour les deux corps et ainsi le décalage de la zone de convergence. Nous observons ainsi une population plus importante de planètes qui sont en équilibre grâce aux résonances, en dehors de toute zone de couple nul \reffig{fig:HSE_equal_mass_am}. 
 
-La plus grande différence se situe au niveau de l'histogramme des masses \reffig{fig:HSE_equal_mass_hist_m} (à comparer avec \reffig{fig:HSE_stat_m}). Dans le cas aléatoire, les faibles masses sont de loin les plus nombreuses, une partie des embryons initiaux ne subissant aucune collision tout au long de l'évolution du système. Cette population disparait et ne laisse plus qu'une décroissance de l'abondance en fonction de la masse quand initialement tous les embryons ont la même masse. La masse moyenne $\mu_m$ passe de $6$ à presque $9\mearth$ entre le cas aléatoire et le cas $m=3\mearth$ (la statistique la moins bonne s'effectuant sur 100 simulations, et presque $700$ planètes dans le cas des masses fixes). Cependant, les planètes les plus massives de chaque systèmes sont moins affectées par ce changement de conditions initiales. En effet la masse minimale tous systèmes confondus pour la planète la plus massive formée est de $9\mearth$ dans les deux cas. Dans le cas des masses fixes, la masse maximale tout système confondu est légèrement supérieure toutefois, passant de $29$ à $36\mearth$. 
+La plus grande différence se situe au niveau de l'histogramme des masses \reffig{fig:HSE_equal_mass_hist_m} (à comparer avec
+\reffig{fig:HSE_stat_m}). Dans le cas aléatoire, les faibles masses sont de loin les plus nombreuses, une partie des embryons
+initiaux ne subissant aucune collision tout au long de l'évolution du système. Cette population disparait et ne laisse plus
+qu'une décroissance de l'abondance en fonction de la masse quand initialement tous les embryons ont la même masse. La masse
+moyenne $\mu_m$ passe de $6$ à presque $9\mearth$ entre le cas aléatoire et le cas $m=3\mearth$. C'est dans le cas des
+masses fixes initialement que l'incertitude est la plus grande sur la masse moyenne, d'une part parce que les masses finales ne
+peuvent être que des multiples de 3, et d'autres part parce que le nombre final de planètes et de 700 pour 100 simulations,
+contrairement aux masses aléatoires où sur 200 simulations nous avons plus de $2000$ planètes. Cependant, les planètes les plus
+massives de chaque systèmes sont moins affectées par ce changement de conditions initiales. En effet la masse minimale tous
+systèmes confondus pour la planète la plus massive formée est de $9\mearth$ dans les deux cas. Dans le cas des masses fixes, la
+masse maximale tout 
+système confondu est légèrement supérieure toutefois, passant de $29$ à $36\mearth$. 
 
 Les abondances relatives de planète en fonction de la masse ne sont pas du tout conservés entre les deux cas (aléatoire et masse fixe) \reffig{fig:HSE_equal_mass_hist_m}.
 
@@ -681,11 +747,25 @@ Afin de déterminer l'influence des positions initiales sur les propriétés fin
 \subsubsection{Effet du disque}
 \begin{figure}[htbp]
 \centering
+\subfloat[$\Sigma_0=600\unit{g/cm^2}$]{\label{fig:600_05}\includegraphics[width=0.49\textwidth]{%
+figure/migration_map/total_mass/600_05.pdf}}\hfill
+\subfloat[$\Sigma_0=150\unit{g/cm^2}$]{\label{fig:150_05}\includegraphics[width=0.49\textwidth]{%
+figure/migration_map/total_mass/150_05.pdf}}
+
+\caption{Par rapport au disque de référence ($\Sigma(R) = 300 \cdot
+R^{-\sfrac{1}{2}}\unit{g/cm^2}$) nous représentons les cartes de migration pour un disque deux fois plus ou deux fois moins
+massif. \refdisk}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
 \includegraphics[width=0.8\linewidth]{figure/HSE/HSE_disk_effect.pdf}
 \caption{Position finale des planètes pour différents types de disques. Le disque normal est celui présenté plus haut. Seule la masse change dans le disque de faible masse ($\Sigma_0=150\unit{g/cm^2}$) et massif ($\Sigma_0=600\unit{g/cm^2}$).}\label{fig:HSE_disk_effect}
 \end{figure}
 
-Par rapport au disque de référence où $\Sigma(R) = \Sigma_0 * R^{-\sfrac12}$, nous avons lancé 100 simulations avec un disque moitié moins massif ($\Sigma_0=150\unit{g/cm^2}$) ou moitié plus ($\Sigma_0=600\unit{g/cm^2}$) \reffig{fig:HSE_disk_effect}.
+Par rapport au disque de référence où $\Sigma(R) = \Sigma_0 * R^{-\sfrac12}$ \reffig{fig:fiducial_adim}, nous avons lancé 100
+simulations avec un disque moitié moins massif ($\Sigma_0=150\unit{g/cm^2}$, \reffig{fig:150_05}) ou moitié plus
+($\Sigma_0=600\unit{g/cm^2}$, \reffig{fig:600_05}) \reffig{fig:HSE_disk_effect}.
 
 Avec le disque massif, la population de planètes au delà de $10\unit{UA}$ a disparu \reffig{fig:HSE_hist_a_disk}. Pourtant, une zone de convergence existe dans cette région, mais la masse minimale pour y accéder est de l'ordre de $10\mearth$. C'est cette augmentation de la masse critique minimale qui est la cause de l'absence de planètes au delà de $2\unit{UA}$.
 
@@ -697,7 +777,10 @@ Avec le disque peu massif, la population externe de planètes ($a>2\unit{UA}$) e
 \caption{Distribution des orbites finales des planètes pour trois disques différents. Seule la masse change dans le disque de faible masse ($\Sigma_0=150\unit{g/cm^2}$) et massif ($\Sigma_0=600\unit{g/cm^2}$).}\label{fig:HSE_hist_a_disk}
 \end{figure}
 
-La formation de systèmes compacts au bord interne est elle peu affectée par la variation de la masse du disque. Le fort couple positif au bord interne est stable et les planètes sont maintenues dans le disque. La distribution des positions des planètes pour la partie interne du disque $a<2\unit{UA}$ est similaire dans les trois disques. 
+La formation de systèmes compacts au bord interne est elle peu affectée par la variation de la masse du disque. Le fort couple
+positif au bord interne est stable et les planètes sont maintenues dans le disque. La distribution des positions des planètes
+pour la partie interne du disque $a<2\unit{UA}$ est similaire dans les trois disques et en accord avec les observations de
+planètes de faible masse en fonction de la métallicité \citep{ghezzi2010stellar, buchhave2012abundance}. 
 
 \bigskip
 
