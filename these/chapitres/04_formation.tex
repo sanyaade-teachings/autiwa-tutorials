@@ -77,9 +77,7 @@ notamment quand on a une chaîne de résonance contenant plusieurs corps, tous e
 \subsection{Stabilité et ordre des résonances}
 \reffig{fig:MMR_statistique} montre l'influence du degré de la résonance sur l'excentricité des deux planètes évoluant dans le
 disque. On
-constate tout d'abord que sur 250 simulations effectuées, aucune ne présente des résonances d'ordre $q\neq 1$. Dans le cas de la
-migration, où les planètes veulent sortir de la résonance au travers de leur migration différentielle, seules les migration
-d'ordre 1 sont assez fortes pour survivre. 
+constate tout d'abord que sur 250 simulations effectuées, aucune ne présente des résonances d'ordre $q\neq 1$. Dans le cadre de la migration planétaire, la plupart des planètes se placent dans des résonances d'ordre $q=1$. Ceci est confirmé dans des simulations plus réalistes ou la majorité des planètes se placent dans des résonances d'ordre $q=1$, même si certaines résonances d'ordre 2 sont observées, notamment la résonance \MMR53.
 
 
 \begin{figure}[htbp]
@@ -114,9 +112,9 @@ couple de corotation.}\label{fig:MMR_mass_ratio}
 
 \reffig{fig:MMR_mass_ratio} se lit de gauche à droite, afin de voir l'effet de l'augmentation de la masse de la planète externe
 sur la distance orbitale, l'excentricité et le rapport de périodes orbitales. Dans cet exemple, il n'y a pas d'effet de
-l'excentricité sur le couple de corotation.
+l'excentricité sur le couple de corotation. Dans toute la suite, quand je parlerai de la première planète, ce sera la planète de référence à $3\unit{UA}$ initialement et dont la masse est fixée et égale à $m=10\mearth$. La seconde planète est initialement à $4\unit{UA}$, mais sa masse est variable, de $0.1$ jusqu'à $10\mearth$.
 
-Pour une seconde planète de $0.1\mearth$, on constate que la planète la plus massive se trouve à la position exacte de la
+Pour une seconde planète de $0.1\mearth$, on constate que la première planète se trouve à la position exacte de la
 zone de convergence, tandis que la planète externe reste bloquée à $4\unit{UA}$ environ. Les deux planètes ressentent un couple
 de
 migration vers la zone de convergence à $3\unit{UA}$ mais l'inertie de la planète massive est beaucoup plus grande, raison pour
@@ -484,7 +482,7 @@ Il existe de plus d'autres modèles, impliquant des résonances séculaires avec
 %TODO Parler aussi de ce qui arrête les planètes au bord interne. Faire des tests pour ça.
 
 \subsection{Modèle}
-Nous utilisons les formules de \cite{paardekooper2011torque} afin de modéliser la migration de type I. Cette migration est implémentée de manière cohérente dans tout le disque. Le bord interne est simplement modélisé par une diminution brutale de la densité de surface, mais le couple induit est lui toujours calculé selon les mêmes formules. 
+Nous utilisons les formules de \cite{paardekooper2011torque} afin de modéliser la migration de type I. Cette migration est implémentée de manière cohérente dans tout le disque. La transition de densité de surface au bord interne est simplement modélisé par une tangente hyperbolique dont la longueur caractéristique est une échelle de hauteur du disque. Le couple de migration induit est lui toujours calculé selon les mêmes formules. 
 
 L'amortissement de l'excentricité et de l'inclinaison est lui issu des formules de \cite{cresswell2008three}. 
 
