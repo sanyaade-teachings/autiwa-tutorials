@@ -96,6 +96,8 @@ Nulla facilisi. Maecenas accumsan gravida wisi. Maecenas sodales gravida neque. 
 Fusce convallis dolor sit amet dolor. Nulla sit amet pede. Maecenas et ante vitae risus tempus facilisis. Nullam ut tellus et lacus sollicitudin condimentum. Maecenas vitae lorem. Quisque nec leo varius est euismod posuere. Integer ac diam in enim pellentesque pulvinar. Etiam sodales tristique eros. Curabitur non magna. Suspendisse blandit metus vitae purus. Phasellus nec sem vitae arcu consequat auctor. Donec nec dui. Donec sit amet lorem vel erat tristique laoreet. Duis ac felis tincidunt arcu consequat faucibus. Vestibulum ultrices porttitor purus. In semper consequat dolor. Nunc porta. Vestibulum nisl ipsum, rhoncus quis, adipiscing sed, sollicitudin ut, quam.
 }
 
+\makeindex
+
 \newcommand{\MMR}[2]{\mbox{#1:#2}}
 
 % To be used in all the captions of migrations maps, were I only changed one parameter compared to my reference disk
@@ -185,11 +187,11 @@ In addition to the Solar System and its planets, we now have a database of nearl
 \input{chapitres/02_code_N_corps.tex}
 
 
-\chapter{Cartes de migration}\label{sec:chap3}
+\chapter{Cartes de migration}\label{sec:chap3}\index{carte de migration}
 \input{chapitres/03_cartes_de_migration.tex}
 
 
-\chapter{Mécanismes de formation}\label{sec:chap4}
+\chapter{Mécanismes de formation}\label{sec:chap4}\index{super-Terre}\index{noyau de planète géante}
 \input{chapitres/04_formation.tex}
 
 
@@ -201,8 +203,8 @@ In addition to the Solar System and its planets, we now have a database of nearl
 \adjustmtc % To have correct minitocs, we must place this command right after bibliography
 
 % If any, the index must be right after the bibliography, and before appendixes
-%\makeindex
-%\mtcfixindex % To have correct minitoc after the index
+\printindex
+\mtcfixindex[chapter] % To have correct minitoc after the index
 
 % Appendixes must be after bibliography
 % no changes of numbering because this causes overfull hbox in tableofcontents, because there's too many pages in the appendixes
@@ -216,7 +218,13 @@ In addition to the Solar System and its planets, we now have a database of nearl
 
 \input{chapitres/programmation.tex}
 
-
-
+% Adding refs for index
+\index{Mean Motion Resonance|see{résonance}}
+\index{snowline|see{ligne des glaces}}
+\index{disque actif|see{chauffage visqueux}}
+\index{disque passif|see{irradiation}}
+\index{dead zone|see{zone morte}}
+\index{giant planet core|see{noyau de planète géante}}
+\index{cœur de planète géante|see{noyau de planète géante}}
 
 \end{document}

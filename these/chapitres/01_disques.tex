@@ -42,7 +42,7 @@ Avant de considérer l'évolution d'un disque, il est important de regarder sa m
 Le \gras{paramètre de Toomre} $Q$, défini par \citep{toomre1964gravitational, goldreich1965gravitational}:
 \begin{align}
 Q &= \frac{\kappa c_{s}}{\pi G \Sigma}
-\end{align}\index{$Q$}
+\end{align}
 est un indicateur de la stabilité du disque par rapport à l'auto-gravité. $\kappa$ est la fréquence épicyclique, $c_s$ la vitesse du son, $G$ la constante de gravitation universelle et $\Sigma$ la densité de surface. 
 
 Dans ce paramètre, $\pi G \Sigma$ représente la masse du disque. La vitesse du son $c_{s}$ est liée à la pression thermique ; la \gras[fréquence!epicyclique@épicyclique]{fréquence épicyclique} $\kappa$ détermine quant à elle la force du cisaillement dans le disque.
@@ -255,7 +255,7 @@ Cette équation a nécessité les approximations suivantes :
 \item On suppose que le mouvement du gaz est képlerien $\Omega=\sqrt{\frac{GM}{r^3}}$, ce qui n'est pas rigoureusement vrai, la pression du gaz rendant le mouvement légèrement sous-képlerien.
 \end{enumerate}
 
-\subsubsection{Temps de vie et dispersion du disque}\label{sec:dispersion}
+\subsubsection{Temps de vie et dispersion du disque}\label{sec:dispersion}\index{dissipation du disque}
 
 \begin{figure}[htbp]
 \centering
@@ -277,18 +277,18 @@ Par la rareté des disques en train de se dissiper, les observations suggèrent 
 \caption{Évolution de la densité de surface en fonction du temps dans une simulation qui modélise la dissipation du disque protoplanétaire par évolution visqueuse et photo-évaporation. À $t=6.20\unit{Myr}$ le disque est totalement dissipé. Figure adaptée de \cite{alexander2006photoevaporation}.}\label{fig:disk_dispersion}
 \end{figure}
 
-Le principe de la photo-évaporation est que le rayonnement de l'étoile permet de dissocier le dihydrogène ainsi que de fournir de l'énergie cinétique aux atomes du gaz. À partir d'un rayon dit \og rayon gravitationnel\fg $r_g$ qui représente la distance à partir de laquelle l'énergie fournie par les photons de l'étoile devient suffisante pour contrebalancer les effets de sa gravité, la photo-évaporation permet d'évaporer une partie du gaz superficiel du disque. Le disque va alors se creuser jusqu'à séparer le disque en deux. Les parties internes du disques ne sont alors plus alimentées par les parties externes. Des simulations montrent que les parties externes se dispersent rapidement une fois les parties internes accrétées \citep{alexander2006photoevaporation}. \reffig{fig:disk_dispersion} montre l'évolution du profil radial de densité en fonction du temps en présence de l'évolution visqueuse et de la photo-évaporation.
+Le principe de la \gras{photo-évaporation} est que le rayonnement de l'étoile permet de dissocier le dihydrogène ainsi que de fournir de l'énergie cinétique aux atomes du gaz. À partir d'un rayon dit \og rayon gravitationnel\fg $r_g$ qui représente la distance à partir de laquelle l'énergie fournie par les photons de l'étoile devient suffisante pour contrebalancer les effets de sa gravité, la photo-évaporation permet d'évaporer une partie du gaz superficiel du disque. Le disque va alors se creuser jusqu'à séparer le disque en deux. Les parties internes du disques ne sont alors plus alimentées par les parties externes. Des simulations montrent que les parties externes se dispersent rapidement une fois les parties internes accrétées \citep{alexander2006photoevaporation}. \reffig{fig:disk_dispersion} montre l'évolution du profil radial de densité en fonction du temps en présence de l'évolution visqueuse et de la photo-évaporation.
 
 La photo-évaporation est aussi possible par l'irradiation d'étoiles massives (étoiles OB) dans le voisinage du disque \citep{adams2004photoevaporation}.
 
 \subsection{Profil de température}
 Du point de vue de la température, il y a principalement deux types de disques : 
 \begin{itemize}
-\item les \gras[disque actif]{disques actifs} : la source de température est le disque lui même, qui par \gras{chauffage visqueux} (frottements) va convertir de l'énergie gravitationnelle en chaleur ;
-\item les \gras[disque passif]{disques passifs} : la source de chaleur/température est l'étoile centrale qui éclaire le disque. 
+\item les \gras[chauffage visqueux]{disques actifs} : la source de température est le disque lui même, qui par \gras{chauffage visqueux} (frottements) va convertir de l'énergie gravitationnelle en chaleur ;
+\item les \gras[irradiation]{disques passifs} : la source de chaleur/température est l'étoile centrale qui éclaire le disque. 
 \end{itemize}
 
-Un disque peut à la fois être actif et passif, mais généralement on essaie d'approximer, de considérer que l'un est négligeable devant l'autre. De plus, un disque aura des zones actives et des zones passives, c'est à dire que certaines zones seront principalement chauffées par la viscosité alors que d'autres le seront par l'\gras{irradiation de l'étoile}.
+Un disque peut à la fois être actif et passif, mais généralement on essaie d'approximer, de considérer que l'un est négligeable devant l'autre. De plus, un disque aura des zones actives et des zones passives, c'est à dire que certaines zones seront principalement chauffées par la viscosité alors que d'autres le seront par l'\gras[irradiation]{irradiation de l'étoile}.
 
 \bigskip
 
@@ -337,7 +337,7 @@ C_\text{en} &= 2 \sigma {T_\text{en}}^4
 
 La température de l'enveloppe étant très faible, cette dernière ne contribue que dans les parties externes du disque, là où la densité de surface du gaz est très faible, rendant du même coup le chauffage visqueux extrêmement ténu lui aussi.
 
-\subsubsection{Chauffage par l'étoile}\label{sec:irradiation}
+\subsubsection{Chauffage par l'étoile}\label{sec:irradiation}\index{irradiation}
 La surface du disque reçoit de la lumière de l'étoile centrale. Soit $R_\star$, $L_\star$ respectivement le rayon et la luminosité de l'étoile. Soit $\varepsilon$ l'albédo du disque, que l'on choisi typiquement égal à $0.5$  \citep{menou2004low}. 
 
 Le flux incident est alors \citep[eq. (7)]{menou2004low} : 
@@ -366,7 +366,7 @@ Dans le cadre d'un disque optiquement épais, il devient possible de considérer
 %expression de l'angle notammenet : dullemond 2000
 %autres expressions : menou & goodman 2004
 
-\subsubsection{Chauffage visqueux}
+\subsubsection{Chauffage visqueux}\index{chauffage visqueux}
 On considère un fluide incompressible. Il peut paraître étonnant de considérer un disque de gaz comme étant un fluide incompressible. Mais en fait l'aspect compressible va surtout se manifester lors de la mise à l'équilibre, générant des ondes de chocs par exemple. Mais une fois le disque stabilisé tout se passe comme si on avait un fluide incompressible. C'est matérialisé par le fait que la vitesse dans le disque est considérée comme inférieure à la vitesse du son dans le milieu $c_s$, au delà de laquelle on aura des ondes des chocs ayant une incidence sur le bilan thermique. Ainsi donc, en considérant un fluide incompressible, on peut partir de l'expression de la variation d'énergie cinétique (qui est l'inverse du chauffage, les pertes cinétiques étant converties en chaleur par la viscosité) \citep[(16.3)]{landau1989mecanique} : 
 \begin{align}
 \dpd{E_c}{t} &= - \frac{1}{2}\int \eta(T_{ik})^2\dif V\\
@@ -478,7 +478,7 @@ La première hypothèse est de considérer une viscosité constante. Ce n'est ce
 
 Un autre modèle très répandu pour la viscosité du disque est la prescription $\alpha$.
 
-\subsubsection{Les disques alpha}\label{sec:viscosite-alpha}
+\subsubsection{Les disques alpha}\label{sec:viscosite-alpha}\index{prescription alpha}
 On peut introduire un paramètre adimensionné $\alpha$ \citep{shakura1973black}. Dans ce formalisme, plusieurs hypothèses sont faites : 
 \begin{itemize}
 \item On considère que la turbulence est subsonique.
@@ -500,18 +500,18 @@ Pourtant, le modèle $\alpha$ n'est pas forcément la panacée en comparaison du
 
 Ceci justifie donc que l'on mette ces deux modèles en concurrence, sans placer le modèle $\alpha$ au dessus du modèle à viscosité constante. Les incertitudes étant tellement grandes dans les deux cas, il est justifié d'explorer ces deux modèles et de les comparer quand cela nous est donné de le faire.
 
-\subsubsection{Ionisation et dead zones}\label{sec:ionisation_DZ}\index{ionisation}\index{dead zone}
+\subsubsection{Ionisation et dead zones}\label{sec:ionisation_DZ}\index{ionisation}\index{zone morte}
 Pour que la MRI se développe, c'est à dire qu'il y ait un couplage entre le champ magnétique et les mouvements du disque, il faut qu'une partie au moins du disque soit ionisé. Dans ces régions ionisées, on pourra alors avoir transport du moment cinétique via la viscosité turbulente. 
 
 \bigskip
 
-Sans ionisation, il n'y a pas de couplage entre le champ magnétique et la matière, et donc pas de turbulence induite par ce même champ. 
+Sans ionisation, il n'y a pas de couplage entre le champ magnétique et la matière, et donc pas de turbulence induite par ce même champ. \index{ionisation}
 
 \reffig{fig:ionization} représente les différents processus d'ionisation dominants en fonction de la zone du disque considérée.
 Mais si le taux d'ionisation décroit en fonction de la distance orbitale \citep{ilgner2006ionisation1} comme le montre
 \reffig{fig:ilgner_ionisation}, il en va de même avec la densité de surface du disque. Il est donc probable que certaines zones
 du disques ne soient pas ionisées (en pourcentage du nombre total d'atomes disponibles), et donc que le transport du moment
-angulaire s'y fasse peu ou pas du tout \citep{gammie1996layered}. Ces zones, appelées \gras{dead zone}, sont donc des zones où
+angulaire s'y fasse peu ou pas du tout \citep{gammie1996layered}. Ces zones, appelées \gras{zone morte} (ou \og dead zone\fg en anglais), sont donc des zones où
 la turbulence est faible ou inexistante, et où la viscosité est par conséquent beaucoup plus faible. 
 
 \begin{figure}[htbp]
@@ -523,7 +523,7 @@ la turbulence est faible ou inexistante, et où la viscosité est par conséquen
 
 On voit donc que les modèles de viscosité constante ou alpha sont incapables de rendre compte de la présence de ces zones de manière intrinsèque. Il est possible de modifier artificiellement les profils de viscosité pour faire apparaître de telles zones mais ça reste \textit{ad hoc}. Dans la suite, je n'ai pas modélisé de dead zone même s'il est probable qu'elles aient un effet sur la migration, le modèle sans dead zone n'est encore pas suffisamment bien compris pour que le rajout de ces zones sans ionisations soit pertinent.
 
-\subsection{La poussière}
+\subsection{La poussière}\index{poussière}
 Le disque protoplanétaire est principalement composé de gaz, hydrogène et hélium en majorité. Pourtant, même si la poussière ne représente qu'environ 1\% de la masse du disque elle joue un rôle au moins aussi important que le gaz lui même.
 
 À cause de la pression quasi inexistante dans le disque en raison des faibles densités, solide et gaz sont les seules phases existantes, il n'y a pas de liquides dans l'espace. La poussière représente la matière solide du disque, en grains plus ou moins fin, allant du nanomètre, micromètre, jusqu'à des tailles planétaires en fin de formation. 
@@ -536,7 +536,7 @@ Le disque évoluant au cours du temps, la ligne des glace évolue elle aussi à 
 
 De plus, la poussière est aussi responsable de l'opacité du disque, c'est à dire sa capacité à laisser passer ou non la lumière. À travers l'opacité, la poussière a donc une influence sur la température du disque qui se refroidit plus ou moins efficacement, et qui absorbe le rayonnement stellaire plus ou moins efficacement. 
 
-\subsection{Opacité du disque}\label{sec:opacity}
+\subsection{Opacité du disque}\label{sec:opacity}\index{opacité}
 Un paramètre crucial des modèles de disques protoplanétaires est l'opacité du disque qui représente l'absorption du rayonnement incident par une cellule de gaz. Cette dernière dépend principalement de la composition chimique de la poussière sauf quand la température devient suffisamment importante pour que la totalité de la poussière se sublime, généralement au delà de $1500\unit{K}$ \citep{pollack1994composition}, l'opacité étant alors régie par les molécules du gaz.
 
 En fonction de la température et de la pression, différentes espèces se condensent ou se subliment, modifiant les propriétés de la poussière (notamment la quantité de poussière disponible) et donc l'opacité.
@@ -632,7 +632,7 @@ Ainsi, si le couple est négatif (sous entendu du disque sur la planète), le di
 
 Si le couple est positif, la planète migre vers l'extérieur, cette dernière prenant de l'énergie au disque.
 
-\subsubsection{Couple de Lindblad}
+\subsubsection{Couple de Lindblad}\index{couple!de Lindblad}
 La présence d'une planète dans un disque de gaz entraine la création d'ondes de densités aux \gras[résonance!de Lindblad]{résonances de Lindblad} \citep{goldreich1979excitation}. Le couplage gravitationnel entre les ondes de densité et la planète qui les crées abouti à un \gras{couple} qui agit sur la planète.
 
 \bigskip
@@ -704,7 +704,7 @@ Le couple est ici exprimé en unité de $\Gamma_0$, couple de référence défin
 
 Notons aussi que le processus physique du transport du moment cinétique de la planète est réalisé par l'onde de densité. Le moment cinétique est emporté par l'onde de densité qui l'échange avec le gaz environnant à mesure que ce dernière amorti et dissipe l'onde.
 
-\subsubsection{Couple co-orbital ou de corotation}\index{co-orbital!couple|see{couple}}\index{couple!co-orbital}\label{sec:couple-corotation}
+\subsubsection{Couple co-orbital ou de corotation}\index{couple!de corotation}\label{sec:couple-corotation}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{figure/corotation_modes.pdf}
@@ -819,16 +819,16 @@ Je présente ici très succinctement ce type de migration que je n'ai pas consid
 
 Quand une planète dans un disque devient suffisamment massive, la réponse du disque n'est plus linéaire, et des ondes de densité induites par la planète forment des chocs non loin de là où elles sont émises. La répulsion entre le disque et la planète devient si forte qu'une cavité annulaire se forme autour de l'orbite de la planète, creusant le disque de gaz \citep{lin1986tidal}.
 
-Une fois que la cavité est formée, la planète est dite en migration de \emph{Type II} : son orbite agit alors essentiellement comme une barrière entre les deux parties du disque de gaz, \emph{interne} et \emph{externe}. Du gaz peut sauter le gap \citep{lubow2006gas}, ou être accrété par la planète mais cette dernière voit son mouvement régit par le disque de gaz, se retrouvant entraînée par la migration de celui-ci.
+Une fois que la cavité est formée, la planète est dite en migration de \gras[migration!Type II]{Type II} : son orbite agit alors essentiellement comme une barrière entre les deux parties du disque de gaz, \emph{interne} et \emph{externe}. Du gaz peut sauter le gap \citep{lubow2006gas}, ou être accrété par la planète mais cette dernière voit son mouvement régit par le disque de gaz, se retrouvant entraînée par la migration de celui-ci.
 
-Quand la planète creuse un sillon et que sa masse est inférieure ou de l'ordre de la masse locale du disque ($M_p \lesssim M_\text{d,loc}$ avec lequel elle interagit, alors le temps de migration de la planète est contrôlé par le \gras{temps visqueux} du disque, car cette dernière se comporte comme une particule de ce disque \citep{nelson2000migration}.
+Quand la planète creuse un sillon et que sa masse est inférieure ou de l'ordre de la masse locale du disque ($M_p \lesssim M_\text{d,loc}$ avec lequel elle interagit, alors le temps de migration de la planète est contrôlé par le temps visqueux du disque, car cette dernière se comporte comme une particule de ce disque \citep{nelson2000migration}.
 
 \bigskip
 
-Pendant que le gap dû à la planète est en train de se creuser, il peut y avoir un fort couple de corotation négatif \citep{masset2003runaway}. Ce mode de migration intermédiaire est parfois appelé migration de Type III. 
+Pendant que le gap dû à la planète est en train de se creuser, il peut y avoir un fort couple de corotation négatif \citep{masset2003runaway}. Ce mode de migration intermédiaire est parfois appelé migration de \gras[migration!Type III]{Type III}. 
 
-\subsection{L'amortissement de l'excentricité et de l'inclinaison}%circularisation
-%TODO refaire cette partie. Utiliser pour cela les papiers cresswell et al. 2007 et tanaka et al. 2004
+\subsection{L'amortissement de l'excentricité et de l'inclinaison}\index{amortissement!excentricité}\index{amortissement!inclinaison}%circularisation
+%Penser aux papiers cresswell et al. 2007 et tanaka et al. 2004
 Une planète sur une orbite non circulaire $e\neq 0$ génère des ondes supplémentaires à cause de son excentricité. De même, une orbite légèrement inclinée induit des ondes à cause de l'inclinaison $I$ de la planète. 
 
 Des calculs analytiques sur les équations linéarisées (valables quand $e$ et $I$ sont faibles $e,i \ll H/R$) montrent que les ondes dues à l'excentricité ou l'inclinaison ont tendance à amortir l'élément orbital qui est à leur origine. \cite[eqs. (45), (47)]{tanaka2004three} trouvent un amortissement exponentiel dont les temps caractéristiques sont : 
@@ -850,14 +850,14 @@ Le temps caractéristique d'amortissement pour l'excentricité et l'inclinaison 
 
 Des simulations hydrodynamiques montrent que le même phénomène d'amortissement se produit pour des valeurs plus grandes de $e$ et $I$, tout en étant dans un régime différent que celui à faible valeurs ($e,i \ll H/R$) \citep{cresswell2007evolution}. On explique cela pour l'inclinaison par le fait qu'à grande inclinaison, la planète peut sortir du disque est ressentir un amortissement réduit. Pour l'excentricité quant à elle, on invoque le fait que durant son orbite la planète va voir sa vitesse varier par rapport à celle du disque de gaz \citep{papaloizou2000orbital}.
 
-\subsection{L'accrétion du gaz}\label{sec:accretion_coeur}
-Dans le modèle d'\gras[modèle!accrétion de cœur]{accrétion de cœur}, les planètes géantes sont d'abord des cœurs rocheux qui grossissent jusqu'à atteindre une masse critique de l'ordre de $10 M_{\oplus}$ \citep{pollack1996formation}. Une fois cette masse atteinte, le cœur commence à accréter rapidement du gaz jusqu'à former une géante gazeuse.
+\subsection{L'accrétion du gaz}\label{sec:accretion_coeur}\index{accrétion de gaz}
+Dans le modèle d'accrétion de cœur, les planètes géantes sont d'abord des cœurs rocheux qui grossissent jusqu'à atteindre une masse critique de l'ordre de $10 M_{\oplus}$ \citep{pollack1996formation}. Une fois cette masse atteinte, le cœur commence à accréter rapidement du gaz jusqu'à former une géante gazeuse.
 
 Ceci implique que la formation des planètes géantes doive se passer avant que le disque de gaz ne se dissipe (ce qui intervient au bout de quelques millions d'années).
 
 Les noyaux de ces planètes sont supposés se former au delà de la ligne des glaces (limite radiale virtuelle au delà de laquelle on peut trouver de l'eau sous forme solide ; autour de $4\unit{UA}$ \citep{martin2013evolution}). En effet, au delà de cette limite, la quantité de matière solide augmente, et donc le taux d'accrétion augmente aussi \citep{sasselov2000snowline}.
 
-La formation des embryons de planètes géantes n'est toujours pas claire. On ne sait pas vraiment s'il y a une zone privilégiée ou non, la limite virtuelle de la ligne des glaces pourrait ne pas être valable, la glace ne rajoutant qu'environ 50\% de masse en plus \citep{lodders2003solar}.\index{ligne des glaces}\index{snowline|see{ligne des glaces}}
+La formation des embryons de planètes géantes n'est toujours pas claire. On ne sait pas vraiment s'il y a une zone privilégiée ou non, la limite virtuelle de la ligne des glaces pourrait ne pas être valable, la glace ne rajoutant qu'environ 50\% de masse en plus \citep{lodders2003solar}.\index{ligne des glaces}
 
 
 \bigskip
@@ -868,5 +868,3 @@ Pour une simulation donnée, si on augmente le taux d'accrétion de la planète,
 Numériquement, le couple de migration Type I est pris en compte en utilisant les formules semi-analytiques développées par \cite{paardekooper2011torque}. 
 
 L'amortissement de l'inclinaison et de l'excentricité quant à elles sont modélisées via les formules de \cite{cresswell2008three}.
-
-%TODO parler du fait que je ne prend pas en compte l'accrétion de gaz, les gaps, 

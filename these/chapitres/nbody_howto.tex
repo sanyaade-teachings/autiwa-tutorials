@@ -56,7 +56,7 @@ inner_smoothing_width = 0.05
 
 Ce paramètre représente la longueur d'amortissement de la densité de surface au bord interne du disque, afin que la densité de surface au bord interne soit très faible. Cette longueur est exprimée en pourcentage de distance orbitale du bord interne ; c'est à dire que si le bord interne est à $0.1\unit{UA}$, alors dans le cas présent, le lissage sera effectué sur une longueur de $0.005\unit{UA}$.
 
-\section{Irradiation de l'étoile centrale}
+\section{Irradiation de l'étoile centrale}\index{irradiation}
 \textbf{is\_irradiation} permet de définir si on veut inclure ou non l'irradiation dans le calcul de l'équilibre énergétique du disque. 
 
 \begin{verbatim}
@@ -91,7 +91,7 @@ viscosity_type = alpha
 alpha = 5e-3
 \end{verbatim}
 
-\subsection{alpha\_dz}\label{sec:dead_zone}
+\subsection{alpha\_dz}\label{sec:dead_zone}\index{zone morte}
 Ce paramètre permet de définir une viscosité alpha par morceau, permettant de modéliser une dead zone. On aura donc 3 zones avec 3 alpha différents. Pour définir ces zones là, il faut donner dans le paramètre \textbf{alpha\_dz} trois valeurs de $\alpha$ et dans \textbf{radius\_dz} deux valeurs de distance orbitales (en \unit{UA}) pour définir les bornes de la dead zone.
 \begin{verbatim}
 viscosity_type = alpha_dz
@@ -103,7 +103,7 @@ Quand cette option est activée, une modification au profil de densité est appl
 
 À ceci s'ajoute un lissage des valeurs de $\alpha$ entre la valeur à gauche et la valeur à droite de la transition selon une tangente hyperbolique. La transition s'effectue typiquement sur une longueur égale à 10\% de la position de la transition dans le disque (si la transition est à $1\unit{UA}$, alors la transition a lieu sur $0.1\unit{UA}$ autour de la transition).
 
-\section{Opacité}
+\section{Opacité}\index{opacité}
 Afin de pouvoir les comparer, j'ai ajouté au code la possibilité de tourner avec différents modèles pour l'opacité. 
 
 Les différents modèles sont \citep{bell1994FU, zhu2009nonsteady, chambers2009analytic, hure2000transition}
@@ -175,7 +175,7 @@ $\Delta t_k=0.2\pi R_k / m_k c_s$ est la durée de vie du mode $k$.
 
 Les modes apparaissent et disparaissent en fonction de leur temps de vie et sont remplacés afin qu'il y ait toujours 100 modes différents dans le disque à un instant $t$. Chaque mode $k$ est créé à un instant $t_{0,k}$ et se termine quand $\tilde{t}_k = t-t_{0,k} > \Delta t_k$.
 
-\section{Migration}
+\section{Migration}\index{migration!Type I}
 \subsection{real}
 C'est le cas le plus classique. Il n'y a pas besoin de définir d'autres paramètres, la migration induite par le disque de gaz sera simplement calculée à partir du modèle de \cite{paardekooper2011torque}.
 

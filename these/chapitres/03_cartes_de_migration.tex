@@ -160,7 +160,7 @@ brusque changement d'opacité et de température est la raison de la séparation
 
 Nous avons alors deux zones de couple nul dont l'origine physique et les propriétés sont quelques peu différentes. 
 
-\section{Différents types de zone de convergence}\label{sec:CZ-types}
+\section{Différents types de zone de convergence}\label{sec:CZ-types}\index{zone de convergence}
 À partir de ces cartes de migration nous pouvons étudier l'évolution des différentes zones de couple nul en fonction de la
 distance. Ces zones sont représentées par une ligne noire. Nous pouvons dégager deux types particulier de zones de convergence. 
 
@@ -212,7 +212,7 @@ linéaire) pour que le couple de corotation soit suffisamment important.
 
 La zone ne convergence ne peut exister que pour une certaine gamme de masses de planète. Au delà de ces limites, la planète trop ou trop peu massive migrera vers l'intérieur.
 
-\section{Effet de l'irradiation}
+\section{Effet de l'irradiation}\index{irradiation}
 En choisissant ou non d'inclure l'irradiation dans l'équation de l'énergie permettant de calculer le profil de température, on
 change de manière importante la carte de migration \citep{bitsch2013stellar}. 
 
@@ -245,7 +245,7 @@ Dans les parties externes, l'irradiation a pour effet de diminuer la pente du pr
 $R^{-\sfrac37}$ quand le disque est purement passif.
 
 
-\subsection{Effet de l'ombre du disque sur lui même.}\label{sec:shadow}
+\subsection{Effet de l'ombre du disque sur lui même.}\label{sec:shadow}\index{self-shadowing}
 Tout au long de ma thèse, j'ai considéré un modèle d'irradiation dans lequel la gestion des ombres restait sommaire. En effet, la seule ombre que je considérais était l'ombre directe. C'est à dire les régions du disque pour lesquelles l'échelle de hauteur décroit avec la distance. Ces zones où l'angle d'interception des rayons de l'étoile était négatif étaient détectées et l'irradiation était forcée à zéro. Nous appellerons ce modèle le \textbf{modèle direct}. C'est un modèle qui découle naturellement de la modélisation du disque. En effet, pour calculer le profil de température, on doit calculer la température point par point en partant du bord externe pour que le calcul de la température converge. Nous n'avons donc pas accès à l'ombre réelle du disque lors du calcul de l'irradiation. L'ombre est simplement la zone où l'angle entre les rayons de l'étoile et la surface du disque est nul.
 
 Ici nous cherchons à comparer ce modèle avec deux modèles plus complexes où l'ombre du disque est gérée de manière plus cohérente. 
@@ -388,7 +388,7 @@ viscosité augmente.
 
 Mais l'augmentation de la viscosité a un effet indirect sur le temps de diffusion radiatif $t_\text{rad}$. Si la viscosité augmente, le chauffage visqueux augmente. La température augmente, et la diffusivité thermique $\chi$ avec. Ainsi, quand la viscosité augmente, le temps de diffusion radiatif $t_\text{rad}$ diminue. Le couple de corotation est linéaire quand $t_\text{rad} < t_\text{U-turn}$. Quand la viscosité $\nu$ augmente, le couple de corotation se linéarise plus rapidement à mesure que la masse de la planète diminue. La partie inférieure de la carte de migration se décale elle aussi vers le haut. Des planètes de faible masse qui migraient vers l'extérieur ne peuvent plus migrer que vers l'intérieur à mesure que la viscosité augmente. 
 
-\subsection{Viscosité alpha}
+\subsection{Viscosité alpha}\index{prescription alpha}
 La prescription alpha \citep{shakura1973black} est une autre manière de définir la viscosité, à partir d'un paramètre adimensionné $\alpha$ \refsec{sec:viscosite-alpha}.
 
 \begin{figure}[htbp]
@@ -428,7 +428,7 @@ progressive de la totalité des zones de convergences. Ainsi, dans le disque où
 toutes les planètes migrent vers l'intérieur \reffig{fig:alpha_5e-4}, quelle que soit leur masse ou leur position dans le
 disque.
 
-\subsection{Dead zone}
+\subsection{Dead zone}\index{zone morte}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.6\linewidth]{figure/migration_map/viscosity/dead_zone_profile.pdf}
@@ -533,7 +533,7 @@ figure/migration_map/index/sigma/temperature_profile.pdf}}
 \protect\reffig{fig:map_index}.}\label{fig:index_profiles}
 \end{figure}
 
-\subsection{Dissipation du disque}
+\subsection{Dissipation du disque}\index{dissipation du disque}
 
 \begin{figure}[htbp]
 \centering
@@ -658,7 +658,7 @@ Enfin, \reffig{fig:map_index_mtot} montre deux cartes de migrations où la masse
 En résumé, quand on change l'indice $d$ du profil de densité, il faut définir le rayon auquel les densités des deux profils sont égales pour interpréter la carte de migration. En dessous de cette distance, la masse locale du profil le plus abrupt sera la plus grande, et inversement dans les parties externes. Ainsi, on se ramène à l'interprétation en terme de masse locale que nous avions utilisée pour étudier la dissipation du disque. C'est l'effet le plus important que la densité de surface apporte, car elle influe directement sur le profil de température. Les variations du couple de migration induites directement par la valeur de $d$ restent en deçà des variations indirectes via la température. En effet la diffusivité thermique $\chi$ a une dépendance en $T^3$ (voir \refeq{eq:diffusivity}, $H^2\propto T$).
 
 \section{Autres paramètres}
-\subsection{Table d'opacité}\label{sec:influence_opacity_table}
+\subsection{Table d'opacité}\label{sec:influence_opacity_table}\index{opacité}
 Nous l'avons vu dans les parties précédentes, le profil de température est crucial pour évaluer la migration dans le disque. La densité a notamment un effet indirect sur la température au travers de l'opacité. Nous allons maintenant montrer que le choix du modèle a une influence considérable sur la migration, le modèle choisi pour l'opacité étant une source importante d'incertitude.
 
 Dans toute la suite, quand je parlerai de table d'opacité, je désigne le fait d'utiliser un tableau à deux dimensions,
@@ -763,7 +763,7 @@ faut stocker un tableau contenant la table d'opacité, ce qui n'est pas limitati
 Malgré tout, il restera toujours des incertitudes liées aux propriétés des poussières, taille et quantité, ainsi que son évolution
 au cours du temps. 
 
-\subsection{Longueur de lissage}\label{sec:smoothing_effect}
+\subsection{Longueur de lissage}\label{sec:smoothing_effect}\index{longueur de lissage}
 Dans les modèles numériques des disques protoplanétaires, le potentiel gravitationnel doit être modifié afin ne pas diverger aux
 très faibles distances mutuelles. En particulier, des problèmes peuvent survenir quand on modélise des objets étendus par des
 masses ponctuelles. Le modèle de Plummer introduit une longueur de lissage $b$ (souvent notée $b/h$ car sa valeur est exprimée

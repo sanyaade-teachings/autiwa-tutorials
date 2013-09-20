@@ -33,7 +33,7 @@ Quand on fait un code scientifique, il arrive souvent qu'on fasse des tests, qu'
 
 Les gestionnaires de versions, et Git en particulier, sont très bien adaptés à ce genre de situations. Ce n'est pas un tutoriel complet, mais voici quelques exemples pour lesquels Git devrait être utilisé systématiquement pour les codes numériques.
 
-\subsubsection{Créer plusieurs versions du code}
+\subsubsection{Créer plusieurs versions du code}\index{git!branch}
 Pour créer une branche \textbf{test\_01}, il faut utiliser la commande :
 \begin{verbatim}
 git branch test_01
@@ -51,7 +51,7 @@ où on voit que \textbf{master} est toujours la branche active. Il faut donc cha
 
 On peut passer aisément d'une branche à l'autre, rajouter les modifications d'une branche vers une autre, faire des mises à jour si la branche principale a été modifiée. Tout ceci permet de garder le contrôle sur le code, de ne pas perdre de modifications et de gérer proprement le code source. 
 
-\subsubsection{Comparer deux versions du code}
+\subsubsection{Comparer deux versions du code}\index{git!diff}
 On peut facilement comparer deux versions du code entre elles, sur un fichier en particulier ou sur tous les fichiers : 
 \begin{verbatim}
 git diff
@@ -77,7 +77,7 @@ ou entre deux versions en spécifiant leur hashtag :
 git diff dqsfg54qsdf35dqs4f ze9r8az7er3azer2
 \end{verbatim}
 
-J'utilise personnellement \gras[git!difftool]{difftool}, ça me permet d'utiliser \gras{meld} que j'affectionne particulièrement.
+J'utilise personnellement \gras[git!difftool]{difftool}, ça me permet d'utiliser \gras[logiciel!meld]{meld} que j'affectionne particulièrement.
 
 \subsubsection{Rechercher un bogue en utilisant bisect}\index{git!bisect}
 Vous avez un bogue dans votre code, vous ne savez pas d'où vient le bogue, \textbf{bisect} est fait pour vous. 
@@ -98,7 +98,7 @@ On peut ainsi rajouter des \og print\fg sans soucis, un peu partout dans le code
 
 \begin{verbatim}
 git stash
-\end{verbatim}
+\end{verbatim}\index{git!stash}
 permet de stocker dans une mémoire tampon les modifications apportées au code, mais pas encore enregistrées. Il remet alors le code en l'état, mais les modifications peuvent ensuite être appliquées de nouveau via 
 \begin{verbatim}
 git stash apply
@@ -108,7 +108,7 @@ git stash apply
 
 \begin{verbatim}
 git checkout mon_fichier
-\end{verbatim}
+\end{verbatim}\index{git!checkout}
 permet de remettre le fichier \textbf{mon\_fichier} comme avant. 
 
 \bigskip
@@ -117,7 +117,7 @@ Grâce à ces deux fonctions, on peut afficher l'état des variables, puis netto
 
 On peut même utiliser une branche contenant uniquement des ajouts pour des tests, et faire inclure les dernières modifications de \textbf{master} chaque fois que l'on veut vérifier l'état du code. 
 
-\subsubsection{Connaître la version du code}. 
+\subsubsection{Connaître la version du code}\index{python} 
 Une autre astuce, mais qui nécessite un peu de bidouillage consiste à faire stocker au code la version avec laquelle une simulation tourne. 
 
 Il faut savoir pour cela que j'ai un script Python qui me permet de compiler mon code. Dans ce script, j'ai une fonction qui va chercher le nom de la branche active ainsi que le hashtag de la version courante. 
@@ -235,7 +235,7 @@ L'initialisation se faisant une seule fois, elle ne va pas ralentir le code outr
 \subsection{Faire des modules}
 Dans la mesure du possible, il faut que les fonctions aient une tâche aussi simple que possible, et regrouper les fonctions de même thème dans un module. C'est ainsi plus facile de s'y retrouver, et plus facile aussi de déboguer et contrôler la qualité du code. 
 
-\section{Astuces en Fortran 90}
+\section{Astuces en Fortran 90}\index{fortran 90}
 
 \subsection{Créer un fichier de paramètre}
 C'est souvent un casse tête de coder une fonction pour lire un fichier de paramètres. Voici ma technique. 
@@ -479,7 +479,7 @@ Et enfin, dans le programme, je fais :
                   corotation_torque=corotation_torque, lindblad_torque=lindblad_torque, Gamma_0=torque_ref, ecc_corot=ecc_corot) ! Output
 \end{lstlisting}
 
-\subsection{Utiliser des objets}
+\subsection{Utiliser des objets}\index{programmation orienté objet}
 Dans mon cas, j'ai défini un objet \textbf{PlanetProperties} dans lequel je stocke toutes les informations qui m'intéressent. L'intérêt principale de cette technique est qu'on passe une seule variable en paramètre d'une fonction, on évite les lignes à rallonge avec 25 paramètres. 
 
 Pour définir la structure on fait : 
@@ -521,7 +521,7 @@ write(*,*) p_prop%radius
 
 
 \section{Utilisation du code}
-\subsection{Personnaliser le Shell}
+\subsection{Personnaliser le Shell}\index{bash\_profile}
 Je personnalise le Shell afin de faciliter l'utilisation des serveurs en rajoutant quelques informations dans le fichier \textbf{\~/.bash\_profile}
 
 Je définis une variable pour pointer vers le dossier contenant le code source, dans mon cas vers le dossier du dépôt Git : 
@@ -629,7 +629,7 @@ maketest.py && test_disk && (cd unitary_tests && gplot.py)
 Cette commande permet de compiler, puis effectuer les tests, ensuite se déplacer dans le dossier contenant les résultats puis lancer le script Python permettant de les afficher. Une fois terminé, nous serons toujours dans le dossier courant.
 \end{itemize}
 
-\subsection{Les options de compilation}
+\subsection{Les options de compilation}\index{logiciel!gfortran}
 J'utilise \textbf{gfortran} pour compiler et j'ai essentiellement deux cas de figures. 
 
 Soit je cherche à déboguer le code, et j'utilise les options de compilation suivantes : 

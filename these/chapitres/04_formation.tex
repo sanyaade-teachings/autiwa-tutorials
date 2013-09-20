@@ -3,8 +3,8 @@
 \section{Les résonances dans un disque protoplanétaire}
 À cause de la migration, l'apparition de résonances de moyen mouvement est favorisée durant la formation planétaire. C'est un phénomène qui tient un rôle majeur durant la formation. Après une brève description des résonances dans le cas général, nous étudierons les résonances dans le cas particulier (dissipatif) des disques de gaz. 
 
-\subsection{Définition}\index{résonance!de Moyen Mouvement}\index{Mean Motion Resonance|see{résonance}}
-Les \gras[resonance@résonance]{résonances de moyen mouvement} sont des configurations orbitales particulières de deux planètes
+\subsection{Définition}\index{résonance!de Moyen Mouvement}
+Les \gras[résonance!de Moyen Mouvement]{résonances de moyen mouvement} sont des configurations orbitales particulières de deux planètes
 dans lesquelles il existe un lien entre les périodes orbitales des planètes. Exemple, si deux planètes sont en résonance
 \MMR{3}{2}, ça signifie que la planète interne effectuera 3 orbites pendant que la planète externe en effectuera 2.
 
@@ -249,7 +249,7 @@ Le couple total est la somme du couple différentiel de Lindblad $\Gamma_L$ --- 
 Nous avons élaboré une formule simple qui reproduit l'effet de l'excentricité sur $\Gamma_C$ par une simple calibration des simulations 3D de \cite{bitsch2010orbital} : 
 \begin{align}
 D &= \frac{\Gamma_C(e)}{\Gamma_C (e=0)} = 1 + a \cdot \left[\tanh(c) - \tanh\left(\frac{b * e}{x_s}+c\right)\right]\label{eq:shifted-eccentricity-influence}
-\end{align}
+\end{align}\index{amortissement!couple de corotation}
 où $x_s$ représente la demi-largeur de la région fer-à-cheval en unité de distance orbitale de la planète considérée, $e$ est l'excentricité de la planète, et notre ajustement statistique donne les valeurs suivantes pour les paramètres de la fonction :
 \begin{align}
 a &= 0.45 & b &= 3.46 & c &= -2.34
@@ -429,7 +429,7 @@ Troisièmement, alors que le disque se dissipe, le profil de couple et la positi
 
 Enfin, la turbulence est censée être commune dans les disques protoplanétaires \citep{armitage2011dynamics}. Même si la turbulence n'affecte pas l'évolution à long terme d'une planète isolée dans un disque radiatif \citep{pierens2012protoplanetary}, on s'attend à ce qu'elle modifie la capture en résonance et l'évolution des excentricités \citep[voir][]{pierens2011dynamics}.
 
-\section{Formation des super-Terres chaudes}\label{sec:4.2}
+\section{Formation des super-Terres chaudes}\label{sec:4.2}\index{super-Terre}
 Les détections d'exoplanètes par vitesse radiale et transit montrent que $30$ à $50\%$ des étoiles de la séquence principale possèdent au moins une planète de moins de $10\mearth$ sur des orbites comprises entre $85$ et $100$ jours \citep{mayor2011road, howard2010occurrence, howard2012occurrence, fressin2013false}. De plus, les super-Terres ($1-10\mearth$) chaudes sont préférentiellement détectées dans des systèmes multiples \citep{udry2007statistical, lissauer2011architecture}. Pourtant, même si ces systèmes peuvent nous sembler bien plus compacts que le système solaire au premier abord, d'un point de vue gravitationnel, ils possèdent à peu près le même espacement en terme de rapport de période et de rayon de Hill mutuel \citep{fang2013planetary}.
 
 
@@ -515,7 +515,7 @@ Dans un premier cas, les embryons migrent vers l'intérieur et il n'y a pas suff
 
 Dans un deuxième cas, une ou plusieurs planètes grossissent suffisamment par collision pour ressentir un couple positif vers l'extérieur. Plusieurs sous-cas de figures sont alors possibles, décrits \refsec{sec:outward-case}.
 
-\subsubsection{Formation au bord interne : systèmes compacts}\label{sec:inner_edge_formation}
+\subsubsection{Formation au bord interne : systèmes compacts}\label{sec:inner_edge_formation}\index{super-Terre}
 Des embryons migrent vers l'intérieur, de manière isolée ou par vague de sous-systèmes en résonance.
 
 En raison de la diminution rapide de la densité de surface près du bord interne, la planète ressent un fort couple positif principalement dû au couple de corotation \reffig{fig:HSE_mig_zoom-in}. 
@@ -539,7 +539,7 @@ centrale, ou soit éjectée, il est très facile de maintenir un système compac
 qui va s'exercer sur la planète la plus interne du système alors que ce dernier cherche à migrer vers l'intérieur
 \citep{masset2006disk, morbidelli2008building, terquem2007migration}.
 
-\subsubsection{Migration vers l'extérieur : noyaux de planètes géantes}\label{sec:outward-case}
+\subsubsection{Migration vers l'extérieur : noyaux de planètes géantes}\label{sec:outward-case}\index{noyau de planète géante}
 Lors de la migration vers l'intérieur de tous les embryons, il est possible pour une planète de grossir suffisamment vite pour ressentir un couple positif \reffig{fig:single_outward_am}. Ce couple positif est censé entrainer une migration vers l'extérieur de la planète, ce serait systématiquement le cas si cette dernière était isolée. Mais dans son voisinage se trouvent d'autres planètes qui elles migrent vers l'intérieur. Très rapidement la planète va entrer en résonance avec un embryon planétaire qui migre vers l'intérieur.
 
 L'effet décrit \refsec{sec:shifted_CZ} s'applique alors. La migration différentielle et le rapport de masse ont ici une importance capitale. Si la différence de vitesse est trop grande, alors les deux planètes ne peuvent pas former un système en résonance. La résonance est rapidement cassée et les deux corps continuent leur migration. Ceci est d'autant plus vrai si le rapport de masse est important, car la brève augmentation d'excentricité qui a lieu lors d'une capture en résonance n'aura que peu d'effet sur la plus grosse planète. Cette dernière sera très peu sensible aux perturbations gravitationnelle de son compagnon résonant et continuera sa migration vers l'extérieur sans ralentissement significatif. 

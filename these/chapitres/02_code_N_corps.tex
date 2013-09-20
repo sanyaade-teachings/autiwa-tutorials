@@ -6,7 +6,7 @@ J'ai ainsi gagné en temps de calcul, et j'ai ouvert un vaste champ d'investigat
 
 Ce choix a bien entendu introduit son lot d'incertitudes et d'approximations qui sont discutés dans la partie \refsec{sec:discussion}. La présente partie a pour but de présenter le code N-corps que j'ai développé ainsi que les différents effets du disque que j'ai modélisé. J'ai avant tout souhaité présenter les parties qui ont des conséquences sur la physique du disque, que ce soit en terme de choix d'un modèle particulier, ou de limitations numériques qu'il est bien de garder à l'esprit quand on interprète les résultats.
 
-\section{Présentation de Mercury}
+\section{Présentation de Mercury}\index{logiciel!Mercury}
 Le code N-corps choisi est le code \textbf{Mercury} \citep{chambers1999hybrid}. Ce code offre la possibilité de choisir un algorithme parmi 5 différents (BS, BS2, RADAU, MVS et HYBRID), ayant des propriétés diverses. Dans le cadre de ma thèse, je n'ai utilisé que l'algorithme HYBRID, qui utilise l'algorithme MVS la plupart du temps, mais change pour l'algorithme BS2 lors de rencontres proches. 
 
 La raison de ce changement est assez simple. MVS est un algorithme symplectique \citep{wisdom1991symplectic}, c'est à dire à pas de temps constant, dans lequel on définit un hamiltonien que l'on résout pour faire évoluer les orbites. La conservation de l'énergie est moins bonne que pour un algorithme à pas de temps adaptatif, mais le point très important est que cette conservation de l'énergie est bien meilleure au cours du temps. C'est à dire que là où les algorithmes tels que BS, BS2 et RADAU verront leur erreur sur l'énergie augmenter au cours du temps, les algorithmes symplectiques vont eux voir leur erreur rester plus ou moins constante au cours du temps. 
@@ -136,7 +136,7 @@ Le profil de densité de notre disque de référence (dont nous parlerons plus e
 \caption{Profil de densité de surface pour notre disque de référence \protect\reftab{tab:fiducial_parameters}.}\label{fig:fiducial_density}
 \end{figure}
 
-\subsection{Table d'opacité}
+\subsection{Table d'opacité}\index{opacité}
 Afin de pouvoir calculer le profil de température, on a besoin de choisir un modèle pour l'opacité. Je ne détaillerai pas ici les différents modèles car une étude complète sur le sujet a été effectuée, afin de comprendre l'influence du choix du modèle sur les résultats des simulations. 
 
 Par contre, quel que soit le modèle, on a généralement une dépendance en fonction de la densité et de la température. L'opacité est donc un paramètre de la résolution de l'équation qui nous permet d'avoir la température. L'opacité n'est pas, dans notre modèle, une quantité qu'on fixe \textit{a priori}, mais plutôt un des paramètres de sortie de la résolution de l'équation de l'énergie dans le disque.
@@ -156,7 +156,7 @@ Le profil de température que nous obtenons dans notre disque de référence (do
 \caption{Profil de température pour notre disque de référence \protect\reftab{tab:fiducial_parameters}.}\label{fig:fiducial_temperature}
 \end{figure}
 
-\section{Migration Type I}
+\section{Migration Type I}\index{migration!Type I}
 La migration de Type I est implémentée dans le code en utilisant le modèle 1D de disque, qui définit pour toute position du disque, une température, une densité de surface, et tous les autres paramètres nécessaires comme l'échelle de hauteur. En utilisant ces paramètres, on obtient ainsi le couple qu'exerce le disque sur la planète en fonction de sa masse et de sa position via la formule semi-analytique de \cite{paardekooper2011torque}. 
 
 Les deux différences principales entre le cadre du modèle de \cite{paardekooper2011torque} et le disque que j'ai modélisé, c'est que dans mon cas je n'ai pas un profil de température en loi de puissance (avec une seule loi de puissance), mais j'ai une loi de puissance définie point par point. C'est à dire que pour chaque zone du disque, la température est calculée de manière cohérente avec les autres paramètres du disques, et que l'indice de la loi de puissance correspondante est calculée en fonction des températures autour.
@@ -198,7 +198,7 @@ t_\text{wave} &= \frac{M_\star}{m_p}\frac{M_\star}{\Sigma_p {a_p}^2}\left(\frac{
 
 L'amortissement de $I$ est arrêté quand l'inclinaison descend en dessous de $I<5\cdot 10^{-4}\unit{rad}$ afin d'empêcher les planètes d'être parfaitement dans le plan $(x,y)$, essentiellement pour empêcher des problèmes numériques.
 
-\section{Effet de l'excentricité sur le couple de corotation}
+\section{Effet de l'excentricité sur le couple de corotation}\index{amortissement!couple de corotation}
 Afin de tenir compte d'un effet mis en évidence par \cite{bitsch2010orbital}, une petite modification a été effectuée dans le calcul du couple total $\Gamma$ exercé par le disque sur la planète. 
 
 En effet, il a été montré que l'excentricité d'une planète a une influence sur sa zone fer-à-cheval et par extension, sur son couple de corotation $\Gamma_C$. Un paramètre d'amortissement $D$, compris entre 0 et 1 a ainsi été ajouté au calcul du couple total \citep{hellary2012global} :
