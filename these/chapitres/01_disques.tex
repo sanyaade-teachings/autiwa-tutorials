@@ -18,7 +18,8 @@ Ces dénominations en classe peuvent sembler étrange mais elles proviennent en 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{figure/star_formation.pdf}
-\caption{Classification empirique des différents stades de formation des étoiles de faible masse, du cœur dense pré-stellaire à la classe III. Schéma basé sur \citep{andre2002initial}. }\label{fig:star_formation}
+\caption[Stades de formation d'une étoile]{Classification empirique des différents stades de formation des étoiles de faible
+masse, du cœur dense pré-stellaire à la classe III. Schéma basé sur \citep{andre2002initial}. }\label{fig:star_formation}
 \end{figure}
 
 
@@ -34,7 +35,8 @@ Initialement, il est hautement improbable que le moment cinétique du nuage soit
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.6\linewidth]{figure/disk_scheme.pdf}
-\caption{Représentation de la répartition radiale et azimutale de gaz dans un disque protoplanétaire.}\label{fig:disk_scheme}
+\caption[Vue de face et de profil d'un disque de gaz.]{Représentation de la répartition radiale et azimutale
+de gaz dans un disque protoplanétaire.}\label{fig:disk_scheme}
 \end{figure}
 
 Avant de considérer l'évolution d'un disque, il est important de regarder sa masse par rapport à la masse de l'étoile centrale. En effet, si la masse du disque est de l'ordre de la masse de l'étoile, alors des instabilités se développent et on ne peut plus négliger l'autogravité du disque. 
@@ -140,7 +142,8 @@ On considèrera dans la suite les quantités moyennées selon $z$, et en particu
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\linewidth]{figure/disk_ring.pdf}
-\caption{Représentation d'un anneau de largeur $\Delta R$ et du bilan de moment cinétique de ce dernier.}\label{fig:disk_ring}
+\caption[Bilan de moment cinétique d'un anneau d'épaisseur $\Delta R$.]{Représentation d'un anneau de largeur $\Delta R$ et du
+bilan de moment cinétique de ce dernier.}\label{fig:disk_ring}
 \end{figure}
 
 On cherche dans un premier temps à faire le bilan de masse de l'anneau considéré. Sa masse s'écrit :
@@ -260,7 +263,9 @@ Cette équation a nécessité les approximations suivantes :
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.65\linewidth]{figure/pringle_viscous_dissipation.pdf}
-\caption{Évolution visqueuse d'un anneau de matière de masse $m$ et de rayon $R_0$. La densité de surface est montrée comme une fonction de la longueur dédimensionnée $x=R/R_0$ et du temps adimensionné $\tau=12\nu t / {R_0}^2$.}\label{fig:pringle_viscous_dissipation}
+\caption[Évolution visqueuse d'un anneau de matière]{Évolution visqueuse d'un anneau de matière de masse $m$ et de rayon $R_0$.
+La densité de surface est montrée comme une fonction de la longueur dédimensionnée $x=R/R_0$ et du temps adimensionné
+$\tau=12\nu t / {R_0}^2$.}\label{fig:pringle_viscous_dissipation}
 \end{figure}
 
 Cette équation permet de modéliser l'évolution visqueuse d'un disque au cours du temps. \reffig{fig:pringle_viscous_dissipation}, tirée de \cite{pringle1981accretion} et recalculée illustre l'évolution visqueuse d'un anneau de matière de masse $m$ dans des unités adimensionnées de distance et de temps.
@@ -274,7 +279,9 @@ Par la rareté des disques en train de se dissiper, les observations suggèrent 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.65\linewidth]{figure/disk_dispersion.pdf}
-\caption{Évolution de la densité de surface en fonction du temps dans une simulation qui modélise la dissipation du disque protoplanétaire par évolution visqueuse et photo-évaporation. À $t=6.20\unit{Myr}$ le disque est totalement dissipé. Figure adaptée de \cite{alexander2006photoevaporation}.}\label{fig:disk_dispersion}
+\caption[Dissipation du disque]{Évolution de la densité de surface en fonction du temps dans une simulation qui modélise la
+dissipation du disque protoplanétaire par évolution visqueuse et photo-évaporation. À $t=6.20\unit{Myr}$ le disque est
+totalement dissipé. Figure adaptée de \cite{alexander2006photoevaporation}.}\label{fig:disk_dispersion}
 \end{figure}
 
 Le principe de la \gras{photo-évaporation} est que le rayonnement de l'étoile permet de dissocier le dihydrogène ainsi que de fournir de l'énergie cinétique aux atomes du gaz. À partir d'un rayon dit \og rayon gravitationnel\fg $r_g$ qui représente la distance à partir de laquelle l'énergie fournie par les photons de l'étoile devient suffisante pour contrebalancer les effets de sa gravité, la photo-évaporation permet d'évaporer une partie du gaz superficiel du disque. Le disque va alors se creuser jusqu'à séparer le disque en deux. Les parties internes du disques ne sont alors plus alimentées par les parties externes. Des simulations montrent que les parties externes se dispersent rapidement une fois les parties internes accrétées \citep{alexander2006photoevaporation}. \reffig{fig:disk_dispersion} montre l'évolution du profil radial de densité en fonction du temps en présence de l'évolution visqueuse et de la photo-évaporation.
@@ -300,7 +307,7 @@ On a tout d'abord les pertes par rayonnement de corps noir. Ensuite, il y a les 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.65\linewidth]{figure/disk_energy.pdf}
-\caption{Représentation du bilan thermique d'un disque}\label{fig:energy_equilibrium}
+\caption[Bilan énergétique d'un disque.]{Représentation du bilan thermique d'un disque}\label{fig:energy_equilibrium}
 \end{figure}
 
 \subsubsection{Refroidissement radiatif}
@@ -328,7 +335,8 @@ Cette température effective est le résultat d'un transfert de rayonnement depu
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.65\linewidth]{figure/disk_envelope.pdf}
-\caption{Représentation de l'effondrement d'un nuage moléculaire et des différentes parties qui composent le système en effondrement.}\label{fig:envelope}
+\caption[Chauffage du disque par l'enveloppe]{Représentation de l'effondrement d'un nuage moléculaire et des différentes parties
+qui composent le système en effondrement.}\label{fig:envelope}
 \end{figure}
 L'enveloppe \reffig{fig:envelope} provient de l'effondrement continu du nuage moléculaire. C'est un reste diffus qui alimente continuellement le disque en matière. Mais cette enveloppe, qui possède une température que l'on fixe ici à $T_\text{en} = 10\unit{K}$ contribue aussi au bilan d'énergie du disque en apportant la contribution uniforme suivante :
 \begin{align}
@@ -518,7 +526,7 @@ la turbulence est faible ou inexistante, et où la viscosité est par conséquen
 \centering
 \subfloat[Mécanisme principal d'ionisation de différentes zones du disque. Les zones où l'ionisation est très faible, appelées \og dead zones\fg sont des positions où on pense que la viscosité turbulente est extrêmement faible.]{\label{fig:ionization}\includegraphics[width=0.49\textwidth]{figure/disk_ionization.pdf}}\hfill
 \subfloat[Taux effectif d'ionisation $\zeta_\text{eff}$ par atome d'hydrogène pour un disque avec $\alpha=10^{-2}$ et $\dot{M}=10^{-7}\unit{M_\odot yr^{-1}}$. Les lignes de référence correspondent aux valeurs de $\zeta_\text{eff}$ suivante : $10^{-19}$, $10^{-21}$ et $10^{-23}\unit{s^{-1}}$. Cette figure est basée sur la figure 6 de \cite{ilgner2006ionisation1}.]{\label{fig:ilgner_ionisation}\includegraphics[width=0.49\textwidth]{figure/ilgner_ionization_rate.pdf}}
-\caption{Représentation de l'ionisation dans un disque protoplanétaire}
+\caption[Ionisation dans un disque protoplanétaire]{Représentation de l'ionisation dans un disque protoplanétaire}
 \end{figure}
 
 On voit donc que les modèles de viscosité constante ou alpha sont incapables de rendre compte de la présence de ces zones de manière intrinsèque. Il est possible de modifier artificiellement les profils de viscosité pour faire apparaître de telles zones mais ça reste \textit{ad hoc}. Dans la suite, je n'ai pas modélisé de dead zone même s'il est probable qu'elles aient un effet sur la migration, le modèle sans dead zone n'est encore pas suffisamment bien compris pour que le rajout de ces zones sans ionisations soit pertinent.
@@ -651,7 +659,11 @@ Il est tout d'abord intéressant de remarquer l'origine des bras spiraux dans le
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\linewidth]{figure/spiral_arms.pdf}
-\caption{Illustration de l'origine des bras spiraux dans une galaxie au travers de l'exitation cohérente de l'excentricité par les bras eux mêmes. Dans le cas \og $e=0$\fg, les orbites des étoiles, représentées par les traits noir sont des cercles parfaits. Dans le cas \og $0<e\ll 1$\fg, les orbites sont toutes très légèrement excentriques, et les arguments du périhélies légèrement décalés à mesure que les demi-grands axes augmentent.}\label{fig:spiral_arms}
+\caption[Origine des bras spiraux dans une galaxie.]{Illustration de l'origine des bras spiraux dans une galaxie au travers de
+l'exitation cohérente de l'excentricité par les bras eux mêmes. Dans le cas \og $e=0$\fg, les orbites des étoiles, représentées
+par les traits noir sont des cercles parfaits. Dans le cas \og $0<e\ll 1$\fg, les orbites sont toutes très légèrement
+excentriques, et les arguments du périhélies légèrement décalés à mesure que les demi-grands axes
+augmentent.}\label{fig:spiral_arms}
 \end{figure}
 
 \bigskip
@@ -661,7 +673,12 @@ Pour l'interaction entre une planète et un disque protoplanétaire, c'est exact
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{figure/lindblad_torque.pdf}
-\caption{Génération d'ondes de densité dans le disque protoplanétaire dû à la présence d'une planète. Chaque mode $m$ émet $m$ ondes de densité de part et d'autre de la position radiale de la planète. Un anneau interne  aux positions du mode $m$ est dénué de toute onde dû à ce même mode. Les interférences entre toutes les ondes de densités de tous les modes donne deux ondes de densités que l'on observe dans des simulations hydrodynamique. Les positions successives des interférences constructives sont données par \cite[eq. (13) et (24)]{ogilvie2002wake}}\label{fig:lindblad_torque}
+\caption[Construction de l'onde de densité due à la présence d'une planète.]{Génération d'ondes de densité dans le disque
+protoplanétaire dû à la présence d'une planète. Chaque mode $m$ émet $m$ ondes de densité de part et d'autre de la position
+radiale de la planète. Un anneau interne aux positions du mode $m$ est dénué de toute onde dû à ce même mode. Les interférences
+entre toutes les ondes de densités de tous les modes donne deux ondes de densités que l'on observe dans des simulations
+hydrodynamique. Les positions successives des interférences constructives sont données par \cite[eq. (13) et
+(24)]{ogilvie2002wake}}\label{fig:lindblad_torque}
 \end{figure}
 
 
@@ -708,7 +725,11 @@ Notons aussi que le processus physique du transport du moment cinétique de la p
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{figure/corotation_modes.pdf}
-\caption{À partir de la décomposition en série de Fourier du potentiel gravitationnel de la planète, chaque mode $m$ a pour conséquence $m$ zones de libration dans la zone de corotation avec la planète. Les interférences entre l'infinité de modes $m$ fait apparaître des orbites fer-à-cheval (\og horseshoe orbits\fg) dans la référentiel tournant avec la planète. La zone de corotation a ici été exagérée pour plus de lisibilité.}\label{fig:corotation_torque}
+\caption[Zone de corotation d'une planète.]{À partir de la décomposition en série de Fourier du potentiel
+gravitationnel de la planète, chaque mode $m$ a pour conséquence $m$ zones de libration dans la zone de corotation avec la
+planète. Les interférences entre l'infinité de modes $m$ fait apparaître des orbites fer-à-cheval (\og horseshoe orbits\fg) dans
+la référentiel tournant avec la planète. La zone de corotation a ici été exagérée pour plus de
+lisibilité.}\label{fig:corotation_torque}
 \end{figure}
 
 De la même manière que précédemment pour le couple de Lindblad, on peut repartir de la décomposition en série de Fourier du potentiel gravitationnel de la planète. Pour chaque mode $m$ de la décomposition, on voit apparaître $m$ zones de libration, centrées sur le rayon de la planète, et réparties en azimut. \reffig*{fig:corotation_torque} représente le mode $m=3$, puis une juxtaposition de mode et finalement le résultat des interférences constructives entre tous les modes $m$ de la décomposition.
@@ -723,7 +744,12 @@ Pour illustrer le principe de la saturation, et sans considérer un couple en pa
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.75\linewidth]{figure/corotation_times.pdf}
-\caption{Dans le référentiel tournant avec la planète (qui est donc fixe dans ce repère), représentation d'une orbite de corotation ainsi que des différents temps caractéristiques mis en jeux. $t_\text{lib}$ est le temps mis par un élément fluide pour effectuer une orbite de corotation. $t_\text{U-turn}$ est le temps mis par un élément fluide pour effectuer un demi tour devant la planète. $t_\text{diff}$ peut être suivant le cas le temps radiatif $t_\text{rad}$ ou le temps visqueux $t_\text{vis}$ nécessaire pour homogénéiser les propriétés thermodynamiques de l'élément fluide avec son environnement.}\label{fig:corotation_orbits}
+\caption[Temps caractéristiques mis en jeu dans la zone de corotation.]{Dans le référentiel tournant avec la planète (qui est
+donc fixe dans ce repère), représentation d'une orbite de corotation ainsi que des différents temps caractéristiques mis en
+jeux. $t_\text{lib}$ est le temps mis par un élément fluide pour effectuer une orbite de corotation. $t_\text{U-turn}$ est le
+temps mis par un élément fluide pour effectuer un demi tour devant la planète. $t_\text{diff}$ peut être suivant le cas le temps
+radiatif $t_\text{rad}$ ou le temps visqueux $t_\text{vis}$ nécessaire pour homogénéiser les propriétés thermodynamiques de
+l'élément fluide avec son environnement.}\label{fig:corotation_orbits}
 \end{figure}
 
 On définit tout d'abord $t_\text{lib}$ comme le temps mis par un élément fluide pour effectuer une co-orbite complète dans la zone de fer-à-cheval. Ceci dépend de la distance de l'élément fluide au rayon de corotation. Mais le temps de libration le plus court est obtenu à la distance $x_s$ de la corotation, et vaut \citep[eq. (52)]{baruteau2008corotation} : 
@@ -768,7 +794,14 @@ $t_\text{U-turn}$ est le temps nécessaire pour faire le demi tour devant la pla
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.75\linewidth]{figure/corotation_principle.pdf}
-\caption{Dans le référentiel tournant avec la planète, représentation du mécanisme général à l'origine du couple de corotation. Lorsque les temps de diffusion $t_\text{diff}$ sont plus grande que le temps de libration $t_\text{lib}$, le couple de corotation sature car le gradient de vortensité/entropie au travers de la région fer-à-cheval tend à s'aplatir. Ce dernier est restauré quand les temps de diffusion $t_\text{diff}$ sont plus courts que le temps de libration $t_\text{lib}$. Dans ce cas, la valeur optimale du couple de corotation est obtenue lorsque les temps de diffusion $t_\text{diff}$ sont de l'ordre de la moitié du temps de libration $t_\text{lib}/2$. Dans la limite où les temps de diffusion $t_\text{diff}$ sont plus courts que le temps de demi-tour $t_\text{U-turn}$, l'amplitude du couple de corotation décroit pour atteindre la valeur prédite par une analyse linéaire.}\label{fig:corotation_principle}
+\caption[État du couple de corotation en fonction des valeurs des temps caractéristiques.]{Dans le référentiel tournant avec la
+planète, représentation du mécanisme général à l'origine du couple de corotation. Lorsque les temps de diffusion $t_\text{diff}$
+sont plus grande que le temps de libration $t_\text{lib}$, le couple de corotation sature car le gradient de vortensité/entropie
+au travers de la région fer-à-cheval tend à s'aplatir. Ce dernier est restauré quand les temps de diffusion $t_\text{diff}$ sont
+plus courts que le temps de libration $t_\text{lib}$. Dans ce cas, la valeur optimale du couple de corotation est obtenue
+lorsque les temps de diffusion $t_\text{diff}$ sont de l'ordre de la moitié du temps de libration $t_\text{lib}/2$. Dans la
+limite où les temps de diffusion $t_\text{diff}$ sont plus courts que le temps de demi-tour $t_\text{U-turn}$, l'amplitude du
+couple de corotation décroit pour atteindre la valeur prédite par une analyse linéaire.}\label{fig:corotation_principle}
 \end{figure}
 
 \reffig*{fig:corotation_principle} illustre les trois cas possibles en fonction des commensurabilités entre les différents temps caractéristiques mis en jeux.

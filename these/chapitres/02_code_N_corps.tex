@@ -50,7 +50,9 @@ Les intégrateurs symplectiques ont deux avantages importants sur les intégrate
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.65\linewidth]{figure/energy_error.pdf}
-\caption{Évolution de l'erreur au cours du temps pour une simulation contenant trois planètes d'une masse terrestre chacune, cette simulation étant lancée successivement avec chacun des algorithmes disponibles dans \textbf{Mercury}.}\label{fig:energy_error}
+\caption[Pour une même simulation, erreur au cours du temps pour BS, BS2, RADAU, MVS et HYBRID.]{Évolution de l'erreur au cours
+du temps pour une simulation contenant trois planètes d'une masse terrestre chacune, cette simulation étant lancée
+successivement avec chacun des algorithmes disponibles dans \textbf{Mercury}.}\label{fig:energy_error}
 \end{figure}
 
 Les algorithmes symplectiques ont cependant un inconvénient. Le pas de temps fixe d'un intégrateur symplectique ne permet pas de résoudre correctement les rencontres proches entre les corps du système. Chaque fois que le pas de temps d'un algorithme symplectique est changé, son hamiltonien change aussi, et entraine une variation d'énergie du système (dont l'énergie va osciller autour d'une nouvelle valeur moyenne). 
@@ -94,7 +96,12 @@ figure/accuracy_10_jup.pdf}}
 figure/accuracy_04_jup.pdf}}
 
 
-\caption{Tests pour $h=1\unit{jour}$ et $h=0.4\unit{jour}$ de la conservation de l'énergie pour une planète de $1\mearth$ isolée ou avec un compagnon de la taille de Jupiter. Les cartes montrent la conservation de l'énergie pour différentes valeurs du demi-grand axe $a$ et de l'excentricité $e$. La ligne noire correspond à un $\dif E/E=10^{-6}$, valeur en dessous de laquelle on considère que la précision sur l'orbite est suffisante. La partie hachurée correspond à la collision de la planète interne avec l'étoile centrale donc le rayon est $R_\star=0.005\unit{UA}$.}\label{fig:accuracy_maps}
+\caption[Conservation de l'énergie en fonction du pas de temps et des conditions initiales.]{Tests pour $h=1\unit{jour}$ et
+$h=0.4\unit{jour}$ de la conservation de l'énergie pour une planète de $1\mearth$ isolée ou avec un compagnon de la taille de
+Jupiter. Les cartes montrent la conservation de l'énergie pour différentes valeurs du demi-grand axe $a$ et de l'excentricité
+$e$. La ligne noire correspond à un $\dif E/E=10^{-6}$, valeur en dessous de laquelle on considère que la précision sur l'orbite
+est suffisante. La partie hachurée correspond à la collision de la planète interne avec l'étoile centrale donc le rayon est
+$R_\star=0.005\unit{UA}$.}\label{fig:accuracy_maps}
 \end{figure}
 
 Si un pas de temps plus grand ($h=1\unit{jour}$) semble convenir pour une planète isolée, la conservation de l'énergie est différente dans le cas avec des perturbations gravitationnelles (cas avec Jupiter). À $0.1\unit{UA}$, qui correspond au bord interne, zone particulièrement importante pour notre étude, ce pas de temps ne convient plus. Dès que l'excentricité augmente un peu, la précision sur l'orbite diminue, et les orbites les plus internes,  ne sont pas correctement résolue.
