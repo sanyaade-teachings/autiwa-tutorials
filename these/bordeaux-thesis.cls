@@ -437,35 +437,9 @@
 \large
 -- \@submityear{} --
 \end{center} 
+\normalsize
+\newpage
 
-  \newpage%
-  \null%
-  \vfill%
-  \thispagestyle{empty}%
-  \footnotesize%
-  \def\@temp{
-    \begin{minipage}[b]{.75\textwidth}
-    \noindent Th\`{e}se pr\'{e}par\'{e}e au\\%
-      \textbf{Laboratoire d'Astrophysique de Bordeaux}\\%
-      Observatoire Aquitain des Sciences de l'Univers (OASU, UMR 5804-LAB)\\%
-      2, rue de l'observatoire\\%
-      \numprint{33271} Floirac CEDEX%
-    \end{minipage}%
-  }%
-  \if@phd@logos%
-    \noindent%
-    \includelogo[width=0.2\textwidth]{logo-lab}\hfill\@temp%
-  \else%
-    \@temp%
-  \fi%
-  \hfill%
-%  \@ifundefined{@phd@templena}{\newlength\@phd@templena}{}%
-%  \settoheight\@phd@templena{\@temp}%
-%  \addtolength\@phd@templena{-0.75\bigskipamount}%
-%  \raisebox{\@phd@templena}[0pt][0pt]{\@temp}%
-  \normalsize%
-  \newpage%
-  \@phd@select@language%
 }
 
 %########################################################################
