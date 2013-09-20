@@ -1,0 +1,37 @@
+Soutenir la thèse : 
+http://www.u-bordeaux1.fr/recherche/etudes-doctorales/soutenir-sa-these.html
+
+Coordonnées rapporteurs : 
+http://www2.iap.fr/users/terquem/
+https://www.oca.eu/morby/
+
+
+Caroline Terquem
+University of Oxford, Department of Physics, Astrophysics
+Denys Wilkinson Building, Keble Road
+Oxford OX1 3RH, UK
++44 (0)1865 
+
+Alessandro Morbidelli
+Observatory of Nice
+B.P. 4229, 06304 Nice Cedex 4 
+0492003051 
+
+EXAMINATEURS
+http://www.maths.qmul.ac.uk/~rpn/
+https://www.oca.eu/crida/
+
+
+QUESTIONS POUR LA TH7SE
+
+Cressewell et nelson 2006, ils toruvent que la dernière résonance stable est la 8:7
+
+Il faut que le temps de migration ne permette pas à la planète de traverser la largeur de la résonance en une orbite. Largeur de résonance en fonction du type de la résonance
+
+Quelle condition pour être capturé en résonance?
+
+il faut voir dans le papier de mustill et wyatt 2011 (ou aux alentours)
+
+
+
+Au delà du système Solaire et de ses planètes, nous avons maintenant un catalogue de quasiment 1000 exoplanètes qui illustrent la grande diversité des planètes et des systèmes qu'il est possible de former. Cette diversité est un défi que les modèles de formation planétaire tentent de relever. La migration de type 1 est un des mécanismes pour y parvenir. En fonction des propriétés du disque protoplanétaire, les planètes peuvent s'approcher ou s'éloigner de leur étoile. La grande variété des modèles de disques protoplanétaires permet d'obtenir une grande variété de systèmes planétaires, en accord avec la grande diversité que nous observons déjà pour l'échantillon limité qui nous est accessible. Grâce à des simulations numériques, j'ai pu montrer qu'au sein d'un même disque, il est possible de former des super-Terres ou des noyaux de planètes géantes selon l'histoire de migration d'une population d'embryons.

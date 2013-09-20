@@ -9,7 +9,7 @@ Cette partie s'adresse plutôt à ceux qui débutent en programmation, au hasard
 Trois petites règles de base : 
 \begin{enumerate}
 \item Indenter son code pour plus de lisibilité.
-\item Mettre des commentaires, en particulier quand il y a des astuces de calcul, des petits tours de passe passe pour éviter un bug, etc\dots
+\item Mettre des commentaires, en particulier quand il y a des astuces de calcul, des petits tours de passe passe pour éviter un bogue, etc\dots
 \item Mettre des noms explicites aux fonctions et variables. Ne pas hésiter à mettre des noms à rallonge qui explique bien ce qui se cache derrière. 
 \end{enumerate}
 
@@ -19,7 +19,7 @@ Une chose fondamentale, et qui s'applique aussi aux codes scientifiques, ce sont
 Ça peut sembler redondant comme ça, mais quand on créée un gros code, et qu'on le modifie au fil du temps, rien ne dit qu'il ne va pas y avoir des interactions entre fonctions que l'on n'avait pas prévu, ces fonctions de tests sont là pour ça. 
 
 \begin{remarque}
-Une bonne technique en particulier, est de créer une fonction de test pour un bug quand on le rencontre. En plus de le corriger, faire cette fonction de test permet d'éviter qu'il se reproduise à l'avenir. 
+Une bonne technique en particulier, est de créer une fonction de test pour un bogue quand on le rencontre. En plus de le corriger, faire cette fonction de test permet d'éviter qu'il se reproduise à l'avenir. 
 \end{remarque}
 
 Les choses que l'on peut tester dans un code scientifique, ce sont par exemple les interpolations quand on a une discrétisation de certaines valeurs. Afficher certains paramètres physique, des fonctions, des cartes. 
@@ -33,7 +33,7 @@ Quand on fait un code scientifique, il arrive souvent qu'on fasse des tests, qu'
 
 Les gestionnaires de versions, et Git en particulier, sont très bien adaptés à ce genre de situations. Ce n'est pas un tutoriel complet, mais voici quelques exemples pour lesquels Git devrait être utilisé systématiquement pour les codes numériques.
 
-\subsubsection{Créer plusieurs versions du code}
+\subsubsection{Créer plusieurs versions du code}\index{git!branch}
 Pour créer une branche \textbf{test\_01}, il faut utiliser la commande :
 \begin{verbatim}
 git branch test_01
@@ -51,7 +51,7 @@ où on voit que \textbf{master} est toujours la branche active. Il faut donc cha
 
 On peut passer aisément d'une branche à l'autre, rajouter les modifications d'une branche vers une autre, faire des mises à jour si la branche principale a été modifiée. Tout ceci permet de garder le contrôle sur le code, de ne pas perdre de modifications et de gérer proprement le code source. 
 
-\subsubsection{Comparer deux versions du code}
+\subsubsection{Comparer deux versions du code}\index{git!diff}
 On peut facilement comparer deux versions du code entre elles, sur un fichier en particulier ou sur tous les fichiers : 
 \begin{verbatim}
 git diff
@@ -77,14 +77,14 @@ ou entre deux versions en spécifiant leur hashtag :
 git diff dqsfg54qsdf35dqs4f ze9r8az7er3azer2
 \end{verbatim}
 
-J'utilise personnellement \gras[git!difftool]{difftool}, ça me permet d'utiliser \gras{meld} que j'affectionne particulièrement.
+J'utilise personnellement \gras[git!difftool]{difftool}, ça me permet d'utiliser \gras[logiciel!meld]{meld} que j'affectionne particulièrement.
 
-\subsubsection{Rechercher un bug en utilisant bisect}\index{git!bisect}
-Vous avez un bug dans votre code, vous ne savez pas d'où vient le bug, \textbf{bisect} est fait pour vous. 
+\subsubsection{Rechercher un bogue en utilisant bisect}\index{git!bisect}
+Vous avez un bogue dans votre code, vous ne savez pas d'où vient le bogue, \textbf{bisect} est fait pour vous. 
 
 Le principe est le suivant : Vous avez une révision que vous savez ne pas fonctionner (la dernière par exemple) et une qui fonctionne (au pire la première si vous en avez peu, sinon vous en trouvez une assez ancienne et qui fonctionne. Personnellement j'ai fini par y aller franco, et je suis remonté six mois en arrière, une centaine de révisions à tester, mais avec \textbf{bisect} c'est rapide. 
 
-Une fois fait, on peut exploiter la puissance de \textbf{bisect}, qui va nous aider à trouver par dichotomie la révision qui a introduit le bug. On part donc d'un encadrement en ayant une version bonne de référence et une version mauvaise, et on sait donc que la révision fautive se trouve au milieu.
+Une fois fait, on peut exploiter la puissance de \textbf{bisect}, qui va nous aider à trouver par dichotomie la révision qui a introduit le bogue. On part donc d'un encadrement en ayant une version bonne de référence et une version mauvaise, et on sait donc que la révision fautive se trouve au milieu.
 Une fois qu'il aura trouvé LA révision fautive, il le dira par :
 \begin{verbatim}
 d109d47732cb85652b79d679edd7bfe2379e5707 is first bad commit
@@ -92,13 +92,13 @@ d109d47732cb85652b79d679edd7bfe2379e5707 is first bad commit
 
 
 \subsubsection{Déboguer}
-Il arrive souvent qu'un code scientifique ne plante pas, mais renvoie des informations aberrantes. Git permet de faciliter le processus de débug. 
+Il arrive souvent qu'un code scientifique ne plante pas, mais renvoie des informations aberrantes. Git permet de faciliter le processus de débogage. 
 
 On peut ainsi rajouter des \og print\fg sans soucis, un peu partout dans le code, sans ce soucier du nettoyage. Deux commandes sont là pour nous aider. 
 
 \begin{verbatim}
 git stash
-\end{verbatim}
+\end{verbatim}\index{git!stash}
 permet de stocker dans une mémoire tampon les modifications apportées au code, mais pas encore enregistrées. Il remet alors le code en l'état, mais les modifications peuvent ensuite être appliquées de nouveau via 
 \begin{verbatim}
 git stash apply
@@ -108,7 +108,7 @@ git stash apply
 
 \begin{verbatim}
 git checkout mon_fichier
-\end{verbatim}
+\end{verbatim}\index{git!checkout}
 permet de remettre le fichier \textbf{mon\_fichier} comme avant. 
 
 \bigskip
@@ -117,7 +117,7 @@ Grâce à ces deux fonctions, on peut afficher l'état des variables, puis netto
 
 On peut même utiliser une branche contenant uniquement des ajouts pour des tests, et faire inclure les dernières modifications de \textbf{master} chaque fois que l'on veut vérifier l'état du code. 
 
-\subsubsection{Connaître la version du code}. 
+\subsubsection{Connaître la version du code}\index{python} 
 Une autre astuce, mais qui nécessite un peu de bidouillage consiste à faire stocker au code la version avec laquelle une simulation tourne. 
 
 Il faut savoir pour cela que j'ai un script Python qui me permet de compiler mon code. Dans ce script, j'ai une fonction qui va chercher le nom de la branche active ainsi que le hashtag de la version courante. 
@@ -165,7 +165,7 @@ def get_current_revision():
   return commit
 
 def is_non_committed_modifs():
-  """function that return as a boolean if theere is non committed modifications in the repository"""
+  """function that return as a boolean if there is non committed modifications in the repository"""
   (stdout, stderr, returnCode) = run_command("git diff|wc -l")
   
   if (returnCode != 0):
@@ -233,9 +233,9 @@ On souhaite souvent que le code soit rapide, et on évite de mettre des tests un
 L'initialisation se faisant une seule fois, elle ne va pas ralentir le code outre mesure.
 
 \subsection{Faire des modules}
-Dans la mesure du possible, il faut que les fonctions aient une tâche aussi simple que possible, et regrouper les fonctions de même thème dans un module. C'est ainsi plus facile de s'y retrouver, et plus facile aussi de débuguer et contrôler la qualité du code. 
+Dans la mesure du possible, il faut que les fonctions aient une tâche aussi simple que possible, et regrouper les fonctions de même thème dans un module. C'est ainsi plus facile de s'y retrouver, et plus facile aussi de déboguer et contrôler la qualité du code. 
 
-\section{Astuces en Fortran 90}
+\section{Astuces en Fortran 90}\index{fortran 90}
 
 \subsection{Créer un fichier de paramètre}
 C'est souvent un casse tête de coder une fonction pour lire un fichier de paramètres. Voici ma technique. 
@@ -373,7 +373,7 @@ end subroutine get_parameter_value
 \begin{attention}
 J'ai rajouté une partie où j'oblige le premier caractère de value à ne pas être un espace, car si on teste cette valeur, le premier espace peut poser des problèmes, chose qui n'arrive normalement pas pour les clés, vu qu'on commence la ligne avec, alors que dans le cas de la valeur, le séparateur (le signe égal '=') peut être entouré d'espaces.
 
-Ainsi, sans les modifs que j'ai faite, 
+Ainsi, sans les modifications que j'ai faite, 
 \begin{verbatim}
 surface density = manual
 \end{verbatim}
@@ -414,7 +414,7 @@ Il y a cependant deux défauts :
 \end{itemize}
 
 \subsection{Pointeurs de fonction}
-Prenons un cas concrêt. En fonction du paramètre du programme, je veux exécuter différentes fonctions (par exemple pour différents types d'intéractions disque planète (dans mon cas). 
+Prenons un cas concret. En fonction du paramètre du programme, je veux exécuter différentes fonctions (par exemple pour différents types d'interactions disque planète (dans mon cas). 
 
 Avant, je faisais à chaque pas de temps dans mon programme un test pour choisir quelle fonction lancer, sachant que toutes les fonctions ont le même nombre d'arguments. 
 
@@ -479,7 +479,7 @@ Et enfin, dans le programme, je fais :
                   corotation_torque=corotation_torque, lindblad_torque=lindblad_torque, Gamma_0=torque_ref, ecc_corot=ecc_corot) ! Output
 \end{lstlisting}
 
-\subsection{Utiliser des objets}
+\subsection{Utiliser des objets}\index{programmation orienté objet}
 Dans mon cas, j'ai défini un objet \textbf{PlanetProperties} dans lequel je stocke toutes les informations qui m'intéressent. L'intérêt principale de cette technique est qu'on passe une seule variable en paramètre d'une fonction, on évite les lignes à rallonge avec 25 paramètres. 
 
 Pour définir la structure on fait : 
@@ -521,7 +521,7 @@ write(*,*) p_prop%radius
 
 
 \section{Utilisation du code}
-\subsection{Personnnaliser le Shell}
+\subsection{Personnaliser le Shell}\index{bash\_profile}
 Je personnalise le Shell afin de faciliter l'utilisation des serveurs en rajoutant quelques informations dans le fichier \textbf{\~/.bash\_profile}
 
 Je définis une variable pour pointer vers le dossier contenant le code source, dans mon cas vers le dossier du dépôt Git : 
@@ -550,7 +550,7 @@ $ mercury
 
 \bigskip
 
-Je souhaite afficher des informations liées au dépot Git directement dans la console. J'ajoute alors : 
+Je souhaite afficher des informations liées au dépôt Git directement dans la console. J'ajoute alors : 
 \begin{footnotesize}
 \begin{verbatim}
 git_branch_name_prompt() {
@@ -629,10 +629,10 @@ maketest.py && test_disk && (cd unitary_tests && gplot.py)
 Cette commande permet de compiler, puis effectuer les tests, ensuite se déplacer dans le dossier contenant les résultats puis lancer le script Python permettant de les afficher. Une fois terminé, nous serons toujours dans le dossier courant.
 \end{itemize}
 
-\subsection{Les options de compilation}
+\subsection{Les options de compilation}\index{logiciel!gfortran}
 J'utilise \textbf{gfortran} pour compiler et j'ai essentiellement deux cas de figures. 
 
-Soit je cherche à débuguer le code, et j'utilise les options de compilation suivantes : 
+Soit je cherche à déboguer le code, et j'utilise les options de compilation suivantes : 
 \begin{verbatim}
 "-pedantic-errors -Wall -Wconversion -Wunderflow -Wextra 
 -Wunreachable-code -fbacktrace -g3 -fbounds-check

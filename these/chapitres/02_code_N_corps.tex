@@ -6,8 +6,8 @@ J'ai ainsi gagné en temps de calcul, et j'ai ouvert un vaste champ d'investigat
 
 Ce choix a bien entendu introduit son lot d'incertitudes et d'approximations qui sont discutés dans la partie \refsec{sec:discussion}. La présente partie a pour but de présenter le code N-corps que j'ai développé ainsi que les différents effets du disque que j'ai modélisé. J'ai avant tout souhaité présenter les parties qui ont des conséquences sur la physique du disque, que ce soit en terme de choix d'un modèle particulier, ou de limitations numériques qu'il est bien de garder à l'esprit quand on interprète les résultats.
 
-\section{Présentation de mercury}
-Le code N-corps choisi est le code \textbf{mercury} \citep{chambers1999hybrid}. Ce code offre la possibilité de choisir un algorithme parmi 5 différents (BS, BS2, RADAU, MVS et HYBRID), ayant des propriétés diverses. Dans le cadre de ma thèse, je n'ai utilisé que l'algorithme HYBRID, qui utilise l'algorithme MVS la plupart du temps, mais change pour l'algorithme BS2 lors de rencontres proches. 
+\section{Présentation de Mercury}\index{logiciel!Mercury}
+Le code N-corps choisi est le code \textbf{Mercury} \citep{chambers1999hybrid}. Ce code offre la possibilité de choisir un algorithme parmi 5 différents (BS, BS2, RADAU, MVS et HYBRID), ayant des propriétés diverses. Dans le cadre de ma thèse, je n'ai utilisé que l'algorithme HYBRID, qui utilise l'algorithme MVS la plupart du temps, mais change pour l'algorithme BS2 lors de rencontres proches. 
 
 La raison de ce changement est assez simple. MVS est un algorithme symplectique \citep{wisdom1991symplectic}, c'est à dire à pas de temps constant, dans lequel on définit un hamiltonien que l'on résout pour faire évoluer les orbites. La conservation de l'énergie est moins bonne que pour un algorithme à pas de temps adaptatif, mais le point très important est que cette conservation de l'énergie est bien meilleure au cours du temps. C'est à dire que là où les algorithmes tels que BS, BS2 et RADAU verront leur erreur sur l'énergie augmenter au cours du temps, les algorithmes symplectiques vont eux voir leur erreur rester plus ou moins constante au cours du temps. 
 
@@ -16,7 +16,7 @@ Dans le cadre de mes simulations, j'ai accordé une importance limitée aux vari
 Les détails techniques et les options de mon code sont détaillés dans l'annexe \refsec{sec:nbody-readme}.
 
 \section{Algorithmes d'intégration}
-Dans mercury, il y a cinq algorithmes différents à notre disposition :
+Dans Mercury, il y a cinq algorithmes différents à notre disposition :
 \begin{itemize}
 \item MVS \citep{wisdom1991symplectic} : un code symplectique\footnote{Basiquement, un code symplectique est un code qui conserve parfaitement l'énergie de par sa définition en terme d'hamiltoniens.}, c'est-à-dire qui conserve l'énergie au cours du temps et dont le pas de temps est fixe (c'est le seul à avoir un pas de temps fixe)
 \item BS \citep{stoer1980introduction} : un algorithme à pas de temps variable, réputé robuste et plutôt long à tourner.
@@ -47,7 +47,7 @@ Les intégrateurs symplectiques ont deux avantages importants sur les intégrate
 \item Ils sont moins couteux en temps de calcul, en particulier quand la majeure partie de la masse est contenue dans un seul corps (bien adapté pour l'étude d'un système planétaire autour d'une étoile donc).
 \end{enumerate}
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.65\linewidth]{figure/energy_error.pdf}
 \caption{Évolution de l'erreur au cours du temps pour une simulation contenant trois planètes d'une masse terrestre chacune, cette simulation étant lancée successivement avec chacun des algorithmes disponibles dans \textbf{Mercury}.}\label{fig:energy_error}
@@ -83,7 +83,7 @@ Dans un deuxième test, on procède exactement de la même manière, à ceci pr�
 
 \reffig{fig:accuracy_maps} montre l'évolution de la conservation de l'énergie dans ces deux tests pour deux pas de temps différents, $h=1\unit{jour}$ et $h=0.4\unit{jour}$. Pour un pas de temps donné, nous ne pouvons pas donner simplement de position en dessous de laquelle l'orbite n'est pas correctement résolue. L'excentricité a une influence. En effet, la distance minimale entre l'étoile et la planète se situe au périhélie, mais suivant l'excentricité, la planète passera plus ou moins de temps au périastre. Ainsi, une très grande excentricité va diminuer drastiquement le temps passé au périastre, pour un périastre donné \citep{rauch1999dynamical, levison2000symplectically}. 
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
 \subfloat[$h=1\unit{jour}$ sans Jupiter]{\includegraphics[width=0.49\textwidth]{figure/accuracy_10_one.pdf}}\hfill
 \subfloat[$h=1\unit{jour}$ avec Jupiter]{\includegraphics[width=0.49\textwidth]{%
@@ -116,9 +116,9 @@ Le profil de densité de surface est défini au début de la simulation comme un
 \begin{align}
 \Sigma(R) &= \Sigma_0 \times R^{-d}
 \end{align}
-où $\Sigma_0$ est la densité de surface à $1\unit{AU}$ et $d$ l'indice de la loi de puissance. 
+où $\Sigma_0$ est la densité de surface à $1\unit{UA}$ et $d$ l'indice de la loi de puissance. 
 
-Ce profil de densité de surface est défini pour une certaine étendue radiale. On définit donc un bord interne $R_\text{in}$ et un bord externe $R_\text{out}$. Le bord interne est généralement à $0.1\unit{AU}$ et le bord externe à $100\unit{AU}$. 
+Ce profil de densité de surface est défini pour une certaine étendue radiale. On définit donc un bord interne $R_\text{in}$ et un bord externe $R_\text{out}$. Le bord interne est généralement à $0.1\unit{UA}$ et le bord externe à $100\unit{UA}$. 
 
 Afin de calculer les valeurs suivantes, ce disque est échantillonné et toutes les valeurs nécessaires sont ensuite calculées à chacun de ces points. 
 
@@ -130,18 +130,17 @@ Le profil étant une loi de puissance, un amortissement est effectué au bord in
 
 Le profil de densité de notre disque de référence (dont nous parlerons plus en détail \refsec{sec:migrations-maps}) est représenté \reffig{fig:fiducial_density}
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.75\linewidth]{figure/fiducial_density_profile.pdf}
 \caption{Profil de densité de surface pour notre disque de référence \protect\reftab{tab:fiducial_parameters}.}\label{fig:fiducial_density}
 \end{figure}
 
-\subsection{Table d'opacité}
+\subsection{Table d'opacité}\index{opacité}
 Afin de pouvoir calculer le profil de température, on a besoin de choisir un modèle pour l'opacité. Je ne détaillerai pas ici les différents modèles car une étude complète sur le sujet a été effectuée, afin de comprendre l'influence du choix du modèle sur les résultats des simulations. 
 
 Par contre, quel que soit le modèle, on a généralement une dépendance en fonction de la densité et de la température. L'opacité est donc un paramètre de la résolution de l'équation qui nous permet d'avoir la température. L'opacité n'est pas, dans notre modèle, une quantité qu'on fixe \textit{a priori}, mais plutôt un des paramètres de sortie de la résolution de l'équation de l'énergie dans le disque.
 
-%TODO 
 \subsection{Profil de température}
 Afin de construire le profil de température point par point, on résout, pour chaque position dans le disque définie dans le profile, l'équation de l'énergie \refeq{eq:equation_energie}. 
 
@@ -151,15 +150,14 @@ Afin de résoudre cette équation du type $f(x)=0$, j'ai utilisé une version mo
 
 Le profil de température que nous obtenons dans notre disque de référence (dont nous parlerons plus en détail \refsec{sec:migrations-maps}) est représenté \reffig{fig:fiducial_temperature}
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.75\linewidth]{figure/fiducial_temperature_profile.pdf}
 \caption{Profil de température pour notre disque de référence \protect\reftab{tab:fiducial_parameters}.}\label{fig:fiducial_temperature}
 \end{figure}
 
-%TODO 
-\section{Migration type I}
-La migration de type I est implémentée dans le code en utilisant le modèle 1D de disque, qui définit pour toute position du disque, une température, une densité de surface, et tous les autres paramètres nécessaires comme l'échelle de hauteur. En utilisant ces paramètres, on obtient ainsi le couple qu'exerce le disque sur la planète en fonction de sa masse et de sa position via la formule semi-analytique de \cite{paardekooper2011torque}. 
+\section{Migration Type I}\index{migration!Type I}
+La migration de Type I est implémentée dans le code en utilisant le modèle 1D de disque, qui définit pour toute position du disque, une température, une densité de surface, et tous les autres paramètres nécessaires comme l'échelle de hauteur. En utilisant ces paramètres, on obtient ainsi le couple qu'exerce le disque sur la planète en fonction de sa masse et de sa position via la formule semi-analytique de \cite{paardekooper2011torque}. 
 
 Les deux différences principales entre le cadre du modèle de \cite{paardekooper2011torque} et le disque que j'ai modélisé, c'est que dans mon cas je n'ai pas un profil de température en loi de puissance (avec une seule loi de puissance), mais j'ai une loi de puissance définie point par point. C'est à dire que pour chaque zone du disque, la température est calculée de manière cohérente avec les autres paramètres du disques, et que l'indice de la loi de puissance correspondante est calculée en fonction des températures autour.
 
@@ -180,7 +178,7 @@ Les formules nous donnent alors un couple exercé par le disque sur la planète.
 \begin{align}
 t_\text{mig} &= \frac{J}{2\Gamma}
 \end{align}
-où $J$ est le moment angulaire total de la planète et $\Gamma=\dot{J}$ est le couple total exercé par le disque sur la planète.
+où $J$ est le moment cinétique total de la planète et $\Gamma=\dot{J}$ est le couple total exercé par le disque sur la planète.
 
 L'accélération due à la migration $\vect{a_\text{mig}}$ est alors donnée par :
 \begin{align}
@@ -200,8 +198,7 @@ t_\text{wave} &= \frac{M_\star}{m_p}\frac{M_\star}{\Sigma_p {a_p}^2}\left(\frac{
 
 L'amortissement de $I$ est arrêté quand l'inclinaison descend en dessous de $I<5\cdot 10^{-4}\unit{rad}$ afin d'empêcher les planètes d'être parfaitement dans le plan $(x,y)$, essentiellement pour empêcher des problèmes numériques.
 
-%TODO 
-\section{Effet de l'excentricité sur le couple de corotation}
+\section{Effet de l'excentricité sur le couple de corotation}\index{amortissement!couple de corotation}
 Afin de tenir compte d'un effet mis en évidence par \cite{bitsch2010orbital}, une petite modification a été effectuée dans le calcul du couple total $\Gamma$ exercé par le disque sur la planète. 
 
 En effet, il a été montré que l'excentricité d'une planète a une influence sur sa zone fer-à-cheval et par extension, sur son couple de corotation $\Gamma_C$. Un paramètre d'amortissement $D$, compris entre 0 et 1 a ainsi été ajouté au calcul du couple total \citep{hellary2012global} :
@@ -220,7 +217,7 @@ a &= 0.45 \qquad b=3.46 \qquad c= -2.34
 où $x_s$ représente la demi-largeur de la région fer-à-cheval adimensionnée.
 
 \section{Désactivation des effets du disque}
-Quand une planète sort des bornes du disques, les effets d'amortissement de $e$ et $I$ sont désactivés, au même titre que la migration due à la présence du disque. Ce cas survient rarement au bord externe du disque (généralement à $100\unit{AU}$), mais est beaucoup plus probable au bord interne (généralement à $0.1\unit{AU}$).
+Quand une planète sort des bornes du disques, les effets d'amortissement de $e$ et $I$ sont désactivés, au même titre que la migration due à la présence du disque. Ce cas survient rarement au bord externe du disque (généralement à $100\unit{UA}$), mais est beaucoup plus probable au bord interne (généralement à $0.1\unit{UA}$).
 
 \section{Validité des éléments orbitaux}
 Lors d'une rencontre proche entre deux planètes, leurs interactions gravitationnelles rendent caduques les formules qui permettent de calculer les éléments orbitaux à partir des vitesses et positions car ceci suppose qu'on est dans le cas d'une orbite képlerienne isolée. 
@@ -228,8 +225,3 @@ Lors d'une rencontre proche entre deux planètes, leurs interactions gravitation
 Dans de tels cas, on peut avoir des demi-grands axes négatifs, des excentricités supérieures à 1. Si c'est déjà en soit un problème physique, c'est aussi et surtout un problème numérique car cela fait apparaître des \textbf{Not A Number} (NaN) lorsque par exemple le demi-grand axe est en argument d'une racine carrée. Ceci a donc pour conséquence concrète de faire planter le code, au mieux, ou pire, de le faire tourner avec tous les paramètres de la simulation peu à peu gangrénés par des \textbf{NaN}. 
 
 En conséquence, j'ai décidé de remplacer dans la plupart des calculs de mes simulations, le demi-grand axe par le rayon $r=\sqrt{x^2+y^2+z^2}$ qui lui n'est pas sensible à ce genre de divergences. Quand l'excentricité est non nulle, il est clair que le rayon est différent du demi-grand axe. Mais les excentricités étant généralement faibles, l'erreur faite sur le demi-grand axe reste faible. De plus les rencontres proches représentent un temps négligeable de la simulation au regard des centaines de milliers d'années sur lesquelles on intègre les orbites. On considère donc que la migration induite sur les planètes pendant leur temps de rencontre proche est totalement négligeable au regard du reste de la simulation.
-
-
-%TODO j'en suis là.
-
-%TODO du couple de corotation quand l'excentricité augmente, mais je sais pas encore où le placer, pas dans la partie intro je suppose

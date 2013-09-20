@@ -1,4 +1,4 @@
-Dans les disques isothermes, la migration de type I est gouvernée par le couple différentiel de Lindblad et le couple de corotation, qui induisent généralement
+Dans les disques isothermes, la migration de Type I est gouvernée par le couple différentiel de Lindblad et le couple de corotation, qui induisent généralement
 une migration vers l'intérieur \citep{goldreich1980disk, ward1986density, tanaka2002three}. Dans les disques radiatifs, un terme supplémentaire du couple de corotation provenant d'un gradient d'entropie peut contrebalancer le couple
 différentiel de Lindblad sous certaines conditions et ainsi inverser le sens de migration (vers l'extérieur)
 \citep{paardekooper2006halting, kley2008migration}. Il est donc possible d'avoir dans un disque des zones où la migration
@@ -48,7 +48,7 @@ figure/migration_map/fiducial_units.pdf}}
 
 \caption{Carte de migration pour le disque de référence. Cette carte montre le sens de migration d'une planète en fonction de sa
 position (abscisse) et de sa masse (ordonnée). La 3\ieme coordonnée est le couple total exercé par le disque sur la planète,
-exprimé en unité de $\Gamma_0 = \left(\frac{q}{h}\right)^2\Sigma_p {r_p}^4 {\Omega_p}^2$ pour la carte de gauche, et en \unit{M_\odot AU^2/jour^2} pour la carte de droite. Quand le couple est positif (resp.
+exprimé en unité de $\Gamma_0 = \left(\frac{q}{h}\right)^2\Sigma_p {r_p}^4 {\Omega_p}^2$ pour la carte de gauche, et en \unit{M_\odot UA^2/jour^2} pour la carte de droite. Quand le couple est positif (resp.
 négatif), la migration est vers l'extérieur (resp. intérieur). La ligne noire représente la zone de couple nul, où la planète ne
 migre plus. Le détail des paramètres du disque de référence est donné \reftab{tab:fiducial_parameters}.
 }\label{fig:fiducial_migration_map}
@@ -59,7 +59,7 @@ planètes. Ce disque de référence servira aussi de comparaison quand nous étu
 
 Ce disque est obtenu à l'aide de la table d'opacité d'\cite{hure2000transition}. Le profil de température est
 calculé en tenant compte de l'irradiation, avec des paramètres solaires pour la température et le rayon de l'étoile ($T_\star =
-5700\unit{K}$ ; $R_\star = 4.65\cdot 10^{-3}\unit{AU}$). L'albédo du disque est pris égal à $0.5$. La viscosité est calculée à
+5700\unit{K}$ ; $R_\star = 4.65\cdot 10^{-3}\unit{UA}$). L'albédo du disque est pris égal à $0.5$. La viscosité est calculée à
 partir d'une prescription alpha \citep{shakura1973black}. On considère un disque dont les bords internes et externes sont
 respectivement à $0.1$ et $100\unit{UA}$. Les autres paramètres du disques sont récapitulés \reftab{tab:fiducial_parameters}. 
 
@@ -70,7 +70,7 @@ respectivement à $0.1$ et $100\unit{UA}$. Les autres paramètres du disques son
 $b/h = 0.4$ & $\gamma = 7/5$ & $\mu = 2.35$ & $\alpha = 5\cdot 10^{-3}$ \\\hline
 \multicolumn{2}{|c|}{Inner edge : $0.1\unit{UA}$} & \multicolumn{2}{c|}{Outer edge : $100\unit{UA}$}\\\hline
 \multicolumn{2}{|c|}{$\Sigma(R) = 300 \cdot R^{-1/2}\unit{g/cm^2}$}& \multicolumn{2}{c|}{$M_\text{tot} = 0.14\unit{M_\odot}$}\\\hline
-$T_\star = 5700\unit{K}$ & $R_\star = 4.65\cdot 10^{-3}\unit{AU}$ & \multicolumn{2}{c|}{Disk albedo : $0.5$}\\\hline
+$T_\star = 5700\unit{K}$ & $R_\star = 4.65\cdot 10^{-3}\unit{UA}$ & \multicolumn{2}{c|}{Disk albedo : $0.5$}\\\hline
 \end{tabular}
 \caption{Paramètres physiques du disque de référence. Les opacités sont calculées à partir de la table d'opacité de
 \cite{hure2000transition}. La viscosité est calculée en suivant la prescription alpha de
@@ -160,7 +160,7 @@ brusque changement d'opacité et de température est la raison de la séparation
 
 Nous avons alors deux zones de couple nul dont l'origine physique et les propriétés sont quelques peu différentes. 
 
-\section{Différents types de zone de convergence}\label{sec:CZ-types}
+\section{Différents types de zone de convergence}\label{sec:CZ-types}\index{zone de convergence}
 À partir de ces cartes de migration nous pouvons étudier l'évolution des différentes zones de couple nul en fonction de la
 distance. Ces zones sont représentées par une ligne noire. Nous pouvons dégager deux types particulier de zones de convergence. 
 
@@ -212,13 +212,9 @@ linéaire) pour que le couple de corotation soit suffisamment important.
 
 La zone ne convergence ne peut exister que pour une certaine gamme de masses de planète. Au delà de ces limites, la planète trop ou trop peu massive migrera vers l'intérieur.
 
-\section{Effet de l'irradiation}
+\section{Effet de l'irradiation}\index{irradiation}
 En choisissant ou non d'inclure l'irradiation dans l'équation de l'énergie permettant de calculer le profil de température, on
 change de manière importante la carte de migration \citep{bitsch2013stellar}. 
-
-%TODO dire que l'irradiation transforme la zone dépendante de la masse en zone indépendante de la masse
-%TODO faire référence à hasegawa et pudritz 2011. Dnas leur papier ils font référence à un piège à planète au moment de la
-%transition disque actif/passif
 
 \begin{figure}[htbp]
 \centering
@@ -249,12 +245,12 @@ Dans les parties externes, l'irradiation a pour effet de diminuer la pente du pr
 $R^{-\sfrac37}$ quand le disque est purement passif.
 
 
-\subsection{Effet de l'ombre du disque sur lui même.}\label{sec:shadow}
+\subsection{Effet de l'ombre du disque sur lui même.}\label{sec:shadow}\index{self-shadowing}
 Tout au long de ma thèse, j'ai considéré un modèle d'irradiation dans lequel la gestion des ombres restait sommaire. En effet, la seule ombre que je considérais était l'ombre directe. C'est à dire les régions du disque pour lesquelles l'échelle de hauteur décroit avec la distance. Ces zones où l'angle d'interception des rayons de l'étoile était négatif étaient détectées et l'irradiation était forcée à zéro. Nous appellerons ce modèle le \textbf{modèle direct}. C'est un modèle qui découle naturellement de la modélisation du disque. En effet, pour calculer le profil de température, on doit calculer la température point par point en partant du bord externe pour que le calcul de la température converge. Nous n'avons donc pas accès à l'ombre réelle du disque lors du calcul de l'irradiation. L'ombre est simplement la zone où l'angle entre les rayons de l'étoile et la surface du disque est nul.
 
 Ici nous cherchons à comparer ce modèle avec deux modèles plus complexes où l'ombre du disque est gérée de manière plus cohérente. 
 
-Dans ces nouveaux modèles, on calcule une première fois le profil de température du disque et on stocke la valeur de l'irradiation en chaque point du disque. Ensuite, on détecte les ombres du disque en cherchant les maxima locaux du profil d'échelle de hauteur. Pour chaque maximum local, on cherche l'ombre qu'il projette sur le disque et dans cette ombre là, l'irradiation est forcée à 0. Dans les 10 derniers pourcents de l'étendue de l'ombre, on lisse linéairement l'irradiation en considérant que 10\% avant la fin de l'ombre, l'irradiation est égale à $0 * F_\text{irr}$ (où $F_\text{irr}$ est le chauffage d'irradiation local) et à la toute fin de l'ombre, l'irradiation vaut $1 * F_\text{irr}$. Ainsi, à la position $R_b + 0.95 * l_s$ (où $R_b$ est le rayon de la bosse du disque considérée et $l_s$ est la longueur de l'ombre qu'il projette), l'irradiation vaut la moitié de l'irradiation calculée précédemment $0.5 * F_\text{irr}$. 
+Dans ces nouveaux modèles, on calcule une première fois le profil de température du disque et on stocke la valeur de l'irradiation en chaque point du disque. Ensuite, on détecte les ombres du disque en cherchant les maxima locaux du profil d'échelle de hauteur. Pour chaque maximum local, on cherche l'ombre qu'il projette sur le disque et dans cette ombre là, l'irradiation est forcée à 0. Dans les derniers 10\% de l'étendue de l'ombre, on lisse linéairement l'irradiation en considérant que 10\% avant la fin de l'ombre, l'irradiation est égale à $0 * F_\text{irr}$ (où $F_\text{irr}$ est le chauffage d'irradiation local) et à la toute fin de l'ombre, l'irradiation vaut $1 * F_\text{irr}$. Ainsi, à la position $R_b + 0.95 * l_s$ (où $R_b$ est le rayon de la bosse du disque considérée et $l_s$ est la longueur de l'ombre qu'il projette), l'irradiation vaut la moitié de l'irradiation calculée précédemment $0.5 * F_\text{irr}$. 
 
 J'ai testé deux cas, un cas où l'étoile est considérée ponctuelle, que nous nommerons \textbf{modèle ponctuel}, et un cas où on prend en compte le rayon de l'étoile que nous appellerons le \textbf{modèle étendu}. Dans ce dernier cas, on néglige totalement le fait qu'en sortant de l'ombre, on ne voit quasiment pas l'étoile. Dans tous les modèles, l'irradiation considère que l'étoile n'est pas ponctuelle, c'est simplement pour le calcul des ombres a posteriori que l'on considèrera soit une étoile ponctuelle soit de rayon $R_\star$.
 
@@ -317,7 +313,7 @@ Malgré tout, le \textbf{modèle étendu} ne prend pas en compte le fait qu'au d
 De plus, les cas où ce nouveau modèle pour l'ombre du disque a un effet important sont des cas limites. En effet, dans l'exemple présenté ici \reffig{fig:shadow-example}, la température au bord interne dépasse $50 000\unit{K}$. Dans des disques beaucoup plus classiques, avec des températures inférieures à $10 000\unit{K}$ au bord interne, nous avons vu que le modèle classique pour l'ombre du disque marchait bien, car l'ombre se trouvait dans la partie active du disque, là où l'irradiation joue un rôle mineur sur le profil de température.
 
 \subsection{Effet des propriétés de l'étoile}
-Pour le modèle de référence, les propriétés de l'étoile sont celles du Soleil, même rayon même température. Mais les propriétés des étoiles au moment de la formation planétaire ne sont pas celles d'une étoile évoluée comme le Soleil. Elles ont tendance à être moins chaudes, et plus grosses que le Soleil. À partir de \cite[Table 2]{hartigan1995disk}, \reffig{fig:TTauri_sample} représente 42 étoiles TTauri dans un diagramme avec leur rayon en abscisse et leur température en ordonnée. 
+Pour le modèle de référence, les propriétés de l'étoile sont celles du Soleil, même rayon même température. Mais les propriétés des étoiles au moment de la formation planétaire ne sont pas celles d'une étoile évoluée comme le Soleil. Elles ont tendance à être moins chaudes, et plus grosses que le Soleil. À partir de \cite[Table 2]{hartigan1995disk}, \reffig{fig:TTauri_sample} représente 42 étoiles T Tauri dans un diagramme avec leur rayon en abscisse et leur température en ordonnée. 
 
 \begin{figure}[htbp]
 \centering
@@ -392,7 +388,7 @@ viscosité augmente.
 
 Mais l'augmentation de la viscosité a un effet indirect sur le temps de diffusion radiatif $t_\text{rad}$. Si la viscosité augmente, le chauffage visqueux augmente. La température augmente, et la diffusivité thermique $\chi$ avec. Ainsi, quand la viscosité augmente, le temps de diffusion radiatif $t_\text{rad}$ diminue. Le couple de corotation est linéaire quand $t_\text{rad} < t_\text{U-turn}$. Quand la viscosité $\nu$ augmente, le couple de corotation se linéarise plus rapidement à mesure que la masse de la planète diminue. La partie inférieure de la carte de migration se décale elle aussi vers le haut. Des planètes de faible masse qui migraient vers l'extérieur ne peuvent plus migrer que vers l'intérieur à mesure que la viscosité augmente. 
 
-\subsection{Viscosité alpha}
+\subsection{Viscosité alpha}\index{prescription alpha}
 La prescription alpha \citep{shakura1973black} est une autre manière de définir la viscosité, à partir d'un paramètre adimensionné $\alpha$ \refsec{sec:viscosite-alpha}.
 
 \begin{figure}[htbp]
@@ -432,7 +428,7 @@ progressive de la totalité des zones de convergences. Ainsi, dans le disque où
 toutes les planètes migrent vers l'intérieur \reffig{fig:alpha_5e-4}, quelle que soit leur masse ou leur position dans le
 disque.
 
-\subsection{Dead zone}
+\subsection{Dead zone}\index{zone morte}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.6\linewidth]{figure/migration_map/viscosity/dead_zone_profile.pdf}
@@ -455,7 +451,7 @@ figure/migration_map/viscosity/alpha_dz.pdf}}
 \caption{Effet d'une zone morte sur la carte de migration. Au cœur de la dead zone, $\alpha=10^{-4}$. En dehors, $\alpha=5\cdot 10^{-3}$. Dans les zones de transitions, la valeur de $\alpha$ est lissée. La zone morte s'étend de $1$ à $10\unit{UA}$. Plus de détails sur la modélisation de la zone morte \protect\refsec{sec:dead_zone}. \refdisk}\label{fig:viscosity_DZ}
 \end{figure}
 
-Sur les cartes de migration \reffig{fig:viscosity_DZ}, l'entrée dans la dead-zone modifie en profondeur la carte de migration en creusant une zone de migration vers l'intérieur en raison de la viscosité très faible. Le temps de diffusion visqueux $t_\text{visc}$ augmente alors brusquement, engendrant la saturation rapide du couple de corotation quelle que soit la masse de la planète. Ainsi, dans la zone morte, la possibilité de migration vers l'extérieur est fortement réduite. En dehors de la zone morte, la carte de migration est quasi inchangée.
+Sur les cartes de migration \reffig{fig:viscosity_DZ}, l'entrée dans la dead zone modifie en profondeur la carte de migration en creusant une zone de migration vers l'intérieur en raison de la viscosité très faible. Le temps de diffusion visqueux $t_\text{visc}$ augmente alors brusquement, engendrant la saturation rapide du couple de corotation quelle que soit la masse de la planète. Ainsi, dans la zone morte, la possibilité de migration vers l'extérieur est fortement réduite. En dehors de la zone morte, la carte de migration est quasi inchangée.
 
 \bigskip
 
@@ -537,7 +533,7 @@ figure/migration_map/index/sigma/temperature_profile.pdf}}
 \protect\reffig{fig:map_index}.}\label{fig:index_profiles}
 \end{figure}
 
-\subsection{Dissipation du disque}
+\subsection{Dissipation du disque}\index{dissipation du disque}
 
 \begin{figure}[htbp]
 \centering
@@ -597,10 +593,10 @@ dilate cette zone radialement.
 \begin{tabular}{|c|c|c|c|}
 \hline 
  & $d=0.5$ & $d=1.0$ & $d=1.5$ \\\hline 
-$R\in[100 ; 1000]\unit{AU}$ & $300$ & $6805$ & $1.416\cdot 10^5$ \\ \hline 
-$R\in[0.1 ; 100]\unit{AU}$ & $300$ & $2002$ & $10330$ \\ \hline 
-$R\in[1 ; 20]\unit{AU}$ & $300$ & $931$ & $2547$ \\ \hline 
-$R\in[2 ; 4]\unit{AU}$ & $300$ & $517$ & $883$ \\ \hline 
+$R\in[100 ; 1000]\unit{UA}$ & $300$ & $6805$ & $1.416\cdot 10^5$ \\ \hline 
+$R\in[0.1 ; 100]\unit{UA}$ & $300$ & $2002$ & $10330$ \\ \hline 
+$R\in[1 ; 20]\unit{UA}$ & $300$ & $931$ & $2547$ \\ \hline 
+$R\in[2 ; 4]\unit{UA}$ & $300$ & $517$ & $883$ \\ \hline 
 \end{tabular} 
 \caption{Valeur de la densité en \unit{g/cm^2} à $R_0=1\unit{UA}$ qu'il faut choisir en fonction de la valeur de $d$ pour avoir une masse de disque identique dans la gamme de distance orbitale choisie.}\label{tab:profils_equivalents}
 \end{table}
@@ -662,13 +658,7 @@ Enfin, \reffig{fig:map_index_mtot} montre deux cartes de migrations où la masse
 En résumé, quand on change l'indice $d$ du profil de densité, il faut définir le rayon auquel les densités des deux profils sont égales pour interpréter la carte de migration. En dessous de cette distance, la masse locale du profil le plus abrupt sera la plus grande, et inversement dans les parties externes. Ainsi, on se ramène à l'interprétation en terme de masse locale que nous avions utilisée pour étudier la dissipation du disque. C'est l'effet le plus important que la densité de surface apporte, car elle influe directement sur le profil de température. Les variations du couple de migration induites directement par la valeur de $d$ restent en deçà des variations indirectes via la température. En effet la diffusivité thermique $\chi$ a une dépendance en $T^3$ (voir \refeq{eq:diffusivity}, $H^2\propto T$).
 
 \section{Autres paramètres}
-%TODO see kretke2012importance
-%TODO regarder le papier de Bitsch 2013 et celui de 2012 où il regarde l'influence de l'indice adiabatique
-%TODO essayer des gammes beaucoup plus larges de paramètres
-
-
-
-\subsection{Table d'opacité}\label{sec:influence_opacity_table}
+\subsection{Table d'opacité}\label{sec:influence_opacity_table}\index{opacité}
 Nous l'avons vu dans les parties précédentes, le profil de température est crucial pour évaluer la migration dans le disque. La densité a notamment un effet indirect sur la température au travers de l'opacité. Nous allons maintenant montrer que le choix du modèle a une influence considérable sur la migration, le modèle choisi pour l'opacité étant une source importante d'incertitude.
 
 Dans toute la suite, quand je parlerai de table d'opacité, je désigne le fait d'utiliser un tableau à deux dimensions,
@@ -712,7 +702,7 @@ Afin de comparer les modèles d'opacité, nous avons utilisé un disque où l'ir
 $b/h = 0.4$ & $\gamma = 7/5$ & $\mu = 2.35$ & $\alpha = 5\cdot 10^{-3}$ \\\hline
 \multicolumn{2}{|c|}{Inner edge : $0.1\unit{UA}$} & \multicolumn{2}{c|}{Outer edge : $100\unit{UA}$}\\\hline
 \multicolumn{4}{|c|}{$\Sigma(R) = 1700 \cdot R^{-3/2}\unit{g/cm^2}$}\\\hline
-$T_\star = 5700\unit{K}$ & $R_\star = 4.65\cdot 10^{-3}\unit{AU}$ & \multicolumn{2}{c|}{Disk albedo : $0.5$}\\\hline
+$T_\star = 5700\unit{K}$ & $R_\star = 4.65\cdot 10^{-3}\unit{UA}$ & \multicolumn{2}{c|}{Disk albedo : $0.5$}\\\hline
 \end{tabular}
 \caption{Paramètres physiques du disque utilisé pour comparer les différents modèles d'opacité. La viscosité est calculée en suivant la prescription alpha de
 \cite{shakura1973black}.}\label{tab:opacity_disk_parameters}
@@ -773,7 +763,7 @@ faut stocker un tableau contenant la table d'opacité, ce qui n'est pas limitati
 Malgré tout, il restera toujours des incertitudes liées aux propriétés des poussières, taille et quantité, ainsi que son évolution
 au cours du temps. 
 
-\subsection{Longueur de lissage}
+\subsection{Longueur de lissage}\label{sec:smoothing_effect}\index{longueur de lissage}
 Dans les modèles numériques des disques protoplanétaires, le potentiel gravitationnel doit être modifié afin ne pas diverger aux
 très faibles distances mutuelles. En particulier, des problèmes peuvent survenir quand on modélise des objets étendus par des
 masses ponctuelles. Le modèle de Plummer introduit une longueur de lissage $b$ (souvent notée $b/h$ car sa valeur est exprimée
@@ -781,7 +771,7 @@ en fonction de l'échelle de hauteur du disque). la force de gravitation adoucie
 \begin{align}
 \vect{F_{ij}} &= -G m_i m_j \frac{\vect{r_i} - \vect{r_j}}{\left(\abs{r_i - r_j}^2 + b^2\right)^\sfrac{3}{2}}
 \end{align}
-où $\vect{F_{ij}}$ est la force de gravitation excercée par l'objet $i$ de masse $m_i$ sur l'objet $j$ de masse $m_j$.
+où $\vect{F_{ij}}$ est la force de gravitation exercée par l'objet $i$ de masse $m_i$ sur l'objet $j$ de masse $m_j$.
 
 
 De même, dans le cas de simulations hydrodynamiques 2D, le modèle se base sur des moyennes verticales des différentes quantités
@@ -810,7 +800,7 @@ subsistent avec les simulations 3D.
 \bigskip
 
 \cite{paardekooper2010torque, paardekooper2011torque} et les formules analytiques ou semi-analytiques qu'ils fournissent pour
-décrire la migration de type I (\refeq{eq:lindblad-torque}, \refeq{eq:saturated-corotation-torque},
+décrire la migration de Type I (\refeq{eq:lindblad-torque}, \refeq{eq:saturated-corotation-torque},
 \refeq{eq:linear-corotation-torque}) introduisent une telle dépendance. 
 
 \begin{figure}[htbp]
@@ -847,7 +837,7 @@ fixée à $0.76$ pour le couple de Lindblad et à $0.5$ pour le couple de Corota
 les deux couples séparés \citep{masset2002coorbital}. \refdisk}\label{fig:modified_smoothing}
 \end{figure}
 
-Inclure des formules pour la migration de type I nous offre une liberté supplémentaire par rapport aux simulations
+Inclure des formules pour la migration de Type I nous offre une liberté supplémentaire par rapport aux simulations
 hydrodynamique, celle de fixer une longueur de lissage $b/h$ différente pour le couple de Lindblad et pour le couple de
 Corotation. Suivant les prescriptions données par \cite{masset2002coorbital} j'ai donc calculé la carte de migration d'une
 simulation où je fixe une longueur de lissage $b/h=0.76$ pour le couple de Lindblad, et une longueur de lissage $b/h=0.5$ pour
