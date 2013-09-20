@@ -1,9 +1,9 @@
 \chapter{Description du code Numérique}\label{sec:nbody-readme}
 Le but de cette partie est de présenter les différentes options du code modifié. Ces options sont lues à partir d'un fichier commun \textbf{disk.in}. Si une option n'est pas présente, la valeur par défaut sera lue à partir du code. Le fichier \textbf{disk.out} récapitule toutes les valeurs de toutes les options et paramètres effectifs du code. Des paramètres du fichier \textbf{disk.in} peuvent donc ne pas être présent car l'option est inactive, et des valeurs par défaut qui n'étaient pas présentes dans \textbf{disk.in} peuvent apparaître dans le fichier de sortie.
 
-Il est possible de mettre des commentaires dans le fichier \textbf{disk.in}, que ce soit pour commenter une ligne entière, ou pour mettre en fin de ligne après un paramètre, à l'aide du caractère \og !\fg exactement comme en Fortran90.
+Il est possible de mettre des commentaires dans le fichier \textbf{disk.in}, que ce soit pour commenter une ligne entière, ou pour mettre en fin de ligne après un paramètre, à l'aide du caractère \og !\fg exactement comme en \textbf{Fortran 90}.
 
-Le code est en grande partie le code mercury \cite{chambers1999hybrid}. Les effets du disque ont été inclus dans la partie \textbf{mfo\_user} prévue pour inclure des effets propre à chaque utilisateur. 
+Le code est en grande partie le code Mercury \cite{chambers1999hybrid}. Les effets du disque ont été inclus dans la partie \textbf{mfo\_user} prévue pour inclure des effets propre à chaque utilisateur. 
 
 Pour autant, le code a été conçu de manière modulaire en portant une attention particulière au temps d'exécution et à la souplesse d'utilisation. La plupart des effets sont désactivables par une simple option dans un fichier de paramètre spécifique au effets du disque \textbf{disk.in}. 
 
@@ -25,7 +25,7 @@ sample = 800
 
 \textbf{disk\_edges} défini les deux extrémités du disque, les bords internes et externes.
 
-\textbf{sample} défini le nombre de points qu'auront les profils radiaux des différents paramètres du disque. Ces points ne sont pas répartis uniforméments, il y a plus de points au bord interne qu'au bord externe, afin d'avoir une évolution plus fine des paramètres en fonction du rayon.
+\textbf{sample} défini le nombre de points qu'auront les profils radiaux des différents paramètres du disque. Ces points ne sont pas répartis uniformément, il y a plus de points au bord interne qu'au bord externe, afin d'avoir une évolution plus fine des paramètres en fonction du rayon.
 
 \section{Densité de surface}
 \textbf{surface\_density} permet de définir le profil en loi de puissance pour la densité de surface : 
@@ -41,7 +41,7 @@ Mais il est aussi possible de donner un profil tabulé de densité de surface en
 \begin{verbatim}
 surface_density = manual
 \end{verbatim}
-Ainsi, le profil de densité de surface sera lu à partir du fichier \textbf{surface\_density\_profile.dat} qui doit être constitué de deux colonnes, la première étant la valeur du rayon en AU, et la deuxième la densité de surface en \unit{g/cm^2}. Les lignes doivent être classées par ordre croissant de distance orbitale. (les premières lignes étant les points les plus proches de l'étoile, et les dernières les points les plus lointains. 
+Ainsi, le profil de densité de surface sera lu à partir du fichier \textbf{surface\_density\_profile.dat} qui doit être constitué de deux colonnes, la première étant la valeur du rayon en \unit{UA}, et la deuxième la densité de surface en \unit{g/cm^2}. Les lignes doivent être classées par ordre croissant de distance orbitale. (les premières lignes étant les points les plus proches de l'étoile, et les dernières les points les plus lointains. 
 
 \begin{remarque}
 Une interpolation sera réalisée si la discrétisation du fichier d'entrée est différente de celle du code.
@@ -54,7 +54,7 @@ Une interpolation sera réalisée si la discrétisation du fichier d'entrée est
 inner_smoothing_width = 0.05
 \end{verbatim}
 
-Ce paramètre représente la longueur d'amortissement de la densité de surface au bord interne du disque, afin que la densité de surface au bord interne soit très faible. Cette longueur est exprimée en pourcentage de distance orbitale du bord interne ; c'est à dire que si le bord interne est à 0.1 AU, alors dans le cas présent, le lissage sera effectué sur une longueur de 0.005AU
+Ce paramètre représente la longueur d'amortissement de la densité de surface au bord interne du disque, afin que la densité de surface au bord interne soit très faible. Cette longueur est exprimée en pourcentage de distance orbitale du bord interne ; c'est à dire que si le bord interne est à $0.1\unit{UA}$, alors dans le cas présent, le lissage sera effectué sur une longueur de $0.005\unit{UA}$.
 
 \section{Irradiation de l'étoile centrale}
 \textbf{is\_irradiation} permet de définir si on veut inclure ou non l'irradiation dans le calcul de l'équilibre énergétique du disque. 
@@ -66,9 +66,9 @@ r_star = 4.65e-3 ! AU
 t_star = 5700 ! K
 \end{verbatim}
 
-Les paramètres sont relativement explicite mais pour détailler, \textbf{disk\_albedo} est l'albedo moyen du disque protoplanétaire, il représente le fait qu'une partie de la lumière incidente de l'étoile est directement réfléchie vers l'espace.
+Les paramètres sont relativement explicite mais pour détailler, \textbf{disk\_albedo} est l'albédo moyen du disque protoplanétaire, il représente le fait qu'une partie de la lumière incidente de l'étoile est directement réfléchie vers l'espace.
 
-\textbf{r\_star} et \textbf{t\_star} sont respectivement le rayon de l'étoile en AU et sa température en Kelvin.
+\textbf{r\_star} et \textbf{t\_star} sont respectivement le rayon de l'étoile en \unit{UA} et sa température en Kelvin.
 
 La manière dont est modélisée l'irradiation de l'étoile centrale est détaillée dans \refsec{sec:irradiation}.
 
@@ -92,16 +92,16 @@ alpha = 5e-3
 \end{verbatim}
 
 \subsection{alpha\_dz}\label{sec:dead_zone}
-Ce paramètre permet de définir une viscosité alpha par morceau, permettant de modéliser une dead zone. On aura donc 3 zones avec 3 alpha différents. Pour définir ces zones là, il faut donner dans le paramètre \textbf{alpha\_dz} trois valeurs de $\alpha$ et dans \textbf{radius\_dz} deux valeurs de distance orbitales (en AU) pour définir les bornes de la dead zone.
+Ce paramètre permet de définir une viscosité alpha par morceau, permettant de modéliser une dead zone. On aura donc 3 zones avec 3 alpha différents. Pour définir ces zones là, il faut donner dans le paramètre \textbf{alpha\_dz} trois valeurs de $\alpha$ et dans \textbf{radius\_dz} deux valeurs de distance orbitales (en \unit{UA}) pour définir les bornes de la dead zone.
 \begin{verbatim}
 viscosity_type = alpha_dz
 alpha_dz = 0.005 0.0001 0.005
 radius_dz = 1.0 10.0 ! in AU
 \end{verbatim}
 
-Quand cette option est activée, une modification au profil de densité est appliquée, afin de modéliser une sous-densité, puis une sur-densité avant et après le bord interne de la zone morte. L'écart maximum de ces \og bumps\fg est de 15\% de la valeur de la densité au bord interne de la zone morte. 
+Quand cette option est activée, une modification au profil de densité est appliquée, afin de modéliser une sous-densité, puis une sur-densité avant et après le bord interne de la zone morte. L'écart maximum de ces bosses est de 15\% de la valeur de la densité au bord interne de la zone morte. 
 
-À ceci s'ajoute un lissage des valeurs de $\alpha$ entre la valeur à gauche et la valeur à droite de la transition selon une tangente hyperbolique. La transition s'effectue typiquement sur une longueur égale à 10\% de la position de la transition dans le disque (si la transition est à 1AU, alors la transition a lieu sur 0.1 AU autour de la transition).
+À ceci s'ajoute un lissage des valeurs de $\alpha$ entre la valeur à gauche et la valeur à droite de la transition selon une tangente hyperbolique. La transition s'effectue typiquement sur une longueur égale à 10\% de la position de la transition dans le disque (si la transition est à $1\unit{UA}$, alors la transition a lieu sur $0.1\unit{UA}$ autour de la transition).
 
 \section{Opacité}
 Afin de pouvoir les comparer, j'ai ajouté au code la possibilité de tourner avec différents modèles pour l'opacité. 
@@ -184,7 +184,7 @@ torque_type = real
 \end{verbatim}
 
 \subsection{mass\_dependant}\label{sec:mass_dependant}
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.65\linewidth]{figure/migration_map/mass_dependant.pdf}
 \caption{Cette carte représente l'effet du disque dans le cas de l'option \textbf{mass\_dependant} pour une planète en fonction de sa position en abscisse et de sa masse en ordonnée. La ligne noire représente la zone de couple nul, c'est à dire une zone où la migration de la planète s'arrête.}
@@ -192,7 +192,7 @@ torque_type = real
 
 On définit une zone de convergence artificielle qui va dépendre de la masse des planètes. On va donc devoir définir deux bornes en masses et deux bornes en distance orbitale qui vont déterminer cette ligne de couple nul. À l'intérieur (resp. extérieur) de cette séparation virtuelle, la migration sera vers l'extérieur (resp. intérieur).
 
-Ensuite, on défini une pente linéaire plus ou moins importante pour voir à quelle vitesse on va tendre vers la valeur de saturation à mesure qu'on s'éloigne de la zone de convergence. Une pente de $1$ signifie que le couple $\Gamma/\Gamma_0$ augmente de 1 tous les 10 AU.
+Ensuite, on défini une pente linéaire plus ou moins importante pour voir à quelle vitesse on va tendre vers la valeur de saturation à mesure qu'on s'éloigne de la zone de convergence. Une pente de $1$ signifie que le couple $\Gamma/\Gamma_0$ augmente de 1 tous les $10\unit{UA}$.
 
 En résumé, on a ces paramètres suivants à définir : 
 \begin{verbatim}
@@ -215,9 +215,9 @@ indep_cz = 3.0 ! AU
 torque_profile_steepness = 1.0
 \end{verbatim}
 
-Une pente de $1$ signifie que le couple $\Gamma/\Gamma_0$ augmente de 1 tous les 10 AU.
+Une pente de $1$ signifie que le couple $\Gamma/\Gamma_0$ augmente de 1 tous les $10\unit{UA}$.
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.65\linewidth]{figure/migration_map/linear_indep.pdf}
 \caption{Cette carte représente l'effet du disque dans le cas de l'option \textbf{linear\_indep} pour une planète en fonction de sa position en abscisse et de sa masse en ordonnée. La ligne noire représente la zone de couple nul, c'est à dire une zone où la migration de la planète s'arrête.}
@@ -235,7 +235,7 @@ indep_cz = 3.0 ! AU
 saturation_torque = 1.0 ! in Gamma_0
 \end{verbatim}
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.65\linewidth]{figure/migration_map/tanh_indep.pdf}
 \caption{Cette carte représente l'effet du disque dans le cas de l'option \textbf{tanh\_indep} pour une planète en fonction de sa position en abscisse et de sa masse en ordonnée. La ligne noire représente la zone de couple nul, c'est à dire une zone où la migration de la planète s'arrête.}
@@ -244,14 +244,14 @@ saturation_torque = 1.0 ! in Gamma_0
 \subsection{manual}
 Il est aussi possible de rentrer manuellement un couple total en fonction de la position de la planète dans le disque. 
 
-Les valeurs seront alors lues à partir du fichier \textbf{torque\_profile.dat}. La première colonne sera les positions dans le disque en AU tandis que la deuxième colonne sera le couple exercé par le disque en unité de $\Gamma_0$ (c'est à dire que l'effet de la masse de la planète sur la vitesse de migration sera toujours pris en compte dans le code au travers de la dépendance de $\Gamma_0$ en fonction de la masse de la planète et de la masse du disque.
+Les valeurs seront alors lues à partir du fichier \textbf{torque\_profile.dat}. La première colonne sera les positions dans le disque en \unit{UA} tandis que la deuxième colonne sera le couple exercé par le disque en unité de $\Gamma_0$ (c'est à dire que l'effet de la masse de la planète sur la vitesse de migration sera toujours pris en compte dans le code au travers de la dépendance de $\Gamma_0$ en fonction de la masse de la planète et de la masse du disque.
 
 \section{Behind the scene}\label{sec:unitary_tests}
 Un programme externe, nommé \textbf{test\_disk.f90} permet d'effectuer des tests unitaires sur différentes fonctions, afin de vérifier quand bon nous semble que chaque fonction n'est pas perturbée par les autres et donne des résultats corrects à la fois physiquement et numériquement.
 
 Les tests génèrent des fichiers de données, et des scripts \textbf{Gnuplot} associés, qu'il suffit ensuite d'exécuter pour avoir le graphique correspondant. 
 
-Les tests que l'on souhaite effectuer sont sélectionnable dans la routine \textbf{unitary\_tests}, où il suffit d'appeler la routine correspondant à un test donné. Sauf quelques cas particuliers, les fichiers de données, scripts Gnuplot et graphiques correspondants sont tous stockés dans le sous-dossier \textbf{unitary\_tests} du dossier d'exécution du binaire de tests.
+Les tests que l'on souhaite effectuer sont sélectionnables dans la routine \textbf{unitary\_tests}, où il suffit d'appeler la routine correspondant à un test donné. Sauf quelques cas particuliers, les fichiers de données, scripts Gnuplot et graphiques correspondants sont tous stockés dans le sous-dossier \textbf{unitary\_tests} du dossier d'exécution du binaire de tests.
 
 \subsection{Tests de fonctions}
 \subsubsection{test\_alpha\_dz}
@@ -453,7 +453,7 @@ Montre l'évolution de la carte de migration au fur et à mesure de la dissipati
 Teste la dissipation du disque dans un sous-dossier \textbf{dissipation} du dossier \textbf{unitary\_tests}. Le script Gnuplot \textbf{density.gnuplot} génère différentes images du profil de densité de surface du disque au cours du temps.
 
 
-\subsection{Débug}
+\subsection{Débogage}
 Afin de déboguer le code, certaines routines ont été créées spécialement à cet effet. 
 
 Dans le module \textbf{turbulence.f90}, la routine \textbf{print\_turbulencemode\_properties} permet d'afficher les propriétés d'un mode donné, passé en argument. Ce mode est alors une instance de la structure de type \texttt{TurbulenceMode}. 
@@ -462,7 +462,7 @@ Dans le module \textbf{user\_module.f90}, la routine \textbf{debug\_infos} perme
 
 De plus, la routine \textbf{print\_planet\_properties} permet d'afficher les informations d'une planète, définies dans une structure du type \textbf{PlanetProperties}.
 
-Un exemple de code de débug est donc la suite d'instruction suivante :
+Un exemple de code de débogage est donc la suite d'instruction suivante :
 \begin{lstlisting}[language=Fortran]
 if (time.gt.365.25) then
   if ((p_prop%eccentricity.lt.ECCENTRICITY_CUTOFF).and.(p_prop%radius.gt.INNER_BOUNDARY_RADIUS)) then
