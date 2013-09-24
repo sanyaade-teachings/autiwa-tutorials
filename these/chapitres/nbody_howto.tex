@@ -7,10 +7,10 @@ Le code est en grande partie le code Mercury \cite{chambers1999hybrid}. Les effe
 
 Pour autant, le code a été conçu de manière modulaire en portant une attention particulière au temps d'exécution et à la souplesse d'utilisation. La plupart des effets sont désactivables par une simple option dans un fichier de paramètre spécifique au effets du disque \textbf{disk.in}. 
 
-Prenons un exemple. Le couple exercé par le disque sur la planète peut être issus des formules de \cite{paardekooper2011torque}, ou bien suivre plusieurs lois artificielles permettant de tester certains effets dans des cas simplifiés. Pour autant, cette souplesse d'utilisation ne se fait pas au détriment de la célérité du code car au lancement du code, les options sont lues et des pointeurs de fonctions permettent au code d'exécuter directement la bonne fonction lors de l'intégration, sans avoir à tester à chaque pas de temps quelle fonction doit être lancée. 
+Prenons un exemple. Le couple exercé par le disque sur la planète peut être issu des formules de \cite{paardekooper2011torque}, ou bien suivre plusieurs lois artificielles permettant de tester certains effets dans des cas simplifiés. Pour autant, cette souplesse d'utilisation ne se fait pas au détriment de la célérité du code, car au lancement de ce dernier, les options sont lues et des pointeurs de fonctions permettent au code d'exécuter directement la bonne fonction lors de l'intégration, sans avoir à tester à chaque pas de temps quelle fonction doit être lancée. 
 
 \section{Paramètres divers}
-Ici je regroupe des paramètres du disque qui nécessitent simplement une valeur : 
+Ici, je regroupe des paramètres du disque qui nécessitent simplement une valeur : 
 \begin{verbatim}
 b/h = 0.6
 adiabatic_index = 1.4
@@ -23,9 +23,9 @@ sample = 800
 
 \textbf{adiabatic\_index} est l'indice adiabatique $\gamma$ comme son nom l'indique. De même, \textbf{mean\_molecular\_weight} est la masse moléculaire moyenne $\mu$.
 
-\textbf{disk\_edges} défini les deux extrémités du disque, les bords internes et externes.
+\textbf{disk\_edges} définit les deux extrémités du disque, les bords internes et externes.
 
-\textbf{sample} défini le nombre de points qu'auront les profils radiaux des différents paramètres du disque. Ces points ne sont pas répartis uniformément, il y a plus de points au bord interne qu'au bord externe, afin d'avoir une évolution plus fine des paramètres en fonction du rayon.
+\textbf{sample} définit le nombre de points qu'auront les profils radiaux des différents paramètres du disque. Ces points ne sont pas répartis uniformément, il y a plus de points au bord interne qu'au bord externe, afin d'avoir une évolution plus fine des paramètres en fonction du rayon.
 
 \section{Densité de surface}
 \textbf{surface\_density} permet de définir le profil en loi de puissance pour la densité de surface : 
@@ -54,7 +54,7 @@ Une interpolation sera réalisée si la discrétisation du fichier d'entrée est
 inner_smoothing_width = 0.05
 \end{verbatim}
 
-Ce paramètre représente la longueur d'amortissement de la densité de surface au bord interne du disque, afin que la densité de surface au bord interne soit très faible. Cette longueur est exprimée en pourcentage de distance orbitale du bord interne ; c'est à dire que si le bord interne est à $0.1\unit{UA}$, alors dans le cas présent, le lissage sera effectué sur une longueur de $0.005\unit{UA}$.
+Ce paramètre représente la longueur d'amortissement de la densité de surface au bord interne du disque, afin que la densité de surface au bord interne soit très faible. Cette longueur est exprimée en pourcentage de distance orbitale du bord interne ; c'est-à-dire que si le bord interne est à $0.1\unit{UA}$, alors dans le cas présent, le lissage sera effectué sur une longueur de $0.005\unit{UA}$.
 
 \section{Irradiation de l'étoile centrale}\index{irradiation}
 \textbf{is\_irradiation} permet de définir si on veut inclure ou non l'irradiation dans le calcul de l'équilibre énergétique du disque. 
@@ -66,7 +66,7 @@ r_star = 4.65e-3 ! AU
 t_star = 5700 ! K
 \end{verbatim}
 
-Les paramètres sont relativement explicite mais pour détailler, \textbf{disk\_albedo} est l'albédo moyen du disque protoplanétaire, il représente le fait qu'une partie de la lumière incidente de l'étoile est directement réfléchie vers l'espace.
+Les paramètres sont relativement explicites mais pour détailler, \textbf{disk\_albedo} est l'albédo moyen du disque protoplanétaire, il représente le fait qu'une partie de la lumière incidente de l'étoile est directement réfléchie vers l'espace.
 
 \textbf{r\_star} et \textbf{t\_star} sont respectivement le rayon de l'étoile en \unit{UA} et sa température en Kelvin.
 
@@ -92,7 +92,7 @@ alpha = 5e-3
 \end{verbatim}
 
 \subsection{alpha\_dz}\label{sec:dead_zone}\index{zone morte}
-Ce paramètre permet de définir une viscosité alpha par morceau, permettant de modéliser une dead zone. On aura donc 3 zones avec 3 alpha différents. Pour définir ces zones là, il faut donner dans le paramètre \textbf{alpha\_dz} trois valeurs de $\alpha$ et dans \textbf{radius\_dz} deux valeurs de distance orbitales (en \unit{UA}) pour définir les bornes de la dead zone.
+Ce paramètre permet de définir une viscosité alpha par morceau, permettant de modéliser une zone morte. On aura donc 3 zones avec 3 valeurs d'alpha différentes. Pour définir ces zones-là, il faut donner dans le paramètre \textbf{alpha\_dz} trois valeurs de $\alpha$ et dans \textbf{radius\_dz} deux valeurs de distance orbitales (en \unit{UA}) pour définir les bornes de la zone morte.
 \begin{verbatim}
 viscosity_type = alpha_dz
 alpha_dz = 0.005 0.0001 0.005
@@ -136,14 +136,14 @@ opacity_type = hure
 
 L'opacité est alors calculée en utilisant le modèle fourni par \cite{hure2000transition}. 
 
-À la différence de tous les autres modèles que j'ai implémenté, celui de \cite{hure2000transition} est directement une table d'opacité, sans faire intervenir de loi de puissance pour différents régimes. Il n'introduit donc pas d'incertitudes supplémentaire via les loi de puissance qu'il défini. Cette table
+À la différence de tous les autres modèles que j'ai implémenté, celui de \cite{hure2000transition} est directement une table d'opacité, sans faire intervenir de loi de puissance pour différents régimes. Il n'introduit donc pas d'incertitudes supplémentaires via les lois de puissance qu'il définit. Cette table
 d'opacité de Rosseland correspond à la composition suivante $X=0.70$, $Y=0.28$ et $Z=0.02$ et est basée sur
 \cite{seaton1994opacities, alexander1994low, henning1996dust}.
 
-En effet, dans le cas qui nous intéresse, c'est à dire la migration planétaire via la formule de \citep{paardekooper2011torque}, l'indice des loi de puissance pour la densité de surface et la température a une très grande influence sur la couple effectif du disque. Et les transitions d'opacités, très marquées lors de la transition des lois de puissance, fait apparaître des zones particulières dans le disque qui n'ont parfois aucune réalité physique mais ont de grandes conséquences sur le résultat des simulations. De même, le lissage qu'elles introduisent masquent certaines zones d'intérêt qui ne sont mises en évidence qu'avec une table d'opacité où tous les effets fins ont été préservés.
+En effet, dans le cas qui nous intéresse, c'est-à-dire la migration planétaire via la formule de \citep{paardekooper2011torque}, l'indice des lois de puissance pour la densité de surface et la température a une très grande influence sur la couple effectif du disque. Et les transitions d'opacités, très marquées lors de la transition des lois de puissance, fait apparaître des zones particulières dans le disque qui n'ont parfois aucune réalité physique, mais ont de grandes conséquences sur le résultat des simulations. De même, le lissage qu'elles introduisent masquent certaines zones d'intérêt qui ne sont mises en évidence qu'avec une table d'opacité où tous les effets fins ont été préservés.
 
 \section{Turbulence}
-Pour activer la turbulence dans le disque, c'est à dire l'effet que la turbulence peut induire sur la migration planétaire, il suffit d'utiliser le paramètre suivant : 
+Pour activer la turbulence dans le disque, c'est-à-dire l'effet que la turbulence peut induire sur la migration planétaire, il suffit d'utiliser le paramètre suivant : 
 \begin{verbatim}
 is_turbulence = 1
 \end{verbatim}
@@ -165,7 +165,7 @@ $\xi_k$ est une constante adimensionnée déterminée aléatoirement en suivant 
 
 $R_k$ et $\phi_k$ sont respectivement les coordonnées radiales et azimutales du mode $k$ choisies aléatoirement et de manière uniforme pour l'un entre les bornes du disque, pour l'autre entre $0$ et $2\pi$. 
 
-Chaque mode $k$ possède un nombre de mode $m_k$ déterminée selon une distribution logarithmique entre $m=1$ et $m=150$, le nombre de mode déterminant l'extension radiale et la durée du vie du mode $k$.
+Chaque mode $k$ possède un nombre de modes $m_k$ déterminée selon une distribution logarithmique entre $m=1$ et $m=150$, le nombre de modes déterminant l'extension radiale et la durée du vie du mode $k$.
 
 $\sigma_k = \pi R_k / 4m_k$ est l'extension radiale de ce mode tandis que $\Omega_k$ représente la vitesse angulaire képlerienne à la position $R=R_k$.
 
@@ -189,7 +189,7 @@ torque_type = real
 \includegraphics[width=0.65\linewidth]{figure/migration_map/mass_dependant.pdf}
 \caption[Carte de migration correspondant à une zone de convergence \textbf{mass\_dependant}.]{Cette carte représente
 l'effet du disque dans le cas de l'option \textbf{mass\_dependant} pour une planète en fonction de sa position en abscisse et de
-sa masse en ordonnée. La ligne noire représente la zone de couple nul, c'est à dire une zone où la migration de la planète
+sa masse en ordonnée. La ligne noire représente la zone de couple nul, c'est-à-dire une zone où la migration de la planète
 s'arrête.}
 \end{figure}
 
@@ -211,7 +211,7 @@ torque_profile_steepness = 1.0
 \end{verbatim}
 
 \subsection{linear\_indep}\label{sec:linear_indep}
-Même chose que précédemment, on peut définir un couple artificiel qui défini une zone de convergence indépendante de la masse, c'est à dire qu'on ne spécifie que la position de la zone de convergence dans le disque. On a donc : 
+Même chose que précédemment, on peut définir un couple artificiel qui définit une zone de convergence indépendante de la masse, c'est-à-dire qu'on ne spécifie que la position de la zone de convergence dans le disque. On a donc : 
 \begin{verbatim}
 torque_type = linear_indep
 indep_cz = 3.0 ! AU
@@ -225,11 +225,11 @@ Une pente de $1$ signifie que le couple $\Gamma/\Gamma_0$ augmente de 1 tous les
 \includegraphics[width=0.65\linewidth]{figure/migration_map/linear_indep.pdf}
 \caption[Carte de migration correspondant à une zone de convergence \textbf{linear\_indep}.]{Cette carte représente l'effet du
 disque dans le cas de l'option \textbf{linear\_indep} pour une planète en fonction de sa position en abscisse et de sa masse en
-ordonnée. La ligne noire représente la zone de couple nul, c'est à dire une zone où la migration de la planète s'arrête.}
+ordonnée. La ligne noire représente la zone de couple nul, c'est-à-dire une zone où la migration de la planète s'arrête.}
 \end{figure}
 
 \subsection{tanh\_indep}\label{sec:tanh_indep}
-Ici, on défini aussi une zone de convergence indépendante de la masse, mais au lieu d'avoir une évolution linéaire du couple à mesure qu'on s'éloigne de la zone de convergence, on a une tangente hyperbolique qui sature à une valeur que l'on peut donner en paramètre. 
+Ici, on définit aussi une zone de convergence indépendante de la masse, mais au lieu d'avoir une évolution linéaire du couple à mesure qu'on s'éloigne de la zone de convergence, on a une tangente hyperbolique qui sature à une valeur que l'on peut donner en paramètre. 
 
 La valeur du couple de saturation défini la valeur absolue du couple vers laquelle on va tendre quand on est très loin de la zone de convergence. Si on est à l'extérieur, ce sera cette valeur de saturation prise négativement, tandis que c'est la valeur positive qui est utilisée à l'intérieur.
 
@@ -245,13 +245,13 @@ saturation_torque = 1.0 ! in Gamma_0
 \includegraphics[width=0.65\linewidth]{figure/migration_map/tanh_indep.pdf}
 \caption[Carte de migration correspondant à une zone de convergence \textbf{tanh\_indep}.]{Cette carte représente l'effet du
 disque dans le cas de l'option \textbf{tanh\_indep} pour une planète en fonction de sa position en abscisse et de sa masse en
-ordonnée. La ligne noire représente la zone de couple nul, c'est à dire une zone où la migration de la planète s'arrête.}
+ordonnée. La ligne noire représente la zone de couple nul, c'est-à-dire une zone où la migration de la planète s'arrête.}
 \end{figure}
 
 \subsection{manual}
 Il est aussi possible de rentrer manuellement un couple total en fonction de la position de la planète dans le disque. 
 
-Les valeurs seront alors lues à partir du fichier \textbf{torque\_profile.dat}. La première colonne sera les positions dans le disque en \unit{UA} tandis que la deuxième colonne sera le couple exercé par le disque en unité de $\Gamma_0$ (c'est à dire que l'effet de la masse de la planète sur la vitesse de migration sera toujours pris en compte dans le code au travers de la dépendance de $\Gamma_0$ en fonction de la masse de la planète et de la masse du disque.
+Les valeurs seront alors lues à partir du fichier \textbf{torque\_profile.dat}. La première colonne sera les positions dans le disque en \unit{UA} tandis que la deuxième colonne sera le couple exercé par le disque en unité de $\Gamma_0$ (c'est-à-dire que l'effet de la masse de la planète sur la vitesse de migration sera toujours pris en compte dans le code au travers de la dépendance de $\Gamma_0$ en fonction de la masse de la planète et de la masse du disque.
 
 \section{Behind the scene}\label{sec:unitary_tests}
 Un programme externe, nommé \textbf{test\_disk.f90} permet d'effectuer des tests unitaires sur différentes fonctions, afin de vérifier quand bon nous semble que chaque fonction n'est pas perturbée par les autres et donne des résultats corrects à la fois physiquement et numériquement.
@@ -308,7 +308,7 @@ Dans le cas où le profil de couple en fonction de la distance est manuel, teste
 \end{figure}
 
 \subsubsection{test\_retrieval\_of\_orbital\_elements}
-Teste si pour des orbites circulaires de demi-grand axes différents, les éléments orbitaux sont bien retrouvés. Les scripts Gnuplot pour $a$, $e$, et $I$ sont respectivement \textbf{retrieval\_a.gnuplot}, \textbf{retrieval\_e.gnuplot} et \textbf{retrieval\_I.gnuplot}.
+Teste si pour des orbites circulaires de demi-grands axes différents, les éléments orbitaux sont bien retrouvés. Les scripts Gnuplot pour $a$, $e$, et $I$ sont respectivement \textbf{retrieval\_a.gnuplot}, \textbf{retrieval\_e.gnuplot} et \textbf{retrieval\_I.gnuplot}.
 
 \begin{figure}[htbp]
 \centering
@@ -469,7 +469,7 @@ Dans le module \textbf{user\_module.f90}, la routine \textbf{debug\_infos} perme
 
 De plus, la routine \textbf{print\_planet\_properties} permet d'afficher les informations d'une planète, définies dans une structure du type \textbf{PlanetProperties}.
 
-Un exemple de code de débogage est donc la suite d'instruction suivante :
+Un exemple de code de débogage est donc la suite d'instructions suivante :
 \begin{lstlisting}[language=Fortran]
 if (time.gt.365.25) then
   if ((p_prop%eccentricity.lt.ECCENTRICITY_CUTOFF).and.(p_prop%radius.gt.INNER_BOUNDARY_RADIUS)) then

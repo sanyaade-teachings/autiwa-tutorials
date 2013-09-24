@@ -1,17 +1,17 @@
 Afin d'étudier la formation planétaire et les interactions avec le disque de gaz, j'ai utilisé un code de simulation N-corps, qui permet de regarder l'évolution d'un nombre arbitraire de corps orbitant autour d'un astre central \citep{chambers1999hybrid}. 
 
-Ce choix est apparu naturellement. Au début de ma thèse j'ai fait quelques simulations hydrodynamiques avec le code Genesis développé par Arnaud Pierens. J'ai rapidement constaté que ce genre de simulations, bien que modélisant de manière poussée le disque, ne permettait pas d'étudier de manière approfondie la dynamique planétaire. Le temps de calcul nécessaire pour une simulation limite en effet grandement le nombre de corps ainsi que la durée d'intégration. J'ai donc souhaité me tourner vers un code N-corps, afin de privilégier la dynamique planétaire, et de modifier ce programme afin d'y inclure les effets d'un disque de gaz sur la dynamique planétaire. 
+Ce choix est apparu naturellement. Au début de ma thèse, j'ai fait quelques simulations hydrodynamiques avec le code Genesis développé par Arnaud Pierens. J'ai rapidement constaté que ce genre de simulations, bien que modélisant de manière poussée le disque, ne permettait pas d'étudier de manière approfondie la dynamique planétaire. Le temps de calcul nécessaire pour une simulation limite en effet grandement le nombre de corps ainsi que la durée d'intégration. J'ai donc souhaité me tourner vers un code N-corps, afin de privilégier la dynamique planétaire, et de modifier ce programme afin d'y inclure les effets d'un disque de gaz sur la dynamique planétaire. 
 
-J'ai ainsi gagné en temps de calcul, et j'ai ouvert un vaste champ d'investigation sur les paramètres du disques, le nombre de corps en interaction, me permettant de faire des systèmes planétaires très divers, parfois avoir plusieurs centaines d'embryons pour plusieurs millions d'années, chose impossible dans les simulations hydrodynamiques du début de ma thèse où 20 corps pendant quelques dizaines de milliers d'années était un maximum. 
+J'ai ainsi gagné en temps de calcul, et j'ai ouvert un vaste champ d'investigation sur les paramètres du disque, le nombre de corps en interaction, me permettant de faire des systèmes planétaires très divers, parfois avoir plusieurs centaines d'embryons pour plusieurs millions d'années, chose impossible dans les simulations hydrodynamiques du début de ma thèse où 20 corps pendant quelques dizaines de milliers d'années était un maximum. 
 
-Ce choix a bien entendu introduit son lot d'incertitudes et d'approximations qui sont discutés dans la partie \refsec{sec:discussion}. La présente partie a pour but de présenter le code N-corps que j'ai développé ainsi que les différents effets du disque que j'ai modélisé. J'ai avant tout souhaité présenter les parties qui ont des conséquences sur la physique du disque, que ce soit en terme de choix d'un modèle particulier, ou de limitations numériques qu'il est bien de garder à l'esprit quand on interprète les résultats.
+Ce choix a bien entendu introduit son lot d'incertitudes et d'approximations qui sont discutées dans la partie \refsec{sec:discussion}. La présente partie a pour but de présenter le code N-corps que j'ai développé ainsi que les différents effets du disque que j'ai modélisé. J'ai avant tout souhaité présenter les parties qui ont des conséquences sur la physique du disque, que ce soit en terme de choix d'un modèle particulier, ou de limitations numériques qu'il est bien de garder à l'esprit quand on interprète les résultats.
 
 \section{Présentation de Mercury}\index{logiciel!Mercury}
 Le code N-corps choisi est le code \textbf{Mercury} \citep{chambers1999hybrid}. Ce code offre la possibilité de choisir un algorithme parmi 5 différents (BS, BS2, RADAU, MVS et HYBRID), ayant des propriétés diverses. Dans le cadre de ma thèse, je n'ai utilisé que l'algorithme HYBRID, qui utilise l'algorithme MVS la plupart du temps, mais change pour l'algorithme BS2 lors de rencontres proches. 
 
-La raison de ce changement est assez simple. MVS est un algorithme symplectique \citep{wisdom1991symplectic}, c'est à dire à pas de temps constant, dans lequel on définit un hamiltonien que l'on résout pour faire évoluer les orbites. La conservation de l'énergie est moins bonne que pour un algorithme à pas de temps adaptatif, mais le point très important est que cette conservation de l'énergie est bien meilleure au cours du temps. C'est à dire que là où les algorithmes tels que BS, BS2 et RADAU verront leur erreur sur l'énergie augmenter au cours du temps, les algorithmes symplectiques vont eux voir leur erreur rester plus ou moins constante au cours du temps. 
+La raison de ce changement est assez simple. MVS est un algorithme symplectique \citep{wisdom1991symplectic}, c'est-à-dire à pas de temps constant, dans lequel on définit un hamiltonien que l'on résout pour faire évoluer les orbites. La conservation de l'énergie est moins bonne que pour un algorithme à pas de temps adaptatif, mais le point très important est que cette conservation de l'énergie est bien meilleure au cours du temps. c'est-à-dire que là où les algorithmes tels que BS, BS2 et RADAU verront leur erreur sur l'énergie augmenter au cours du temps, les algorithmes symplectiques vont eux voir leur erreur rester plus ou moins constante au cours du temps. 
 
-Dans le cadre de mes simulations, j'ai accordé une importance limitée aux variations d'énergie, étant donné que les couples que l'on rajoute pour simuler la présence du disque de gaz font que l'énergie n'est pas conservée pour une planète donnée. Cependant, il est important de bien résoudre les orbites et c'est ce point qui est le plus crucial ici. En effet, quelques tests ont permis de contraindre le pas de temps minimal qu'il est nécessaire d'avoir en fonction de la distance orbitale d'une planète. La contrainte de pas de temps dans mes simulations vient donc d'une distance minimale en dessous de laquelle les orbites ne sont pas correctement calculées. Cette limite, afin d'éviter tout problème, est choisie pour être en dessous du bords interne du disque de gaz que je défini.
+Dans le cadre de mes simulations, j'ai accordé une importance limitée aux variations d'énergie, étant donné que les couples que l'on rajoute pour simuler la présence du disque de gaz font que l'énergie n'est pas conservée pour une planète donnée. Cependant, il est important de bien résoudre les orbites et c'est ce point qui est le plus crucial ici. En effet, quelques tests ont permis de contraindre le pas de temps minimal qu'il est nécessaire d'avoir en fonction de la distance orbitale d'une planète. La contrainte de pas de temps dans mes simulations vient donc d'une distance minimale en dessous de laquelle les orbites ne sont pas correctement calculées. Cette limite, afin d'éviter tout problème, est choisie pour être en dessous du bord interne du disque de gaz que je définis.
 
 Les détails techniques et les options de mon code sont détaillés dans l'annexe \refsec{sec:nbody-readme}.
 
@@ -37,7 +37,7 @@ où $m_i$ est la masse du corps $i$, $p_i$ son impulsion et $r_{ij}$ la séparat
 
 Un intégrateur symplectique est un intégrateur qui au lieu d'appliquer directement le hamiltonien $H$ sur le système, va séparer ce dernier en deux (ou plusieurs parties) et appliquer ces sous-hamiltoniens successivement. Un intégrateur symplectique résout donc le problème de manière approchée en négligeant les termes croisés des sous-hamiltoniens.
 
-Afin de minimiser l'erreur dû à cette approximation, il faut choisir judicieusement la séparation du hamiltonien afin d'avoir une partie dominante par rapport à l'autre.
+Afin de minimiser l'erreur due à cette approximation, il faut choisir judicieusement la séparation du hamiltonien afin d'avoir une partie dominante par rapport à l'autre.
 
 Par définition, un algorithme symplectique conserve l'énergie au cours du temps, même si l'énergie fluctue au cours du temps autour d'une valeur moyenne. 
 
@@ -75,7 +75,7 @@ Dans notre cas, plusieurs approximations sont faites :
 \item Le nombre de collisions est suffisamment faible pour que les propriétés symplectiques de l'intégrateur soient conservées. On suppose de plus que les variations d'énergies induites par ce biais sont négligeables devant la dissipation induite par le disque (qui est de l'ordre de l'énergie initiale du système planétaire)
 \end{itemize}
 
-Il reste alors une chose à déterminer, c'est le pas de temps fixe que l'on doit choisir afin de résoudre correctement les orbites. Pour cela on se place dans un cas simplifié, sans les effets du disque, et on souhaite savoir la condition sur le pas de temps afin que l'orbite soit correctement calculée. 
+Il reste alors une chose à déterminer, c'est le pas de temps fixe que l'on doit choisir afin de résoudre correctement les orbites. Pour cela, on se place dans un cas simplifié, sans les effets du disque, et on souhaite savoir la condition sur le pas de temps afin que l'orbite soit correctement calculée. 
 
 On ne s'intéresse qu'aux orbites internes qui sont limitantes au niveau du pas de temps en raison de leur période réduite. Pour une planète à une distance de $0.1\unit{UA}$ du soleil, la période orbitale est de 11 jours environ.
 
@@ -104,7 +104,7 @@ est suffisante. La partie hachurée correspond à la collision de la planète in
 $R_\star=0.005\unit{UA}$.}\label{fig:accuracy_maps}
 \end{figure}
 
-Si un pas de temps plus grand ($h=1\unit{jour}$) semble convenir pour une planète isolée, la conservation de l'énergie est différente dans le cas avec des perturbations gravitationnelles (cas avec Jupiter). À $0.1\unit{UA}$, qui correspond au bord interne, zone particulièrement importante pour notre étude, ce pas de temps ne convient plus. Dès que l'excentricité augmente un peu, la précision sur l'orbite diminue, et les orbites les plus internes,  ne sont pas correctement résolue.
+Si un pas de temps plus grand ($h=1\unit{jour}$) semble convenir pour une planète isolée, la conservation de l'énergie est différente dans le cas avec des perturbations gravitationnelles (cas avec Jupiter). À $0.1\unit{UA}$, qui correspond au bord interne, zone particulièrement importante pour notre étude, ce pas de temps ne convient plus. Dès que l'excentricité augmente un peu, la précision sur l'orbite diminue, et les orbites les plus internes  ne sont pas correctement résolues.
 
 Même si le disque amortit les excentricités, nous souhaitons résoudre correctement les orbites légèrement excentriques, même au bord interne à $0.1\unit{UA}$. Un pas de temps de $h=1\unit{jour}$ résout correctement les orbites au bord interne, même légèrement excentriques, mais uniquement dans le cas d'une planète isolée. Si on ajoute les perturbations d'une planète externe, les orbites au bord interne ne sont plus correctement résolues. Ce défaut est corrigé si nous prenons un pas de temps de $h=0.4\unit{jour}$. C'est donc celui que nous utiliserons par défaut.
 
@@ -144,12 +144,12 @@ Le profil de densité de notre disque de référence (dont nous parlerons plus e
 \end{figure}
 
 \subsection{Table d'opacité}\index{opacité}
-Afin de pouvoir calculer le profil de température, on a besoin de choisir un modèle pour l'opacité. Je ne détaillerai pas ici les différents modèles car une étude complète sur le sujet a été effectuée, afin de comprendre l'influence du choix du modèle sur les résultats des simulations. 
+Afin de pouvoir calculer le profil de température, on a besoin de choisir un modèle pour l'opacité. Je ne détaillerai pas ici les différents modèles car une étude spécifique a été menée \refsec{sec:influence_opacity_table} afin de comprendre l'influence du choix du modèle sur les résultats des simulations. 
 
-Par contre, quel que soit le modèle, on a généralement une dépendance en fonction de la densité et de la température. L'opacité est donc un paramètre de la résolution de l'équation qui nous permet d'avoir la température. L'opacité n'est pas, dans notre modèle, une quantité qu'on fixe \textit{a priori}, mais plutôt un des paramètres de sortie de la résolution de l'équation de l'énergie dans le disque.
+Par contre, quel que soit le modèle, on a généralement une dépendance en fonction de la densité et de la température. L'opacité est donc un paramètre de la résolution de l'équation qui nous permet d'avoir la température. L'opacité n'est pas, dans notre modèle, une quantité qu'on fixe \emph{a priori}, mais plutôt un des paramètres de sortie de la résolution de l'équation de l'énergie dans le disque.
 
 \subsection{Profil de température}
-Afin de construire le profil de température point par point, on résout, pour chaque position dans le disque définie dans le profile, l'équation de l'énergie \refeq{eq:equation_energie}. 
+Afin de construire le profil de température point par point, on résout, pour chaque position dans le disque définie dans le profil, l'équation de l'énergie \refeq{eq:equation_energie}. 
 
 De manière consistante, cette équation a pour paramètre d'entrée la position, et on cherche à trouver les valeurs de la température $T$, échelle de hauteur $H$, profondeur optique $\tau$, diffusivité thermique $\chi$. Toutes ces valeurs sont fixées une fois qu'un ensemble cohérent de valeurs satisfont l'équation.
 
@@ -163,10 +163,10 @@ Le profil de température que nous obtenons dans notre disque de référence (do
 \caption{Profil de température pour notre disque de référence \protect\reftab{tab:fiducial_parameters}.}\label{fig:fiducial_temperature}
 \end{figure}
 
-\section{Migration Type I}\index{migration!Type I}
+\section{Migration de Type I}\index{migration!Type I}
 La migration de Type I est implémentée dans le code en utilisant le modèle 1D de disque, qui définit pour toute position du disque, une température, une densité de surface, et tous les autres paramètres nécessaires comme l'échelle de hauteur. En utilisant ces paramètres, on obtient ainsi le couple qu'exerce le disque sur la planète en fonction de sa masse et de sa position via la formule semi-analytique de \cite{paardekooper2011torque}. 
 
-Les deux différences principales entre le cadre du modèle de \cite{paardekooper2011torque} et le disque que j'ai modélisé, c'est que dans mon cas je n'ai pas un profil de température en loi de puissance (avec une seule loi de puissance), mais j'ai une loi de puissance définie point par point. C'est à dire que pour chaque zone du disque, la température est calculée de manière cohérente avec les autres paramètres du disques, et que l'indice de la loi de puissance correspondante est calculée en fonction des températures autour.
+Les deux différences principales entre le cadre du modèle de \cite{paardekooper2011torque} et le disque que j'ai modélisé, c'est que dans mon cas je n'ai pas un profil de température en loi de puissance (avec une seule loi de puissance), mais j'ai une loi de puissance définie point par point. C'est-à-dire que pour chaque zone du disque, la température est calculée de manière cohérente avec les autres paramètres du disque, et que l'indice de la loi de puissance correspondante est calculée en fonction des températures autour.
 
 La deuxième différence est que j'ai un profil pour l'échelle de hauteur $H$ et le rapport d'aspect $h=H/R$ du disque au lieu d'avoir un rapport d'aspect constant pour tout le disque.
 
@@ -177,7 +177,7 @@ De plus, certaines erreurs se sont glissées dans ce papier. \cite[appendice A]{
 \chi &= \frac{16\gamma (\gamma-1) \sigma T^4}{3\kappa \rho^2 H^2\Omega^2}
 \end{align}
 
-Il y a aussi une erreur dans l'équation (35) car le disque se refroidit par la surface supérieur et la surface inférieure. Mais comme j'utilise dans mon code une équation de l'énergie \refeq{eq:equation_energie} un peu plus complexe où j'ai tenu compte de ce fait là, cette erreur n'a pas d'incidence sur le calcul du couple.
+Il y a aussi une erreur dans l'équation (35) car le disque se refroidit par la surface supérieure et la surface inférieure. Mais comme j'utilise dans mon code une équation de l'énergie \refeq{eq:equation_energie} un peu plus complexe où j'ai tenu compte de ce fait là, cette erreur n'a pas d'incidence sur le calcul du couple.
 
 Les formules nous donnent alors un couple exercé par le disque sur la planète. 
 
@@ -224,11 +224,11 @@ a &= 0.45 \qquad b=3.46 \qquad c= -2.34
 où $x_s$ représente la demi-largeur de la région fer-à-cheval adimensionnée.
 
 \section{Désactivation des effets du disque}
-Quand une planète sort des bornes du disques, les effets d'amortissement de $e$ et $I$ sont désactivés, au même titre que la migration due à la présence du disque. Ce cas survient rarement au bord externe du disque (généralement à $100\unit{UA}$), mais est beaucoup plus probable au bord interne (généralement à $0.1\unit{UA}$).
+Quand une planète sort des bornes du disque, les effets d'amortissement de $e$ et $I$ sont désactivés, au même titre que la migration due à la présence du disque. Ce cas survient rarement au bord externe du disque (généralement à $100\unit{UA}$), mais est beaucoup plus probable au bord interne (généralement à $0.1\unit{UA}$).
 
 \section{Validité des éléments orbitaux}
 Lors d'une rencontre proche entre deux planètes, leurs interactions gravitationnelles rendent caduques les formules qui permettent de calculer les éléments orbitaux à partir des vitesses et positions car ceci suppose qu'on est dans le cas d'une orbite képlerienne isolée. 
 
 Dans de tels cas, on peut avoir des demi-grands axes négatifs, des excentricités supérieures à 1. Si c'est déjà en soit un problème physique, c'est aussi et surtout un problème numérique car cela fait apparaître des \textbf{Not A Number} (NaN) lorsque par exemple le demi-grand axe est en argument d'une racine carrée. Ceci a donc pour conséquence concrète de faire planter le code, au mieux, ou pire, de le faire tourner avec tous les paramètres de la simulation peu à peu gangrénés par des \textbf{NaN}. 
 
-En conséquence, j'ai décidé de remplacer dans la plupart des calculs de mes simulations, le demi-grand axe par le rayon $r=\sqrt{x^2+y^2+z^2}$ qui lui n'est pas sensible à ce genre de divergences. Quand l'excentricité est non nulle, il est clair que le rayon est différent du demi-grand axe. Mais les excentricités étant généralement faibles, l'erreur faite sur le demi-grand axe reste faible. De plus les rencontres proches représentent un temps négligeable de la simulation au regard des centaines de milliers d'années sur lesquelles on intègre les orbites. On considère donc que la migration induite sur les planètes pendant leur temps de rencontre proche est totalement négligeable au regard du reste de la simulation.
+En conséquence, j'ai décidé de remplacer dans la plupart des calculs de mes simulations, le demi-grand axe par le rayon $r=\sqrt{x^2+y^2+z^2}$ qui lui n'est pas sensible à ce genre de divergences. Quand l'excentricité est non nulle, il est clair que le rayon est différent du demi-grand axe. Mais les excentricités étant généralement faibles, l'erreur faite sur le demi-grand axe reste faible. De plus, les rencontres proches représentent un temps négligeable de la simulation au regard des centaines de milliers d'années sur lesquelles on intègre les orbites. On considère donc que la migration induite sur les planètes pendant leur temps de rencontre proche est totalement négligeable au regard du reste de la simulation.
