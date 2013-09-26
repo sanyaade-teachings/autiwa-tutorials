@@ -19,11 +19,11 @@ disk_edges = 0.1 100.
 sample = 800
 \end{verbatim}
 
-\textbf{b/h} est la longueur de lissage du potentiel gravitationnel d'une planète (qui diverge dans les simulations hydrodynamiques et qui est un paramètre des formules de \cite{paardekooper2011torque}.
+\textbf{b/h} est le paramètre de lissage du potentiel gravitationnel d'une planète (qui diverge dans les simulations hydrodynamiques et qui est un paramètre des formules de \cite{paardekooper2011torque}.
 
 \textbf{adiabatic\_index} est l'indice adiabatique $\gamma$ comme son nom l'indique. De même, \textbf{mean\_molecular\_weight} est la masse moléculaire moyenne $\mu$.
 
-\textbf{disk\_edges} définit les deux extrémités du disque, les bords internes et externes.
+\textbf{disk\_edges} définit les deux extrémités du disque, les bords interne et externe.
 
 \textbf{sample} définit le nombre de points qu'auront les profils radiaux des différents paramètres du disque. Ces points ne sont pas répartis uniformément, il y a plus de points au bord interne qu'au bord externe, afin d'avoir une évolution plus fine des paramètres en fonction du rayon.
 
@@ -150,7 +150,7 @@ is_turbulence = 1
 
 La turbulence n'est ici qu'une migration stochastique de moyenne nulle qui perturbe les planètes et leur migration. 
 
-Le modèle utilisé est le même que celui détaillé dans \cite{ogihara2007accretion}. Le principe est de définir un potentiel turbulent dans le disque, fait de la superposition de perturbation individuelle qui ont des modes $m$, temps de vie $t_m$ et position dans le disques différents. 
+Le modèle utilisé est le même que celui détaillé dans \cite{ogihara2007accretion}. Le principe est de définir un potentiel turbulent dans le disque, fait de la superposition de perturbations individuelles qui ont des modes $m$, temps de vie $t_m$ et position dans le disques différents. 
 
 Dans le cas typique, il y a 100 modes différents dans le disque : 
 \begin{align}
@@ -165,7 +165,7 @@ $\xi_k$ est une constante adimensionnée déterminée aléatoirement en suivant 
 
 $R_k$ et $\phi_k$ sont respectivement les coordonnées radiales et azimutales du mode $k$ choisies aléatoirement et de manière uniforme pour l'un entre les bornes du disque, pour l'autre entre $0$ et $2\pi$. 
 
-Chaque mode $k$ possède un nombre de modes $m_k$ déterminée selon une distribution logarithmique entre $m=1$ et $m=150$, le nombre de modes déterminant l'extension radiale et la durée du vie du mode $k$.
+Chaque mode $k$ possède un nombre de modes $m_k$ déterminé aléatoirement selon une distribution logarithmique entre $m=1$ et $m=150$, le nombre de modes $m_k$ déterminant l'extension radiale et la durée du vie du mode $k$.
 
 $\sigma_k = \pi R_k / 4m_k$ est l'extension radiale de ce mode tandis que $\Omega_k$ représente la vitesse angulaire képlerienne à la position $R=R_k$.
 
@@ -173,7 +173,7 @@ $\Delta t_k=0.2\pi R_k / m_k c_s$ est la durée de vie du mode $k$.
 
 \bigskip
 
-Les modes apparaissent et disparaissent en fonction de leur temps de vie et sont remplacés afin qu'il y ait toujours 100 modes différents dans le disque à un instant $t$. Chaque mode $k$ est créé à un instant $t_{0,k}$ et se termine quand $\tilde{t}_k = t-t_{0,k} > \Delta t_k$.
+Les modes apparaissent et disparaissent en fonction de leur temps de vie et sont remplacés afin qu'il y ait toujours 100 modes différents dans le disque à un instant $t$. Chaque mode $k$ est créé à un instant $t_{0,k}$ et se termine quand $\tilde{t}_k = t-t_{0,k} > \Delta t_k$, l'extension du mode et son temps de vie ne dépendent pas du nombre total $k$ de modes.
 
 \section{Migration}\index{migration!Type I}
 \subsection{real}
@@ -193,7 +193,7 @@ sa masse en ordonnée. La ligne noire représente la zone de couple nul, c'est-�
 s'arrête.}
 \end{figure}
 
-On définit une zone de convergence artificielle qui va dépendre de la masse des planètes. On va donc devoir définir deux bornes en masses et deux bornes en distance orbitale qui vont déterminer cette ligne de couple nul. À l'intérieur (resp. extérieur) de cette séparation virtuelle, la migration sera vers l'extérieur (resp. intérieur).
+On définit une zone de convergence artificielle qui va dépendre de la masse des planètes. On va donc devoir définir deux bornes en masse et deux bornes en distance orbitale qui vont déterminer cette ligne de couple nul. À l'intérieur (resp. extérieur) de cette séparation virtuelle, la migration sera vers l'extérieur (resp. intérieur).
 
 Ensuite, on défini une pente linéaire plus ou moins importante pour voir à quelle vitesse on va tendre vers la valeur de saturation à mesure qu'on s'éloigne de la zone de convergence. Une pente de $1$ signifie que le couple $\Gamma/\Gamma_0$ augmente de 1 tous les $10\unit{UA}$.
 
@@ -231,7 +231,7 @@ ordonnée. La ligne noire représente la zone de couple nul, c'est-à-dire une z
 \subsection{tanh\_indep}\label{sec:tanh_indep}
 Ici, on définit aussi une zone de convergence indépendante de la masse, mais au lieu d'avoir une évolution linéaire du couple à mesure qu'on s'éloigne de la zone de convergence, on a une tangente hyperbolique qui sature à une valeur que l'on peut donner en paramètre. 
 
-La valeur du couple de saturation défini la valeur absolue du couple vers laquelle on va tendre quand on est très loin de la zone de convergence. Si on est à l'extérieur, ce sera cette valeur de saturation prise négativement, tandis que c'est la valeur positive qui est utilisée à l'intérieur.
+La valeur du couple de saturation définit la valeur absolue du couple vers laquelle on va tendre quand on est très loin de la zone de convergence. Si on est à l'extérieur, ce sera cette valeur de saturation prise négativement, tandis que c'est la valeur positive qui est utilisée à l'intérieur.
 
 On a donc les paramètres suivants à définir : 
 \begin{verbatim}

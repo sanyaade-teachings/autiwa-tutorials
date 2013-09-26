@@ -11,7 +11,7 @@ Dans la thèse, j'utilise couramment les mêmes notations pour une propriété p
 k_B & constante de Boltzmann \\\hline
 \sigma & constante de Stefan-Boltzmann\\\hline
 G & Constante de gravitation universelle\\\hline
-b/h & Longueur de lissage du potentiel gravitationnel de la planète en unité de son rayon de Hill\\\hline
+b/h & Paramètre de lissage du potentiel gravitationnel de la planète en unité de son rayon de Hill\\\hline
 \mu & Masse moléculaire moyenne du gaz constituant principal du disque\\\hline
 \unit{M_\odot} & Masse solaire (unité de masse)\\\hline
 \unit{M_\oplus} & Masse terrestre\\\hline
@@ -24,7 +24,7 @@ b/h & Longueur de lissage du potentiel gravitationnel de la planète en unité d
 \centering
 \begin{tabular}{|>{$}c<{$}|p{7cm}|}
 \hline
-\alpha & paramètre adimensionné pour la prescription $\alpha$ du disque, permettant de définir une viscosité fonction de la vitesse du son\\\hline
+\alpha & paramètre adimensionné pour la prescription $\alpha$ du disque, permettant de définir une viscosité fonction de la vitesse du son et de l'échelle de hauteur\\\hline
 H & Échelle de hauteur du disque\\\hline
 h=H/R & rapport d'aspect du disque\\\hline
 \nu & Viscosité cinématique du disque\\\hline
@@ -35,8 +35,8 @@ c_s & vitesse du son\\\hline
 \Omega & vitesse angulaire d'une particule fluide ou d'une planète dans le disque\\\hline
 \kappa & Opacité du disque\\\hline
 \chi & Diffusivité thermique\\\hline
-d & Indice négatif du profil de densité de surface\\\hline
-\beta & Indice négatif du profil de température\\\hline
+d & Opposé de l'exposant correspondant au profil local de la densité de surface\\\hline
+\beta & Opposé de l'exposant correspondant au profil local de la température\\\hline
 
 \end{tabular}
 \caption{Liste des paramètres du disque et notations associées.}
@@ -53,11 +53,11 @@ q & $M_p/M_\star$\\\hline
 \Gamma_L & Couple différentiel de Lindblad\\\hline
 \Gamma_C & Couple de corotation\\\hline
 J & Moment cinétique\\\hline
-t_\text{rad} & Temps de diffusion radiatif du disque\\\hline
-t_\text{visc} & Temps de diffusion visqueux du disque\\\hline
+t_\text{rad} & Temps de diffusion radiative du disque\\\hline
+t_\text{visc} & Temps de diffusion visqueuse du disque\\\hline
 t_\text{diff} & Temps de diffusion du disque (peut être le temps radiatif ou visqueux, ou les deux, selon le problème considéré)\\\hline
-t_\text{lib} & Temps mis par une particule en corotation pour effectuer une orbite de corotation complète\\\hline
-t_\text{U-turn} & Temps mis par une particule en corotation pour effectuer un demi tour devant ou derrière la planète\\\hline
+t_\text{lib} & Temps de libration correspondant au temps mis par une particule fluide pour effectuer une orbite fer-à-cheval à la séparatrice\\\hline
+t_\text{U-turn} & Temps mis par une particule fluide pour effectuer un demi tour en avant ou derrière la planète\\\hline
 \end{tabular}
 \caption{Liste des variables et notations associées. Les paramètres avec un $p$ en indice indiquent simplement que c'est la valeur du paramètre à la position orbitale de la planète.}
 \end{table}
@@ -95,11 +95,11 @@ Soit une planète de demi-grand axe $a$, d'excentricité $e$, de masse $m_p$, de
 
 Il y a une relation entre sa période orbitale $T$ et son demi-grand axe :
 \begin{align}
-\frac{T^2}{a^3} &= \frac{4\pi}{G(m_\star + m_p)}
+\frac{T^2}{a^3} &= \frac{4\pi^2}{G(m_\star + m_p)}
 \end{align}
 où $G$ est la constante de gravitation universelle.
 
-On définit le périastre $q$ et l'apoastre $Q$ comme étant les distances minimales et maximales entre l'étoile et la planète : 
+On définit le périastre $q$ et l'apoastre $Q$ comme étant les distances minimale et maximale entre l'étoile et la planète : 
 \begin{subequations}
 \begin{align}
 q &= a (1 - e)\\
@@ -119,8 +119,8 @@ v &= \sqrt{\frac{G(m_\star + m_p)}{a}}
 
 L'énergie $E$ et la norme du moment cinétique $J$ d'une orbite képlerienne de demi-grand axe $a$ et d'excentricité $e$ sont donnés par :
 \begin{align}
-E &= \inv{2}v^2 - \frac{G(m_\star + m_p)}{r} = \frac{G(m_\star + m_p)}{2a}\\
-\norm{\vect{J}} &= G(m_\star + m_p) a (1-e^2)
+E &= \inv{2}v^2 - \frac{G(m_\star + m_p)}{r} = -\frac{G(m_\star + m_p)}{2a}\\
+\norm{\vect{J}}^2 &= G(m_\star + m_p) a (1-e^2)
 \end{align}
 
 \bigskip

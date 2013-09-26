@@ -79,7 +79,7 @@ $T_\star = 5700\unit{K}$ & $R_\star = 4.65\cdot 10^{-3}\unit{UA}$ & \multicolumn
 \cite{shakura1973black}.}\label{tab:fiducial_parameters}
 \end{table}
 
-La longueur de lissage $b/h$ est prise assez faible afin de ne pas sous-estimer le couple de corotation, qui est la partie la plus importante du couple dans notre cas car c'est celle qui permet d'inverser le sens de migration. En faisant cela, on sur-estime le couple de Lindblad, pour lequel une longueur de lissage de $b/h=0.75$ est conseillée \citep{masset2002coorbital}.
+Le paramètre de lissage $b/h$ est pris assez faible afin de ne pas sous-estimer le couple de corotation, qui est la partie la plus importante du couple dans notre cas, car c'est celle qui permet d'inverser le sens de migration. En faisant cela, on sur-estime le couple de Lindblad, pour lequel un paramètre de lissage $b/h=0.75$ est conseillée \citep{masset2002coorbital}.
 En considérant que le gaz du disque est un gaz parfait diatomique, l'indice adiabatique vaut alors $\gamma=7/5$.
 La valeur de $\alpha$ correspond à une valeur typique observée. De plus, elle tient compte du fait que la viscosité diminue avec l'âge du disque et que nous considérons une époque où le disque a déjà évolué, puisque nous prenons des embryons relativement massifs (au minimum $0.1\mearth$). De même, le profil de densité de surface $\Sigma(R) = 300 \cdot R^{-1/2}\unit{g/cm^2}$ ne correspond pas à un disque très massif car on considère que le disque est déjà évolué. 
 
@@ -125,12 +125,12 @@ figure/timescales/sat_visc.pdf}}
 
 \caption[Cartes des temps de diffusions dans le disque.]{Comparaison des différents temps caractéristiques influençant le couple
 de corotation. Ces inéquations sont détaillées
-dans \refsec{sec:couple-corotation}. Dans le cas présent, le temps de diffusion radiatif est toujours plus court que le temps
+dans \refsec{sec:couple-corotation}. Dans le cas présent, le temps de diffusion radiative est toujours plus court que le temps
 de diffusion visqueuse, $t_\text{rad}<t_\text{visc}$. Ainsi, il ne reste plus que les deux inégalités représentées
-ici. La saturation est ainsi gouvernée par le temps de diffusion visqueux $t_\text{visc}$. La transition couple non-saturé/couple linéaire est elle déterminée par le temps de diffusion radiatif $t_\text{rad}$.}\label{fig:timescales_maps}
+ici. La saturation est ainsi gouvernée par le temps de diffusion visqueuse $t_\text{visc}$. La transition couple non-saturé/couple linéaire est elle déterminée par le temps de diffusion radiative $t_\text{rad}$.}\label{fig:timescales_maps}
 \end{figure}
 
-\reffig{fig:timescales_maps} représente l'effet de la diffusion sur la carte de migration. Dans le cas d'un disque purement actif, on s'attend à ce que $t_\text{rad}=t_\text{visc}$ car $\nu\propto\xi$. Ici, à cause de l'irradiation, nous avons $t_\text{rad}<t_\text{visc}$, la saturation est alors gouvernée par le temps de diffusion visqueux $t_\text{visc}$ et la transition couple non-saturé/couple linéaire est déterminée par le temps de diffusion radiatif $t_\text{rad}$. Ainsi, seules deux inégalités sont ici nécessaires pour étudier le couple de corotation :
+\reffig{fig:timescales_maps} représente l'effet de la diffusion sur la carte de migration. Dans le cas d'un disque purement actif, on s'attend à ce que $t_\text{rad}=t_\text{visc}$ car $\nu\propto\xi$. Ici, à cause de l'irradiation, nous avons $t_\text{rad}<t_\text{visc}$, la saturation est alors gouvernée par le temps de diffusion visqueuse $t_\text{visc}$ et la transition couple non-saturé/couple linéaire est déterminée par le temps de diffusion radiative $t_\text{rad}$. Ainsi, seules deux inégalités sont ici nécessaires pour étudier le couple de corotation :
 \begin{align}
 t_\text{U-turn} < t_\text{diff} < \frac{t_\text{lib}}{2}\\\nonumber
 t_\text{U-turn} < t_\text{rad} < t_\text{visc} < \frac{t_\text{lib}}{2}
@@ -138,7 +138,7 @@ t_\text{U-turn} < t_\text{rad} < t_\text{visc} < \frac{t_\text{lib}}{2}
 
 Sur \reffig{fig:timescales_maps} on remarque que les parties active et passive du disque sont distinctes. En dessous de $4\unit{UA}$, la partie supérieure de la carte de migration s'explique par la saturation du couple de corotation. La ligne de couple nul suit en effet l'équation $(t_\text{lib}/2) = t_\text{visc}$ \reffig{fig:sat_visc}.
 
-La partie inférieure quant à elle, s'explique par la transition entre le couple non saturé et le couple linéaire pour le couple de corotation. La ligne de couple nul suit en effet l'équation $t_\text{U-turn} = t_\text{rad}$ \reffig{fig:linear_rad}. Le couple de corotation devient linéaire quand le temps de diffusion radiatif est trop court pour permettre à un gradient de s'installer dans la zone fer-à-cheval.
+La partie inférieure quant à elle, s'explique par la transition entre le couple non saturé et le couple linéaire pour le couple de corotation. La ligne de couple nul suit en effet l'équation $t_\text{U-turn} = t_\text{rad}$ \reffig{fig:linear_rad}. Le couple de corotation devient linéaire quand le temps de diffusion radiative est trop court pour permettre à un gradient de s'installer dans la zone fer-à-cheval.
 
 \begin{figure}[htbp]
 \centering
@@ -402,12 +402,12 @@ zones de migration vers l'extérieur se dilatent en même temps qu'elles se dép
 transitions d'opacité se déplacent également vers l'extérieur. 
 
 De plus la viscosité agit sur la saturation du couple de corotation.
-Quand la viscosité augmente, le temps de diffusion visqueux $t_\text{visc}$ diminue. Le couple de corotation ne sature pas tant
+Quand la viscosité augmente, le temps de diffusion visqueuse $t_\text{visc}$ diminue. Le couple de corotation ne sature pas tant
 que $(t_\text{visc} < t_\text{lib}/2)$. Si on augmente la viscosité $\nu$, le couple de corotation sature moins facilement à
 mesure que la masse de la planète augmente. La partie supérieure de la carte de migration se décale vers le haut quand la
 viscosité augmente. 
 
-Mais l'augmentation de la viscosité a un effet indirect sur le temps de diffusion radiatif $t_\text{rad}$. Si la viscosité augmente, le chauffage visqueux augmente. La température augmente, et la diffusivité thermique $\chi$ avec. Ainsi, quand la viscosité augmente, le temps de diffusion radiatif $t_\text{rad}$ diminue. Le couple de corotation est linéaire quand $t_\text{rad} < t_\text{U-turn}$. Quand la viscosité $\nu$ augmente, le couple de corotation se linéarise plus rapidement à mesure que la masse de la planète diminue. La partie inférieure de la carte de migration se décale elle aussi vers le haut. Des planètes de faible masse qui migraient vers l'extérieur ne peuvent plus migrer que vers l'intérieur à mesure que la viscosité augmente. 
+Mais l'augmentation de la viscosité a un effet indirect sur le temps de diffusion radiative $t_\text{rad}$. Si la viscosité augmente, le chauffage visqueux augmente. La température augmente, et la diffusivité thermique $\chi$ avec. Ainsi, quand la viscosité augmente, le temps de diffusion radiative $t_\text{rad}$ diminue. Le couple de corotation est linéaire quand $t_\text{rad} < t_\text{U-turn}$. Quand la viscosité $\nu$ augmente, le couple de corotation se linéarise plus rapidement à mesure que la masse de la planète diminue. La partie inférieure de la carte de migration se décale elle aussi vers le haut. Des planètes de faible masse qui migraient vers l'extérieur ne peuvent plus migrer que vers l'intérieur à mesure que la viscosité augmente. 
 
 \subsection{Viscosité alpha}\index{prescription alpha}
 La prescription alpha \citep{shakura1973black} est une autre manière de définir la viscosité, à partir d'un paramètre adimensionné $\alpha$ \refsec{sec:viscosite-alpha}.
@@ -479,7 +479,7 @@ zone morte s'étend de $1$ à $10\unit{UA}$. Plus de détails sur la modélisati
 \refdisk}\label{fig:viscosity_DZ}
 \end{figure}
 
-Sur les cartes de migration \reffig{fig:viscosity_DZ}, l'entrée dans la zone morte modifie en profondeur la carte de migration en creusant une zone de migration vers l'intérieur en raison de la viscosité très faible. Le temps de diffusion visqueux $t_\text{visc}$ augmente alors brusquement, engendrant la saturation rapide du couple de corotation quelle que soit la masse de la planète. Ainsi, dans la zone morte, la possibilité de migration vers l'extérieur est fortement réduite. En dehors de la zone morte, la carte de migration est quasi inchangée.
+Sur les cartes de migration \reffig{fig:viscosity_DZ}, l'entrée dans la zone morte modifie en profondeur la carte de migration en creusant une zone de migration vers l'intérieur en raison de la viscosité très faible. Le temps de diffusion visqueuse $t_\text{visc}$ augmente alors brusquement, engendrant la saturation rapide du couple de corotation quelle que soit la masse de la planète. Ainsi, dans la zone morte, la possibilité de migration vers l'extérieur est fortement réduite. En dehors de la zone morte, la carte de migration est quasi inchangée.
 
 \bigskip
 
@@ -498,7 +498,7 @@ figure/migration_map/viscosity/dz_shadow_temp_profile.pdf}}
 \protect\refsec{sec:dead_zone}. \refdisk}\label{fig:dz_shadow}
 \end{figure}
 
-Cette soudaine chute de la température entraine une augmentation du temps de diffusion radiatif $t_\text{rad}$. Cette augmentation du temps de diffusion rend beaucoup plus difficile pour le couple de corotation de tendre vers sa valeur linéaire. Même pour des masses de planète faibles, le couple de corotation est non-linéaire et fait apparaître une zone de migration vers l'extérieur au début de la zone morte, peu après $1\unit{UA}$. 
+Cette soudaine chute de la température entraine une augmentation du temps de diffusion radiative $t_\text{rad}$. Cette augmentation du temps de diffusion rend beaucoup plus difficile pour le couple de corotation de tendre vers sa valeur linéaire. Même pour des masses de planète faibles, le couple de corotation est non-linéaire et fait apparaître une zone de migration vers l'extérieur au début de la zone morte, peu après $1\unit{UA}$. 
 
 Cette zone de convergence sera sans doute très intéressante au niveau de l'accrétion de masse et de la formation des
 planètes car peu étendue, mais elle pourrait malgré tout jouer un rôle majeur en maintenant des planètes telluriques de faibles
@@ -522,7 +522,7 @@ où $\Sigma_0$ est la densité de surface à $R_0=1\unit{UA}$.
 
 À l'instar de
 la viscosité $\nu$, le profil de densité de surface $\Sigma$ influence directement le chauffage visqueux. Cependant, changer la
-densité de surface permet de modifier le chauffage visqueux sans modifier le temps de diffusion visqueux $t_\nu$. Je cherche à
+densité de surface permet de modifier le chauffage visqueux sans modifier le temps de diffusion visqueuse $t_\nu$. Je cherche à
 étudier l'influence de l'indice $d$ de la loi de puissance sur la carte de migration, soit en le faisant varier
 individuellement, soit en regardant, à masse du disque constante, ce que le profil de densité change. 
 
@@ -594,13 +594,13 @@ du disque tout au long de sa vie ne représente pas fidèlement l'évolution du 
 le cadre de la migration planétaire où les profils de densité et de températures jouent un rôle fondamental, nous nous limitons
 donc à l'étude des premiers millions d'années d'évolution du disque. 
 
-À l'instar de la viscosité, la densité de surface $\Sigma_0$ agit sur le chauffage visqueux et donc indirectement sur le temps de diffusion radiatif $t_\text{rad}$. Par contre, quand on augmente la densité, on ne modifie pas le temps de diffusion visqueuse qui influe sur la saturation. 
+À l'instar de la viscosité, la densité de surface $\Sigma_0$ agit sur le chauffage visqueux et donc indirectement sur le temps de diffusion radiative $t_\text{rad}$. Par contre, quand on augmente la densité, on ne modifie pas le temps de diffusion visqueuse qui influe sur la saturation. 
 
 Ainsi, à partir du profil de référence avec $\Sigma(R) = 300 \cdot
 R^{-\sfrac{1}{2}}\unit{g/cm^2}$ et $\alpha=5\cdot 10^{-3}$. Si on multiplie la densité par deux $\Sigma_0=600\unit{g/cm^2}$ ou qu'on double la valeur d'alpha $\alpha=10^{-2}$, le chauffage visqueux est le double de celui dans le disque de référence au premier ordre. Dans le cas où on a modifié la viscosité, la saturation du couple de corotation intervient à des masses de planètes plus importantes que dans le cas où la viscosité est resté la même ($\nu$ augmente, donc $t_\nu$ diminue).  
 
 Une variation équivalente du chauffage visqueux entraine un disque globalement plus froid quand cette variation provient de la viscosité, contrairement à une variation de densité, car cette dernière agit aussi indirectement sur l'opacité. 
-Si on augmente la température, la diffusivité thermique est plus grande, le temps de diffusion radiatif $t_\text{rad}$ diminue. Le couple de corotation devient linéaire pour des masses plus grandes. 
+Si on augmente la température, la diffusivité thermique est plus grande, le temps de diffusion radiative $t_\text{rad}$ diminue. Le couple de corotation devient linéaire pour des masses plus grandes. 
 
 Quand la densité diminue, on observe les mêmes effets qu'avec la diminution de la viscosité \reffig{fig:map_total_mass}, mais ces effets sont amplifiés car la densité influe sur l'opacité du disque. Le profil de température diminue plus rapidement. La carte de migration se compresse plus rapidement vers l'intérieur du disque en variant la densité (par opposition à une variation de viscosité). Par contre, la viscosité n'évoluant pas, la partie supérieure de la carte de migration se compresse moins rapidement vers le bas. Des planètes massives conserveront donc une zone de migration vers l'extérieur plus longtemps si on diminue la densité au lieu de diminuer la viscosité. On remarque que les deux disques les plus massifs présentent une transition d'opacité très marquée respectivement à $6$ \reffig{fig:600_map} et $12\unit{UA}$ \reffig{fig:1200_map}. 
 
@@ -809,7 +809,7 @@ faut stocker un tableau contenant la table d'opacité, ce qui n'est pas limitati
 Malgré tout, il restera toujours des incertitudes liées aux propriétés des poussières, taille et quantité, ainsi que son évolution
 au cours du temps. 
 
-\subsection{Longueur de lissage}\label{sec:smoothing_effect}\index{longueur de lissage}
+\subsection{Paramètre de lissage}\label{sec:smoothing_effect}\index{longueur de lissage}
 Dans les modèles numériques des disques protoplanétaires, le potentiel gravitationnel doit être modifié afin ne pas diverger aux
 très faibles distances mutuelles. En particulier, des problèmes peuvent survenir quand on modélise des objets étendus par des
 masses ponctuelles. Le modèle de Plummer introduit une longueur de lissage $b$ (souvent notée $b/h$ car sa valeur est exprimée
@@ -829,15 +829,15 @@ Plusieurs groupes ont cherché à étudier la longueur de lissage en détail, en
 utiliser \citep{hure2009local, muller2012treating}. Ces études cherchent à trouver la longueur de lissage qui permet de
 reproduire les simulations 3D à l'aide des simulations 2D. 
 
-Une longueur de lissage relativement importante $b/h = 0.75$ est nécessaire pour reproduire correctement le couple de Lindblad
+Un paramètre de lissage relativement important $b/h = 0.75$ est nécessaire pour reproduire correctement le couple de Lindblad
 \citep{masset2002coorbital}. Pour le couple de corotation, la zone fer-à-cheval étant très proche de la planète, ce dernier est
-extrêmement sensible à la longueur de lissage. En effet, \cite{masset2002coorbital} a montré que dans certains cas le couple de
+extrêmement sensible au paramètre de lissage. En effet, \cite{masset2002coorbital} a montré que dans certains cas le couple de
 corotation pouvait être plus d'un ordre de grandeur plus important en fonction de la valeur du lissage que l'on applique. La
-valeur préconisée est alors autour de $b/h\sim 0.5-0.6$. Ainsi, \cite{masset2002coorbital} conclue qu'il est peu probable de
-trouver une valeur optimale pour la longueur de lissage, les valeurs optimales pour les couples de Lindblad et de corotation
+valeur préconisée est alors autour de $b/h\sim 0.5-0.6$. Ainsi, \cite{masset2002coorbital} conclut qu'il est peu probable de
+trouver une valeur optimale pour le paramètre de lissage, les valeurs optimales pour les couples de Lindblad et de corotation
 étant incompatibles. 
 
-\cite{muller2012treating} suggère d'utiliser une longueur de lissage $b/h = 0.7$ tout en notant que des différences notables
+\cite{muller2012treating} suggère d'utiliser un paramètre de lissage $b/h = 0.7$ tout en notant que des différences notables
 subsistent avec les simulations 3D. 
 
 \cite{hure2009local}, en étudiant des disques sans planètes conseillent la plage de valeur suivante $0.13 \lesssim b/h \lesssim
@@ -855,23 +855,23 @@ décrire la migration de Type I (\refeq{eq:lindblad-torque}, \refeq{eq:saturated
 \subfloat[$b/h = 0.4$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/smoothing/smoothing_0_4.pdf}}\\
 \subfloat[$b/h = 0.6$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/smoothing/smoothing_0_6.pdf}}\hfill
 \subfloat[$b/h = 0.7$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/smoothing/smoothing_0_7.pdf}}\\
-\caption[Effet de la longueur de lissage sur la carte de migration.]{Effet de la longueur de lissage $b/h$ du potentiel
+\caption[Effet du paramètre de lissage sur la carte de migration.]{Effet du paramètre de lissage $b/h$ du potentiel
 gravitationnel sur la carte de migration du disque de référence.
 \refdisk}\label{fig:migration_map_smoothing}
 \end{figure}
 
-\reffig{fig:migration_map_smoothing} montre qu'en fonction de la longueur de lissage, on peut se trouver dans un cas où il y a
+\reffig{fig:migration_map_smoothing} montre qu'en fonction du paramètre de lissage, on peut se trouver dans un cas où il y a
 migration systématique vers l'intérieur ($b/h=0.7$) ou migration quasi-systématique vers l'extérieur ($b/h=0.2$). Si une valeur
 de $0.2$ semble peu réaliste au regard de la migration planétaire \citep{muller2012treating}, il est courant de voir des
 simulations effectuées avec $b/h=0.3-0.6$ \citep{masset2002coorbital, devalborro2006comparative, paardekooper2009corotation}. 
 
-Une longueur de lissage $0.6 \leqslant b/h \leqslant 0.76$ sous-estime le couple de corotation et sur-estime le couple de
+Un paramètre de lissage $0.6 \leqslant b/h \leqslant 0.76$ sous-estime le couple de corotation et sur-estime le couple de
 Lindblad \citep{masset2002coorbital}. Même si les valeurs préconisées par les études de sensibilités se situent autour de
 $0.6-0.7$, les études faisant des simulations hydrodynamiques utilisent plus couramment une valeur de $b/h=0.4$
-\citep{paardekooper2011torque}. Il n'existe donc pas de valeur optimale pour la longueur de lissage quand le disque que l'on
+\citep{paardekooper2011torque}. Il n'existe donc pas de valeur optimale pour le paramètre de lissage quand le disque que l'on
 modélise est utilisé pour étudier la migration planétaire. Si cette partie ne conclut pas quant à une valeur à utiliser pour
-$b/h$ c'est avant tout pour insister sur le fait que la seule conclusion à tirer, c'est que la longueur de lissage est une
-source importance d'incertitude dans nos modèles. Une longueur de lissage importante (resp. faible) a tendance à favoriser la
+$b/h$ c'est avant tout pour insister sur le fait que la seule conclusion à tirer, c'est que le paramètre de lissage est une
+source importance d'incertitude dans nos modèles. Un paramètre de lissage important (resp. faible) a tendance à favoriser la
 migration vers l'intérieur (resp. l'extérieur). 
 
 \begin{figure}[htbp]
@@ -879,16 +879,16 @@ migration vers l'intérieur (resp. l'extérieur).
 \subfloat[$b/h = 0.5$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/smoothing/smoothing_0_5.pdf}}\hfill
 \subfloat[$b/h = 0.76$ pour $\Gamma_L$ et $0.5$ pour
 $\Gamma_C$]{\includegraphics[width=0.49\textwidth]{figure/migration_map/smoothing/smoothing_0_5_modified.pdf}}
-\caption[Comparaison entre une simple ou double longueur de lissage.]{Comparaison d'un cas où la longueur de lissage
-est fixée à $b/h=0.5$, et d'un autre cas où la longueur de lissage a été
-fixée à $0.76$ pour le couple de Lindblad et à $0.5$ pour le couple de Corotation, correspondant aux valeurs conseillées pour
+\caption[Comparaison entre un simple ou double paramètre de lissage.]{Comparaison d'un cas où le paramètre de lissage
+est fixé à $b/h=0.5$, et d'un autre cas où le paramètre de lissage a été
+fixé à $0.76$ pour le couple de Lindblad et à $0.5$ pour le couple de Corotation, correspondant aux valeurs conseillées pour
 les deux couples séparés \citep{masset2002coorbital}. \refdisk}\label{fig:modified_smoothing}
 \end{figure}
 
 Inclure des formules pour la migration de Type I nous offre une liberté supplémentaire par rapport aux simulations
-hydrodynamiques, celle de fixer une longueur de lissage $b/h$ différente pour le couple de Lindblad et pour le couple de
+hydrodynamiques, celle de fixer un paramètre de lissage $b/h$ différent pour le couple de Lindblad et pour le couple de
 Corotation. Suivant les prescriptions données par \cite{masset2002coorbital} j'ai donc calculé la carte de migration d'une
-simulation où je fixe une longueur de lissage $b/h=0.76$ pour le couple de Lindblad, et une longueur de lissage $b/h=0.5$ pour
+simulation où je fixe un paramètre de lissage $b/h=0.76$ pour le couple de Lindblad, et un paramètre de lissage $b/h=0.5$ pour
 le couple de Corotation. J'obtiens alors les cartes représentées \reffig{fig:modified_smoothing}, toujours dans le cas du disque
 de référence \refsec{sec:reference_disk}. 
 
