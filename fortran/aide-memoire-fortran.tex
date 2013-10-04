@@ -3280,6 +3280,10 @@ gfortran -o test test_mfo_user.f90 user_module.o
 
 J'ai eu aussi cette erreur parce que dans le module \textbf{user\_module}, la fonction \textbf{get\_F} était une fonction privée.
 
+\subsubsection{Error: Keyword argument 'e' at (1) is not in the procedure fortran}
+J'avais ce problème avec un pointeur de fonction. Je n'avais pas défini la bonne interface (j'avais copié collé la ligne d'un
+autre pointeur sans changer l'interface correspondante). 
+
 \subsubsection{Error: Rank mismatch in array reference at (1) (2/1)}
 J'avais cette erreur parce que j'avais déclaré la variable comme 
 \begin{lstlisting}[{language=fortran}]
