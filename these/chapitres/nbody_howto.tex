@@ -273,6 +273,70 @@ disque en \unit{UA} tandis que la deuxième colonne sera le couple exercé par l
 l'effet de la masse de la planète sur la vitesse de migration sera toujours pris en compte dans le code au travers de la
 dépendance de $\Gamma_0$ en fonction de la masse de la planète et de la masse du disque.
 
+\section{Amortissement du couple de corotation}
+Il s'agit de l'atténuation du couple de corotation perçu par une planète en raison de son excentricité. Quatres modèles sont
+ici proposés, issus de trois articles différents. Le quatrième choix permet de désactiver l'amortissement.
+
+\subsection{cossou}
+C'est le cas par défaut car historiquement c'était le premier à être implémenté. Le définir comme choix par défaut permet donc
+la rétrocompatibilité des simulations. 
+
+\begin{verbatim}
+damping_type = cossou
+\end{verbatim}
+
+La valeur du paramètre d'amortissement $D$ est donnée par une formule qui a été calculée pour coller au mieux aux simulations de
+\cite{bitsch2010orbital}, détaillée dans \citep[eq (1)]{cossou2013convergence}, et recopiée ici : 
+\begin{subequations}
+\begin{align}
+D = \frac{\Gamma_C(e)}{\Gamma_C (e=0)} &= 1 + a \cdot \left[\tanh(c) - \tanh\left(\frac{b *
+e}{x_s}+c\right)\right]\\
+a &= 0.45 \qquad b=3.46 \qquad c= -2.34
+\end{align}
+\end{subequations}
+où $x_s$ représente la demi-largeur de la région fer-à-cheval adimensionnée.
+
+\subsection{pierens}
+\begin{verbatim}
+damping_type = pierens
+\end{verbatim}
+
+Une autre formule pour l'amortissement, issue de \citep[eq. (16)]{pierens2013making} : 
+\begin{align}
+D &= \exp\left(-\frac{e^2}{(2x_s)^2}\right)
+\end{align}
+où $x_s$ représente la demi-largeur de la région fer-à-cheval adimensionnée.
+
+$D$ est forcé à 0 quand l'argument est plus petit que $-10$ afin d'éviter les \textbf{NaN}.
+
+\subsection{fendyke}
+\begin{verbatim}
+damping_type = fendyke
+\end{verbatim}
+
+Une autre formule pour l'amortissement, issue de \citep[eq. (8) et (10)]{fendyke2013corotation} : 
+\begin{subequations}
+\begin{align}
+D &= \exp\left(-\frac{e}{e_f}\right)\\
+e_f &= \frac{h}{2} + 0.01
+\end{align}
+\end{subequations}
+où $h$ est le rapport d'aspect du disque. 
+
+$D$ est forcé à 0 quand l'argument est plus petit que $-100$ afin d'éviter les \textbf{NaN}.
+
+\subsection{none}
+Ce choix implique que le couple de corotation n'est pas modifié par l'excentricité d'une planète.
+
+\begin{verbatim}
+damping_type = none
+\end{verbatim}
+
+\begin{align}
+D &= 1
+\end{align}
+
+
 \section{Behind the scene}\label{sec:unitary_tests}
 Un programme externe, nommé \textbf{test\_disk.f90} permet d'effectuer des tests unitaires sur différentes fonctions, afin de vérifier quand bon nous semble que chaque fonction n'est pas perturbée par les autres et donne des résultats corrects à la fois physiquement et numériquement.
 
