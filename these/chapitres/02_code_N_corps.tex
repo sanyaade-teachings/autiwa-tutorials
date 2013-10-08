@@ -43,7 +43,8 @@ Par définition, un algorithme symplectique conserve l'énergie au cours du temp
 
 Les intégrateurs symplectiques ont deux avantages importants sur les intégrateurs classiques : 
 \begin{enumerate}
-\item Les fluctuations \og instantanées\fg de l'énergie dues à un algorithme symplectiques sont plus grandes que celles d'un algorithme N-corps, mais à la différence de ces derniers, l'erreur ne croit pas au cours du temps \reffig{fig:energy_error}.
+\item Les fluctuations \og instantanées\fg de l'énergie dues à un algorithme symplectique sont plus grandes que celles d'un
+algorithme N-corps, mais à la différence de ces derniers, l'erreur ne croit pas au cours du temps \reffig{fig:energy_error}.
 \item Ils sont moins couteux en temps de calcul, en particulier quand la majeure partie de la masse est contenue dans un seul corps (bien adapté pour l'étude d'un système planétaire autour d'une étoile donc).
 \end{enumerate}
 
@@ -104,14 +105,22 @@ est suffisante. La partie hachurée correspond à la collision de la planète in
 $R_\star=0.005\unit{UA}$.}\label{fig:accuracy_maps}
 \end{figure}
 
-Si un pas de temps plus grand ($h=1\unit{jour}$) semble convenir pour une planète isolée, la conservation de l'énergie est différente dans le cas avec des perturbations gravitationnelles (cas avec Jupiter). À $0.1\unit{UA}$, qui correspond au bord interne, zone particulièrement importante pour notre étude, ce pas de temps ne convient plus. Dès que l'excentricité augmente un peu, la précision sur l'orbite diminue, et les orbites les plus internes  ne sont pas correctement résolues.
+Si un pas de temps plus grand ($h=1\unit{jour}$) semble convenir pour une planète isolée, la conservation de l'énergie est
+différente dans le cas avec des perturbations gravitationnelles (cas avec Jupiter). À $0.1\unit{UA}$, qui correspond au bord
+interne, zone particulièrement importante pour notre étude, ce pas de temps ne convient plus. Dès que l'excentricité augmente un
+peu, la précision sur l'orbite diminue, et les orbites les plus internes ne sont pas correctement résolues.
 
 Même si le disque amortit les excentricités, nous souhaitons résoudre correctement les orbites légèrement excentriques, même au bord interne à $0.1\unit{UA}$. Un pas de temps de $h=1\unit{jour}$ résout correctement les orbites au bord interne, même légèrement excentriques, mais uniquement dans le cas d'une planète isolée. Si on ajoute les perturbations d'une planète externe, les orbites au bord interne ne sont plus correctement résolues. Ce défaut est corrigé si nous prenons un pas de temps de $h=0.4\unit{jour}$. C'est donc celui que nous utiliserons par défaut.
 
 Un moyen mnémotechnique pour calculer le pas de temps minimal pour une simulation est de considérer qu'il faut résoudre l'orbite la plus proche avec un minimum de $10$ pas de temps. Ceci n'est valable que dans l'approximation où l'excentricité n'est pas trop élevée ($e<0.4$). Si nous faisons ce calcul ici, nous obtenons qu'avec un demi-grand axe minimal de $a=0.1\unit{UA}$ et une excentricité maximale de $e=0.4$, la distance minimale d'approche est $q=0.06$. La période d'une orbite $a=0.06$ est de $5\unit{jours}$ environ, ce qui donne un pas de temps maximal de $h=0.5\unit{jour}$. 
 
 \section{Disque (1+1)D}
-Afin de calculer les effets d'un disque de gaz, une modélisation de ce dernier est nécessaire. Le but étant d'avoir une grande souplesse, le disque implémenté est bien entendu très simplifié. Toutes les quantités sont intégrées selon la hauteur $z$ et la position azimutale $\theta$ dans le disque, résultant en un modèle radial 1D de toutes les quantités. Le nombre de points de tous les profils radial est identique pour une même simulation. Typiquement le nombre de points égal à $n=1000$. Les points ne sont pas régulièrement espacés, le nombre est plus important au bord interne de sorte que l'espacement $\Delta X$ entre les points est constant, où $X$ est défini comme : 
+Afin de calculer les effets d'un disque de gaz, une modélisation de ce dernier est nécessaire. Le but étant d'avoir une grande
+souplesse, le disque implémenté est bien entendu très simplifié. Toutes les quantités sont intégrées selon la hauteur $z$ et la
+position azimutale $\theta$ dans le disque, résultant en un modèle radial 1D de toutes les quantités. Le nombre de points de
+tous les profils est identique pour une même simulation. Typiquement le nombre de points égal à $n=1000$. Les points ne sont
+pas régulièrement espacés, le nombre est plus important au bord interne de sorte que l'espacement $\Delta X$ entre les points
+est constant, où $X$ est défini comme : 
 \begin{align}
 X = 2\sqrt{R}
 \end{align}
@@ -194,7 +203,8 @@ L'accélération due à la migration $\vect{a_\text{mig}}$ est alors donnée par
 où $\vect{v}$ est la vitesse instantanée de la planète.
 
 \section{Amortissement de e et I}
-L'amortissement de l'excentricité $e$ et de l'inclinaison $I$ d'une planète plongée dans un disque protoplanétaire est modélisée dans le code via les formules de \cite[eq. (9), (11) et (12)]{cresswell2008three} : 
+L'amortissement de l'excentricité $e$ et de l'inclinaison $I$ d'une planète plongée dans un disque protoplanétaire est modélisé
+dans le code via les formules de \cite[eq. (9), (11) et (12)]{cresswell2008three} : 
 \begin{subequations}
 \begin{align}
 t_e &= \frac{t_\text{wave}}{0.780}\left[1-0.14\left(\frac{e}{H/r}\right)^2 + 0.06 \left(\frac{e}{H/r}\right)^3 + 0.18\left(\frac{e}{H/r}\right)\left(\frac{I}{H/r}\right)^2\right]\\

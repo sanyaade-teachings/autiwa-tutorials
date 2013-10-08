@@ -1,12 +1,18 @@
 \section{Formation stellaire}
-Les étoiles se forment à partir de l'effondrement gravitationnel d'un nuage de gaz. Quand ce dernier est suffisamment massif (masse au delà d'une masse critique dite masse de Jeans, de l'ordre de quelques masses solaires, même si ça dépend de la configuration, du volume etc\dots), son autogravité initie un effondrement du nuage sur lui-même, qui peu à peu se fragmente en système découplés. 
+Les étoiles se forment à partir de l'effondrement gravitationnel d'un nuage de gaz. Quand ce dernier est suffisamment massif
+(masse au delà d'une masse critique dite masse de Jeans, de l'ordre de quelques masses solaires, même si ça dépend de la
+configuration, du volume etc\dots), son autogravité initie un effondrement du nuage sur lui-même, qui peu à peu se fragmente en
+systèmes découplés. 
 
 Au centre de chaque fragment se forme un cœur pré-stellaire à mesure que la température et la pression augmentent, jusqu'à atteindre les conditions nécessaires à l'allumage de la fusion de l'hydrogène. On obtient alors une protoétoile appelée \og classe 0\fg. 
 
 Durant l'effondrement du nuage, la conservation du moment cinétique empêche la contraction du nuage, en particulier dans le plan perpendiculaire à l'axe de rotation du nuage. Ceci ajouté à la pression de radiation, apparue depuis la formation de la protoétoile conduit à la formation d'un tore autour de l'étoile centrale en quelques dizaines de milliers d'années. Ce stade est appelé \og classe I\fg.
 
 Le tore de gaz est chaud et par conséquence enflé, principalement à cause de l'énergie gravitationnelle résiduelle, mais aussi par le chauffage de la protoétoile centrale.
-En quelques centaines de milliers d'années, ce tore devient un disque, à mesure que le rayonnement de corps noir évacue l'énergie par la surface. À mesure que le tore refroidit, et compte tenu de la conservation du moment cinétique qui empêche une contraction rapide dans le plan perpendiculaire à l'axe de rotation, il s'aplatit jusqu'à former un disque \citep{williams2011protoplanetary}. 
+En quelques centaines de milliers d'années, ce tore devient un disque, à mesure que le rayonnement de corps noir évacue
+l'énergie par la surface. Compte tenu de la conservation du
+moment cinétique qui empêche une contraction rapide dans le plan perpendiculaire à l'axe de rotation, le tore s'aplatit
+au fil de son refroidissement jusqu'à former un disque \citep{williams2011protoplanetary}. 
 
 Un million d'années environ après la formation de la protoétoile, le disque mince est formé et la protoétoile est devenue une étoile T Tauri (objet de classe II). Après quelques millions d'années (typiquement, 10 millions d'années), le disque se dissipe et on est dans le cas d'étoiles T-Tauri évoluées ou objets de classe III. 
 
@@ -48,7 +54,9 @@ Dans ce paramètre, $\pi G \Sigma$ représente la masse du disque. La vitesse du
 
 \bigskip
 
-Si $Q<1$ alors le gaz est instable gravitationnellement et il commence à s'effondrer sur lui-même et former des sur-densités à condition que le temps de refroidissement soit inférieur à 3 fois la période orbitale ($\tau_c \lesssim 3 \Omega^{-1}$) \citep{gammie2001nonlinear}.
+Si $Q<1$ alors le gaz est instable gravitationnellement et il commence à s'effondrer sur lui-même et à former des sur-densités à
+condition que le temps de refroidissement soit inférieur à 3 fois la période orbitale ($\tau_c \lesssim 3 \Omega^{-1}$)
+\citep{gammie2001nonlinear}.
 Si $Q>1$, le disque est stable.
 
 À partir du paramètre $Q$, on peut dériver une condition sur le rapport de masse entre étoile et disque pour que l'auto-gravité soit négligeable, ce qui donne \citep{gammie2001nonlinear} : 
@@ -126,7 +134,8 @@ c_s &= H\Omega
 
 \bigskip
 
-On considèrera dans la suite les quantités moyennées selon $z$, et en particulier on défini la densité de surface $\Sigma$ de la façon suivante : 
+On considèrera dans la suite les quantités moyennées selon $z$, et en particulier on définit la densité de surface $\Sigma$ de
+la façon suivante : 
 \begin{align}
 \Sigma &= \int_{-\infty}^{+\infty} \rho \dif z\nonumber\\
 &=\rho_0 \int_{-\infty}^{+\infty}  \exp\left(-\frac{z^2}{2H^2}\right)\dif z\nonumber\\
@@ -184,7 +193,10 @@ En faisant tendre l'épaisseur $\Delta R$ de l'anneau vers 0, on obtient alors :
 \end{important}
 
 \subsubsection{Bilan de moment cinétique/angulaire}
-On fait maintenant un bilan des variations de moment cinétique pour l'anneau de gaz. Pour cela on dit que la variation de moment cinétique (que l'on écrit en dérivant $J_a(t)$) est égale aux variations de moment cinétiques induites aux bords de l'anneau par échange de masse à laquelle s'ajoute la différence entre les deux couples visqueux qui s'appliquent au bord externe et interne. Ce qui donne : 
+On fait maintenant un bilan des variations de moment cinétique pour l'anneau de gaz. Pour cela on dit que la variation de moment
+cinétique (que l'on écrit en dérivant $J_a(t)$) est égale aux variations de moment cinétique induites aux bords de l'anneau par
+échange de masse à laquelle s'ajoute la différence entre les deux couples visqueux qui s'appliquent au bord externe et interne.
+Ce qui donne : 
 \begin{align}
 \dod{J_a}{t} &= \dif J(R+\Delta R) + \dif J(R) + \Gamma_\text{out} - \Gamma_\text{in}\label{eq:cons_J_a}
 \end{align}
@@ -269,7 +281,12 @@ Cette équation permet de modéliser l'évolution visqueuse d'un disque au cours
 
 \bigskip
 
-On situe généralement le temps de vie d'un disque protoplanétaire autour de quelques millions d'années. Cette information est obtenue de plusieurs études de d'amas d'étoiles d'âges différents dans lesquelles on mesure le taux d'étoiles possédant un excès infrarouge (signe de présence d'un disque) \citep{williams2011protoplanetary}. 70\% à 80\% des étoiles jeunes ($t<1\unit{Myr}$) possèdent un disque \citep{winston2007combined, gutermuth2008spitzer}, 40 à 50\% des étoiles dans des amas d'âge compris entre 2 et 3 millions d'années en possèdent un \citep{lada2006spitzer, sung2009spitzer} tandis que moins de 20\% des étoiles dans des amas d'environ 5 millions d'années ont un disque \citep{currie2009last}. 
+On situe généralement le temps de vie d'un disque protoplanétaire autour de quelques millions d'années. Cette information est
+obtenue de plusieurs études d'amas d'étoiles d'âges différents dans lesquelles on mesure le taux d'étoiles possédant un excès
+infrarouge (signe de présence d'un disque) \citep{williams2011protoplanetary}. 70\% à 80\% des étoiles jeunes ($t<1\unit{Myr}$)
+possèdent un disque \citep{winston2007combined, gutermuth2008spitzer}, 40 à 50\% des étoiles dans des amas d'âge compris entre 2
+et 3 millions d'années en possèdent un \citep{lada2006spitzer, sung2009spitzer} tandis que moins de 20\% des étoiles dans des
+amas d'environ 5 millions d'années ont un disque \citep{currie2009last}. 
 
 Par la rareté des disques en train de se dissiper, les observations suggèrent aussi que les disques se dissipent très rapidement, avec un temps de dispersion d'environ $10^5$ ans \citep{simon1995disk, wolk1996search}. La dissipation visqueuse n'explique alors pas comment le disque peut subsister pendant plusieurs millions d'années, mais se dissiper complètement en \nombre{500 000} ans. \cite{clarke2001dispersal} ont montré qu'il était possible d'expliquer ce comportement à deux temps caractéristiques à l'aide de la photo-évaporation. 
 
@@ -312,7 +329,8 @@ Par toute la surface du disque, qui est à une température $T_\text{eff}$ en su
 \begin{align}
 P_\text{cn} &= - 2\sigma {T_\text{eff}}^4
 \end{align}
-où $\sigma$ est la constante de Stefan-Boltzmann. Ces dernières doivent être multiplié par deux, en effet, il y a des pertes par rayonnements des deux cotés du disque à une position donnée. 
+où $\sigma$ est la constante de Stefan-Boltzmann. Ces dernières doivent être multipliées par deux, en effet, il y a des pertes
+par rayonnements des deux cotés du disque à une position donnée. 
 
 \bigskip
 
@@ -343,7 +361,8 @@ C_\text{en} &= 2 \sigma {T_\text{en}}^4
 La température de l'enveloppe étant très faible, cette dernière ne contribue que dans les parties externes du disque, là où la densité de surface du gaz est très faible, rendant du même coup le chauffage visqueux extrêmement ténu lui aussi.
 
 \subsubsection{Chauffage par l'étoile}\label{sec:irradiation}\index{irradiation}
-La surface du disque reçoit de la lumière de l'étoile centrale. Soit $R_\star$, $L_\star$ respectivement le rayon et la luminosité de l'étoile. Soit $\varepsilon$ l'albédo du disque, que l'on choisi typiquement égal à $0.5$  \citep{menou2004low}. 
+La surface du disque reçoit de la lumière de l'étoile centrale. Soit $R_\star$, $L_\star$ respectivement le rayon et la
+luminosité de l'étoile. Soit $\varepsilon$ l'albédo du disque, que l'on choisit typiquement égal à $0.5$  \citep{menou2004low}. 
 
 Le flux incident est alors \citep[eq. (7)]{menou2004low} : 
 \begin{align}
@@ -363,7 +382,10 @@ Il vient enfin, en exprimant la luminosité de l'étoile en fonction de sa temp�
 C_\text{irr} &= 2 \sigma {T_\star}^4 \frac{{R_\star}^2}{r^2} (1-\varepsilon) * \left[0.4 \frac{R_\star}{r} + r \dod{}{r}\left(\frac{H}{r}\right)\right]
 \end{align}
 
-Il faut cependant noter qu'une approximation implicite a été faite, c'est de dire que $h_p\sim h$, où $h_p$ est la position verticale dans le disque où les photons stellaires sont absorbés. En effet, l'absorption des photons ne dépend pas simplement de la densité, mais aussi de l'opacité du disque aux photons stellaires, qui dépend de la composition du disque.
+Il faut cependant noter qu'une approximation implicite a été faite en supposant que $h_p\sim h$, où $h_p$ est la position
+verticale dans le disque où les photons stellaires sont absorbés. En effet, l'absorption des photons ne dépend pas uniquement de
+la densité, mais aussi de l'opacité du disque aux photons stellaires, qui elle-même varie suivant la composition
+composition du disque.
 
 Dans le cadre d'un disque optiquement épais, il devient possible de considérer $h_p \sim h$.
 
@@ -439,9 +461,11 @@ On cherche maintenant la température d'équilibre du disque, compte tenu de tou
 0 &= - 2\sigma \frac{T^4}{\frac{3}{8}\tau + \frac{\sqrt{3}}{4} + \inv{4\tau}} + 2 \sigma {T_\text{en}}^4 + 2 \sigma {T_\star}^4 \frac{{R_\star}^2}{r^2} (1-\varepsilon) * \left[0.4 \frac{R_\star}{r} + r \dod{}{r}\left(\frac{H}{r}\right)\right] + \frac{9}{4} \nu\Sigma\Omega^2\label{eq:equation_energie}
 \end{align}
 
-Dans la pratique, c'est une équation de l'on résout de manière numérique, par itération. En effet, beaucoup de paramètres dépendent de la température, alors même que c'est la variable que l'on recherche. 
+Dans la pratique, c'est une équation que l'on résout de manière numérique, par itération. En effet, beaucoup de paramètres
+dépendent de la température, alors même que c'est la variable que l'on recherche. 
 
-Ce calcul est lui-même extrêmement dépendant de la définition que l'on choisi pour l'opacité $\kappa$ et de la dépendance de cette dernière en fonction de la température, la densité ou la pression. 
+Ce calcul est lui-même extrêmement dépendant de la définition que l'on choisit pour l'opacité $\kappa$ et de la dépendance de
+cette dernière en fonction de la température, la densité ou la pression. 
 
 \subsection{La viscosité du disque}\label{sec:viscosite}\index{viscosité}% (Franck et al. 1992)
 La viscosité moléculaire, viscosité généralement considérée quand on étudie la dynamique d'un fluide, peut être définie par : 
@@ -506,7 +530,9 @@ Pourtant, le modèle $\alpha$ n'est pas forcément la panacée en comparaison du
 Ceci justifie donc que l'on mette ces deux modèles en concurrence, sans placer le modèle $\alpha$ au dessus du modèle à viscosité constante. Les incertitudes étant tellement grandes dans les deux cas, il est justifié d'explorer ces deux modèles et de les comparer quand cela nous est donné de le faire.
 
 \subsubsection{Ionisation et zones mortes}\label{sec:ionisation_DZ}\index{ionisation}\index{zone morte}
-Pour que la MRI se développe, c'est-à-dire qu'il y ait un couplage entre le champ magnétique et les mouvements du disque, il faut qu'une partie au moins du disque soit ionisé. Dans ces régions ionisées, on pourra alors avoir transport du moment cinétique via la viscosité turbulente. 
+Pour que la MRI se développe, c'est-à-dire qu'il y ait un couplage entre le champ magnétique et les mouvements du disque, il
+faut qu'une partie au moins du disque soit ionisée. Dans ces régions ionisées, on pourra alors avoir transport du moment
+cinétique via la viscosité turbulente. 
 
 \bigskip
 
@@ -516,7 +542,8 @@ Sans ionisation, il n'y a pas de couplage entre le champ magnétique et la mati�
 Mais si le taux d'ionisation décroit en fonction de la distance orbitale \citep{ilgner2006ionisation1} comme le montre
 \reffig{fig:ilgner_ionisation}, il en va de même avec la densité de surface du disque. Il est donc probable que certaines zones
 du disque ne soient pas ionisées (en pourcentage du nombre total d'atomes disponibles), et donc que le transport du moment
-cinétique s'y fasse peu ou pas du tout \citep{gammie1996layered}. Ces zones, appelées \gras{zone morte} (ou \og dead zone\fg en anglais), sont donc des zones où
+cinétique s'y fasse peu ou pas du tout \citep{gammie1996layered}. Ces zones, appelées \gras[zone morte]{zones mortes} (ou \og
+dead zone\fg en anglais), sont donc des zones où
 la turbulence est faible ou inexistante, et où la viscosité est par conséquent beaucoup plus faible. 
 
 \begin{figure}[htbp]
@@ -531,15 +558,20 @@ On voit donc que les modèles de viscosité constante ou alpha sont incapables d
 \subsection{La poussière}\index{poussière}
 Le disque protoplanétaire est principalement composé de gaz, hydrogène et hélium en majorité. Pourtant, même si la poussière ne représente qu'environ 1\% de la masse du disque elle joue un rôle au moins aussi important que le gaz lui-même.
 
-À cause de la pression quasi-inexistante dans le disque en raison des faibles densités, solide et gaz sont les seules phases existantes, il n'y a pas de liquides dans l'espace. La poussière représente la matière solide du disque, en grains plus ou moins fin, allant du nanomètre, micromètre, jusqu'à des tailles planétaires en fin de formation. 
+À cause de la pression quasi-inexistante dans le disque en raison des faibles densités, solide et gaz sont les seules phases
+existantes, il n'y a pas de liquide dans l'espace. La poussière représente la matière solide du disque, en grains plus ou moins
+fin, allant du nanomètre, micromètre, jusqu'à des tailles planétaires en fin de formation. 
 
 Cette poussière est un composé extrêmement complexe à modéliser. Elle contient différents composés solides en fonction de la température (à certaines températures et densité des composés se volatilisent et d'autres non). La ligne des glaces représente la distance à partir de laquelle de la glace d'eau apparait, augmentant de manière drastique la quantité de poussière dans le disque. 
 
-Le disque évoluant au cours du temps, la ligne des glace évolue elle aussi à mesure que les propriétés du disque, et en particulier son profil de densité de gaz change \citep{dodsonrobinson2009icelines}.
+Le disque évoluant au cours du temps, la ligne des glaces évolue elle aussi à mesure que les propriétés du disque, et en
+particulier son profil de densité de gaz change \citep{dodsonrobinson2009icelines}.
 
 \bigskip
 
-De plus, la poussière est aussi responsable de l'opacité du disque, c'est-à-dire sa capacité à laisser passer ou non la lumière. À travers l'opacité, la poussière a donc une influence sur la température du disque qui se refroidit plus ou moins efficacement, et qui absorbe le rayonnement stellaire plus ou moins efficacement. 
+De plus, la poussière est aussi responsable de l'opacité du disque, c'est-à-dire sa capacité à laisser passer ou non la lumière.
+À travers l'opacité, la poussière a donc une influence sur la température du disque qui se refroidit et absorbe le rayonnement
+stellaire plus ou moins efficacement. 
 
 \subsection{Opacité du disque}\label{sec:opacity}\index{opacité}
 Un paramètre crucial des modèles de disques protoplanétaires est l'opacité du disque qui représente l'absorption du rayonnement incident par une cellule de gaz. Cette dernière dépend principalement de la composition chimique de la poussière sauf quand la température devient suffisamment importante pour que la totalité de la poussière se sublime, généralement au delà de $1500\unit{K}$ \citep{pollack1994composition}, l'opacité étant alors régie par les molécules du gaz.
@@ -562,7 +594,15 @@ où $\int_0^\infty B_\nu\dif \nu$ représente l'intensité totale, tandis que $B
 
 Dans la pratique, on fait bien souvent l'approximation que le disque est optiquement épais, ce qui est généralement vrai dans les parties internes du disque ($0.1-15\unit{UA}$), lieu de formation des planètes. Pour autant, le calcul des opacités est loin d'être trivial et plusieurs modèles proposent des tables d'opacités dont le détail des propriétés est différent. Le choix du modèle a donc des implications importantes sur le modèle de formation planétaire comme je le détaillerai dans la partie \refsec{sec:influence_opacity_table}. 
 
-En formation planétaire, le modèle le plus utilisé est \citep{bell1994FU}. Mais dans mes études, j'ai utilisé en tout et pour tout 4 modèles différents \citep{bell1994FU, zhu2009nonsteady, chambers2009analytic, hure2000transition}. À noter que \citep{bell1994FU, zhu2009nonsteady} sont des modèles qui proposent différents fonctions analytiques pour définir une opacité par morceaux. \citep{chambers2009analytic} propose un modèle très simple à opacité constante $\kappa=3$ tant que la température est inférieure à $1380\unit{K}$, puis une simple loi de puissance, fonction uniquement de la température au delà. Enfin, le modèle dans \citep{hure2000transition} ne définit pas de fonctions par morceaux mais utilise simplement une table d'opacité fonction de la température et de la densité. L'avantage de ce type de méthode est qu'on ne rajoute pas d'incertitudes par des ajustements en loi de puissance, c'est donc principalement pour ça que j'ai choisi cette table d'opacité pour mon modèle standard. 
+En formation planétaire, le modèle le plus utilisé est \citep{bell1994FU}. Mais dans mes études, j'ai utilisé en tout et pour
+tout 4 modèles différents \citep{bell1994FU, zhu2009nonsteady, chambers2009analytic, hure2000transition}. À noter que
+\citep{bell1994FU, zhu2009nonsteady} sont des modèles qui proposent différentes fonctions analytiques pour définir une opacité
+par morceaux. \citep{chambers2009analytic} propose un modèle très simple à opacité constante $\kappa=3$ tant que la température
+est inférieure à $1380\unit{K}$, puis une simple loi de puissance, fonction uniquement de la température au delà. Enfin, le
+modèle dans \citep{hure2000transition} ne définit pas de fonctions par morceaux mais utilise simplement une table d'opacité
+fonction de la température et de la densité. L'avantage de ce type de méthode est qu'on ne rajoute pas d'incertitudes par des
+ajustements en loi de puissance, c'est donc principalement pour ça que j'ai choisi cette table d'opacité pour mon modèle
+standard. 
 
 \subsection{Profil de densité de surface}
 Un point crucial dans la modélisation physique d'un disque protoplanétaire est son profil de densité de surface $\Sigma$. Ça signifie d'une part qu'on fait l'approximation d'un disque mince, et que toutes les quantités qu'on considère par la suite sont moyennées selon la direction verticale $z$.
@@ -576,15 +616,22 @@ Un profil largement utilisé est celui de la Masse Minimale de la Nébuleuse Sol
 \begin{align}
 \Sigma(R) &= 1700 \left(\frac{R}{1\unit{UA}}\right)^{-\sfrac{3}{2}} \unit{g/cm^2}
 \end{align}
-La première chose, c'est que c'est une masse minimale, c'est-à-dire qu'on suppose que toute la masse de poussière présente dans le disque de gaz se retrouve dans la masse finale des planètes, ce qui est hautement improbable, que ce soit à cause notamment de l'accrétion sur l'étoile ou de la disparition d'embryons de planètes soit en tombant dans l'étoile, soit par éjection du système.
+La première chose à considérer c'est qu'il s'agit d'une masse minimale, c'est-à-dire qu'on suppose que toute
+la masse de poussière présente dans le disque de gaz se retrouve dans la masse finale des planètes, ce qui est hautement
+improbable, que ce soit à cause notamment de l'accrétion sur l'étoile ou de la disparition d'embryons de planètes soit en
+tombant dans l'étoile, soit par éjection du système.
 
 Ce profil est malgré tout une base de travail, vu qu'il est extrêmement difficile de déduire ces informations des observations des disques. Malgré tout, les études semblent montrer que l'on s'attend à un profil moins abrupt que $\Sigma\propto r^{-\sfrac{3}{2}}$, plus proche de $\Sigma\propto r^{-1}$ \citep{bell1997structure}.
 
 Mais on voit quand même que l'on a une grande liberté sur la densité de surface du disque, à la fois parce qu'on sait à ce jour peu de chose à ce sujet, mais aussi et surtout parce qu'au cours de son évolution, le disque de gaz va voir sa densité de surface varier énormément. En variant le profil, on étudie donc aussi différentes étapes de formation d'un même disque. 
 
-Le profil de densité de surface, que ce soit au travers de $\Sigma_0$ ou de l'indice $\alpha$ de la loi de puissance a une grande influence sur les autres paramètres du disque, notamment le profil de température, au travers du chauffage visqueux notamment. 
+Le profil de densité de surface, que ce soit au travers de $\Sigma_0$ ou de l'indice $\alpha$ de la loi de puissance a une
+grande influence sur les autres paramètres du disque, notamment le profil de température via le chauffage visqueux. 
 
-Il est aussi crucial de garder à l'esprit que la loi de puissance n'est qu'un modèle, issu notamment des observations qui sondent les parties externes des disques, au delà de plusieurs dizaines d'unités astronomiques. Extrapoler ces lois de puissances jusqu'aux parties les plus internes est une très grande approximation qui a des conséquences importantes pour les planètes, dont le lieu de formation se situe vraisemblablement dans les parties internes.
+Il est aussi crucial de garder à l'esprit que la loi de puissance n'est qu'un modèle, issu notamment des observations qui
+sondent les parties externes des disques, au delà de plusieurs dizaines d'unités astronomiques. Extrapoler ces lois de puissance
+jusqu'aux parties les plus internes est une très grande approximation qui a des conséquences importantes pour les planètes, dont
+le lieu de formation se situe vraisemblablement dans les parties internes.
 
 \subsection{Limites et approximations dues à la modélisation}
 Tout d'abord, le bord interne est une des parties les plus complexes d'un disque protoplanétaire. Ce bord interne correspond à des zones différentes pour le gaz ou pour la poussière. La poussière disparait quand la température du disque dépasse $1500\unit{K}$ environ, température au delà de laquelle la partie réfractaire des grains se sublime. 
@@ -603,12 +650,18 @@ Je vais ici essayer de récapituler les approximations qui ont été faites jusq
 \item On néglige l'auto-gravité du disque ($M_d \lesssim \frac{H}{R}M_\star$) en considérant que la période où ce n'est pas le cas est courte devant le temps de vie du disque, et que ce dernier tend rapidement vers une configuration où l'auto-gravité est négligeable.
 \item On considère que le gaz est en rotation képlerienne $\Omega=\sqrt{\frac{GM_\star}{r^3}}$. Pour cela, on néglige la pression du gaz qui a tendance à rendre la rotation légèrement sous-képlerienne.
 \item On considère qu'il n'y a pas de variation de la gravité dû à la variation de masse de l'étoile induite par l'accrétion. Ça entraîne alors $\pd{\Omega}{t} = 0$.
-\item Dans le calcul du chauffage visqueux, on néglige la vitesse azimutale, la vitesse radiale ainsi que toutes les dérivées en $\varphi$ compte tenu que le disque est axisymétrique.
-\item On se place dans le cadre d'un disque optiquement épais quand on choisi d'utiliser des moyennes de Rosseland pour l'opacité. Si c'est physiquement cohérent avec les parties internes du disque, ça ne l'est parfois plus dans les parties externes, surtout si le disque est très étendu.
+\item Dans le calcul du chauffage visqueux, on néglige la vitesse azimutale, la vitesse radiale ainsi que toutes les dérivées en
+$\varphi$ compte tenu que le disque est axisymétrique.
+\item On se place dans le cadre d'un disque optiquement épais quand on choisit d'utiliser des moyennes de Rosseland pour
+l'opacité. Si c'est physiquement cohérent avec les parties internes du disque, ça ne l'est parfois plus dans les parties
+externes, surtout si le disque est très étendu.
 \item Le modèle d'opacité a une grande influence sur la physique du disque. En particulier, chaque modèle fait des hypothèses sur la métallicité, les propriétés de la poussière, notamment la taille des grains. Chacune de ces hypothèses joue sur l'opacité d'une manière qui est totalement masquée dans les équations ou tables qu'on utilise pour rendre compte de la dépendance de l'opacité en fonction de la température et de la densité.
 \item On fait souvent l'approximation que la masse moléculaire moyenne $\mu$ est constante (et typiquement égale à $\mu=2.35$). Or en fonction des transitions d'opacité, la quantité de poussière va brusquement varier, engendrant une variation de $\mu$. Cette masse moléculaire moyenne a en particulier une importance dans le calcul de l'échelle de hauteur $H$ du disque et la vitesse du son $c_s$. 
 \item Définir le profil de densité de surface du disque comme une loi de puissance reste une approximation. Ça l'est d'autant plus que le disque est étendu. Du reste, la masse du disque et l'indice de la loi de puissance sont peu contraints, donnant une grande liberté dans le profil de densité dont il faut tenir compte pour mettre en perspective les résultats que l'on obtient.
-\item Le modèle choisi pour la viscosité, constante ou prescription alpha, néglige bien souvent la présence de zone morte où l'ionisation n'est pas suffisante pour que l'on puisse définir une viscosité turbulente. L'absence de ces zones dans un disque modélisé est bien entendue une approximation à des fins de simplifications, mais masque certaines propriétés intrinsèques des disques dont les conséquences sur la formation planétaire sont encore mal connues.
+\item Le modèle choisi pour la viscosité, constante ou prescription alpha, néglige bien souvent la présence de zone morte où
+l'ionisation n'est pas suffisante pour que l'on puisse définir une viscosité turbulente. L'absence de ces zones dans un disque
+modélisé est bien entendue une approximation à des fins de simplification, mais masque certaines propriétés intrinsèques des
+disques dont les conséquences sur la formation planétaire sont encore mal connues.
 \item Une dernière approximation, et qui a des conséquences importantes pour l'opacité, le profil de température, la viscosité et par extension, toute la physique du disque, est le fait de considérer les propriétés de la poussière comme figées dans le temps. Au cours de la vie du disque, la poussière évolue. Sa distribution de taille change, la quantité totale de poussière est modifiée, notamment par l'accrétion. Et enfin, à mesure que la poussière se retrouve dans des embryons de planète de plus en plus gros, la quantité de poussière disponible sous la forme de petites particules diminue d'autant. 
 \end{enumerate}
 
@@ -626,7 +679,8 @@ Ce type de migration ne concerne que les planètes de faible masse (de l'ordre d
 %\end{remarque}
 
 \subsubsection{Couple du disque sur la planète}
-Un couple gravitationnel représente l'échange d'énergie associé à une force gravitationnelle.  Le couplage gravitationnel entre les ondes de densité et la planète qui les crée abouti à un couple qui agit sur la planète : 
+Un couple gravitationnel représente l'échange d'énergie associé à une force gravitationnelle.  Le couplage gravitationnel entre
+les ondes de densité et la planète qui les crée aboutit à un couple qui agit sur la planète : 
 \begin{align}
 \Gamma &= - \iint_\text{disc} \left(\vect{r}\wedge\grad{\Phi_p}\right)\Sigma r \dif r \dif \theta
 \end{align}
@@ -638,18 +692,25 @@ Ainsi, si le couple est négatif (sous-entendu du disque sur la planète), le di
 Si le couple est positif, la planète migre vers l'extérieur, cette dernière prenant de l'énergie au disque.
 
 \subsubsection{Couple de Lindblad}\index{couple!de Lindblad}
-La présence d'une planète dans un disque de gaz entraine la création d'ondes de densités aux \gras[résonance!de Lindblad]{résonances de Lindblad} \citep{goldreich1979excitation}. Le couplage gravitationnel entre les ondes de densité et la planète qui les crée abouti à un \gras{couple} qui agit sur la planète.
+La présence d'une planète dans un disque de gaz entraine la création d'ondes de densité aux \gras[résonance!de
+Lindblad]{résonances de Lindblad} \citep{goldreich1979excitation}. Le couplage gravitationnel entre les ondes de densité et la
+planète qui les crée aboutit à un \gras{couple} qui agit sur la planète.
 
 \bigskip
 
 Il est tout d'abord intéressant de remarquer l'origine des bras spiraux dans les galaxies. Ce sont essentiellement des phénomènes statistiques que l'on peut résumer en deux points : 
 \begin{enumerate}
-\item Une onde de densité se forme par la présence de sur-densité locales comme des nuages de gaz géants \citep{donghia2013self}. Une fois formée, il est possible que l'onde de densité s'auto-entretienne en modifiant les excentricités des éléments qui la composent \citep{binney2008book}.
+\item Une onde de densité se forme par la présence de sur-densités locales comme des nuages de gaz géants
+\citep{donghia2013self}. Une fois formée, il est possible que l'onde de densité s'auto-entretienne en modifiant les
+excentricités des éléments qui la composent \citep{binney2008book}.
 
 \item L'onde ainsi créée n'est pas une onde matérielle rigide en rotation, mais une onde de densité statistique. Le bras spiral n'est ainsi pas constitué d'une population fixe d'étoile. Les étoiles constituant le bras spiral changent avec le temps, mais statistiquement, la position des étoiles dans la galaxie dessine une onde de densité où le nombre d'étoiles est plus grand. 
 \end{enumerate}
 
-\reffig{fig:spiral_arms} schématise l'apparition d'onde de densité. Dans le cas à gauche, des orbites concentriques parfaitement circulaires sont ajoutés. On ne voit rien de particulier. Par contre, dans le cas à droite, on choisi des orbites très légèrement excentriques. À chaque étape, on rajoute une orbite en agrandissant l'orbite précédente et en la tournant légèrement. On voit ainsi apparaître deux ondes de densités dans le disque simplement dues à l'orientation des orbites excentriques.
+\reffig{fig:spiral_arms} schématise l'apparition d'onde de densité. Dans le cas à gauche, des orbites concentriques parfaitement
+circulaires sont ajoutées. On ne voit rien de particulier. Par contre, dans le cas à droite, on choisit des orbites très
+légèrement excentriques. À chaque étape, on rajoute une orbite en agrandissant l'orbite précédente et en la tournant légèrement.
+On voit ainsi apparaître deux ondes de densité dans le disque simplement dues à l'orientation des orbites excentriques.
 
 Ça signifie en particulier que la vitesse de rotation de l'onde de densité n'est pas liée à la vitesse de rotation des étoiles qui la composent. Ceci permet de résoudre le \og winding problem\fg c'est-à-dire le fait que si l'onde de densité était rigide, elle s'enroulerait sur elle-même au bout de quelques orbites seulement, ce qui n'est pas le cas ici \citep{binney2008book}.
 
@@ -673,8 +734,8 @@ Pour l'interaction entre une planète et un disque protoplanétaire, c'est exact
 \caption[Construction de l'onde de densité due à la présence d'une planète.]{Génération d'ondes de densité dans le disque
 protoplanétaire dû à la présence d'une planète. Chaque mode $m$ émet $m$ ondes de densité de part et d'autre de la position
 radiale de la planète. Un anneau interne aux positions du mode $m$ est dénué de toute onde dû à ce même mode. Les interférences
-entre toutes les ondes de densités de tous les modes donne deux ondes de densités que l'on observe dans des simulations
-hydrodynamique. Les positions successives des interférences constructives sont données par \cite[eq. (13) et
+entre toutes les ondes de densité de tous les modes donne deux ondes de densité que l'on observe dans des simulations
+hydrodynamiques. Les positions successives des interférences constructives sont données par \cite[eq. (13) et
 (24)]{ogilvie2002wake}}\label{fig:lindblad_torque}
 \end{figure}
 
@@ -693,11 +754,12 @@ r_{ILR}(m) &= \left(\frac{m-1}{m}\right)^\sfrac{2}{3}r_p
 \end{align}
 \end{subequations}
 
-Pour un mode $m$ donnée, à partir des anneaux de rayon $r_{ILR}(m)$ et $r_{OLR}(m)$ vont être lancées $m$ ondes de densités. 
+Pour un mode $m$ donnée, à partir des anneaux de rayon $r_{ILR}(m)$ et $r_{OLR}(m)$ vont être lancées $m$ ondes de densité. 
 
 Dans le cas des bras spiraux dans une galaxie, c'est principalement un mode $m=2$ qui propage une onde spirale de part et d'autre d'une barre centrale source des ondes de densité. Dans le cas d'une planète dans un disque, des ondes de densité sont lancées pour chaque mode $m$. 
 
-Par interférence constructive \citep{ogilvie2002wake}, la somme de toutes les ondes de densités émises par tous les modes du potentiel gravitationnel résulte en la formation d'une onde de densité résultante \reffig{fig:lindblad_torque}. 
+Par interférence constructive \citep{ogilvie2002wake}, la somme de toutes les ondes de densité émises par tous les modes du
+potentiel gravitationnel résulte en la formation d'une onde de densité résultante \reffig{fig:lindblad_torque}. 
 
 \bigskip
 
@@ -716,7 +778,9 @@ Le couple est ici exprimé en unité de $\Gamma_0$, couple de référence défin
 \Gamma_0 &= \left(\frac{q}{h}\right)^2\Sigma_p {r_p}^4 {\Omega_p}^2
 \end{align}
 
-Notons aussi que le processus physique du transport du moment cinétique de la planète est réalisé par l'onde de densité. Le moment cinétique est emporté par l'onde de densité qui l'échange avec le gaz environnant à mesure que ce dernier amorti et dissipe l'onde.
+Notons aussi que le processus physique du transport du moment cinétique de la planète est réalisé par l'onde de densité. Le
+moment cinétique est emporté par l'onde de densité qui l'échange avec le gaz environnant à mesure que ce dernier amortit et
+dissipe l'onde.
 
 \subsubsection{Couple co-orbital ou de corotation}\index{couple!de corotation}\label{sec:couple-corotation}
 \begin{figure}[htbp]
@@ -759,13 +823,16 @@ où $x_s$ est la demi-largeur de la zone de fer-à-cheval (\og half-width of the
 \end{align}
 Dans le cas d'une planète de $20\unit{M_\oplus}$ à $1\unit{UA}$ dans un disque avec $h=0.05$ et $M_\star=1M_\odot$, ce temps de libration vaut $t_\text{lib}\sim 38 p_\text{orbital}$. 
 
-Le temps $t_\text{U-turn}$ représente quant à lui la durée nécessaire à un élément fluide pour effectuer un demi-tour devant la planète, c'est-à-dire pour parcourir la zone de longueur $2x_s$\footnote{$x_s$ est la demi-largeur de la zone de fer-à-cheval (\og half-width of the horseshoe region\fg)} devant la planète. Il est définit par \citep[eq. (64)]{baruteau2008corotation}
+Le temps $t_\text{U-turn}$ représente quant à lui la durée nécessaire à un élément fluide pour effectuer un demi-tour devant la
+planète, c'est-à-dire pour parcourir la zone de longueur $2x_s$\footnote{$x_s$ est la demi-largeur de la zone de fer-à-cheval
+(\og half-width of the horseshoe region\fg)} devant la planète. Il est défini par \citep[eq. (64)]{baruteau2008corotation}
 \begin{align}
 t_\text{U-turn} &\simeq \frac{4}{\Omega_p}\left[\frac{H(r_p)}{R_H}\right]^\sfrac{3}{2}
 \end{align}
 où $R_H=r_p (q/3)^{1/3}$ est le rayon de Hill de la planète. Dans le cas d'une planète de $20\unit{M_\oplus}$ à $1\unit{UA}$ dans un disque avec $h=0.05$ et $M_\star=1M_\odot$, ce temps vaut $t_\text{U-turn} \sim 1.6 p_\text{orbital}$.
 
-Un troisième est dernier temps $t_\text{diff}$ rentre en jeu, c'est le temps de diffusion. Selon le processus physique mis en jeu, ce temps peut être $t_\text{rad}$ ou $t_\text{visc}$.
+Un troisième et dernier temps $t_\text{diff}$ rentre en jeu, c'est le temps de diffusion. Selon le processus physique mis en
+jeu, ce temps peut être $t_\text{rad}$ ou $t_\text{visc}$.
 
 $t_\text{rad}$ représente le temps de diffusion par refroidissement radiatif. Ce temps est plus long quand on se rapproche de l'étoile car le rayonnement est plus rapidement réabsorbé. Le temps radiatif au travers de la zone de corotation est de l'ordre de :
 \begin{align}
@@ -803,7 +870,10 @@ couple de corotation décroit pour atteindre la valeur prédite par une analyse 
 
 \reffig*{fig:corotation_principle} illustre les trois cas possibles en fonction des commensurabilités entre les différents temps caractéristiques mis en jeux.
 
-L'idée générale afin d'éviter la saturation, c'est qu'on doit restaurer le gradient d'entropie / de vortensité au travers de la zone fer-à-cheval. Il faut donc que les processus diffusifs soient suffisamment efficace pour qu'en arrivant à la région de \og U-turn\fg de l'autre côté, l'élément fluide ait pu équilibrer ses conditions physiques avec le milieu environnant. Cette condition est illustrée par l'inégalité suivante : 
+L'idée générale afin d'éviter la saturation, c'est qu'on doit restaurer le gradient d'entropie / de vortensité au travers de la
+zone fer-à-cheval. Il faut donc que les processus diffusifs soient suffisamment efficaces pour qu'en arrivant à la région de \og
+U-turn\fg de l'autre côté, l'élément fluide ait pu équilibrer ses conditions physiques avec le milieu environnant. Cette
+condition est illustrée par l'inégalité suivante : 
 \begin{align}
 t_\text{diff} < \frac{t_\text{lib}}{2}
 \end{align}
@@ -835,7 +905,8 @@ $d$ et $\xi=\beta - (\gamma-1)d$ sont respectivement les négatifs des exposants
 
 \bigskip
 
-Dans la pratique, ce couple peut être positif (migration vers l'extérieur) ou négatif (migration vers l'intérieur) en fonction des variations des quantités physiques par rapport à leur valeur nominales.
+Dans la pratique, ce couple peut être positif (migration vers l'extérieur) ou négatif (migration vers l'intérieur) en fonction
+des variations des quantités physiques par rapport à leur valeur nominale.
 
 \subsubsection{Modélisation dans le code N-corps}
 Les couples de Lindblad et de Corotation ont été intégrés aux simulations numériques en utilisant le modèle de \cite{paardekooper2011torque}. Plus de détails sur l'implémentation de ces formules et le modèle de disque utilisé dans la section \refsec{sec:code_n-corps}.

@@ -5,7 +5,9 @@ Il est possible de mettre des commentaires dans le fichier \textbf{disk.in}, que
 
 Le code est en grande partie le code Mercury \cite{chambers1999hybrid}. Les effets du disque ont été inclus dans la partie \textbf{mfo\_user} prévue pour inclure des effets propre à chaque utilisateur. 
 
-Pour autant, le code a été conçu de manière modulaire en portant une attention particulière au temps d'exécution et à la souplesse d'utilisation. La plupart des effets sont désactivables par une simple option dans un fichier de paramètre spécifique au effets du disque \textbf{disk.in}. 
+Pour autant, le code a été conçu de manière modulaire en portant une attention particulière au temps d'exécution et à la
+souplesse d'utilisation. La plupart des effets sont désactivables par une simple option dans un fichier de paramètres spécifique
+aux effets du disque \textbf{disk.in}. 
 
 Prenons un exemple. Le couple exercé par le disque sur la planète peut être issu des formules de \cite{paardekooper2011torque}, ou bien suivre plusieurs lois artificielles permettant de tester certains effets dans des cas simplifiés. Pour autant, cette souplesse d'utilisation ne se fait pas au détriment de la célérité du code, car au lancement de ce dernier, les options sont lues et des pointeurs de fonctions permettent au code d'exécuter directement la bonne fonction lors de l'intégration, sans avoir à tester à chaque pas de temps quelle fonction doit être lancée. 
 
@@ -92,7 +94,10 @@ alpha = 5e-3
 \end{verbatim}
 
 \subsection{alpha\_dz}\label{sec:dead_zone}\index{zone morte}
-Ce paramètre permet de définir une viscosité alpha par morceau, permettant de modéliser une zone morte. On aura donc 3 zones avec 3 valeurs d'alpha différentes. Pour définir ces zones-là, il faut donner dans le paramètre \textbf{alpha\_dz} trois valeurs de $\alpha$ et dans \textbf{radius\_dz} deux valeurs de distance orbitales (en \unit{UA}) pour définir les bornes de la zone morte.
+Ce paramètre permet de définir une viscosité alpha par morceau, permettant de modéliser une zone morte. On aura donc 3 zones
+avec 3 valeurs d'alpha différentes. Pour définir ces zones-là, il faut donner dans le paramètre \textbf{alpha\_dz} trois valeurs
+de $\alpha$ et dans \textbf{radius\_dz} deux valeurs de distance orbitale (en \unit{UA}) pour définir les bornes de la zone
+morte.
 \begin{verbatim}
 viscosity_type = alpha_dz
 alpha_dz = 0.005 0.0001 0.005
@@ -127,7 +132,9 @@ L'opacité est alors calculée en utilisant le modèle fourni par \cite{zhu2009n
 opacity_type = chambers
 \end{verbatim}
 
-L'opacité est alors calculée en utilisant le modèle fourni par \cite{chambers2009analytic}. Ce modèle est très simplifié et utilisé une opacité constante sur un grand régime de température, pour ensuite faire une transition vers une loi de puissance à très haute température.
+L'opacité est alors calculée en utilisant le modèle fourni par \cite{chambers2009analytic}. Ce modèle est très simplifié et
+utilise une opacité constante sur un grand régime de température, pour ensuite faire une transition vers une loi de puissance à
+très haute température.
 
 \subsection{hure}
 \begin{verbatim}
@@ -140,7 +147,12 @@ L'opacité est alors calculée en utilisant le modèle fourni par \cite{hure2000
 d'opacité de Rosseland correspond à la composition suivante $X=0.70$, $Y=0.28$ et $Z=0.02$ et est basée sur
 \cite{seaton1994opacities, alexander1994low, henning1996dust}.
 
-En effet, dans le cas qui nous intéresse, c'est-à-dire la migration planétaire via la formule de \citep{paardekooper2011torque}, l'indice des lois de puissance pour la densité de surface et la température a une très grande influence sur la couple effectif du disque. Et les transitions d'opacités, très marquées lors de la transition des lois de puissance, fait apparaître des zones particulières dans le disque qui n'ont parfois aucune réalité physique, mais ont de grandes conséquences sur le résultat des simulations. De même, le lissage qu'elles introduisent masquent certaines zones d'intérêt qui ne sont mises en évidence qu'avec une table d'opacité où tous les effets fins ont été préservés.
+En effet, dans le cas qui nous intéresse, c'est-à-dire la migration planétaire via la formule de \citep{paardekooper2011torque},
+l'indice des lois de puissance pour la densité de surface et la température a une très grande influence sur la couple effectif
+du disque. Et les transitions d'opacité, très marquées lors de la transition des lois de puissance, font apparaître des zones
+particulières dans le disque qui n'ont parfois aucune réalité physique, mais ont de grandes conséquences sur le résultat des
+simulations. De même, le lissage qu'elles introduisent masque certaines zones d'intérêt qui ne sont mises en évidence qu'avec
+une table d'opacité où tous les effets fins ont été préservés.
 
 \section{Turbulence}
 Pour activer la turbulence dans le disque, c'est-à-dire l'effet que la turbulence peut induire sur la migration planétaire, il suffit d'utiliser le paramètre suivant : 
@@ -150,7 +162,9 @@ is_turbulence = 1
 
 La turbulence n'est ici qu'une migration stochastique de moyenne nulle qui perturbe les planètes et leur migration. 
 
-Le modèle utilisé est le même que celui détaillé dans \cite{ogihara2007accretion}. Le principe est de définir un potentiel turbulent dans le disque, fait de la superposition de perturbations individuelles qui ont des modes $m$, temps de vie $t_m$ et position dans le disques différents. 
+Le modèle utilisé est le même que celui détaillé dans \cite{ogihara2007accretion}. Le principe est de définir un potentiel
+turbulent dans le disque, fait de la superposition de perturbations individuelles qui ont des modes $m$, temps de vie $t_m$ et
+position dans le disque différents. 
 
 Dans le cas typique, il y a 100 modes différents dans le disque : 
 \begin{align}
@@ -165,7 +179,8 @@ $\xi_k$ est une constante adimensionnée déterminée aléatoirement en suivant 
 
 $R_k$ et $\phi_k$ sont respectivement les coordonnées radiales et azimutales du mode $k$ choisies aléatoirement et de manière uniforme pour l'un entre les bornes du disque, pour l'autre entre $0$ et $2\pi$. 
 
-Chaque mode $k$ possède un nombre de modes $m_k$ déterminé aléatoirement selon une distribution logarithmique entre $m=1$ et $m=150$, le nombre de modes $m_k$ déterminant l'extension radiale et la durée du vie du mode $k$.
+Chaque mode $k$ possède un nombre de modes $m_k$ déterminé aléatoirement selon une distribution logarithmique entre $m=1$ et
+$m=150$. Ce nombre de modes $m_k$ détermine l'extension radiale et la durée du vie du mode $k$.
 
 $\sigma_k = \pi R_k / 4m_k$ est l'extension radiale de ce mode tandis que $\Omega_k$ représente la vitesse angulaire képlerienne à la position $R=R_k$.
 
@@ -195,7 +210,9 @@ s'arrête.}
 
 On définit une zone de convergence artificielle qui va dépendre de la masse des planètes. On va donc devoir définir deux bornes en masse et deux bornes en distance orbitale qui vont déterminer cette ligne de couple nul. À l'intérieur (resp. extérieur) de cette séparation virtuelle, la migration sera vers l'extérieur (resp. intérieur).
 
-Ensuite, on défini une pente linéaire plus ou moins importante pour voir à quelle vitesse on va tendre vers la valeur de saturation à mesure qu'on s'éloigne de la zone de convergence. Une pente de $1$ signifie que le couple $\Gamma/\Gamma_0$ augmente de 1 tous les $10\unit{UA}$.
+Ensuite, on définit une pente linéaire plus ou moins importante pour voir à quelle vitesse on va tendre vers la valeur de
+saturation à mesure qu'on s'éloigne de la zone de convergence. Une pente de $1$ signifie que le couple $\Gamma/\Gamma_0$
+augmente de 1 tous les $10\unit{UA}$.
 
 En résumé, on a ces paramètres suivants à définir : 
 \begin{verbatim}
@@ -251,7 +268,10 @@ ordonnée. La ligne noire représente la zone de couple nul, c'est-à-dire une z
 \subsection{manual}
 Il est aussi possible de rentrer manuellement un couple total en fonction de la position de la planète dans le disque. 
 
-Les valeurs seront alors lues à partir du fichier \textbf{torque\_profile.dat}. La première colonne sera les positions dans le disque en \unit{UA} tandis que la deuxième colonne sera le couple exercé par le disque en unité de $\Gamma_0$ (c'est-à-dire que l'effet de la masse de la planète sur la vitesse de migration sera toujours pris en compte dans le code au travers de la dépendance de $\Gamma_0$ en fonction de la masse de la planète et de la masse du disque.
+Les valeurs seront alors lues à partir du fichier \textbf{torque\_profile.dat}. La première colonne sera les positions dans le
+disque en \unit{UA} tandis que la deuxième colonne sera le couple exercé par le disque en unité de $\Gamma_0$, c'est-à-dire que
+l'effet de la masse de la planète sur la vitesse de migration sera toujours pris en compte dans le code au travers de la
+dépendance de $\Gamma_0$ en fonction de la masse de la planète et de la masse du disque.
 
 \section{Behind the scene}\label{sec:unitary_tests}
 Un programme externe, nommé \textbf{test\_disk.f90} permet d'effectuer des tests unitaires sur différentes fonctions, afin de vérifier quand bon nous semble que chaque fonction n'est pas perturbée par les autres et donne des résultats corrects à la fois physiquement et numériquement.
@@ -276,7 +296,9 @@ Teste l'interpolation de la densité de surface entre les valeurs tabulées stoc
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.65\linewidth]{figure/unitary_tests/density_interpolation.pdf}
+\subfloat[Densité de surface]{\includegraphics[width=0.49\textwidth]{figure/unitary_tests/density_interpolation.pdf}}\hfill
+\subfloat[Indice du profil]{\includegraphics[width=0.49\textwidth]{figure/unitary_tests/density_idx_interpolation.pdf}}
+
 \caption{Résultat du test unitaire \textbf{test\_density\_interpolation}.}
 \end{figure}
 
@@ -324,15 +346,28 @@ Teste l'interpolation de la température entre les points de la discrétisation 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.65\linewidth]{figure/unitary_tests/temperature_interpolation.pdf}
-\caption{Résultat du test unitaire \textbf{test\_temperature\_interpolation}.}
+\subfloat[Température]{\includegraphics[width=0.49\textwidth]{figure/unitary_tests/temperature_interpolation.pdf}}\hfill
+\subfloat[Indice du profil]{\includegraphics[width=0.49\textwidth]{figure/unitary_tests/temperature_idx_interpolation.pdf}}
+\caption{Résultat du test
+unitaire \textbf{test\_temperature\_interpolation}.}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\subfloat[Diffusivité
+thermique]{\includegraphics[width=0.49\textwidth]{figure/unitary_tests/diffusivity_interpolation.pdf}}\hfill
+\subfloat[Échelle de hauteur]{\includegraphics[width=0.49\textwidth]{figure/unitary_tests/scaleheight_interpolation.pdf}}
+
+\subfloat[Viscosité]{\includegraphics[width=0.49\textwidth]{figure/unitary_tests/viscosity_interpolation.pdf}}
+\caption{Autres profils du test unitaire \textbf{test\_temperature\_interpolation}.}
 \end{figure}
 
 \subsection{Test de paramètres physiques}
 Les tests ont été effectués pour les valeurs du disque de référence \refsec{sec:reference_disk}.
 
 \subsubsection{study\_ecc\_corot}
-Pour une planète de masse et position fixés, évolution du préfacteur d'atténuation du couple de corotation $E$, où $\Gamma_\text{tot}=\Gamma_0 (\Gamma_L + E * \Gamma_c)$. Le fichier Gnuplot correspondant est \textbf{ecc\_corot.gnuplot}. 
+Pour une planète de masse et position fixées, évolution du préfacteur d'atténuation du couple de corotation $E$, où
+$\Gamma_\text{tot}=\Gamma_0 (\Gamma_L + E * \Gamma_c)$. Le fichier Gnuplot correspondant est \textbf{ecc\_corot.gnuplot}. 
 
 \begin{figure}[htbp]
 \centering
@@ -341,7 +376,8 @@ Pour une planète de masse et position fixés, évolution du préfacteur d'atté
 \end{figure}
 
 \subsubsection{study\_eccentricity\_effect\_on\_corotation}
-Pour une planète de masse et position fixés, évolution du couple de corotation en fonction de l'excentricité. Le fichier Gnuplot correspondant est \textbf{eccentricity\_effect\_on\_corotation.gnuplot}. 
+Pour une planète de masse et position fixées, évolution du couple de corotation en fonction de l'excentricité. Le fichier
+Gnuplot correspondant est \textbf{eccentricity\_effect\_on\_corotation.gnuplot}. 
 
 \begin{figure}[htbp]
 \centering
@@ -350,7 +386,9 @@ Pour une planète de masse et position fixés, évolution du couple de corotatio
 \end{figure}
 
 \subsubsection{study\_opacity\_profile}
-Affiche pour différentes densités volumique, le profil d'opacité $\kappa$ en fonction de la température.  Le fichier Gnuplot correspondant est \textbf{opacity.gnuplot}. Le fichier \textbf{opacity\_comparison.gnuplot} compare quant à lui les opacités de \cite{bell1994FU} et \cite{zhu2009nonsteady}. 
+Affiche pour différentes densités volumiques, le profil d'opacité $\kappa$ en fonction de la température.  Le fichier Gnuplot
+correspondant est \textbf{opacity.gnuplot}. Le fichier \textbf{opacity\_comparison.gnuplot} compare quant à lui les opacités de
+\cite{bell1994FU} et \cite{zhu2009nonsteady}. 
 
 \begin{figure}[htbp]
 \centering
@@ -465,7 +503,9 @@ Afin de déboguer le code, certaines routines ont été créées spécialement �
 
 Dans le module \textbf{turbulence.f90}, la routine \textbf{print\_turbulencemode\_properties} permet d'afficher les propriétés d'un mode donné, passé en argument. Ce mode est alors une instance de la structure de type \texttt{TurbulenceMode}. 
 
-Dans le module \textbf{user\_module.f90}, la routine \textbf{debug\_infos} permet d'afficher un maximum d'information pour le pas de temps courant. À utiliser dans une boucle de test afin de ne l'afficher qu'à certains instants, sous peine de saturer l'affichage. 
+Dans le module \textbf{user\_module.f90}, la routine \textbf{debug\_infos} permet d'afficher un maximum d'informations pour le
+pas de temps courant. À utiliser dans une boucle de test afin de ne l'afficher qu'à certains instants, sous peine de saturer
+l'affichage. 
 
 De plus, la routine \textbf{print\_planet\_properties} permet d'afficher les informations d'une planète, définies dans une structure du type \textbf{PlanetProperties}.
 

@@ -14,7 +14,10 @@ Trois petites règles de base :
 \end{enumerate}
 
 \subsection{Tests unitaires}
-Une chose fondamentale, et qui s'applique aussi aux codes scientifiques, ce sont les tests unitaires. Le principe est de créer une fonction de test pour chaque fonction séparée du code. L'idée derrière est que la fonction de test permet de vérifier que la fonction que l'on a créée fait bien ce qu'on attend d'elle. 
+Les tests unitaires sont un aspect fondamental des codes informatiques, et cela s'applique aussi
+aux codes scientifiques. Le principe est de créer une fonction de test pour chaque fonction séparée
+du code. L'idée derrière est que la fonction de test permet de vérifier que la fonction que l'on a créée fait bien ce qu'on
+attend d'elle. 
 
 Ça peut sembler redondant comme ça, mais quand on créée un gros code, et qu'on le modifie au fil du temps, rien ne dit qu'il ne va pas y avoir des interactions entre fonctions que l'on n'avait pas prévues, ces fonctions de tests sont là pour ça. 
 
@@ -82,13 +85,17 @@ J'utilise personnellement \gras[git!difftool]{difftool}, ça me permet d'utilise
 \subsubsection{Rechercher un bogue en utilisant bisect}\index{git!bisect}
 Vous avez un bogue dans votre code, vous ne savez pas d'où vient le bogue, \textbf{bisect} est fait pour vous. 
 
-Le principe est le suivant : Vous avez une révision que vous savez ne pas fonctionner (la dernière par exemple) et une qui fonctionne (au pire la première si vous en avez peu, sinon vous en trouvez une assez ancienne et qui fonctionne. Personnellement j'ai fini par y aller franco, et je suis remonté six mois en arrière, une centaine de révisions à tester, mais avec \textbf{bisect} c'est rapide. 
+Le principe est le suivant : Vous avez une révision que vous savez ne pas fonctionner (la dernière par exemple) et une qui
+fonctionne, qui peut être la toute première version si on ne sait pas du tout à partir de quel moment le problème survient.
+Dans mon cas, je suis remonté à environ six mois en arrière, pour un total d'une centaine de révisions environ. 
 
 Une fois fait, on peut exploiter la puissance de \textbf{bisect}, qui va nous aider à trouver par dichotomie la révision qui a introduit le bogue. On part donc d'un encadrement en ayant une version bonne de référence et une version mauvaise, et on sait donc que la révision fautive se trouve au milieu.
 Une fois qu'il aura trouvé LA révision fautive, il le dira par :
 \begin{verbatim}
 d109d47732cb85652b79d679edd7bfe2379e5707 is first bad commit
 \end{verbatim}
+
+Quand je l'ai testé sur une centaine de révisions, il m'a fallu environ cinq minutes pour trouver le bug parmis les révisions.
 
 
 \subsubsection{Déboguer}
@@ -242,7 +249,8 @@ C'est souvent un casse-tête de coder une fonction pour lire un fichier de param
 
 Je définis un caractère qui autorise des commentaires (dans mon exemple, \og !\fg). Les lignes blanches ou avec espaces sont ignorées quant à elle, vu que l'élément déclencheur est la présence du séparateur entre nom de paramètre et valeur. 
 
-Je définis aussi un séparateur pour les paramètres (dans mon exemple \og =\fg). Chaque paramètre doit posséder un nom, sans espaces. L'ordre des paramètres n'a pas d'importance. 
+Je définis aussi un séparateur pour les paramètres (dans mon exemple \og =\fg). Chaque paramètre doit posséder un nom, sans
+espace. L'ordre des paramètres n'a pas d'importance. 
 
 \begin{remarque}
 Dans le reste du programme je définis des valeurs par défaut qui seront alors écrasées lors de la lecture du fichier si le paramètre y est défini. Je définis en effet les variables en tant que variables globales du module, vu qu'elles sont constantes dans le programme (même si le fait que je ne les connaisse pas à priori m'empêche de les définir en tant que \texttt{parameter}.
@@ -371,7 +379,9 @@ end subroutine get_parameter_value
 \end{lstlisting}
 
 \begin{attention}
-J'ai rajouté une partie où j'oblige le premier caractère de value à ne pas être un espace, car si on teste cette valeur, le premier espace peut poser des problèmes, chose qui n'arrive normalement pas pour les clés, vu qu'on commence la ligne avec, alors que dans le cas de la valeur, le séparateur (le signe égal '=') peut être entouré d'espaces.
+J'ai rajouté une partie où j'oblige le premier caractère de \textbf{value} à ne pas être un espace, car si on teste cette
+valeur, le premier espace peut poser des problèmes, chose qui n'arrive normalement pas pour les clés, vu qu'on commence la ligne
+avec, alors que dans le cas de la valeur, le séparateur (le signe égal '=') peut être entouré d'espaces.
 
 Ainsi, sans les modifications que j'ai faites, 
 \begin{verbatim}
@@ -385,7 +395,7 @@ fonctionnera.
 \end{attention}
 
 
-Le fichier de paramètre est quelque chose du genre :
+Le fichier de paramètres est quelque chose du genre :
 \begin{verbatim}
 ! ------------------------------------------------
 ! Parameter file for various properties of the disk. 
