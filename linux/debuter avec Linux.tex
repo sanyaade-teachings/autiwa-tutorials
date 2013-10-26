@@ -457,7 +457,7 @@ wget -O - http://deb.opera.com/archive.key | sudo apt-key add -
 
 \item on réinstalle les applications qu'on avait avant (que l'on aura préalablement sauvegardé sous forme de liste). Par exemple pour moi :
 
-\texttt{sudo apt-get install geany avidemux gftp gnumeric grace gthumb imagemagick inkscape kate okular smplayer nautilus-actions nautilus-gksu nautilus-image-converter nautilus-open-terminal opera pidgin unrar vlc latex-beamer pdftk digikam lmodern xcftools}
+\texttt{sudo apt-get install avidemux gftp gnumeric gthumb imagemagick inkscape okular smplayer nautilus-actions nautilus-image-converter nautilus-open-terminal opera unrar vlc latex-beamer pdftk lmodern xcftools vim wine}
 %ecryptfs-utils c'est pour monter le dossier ~/Private
 %pstoedit pour avoir latex dans inkscape
 %p7zip permet de décompresser les archives au format .7z. Cette fonctionnalité est rajoutée automatiquement au file-roller ce qui fait qu'une fois installé, c'est totalement transparent pour l'utilisateur.
@@ -562,7 +562,7 @@ Permet de générer à nouveau \textbf{xorg.conf}. Utile quand changement de pil
 \subsection{Relancer nautilus}
 Quand on a modifié les scripts nautilus, voire les actions, ou autre chose qui nécessite de le relancer, on peut utiliser la commande suivante :
 \begin{verbatim}
-nautilus --restart
+nautilus --quit
 \end{verbatim}
 
 \subsection{Relancer le serveur apache2}
