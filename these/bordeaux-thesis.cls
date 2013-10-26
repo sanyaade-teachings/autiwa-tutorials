@@ -165,7 +165,6 @@
 
 %%% divers %%%
 \pdfcompresslevel=9
-\RequirePackage{shorttoc}
 \RequirePackage{makeidx} %pour faire un index. J'ai mis la commande d'indexation dans \gras{} d'ailleurs. Ensuite, on crée l'index via la commande \makeindex et on l'affiche via la commande \printindex. Pour indexer un mot, il faut écrire \index{mot}. Attention à respecter la casse pour le même mot.
 
 %Part table of contents
