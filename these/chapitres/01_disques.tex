@@ -460,12 +460,13 @@ On cherche maintenant la température d'équilibre du disque, compte tenu de tou
 0 &= P_\text{cn} + C_\text{en} + C_\text{irr} + C_\text{vis}\nonumber\\
 0 &= - 2\sigma \frac{T^4}{\frac{3}{8}\tau + \frac{\sqrt{3}}{4} + \inv{4\tau}} + 2 \sigma {T_\text{en}}^4 + 2 \sigma {T_\star}^4 \frac{{R_\star}^2}{r^2} (1-\varepsilon) * \left[0.4 \frac{R_\star}{r} + r \dod{}{r}\left(\frac{H}{r}\right)\right] + \frac{9}{4} \nu\Sigma\Omega^2\label{eq:equation_energie}
 \end{align}
+Cette formule décrit la température d'équilibre à une position $R$ donnée, en ne tenant pas compte de la diffusion de chaleur entre anneaux voisins.
 
 Dans la pratique, c'est une équation que l'on résout de manière numérique, par itération. En effet, beaucoup de paramètres
 dépendent de la température, alors même que c'est la variable que l'on recherche. 
 
 Ce calcul est lui-même extrêmement dépendant de la définition que l'on choisit pour l'opacité $\kappa$ et de la dépendance de
-cette dernière en fonction de la température, la densité ou la pression. 
+cette dernière en fonction de la température, la densité ou la pression. De plus, l'absence de diffusion de chaleur entre anneaux adjacents autorise des variations de températures abruptes qui seraient lissées le cas échéants.
 
 \subsection{La viscosité du disque}\label{sec:viscosite}\index{viscosité}% (Franck et al. 1992)
 La viscosité moléculaire, viscosité généralement considérée quand on étudie la dynamique d'un fluide, peut être définie par : 
@@ -672,14 +673,14 @@ Je vais maintenant présenter les interactions principales entre les planètes e
 
 \subsection{Migration des planètes de faible masse : Type I}
 \index{migration!Type I}
-Ce type de migration ne concerne que les planètes de faible masse (de l'ordre de $10M_{\oplus}$) pour lesquelles l'interaction de marée entre la planète et le disque a une réponse linéaire, c'est-à-dire que le profil de densité surfacique n'est quasiment pas modifié par la planète. Ces planètes, qui ne creusent pas de sillon (gap) dans le disque de gaz, vont migrer vers l'intérieur. On appelle cette migration la \gras[migration!Type I]{migration de Type I}.
+Ce type de migration ne concerne que les planètes de faible masse (jusqu'à environ $10M_{\oplus}$) pour lesquelles l'interaction de marée entre la planète et le disque a une réponse linéaire, c'est-à-dire que le profil de densité surfacique n'est quasiment pas modifié par la planète. Ces planètes, qui ne creusent pas de sillon (gap) dans le disque de gaz, vont migrer vers l'intérieur. On appelle cette migration la \gras[migration!Type I]{migration de Type I}.
 
 %\begin{remarque}
 %Pour plus de détails, se référer au chapitre 9, page 188--191 de \cite{barnes2010formation} ou \cite{ward1997protoplanet} pour l'article original.
 %\end{remarque}
 
 \subsubsection{Couple du disque sur la planète}
-Un couple gravitationnel représente l'échange d'énergie associé à une force gravitationnelle.  Le couplage gravitationnel entre
+Un couple gravitationnel représente l'échange de moment cinétique associé à une force gravitationnelle.  Le couplage gravitationnel entre
 les ondes de densité et la planète qui les crée aboutit à un couple qui agit sur la planète : 
 \begin{align}
 \Gamma &= - \iint_\text{disc} \left(\vect{r}\wedge\grad{\Phi_p}\right)\Sigma r \dif r \dif \theta
@@ -771,7 +772,7 @@ La résolution numérique des équations linéarisées permet de trouver une for
 \begin{align}
 \gamma \Gamma_L/\Gamma_0 &= - \left(2.5 +1.7\beta -0.1d\right) \left(\frac{0.4}{b/h}\right)^{0.71}\label{eq:lindblad-torque}
 \end{align}
-où $\gamma$ est l'indice adiabatique, $b/h$ le paramètre de lissage du potentiel gravitationnel, et $\beta$ et $d$ sont les exposants des lois de puissance pour les profils de température et de densité de surface. 
+où $\gamma$ est l'indice adiabatique, $b/h$ le paramètre de lissage du potentiel gravitationnel, et $\beta$ et $d$ sont les négatifs des exposants des lois de puissance pour les profils de température ($T \propto R^{-\beta}$) et de densité de surface ($\Sigma \propto R^{-d}$). 
 
 Le couple est ici exprimé en unité de $\Gamma_0$, couple de référence défini par : 
 \begin{align}
@@ -901,7 +902,7 @@ et les couples non soumis à saturation, dits linéaires \citep[eq. (17)]{paarde
 \gamma \Gamma_\text{c,lin,ent}/\Gamma_0 &= \xi\left[2.2\left(\frac{0.4}{b/h}\right)^{0.71} - \frac{1.4}{\gamma}\left(\frac{0.4}{b/h}\right)^{1.26}\right]
 \end{align}\label{eq:linear-corotation-torque}
 \end{subequations}
-$d$ et $\xi=\beta - (\gamma-1)d$ sont respectivement les négatifs des exposants des lois de puissance pour les profils 1D de densité de surface et d'entropie.
+$d$ et $\xi=\beta - (\gamma-1)d$ sont respectivement les négatifs des exposants des lois de puissance pour les profils 1D de densité de surface ($\Sigma\propto R^{-d}$) et d'entropie ($S \propto R^{-\xi}$).
 
 \bigskip
 
