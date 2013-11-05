@@ -1674,6 +1674,12 @@ La commande suivante permet de lister tous les dossiers du répertoire courant :
 list_dirs = [dir for dir in os.listdir(".") if os.path.isdir(dir)]
 \end{lstlisting}
 
+Une autre technique, que j'ai tendance à préférer maintenant, c'est d'utiliser \textbf{glob} : 
+\begin{lstlisting}[language=python]
+import glob
+list_dirs = glob.glob("*/")
+\end{lstlisting}
+
 \subsection{Supprimer toutes les occurences d'un caractère dans une chaine}
 Il existe une méthode particulière de \textbf{String} qui peut être utilisée pour faire celà. Par défaut, cette méthode permet de faire des remplacements de caractères, et optionnellement d'en supprimer certains, mais dans le cas présent, on ne fait que supprimer des caractères : 
 \begin{lstlisting}[language=python]
@@ -1769,16 +1775,12 @@ ls *.txt
 ls test*
 \end{lstlisting}
 
-Avec python, si on souhaite faire ça dans un processus, il faudra utiliser
+Avec python, on peut le faire avec un processus, mais c'est beaucoup plus compliqué que la technique que j'utilise maintenant, via \gras[module!glob]{glob} : 
 \begin{lstlisting}[language=python]
-process = subprocess.Popen("ls *.txt", shell=True)
+import glob
+files = glob.glob("*.txt")
+files.sort()
 \end{lstlisting}
-
-En effet, \verb|process = subprocess.Popen(["ls", "*.txt"])| renverra une erreur. Ne me demandez pas pourquoi, j'en sais rien.
-
-\begin{remarque}
-Pour récupérer la sortie, il faut bien évidemment faire comme expliqué dans la section \refsec{sec:subprocess}.
-\end{remarque}
 
 \subsection{Modifier la ligne précédemment affichée dans le terminal (progression)}	
 \begin{lstlisting}[language=python]
