@@ -1,13 +1,23 @@
-\documentclass[a4paper,twoside]{report}
+\documentclass[a4paper,twoside,openright]{report}
 \usepackage[print]{autiwa}
 
 \setcounter{secnumdepth}{2}
 \usepackage{minitoc}
 \setcounter{minitocdepth}{1}
 
-\fancyhead[LE]{}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RO,LE]{\footnotesize\textbf{\thepage}}
+\fancyhead[RE]{\footnotesize\scshape\rightmark}
+\fancyhead[LO]{\footnotesize\leftmark}
 
 \makeatletter
+
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+\hbox{} 
+\thispagestyle{empty}
+\newpage
+\if@twocolumn\hbox{}\newpage\fi\fi\fi} 
 
 % macros qui servent à la mise en page, elles ne doivent pas être utilisées directement
 \newcommand{\preparationTopSep}{\vspace{.2cm} \hrule height0.25pt width\hsize \vspace{1em}}
@@ -60,6 +70,7 @@
 \input{title.tex}
 \dominitoc
 \tableofcontents
+\cleardoublepage
 \chapter{Plat Principal}
 \minitoc
 
