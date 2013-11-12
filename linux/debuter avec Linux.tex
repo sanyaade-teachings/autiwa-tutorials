@@ -39,64 +39,6 @@
 
 
 \section{Astuces Générales}
-
-\subsection{Booter et installer GNU/Linux à partir d'une clé USB}
-Système>Administration>Créateur de disque de démarrage USB
-
-Sélectionnez l'.iso que vous souhaitez, et voilà !
-
-\subsection{Booter et installer GNU/Linux à partir d'une partition}\label{sec:hd-media}
-{\red Ne marche plus avec grub2}
-
-Le tutoriel utilisé est le suivant : \url{http://doc.ubuntu-fr.org/installation/sans_cd}
-
-Pour ma part, voici ce que j'ai fait :
-\begin{itemize}
-\item J'ai créé une partition de 5Gio formaté en ext3. (j'ai mis 5Gio pour que je puisse aussi booter sur une image DVD).
-\item Il faut copier l'image .iso à la racine de la partition.
-\item Il vous faut télécharger les fichiers \textbf{vmlinuz} et \textbf{initrd.gz} \texttt{hd-media} correspondant à votre architecture
-
-\begin{remarque}
-Actuellement, j'ai trouvé les deux fichiers à l'adresse suivante \url{http://archive.ubuntu.com/ubuntu/dists/intrepid/main/installer-i386/current/images/hd-media/}. À adapter suivant la version bien entendu.
-\end{remarque}
-\item Il faut créer le dossier \textbf{/boot} dans lequel on mettra les deux fichiers téléchargés plus haut.
-\item Ensuite, il faut éditer le menu de \gras{grub} et rajouter ceci :
-
-\begin{verbatim}
-title	Installation depuis Disque Dur
-uuid	2dac4c9f-4225-448b-926d-6001482d7af3
-kernel	/boot/vmlinuz root=/dev/ram0 ramdisk_size=13000
-initrd	/boot/initrd.gz
-\end{verbatim}
-
-où l'uuid est celle de la partition que j'ai créé à cet effet. Pensez à adapter selon votre cas.
-\end{itemize}
-
-\subsection{Cacher les icônes des partitions sur le bureau}
-Il faut utiliser pour celà \gras{gconf-editor}, installé par défaut. Si vous ne le voyez pas, il faut afficher l'icône \og editeur de configuration \fg   qui se trouve dans \og outils systèmes \fg.
-
-Pour ne pas afficher les icônes, il faut aller dans apps>nautilus>desktop et décocher \texttt{volumes\_visible}.
-
-\subsection{Cacher des fichiers sous Nautilus}
-
-Pour cacher un fichier sous \gras{GNU/Linux}, vous le savez probablement, il faut précéder son nom par un point. L'ennui, c'est qu'il arrive parfois qu'on ait besoin de cacher des fichiers dans notre gestionnaire de fichiers, sans pour autant avoir l'envie ou la possibilité de les précéder par un point (par exemple, car une application a besoin précisément de ce fichier ou répertoire, comme \textbf{VMWare}, qui vous crée le répertoire \textbf{vmware} dans votre répertoire utilisateur).
-
-Cacher des fichiers est parfois franchement utile pour gagner du temps lorsque vous naviguez dans vos différents dossiers. Qu'est-ce que c'est bien d'ouvrir son \textbf{HOME} (par exemple) et de ne voir que les fichiers et répertoires importants !
-
-Il existe dans \gras{Nautilus} une petite astuce permettant de cacher très facilement des fichiers !
-
-En gros, il suffit d'ouvrir le fichier \textbf{.hidden}, qui doit se trouver dans le répertoire contenant les fichiers que vous souhaitez cacher, puis d'y mettre la liste des fichiers qui vous intéressent !
-
-Supposons que vous souhaitez cacher le répertoire \textbf{Test} et le fichier \textbf{Hello.txt}, qui se trouvent dans le répertoire \textbf{/home/Documents/}.
-
-Éditez le fichier \textbf{/home/Documents/.hidden} pour y ajouter les lignes :
-\begin{verbatim}
-Hello.txt
-Test
-\end{verbatim}
-
-Ensuite, sauvegardez le contenu du fichier et ouvrez le répertoire \textbf{/home/Documents/} avec \gras{Nautilus} pour vérifier !
-
 \subsection{Connection distante (XDMCP)}
 Il m'est venu la lubie de me connecter à mon ordinateur fixe depuis l'extérieur, via son adresse IP. j'ai mis du temps à comprendre ce qu'il fallait faire, vu qu'au début, j'ai cherché du coté de vnc.
 
@@ -107,7 +49,8 @@ Ce qui suit permet d'arriver à l'écran de connection et de s'authentifier sur 
 Pour pouvoir se connecter à distance, il faut dans un premier temps activer la connexion à distance sur le serveur.
 
 \begin{remarque}
-J'appelle \textbf{serveur} l'ordinateur fixe sur lequel on souhaite se connecter, et \textbf{client} l'ordinateur sur depuis lequel on veut accéder à l'ordinateur distant.
+J'appelle \textbf{serveur} l'ordinateur fixe sur lequel on souhaite se connecter, et \textbf{client} l'ordinateur depuis lequel 
+on veut accéder à l'ordinateur distant.
 \end{remarque}
 
 Pour celà, il faut aller dans Système > Administration > Fenêtre de connexion et activer la connection à distance dans l'onglet prévu à cet effet. Choisissez l'option qui permet d'avoir une connection distante identique à la connection locale.
@@ -139,13 +82,6 @@ La ligne que j'utilise est celle-ci (en me plaçant dans le répertoire où je v
 mkisofs -v -r -J -o mon_fichier.iso /media/cdrom0
 \end{verbatim}
 \end{remarque}
-
-
-
-
-\subsection{Le Copier-coller sous GNU/Linux}
-Il existe, sous GNU/Linux, deux sortes de copier-coller. Le premier est celui que tout le monde connait avec \touche{Ctrl}+\touche{C} et \touche{Ctrl}+\touche{V} ou le menu contextuel.\par
-L'autre sorte est plus subtile. Elle autorise via un clic du milieu de la souris à coller le dernier texte à avoir été sélectionné. C'est pas forcément évident au début mais après une période d'apprentissage, on peut vite ne plus s'en passer.\par
 
 \subsection{Créer des modèles de documents}
 Pour créer des modèles de documents, il suffit de créer un dossier \textbf{Modèles} dans le répertoire utilisateur, le chemin de ce dossier sera donc \textbf{\texttildelow/Modèles/}
@@ -245,33 +181,6 @@ echo "00 */5 * * * autiwa /home/autiwa/scripts/cron/backup_journalier_desktop.sh
 Notez la présence supplémentaire de ``autiwa'' qui signifie que le script sera lancé par moi. On peut aussi mettre ``root'' si on veut.
 \end{remarque}
 
-
-
-\subsubsection{fcron}\index{fcron}
-
-Il existe aussi \gras{fcron} qui semble convenir parfaitement à ce que je souhaite et semble être une évolution de \gras{cron} en paliant ses défauts. À tester donc.
-
-\begin{footnotesize}\verb|%daily * 6-23 /home/autiwa/scripts/backup_journalier.sh>/home/autiwa/log_backup_journalier.txt|\end{footnotesize}
-
-
-Cette ligne lance journalièrement la tache voulue. C'est à dire qu'il lancera la commande entre 6h et 23h59 (l'astérisque spécifie que le nombre de minutes est quelconque). En pratique, j'ai laissé tomber cette ligne parce qu'elle lançait la commande au démarrage, et ce avant même que mon disque dur externe sur lequel je souhaite faire le backup soit monté. Ce qui en pratique est fort fâcheux.
-
-Voici la ligne que j'utilise :
-
-\begin{footnotesize}\verb|&bootrun 0 12,19 * * * /home/autiwa/scripts/backup_journalier.sh>/home/autiwa/log_backup_journalier.txt|\end{footnotesize}
-
-Cette ligne permet l'exécution de la commande à 12h et à 19h, et elle lancera la commande au démarrage si celle-ci n'a pas pu être exécutée à l'heure prévue (en clair, si l'ordi est éteint à 19h, elle lancera la commande dès que l'ordinateur sera à nouveau allumé)
-
-
-\subsubsection{anacron}
-\gras[programme!anacron]{anacron} est une surcouche à \gras[programme!cron]{cron} si j'ai bien compris. En clair, pour définir les programmes à lancer, on utilise toujours cron, mais anacron va les gérer. En effet, un problème de cron est qu'il considère que l'ordinateur est lancé 24 heures sur 24, et donc si l'ordinateur est éteint au moment où aurait due être lancée la tâche, il ne l'aura purement et simplement pas lancée, alors qu'anacron va savoir qu'elle n'a pas été lancée et la lancera dès que l'ordinateur sera à nouveau sous tension.
-
-\begin{remarque}
-\gras[programme!anacron]{anacron} est installé de base dans Ubuntu.
-\end{remarque}
-
-Voir la section \refsec{sec:cron} pour plus de détails.
-
 \subsection{Fichiers Utiles}\index{fstab}\index{grub}
 
 \begin{tabular}{>{\bfseries}r<{}@{ : }p{9cm}}
@@ -280,11 +189,6 @@ Voir la section \refsec{sec:cron} pour plus de détails.
 /etc/X11/xorg.conf & contient la configuration du serveur X et en particulier la config et le nom du pilote graphique utilisé.\\
 /etc/apt/sources.list & contient la liste des dépots pour l'installation et la mise à jour des programmes.\\
 \end{tabular}
-
-\subsection{Flasher un BIOS}
-Apparemment il est possible de flasher un bios directement depuis linux. Il suffit pour celà d'utiliser l'utilitaire \gras{flashrom}
-
-\url{http://doc.ubuntu-fr.org/flasher_le_bios}
 
 \subsection{Forcer la suppression des fichiers de la corbeille}\index{corbeille}
 Je me suis retrouvé avec un dossier que je n'arrivais pas à supprimer. Avec les droits root en mode graphique, j'ai fait planter mon ordi plusieurs fois. Alors qu'avec une petite ligne de commande bien choisie, ça m'a pris 3 secondes.
@@ -298,20 +202,6 @@ rm -r -f ~/.local/share/Trash/files/*
 \begin{remarque}
 Il est possible de mettre \textbf{sudo} devant, en cas de réticence du système à supprimer. Mais il faut bien faire attention, on peut facilement faire des bêtises avec un \textbf{sudo} mal placé.
 \end{remarque}
-
-
-
-\subsection{Installer les man-pages en français}
-Même le méta paquet pour mettre le système en français ne l'installe pas, alors pour le faire, il faut installer le paquet suivant, par exemple par la ligne de commande ci-dessous :
-
-\begin{verbatim}
-sudo apt-get install manpages-fr
-\end{verbatim}
-
-
-
-
-
 
 \subsection{La stégano pour les nuls}
 La stéganographie est un procédé qui permet de cacher un message \og secret \fg   dans un autre message sans éveiller les soupçons d'autrui. L'avantage de la stégano sur la crypto et qu'avec la crypto tout le monde voit que c'est crypté, ce qui va encore plus attirer l'\oe il. Si on cache le message crypté dans une image anodine cela devient parfait.
@@ -360,9 +250,6 @@ On peut les rajouter pour tout les utilisateurs, mais l'inconvénient majeur, po
 S'il n'existe pas, créez le.
 \end{remarque}
 
-\subsection{Supprimer la boîte de dialogue de confirmation pour la fin de session, l'extinction et le redémarrage}
-Si vous en avez marre des 60 secondes à attendre quand vous demandez à éteindre l'ordinateur (ou devoir recliquer pour \og vraiment\fg éteindre, lancez \textbf{gconf-editor}. Allez dans \textbf{/Apps/indicator-session} et cochez la seule option disponible, qui est \texttt{suppress\_logout\_restart\_shutdown}.
-
 \subsection{Sélectionner des fichiers avec motif (dans Nautilus)}
 en rentrant des expressions du style \verb|*.gif| on sélectionne tout les fichiers avec l'extension \textbf{.gif}
 \begin{itemize}
@@ -370,28 +257,6 @@ en rentrant des expressions du style \verb|*.gif| on sélectionne tout les fichi
 \item \verb|"a*.txt"| : Tous les fichiers qui commencent avec "a" et qui finissent avec ".txt"
 \item \verb|"*a*x"| : Tous les fichiers qui contiennent le caractère "a" n'importe où, et qui finissent avec "x"
 \end{itemize}
-
-\subsection{Wifi capricieux}
-Si la connection se coupe et qu'il refuse de vous reconnecter au réseau ou des soucis de ce genre, il suffit dans la plupart des cas de redémarrer le service via :
-\begin{verbatim}
-sudo /etc/init.d/NetworkManager  restart
-\end{verbatim}
-
-\subsection{freeWifi}\index{freeWifi}
-Ce réseau est capricieux, parfois on ne peut pas se connecter au réseau (sans avoir l'occasion de rentrer ses identifiants donc), il faut être patient et réessayer régulièrement. Je met parfois plus de 2 ou 3 heures avant que la connection au réseau se fasse.
-
-Une fois connecté, vous vous rendrez sans doute compte que par défaut, vous ne pouvez pas poster de messages dans les forums, répondre à vos mails et des choses de ce genre, fort embêtantes. La solution est au final très simple, il faut que vous repériez le nom de votre carte wifi dans \verb|ifconfig|, puis faites
-\begin{verbatim}
-sudo ifconfig wlan0 mtu 1460
-\end{verbatim}
-où \texttt{wlan0} est le nom de MA carte wifi, ce qui est normalement le nom par défaut.
-
-\bigskip
-
-Pour remettre les choses comme avant, il suffit de faire
-\begin{verbatim}
-sudo ifconfig wlan0 mtu 1500
-\end{verbatim}
 
 \subsection{Réaliser des opérations sur un fichier .odt à la main}\index{open office}\index{.odt}\index{.zip}
 Un fichier .odt est simplement un fichier .zip avec des choses dedans. À partir de là il est possible de modifier manuellement le fichier. 
@@ -407,205 +272,115 @@ Un exemple : Je voulais redimensionner toutes les images d'un énorme fichier .o
 
 
 \section{Configuration du système}
-\subsection{Changer l'intervalle entre deux check des partitions au démarrage}
-Par défaut, tous les 30 démarrages, Ubuntu effectue un test des partitions afin de vérifier qu'elles ne sont pas corrompues. On peut changer cet intervalle. De plus, on peut spécifier un intervalle en jour au lieu de le spécifier en nombre de démarrages :
-\begin{verbatim}
-$ sudo tune2fs -i 90d -c 500 /dev/sda2
-\end{verbatim}
-Tous les 90 jours (ou tous les 500 démarrages), Ubuntu vérifiera la partition \textbf{/dev/sda2}.
+\subsection{Restaurer un système RAID1 \og dégradé\fg}
+Dans mon cas, /dev/sda est un SSD, et les deux partitions (une seule partition par disque) utilisés pour le RAID sont 
+\textbf{/dev/sdb1} et \textbf{/dev/sdc1}.
 
-\subsection{Remettre son système en l'état à partir d'une réinstallation fraiche}
-\begin{enumerate}
-\item Rajouter les modifs de grub. Ces modifs sont à faire dans le fichier \texttt{40\_custom}. Dans ce dernier, je rajoute les entrées suivantes qui me permettent de démarrer sur des iso, disponibles dans la 2e partition du premier disque dur (hd0,1), à l'intérieur d'un dossier \textbf{iso} :
+On vérifie déjà l'état du RAID via la commande : 
 \begin{verbatim}
-menuentry "GParted Live 0.7.1-1" {
-    insmod loopback
-    insmod iso9660
-    set isofile="/iso/gparted-live-0.7.1-1.iso"
-    search --set -f $isofile
-    loopback loop $isofile
-    set gfxpayload=800x600x16, 800x600
-    linux (loop)/live/vmlinuz findiso=$isofile locale=fr_FR keyb=fr gl_kbd=fr gl_lang=fr_FR gl_numlk=off gl_batch boot=live noswap noprompt ip=frommedia toram=filesystem.squashfs
-    initrd (loop)/live/initrd.img
-}
-
-menuentry "ISO Live - Ubuntu 11.10 Oneiric AMD64" {
-insmod loopback
-insmod iso9660
-set isofile="/iso/ubuntu-11.10-desktop-amd64.iso"
-loopback loop (hd0,1)$isofile
-linux (loop)/casper/vmlinuz locale=fr_FR bootkbd=fr console-setup/layoutcode=fr iso-scan/filename=$isofile boot=casper file=/cdrom/preseed/ubuntu.seed noprompt quiet splash --
-initrd (loop)/casper/initrd.lz
-}
+sudo mdadm --query --detail /dev/md0
 \end{verbatim}
 
-\item rajout des dépots dans mon sources.list. soit manuellement, soit en rentrant les informations depuis synaptics (medibuntu, wine HQ. Opéra en particulier, tant qu'il n'est pas dans le dépot partner)
+Le retour de la commande sera quelque chose du style : 
 \begin{verbatim}
-deb http://deb.opera.com/opera/ stable non-free #Dépôt d'Opera
-\end{verbatim}
-\item dans synaptics :
-\begin{enumerate}
-\item cocher dans un même temps "installer les mises à jours de sécurité sans le demander". sélectionner aussi "mise à jour des versions normales au lieu de ne mettre à jours uniquement les LTS
-\item Dans l'onglet statistique, cocher la case qui permet de soumettre des informations à but statistique sur l'utilisation des programmes
-\end{enumerate}
-%\item clé médibuntu : wget -q http://packages.medibuntu.org/medibuntu-key.gpg -O- | sudo apt-key add -
-%\item clé wine HQ : wget -q http ://wine.budgetdedicated.com/apt/387EE263.gpg -O- | sudo apt-key add -
-\item clé opéra : 
-\begin{verbatim}
-wget -O - http://deb.opera.com/archive.key | sudo apt-key add -
-\end{verbatim}
+/dev/md0:
+        Version : 1.2
+  Creation Time : Sun Nov  3 22:07:32 2013
+     Raid Level : raid1
+     Array Size : 1465006336 (1397.14 GiB 1500.17 GB)
+  Used Dev Size : 1465006336 (1397.14 GiB 1500.17 GB)
+   Raid Devices : 2
+  Total Devices : 1
+    Persistence : Superblock is persistent
 
-\item on réinstalle les applications qu'on avait avant (que l'on aura préalablement sauvegardé sous forme de liste). Par exemple pour moi :
+    Update Time : Sun Nov 10 16:55:56 2013
+          State : clean, degraded 
+ Active Devices : 1
+Working Devices : 1
+ Failed Devices : 0
+  Spare Devices : 0
 
-\texttt{sudo apt-get install avidemux gftp gnumeric gthumb imagemagick inkscape okular smplayer nautilus-actions nautilus-image-converter nautilus-open-terminal opera unrar vlc latex-beamer pdftk lmodern xcftools vim wine}
-%ecryptfs-utils c'est pour monter le dossier ~/Private
-%pstoedit pour avoir latex dans inkscape
-%p7zip permet de décompresser les archives au format .7z. Cette fonctionnalité est rajoutée automatiquement au file-roller ce qui fait qu'une fois installé, c'est totalement transparent pour l'utilisateur.
+           Name : autiwa-SSD:0
+           UUID : 2eee2afa:c66bc1b4:83fcfd73:b652df7c
+         Events : 118
 
-\texttt{sudo apt-get install texlive-fonts-extra texlive-fonts-recommended texlive-latex-extra texlive-math-extra texlive-lang-french}
-% texlive-fonts-extra pour bbm.sty entre autre
-% texlive-fonts-recommended pour eurosym.sty entre autre
-% texlive-latex-extra pour tocbibind entre autre
-% texlive-math-extra pour mathtools entre autre
-% texlive-lang-french pour enlever le warning de babel sur les hyphénations entre autre.
-%TODO désactiver "traiter les paquets recommandés comme dépendance" pour installer kile, mais réussir à le faire via une ligne apt-get install, pour que ça soit plus pratique. Poser la question sur le forum s'il faut.
-\texttt{sudo apt-get install kile grisbi --no-install-recommends}
-
-% plplot9-driver-xwin permet d'afficher dans un terminal un plot de gdl (marche pas sans, et parait que ça marche avec. Apparament, il s'installe maintenant automatiquement à l'installation de gnudatalanguage. Peut-être une dépendance ou un paquet conseillé. )
-%python-lxml permet d'avoir des fonctionnalités en plus pour inkscape, je pense en particulier aux effets de niveau de gris et cie
-%libflashsupport pour le support de flash au niveau de pulseaudio.
-%
-%kipi-plugins rajoute des plugins de traitement par lot pour digikam, notament pour renommer en masse des fichiers.
-%gajim : client jabber
-%anacron : cron en version améliorée.
-%lmodern : des fontes pour latex, améliorations de celles par défaut qui est computer modern.
-%qtpfsgui : pour faire des images hdr
-%rawstudio : pour développer des RAW
-%gnumeric-gtk : j'avais installé ça à la place de gnumeric parce que je ne pouvais pas tracer de courbes, mais je l'ai pas remis, au cas où gnumeric suffise.
-%msn-pecan : pour rajouter le protocole (WLM), qui apparemment marche mieux que le protocole MSN pour pidgin. Je viens de l'installer, donc je sais pas pour l'instant. Il se trouve dans le dépot universe apparemment.
-%screenlets : pour rajouter des screnlet sur le bureau, et donc pouvoir utiliser le truc des notes.
-%htop est un ``top'' amélioré
-%xcftools contient xcf2png qui permet de convertir du gimp en png (en particulier pour mon script)
-
-\item installer métamorphose via le \textbf{.deb} qui se trouve dans \texttt{downloads/programmes} puis exécuter les lignes suivantes pour avoir les anciens fichiers de configuration.
-\begin{verbatim}
-cd /usr/share/metamorphose2/configs
-sudo ln -s -d ~/.metamorphose2/configs config
-\end{verbatim}
-\item préparer la sauvegarde automatique des fichiers importants et configurations des programmes critiques (evolution, kile et cie). Pour celà, il faut lancer journalièrement le script créé qui s'appelle \texttt{backup\_journalier.sh}. On doit donc lancer ce script. Par défaut, il existe sous Ubuntu un démon, \gras{cron}. On doit lancer ce script en tant que root. En effet, on sauvegarde des fichiers ayant les droits root. On fait donc dans une console :
-
-% \begin{verbatim}
-% sudo crontab -e
-% \end{verbatim}
-%
-% Ceci lance dans l'éditeur vim le fichier permettant de configurer les lancements automatiques. On ajoute la ligne suivante :\\
-% \verb|00 19 * * *  /home/autiwa/scripts/backup_journalier.sh >log_backup_journalier.txt|. \\Une fois fait, on fait \verb|Ctrl+X|, on appuie sur \verb|O| pour confirmer qu'on veut enregistrer les changements et voilà! De plus, on lance crontab en tant que root, donc prudence en utilisant les variables telles que \texttt{\texttildelow} qui renvoient peut-être à \verb|/root|. En fait, on peut peut-être faire des backups de fichiers \textbf{root} en étant utilisateur normal, mais il faut que le disque d'arrivée soit aussi en \textbf{ext3}, histoire que les droits soient conservés. %suis en train de tester.
-
-\begin{verbatim}
-echo "00 */5 * * * autiwa /home/autiwa/scripts/cron/backup_journalier_desktop.sh"|sudo tee -a /etc/crontab
+    Number   Major   Minor   RaidDevice State
+       0       0        0        0      removed
+       1       8       33        1      active sync   /dev/sdc1
 \end{verbatim}
 
+On constate qu'un seul des disques est dans le RAID1, et que ce dernier est dégradé, c'est à dire qu'il n'y a plus qu'un seul 
+disque qui fonctionne. 
+
+\begin{attention}
+À partir de là, je considère que vous avez remplacé le disque défectueux par un autre disque s'il y a lieu afin de pouvoir 
+remettre le 
+système en état. Notez que durant cette période, plus rien ne vous protège contre la perte de données si le 2e disque dur 
+crashe. 
+\end{attention}
+
+Au cas où ce ne soit pas déjà effectué de manière automatique, on peut déclarer un disque du système RAID comme défectueux (si 
+la partition a déjà été supprimée, on peut passer cette étape ; c'était mon cas) : 
+\begin{verbatim}
+sudo mdadm /dev/md0 --fail /dev/sdb1 --remove /dev/sdb1
+\end{verbatim}
+
+\bigskip
 
 \begin{remarque}
-Pour vérifier si ça marche, regarder dans votre home que le log existe.
+Avant de s'inquiéter de la récupération, il se pourrait que vous deviez formater le nouveau disque pour être parfaitement 
+identique au premier disque encore présent dans le système RAID. 
 \end{remarque}
-%TODO j'utilise fcron maintenant je crois...
 
-\item réactiver la combinaison de touche \touche{Ctrl}+\touche{Alt}+\touche{Backspace} en faisant
+Ensuite, pour remettre le système RAID en état, il suffit de rajouter de nouveau la partition qui nous intéresse dans le 
+système : 
 \begin{verbatim}
-utilisateur@machine:~$ echo "setxkbmap -option terminate:ctrl_alt_bksp" >> ~/.xinitrc
+$ sudo mdadm /dev/md0 --add /dev/sdb1
+mdadm: added /dev/sdb1
 \end{verbatim}
 
-Fermez votre session, puis ouvrez-la à nouveau pour que votre nouvelle configuration soit prise en compte.
+À partir de là, le système RAID va petit à petit se remettre en état. Comptez environ 6h pour remettre en état un 
+RAID 1 d'1.5Tio.
 
-% Sous GNOME (Ubuntu)
-%
-%    1.
-%       Rendez-vous dans Système → Préférences → Clavier ;
-%    2.
-%       Sélectionnez l'onglet Agencements et appuyez sur le bouton Options de l'agencement ;
-%    3.
-%       Déroulez la liste Séquence de touches pour fermer le serveur X et cochez la case Control + Alt + Eff. arrière ;
-%    4.
-%       Fermez l'outil de configuration de l'agencement du clavier.
-
-
-\item rajouter les polices qu'on veut dans le dossier \texttt{.fonts} du répertoire utilisateur que vous pouvez créer s'il n'existe pas.
-
-\item créer un lien symbolique pour les scripts dans le dossier nautilus-scripts
+On peut surveiller l'avancement soit par :
 \begin{verbatim}
-cd ~/.gnome2
-ln -s -d ~/scripts nautilus-scripts
+$ sudo mdadm --query --detail /dev/md0
+/dev/md0:
+        Version : 1.2
+  Creation Time : Sun Nov  3 22:07:32 2013
+     Raid Level : raid1
+     Array Size : 1465006336 (1397.14 GiB 1500.17 GB)
+  Used Dev Size : 1465006336 (1397.14 GiB 1500.17 GB)
+   Raid Devices : 2
+  Total Devices : 2
+    Persistence : Superblock is persistent
+
+    Update Time : Sun Nov 10 17:15:50 2013
+          State : clean, degraded, recovering 
+ Active Devices : 1
+Working Devices : 2
+ Failed Devices : 0
+  Spare Devices : 1
+
+ Rebuild Status : 1% complete
+
+           Name : autiwa-SSD:0
+           UUID : 2eee2afa:c66bc1b4:83fcfd73:b652df7c
+         Events : 218
+
+    Number   Major   Minor   RaidDevice State
+       2       8       17        0      spare rebuilding   /dev/sdb1
+       1       8       33        1      active sync   /dev/sdc1
+
+\end{verbatim}
+ou à l'aide de la commande suivante, très pratique soit dit en passant : 
+\begin{verbatim}
+watch -n3 cat /proc/mdstat
 \end{verbatim}
 
-\end{enumerate}
-
-\subsection{Nettoyer son système}
-
-\begin{verbatim}
-sudo apt-get autoclean
-sudo apt-get clean
-\end{verbatim}
-
-
-\subsection{Pilote de Carte Graphique}
-\verb|sudo dpkg-reconfigure -phigh xserver-xorg|
-
-Permet de générer à nouveau \textbf{xorg.conf}. Utile quand changement de pilote ou modif manuelles en cas de plantage du serveur X
 
 \subsection{Regénérer le menu de multiboot de Grub}
 \verb|sudo update-grub| génère un nouveau fichier \verb|/boot/grub/menu.lst|.
-
-\subsection{Reconfigurer les paquets défectueux}
-\verb|sudo dpkg-reconfigure wine| reconfigure wine. \`A la place, on peut mettre n'importe quel paquet déjà installé, et on peut en mettre plusieurs séparés par un espace.
-
-\subsection{Relancer nautilus}
-Quand on a modifié les scripts nautilus, voire les actions, ou autre chose qui nécessite de le relancer, on peut utiliser la commande suivante :
-\begin{verbatim}
-nautilus --quit
-\end{verbatim}
-
-\subsection{Relancer le serveur apache2}
-Pour appliquer les modifications aux fichiers de configuration, il faut relancer le serveur, pour celà :
-\begin{verbatim}
-sudo /etc/init.d/apache2 reload
-\end{verbatim}
-
-
-
-\subsection{Sauver et Restaurer la liste des paquets}
-\subsubsection{Sauvegarde}
-
-Récupérez la liste des paquets installés sur le système :\\
-\verb#dpkg --get-selections | grep -v deinstall > ubuntu-files#
-
-Cela crée un fichier \textbf{ubuntu-files} dans le répertoire courant. Il contient la liste des paquets installés. Copiez ce fichier et le fichier \verb|/etc/apt/sources.list| sur une disquette, un CD ou une clé USB.
-\subsubsection{Restauration}
-
-Après une nouvelle installation, vous configurerez votre connexion Internet. Puis, vous copiez votre \textbf{ubuntu-files} dans votre dossier d'utilisateur courant ainsi que le \textbf{sources.list} dans \verb|/etc/apt|
-
-Vous récupérez et installez vos paquets avec les commandes suivantes dans une console :
-
-\begin{verbatim}
-sudo apt-get update
-sudo apt-get dist-upgrade
-dpkg --set-selections < ubuntu-files
-sudo dselect
-\end{verbatim}
-
-Voilà, tout est récupéré et installé, il ne vous reste qu'à configurer et paramétrer vos différentes applications.
-
-\subsection{Mise à Jour Vers une Version Ultérieure}
-Ceci concerne \gras{Ubuntu} qui se trouve être la distribution de \gras{GNU/Linux} que j'utilise. Pour mettre à jour, par exemple la version 7.04 Feisty Fawn, vers la version 7.10 Gutsy Gibbon, il suffit de taper dans un terminal la commande suivante :
-
-\verb|update-manager -d|
-
-\subsection{Redémarrer nautilus}
-C'est pratique quand on a modifié les actions nautilus ou d'autres choses du style, il suffit de taper la commande suivante en console :
-
-\begin{verbatim}
-nautilus --restart
-\end{verbatim}
 
 \subsection{Quelques commandes pour débloquer le système}
 Ce petit guide explique quelques combinaisons de touches à utiliser lorsqu'un système Linux est completement bloqué.
@@ -650,158 +425,9 @@ Si l'on veut activer l'utilisation du SysRq automatiquement au démarrage de la 
 \touche{Alt} + \touche{SysRq} + \touche{b} : redémarre le système\\
 \touche{Alt} + \touche{SysRq} + \touche{o} : arrête le système
 
-\section{Gestions des disques dur et partitions}
-\subsection{Nommer automatiquement certains périphériques montés}
-\subsubsection{Première technique : marche pas?}
-Il est possible, par exemple, de monter dans \texttt{/media/backup} un disque dur de sauvegarde en créant des règles. Ces règles sont gérées par un programme nommé \texttt{udev} (la documentation de celui-ci donnera de plus ample précision sur ce que je m'apprête à décrire. Les règles sont contenues dans les fichiers du dossier \texttt{/etc/udev/rules.d/}. Comme les fichiers sont triés dans l'ordre alphabétique et que l'ordre des règles peut avoir une importance, il est souhaitable que notre fichier dans lequel seront nos règles soit vu en premier. Donc, dans mon exemple, je reprends le nom de la documentation qui se trouve être \texttt{/etc/udev/rules.d/10-local.rules}
-
-Dans ce fichier, je souhaite mettre les règles nécessaires au nommage de mon disque dur de sauvegarde dans un premier temps, puis dans la suite, peut-être mon appareil photo et ma clé usb.
-
-Il y a plusieurs règles de bases que je ne détaille pas plus. Je m'intéresse ici aux informations acquises grâce à la commande \verb|udevinfo -a -p /sys/block/sda|. Celle-ci nous donne directement les informations liées au disque \texttt{/dev/sda}.
-
-Dans mon exemple, mon disque de sauvegarde était alors monté en troisième (\texttt{sdc} donc). J'ai extrait deux informations pour avoir la ligne de règle suivante :
-\begin{verbatim}
-BUS=="scsi", ATTRS{model}=="HD501LJ", NAME="backup"
-\end{verbatim}
-\subsubsection{Directement dans les propriétées}
-Après avoir testé sans succès la première méthode en utilisant \texttt{udev}, j'ai trouvé un peu par hasard une deuxième méthode qui a le mérite d'être très simple et de marcher.
-
-Il suffit de lancer le \texttt{Poste de Travail} qui se situe dans le menu \textbf{Raccourcis} de la barre de tâches. Il faut au préalable connecter le disque externe (disque dur, appareil photo ou clé usb). Il faut faire clic droit sur le disque concerné et lancer les propriétés. Dans l'onglet \textbf{Volume}, dans les options avancées, on peut spécifier le point de montage. Pour mon cas, j'ai spécifié \texttt{backup}. En effet, j'ai eu un message d'erreur quand j'ai voulu spécifier \texttt{/media/backup} et après vérification, en spécifiant uniquement \textbf{backup} le disque se monte bien dans le dossier \textbf{/media/backup}
-
-\subsubsection{En utilisant les labels}
-Marche pour les partitions ext3. En utilisant la commande suivante :
-
-\begin{verbatim}
-sudo e2label /dev/sdb1 stockage
-\end{verbatim}
-
-Pour vérifier que le label a marché, on tape :
-
-\begin{verbatim}
-sudo vol_id /dev/sdb1
-\end{verbatim}
-
-\begin{remarque}
-\texttt{/dev/sdb1} fait référence à la première partition du deuxième disque dur (1 pour la première partition, et b pour le deuxième disque. Si ça ne vous évoque rien, renseignez vous sur ça avant de faire quoi que ce soit.)
-\end{remarque}
-
-\subsubsection{Nommer une partition FAT}
-Il faut pour celà le paquet \gras{mtools}, et on tape la commande :
-
-\begin{verbatim}
-sudo mlabel -i /dev/sdc1 : :cle_autiwa
-\end{verbatim}
-
-\texttt{/dev/sdc1} identifie la partition à laquelle on souhaite attribuer le nom \texttt{cle\_autiwa}
-
-\subsection{UUID des partitions}
-Il y a plusieurs méthodes, la première est très simple, et liste les partitions ainsi que leur \gras{UUID} :\\
-\verb|ls -l /dev/disk/by-uuid/|
-
-La première commande retourne ça pour moi :
-
-\begin{small}\begin{verbatim}
-total 0
-lrwxrwxrwx 1 root root 10 2008-03-05 10 :00 36ee0e1f-0dc3-4add-a1b0-b618a038a97e -> ../../sda8
-lrwxrwxrwx 1 root root 10 2008-03-05 10 :00 76fa693b-393c-416e-8f88-43012c4d393b -> ../../sda7
-lrwxrwxrwx 1 root root 10 2008-03-05 10 :00 7f909eab-3f95-4b90-b353-7ca94322a1cf -> ../../sda4
-lrwxrwxrwx 1 root root 10 2008-03-05 10 :00 8c193936-b29c-4c05-a0b7-e95615443edf -> ../../sda5
-lrwxrwxrwx 1 root root 10 2008-03-05 09 :00 BE70D32570D2E367 -> ../../sdb1
-lrwxrwxrwx 1 root root 10 2008-03-05 10 :00 fcfda05c-581e-40cb-9a1b-1201e8f8eada -> ../../sda6
-\end{verbatim}\end{small}
-
-Les deuxièmes et troisièmes permettent de déterminer l'\gras{UUID} d'une partition :
-
-\begin{verbatim}
-sudo vol_id -u /dev/sdc1
-sudo blkid /dev/sda6
-\end{verbatim}
-
-
-\subsection{Modification des Partitions}
-Chaque fois que l'on modifie les partitions, par exemple changer \verb|/dev/sda6| de FAT32 à ext3, l'UUID de la partition change. Il faut donc mettre à jour le fichier \verb|/ect/fstab|.Pour connaître l'UUID d'une partition, il faut taper :\\
-\verb|sudo blkid /dev/sda6|
-
-\begin{remarque}
-Le \textbf{sudo} n'est pas obligatoire, mais sans lui, il se contente d'afficher le résultat de la dernière fois que la commande a été lancée avec les droits administrateurs.
-\end{remarque}
-
-Si la partition est une partition bootable, il faut aussi mettre à jour le fichier \verb|/boot/grub/menu.lst|.
-
-Par exemple pour un disque dur externe que l'on souhaite monter à chaque démarrage, voici la commande que j'ai utilisé :\\
-\verb|UUID=BE70D32570D2E367 /media/stockage ntfs-3g silent,umask=0,locale=fr_FR.UTF-8 0 0|
-
-\subsection{Cacher certaines icônes de partition dans nautilus}
-Je trouve ennuyeux de toujours avoir toutes les icônes de mes partitions dans nautilus. La solution ci-dessous permet de spécifier des partitions que l'on va ignorer lors de l'affichage des icônes pour nautilus. (et plus généralement pour n'importe qu'elle navigateur de dossier je crois) Pour ne plus qu'elle apparaisse du tout, il faut dire à hal de l'ignorer dans sa phase d'auto détection. Pour cela :
-
-
-\begin{verbatim}
-sudo mkdir /usr/share/hal/fdi/preprobe/95userpolicy
-sudo gedit /usr/share/hal/fdi/preprobe/95userpolicy/10ignore-disks.fdi
-\end{verbatim}
-
-et insérer dans le fichier ainsi créé :
-
-\begin{verbatim}
-<?xml version="1.0" encoding="UTF-8"?>
-<deviceinfo version="0.2">
-<device>
-<match key="block.device" string="/dev/hda5">
-<merge key="info.ignore" type="bool">true</merge>
-</match>
-</device>
-<device>
-<match key="block.device" string="/dev/hdb3">
-<merge key="info.ignore" type="bool">true</merge>
-</match>
-</device>
-</deviceinfo>
-\end{verbatim}
-
-\begin{remarque}
-J'ai testé cette ligne récemment :
-
-\texttt{<merge key="volume.ignore" type="bool">true</merge>}
-\end{remarque}
-
-(en remplaçant \texttt{/dev/hda5} et \texttt{hdb3} par les partitions que vous ne voulez pas voir. Ou peut bien sûr supprimer la deuxième section \texttt{<device>...</device>} ou en ajouter d'autres au besoin)
-
-Pour prendre ce changement en compte, il suffit de redémarrer (on est pas obligé, mais le reste est un peu lourd, je préfère redémarrer pour ma part.)
-
-Pour le fichier xml, on peut aussi gérer ça par UUID ce qui donne pour une partition, les lignes suivantes :
-\begin{verbatim}
-<device>
-<match key="volume.uuid" string="76fa693b-393c-416e-8f88-43012c4d393b">
-<merge key="info.ignore" type="bool">true</merge>
-</match>
-</device>
-\end{verbatim}
-
-\begin{remarque}
-Pour moi, ça ne change rien pour le nautilus classique, les choses ne changent que pour nautilus quand je le lance en mode root.
-\end{remarque}
-
-Pour prendre ce changement en compte :
-
-\begin{verbatim}
-sudo /etc/init.d/dbus restart
-\end{verbatim}
-
-puis fermer sa session et la réouvrir.
-
-\subsection{Tester et réparer ses partitions}
-Par expérience, je me suis rendu compte que c'était beaucoup plus pratique de faire ça depuis un live CD. Pour ma part, vu que j'aime pas graver, j'ai une option dans grub qui me permet d'émuler un CD via une partition \textbf{hd-media} crée pour ça (voir \refsec{sec:hd-media} pour plus de détails).
-
-%TODO mettre la commande de la feuille imprimée à montpouillan
-
-\section{\'Equivalents windows}
+\section{Équivalents windows}
 En fait, rigoureusement, j'aurais pu nommer la section autrement. Vu que je vais regrouper les programmes par catégorie et dire lesquels je préfère. Mais ça sera plus utiles pour ceux qui cherchent des équivalents windows que pour les autres.
 {\red La liste ne concerne que mes choix, je ne parle pas de tout, le meilleur moyen de trouver ses préférences est de tester soi même et de choisir en fonction de ses propres exigences}
-
-\subsection{Accélérateur de Téléchargement : ?}
-Là aussi, j'en ai essayé un bon paquet, je voulait un équivalent à flashget, et j'ai donc logiquement essayé \gras[logiciel!kget]{Kget}, \gras[logiciel!kwget]{Kwget} et toute la clique, aucun ne me plaisait. Je voulais utiliser l'extension \gras{Flashgot} pour firefox et donc avoir la compatibilité, mais ça marchait véritablement avec aucun, je veux dire que j'arrivais pas à télécharger une sélection de lien convenablement.
-
-Puis j'ai essayé \gras[logiciel!aria]{Aria}, autant le dire de suite, ce programme est super moche graphiquement, mais il a au moins l'avantage d'avoir une interface graphique ce qui n'est pas le cas de tout les programmes cité ci dessus. Un seul inconvénient pour moi c'est que j'ai parfois du mal à cliquer sur la confirmation dans le pop-up pour choisir où enregistrer les fichiers quand je viens de \gras{Flashgot}, je suis obligé d'aller dans le répertoire parent, et de double cliquer sur le dossier que je souhaite pour pouvoir confirmer par la suite, en fait, il faut faire un clic de souris dans le lieu ou les dossiers s'affichent, mais si on n'a pas de fichiers dans ce répertoire là, on doit revenir en arrière pour pouvoir cliquer (je sais pas si je suis très clair\dots)
 
 \subsection{Calcul formel : Xcas}
 \subsubsection{Xcas}
@@ -1017,8 +643,6 @@ J'ai aussi eu besoin d'installer un paquet de plus pour pouvoir utiliser un plot
 sudo apt-get install plplot9-driver-xwin python-numarray python-matplotlib
 \end{verbatim}
 
-% \subsubsection{Pour commencer}
-%TODO mettre ça. Ou pas...
 
 \subsubsection{fonctions mathématiques standard}
 \begin{tabular}{>{\bfseries}r<{}@{ : }p{11cm}}
@@ -1461,46 +1085,6 @@ grid on
 print('-deps','figure2.eps')
 \end{verbatim}
 
-
-
-\subsection{Messagerie Instantanée : ?}
-Il existe ici pléthore de logiciels tous plus variés les uns que les autres pour se connecter, entre autre, au réseau \gras{msn}. Entre autre, il y a \gras[logiciel!amsn]{a-msn}, \gras[logiciel!kopete]{Kopete}, \gras[logiciel!pidgin]{Pidgin} (anciennement Gaim\index{logiciel!gaim|see{logiciel!pidgin}}), \gras[logiciel!emesene]{emesene} que j'ai découvert récemment et d'autres que je n'utilise pas. Ce sujet est pour moi le point faible de GNU/Linux. Aucun de ces programmes ne me satisfait complètement, et par période, je les réessaye pour voir si mes gouts n'ont pas changés, mais je dois avouer que je regrette windows pour ça. Que ce soit \gras[logiciel!msn messenger]{msn messenger} avec le plugin \textbf{msn plus} ou encore \gras[logiciel!trillian]{Trillian}.
-
-Pour moi, un programme msn doit savoir faire :
-\begin{enumerate}
- \item afficher les avatars dans la liste de contact
-\item afficher le pseudo ainsi que la phrase de statut pour chaque contact
-\item autoriser la configuration de raccourcis globaux pour changer rapidement de statut (exemple : \touche{Ctrl}+\touche{1} pour se mettre en statut absent, et \touche{Ctrl}+\touche{Espace} pour se mettre en statut \og En Ligne \fg.
-\item permettre de classer la liste de contacts soit par statut, soit par groupe, soit les deux
-\item \^Etre hautement personnalisable tant au niveau des notifications que du comportement général du programme
-\item Avoir les statuts classique \og Parti Manger \fg   \og Au téléphone \fg  et autres.
-\item Gérer sans aucun problème les déconnections intempestives (en clair, ne pas m'afficher en ligne alors que les autres me voient déconnectés)
-\item[Bonus] permettre l'utilisation de web cam, mais c'est pas ce que je demande en priorité.
-\end{enumerate}
-
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{|m{3cm}|m{2cm}|m{1.5cm}|m{2.5cm}|m{3cm}|m{1.5cm}|}
-\hline
- & WLM & Pidgin & a-msn & Kopete & Emesene \\\hline
-Message de statut des contacts & {\green Oui} & {\green Oui} & {\green Oui} & {\green Oui} & {\green Oui}\\\hline
-Avatar des contacts & {\red Non} & {\green Oui} & {\green Oui} \begin{footnotesize}(très petit)\end{footnotesize} & {\green Oui} & {\green Oui} \\\hline
-Tri complet de la liste des contacts & {\green Oui} & {\red Non} & {\green Oui} & {\green Oui} & {\green Oui}\\\hline
-Statuts personnalisables & {\green Oui} & {\green Oui} & {\green Oui} & {\red Non} & {\red Non}\\\hline
-Raccourcis pour statuts & {\red Non} & {\red Non} & {\red Non} & {\green Oui}\begin{footnotesize}(uniquement \textbf{Absent} et \textbf{En Ligne})                                                                             \end{footnotesize}  & {\red Non}\\\hline
-\'Emoticones personnalisables & {\green Oui} & {\green Oui} & {\green Oui} & {\red Non}  & {\green Oui}\\\hline
-Webcam & {\green Oui} & {\red Non} & {\green Oui} & {\green Oui} & {\red Non}\\\hline
-Défauts & \begin{footnotesize}Publicité\end{footnotesize} & & \begin{footnotesize}pas agréable visuellement, menu du programme qui ne change pas au déplacement de la souris\end{footnotesize} &\begin{footnotesize}changement de statut n'apparaissent pas dans les historiques\end{footnotesize} & \\\hline
-Bonne gestion des coupures Internet & {\green Oui} & {\red Non} & {\red Non} & {\red Non} & {\red Non}\\\hline
-\end{tabular}\end{center}
-\caption{comparaison des principaux logiciels pour se connecter à msn sous GNU/Linux (avec en plus WLM)}
-\end{table}
-
-\bigskip
-
-Msn n'est clairement pas le protocole le mieux adapté à un système non windows, et ça se comprend facilement, vu que se protocole n'est pas libre et documenté, il est donc difficile de savoir comme il fonctionne, et donc de faire des logiciels qui permettent de se connecter dessus.
-
-Il existe une alternative libre à msn nommée \gras{jabber}, basé sur le protocole XMPP. Jabber est entièrement libre et gratuit. Je conseille donc à ceux qui en ont l'envie, de passer à jabber. Il existe de plus, suivant le serveur sur lequel vous vous connectez, des passerelles vers msn qui vous permettent d'ajouter vos contacts msn à jabber. Mais je donnerais sur ça de très mauvaises explications, je vous conseille de chercher des tutoriels sur le net, il y en a de très bien détaillés.
 
 \subsection{Navigateur Web : Firefox}
 \gras[logiciel!firefox]{Firefox} Il reste mon préféré car hautement personnalisable.
