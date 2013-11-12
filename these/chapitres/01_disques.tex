@@ -671,7 +671,7 @@ On ne peut étudier séparément le disque ou les planètes, c'est un système g
 
 Je vais maintenant présenter les interactions principales entre les planètes et le disque qui les contient. 
 
-\subsection{Migration des planètes de faible masse : Type I}
+\subsection{Migration des planètes de faible masse : Type I}\label{sec:type_I}
 \index{migration!Type I}
 Ce type de migration ne concerne que les planètes de faible masse (jusqu'à environ $10M_{\oplus}$) pour lesquelles l'interaction de marée entre la planète et le disque a une réponse linéaire, c'est-à-dire que le profil de densité surfacique n'est quasiment pas modifié par la planète. Ces planètes, qui ne creusent pas de sillon (gap) dans le disque de gaz, vont migrer vers l'intérieur. On appelle cette migration la \gras[migration!Type I]{migration de Type I}.
 
@@ -927,7 +927,9 @@ Quand la planète creuse un sillon et que sa masse est inférieure ou de l'ordre
 
 \bigskip
 
-Pendant que le gap dû à la planète est en train de se creuser, il peut y avoir un fort couple de corotation négatif \citep{masset2003runaway}. Ce mode de migration intermédiaire est parfois appelé migration de \gras[migration!Type III]{Type III}. 
+Pendant que le gap dû à la planète est en train de se creuser, un mode de migration intermédiaire, appelé migration de 
+\gras[migration!Type III]{Type III}. Dans certaines conditions, ce mode peut entrainer une migration rapide vers l'intérieur 
+\citep{masset2003runaway}. 
 
 \subsection{L'amortissement de l'excentricité et de l'inclinaison}\index{amortissement!excentricité}\index{amortissement!inclinaison}%circularisation
 %Penser aux papiers cresswell et al. 2007 et tanaka et al. 2004
@@ -953,20 +955,35 @@ Le temps caractéristique d'amortissement pour l'excentricité et l'inclinaison 
 Des simulations hydrodynamiques montrent que le même phénomène d'amortissement se produit pour des valeurs plus grandes de $e$ et $I$, tout en étant dans un régime différent que celui à faibles valeurs ($e,i \ll H/R$) \citep{cresswell2007evolution}. On explique cela pour l'inclinaison par le fait qu'à grande inclinaison, la planète peut sortir du disque est ressentir un amortissement réduit. Pour l'excentricité quant à elle, on invoque le fait que durant son orbite la planète va voir sa vitesse varier par rapport à celle du disque de gaz \citep{papaloizou2000orbital}.
 
 \subsection{L'accrétion du gaz}\label{sec:accretion_coeur}\index{accrétion de gaz}
-Dans le modèle d'accrétion de cœur, les planètes géantes sont d'abord des cœurs rocheux qui grossissent jusqu'à atteindre une masse critique de l'ordre de $10 M_{\oplus}$ \citep{pollack1996formation}. Une fois cette masse atteinte, le cœur commence à accréter rapidement du gaz jusqu'à former une géante gazeuse.
+Dans le modèle d'accrétion de cœur, les planètes géantes sont d'abord des cœurs rocheux (ou noyaux) qui grossissent jusqu'à 
+atteindre une masse critique de l'ordre de $10 M_{\oplus}$ \citep{pollack1996formation}. Une fois cette masse atteinte, le cœur 
+commence à accréter rapidement du gaz jusqu'à former une géante gazeuse.
 
 Ceci implique que la formation des planètes géantes doive se passer avant que le disque de gaz ne se dissipe (ce qui intervient au bout de quelques millions d'années).
 
-Les noyaux de ces planètes sont supposés se former au-delà de la ligne des glaces (limite radiale virtuelle au delà de laquelle on peut trouver de l'eau sous forme solide ; autour de $4\unit{UA}$ \citep{martin2013evolution}). En effet, au delà de cette limite, la quantité de matière solide augmente, et donc le taux d'accrétion augmente aussi \citep{sasselov2000snowline}.
-
-La formation des embryons de planètes géantes n'est toujours pas claire. On ne sait pas vraiment s'il y a une zone privilégiée ou non, la limite virtuelle de la ligne des glaces pourrait ne pas être valable, la glace ne rajoutant qu'environ 50\% de masse en plus \citep{lodders2003solar}.\index{ligne des glaces}
+La ligne des glaces est une limite radiale virtuelle au delà de laquelle on peut trouver de l'eau sous forme solide ; autour de 
+$4\unit{UA}$ \citep{martin2013evolution}. Parce que la quantité de matière disponible pour former les noyaux de planètes géantes 
+est plus importante au delà de cette ligne, on pense souvent que la zone au delà est le lieu de la formation des géantes 
+gazeuses \citep{sasselov2000snowline}. Pourtant, à l'heure actuelle, il n'est pas certain que cette zone au delà de la ligne 
+des glaces soit le lieu de formation des noyaux de planètes géantes. On ne sait pas 
+vraiment s'il y a une zone privilégiée ou non, la limite virtuelle de la ligne des glaces pourrait ne pas être valable, la glace 
+ne rajoutant qu'environ 50\% de masse en plus \citep{lodders2003solar}.\index{ligne des glaces}
 
 
 \bigskip
 
-Pour une simulation donnée, si on augmente le taux d'accrétion de la planète, celle-ci sera plus massive, et aura donc une inertie plus grande. Elle mettra donc plus de temps à migrer\index{migration} par migration de Type II car son inertie s'y opposera. D'un autre côté, si la planète n'a pas encore créé de gap, la migration de Type I est plus rapide à mesure que la masse augmente. 
+L'accrétion de gaz va peu à peu changer le régime de migration d'une planète. Par migration de \gras[migration!Type I]{Type 
+I}, la vitesse de migration est proportionnelle à la masse. Quand la planète devient suffisamment massive pour creuser une 
+cavité et migrer par migration de \gras[migration!Type II]{Type II}, la vitesse de migration est gouvernée par la dérive 
+radiale du disque de gaz. Enfin, quand la masse de la planète devient comparable à celle du disque, l'inertie de la planète 
+commence à jouer un rôle dans sa migration et retarder les variations de migration, normalement gouvernée par l'évolution du 
+disque de gaz.
 
 \subsection{Récapitulatif des interactions dans le code N-corps}
 Numériquement, le couple de la migration de Type I est pris en compte en utilisant les formules semi-analytiques développées par \cite{paardekooper2011torque}. 
 
-L'amortissement de l'inclinaison et de l'excentricité quant à elles sont modélisées via les formules de \cite{cresswell2008three}.
+L'amortissement de l'inclinaison et de l'excentricité quant à elles sont modélisées via les formules de 
+\cite{cresswell2008three}.
+
+L'accrétion de gaz et la migration de Type II et III n'ont pas été implémentés ici. Nous nous limitons au cas où la masse des 
+planètes n'est pas suffisante pour modifier la structure du disque de gaz (réponse linéaire). 

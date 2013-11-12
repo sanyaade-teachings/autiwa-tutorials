@@ -53,7 +53,8 @@ algorithme N-corps, mais à la différence de ces derniers, l'erreur ne croit pa
 \includegraphics[width=0.65\linewidth]{figure/energy_error.pdf}
 \caption[Pour une même simulation, erreur au cours du temps pour BS, BS2, RADAU, MVS et HYBRID.]{Évolution de l'erreur au cours
 du temps pour une simulation contenant trois planètes d'une masse terrestre chacune, cette simulation étant lancée
-successivement avec chacun des algorithmes disponibles dans \textbf{Mercury}.}\label{fig:energy_error}
+successivement avec chacun des algorithmes disponibles dans \textbf{Mercury}. Les lignes correspondant 
+aux intégrateurs MVS et RADAU sont superposées et confondues avec la ligne $\dif E/E=0$.}\label{fig:energy_error}
 \end{figure}
 
 Les algorithmes symplectiques ont cependant un inconvénient. Le pas de temps fixe d'un intégrateur symplectique ne permet pas de résoudre correctement les rencontres proches entre les corps du système. Chaque fois que le pas de temps d'un algorithme symplectique est changé, son hamiltonien change aussi, et entraine une variation d'énergie du système (dont l'énergie va osciller autour d'une nouvelle valeur moyenne). 
@@ -73,7 +74,9 @@ L'algorithme HYBRID est l'algorithme MVS, à pas de temps constant la majorité 
 Dans notre cas, plusieurs approximations sont faites : 
 \begin{itemize}
 \item L'algorithme BS2 ne fonctionne que pour les systèmes conservatifs. On suppose que la variation d'énergie induite par la migration est totalement négligeable pendant le bref laps de temps de la rencontre proche
-\item Le nombre de collisions est suffisamment faible pour que les propriétés symplectiques de l'intégrateur soient conservées. On suppose de plus que les variations d'énergies induites par ce biais sont négligeables devant la dissipation induite par le disque (qui est de l'ordre de l'énergie initiale du système planétaire)
+\item Le nombre de rencontres proches est suffisamment faible pour que les propriétés symplectiques de l'intégrateur soient 
+conservées. On suppose de plus que les variations d'énergies induites par ce biais sont négligeables devant la dissipation 
+induite par le disque (qui est de l'ordre de l'énergie initiale du système planétaire)
 \end{itemize}
 
 Il reste alors une chose à déterminer, c'est le pas de temps fixe que l'on doit choisir afin de résoudre correctement les orbites. Pour cela, on se place dans un cas simplifié, sans les effets du disque, et on souhaite savoir la condition sur le pas de temps afin que l'orbite soit correctement calculée. 
@@ -173,7 +176,18 @@ Le profil de température que nous obtenons dans notre disque de référence (do
 \end{figure}
 
 \section{Migration de Type I}\index{migration!Type I}
-La migration de Type I est implémentée dans le code en utilisant le modèle 1D de disque, qui définit pour toute position du disque, une température, une densité de surface, et tous les autres paramètres nécessaires comme l'échelle de hauteur. En utilisant ces paramètres, on obtient ainsi le couple qu'exerce le disque sur la planète en fonction de sa masse et de sa position via la formule semi-analytique de \cite{paardekooper2011torque}. 
+La migration de Type I est implémentée dans le code en utilisant le modèle 1D de disque, qui définit pour toute position du 
+disque, une température, une densité de surface, et tous les autres paramètres nécessaires comme l'échelle de hauteur. En 
+utilisant ces paramètres, on obtient ainsi le couple qu'exerce le disque sur la planète en fonction de sa masse et de sa 
+position via la formule semi-analytique de \cite{paardekooper2011torque}. Plus exactement, j'implémente les formules décrites 
+\refsec{sec:type_I}, équations \refeq{eq:lindblad-torque}, \refeq{eq:saturated-corotation-torque} et 
+\refeq{eq:linear-corotation-torque}. Ces formules sont une combinaison de \cite{paardekooper2010torque} où l'effet du paramètre 
+de lissage $b/h$ apparaît de manière explicite, mais qui ne modélise que les couples linéaires, et \cite{paardekooper2011torque} 
+où l'effet de la diffusion est pris en compte, mais où la longueur de lissage n'apparait pas explicitement. Ainsi, nous 
+obtenons des formules pour la migration de Type I qui dépendent du paramètre de lissage $b/h$(\refeq{eq:lindblad-torque}, 
+\refeq{eq:saturated-corotation-torque} et 
+\refeq{eq:linear-corotation-torque}), et qui en plus tiennent compte 
+de la saturation \citep[eqs. (50) à (53)]{paardekooper2011torque}.
 
 Les deux différences principales entre le cadre du modèle de \cite{paardekooper2011torque} et le disque que j'ai modélisé, c'est que dans mon cas je n'ai pas un profil de température en loi de puissance (avec une seule loi de puissance), mais j'ai une loi de puissance définie point par point. C'est-à-dire que pour chaque zone du disque, la température est calculée de manière cohérente avec les autres paramètres du disque, et que l'indice de la loi de puissance correspondante est calculée en fonction des températures autour.
 
@@ -190,7 +204,8 @@ Il y a aussi une erreur dans l'équation (35) car le disque se refroidit par la 
 
 Les formules nous donnent alors un couple exercé par le disque sur la planète. 
 
-À partir de ce couple, on définit un temps de migration $t_\text{mig}$ comme : 
+À partir de ce couple, on définit un temps de migration $t_\text{mig}=r_p / (-\dot{r}_p)$ comme \citep[eq. 
+(69)]{tanaka2002three}: 
 \begin{align}
 t_\text{mig} &= \frac{J}{2\Gamma}
 \end{align}
@@ -220,7 +235,7 @@ Afin de tenir compte d'un effet mis en évidence par \cite{bitsch2010orbital}, u
 
 En effet, il a été montré que l'excentricité d'une planète a une influence sur sa zone fer-à-cheval et par extension, sur son couple de corotation $\Gamma_C$. Un paramètre d'amortissement $D$, compris entre 0 et 1 a ainsi été ajouté au calcul du couple total \citep{hellary2012global} :
 \begin{align}
-\Gamma &= \Gamma_0 \cdot (\Gamma_L + D\cdot \Gamma_C)
+\Gamma &= \Gamma_0 \cdot (\frac{\Gamma_L}{\Gamma_0} + D\cdot \frac{\Gamma_C}{\Gamma_0})
 \end{align}
 où $\Gamma_0 = \left(\frac{q}{h}\right)^2\Sigma_p {r_p}^4 {\Omega_p}^2$ et $\Gamma_L$ est le couple de Lindblad.
 
@@ -239,6 +254,24 @@ Quand une planète sort des bornes du disque, les effets d'amortissement de $e$ 
 \section{Validité des éléments orbitaux}
 Lors d'une rencontre proche entre deux planètes, leurs interactions gravitationnelles rendent caduques les formules qui permettent de calculer les éléments orbitaux à partir des vitesses et positions car ceci suppose qu'on est dans le cas d'une orbite képlerienne isolée. 
 
-Dans de tels cas, on peut avoir des demi-grands axes négatifs, des excentricités supérieures à 1. Si c'est déjà en soit un problème physique, c'est aussi et surtout un problème numérique car cela fait apparaître des \textbf{Not A Number} (NaN) lorsque par exemple le demi-grand axe est en argument d'une racine carrée. Ceci a donc pour conséquence concrète de faire planter le code, au mieux, ou pire, de le faire tourner avec tous les paramètres de la simulation peu à peu gangrénés par des \textbf{NaN}. 
+Dans de tels cas, on peut avoir des demi-grands axes négatifs, des excentricités supérieures à 1. Si c'est déjà en soit un 
+problème physique, c'est aussi et surtout un problème numérique car cela fait apparaître des \textbf{Not A Number} (NaN) lorsque 
+par exemple le demi-grand axe est en argument d'une racine carrée. Ceci a donc pour conséquence concrète de faire planter le 
+code, au mieux, ou pire, de le faire tourner avec tous les paramètres de la simulation peu à peu gangrénés par des 
+\textbf{NaN}. 
 
-En conséquence, j'ai décidé de remplacer dans la plupart des calculs de mes simulations, le demi-grand axe par le rayon $r=\sqrt{x^2+y^2+z^2}$ qui lui n'est pas sensible à ce genre de divergences. Quand l'excentricité est non nulle, il est clair que le rayon est différent du demi-grand axe. Mais les excentricités étant généralement faibles, l'erreur faite sur le demi-grand axe reste faible. De plus, les rencontres proches représentent un temps négligeable de la simulation au regard des centaines de milliers d'années sur lesquelles on intègre les orbites. On considère donc que la migration induite sur les planètes pendant leur temps de rencontre proche est totalement négligeable au regard du reste de la simulation.
+Dans un premier temps, j'ai pensé remplacer dans mes calculs le demi-grand axe par le rayon $r=\sqrt{x^2+y^2+z^2}$, afin 
+d'éviter les problèmes lors des rencontres proches. Cette solution fait apparaître d'autres problèmes, notamment avec des 
+orbites excentriques proches du bord interne. Dans ce cas, on peut avoir une planète qui ressent un couple positif au bord 
+interne, puis plus de couple du tout dans la partie de l'orbite qui sort du disque, et enfin un couple négatif quand la planète 
+est dans le disque, mais hors du bord interne. Ceci cause de gros problèmes et génère des orbites qui ne sont pas physiques 
+mais dues à une astuce qui cherche à contourner un problème numérique. En effet, les formules de migration sont moyennées sur 
+une orbite, on ne peut donc pas avoir de telles variations au sein d'une même orbite.
+
+La solution adoptée est de tester les cas qui causent des NaN, c'est à dire typiquement des excentricités supérieures à 1, et 
+un demi-grand axe négatif. Quand de tels cas surviennent, on désactive momentanément la migration et tous les effets du 
+disque. Le reste du temps, la migration est systématiquement calculée, y compris pendant les rencontres proches. On considère 
+que le temps durant lequel le calcul des éléments orbitaux n'est plus valide représente un temps négligeable de la 
+simulation au regard des centaines de milliers d'années sur lesquelles on intègre les orbites. On considère donc que la 
+migration induite sur les planètes pendant les rencontres proches est totalement négligeable au regard du reste de la 
+simulation.

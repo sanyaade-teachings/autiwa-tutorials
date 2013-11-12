@@ -51,7 +51,10 @@ sens de migration d'une planète en fonction de sa
 position (abscisse) et de sa masse (ordonnée). La 3\ieme coordonnée est le couple total exercé par le disque sur la planète,
 exprimé en unité de $\Gamma_0 = \left(\frac{q}{h}\right)^2\Sigma_p {r_p}^4 {\Omega_p}^2$ pour la carte de gauche, et en \unit{M_\odot UA^2/jour^2} pour la carte de droite. Quand le couple est positif (resp.
 négatif), la migration est vers l'extérieur (resp. intérieur). La ligne noire représente la zone de couple nul, où la planète ne
-migre plus. Le détail des paramètres du disque de référence est donné \reftab{tab:fiducial_parameters}.
+migre plus. Des masses jusqu'à $40\mearth$ sont affichées, dans l'unique but d'afficher des contours fermés. Il est probable 
+qu'à de telles masses, une cavité s'ouvre autour de la planète, limitant la validité des formules de migration de Type I 
+implémentés ici \citep{paardekooper2011torque}. Le détail des paramètres du disque de référence est donné 
+\reftab{tab:fiducial_parameters}.
 }\label{fig:fiducial_migration_map}
 \end{figure}
 
@@ -736,7 +739,9 @@ protoplanétaire, seules les régions les plus internes sont susceptibles d'atte
 $1000\unit{K}$. 
 
 Enfin, j'ai souhaité comparer ces deux lois d'opacité avec une table d'opacité, \cite{hure2000transition} \reffig{fig:hure_profile}. Cette table
-d'opacité de Rosseland correspond à la composition suivante $X=0.70$, $Y=0.28$ et $Z=0.02$ et est basée sur
+d'opacité de Rosseland correspond à la composition suivante $X=0.70$, $Y=0.28$ et $Z=0.02$\footnote{où $X$, $Y$ et $Z$ 
+représentent respectivement la fraction massique d'Hydrogène, d'Hélium et de tous les autres éléments, la somme faisant 
+$X+Y+Z=1$.} et est basée sur
 \cite{seaton1994opacities, alexander1994low, henning1996dust}.
 
 \begin{figure}[htbp]
