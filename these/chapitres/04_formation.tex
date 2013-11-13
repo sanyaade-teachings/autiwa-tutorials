@@ -50,7 +50,7 @@ Prenons l'exemple d'une résonance \MMR{7}{2}, les angles de résonance sont :
 L'excentricité atteinte par la planète dépend de l'ordre et du degré de la résonance. En effet, les perturbations gravitationnelles mutuelles de deux corps en
 résonance de moyen mouvement engendrent des modifications des éléments orbitaux de ces derniers. 
 
-En particulier, l'excentricité de deux corps en résonance a tendance à augmenter au cours du temps \citep[eq.
+Dans le cas particulier d'un problème à trois corps restreint, où une planète interne peu massive et un perturbateur massif externe sont en résonance, l'excentricité de la plus petite planète va augmenter au cours du temps \citep[eq.
 (8.29)]{murray2000solar}. 
 
 Nous n'allons pas détailler ici le fonctionnement précis des résonances. Plusieurs auteurs traitent de ce sujet
@@ -285,9 +285,8 @@ où $\gamma$ est l'indice adiabatique, $q$ le rapport entre les masses de la pla
 \includegraphics[width=0.49\linewidth]{figure/shifted/corotation_damping_profile.pdf}
 \caption[Amortissement du couple de corotation en fonction de l'excentricité de la planète.]{Diminution du couple de corotation
 $\Gamma_C$ en fonction de l'excentricité $e$. On suppose que l'atténuation ($0<D<1$) du couple de corotation en fonction de
-l'extencité $e$ est la même dans un disque isotherme ou radiatif. Ainsi, on extrait la valeur de $D$ à partir de la figure 2 de
-\cite{bitsch2010orbital} en faisant la différence entre la valeur pour le disque radiatif et celle pour le disque isotherme, et
-normalisant de sorte que $D$ vaut $1$ dans le cas $e=0$.}\label{fig:shifted_CZ_D_profile}
+l'excentricité $e$ est la même dans un disque isotherme ou radiatif. Ainsi, on extrait la valeur de $D$ à partir de la figure 2 de
+\cite{bitsch2010orbital}. Pour cela, on fait la différence entre les couples totaux dans le cas d'un disque radiatif et d'un disque isotherme. On normalise ensuite le résultat de sorte que $D$ vaut $1$ dans le cas $e=0$.}\label{fig:shifted_CZ_D_profile}
 \end{figure}
 
 \bigskip
@@ -737,7 +736,7 @@ Dans le cas où le nombre d'embryons et la masse totale est multiplié par deux,
 $120\mearth$.}\label{fig:HSE_m_tot_hist_m}
 \end{figure}
 
-La distribution des masses finales \reffig{fig:HSE_m_tot_hist_m} montre que la quantité d'embryons de très faible masse augmente quand la masse totale $M_\text{tot}$ augmente. Ces embryons font partie d'une population initialement de faible masse et qui ont très peu accrété de masse par collision. Cette population froide conserve donc sa masse au cours de la migration planétaire. Une deuxième population, formée par collisions, dépend de la masse totale. En particulier, la masse maximale formée par collisions tend à augmenter avec la masse totale disponible dans les embryons. De même, la masse minimale de cette population tend à augmenter avec la masse totale. Ainsi, à mesure que la masse totale augmente, les deux populations se scindent et on observe une distribution bimodale pour $M_\text{tot}=120\mearth$ dont les maximums sont situés autour de $0.5\mearth$ et $11\mearth$ alors que dans le cas $M_\text{tot}=30\mearth$ les deux sous-populations étaient quasiment confondues et on observait deux pics autour de 
+La distribution des masses finales \reffig{fig:HSE_m_tot_hist_m} montre que la quantité d'embryons de très faible masse augmente quand la masse totale $M_\text{tot}$ augmente. Ces embryons font partie d'une population initialement de faible masse et qui ont très peu accrété de masse par collision. Cette population \og froide\fg, c'est à dire qui n'a quasiment pas subi de collision depuis le début de la simulation, conserve donc sa masse au cours de la migration planétaire. Une deuxième population, formée par collisions, dépend de la masse totale. En particulier, la masse maximale formée par collisions tend à augmenter avec la masse totale disponible dans les embryons. De même, la masse minimale de cette population tend à augmenter avec la masse totale. Ainsi, à mesure que la masse totale augmente, les deux populations se scindent et on observe une distribution bimodale pour $M_\text{tot}=120\mearth$ dont les maximums sont situés autour de $0.5\mearth$ et $11\mearth$ alors que dans le cas $M_\text{tot}=30\mearth$ les deux sous-populations étaient quasiment confondues et on observait deux pics autour de 
 $0.
 5$ et $3.5\mearth$ avec un minimum entre les deux beaucoup moins marqué.
 
@@ -914,4 +913,4 @@ cœurs de planètes géantes dans les parties externes est possible.
 
 \bigskip
 
-Enfin, dans nos systèmes, il y a toute une population d'embryons dits froids, c'est-à-dire n'ayant pas subi de collisions durant toute la durée des simulations. Leurs masses sont donc égales aux masses prises initialement pour ces embryons. Ces embryons pourraient constituer, une fois les planètes géantes formées, la population des planètes telluriques et lunes d'un système stellaire. 
+Enfin, dans nos systèmes, il y a toute une population d'embryons dits froids, c'est-à-dire n'ayant pas subi de collisions durant toute la durée des simulations. Leurs masses sont donc égales aux masses prises initialement pour ces embryons. Ces embryons pourraient constituer, une fois les planètes géantes formées, la population des planètes telluriques d'un système stellaire. 
