@@ -4,16 +4,37 @@
 
 \RequirePackage{etex} % To avoid "No room for a new \dimen" error
 
+% On définit les variables de tests
+\newif\if@french \@frenchtrue
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% déclaration des options qui redéfinissent certaines fonctions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Si on souhaite faire un document en anglais.
+\DeclareOption{english}{\@frenchfalse}
+
+\DeclareOption*{}%% Ne rien faire quand une option est inconnue
+
+\ProcessOptions
+
 %%% polices %%%
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}  % OT2 c'est pour le cyrillique
-\RequirePackage[frenchb]{babel}%russian est là pour la commande qui se trouve dans la macro \peigne
+
+\if@french
+  \RequirePackage[frenchb]{babel}
+  \FrenchFootnotes % pour les notes de bas de page
+  \AddThinSpaceBeforeFootnotes % pour les puristes (donc tout le monde!) qui veulent une espace fine entre le mot et l'appel de note
+  \RequirePackage[french]{varioref}
+\else
+  \RequirePackage[english]{babel}
+  \RequirePackage{varioref}
+\fi
 %meta paquet qui regroupe des environnements, des commandes persos et cie. Permet de les ajouter plus simplement dans mon paquet pour du latex normal, des beamers ou des posters. Ainsi les commandes ne sont qu'à un seul endroit.
 \RequirePackage{autiwa-macros}
 
 %%% mise en page %%%
-\RequirePackage{natbib}%améliore la bibliographie, surtout pour citer les publications scientifiques.
-\RequirePackage{frbib}%pour mettre la bibliographie en français
 % \RequirePackage[nottoc]{tocbibind}%pour que la bibliographie  et l'index apparaissent dans la table des matières. l'option permet de ne pas afficher la table des matières. (notlof, notlot pour table des figures et ou des tableaux)
 \RequirePackage{xspace}%Permet à babel d'utiliser la macro xspace  partout où c'est nécessaire. (Voir la doc de babel pour de plus amples explications.)
 \RequirePackage{acronym}%pour gérer les acronymes. Description du paquet dans mon pdf, ou dans la description du paquet acronym.sty
