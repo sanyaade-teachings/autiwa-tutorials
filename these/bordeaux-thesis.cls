@@ -122,7 +122,7 @@
 \RequirePackage[french]{varioref}
 \vrefwarning % To transform errors in warning, in particular when a vref is between two pages. 
 
-\renewcommand{\refeq}[1]{(\vref{#1})}
+\renewcommand{\refeq}[1]{(\vref*{#1})}
 
 % If at the beginning of a sentence, use \reffig*{theref}, else, use \reffig{theref}
 \newcommand*\reffig@nostar[1]{[\figurename~\vref{#1}]}

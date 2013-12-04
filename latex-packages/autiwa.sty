@@ -46,7 +46,7 @@
 %meta paquet qui regroupe des environnements, des commandes persos et cie. Permet de les ajouter plus simplement dans mon paquet pour du latex normal, des beamers ou des posters. Ainsi les commandes ne sont qu'à un seul endroit.
 \RequirePackage{autiwa-macros}
 
-\renewcommand{\refeq}[1]{(\vref{#1})}
+\renewcommand{\refeq}[1]{(\vref*{#1})}
 
 % If at the beginning of a sentence, use \reffig*{theref}, else, use \reffig{theref}
 \newcommand*\reffig@nostar[1]{[\figurename~\vref{#1}]}
