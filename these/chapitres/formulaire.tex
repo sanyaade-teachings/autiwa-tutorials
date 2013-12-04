@@ -12,6 +12,7 @@ k_B & constante de Boltzmann \\\hline
 \sigma & constante de Stefan-Boltzmann\\\hline
 G & Constante de gravitation universelle\\\hline
 b/h & Paramètre de lissage du potentiel gravitationnel de la planète en unité de son rayon de Hill\\\hline
+m_H & Masse d'un atome d'Hydrogène\\\hline
 \mu & Masse moléculaire moyenne du gaz constituant principal du disque\\\hline
 \unit{M_\odot} & Masse solaire (unité de masse)\\\hline
 \unit{M_\oplus} & Masse terrestre\\\hline
@@ -62,7 +63,7 @@ t_\text{U-turn} & Temps mis par une particule fluide pour effectuer un demi tour
 \caption{Liste des variables et notations associées. Les paramètres avec un $p$ en indice indiquent simplement que c'est la valeur du paramètre à la position orbitale de la planète.}
 \end{table}
 
-\section{Propriétés du disque}
+\section{Propriétés du disque}\label{sec:disk_properties}
 
 La prescription alpha pour la viscosité d'un disque est définie par :
 \begin{align}
@@ -95,7 +96,7 @@ Soit une planète de demi-grand axe $a$, d'excentricité $e$, de masse $m_p$, de
 
 Il y a une relation entre sa période orbitale $T$ et son demi-grand axe :
 \begin{align}
-\frac{T^2}{a^3} &= \frac{4\pi^2}{G(m_\star + m_p)}
+\frac{T^2}{a^3} &= \frac{4\pi^2}{G(M_\star + M_p)}
 \end{align}
 où $G$ est la constante de gravitation universelle.
 
@@ -109,24 +110,24 @@ Q &= a (1 + e)
 
 La vitesse angulaire moyenne $\Omega$ (ou instantanée en supposant que $e\ll 1$) est définie par : 
 \begin{align}
-\Omega &= \sqrt{\frac{G(m_\star + m_p)}{a^3}}
+\Omega &= \sqrt{\frac{G(M_\star + M_p)}{a^3}}
 \end{align}
 
 La vitesse linéaire moyenne $v$ est définie par : 
 \begin{align}
-v &= \sqrt{\frac{G(m_\star + m_p)}{a}}
+v &= \sqrt{\frac{G(M_\star + M_p)}{a}}
 \end{align}
 
 L'énergie $E$ et la norme du moment cinétique $J$ d'une orbite képlerienne de demi-grand axe $a$ et d'excentricité $e$ sont
 données par :
 \begin{align}
-E &= \inv{2}v^2 - \frac{G(m_\star + m_p)}{r} = -\frac{G(m_\star + m_p)}{2a}\\
-\norm{\vect{J}}^2 &= G(m_\star + m_p) a (1-e^2)
+E &= \inv{2}v^2 - \frac{G(M_\star + M_p)}{r} = -\frac{G(M_\star + M_p)}{2a}\\
+\norm{\vect{J}}^2 &= G(M_\star + M_p) a (1-e^2)
 \end{align}
 
 \bigskip
 
-Une astuce qui peut être utile. Si on souhaite connaître les coordonnées polaires $(r,\theta)$ d'une orbite à partir des coordonnées cartésiennes $(x,y)$, il y a les formules suivantes : 
+Une astuce qui peut être utile. Si on souhaite connaître les coordonnées polaires $(r,\theta)$ d'un planète sur son orbite au cours du temps à partir des coordonnées cartésiennes $(x,y)$, il y a les formules suivantes : 
 \begin{subequations}
 \begin{align}
 r &= \sqrt{x^2 + y^2}\\

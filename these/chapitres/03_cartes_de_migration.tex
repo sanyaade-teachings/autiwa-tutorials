@@ -73,7 +73,7 @@ respectivement à $0.1$ et $100\unit{UA}$. Les autres paramètres du disque sont
 \hline
 $b/h = 0.4$ & $\gamma = 7/5$ & $\mu = 2.35$ & $\alpha = 5\cdot 10^{-3}$ \\\hline
 \multicolumn{2}{|c|}{Inner edge : $0.1\unit{UA}$} & \multicolumn{2}{c|}{Outer edge : $100\unit{UA}$}\\\hline
-\multicolumn{2}{|c|}{$\Sigma(R) = 300 \cdot R^{-1/2}\unit{g/cm^2}$}& \multicolumn{2}{c|}{$M_\text{tot} = 0.14\unit{M_\odot}$}\\\hline
+\multicolumn{2}{|c|}{$\Sigma(R) = 300 \cdot (R/1\unit{AU})^{-1/2}\unit{g/cm^2}$}& \multicolumn{2}{c|}{$M_\text{tot} = 0.14\unit{M_\odot}$}\\\hline
 $T_\star = 5700\unit{K}$ & $R_\star = 4.65\cdot 10^{-3}\unit{UA}$ & \multicolumn{2}{c|}{Disk albedo : $0.5$}\\\hline
 \end{tabular}
 \caption[Paramètres physiques du disque de référence.]{Paramètres physiques du disque de référence. Les opacités sont calculées
@@ -454,7 +454,7 @@ Par contre, si nous cherchons à comparer $\nu=5\cdot 10^{15}\unit{cm^2/s}$ \ref
 
 Enfin, les cartes où $\alpha$ est très faible \reffig{fig:alpha_1e-3} et \reffig{fig:alpha_5e-4} montrent qu'à mesure qu'alpha
 diminue, la viscosité fait de même de manière globale dans le disque. Dans ces disques-là, on constate la disparition
-progressive de la totalité des zones de convergence. Ainsi, dans le disque où alpha est le plus faible ($\alpha=5 10^{-4}$),
+progressive de la totalité des zones de convergence. Ainsi, dans le disque où alpha est le plus faible ($\alpha=5\cdot 10^{-4}$),
 toutes les planètes migrent vers l'intérieur \reffig{fig:alpha_5e-4}, quelle que soit leur masse ou leur position dans le
 disque.
 
@@ -846,7 +846,7 @@ très faibles distances mutuelles. En particulier, des problèmes peuvent surven
 masses ponctuelles. Le modèle de Plummer introduit une longueur de lissage $b$ (souvent notée $b/h$ car sa valeur est exprimée
 en fonction de l'échelle de hauteur du disque). la force de gravitation adoucie s'écrit alors : 
 \begin{align}
-\vect{F_{ij}} &= -G m_i m_j \frac{\vect{r_i} - \vect{r_j}}{\left(\abs{r_i - r_j}^2 + b^2\right)^\sfrac{3}{2}}
+\vect{F_{ij}} &= -G m_i m_j \frac{\vect{r_i} - \vect{r_j}}{\left(\abs{\vect{r_i} - \vect{r_j}}^2 + b^2\right)^\sfrac{3}{2}}
 \end{align}
 où $\vect{F_{ij}}$ est la force de gravitation exercée par l'objet $i$ de masse $m_i$ sur l'objet $j$ de masse $m_j$.
 
@@ -872,7 +872,7 @@ trouver une valeur optimale pour le paramètre de lissage, les valeurs optimales
 subsistent avec les simulations 3D. 
 
 \cite{hure2009local}, en étudiant des disques sans planète conseillent la plage de valeur suivante $0.13 \lesssim b/h \lesssim
-0.29$.
+0.29$ dans le cadre d'un disque auto-gravitant. La longueur de lissage n'est pas strictement équivalente dans ce cas là au cas avec planète, mais il est intéressant de garder ces valeurs en tête, l'auto-gravitation pouvant jouer un rôle dans certains disque.
 
 \bigskip
 

@@ -63,7 +63,7 @@ Si $Q>1$, le disque est stable.
 \begin{align}
 \frac{M_\text{d}}{M_\star} &\lesssim \frac{H}{R}
 \end{align}
-où $M_\text{d}$ et $M_\star$ sont respectivement la masse du disque et de l'étoile. $H$ est l'échelle de hauteur du disque et $R$ la distance par rapport à l'étoile.
+où $M_\text{d}$ et $M_\star$ sont respectivement la masse du disque et de l'étoile. $H=\frac{c_s}{\Omega}$ est l'échelle de hauteur du disque (voir \refsec{sec:disk_properties}) et $R$ la distance par rapport à l'étoile.
 
 Nous ne considérerons que des disques dont la masse $M_\text{d}$ est faible devant la masse de l'étoile $M_\star$. Si tel n'était pas le cas, le temps pour que le disque perde suffisamment de masse pour se retrouver dans le cas qui nous intéresse sera court devant la vie du disque et le temps de formation planétaire. Étant donné qu'on ne s'intéresse qu'aux derniers stades de la formation planétaire, à savoir quand les embryons planétaires ont une masse de l'ordre du dixième de masse terrestre au minimum, il est raisonnable de penser que le disque sera dans un stade peu dense où l'approximation $Q>1$ sera valable.
 
@@ -75,7 +75,7 @@ où $G$ est la constante de gravitation, et $R$ la distance à l'étoile. Dans l
 
 \bigskip
 
-Il existe une force de cisaillement entre deux anneaux de gaz concentriques, dûs à leur différence de vitesse. Cette différence de vitesse génère des frottements à cause de la viscosité du disque $\nu$ (dont nous parlerons plus en détail plus loin \refsec{sec:viscosite}) qui chauffe le gaz en lui faisant perdre de l'énergie. En conséquence, une partie de l'énergie gravitationnelle du gaz est convertie en chaleur, qui est ensuite évacuée par le rayonnement de corps noir du gaz. 
+Il existe une force de cisaillement entre deux anneaux de gaz concentriques, dûs à leur différence de vitesse. Cette différence de vitesse génère des frottements à cause de la viscosité du disque $\nu$ (dont nous parlerons plus en détail plus loin \refsec{sec:viscosite}) qui chauffe le gaz en lui faisant perdre de l'énergie. Une partie de l'énergie gravitationnelle du gaz est convertie en chaleur, qui est ensuite évacuée par le rayonnement de corps noir du gaz. 
 
 \bigskip
 
@@ -123,7 +123,7 @@ H &= \sqrt{\frac{k_B T}{\Omega^2 \mu m_H}}
 
 \bigskip
 
-Sachant que la vitesse du son, définie par :
+Sachant que la vitesse du son est définie par :
 \begin{align}
 {c_s}^2=\frac{P}{\rho} &= \frac{k_B T}{\mu m_H}
 \end{align}
@@ -485,7 +485,7 @@ On prend pour section efficace de collisions celle de l'hydrogène moléculaire 
 \sigma_\text{mol} &= 2\times 10^{-15}\unit{cm^2}
 \end{align}
 
-On considère ensuite un disque dont la densité de surface $\Sigma$ à $1\unit{UA}$ vaut $\Sigma_0 = 500\unit{g/cm^2}$. En utilisant \refeq{eq:surface-to-volume} on a alors $\rho=2.67\cdot 10^{-10}\unit{g/cm^{-3}}$. Il vient la concentration $n=6.8\cdot 10^{13}\unit{cm^{-3}}$. On obtient alors une viscosité moléculaire à $1\unit{UA}$ de l'ordre de : 
+On considère ensuite un disque dont la densité de surface $\Sigma$ à $1\unit{UA}$ vaut $\Sigma_0 = 500\unit{g/cm^2}$ et le rapport d'aspect $h=H/R=0.05$. En utilisant \refeq{eq:surface-to-volume} on a alors $\rho=2.67\cdot 10^{-10}\unit{g/cm^{-3}}$. Il vient la concentration $n=6.8\cdot 10^{13}\unit{cm^{-3}}$. On obtient alors une viscosité moléculaire à $1\unit{UA}$ de l'ordre de : 
 \begin{align}
 \nu_m &\sim 1.0\times 10^6\unit{cm^2/s}
 \end{align}
@@ -566,7 +566,7 @@ fin, allant du nanomètre, micromètre, jusqu'à des tailles planétaires en fin
 Cette poussière est un composé extrêmement complexe à modéliser. Elle contient différents composés solides en fonction de la température (à certaines températures et densité des composés se volatilisent et d'autres non). La ligne des glaces représente la distance à partir de laquelle de la glace d'eau apparait, augmentant de manière drastique la quantité de poussière dans le disque. 
 
 Le disque évoluant au cours du temps, la ligne des glaces évolue elle aussi à mesure que les propriétés du disque, et en
-particulier son profil de densité de gaz change \citep{dodsonrobinson2009icelines}.
+particulier son profil de densité de gaz, changent \citep{dodsonrobinson2009icelines}.
 
 \bigskip
 
@@ -581,7 +581,7 @@ En fonction de la température et de la pression, différentes espèces se conde
 
 L'opacité dépend de plus de la longueur d'onde, les raies d'absorptions n'étant pas uniformément réparties sur toute la gamme de longueur d'onde. Ce dernier paramètre est généralement intégré dans des modèles d'opacité. Citons notamment les opacités moyennes de Planck et de Rosseland, principales opacités utilisées dans les disques. Ce sont des quantités moyennées sur tout un spectre, rendant les opacités indépendantes de la longueur d'onde. 
 
-Dans le cas de l'opacité de la moyenne de Rosseland, on fait l'approximation que le disque est optiquement épais, de sorte qu'on puisse négliger le flux total pour se concentrer uniquement sur la dérivée du flux. c'est-à-dire, en d'autres termes, que seul le flux provenant du gaz environnant arrive jusqu'à la zone considérée, le reste étant absorbé. Dû à l'aspect optiquement épais du disque, on perd l'information sur le flux total, ce qui simplifie les calculs. L'opacité moyenne de Rosseland $\moy{\kappa_R}$ est alors définie comme : 
+Dans le cas de l'opacité de la moyenne de Rosseland, on fait l'approximation que le disque est optiquement épais, de sorte qu'on puisse négliger le flux total pour se concentrer uniquement sur la dérivée du flux. C'est-à-dire, en d'autres termes, que seul le flux provenant du gaz environnant arrive jusqu'à la zone considérée, le reste étant absorbé. Dû à l'aspect optiquement épais du disque, on perd l'information sur le flux total, ce qui simplifie les calculs. L'opacité moyenne de Rosseland $\moy{\kappa_R}$ est alors définie comme : 
 \begin{align}
 \inv{\moy{\kappa_R}} &= \inv{\int_0^\infty \pd{B_\nu}{T}\dif \nu} \int_0^\infty \frac{\pd{B_\nu}{T}}{\kappa_\nu}\dif \nu
 \end{align}
@@ -598,7 +598,7 @@ Dans la pratique, on fait bien souvent l'approximation que le disque est optique
 En formation planétaire, le modèle le plus utilisé est \citep{bell1994FU}. Mais dans mes études, j'ai utilisé en tout et pour
 tout 4 modèles différents \citep{bell1994FU, zhu2009nonsteady, chambers2009analytic, hure2000transition}. À noter que
 \citep{bell1994FU, zhu2009nonsteady} sont des modèles qui proposent différentes fonctions analytiques pour définir une opacité
-par morceaux. \citep{chambers2009analytic} propose un modèle très simple à opacité constante $\kappa=3$ tant que la température
+par morceaux. \citep{chambers2009analytic} propose un modèle très simple à opacité constante $\kappa=3\unit{cm^2/g}$ tant que la température
 est inférieure à $1380\unit{K}$, puis une simple loi de puissance, fonction uniquement de la température au delà. Enfin, le
 modèle dans \citep{hure2000transition} ne définit pas de fonctions par morceaux mais utilise simplement une table d'opacité
 fonction de la température et de la densité. L'avantage de ce type de méthode est qu'on ne rajoute pas d'incertitudes par des
@@ -610,7 +610,7 @@ Un point crucial dans la modélisation physique d'un disque protoplanétaire est
 
 Que l'on fasse évoluer la densité de surface ou non, on doit choisir un profil initial. Ce profil est généralement sous forme d'une loi de puissance de la forme : 
 \begin{align}
-\Sigma(R) &= \Sigma_0 \cdot \left(\frac{R}{R_0}\right)^{-\alpha}
+\Sigma(R) &= \Sigma_0 \cdot \left(\frac{R}{R_0}\right)^{-d}
 \end{align}
 
 Un profil largement utilisé est celui de la Masse Minimale de la Nébuleuse Solaire\footnote{MMSN : Minimum Mass Solar Nebulae} \citep{weidenschilling1977distribution, hayashi1981structure}. Dans cet article, le profil de densité est calculé à partir de la masse des planètes. La quantité de solide contenu dans les planètes est répartie dans des anneaux en lieu et place des planètes, puis à partir d'un rapport gaz sur poussière, le profil de densité de surface du gaz est calculé, puis approximé par une loi de puissance, ce qui donne : 
@@ -626,7 +626,7 @@ Ce profil est malgré tout une base de travail, vu qu'il est extrêmement diffic
 
 Mais on voit quand même que l'on a une grande liberté sur la densité de surface du disque, à la fois parce qu'on sait à ce jour peu de chose à ce sujet, mais aussi et surtout parce qu'au cours de son évolution, le disque de gaz va voir sa densité de surface varier énormément. En variant le profil, on étudie donc aussi différentes étapes de formation d'un même disque. 
 
-Le profil de densité de surface, que ce soit au travers de $\Sigma_0$ ou de l'indice $\alpha$ de la loi de puissance a une
+Le profil de densité de surface, que ce soit au travers de $\Sigma_0$ ou de l'indice $d$ de la loi de puissance a une
 grande influence sur les autres paramètres du disque, notamment le profil de température via le chauffage visqueux. 
 
 Il est aussi crucial de garder à l'esprit que la loi de puissance n'est qu'un modèle, issu notamment des observations qui
@@ -650,7 +650,7 @@ Je vais ici essayer de récapituler les approximations qui ont été faites jusq
 \item On suppose que les disques évoluent de manière isolée. Les études suggèrent que les étoiles se forment majoritairement dans des amas (clusters) à l'intérieur desquels la plupart des étoiles font partie de systèmes binaires ou multiples \citep{duquennoy1991multiplicity}. Même si cette approximation permet la modélisation de l'évolution du disque, il est probable que des effets de voisinages aient des conséquences dans tout ou partie des systèmes stellaires, en particulier au travers de la photo-évaporation supplémentaire induite par les étoiles du voisinage.
 \item On néglige l'auto-gravité du disque ($M_d \lesssim \frac{H}{R}M_\star$) en considérant que la période où ce n'est pas le cas est courte devant le temps de vie du disque, et que ce dernier tend rapidement vers une configuration où l'auto-gravité est négligeable.
 \item On considère que le gaz est en rotation képlerienne $\Omega=\sqrt{\frac{GM_\star}{r^3}}$. Pour cela, on néglige la pression du gaz qui a tendance à rendre la rotation légèrement sous-képlerienne.
-\item On considère qu'il n'y a pas de variation de la gravité dû à la variation de masse de l'étoile induite par l'accrétion. Ça entraîne alors $\pd{\Omega}{t} = 0$.
+\item On considère qu'il n'y a pas de variation de la gravité due à la variation de masse de l'étoile induite par l'accrétion. Ça entraîne alors $\pd{\Omega}{t} = 0$.
 \item Dans le calcul du chauffage visqueux, on néglige la vitesse azimutale, la vitesse radiale ainsi que toutes les dérivées en
 $\varphi$ compte tenu que le disque est axisymétrique.
 \item On se place dans le cadre d'un disque optiquement épais quand on choisit d'utiliser des moyennes de Rosseland pour
@@ -688,9 +688,9 @@ les ondes de densité et la planète qui les crée aboutit à un couple qui agit
 
 À chaque fois qu'il sera mentionné \og couple\fg, celui-ci fera référence au couple \emph{du} disque \emph{sur} la planète.
 
-Ainsi, si le couple est négatif (sous-entendu du disque sur la planète), le disque va prendre de l'énergie à la planète qui va ainsi migrer plus proche de son étoile, vu que son énergie cinétique diminue.\index{migration}
+Ainsi, si le couple est négatif (sous-entendu du disque sur la planète), le disque va prendre du moment cinétique à la planète qui va ainsi migrer plus proche de son étoile, vu que son moment cinétique diminue.\index{migration}
 
-Si le couple est positif, la planète migre vers l'extérieur, cette dernière prenant de l'énergie au disque.
+Si le couple est positif, la planète migre vers l'extérieur, cette dernière prenant du moment au disque.
 
 \subsubsection{Couple de Lindblad}\index{couple!de Lindblad}
 La présence d'une planète dans un disque de gaz entraine la création d'ondes de densité aux \gras[résonance!de
@@ -781,7 +781,7 @@ Le couple est ici exprimé en unité de $\Gamma_0$, couple de référence défin
 
 Notons aussi que le processus physique du transport du moment cinétique de la planète est réalisé par l'onde de densité. Le
 moment cinétique est emporté par l'onde de densité qui l'échange avec le gaz environnant à mesure que ce dernier amortit et
-dissipe l'onde.
+dissipe l'onde \citep{crida2006width}.
 
 \subsubsection{Couple co-orbital ou de corotation}\index{couple!de corotation}\label{sec:couple-corotation}
 \begin{figure}[htbp]
@@ -843,7 +843,7 @@ où $x_s$ est la demi-largeur de la zone de corotation et $\chi$ est la diffusiv
  
 $t_\text{visc}$ représente la diffusion d'une quantité physique par la viscosité. Ce temps est plus court quand on se rapproche de l'étoile. Le temps visqueux à la zone de corotation $t_\text{visc}$ est  de l'ordre de \citep{masset2001coorbital, masset2002coorbital, ogilvie2003saturation}
 \begin{align}
-\tau_\nu &\sim \frac{{x_s}^2}{\nu}
+t_\text{visc} &\sim \frac{{x_s}^2}{\nu}
 \end{align}
 
 Quand la grandeur physique considérée est la vortensité (ou vorticité spécifique), seul $t_\text{visc}$ est à prendre en compte. Quand c'est l'entropie, les deux temps $t_\text{visc}$ et $t_\text{rad}$ sont importants. \reffig*{fig:corotation_orbits} récapitule les temps mis en jeux et à quoi ils correspondent.
@@ -927,7 +927,7 @@ Quand la planète creuse un sillon et que sa masse est inférieure ou de l'ordre
 
 \bigskip
 
-Pendant que le gap dû à la planète est en train de se creuser, un mode de migration intermédiaire, appelé migration de 
+Pendant que le gap dû à la planète est en train de se creuser, un mode de migration intermédiaire apparaît, appelé migration de 
 \gras[migration!Type III]{Type III}. Dans certaines conditions, ce mode peut entrainer une migration rapide vers l'intérieur 
 \citep{masset2003runaway}. 
 
@@ -935,7 +935,7 @@ Pendant que le gap dû à la planète est en train de se creuser, un mode de mig
 %Penser aux papiers cresswell et al. 2007 et tanaka et al. 2004
 Une planète sur une orbite non-circulaire $e\neq 0$ génère des ondes supplémentaires à cause de son excentricité. De même, une orbite légèrement inclinée induit des ondes à cause de l'inclinaison $I$ de la planète. 
 
-Des calculs analytiques sur les équations linéarisées (valables quand $e$ et $I$ sont faibles $e,i \ll H/R$) montrent que les ondes dues à l'excentricité ou l'inclinaison ont tendance à amortir l'élément orbital qui est à leur origine. \cite[eqs. (45), (47)]{tanaka2004three} trouvent un amortissement exponentiel dont les temps caractéristiques sont : 
+Des calculs analytiques sur les équations linéarisées (valables quand $e$ et $I$ sont faibles $e,I \ll H/R$) montrent que les ondes dues à l'excentricité ou l'inclinaison ont tendance à amortir l'élément orbital qui est à leur origine. \cite[eqs. (45), (47)]{tanaka2004three} trouvent un amortissement exponentiel dont les temps caractéristiques sont : 
 \begin{subequations}
 \begin{align}
 \frac{\overline{\dot{e}}}{e} &= -\frac{0.780}{t_\text{wave}}\\
@@ -947,12 +947,13 @@ où le temps caractéristique de l'évolution orbitale $t_\text{wave}$ est donn�
 t_\text{wave} &= \frac{M_\star}{M_p}\frac{M_\star}{\Sigma_p a^2} \left(\frac{H}{R}\right)^4 {\Omega_p}^{-1}
 \end{align}
 
-Le temps caractéristique d'amortissement pour l'excentricité et l'inclinaison est similaire et de l'ordre de \citep{tanaka2004three} :
+D'une manière générale, le temps caractéristique d'amortissement pour l'excentricité et l'inclinaison est similaire et de l'ordre de \citep{tanaka2004three} :
 \begin{align}
-\tau_e \sim \tau_I &\sim h^2 \tau_\text{mig}
+\tau_e \sim \tau_I &\sim h^2 t_\text{mig}
 \end{align}
+où $t_\text{mig}$ est le temps caractéristique de l'évolution orbitale.
 
-Des simulations hydrodynamiques montrent que le même phénomène d'amortissement se produit pour des valeurs plus grandes de $e$ et $I$, tout en étant dans un régime différent que celui à faibles valeurs ($e,i \ll H/R$) \citep{cresswell2007evolution}. On explique cela pour l'inclinaison par le fait qu'à grande inclinaison, la planète peut sortir du disque est ressentir un amortissement réduit. Pour l'excentricité quant à elle, on invoque le fait que durant son orbite la planète va voir sa vitesse varier par rapport à celle du disque de gaz \citep{papaloizou2000orbital}.
+Des simulations hydrodynamiques montrent que le même phénomène d'amortissement se produit pour des valeurs plus grandes de $e$ et $I$, tout en étant dans un régime différent que celui à faibles valeurs ($e,I \ll H/R$) \citep{cresswell2007evolution}. On explique cela pour l'inclinaison par le fait qu'à grande inclinaison, la planète peut sortir du disque est ressentir un amortissement réduit. Pour l'excentricité quant à elle, on invoque le fait que durant son orbite la planète va voir sa vitesse varier par rapport à celle du disque de gaz \citep{papaloizou2000orbital}.
 
 \subsection{L'accrétion du gaz}\label{sec:accretion_coeur}\index{accrétion de gaz}
 Dans le modèle d'accrétion de cœur, les planètes géantes sont d'abord des cœurs rocheux (ou noyaux) qui grossissent jusqu'à 
@@ -973,11 +974,11 @@ ne rajoutant qu'environ 50\% de masse en plus \citep{lodders2003solar}.\index{li
 \bigskip
 
 L'accrétion de gaz va peu à peu changer le régime de migration d'une planète. Par migration de \gras[migration!Type I]{Type 
-I}, la vitesse de migration est proportionnelle à la masse. Quand la planète devient suffisamment massive pour creuser une 
-cavité et migrer par migration de \gras[migration!Type II]{Type II}, la vitesse de migration est gouvernée par la dérive 
+I}, la vitesse de migration est proportionnelle à la masse. Quand la planète devient suffisamment massive pour creuser un 
+sillon et migrer par migration de \gras[migration!Type II]{Type II}, la vitesse de migration est gouvernée par la dérive 
 radiale du disque de gaz. Enfin, quand la masse de la planète devient comparable à celle du disque, l'inertie de la planète 
 commence à jouer un rôle dans sa migration et retarder les variations de migration, normalement gouvernée par l'évolution du 
-disque de gaz.
+disque de gaz \citep{crida2007cavity}.
 
 \subsection{Récapitulatif des interactions dans le code N-corps}
 Numériquement, le couple de la migration de Type I est pris en compte en utilisant les formules semi-analytiques développées par \cite{paardekooper2011torque}. 

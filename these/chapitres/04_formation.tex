@@ -164,9 +164,9 @@ De plus, les résonances de degré élevé sont favorisées. En effet, les pertu
 figure/number_effect/N_15.pdf}}\hfill
 \subfloat[$N\simeq 30$]{\includegraphics[width=0.49\textwidth]{figure/number_effect/N_30.pdf}}
 
-\subfloat[$N\simeq 60$]{\label{fig:mass_effect}\includegraphics[width=0.49\textwidth]{%
+\subfloat[$N\simeq 60$]{\includegraphics[width=0.49\textwidth]{%
 figure/number_effect/N_60.pdf}}\hfill
-\subfloat[Histogramme des masses]{\includegraphics[width=0.49\textwidth]{figure/number_effect/number_effect_on_max_mass.pdf}}
+\subfloat[Histogramme des masses]{\label{fig:mass_effect}                                              \includegraphics[width=0.49\textwidth]{figure/number_effect/number_effect_on_max_mass.pdf}}
 
 \caption[Effet du nombre d'embryons initial sur les propriétés statistiques des systèmes formés.]{Évolution des rapports de
 période orbitale et masses dans 100 systèmes planétaires où la masse totale est de $60\mearth$ mais où le nombre total
@@ -299,9 +299,9 @@ Nous supposons que le disque possède le profil de densité de surface suivant :
 \end{align}
 Ce profil est alors utilisé dans le calcul de $\Gamma_0$ et de l'amortissement induit par le disque sur $e$ et $I$.
 
-Pour implémenter la migration induite par le couple du disque $\Gamma$, on note que $\Gamma=\od{J}{t}$, et on définit une accélération de migration $a_m$ telle que\citep[eq. (14)]{cresswell2008three} :
+Pour implémenter la migration induite par le couple du disque $\Gamma$, on note que $\Gamma=\od{J}{t}$, et on définit une accélération de migration $a_m$ telle que :
 \begin{align}
-a_m &= - \frac{v}{t_\text{mig}}
+a_m &= - \frac{v}{2 t_\text{mig}}
 \end{align}
 où $v$ est la vitesse de la planète et $t_\text{mig}=-J/\od{J}{t}$ le temps de migration ($J$ est le moment cinétique).
 
@@ -702,8 +702,7 @@ résonance, d'une population de planètes peu massives à des positions où elle
 
 Enfin, nous avons une population de planètes qui ont été expulsées du disque en deçà du bord interne. Elles sont sur les orbites
 les plus internes. Leur excentricité et inclinaison n'est plus amortie par le disque, et elles ne ressentent pas non plus de
-couple de migration de ce dernier. Une fois sorties du disque, les planètes peuvent continuer à migrer vers l'intérieur du
-disque via des résonances avec des planètes qui elles sont encore dans le disque. 
+couple de migration de ce dernier. Une fois sorties du disque, les planètes peuvent continuer à migrer vers l'intérieur via des résonances avec des planètes qui elles sont encore dans le disque. 
 
 \subsubsection{Influence des paramètres initiaux}
 \begin{figure}[htbp]

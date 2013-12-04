@@ -125,10 +125,10 @@ tous les profils est identique pour une même simulation. Typiquement le nombre 
 pas régulièrement espacés, le nombre est plus important au bord interne de sorte que l'espacement $\Delta X$ entre les points
 est constant, où $X$ est défini comme : 
 \begin{align}
-X = 2\sqrt{R}
+X = \log{R}
 \end{align}
 
-Dans la mesure du possible, les quantités du disque ont été calculées de manière consistante. Je vais présenter dans la suite de manière chronologique comment sont calculées les grandeurs physiques du disque.
+Dans la mesure du possible, les quantités du disque ont été calculées de manière cohérente. Je vais présenter dans la suite de manière chronologique comment sont calculées les grandeurs physiques du disque.
 
 \subsection{Profil de densité de surface}
 Le profil de densité de surface est défini au début de la simulation comme une loi de puissance de la forme :
@@ -204,16 +204,16 @@ Il y a aussi une erreur dans l'équation (35) car le disque se refroidit par la 
 
 Les formules nous donnent alors un couple exercé par le disque sur la planète. 
 
-À partir de ce couple, on définit un temps de migration $t_\text{mig}$ comme : 
+À partir de ce couple, on définit un temps de migration $t_\text{mig}=r_p / (-\dot{r}_p)$ comme \citep[eq. 
+(69)]{tanaka2002three}: 
 \begin{align}
-t_\text{mig} &= -\frac{J}{\Gamma}
+t_\text{mig} &= -\frac{J}{2\Gamma}
 \end{align}
 où $J$ est le moment cinétique total de la planète et $\Gamma=\dot{J}$ est le couple total exercé par le disque sur la planète.
 
-L'accélération due à la migration $\vect{a_\text{mig}}$ est alors donnée par\citep[eq. 
-(14)]{cresswell2008three} :
+L'accélération due à la migration $\vect{a_\text{mig}}$ est alors donnée par :
 \begin{align}
-\vect{a_\text{mig}} &= -\frac{\vect{v}}{t_\text{mig}}
+\vect{a_\text{mig}} &= -\frac{\vect{v}}{2 t_\text{mig}}
 \end{align}
 où $\vect{v}$ est la vitesse instantanée de la planète.
 

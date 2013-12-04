@@ -3,24 +3,23 @@ Durant ma thèse, j'ai été amené à redémontrer l'équation régissant l'év
 
 \bigskip
 
-On cherche à faire le bilan de moment cinétique sur l'anneau décrit \reffig{fig:disk_ring}. Son moment cinétique est défini par :
+On cherche à faire le bilan de moment cinétique sur l'anneau décrit \reffig{fig:disk_ring}. Son moment cinétique est défini par l'intégrale du moment cinétique d'une cellule infiniment mince azimutalement :
 \begin{align}
-\vect{J_a} &= \vect{R} \wedge (m_a\vect{v(R)}) \nonumber\\
-&= m_a \cdot R \cdot R\Omega(R)\hat{e}_z\nonumber\\
-&= 2\pi R \Delta R \Sigma(R)\cdot R \cdot R\Omega(R)\hat{e}_z\nonumber\\
+\vect{J_a} &= \int_\theta \vect{R} \wedge \vect{v} \dif m\nonumber\\
+&= \int_\theta \left[R \cdot R\Omega(R)\hat{e}_z\right] (R \Delta R \Sigma(R) \dif \theta) \nonumber\\
 \vect{J_a} &= 2\pi R^3 \Delta R \Sigma(R)\Omega(R)\hat{e}_z\label{eq:J_a2}
 \end{align}
-où $\Sigma$ et $\Omega$ sont la densité de surface et la vitesse angulaire du gaz à la position $R$ dans le disque. $\Delta R$ est l'épaisseur de l'anneau, $m_a$ sa masse et $\vect{v}$ sa vitesse.
+où $\Sigma$ et $\Omega$ sont la densité de surface et la vitesse angulaire du gaz à la position $R$ dans le disque. $\Delta R$ est l'épaisseur de l'anneau, $m_a$ sa masse et $\vect{v}$ la vitesse du gaz dans l'anneau (que l'on considère uniforme dans tout l'anneau.
 
 Le flux de moment cinétique est simplement défini comme la quantité de moment cinétique emportée ou apportée par le flux de masse défini précédemment \refeq{eq:dif_F_M} :
 \begin{subequations}
 \begin{align}
-\dif J(R) &= \vect{R} \wedge \left(\dif F_M(R) \vect{v}(R)\right)\nonumber\\
+\dif F_J(R) &= \vect{R} \wedge \left(\dif F_M(R) \vect{v}(R)\right)\nonumber\\
  &= \dif F_M(R) \cdot R^2\Omega(R)\hat{e}_z\nonumber\\
-\dif J(R) &= 2\pi v_r(R) \Sigma(R)\cdot R^3\Omega(R)\hat{e}_z\label{eq:dJ_in2}\\
-\dif J(R+\Delta R) &= \vect{R+\Delta R} \wedge \left(\dif M(R+\Delta R) \vect{v}(R+\Delta R)\right)\nonumber\\
+\dif F_J(R) &= 2\pi v_r(R) \Sigma(R)\cdot R^3\Omega(R)\hat{e}_z\label{eq:dJ_in2}\\
+\dif F_J(R+\Delta R) &= \vect{R+\Delta R} \wedge \left(\dif M(R+\Delta R) \vect{v}(R+\Delta R)\right)\nonumber\\
  &= \dif F_M(R+\Delta R) \cdot \left(R+\Delta R\right)^2\Omega(R+\Delta R)\hat{e}_z\nonumber\\
-\dif J(R+\Delta R) &= -2\pi v_r(R+\Delta R) \Sigma(R+\Delta R)\cdot \left(R+\Delta R\right)^3\Omega(R+\Delta R)\hat{e}_z\label{eq:dJ_out2}
+\dif F_J(R+\Delta R) &= -2\pi v_r(R+\Delta R) \Sigma(R+\Delta R)\cdot \left(R+\Delta R\right)^3\Omega(R+\Delta R)\hat{e}_z\label{eq:dJ_out2}
 \end{align}\label{eq:dJ2}
 \end{subequations}
 
@@ -44,10 +43,10 @@ La force visqueuse par unité de longueur est définie par :
 La force visqueuse induite par les anneaux entourant l'anneau considéré est alors : 
 \begin{subequations}
 \begin{align}
-\vect{F_\text{in}}(R) &= 2\pi R \times \dif F_\text{vis}(R) \nonumber\\
-\vect{F_\text{in}}(R)&= 2\pi\nu \Sigma R^2 \dod{\Omega}{R}(R) \hat{e}_\theta\\
-\vect{F_\text{out}}(R+\Delta R) &= 2\pi (R+\Delta R) \times \dif F_\text{vis}(R+\Delta R) \nonumber\\
-\vect{F_\text{out}}(R+\Delta R)&= 2\pi\nu \Sigma (R+\Delta R)^2 \dod{\Omega}{R}(R+\Delta R) \cdot \hat{e}_\theta
+\vect{F_\text{in}}(R, \theta) &= \int_\theta \dif F_\text{vis}(R) \times R\dif \theta \nonumber\\
+\vect{F_\text{in}}(R, \theta)&= \int_\theta \nu \Sigma R^2 \dod{\Omega}{R}(R) \dif \theta\hat{e}_\theta\\
+\vect{F_\text{out}}(R+\Delta R, \theta) &= \int_\theta  \dif F_\text{vis}(R+\Delta R) \times (R+\Delta R)\dif \theta\nonumber\\
+\vect{F_\text{out}}(R+\Delta R, \theta)&= \int_\theta \nu \Sigma (R+\Delta R)^2 \dod{\Omega}{R}(R+\Delta R) \dif \theta \hat{e}_\theta
 \end{align}
 \end{subequations}
 L'anneau interne tournant plus vite, la force est dirigée dans le sens de rotation $\hat{e}_\theta$. À l'inverse, l'anneau externe tourne moins vite, il tend à freiner l'anneau de référence et s'oppose à son mouvement. La force est donc opposée au sens de rotation.
@@ -57,10 +56,10 @@ L'anneau interne tournant plus vite, la force est dirigée dans le sens de rotat
 Ainsi, le couple $\vect{\Gamma}=\vect{R}\wedge\vect{F}$ issu de chacun des anneaux entourant celui de référence s'écrit :
 \begin{subequations}
 \begin{align}
-\vect{\Gamma_\text{in}} &= R\hat{e}_r\wedge\vect{F_\text{in}}\nonumber\\
-\vect{\Gamma_\text{in}} &= 2\pi\nu \Sigma R^3 \dod{\Omega}{R}(R) \hat{e}_z\label{eq:G_in2}\\
-\vect{\Gamma_\text{out}} &= (R+\Delta R)\hat{e}_r\wedge\vect{F_\text{out}}\nonumber\\
-\vect{\Gamma_\text{out}} &= 2\pi\nu \Sigma (R+\Delta R)^3 \dod{\Omega}{R}(R+\Delta R) \hat{e}_z\label{eq:G_out2}
+\vect{\Gamma_\text{in}}(R) &= \int_\theta R\hat{e}_r\wedge\vect{F_\text{in}}(R, \theta)\nonumber\\
+\vect{\Gamma_\text{in}}(R) &= 2\pi\nu \Sigma R^3 \dod{\Omega}{R}(R) \hat{e}_z\label{eq:G_in2}\\
+\vect{\Gamma_\text{out}}(R+\Delta R) &= \int_\theta  (R+\Delta R)\hat{e}_r\wedge\vect{F_\text{out}}(R+\Delta R, \theta)\nonumber\\
+\vect{\Gamma_\text{out}}(R+\Delta R) &= 2\pi\nu \Sigma (R+\Delta R)^3 \dod{\Omega}{R}(R+\Delta R) \hat{e}_z\label{eq:G_out2}
 \end{align}\label{eq:J_torques2}
 \end{subequations}
 
@@ -68,7 +67,7 @@ Ainsi, le couple $\vect{\Gamma}=\vect{R}\wedge\vect{F}$ issu de chacun des annea
 
 On fait maintenant un bilan des variations de moment cinétique pour l'anneau de gaz. Pour cela on dit que la variation de moment cinétique (que l'on écrit en dérivant $J_a(t)$) est égale aux variations de moment cinétique induites aux bords de l'anneau par échange de masse à laquelle s'ajoute la différence entre les deux couples visqueux qui s'appliquent au bord externe et interne. Ce qui donne : 
 \begin{align}
-\dod{J_a}{t} &= \dif J(R+\Delta R) + \dif J(R) + \Gamma_\text{out} - \Gamma_\text{in}\label{eq:cons_J_a2}
+\dod{J_a}{t} &= \dif F_J(R+\Delta R) + \dif F_J(R) + \Gamma_\text{out} - \Gamma_\text{in}\label{eq:cons_J_a2}
 \end{align}
 
 En utilisant \refeq{eq:J_a2}, \refeq{eq:dJ2}, \refeq{eq:J_torques2}, dans \refeq{eq:cons_J_a2}
@@ -82,7 +81,7 @@ En utilisant \refeq{eq:J_a2}, \refeq{eq:dJ2}, \refeq{eq:J_torques2}, dans \refeq
 
 
 
-On fait tendre $\Delta R$ vers 0, et de manière similaire au bilan de masse obtenu précédemment, il vient alors 
+On divise par $\Delta R$, puis on fait tendre $\Delta R$ vers 0, et de manière similaire au bilan de masse obtenu précédemment, il vient alors 
 \begin{align*}
 \dpd{}{t}\left(R^3 \Sigma\Omega\right) &= -\dpd{}{R}\left(R^3 v_R \Sigma \Omega\right) + \dpd{}{R}\left(\nu \Sigma R^3 \dod{\Omega}{R}\right)\\
 \intertext{$R$ et $t$ sont des variables indépendantes, on peut donc sortir $R$ de la dérivée partielle temporelle afin de faire apparaître une forme qui fait penser à une équation de continuité.}

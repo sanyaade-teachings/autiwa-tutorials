@@ -19,22 +19,15 @@
   <defs
      id="defs4">
     <linearGradient
-       id="linearGradient4175">
-      <stop
-         style="stop-color:#ffff00;stop-opacity:1;"
-         offset="0"
-         id="stop4177" />
-      <stop
-         style="stop-color:#ff8200;stop-opacity:1;"
-         offset="1"
-         id="stop4179" />
-    </linearGradient>
-    <linearGradient
        id="linearGradient3844">
       <stop
-         style="stop-color:#ff0000;stop-opacity:0.94117647;"
+         style="stop-color:#0000ff;stop-opacity:1;"
          offset="0"
          id="stop3846" />
+      <stop
+         id="stop6922"
+         offset="0.50847751"
+         style="stop-color:#ff0000;stop-opacity:1;" />
       <stop
          style="stop-color:#0000ff;stop-opacity:1;"
          offset="1"
@@ -69,48 +62,38 @@
          inkscape:connector-curvature="0" />
     </marker>
     <linearGradient
-       id="linearGradient5819">
+       id="linearGradient4033">
       <stop
-         id="stop5821"
+         id="stop4035"
          offset="0"
-         style="stop-color:#ff0000;stop-opacity:1;" />
+         style="stop-color:#ffff00;stop-opacity:1;" />
       <stop
-         id="stop5823"
+         id="stop4037"
          offset="1"
-         style="stop-color:#0000ff;stop-opacity:1;" />
+         style="stop-color:#ff8800;stop-opacity:1;" />
     </linearGradient>
-    <linearGradient
+    <radialGradient
        inkscape:collect="always"
-       xlink:href="#linearGradient5819"
-       id="linearGradient4810"
+       xlink:href="#linearGradient4033"
+       id="radialGradient3980"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(-336.4687,863.60453)"
-       x1="555.71429"
-       y1="19.505039"
-       x2="555.71429"
-       y2="149.50504" />
+       gradientTransform="matrix(1.3296497,0,0,1.3296497,-93.074866,-123.75106)"
+       cx="282.34476"
+       cy="375.4017"
+       fx="282.34476"
+       fy="375.4017"
+       r="35.820995" />
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient3844"
-       id="linearGradient4155"
+       id="linearGradient7086"
        gradientUnits="userSpaceOnUse"
-       spreadMethod="reflect"
-       x1="-111.24712"
-       y1="68.237038"
-       x2="-111.24712"
-       y2="-37.495876"
-       gradientTransform="translate(-134.81338,-311.98002)" />
-    <radialGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient4175"
-       id="radialGradient4737"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1,0,0,0.95162737,0,23.678099)"
-       cx="425.27423"
-       cy="489.49371"
-       fx="425.27423"
-       fy="489.49371"
-       r="42.869476" />
+       gradientTransform="translate(-134.81338,-311.98002)"
+       spreadMethod="pad"
+       x1="386.56805"
+       y1="483.1358"
+       x2="386.56805"
+       y2="277.29831" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -119,9 +102,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.47737733"
-     inkscape:cx="545.06579"
-     inkscape:cy="578.75472"
+     inkscape:zoom="0.43381316"
+     inkscape:cx="130.97142"
+     inkscape:cy="543.49697"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -135,7 +118,8 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:object-paths="true" />
+     inkscape:object-paths="true"
+     inkscape:snap-global="true" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -144,7 +128,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -171,7 +155,7 @@
       <path
          sodipodi:nodetypes="ccccc"
          id="path4492"
-         style="fill:url(#linearGradient4155);fill-opacity:1;stroke:#000000"
+         style="fill:url(#linearGradient7086);fill-opacity:1;stroke:#000000"
          d="M 251.75466,-34.6817 C 148.31682,21.88911 22.50352,47.69364 -111.24712,62.58434 l 0,11.30539 c 133.75064,14.8907 259.56394,40.69523 363.00178,97.26604 z"
          inkscape:connector-curvature="0" />
       <path
@@ -179,23 +163,6 @@
          id="path5088"
          d="m -161.3627,-175.2241 0,487.90368"
          style="fill:#ffff00;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:8, 2, 1, 2;stroke-dashoffset:0" />
-      <path
-         transform="translate(-586.63693,-421.25666)"
-         inkscape:transform-center-y="-4.2541372"
-         d="m 425.27423,449.19793 10.24241,30.45243 32.12707,0.3308 -25.79691,19.15143 9.61321,30.65687 -26.18578,-18.61619 -26.18578,18.61619 9.61321,-30.65687 -25.79691,-19.15144 32.12707,-0.33079 z"
-         inkscape:randomized="0"
-         inkscape:rounded="0"
-         inkscape:flatsided="false"
-         sodipodi:arg2="-0.9424778"
-         sodipodi:arg1="-1.5707963"
-         sodipodi:r2="17.425434"
-         sodipodi:r1="44.549904"
-         sodipodi:cy="493.74783"
-         sodipodi:cx="425.27423"
-         sodipodi:sides="5"
-         id="path5065"
-         style="fill:url(#radialGradient4737);fill-opacity:1;fill-rule:evenodd;stroke:#000000"
-         sodipodi:type="star" />
       <path
          sodipodi:open="true"
          sodipodi:end="8.7534701"
@@ -209,6 +176,108 @@
          id="path5090"
          style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#Arrow1Lend)"
          sodipodi:type="arc" />
+      <g
+         transform="matrix(0.64730497,0,0,0.64730497,-348.34363,-185.64785)"
+         id="layer1-0"
+         inkscape:label="Calque 1">
+        <path
+           transform="translate(6.5158829,23.388712)"
+           d="m 317.91575,375.4017 c 0,19.64532 -15.92567,35.571 -35.57099,35.571 -19.64532,0 -35.571,-15.92568 -35.571,-35.571 0,-19.64532 15.92568,-35.57099 35.571,-35.57099 19.64532,0 35.57099,15.92567 35.57099,35.57099 z"
+           sodipodi:ry="35.570995"
+           sodipodi:rx="35.570995"
+           sodipodi:cy="375.4017"
+           sodipodi:cx="282.34476"
+           id="path3108"
+           style="fill:url(#radialGradient3980);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           sodipodi:type="arc" />
+        <path
+           inkscape:tile-y0="345.59409"
+           inkscape:tile-x0="282.96551"
+           inkscape:tile-h="14.92895"
+           inkscape:tile-w="11.79025"
+           inkscape:tile-cy="398.79042"
+           inkscape:tile-cx="288.86064"
+           inkscape:transform-center-y="-60.178641"
+           sodipodi:nodetypes="ccczc"
+           inkscape:connector-curvature="0"
+           d="m 296.61805,356.94694 c -3.84599,-3.84599 -5.87757,-9.05331 -7.7574,-16.06893 -1.92774,7.19443 -4.1359,12.44742 -7.75741,16.06893 4.74917,1.25562 4.3592,3.57611 7.75741,3.57611 3.39821,0 3.00823,-2.32049 7.7574,-3.57611 z"
+           style="fill:#ffac00;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="path3120" />
+        <use
+           height="1052.3622"
+           width="744.09448"
+           inkscape:transform-center-y="-31.21388"
+           inkscape:transform-center-x="-31.213884"
+           id="use4075"
+           transform="matrix(0.70710678,0.70710678,-0.70710678,0.70710678,366.59273,-87.452306)"
+           xlink:href="#path3120"
+           inkscape:tiled-clone-of="#path3120"
+           y="0"
+           x="0" />
+        <use
+           height="1052.3622"
+           width="744.09448"
+           inkscape:transform-center-x="-45.73185"
+           id="use4077"
+           transform="matrix(0,1,-1,0,687.65105,109.92978)"
+           xlink:href="#path3120"
+           inkscape:tiled-clone-of="#path3120"
+           y="0"
+           x="0" />
+        <use
+           height="1052.3622"
+           width="744.09448"
+           inkscape:transform-center-y="31.213884"
+           inkscape:transform-center-x="-31.213884"
+           id="use4079"
+           transform="matrix(-0.70710678,0.70710678,-0.70710678,-0.70710678,775.10336,476.52251)"
+           xlink:href="#path3120"
+           inkscape:tiled-clone-of="#path3120"
+           y="0"
+           x="0" />
+        <use
+           height="1052.3622"
+           width="744.09448"
+           inkscape:transform-center-y="45.73185"
+           id="use4081"
+           transform="matrix(-1,0,0,-1,577.72127,797.58083)"
+           xlink:href="#path3120"
+           inkscape:tiled-clone-of="#path3120"
+           y="0"
+           x="0" />
+        <use
+           height="1052.3622"
+           width="744.09448"
+           inkscape:transform-center-y="31.213884"
+           inkscape:transform-center-x="31.213884"
+           id="use4083"
+           transform="matrix(-0.70710678,-0.70710678,0.70710678,-0.70710678,211.12854,885.03314)"
+           xlink:href="#path3120"
+           inkscape:tiled-clone-of="#path3120"
+           y="0"
+           x="0" />
+        <use
+           height="1052.3622"
+           width="744.09448"
+           inkscape:transform-center-x="45.73185"
+           id="use4085"
+           transform="matrix(0,-1,1,0,-109.92978,687.65105)"
+           xlink:href="#path3120"
+           inkscape:tiled-clone-of="#path3120"
+           y="0"
+           x="0" />
+        <use
+           height="1052.3622"
+           width="744.09448"
+           inkscape:transform-center-y="-31.213884"
+           inkscape:transform-center-x="31.213884"
+           id="use4087"
+           transform="matrix(0.70710678,-0.70710678,0.70710678,0.70710678,-197.38209,321.05832)"
+           xlink:href="#path3120"
+           inkscape:tiled-clone-of="#path3120"
+           y="0"
+           x="0" />
+      </g>
     </g>
     <text
        xml:space="preserve"
