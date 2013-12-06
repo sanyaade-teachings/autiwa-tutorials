@@ -211,10 +211,54 @@ t_\text{mig} &= -\frac{J}{2\Gamma}
 \end{align}
 où $J$ est le moment cinétique total de la planète et $\Gamma=\dot{J}$ est le couple total exercé par le disque sur la planète.
 
-L'accélération due à la migration $\vect{a_\text{mig}}$ est alors donnée par :
+\bigskip
+
+On cherche maintenant à trouver une expression de l'accélération spécifique due à la migration $\vect{a_\text{mig}}$ qui va être sous la forme : 
+\begin{align*}
+\vect{a_\text{mig}} &= -\frac{\vect{v}}{\tau}
+\end{align*}
+où $\tau$ est le facteur que l'on cherche.
+
+On écrit alors la somme des forces par unité de masse : 
+\begin{align*}
+\vect{a} &= \vect{F_g} + \vect{F_\text{mig}}\\
+\vect{a} &= -\frac{GM}{r^2}\hat{e}_r - \frac{\vect{v}}{\tau}
+\end{align*}
+On projette cette équation en coordonnées cylindriques (ce qui revient à décomposer la vitesse et l'accélération en cylindrique) :
+\begin{subequations}
+\begin{align}
+\ddot{r} - r\dot{\theta}^2 &= -\frac{GM}{r^2} -\frac{\dot{r}}{\tau}\\
+r\ddot{\theta} + 2 \dot{r}\dot{\theta} &= - \frac{r\dot{\theta}}{\tau}\label{eq:mig_proj_theta}
+\end{align}
+\end{subequations}
+
+Le moment cinétique vaut : 
+\begin{align*}
+\vect{J} &= \vect{r} \wedge \vect{v} = r \hat{e}_r \wedge \left( \dot{r}\hat{e}_r + r\dot{\theta}\hat{e}_\theta\right)\nonumber\\
+\vect{J} &= r^2\dot{\theta}\hat{e}_z
+\end{align*}
+
+La dérivée de la norme du moment cinétique vaut :
+\begin{align*}
+\od{\norm{\vect{J}}}{t} &= r\ddot{\theta} + 2 \dot{r}\dot{\theta}
+\end{align*}
+
+On fait apparaître la norme du moment cinétique et de sa dérivée dans \refeq{eq:mig_proj_theta} en multipliant tout par $r$ : 
+\begin{align*}
+\dot{J} &= - \frac{J}{\tau}\nonumber\\
+\tau &= - \frac{J}{\dot{J}}
+\end{align*}
+On utilise alors la définition de $t_\text{mig}$ pour obtenir :
+\begin{align*}
+\tau &= 2 t_\text{mig}
+\end{align*}
+
+On a ainsi
+\begin{important}
 \begin{align}
 \vect{a_\text{mig}} &= -\frac{\vect{v}}{2 t_\text{mig}}
 \end{align}
+\end{important}
 où $\vect{v}$ est la vitesse instantanée de la planète.
 
 \section{Amortissement de e et I}
@@ -225,6 +269,14 @@ dans le code via les formules de \cite[eq. (9), (11) et (12)]{cresswell2008three
 t_e &= \frac{t_\text{wave}}{0.780}\left[1-0.14\left(\frac{e}{H/r}\right)^2 + 0.06 \left(\frac{e}{H/r}\right)^3 + 0.18\left(\frac{e}{H/r}\right)\left(\frac{I}{H/r}\right)^2\right]\\
 t_I &= \frac{t_\text{wave}}{0.544}\left[1-0.30\left(\frac{I}{H/r}\right)^2 + 0.24 \left(\frac{I}{H/r}\right)^3 + 0.14\left(\frac{e}{H/r}\right)^2\left(\frac{I}{H/r}\right)\right]\\
 t_\text{wave} &= \frac{M_\star}{m_p}\frac{M_\star}{\Sigma_p {a_p}^2}\left(\frac{H}{r}\right)^4{\Omega_p}^{-1}
+\end{align}
+\end{subequations}
+
+Les accélérations spécifiques dues à l'excentricité  et l'inclinaison sont définies par \citep[eq. (15) et (16)]{cresswell2008three} : 
+\begin{subequations}
+\begin{align}
+\vect{a_e} &= -2 \frac{(\vect{v}.\vect{r})}{r^2 t_e}\vect{r}\\
+\vect{a_i} &= - \frac{\vect{v_z}}{t_i}\hat{e}_z
 \end{align}
 \end{subequations}
 

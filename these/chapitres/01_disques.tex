@@ -230,7 +230,7 @@ La force visqueuse induite par les anneaux entourant l'anneau considéré est al
 \begin{subequations}
 \begin{align}
 \vect{F_\text{in}}(R)&= 2\pi\nu \Sigma R^2 \dod{\Omega}{r}(R) \hat{e}_\theta\\
-\vect{F_\text{out}}(R+\Delta R)&= 2\pi\nu \Sigma (R+\Delta R)^2 \dod{\Omega}{r}(R+\Delta R) \cdot \hat{e}_\theta
+\vect{F_\text{out}}(R+\Delta R)&= 2\pi\nu \Sigma (R+\Delta R)^2 \dod{\Omega}{r}(R+\Delta R) \cdot (-\hat{e}_\theta)
 \end{align}
 \end{subequations}
 L'anneau interne tournant plus vite, la force est dirigée dans le sens de rotation $\hat{e}_\theta$. À l'inverse, l'anneau externe tourne moins vite, il tend à freiner l'anneau de référence et s'oppose à son mouvement. La force est donc opposée au sens de rotation.
@@ -241,7 +241,7 @@ Ainsi, le couple $\vect{\Gamma}=\vect{R}\wedge\vect{F}$ issu de chacun des annea
 \begin{subequations}
 \begin{align}
 \vect{\Gamma_\text{in}} &= 2\pi\nu \Sigma R^3 \dod{\Omega}{R}(R) \hat{e}_z\label{eq:G_in}\\
-\vect{\Gamma_\text{out}} &= 2\pi\nu \Sigma (R+\Delta R)^3 \dod{\Omega}{R}(R+\Delta R) \hat{e}_z\label{eq:G_out}
+\vect{\Gamma_\text{out}} &= -2\pi\nu \Sigma (R+\Delta R)^3 \dod{\Omega}{R}(R+\Delta R) \hat{e}_z\label{eq:G_out}
 \end{align}\label{eq:J_torques}
 \end{subequations}
 
@@ -255,7 +255,7 @@ En utilisant \refeq{eq:J_a}, \refeq{eq:dJ}, \refeq{eq:J_torques}, dans \refeq{eq
 Dans le cas d'un disque képlerien ($\Omega = \sqrt{\frac{GM}{R^3}}$) on obtient finalement :
 \begin{important}
 \begin{align}
-\dpd{\Sigma}{t} &=\frac{3}{R}\dpd{}{R}\left[\sqrt{R} \dpd{}{R}\left(\nu \Sigma R^\sfrac{1}{2}\right)\right]
+\dpd{\Sigma}{t} &=\frac{3}{R}\dpd{}{R}\left[\sqrt{R} \dpd{}{R}\left(\nu \Sigma R^\sfrac{1}{2}\right)\right]\label{eq:diffusion_equation}
 \end{align}
 \end{important}
 
@@ -623,6 +623,37 @@ improbable, que ce soit à cause notamment de l'accrétion sur l'étoile ou de l
 tombant dans l'étoile, soit par éjection du système.
 
 Ce profil est malgré tout une base de travail, vu qu'il est extrêmement difficile de déduire ces informations des observations des disques. Malgré tout, les études semblent montrer que l'on s'attend à un profil moins abrupt que $\Sigma\propto r^{-\sfrac{3}{2}}$, plus proche de $\Sigma\propto r^{-1}$ \citep{bell1997structure}.
+
+%TODO rajouter discussion profils à l'équilibre. 
+À partir de l'équation \refeq{eq:diffusion_equation}, on peut considérer le cas particulier des disques à l'équilibre, c'est à dire que $\od{\Sigma}{t}=0$. Ces disques sont alors des disques avec un taux d'accrétion constant $\dot{M}=0$. 
+
+Ces disques à l'équilibre ont deux solutions possibles. Soit on a :
+\begin{align*}
+\sqrt{R} \dpd{}{R}\left(\nu \Sigma R^\sfrac{1}{2}\right) &= 0
+\end{align*}
+ce qui donne comme condition :
+\begin{align}
+\nu \Sigma &= \cte
+\end{align}
+Le taux d'accrétion, défini comme $\dot{M}=3\pi\nu\Sigma$ est alors constant $\dot{M}=\cte$. 
+
+Soit on a :
+\begin{align*}
+\nu \Sigma R^\sfrac{1}{2} &= \cte
+\end{align*}
+ce qui donne : 
+\begin{align}
+\nu\Sigma &\propto \inv{\sqrt{R}}
+\end{align}
+Ce qui donne un taux d'accrétion $\dot{M}\propto\inv{\sqrt{R}}$. 
+
+Les deux modèles possibles pour la viscosité, viscosité constante $\nu=\cte$ ou viscosité alpha $\alpha=\cte$ donnent donc 4 solutions différentes (deux chacune) pour les disques à l'équilibre. 
+
+Dans le cas d'une viscosité constante, on a donc un disque avec une densité de surface $\Sigma(R)=\cte$ pour un taux d'accrétion constant, ou $\Sigma(R)\propto R^{-\sfrac12}$ pour avoir $\dot{M}\propto\inv{\sqrt{R}}$.
+
+Dans le cas d'une viscosité alpha, on a $\nu\propto R^{\sfrac12}$. Les deux solutions pour avoir un disque à l'équilibre sont donc $\Sigma(R)\propto R^{-\sfrac12}$ et $\Sigma(R)\propto R^{-1}$. 
+
+En conséquence, un profil $\Sigma(R)\propto R^{-\sfrac12}$ donne un disque à l'équilibre pour les deux modèles de viscosité que j'ai étudié. C'est donc le profil de densité de surface que j'ai privilégié tout au long de ma thèse. 
 
 Mais on voit quand même que l'on a une grande liberté sur la densité de surface du disque, à la fois parce qu'on sait à ce jour peu de chose à ce sujet, mais aussi et surtout parce qu'au cours de son évolution, le disque de gaz va voir sa densité de surface varier énormément. En variant le profil, on étudie donc aussi différentes étapes de formation d'un même disque. 
 
