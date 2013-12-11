@@ -1231,6 +1231,19 @@ ls -l *.f90| grep "10:10"
 \end{verbatim}
 permet de lister les fichiers ayant l'extension \textbf{.f90} et dont la ligne contient l'expression \texttt{10:10}. Dans la pratique, ça affichera les fichiers dont la dernière modification s'est faite à 10h10. 
 
+\subsubsection{Simuler une entrée clavier}
+Pour entrer "yes" puis appuyer sur entrée dans un script script.sh, de manière automatique, on peut faire : 
+\begin{verbatim}
+echo -e "yes\n"|script.sh
+\end{verbatim}
+
+\begin{remarque}
+On peut aussi faire plusieurs entrées clavier, sachant qu'un \verb|\n| simule une frappe sur entrée, et que ça termine normalement une session d'input.
+
+\begin{verbatim}
+echo -e "yes\nno\nyes\n"|script.sh
+\end{verbatim}
+\end{remarque}
 
 \subsubsection{\&\&}
 \verb|commande1 && commande2| permet d'exécuter \texttt{commande1}, puis exécuter \texttt{commande2} si \texttt{commande1} s'est exécutée sans retourner d'erreur.
