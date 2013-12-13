@@ -350,7 +350,7 @@
   \Large
   \if@phd@logos
     \noindent
-    \includelogo[height=2cm]{logo_univ_de_bdx}
+    \includelogo[height=2cm]{logo-bx1}
     \hfill
     \includelogo[height=2cm]{logo-cnrs}
     {\normalsize\\}

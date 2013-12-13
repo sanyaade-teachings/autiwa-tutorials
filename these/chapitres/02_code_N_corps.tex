@@ -18,7 +18,7 @@ Les détails techniques et les options de mon code sont détaillés dans l'annex
 \section{Algorithmes d'intégration}
 Dans Mercury, il y a cinq algorithmes différents à notre disposition :
 \begin{itemize}
-\item MVS \citep{wisdom1991symplectic} : un code symplectique\footnote{Basiquement, un code symplectique est un code qui conserve parfaitement l'énergie de par sa définition en terme d'hamiltoniens.}, c'est-à-dire qui conserve l'énergie au cours du temps et dont le pas de temps est fixe (c'est le seul à avoir un pas de temps fixe)
+\item MVS \citep{wisdom1991symplectic} : un code symplectique\footnote{Basiquement, un code symplectique est un code qui intègre les orbites sans dérive séculaire de l'énergie, en résolvant un système proche du système étudié.}, c'est-à-dire qui conserve l'énergie au cours du temps et dont le pas de temps est fixe (c'est le seul à avoir un pas de temps fixe)
 \item BS \citep{stoer1980introduction} : un algorithme à pas de temps variable, réputé robuste et plutôt long à tourner.
 \item BS2 \citep{press1992numerical} : Basé sur BS, il présente l'inconvénient de ne pas fonctionner pour les systèmes non conservatifs. Il est censé être deux fois plus rapide que BS.
 \item RADAU \citep{everhart1985efficient} : Ne fonctionne pas bien pour les rencontres proches et les orbites très excentriques. Est censé être deux à trois fois plus rapide que BS.
@@ -31,15 +31,30 @@ Il y a donc principalement deux catégories : les intégrateurs symplectiques o�
 
 On définit le Hamiltonien $H$ de notre problème N-corps comme étant la somme des énergies cinétiques et potentielles de chaque corps : 
 \begin{align}
-H &= \sum_{i=1}^N\frac{{p_i}^2}{2m_i} -G\sum_{i=1}^N\sum_{j=i+1}^N\frac{m_im_j}{r_{ij}}
+H &= \sum_{i=1}^N\frac{{p_i}^2}{2m_i} -G\sum_{i=1}^Nm_i\sum_{j=i+1}^N\frac{m_j}{r_{ij}}
 \end{align}
 où $m_i$ est la masse du corps $i$, $p_i$ son impulsion et $r_{ij}$ la séparation entre les corps $i$ et $j$.
 
 Un intégrateur symplectique est un intégrateur qui au lieu d'appliquer directement le hamiltonien $H$ sur le système, va séparer ce dernier en deux (ou plusieurs parties) et appliquer ces sous-hamiltoniens successivement. Un intégrateur symplectique résout donc le problème de manière approchée en négligeant les termes croisés des sous-hamiltoniens.
 
-Afin de minimiser l'erreur due à cette approximation, il faut choisir judicieusement la séparation du hamiltonien afin d'avoir une partie dominante par rapport à l'autre.
+Afin de minimiser l'erreur due à cette approximation, il faut choisir judicieusement la séparation du hamiltonien afin d'avoir une partie dominante par rapport aux autres.
 
-Par définition, un algorithme symplectique conserve l'énergie au cours du temps, même si l'énergie fluctue au cours du temps autour d'une valeur moyenne. 
+Dans l'algorithme que nous utilisons, en utilisant les coordonnées centrées mixées (\og mixed centre coordinates\fg), on décompose le hamiltonien en trois sous-hamiltoniens \citep[eq. (8)]{chambers1999hybrid} : 
+\begin{subequations}
+\begin{align}
+H_A &= \sum_{i=1}^N\left(\frac{{p_i}^2}{2m_i} -G\frac{m_\odot m_j}{r_{i\odot}}\right)\\
+H_B &= -G\sum_{i=1}^N\sum_{j=i+1}^N\frac{m_im_j}{r_{ij}}\\
+H_C &= \inv{2m_\odot}\left(\sum_{i=1}^N{p_i}\right)^2
+\end{align}
+\end{subequations}
+
+Le principe est ici d'appliquer les différents hamiltoniens aux grandeurs du pas de temps précédents, pour obtenir les valeurs actuelles : 
+\begin{align}
+q(t) &= e^{\tau B/2}e^{\tau C/2}e^{\tau A}e^{\tau C/2}e^{\tau B/2} q(t-\tau)
+\end{align}
+où $q$ représente n'importe quelle combinaison de la position et du moment cinétique de toutes les planètes.
+
+Par définition, un algorithme symplectique n'introduit pas de dérive séculaire de l'énergie, même si l'énergie fluctue au cours du temps autour d'une valeur moyenne. 
 
 Les intégrateurs symplectiques ont deux avantages importants sur les intégrateurs classiques : 
 \begin{enumerate}
@@ -67,9 +82,9 @@ Nous souhaitons résoudre correctement les orbites, mais avoir un temps de calcu
 
 La première contrainte est la dissipation. En effet, notre système n'est pas conservatif. Tous les algorithmes N-corps disponibles (BS, BS2 et RADAU) ne fonctionnent donc pas correctement, ces derniers réclament un pas de temps extrêmement faible qui n'est pas représentatif de la précision demandée pour l'intégration N-corps, la variation d'énergie numérique étant masquée par la variation d'énergie induite par les effets du disque. 
 
-Il nous reste les algorithmes MVS et HYBRID. La deuxième contrainte, ce sont les rencontres proches et les collisions. Nous savons qu'un algorithme symplectique ne les traite pas correctement, et si c'est une erreur négligeable dans le cas où il y en a peu, ça ne l'est absolument plus dans notre cas, le nombre de rencontres proches pouvant être très important, notamment dans la phrase d'accrétion en début de simulation. L'algorithme MVS ne parait donc pas adapté contrairement à HYBRID qui a été construit pour être à la fois symplectique et gérer correctement les rencontres proches moyennant une erreur plus importante lors du changement d'algorithme. 
+Il nous reste les algorithmes MVS et HYBRID. La deuxième contrainte, ce sont les rencontres proches et les collisions. Nous savons qu'un algorithme symplectique ne les traite pas correctement, et si c'est une erreur négligeable dans le cas où il y en a peu, ça ne l'est absolument plus dans notre cas, le nombre de rencontres proches pouvant être très important, notamment dans la phrase d'accrétion en début de simulation. L'algorithme MVS ne parait donc pas adapté contrairement à HYBRID qui a été construit pour être à la fois symplectique et gérer correctement les rencontres proches en changeant intelligemment d'algorithme quand une rencontre survient. En effet, dans le cadre d'une rencontre proche, les différents termes du hamiltoniens sont modifiés afin que les termes croisés impliquant les deux corps de la rencontre ne génèrent pas une erreur trop importante \citep[Pour plus de détails, voir ][]{chambers1999hybrid}. 
 
-L'algorithme HYBRID est l'algorithme MVS, à pas de temps constant la majorité du temps. Il a donc les avantages d'un algorithme symplectique, à savoir la conservation de l'énergie et la rapidité d'exécution. Lors de rencontres proches (déterminées par une distance minimale d'approche entre deux corps, soit en rayon de Hill, soit en nombre de pas de temps), l'algorithme BS2 est utilisé, le pas de temps devient donc variable afin de résoudre correctement la rencontre et éventuellement la collision. Une fois fini, c'est de nouveau MVS qui prend le relai \citep[voir aussi ][]{mcneil2009new}. 
+L'algorithme HYBRID est l'algorithme MVS, à pas de temps constant la majorité du temps. Il a donc les avantages d'un algorithme symplectique, à savoir qu'il n'y a pas de dérive séculaire de l'énergie, tout en étant rapide. Lors de rencontres proches (déterminées par une distance minimale d'approche entre deux corps, soit en rayon de Hill, soit en nombre de pas de temps), l'algorithme BS2 est utilisé, le pas de temps devient donc variable afin de résoudre correctement la rencontre et éventuellement la collision. Une fois fini, c'est de nouveau MVS qui prend le relai \citep[voir aussi ][]{mcneil2009new}. 
 
 Dans notre cas, plusieurs approximations sont faites : 
 \begin{itemize}
