@@ -73,13 +73,12 @@
 \geometry{margin=2.5cm}%la redéfinition des marges doit se faire avant l'appel de fancyhdr. Sinon, les entêtes et pieds de pages auront les anciennes marges.
 \RequirePackage{fancyhdr}
 \setlength{\headheight}{13pt}%avertissement dû à fancyhdr disant que \headheight is too small (12.0pt)
+
 \pagestyle{fancy}
 \fancyhf{}
-%odd pages correspondent aux pages de droite
-%even pages correspondant aux pages de gauche
-\fancyhead[LO,RE]{\thepage}
-\fancyhead[RO]{\nouppercase{\leftmark}}
-\fancyhead[LE]{\nouppercase{\rightmark}}
+\fancyhead[RO,LE]{\footnotesize\textbf{\thepage}}
+\fancyhead[RE]{\footnotesize\scshape\rightmark}
+\fancyhead[LO]{\footnotesize\leftmark}
 
 \if@hyperref
   \RequirePackage[pdftex]{hyperref}%l'option pagebackref permet d'afficher les pages dans lesquelles sont citées les références (en gros, la position des labels je pense)

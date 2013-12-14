@@ -254,11 +254,11 @@ Ainsi, sans irradiation, les deux transitions d'opacité à $1.3$ et $2.9\unit{U
 du profil de température, ce qui a pour effet de changer le sens de migration (de positif à négatif, puis l'inverse).
 
 Dans les parties externes, l'irradiation a pour effet de diminuer la pente du profil de température qui tend vers un profil en
-$R^{-\sfrac37}$ quand le disque est purement passif.
+$R^{-\sfrac37}$ quand le disque est purement passif. Dans les deux cas, la diffusion se fait essentiellement de manière radiative. La saturation du couple est sensiblement équivalente dans les cas avec et sans irradiation. La partie linéaire du couple de corotation est fortement modifiée, ainsi que la valeur du couple lui même, expliquant la modification importante de la migration dans les parties externes \reffig{fig:irradiation}.
 
 
 \subsection{Effet de l'ombre du disque sur lui-même.}\label{sec:shadow}\index{self-shadowing}
-Tout au long de ma thèse, j'ai considéré un modèle d'irradiation dans lequel la gestion des ombres restait sommaire. En effet, la seule ombre que je considérais était l'ombre directe. C'est-à-dire les régions du disque pour lesquelles l'échelle de hauteur décroit avec la distance. Ces zones où l'angle d'interception des rayons de l'étoile était négatif étaient détectées et l'irradiation était forcée à zéro. Nous appellerons ce modèle le \textbf{modèle direct}. C'est un modèle qui découle naturellement de la modélisation du disque. En effet, pour calculer le profil de température, on doit calculer la température point par point en partant du bord externe pour que le calcul de la température converge. Nous n'avons donc pas accès à l'ombre réelle du disque lors du calcul de l'irradiation. L'ombre est simplement la zone où l'angle entre les rayons de l'étoile et la surface du disque est nul.
+Tout au long de ma thèse, j'ai considéré un modèle d'irradiation dans lequel la gestion des ombres restait sommaire. En effet, la seule ombre que je considérais était l'ombre directe. C'est-à-dire les régions du disque pour lesquelles l'échelle de hauteur décroit avec la distance. Ces zones où l'angle d'interception des rayons de l'étoile était négatif étaient détectées et l'irradiation était forcée à zéro. Nous appellerons ce modèle le \textbf{modèle direct}. C'est un modèle qui découle naturellement de la modélisation du disque. En effet, pour calculer le profil de température, on doit calculer la température point par point en partant du bord externe pour que le calcul de la température converge \citep{dullemond2000passive}. Nous n'avons donc pas accès à l'ombre réelle du disque lors du calcul de l'irradiation. L'ombre est simplement la zone où l'angle entre les rayons de l'étoile et la surface du disque est nul.
 
 Ici, nous cherchons à comparer ce modèle avec deux modèles plus complexes où l'ombre du disque est gérée de manière plus cohérente. 
 
@@ -277,7 +277,7 @@ sur lui-même est calculée différemment. Les profils des modèles \textbf{dire
 \refdisk}\label{fig:shadow_temp_profile}
 \end{figure}
 
-Ensuite, le \textbf{modèle ponctuel} considère l'étoile centrale comme ponctuelle, et cherche \emph{a posteriori} les ombres du disque, avant de recalculer une nouvelle fois le profil de température. Le profil de température du disque de référence dans lequel on ne tient pas compte de l'irradiation (chauffage visqueux uniquement) est représenté, afin de pouvoir comparer. Dans la zone d'ombre ainsi calculée, le profil de température est équivalent à un profil purement visqueux, sans tenir compte de l'irradiation de l'étoile. En effet, dans cette région-là, l'irradiation est forcée à 0. 
+Ensuite, le \textbf{modèle ponctuel} considère l'étoile centrale comme ponctuelle, et cherche \emph{a posteriori} les ombres du disque, avant de recalculer une nouvelle fois le profil de température. Le profil de température du disque de référence dans lequel on ne tient pas compte de l'irradiation (chauffage visqueux uniquement) est représenté, afin de pouvoir comparer. Dans la zone d'ombre ainsi calculée, le profil de température est équivalent à un profil purement visqueux, sans tenir compte de l'irradiation de l'étoile. En effet, dans cette région-là, l'irradiation est forcée à 0. À noter que la température d'équilibre calculée numériquement ne tient pas compte de la diffusion de chaleur entre anneaux proches, empêchant un lissage de la transition brutale de la partie ombragée à la partie irradiée.
 
 Maintenant, on considère que l'étoile possède un rayon $R_\star=R_\odot$ (\textbf{modèle étendu}), l'ombre qui s'étendait auparavant de $0.93$ à $7.35\unit{UA}$ dans le \textbf{modèle ponctuel} n'est plus que de $1.65$ à $1.78\unit{UA}$. L'ombre commence plus loin, car les rayons de l'étoile centrale partent de plus haut. Ils ne partent plus de $z=0$ mais de $z=0.0046\unit{UA}$. De même, la surface du disque sort beaucoup plus rapidement de l'ombre pour les mêmes raisons. En conséquence, le \textbf{modèle étendu} possède exactement le même profil que le \textbf{modèle direct}. L'ombre est dans ce cas située dans une partie totalement dominée par le chauffage visqueux et l'irradiation n'a aucune incidence sur la température du disque. 
 
@@ -518,6 +518,8 @@ La modélisation poussée de l'ombre du disque et son effet sur l'irradiation po
 zones mortes où une zone locale où l'irradiation domine apparaît à cause de la décroissance soudaine de la viscosité et du chauffage
 qui en découle \citep{matsumura2003origin}.
 
+Malgré tout, il est important de noter que la modélisation de la zone morte est ici très artificielle. Il n'y a pas de couplage entre viscosité et densité de surface. Dans un disque où le taux d'accrétion est constant $\dot{M}=\cte$, une baisse de viscosité entraine une augmentation de la densité. Le chauffage visqueux est donc le même dans la zone morte et à l'extérieur de celle-ci.
+
 \section{Profil de densité de surface}
 Dans notre modèle, le profil de la densité de surface est notre plus grande incertitude. Les contraintes observationnelles ne
 restreignent pas suffisamment le profil de densité \citep[Fig. 12]{mundy2000structure, andrews2007high, williams2011protoplanetary,
@@ -616,6 +618,8 @@ Une variation équivalente du chauffage visqueux entraine un disque globalement 
 Si on augmente la température, la diffusivité thermique est plus grande, le temps de diffusion radiative $t_\text{rad}$ diminue. Le couple de corotation devient linéaire pour des masses plus grandes. 
 
 Quand la densité diminue, on observe les mêmes effets qu'avec la diminution de la viscosité \reffig{fig:map_total_mass}, mais ces effets sont amplifiés car la densité influe sur l'opacité du disque. Le profil de température diminue plus rapidement. La carte de migration se compresse plus rapidement vers l'intérieur du disque en variant la densité (par opposition à une variation de viscosité). Par contre, la viscosité n'évoluant pas, la partie supérieure de la carte de migration se compresse moins rapidement vers le bas. Des planètes massives conserveront donc une zone de migration vers l'extérieur plus longtemps si on diminue la densité au lieu de diminuer la viscosité. On remarque que les deux disques les plus massifs présentent une transition d'opacité très marquée respectivement à $6$ \reffig{fig:600_map} et $12\unit{UA}$ \reffig{fig:1200_map}. 
+
+Malgré la dissipation, dans les disques que j'ai pu tester, la dissipation radiative reste toujours plus efficace que la dissipation visqueuse, dans la totalité du disque $t_\text{rad} < t_\text{visc}$.
 
 \bigskip
 
