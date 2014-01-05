@@ -54,6 +54,10 @@
 \@phd@listsfalse
 \define@key{bordeaux-thesis}{lists}[]{\@phd@liststrue}
 
+\newif\if@phd@print
+\@phd@printfalse
+\define@key{bordeaux-thesis}{print}[]{\@phd@printtrue}
+
 \let\@keyval@options@list\@empty
 \def\@extract@key#1=#2\@extract@key{#1}
 
@@ -350,7 +354,7 @@
   \Large
   \if@phd@logos
     \noindent
-    \includelogo[height=2cm]{logo_univ_de_bdx}
+    \includelogo[height=2cm]{logo-bx1}
     \hfill
     \includelogo[height=2cm]{logo-cnrs}
     {\normalsize\\}
@@ -518,3 +522,16 @@
 \def\@author{???\ClassError{bordeaux-thesis}{No author given}{The author is mandatory for this class. You should provide one using the \protect\author command.}}
 \def\@date{??/??/??\ClassError{bordeaux-thesis}{No defense date given}{The defense date is mandatory for this class. You should provide one using the \protect\date command.}}
 \def\@ordernumber{\ClassWarning{bordeaux-thesis}{No order number given}{The order number was not specified. You should provide one using the \protect\order command.}}
+
+\if@phd@print%
+  \newgray{lightgray}{1}
+    \hypersetup{
+      colorlinks=true, %colorise les liens
+      breaklinks=true, %permet le retour à la ligne dans les liens trop longs
+      urlcolor= darkgray,  %couleur des hyperliens
+      linkcolor= black, %couleur des liens internes
+      plainpages=false,  %pour palier à "Bookmark problems can occur when you have duplicate page numbers, for example, if you have a page i and a page 1."
+      citecolor=black % pour définir la couleur des liens de bibliographie
+    }
+  \newrgbcolor{marou}{0 0 0}%redéfinie cette couleur, pour notamment rendre les titres noirs, et aussi les résultats de la commande \gras{}
+\fi

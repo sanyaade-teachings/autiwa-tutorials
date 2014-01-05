@@ -91,7 +91,7 @@ Dans la suite, nous allons nous intéresser à la conservation de différentes q
 
 Afin de décrire l'évolution hydrodynamique du disque de gaz, nous allons utiliser successivement la \textbf{conservation de la masse}, et la \textbf{conservation du moment cinétique.}. Les démonstrations qui vont suivre ont été déjà faites de nombreuses fois, notamment par \citep{pringle1981accretion}.
 
-\subsubsection{Structure verticale du disque}
+\subsubsection{Structure verticale du disque}\index{disque!equilibre hydrostatique@équilibre hydrostatique}
 On s'intéresse à la répartition de masse verticalement dans le disque. Afin de définir les quantités importantes qui s'y rapportent, nous allons écrire l'équation de l'équilibre hydrostatique. On a alors :
 \begin{align}
 \inv{\rho}\dpd{P}{z} &= \vect{g}.\hat{e}_z\\
@@ -257,7 +257,7 @@ Dans le cas d'un disque képlerien ($\Omega = \sqrt{\frac{GM}{R^3}}$) on obtient
 \begin{align}
 \dpd{\Sigma}{t} &=\frac{3}{R}\dpd{}{R}\left[\sqrt{R} \dpd{}{R}\left(\nu \Sigma R^\sfrac{1}{2}\right)\right]\label{eq:diffusion_equation}
 \end{align}
-\end{important}
+\end{important}\index{diffusion visqueuse}
 
 Le calcul détaillé est disponible \refsec{app:equation_angular_momentum}.
 
@@ -384,8 +384,7 @@ C_\text{irr} &= 2 \sigma {T_\star}^4 \frac{{R_\star}^2}{r^2} (1-\varepsilon) * \
 
 Il faut cependant noter qu'une approximation implicite a été faite en supposant que $h_p\sim h$, où $h_p$ est la position
 verticale dans le disque où les photons stellaires sont absorbés. En effet, l'absorption des photons ne dépend pas uniquement de
-la densité, mais aussi de l'opacité du disque aux photons stellaires, qui elle-même varie suivant la composition
-composition du disque.
+la densité, mais aussi de l'opacité du disque aux photons stellaires, qui elle-même varie suivant la composition du disque.
 
 Dans le cadre d'un disque optiquement épais, il devient possible de considérer $h_p \sim h$.
 
@@ -393,7 +392,7 @@ Dans le cadre d'un disque optiquement épais, il devient possible de considérer
 %expression de l'angle notammenet : dullemond 2000
 %autres expressions : menou & goodman 2004
 
-\subsubsection{Chauffage visqueux}\index{chauffage visqueux}
+\subsubsection{Chauffage visqueux}\index{chauffage visqueux}\index{viscosité}
 On considère un fluide incompressible. Il peut paraître étonnant de considérer un disque de gaz comme étant un fluide incompressible. Mais en fait l'aspect compressible va surtout se manifester lors de la mise à l'équilibre, générant des ondes de chocs par exemple. Mais une fois le disque stabilisé tout se passe comme si on avait un fluide incompressible. C'est matérialisé par le fait que la vitesse dans le disque est considérée comme inférieure à la vitesse du son dans le milieu $c_s$, au delà de laquelle on aura des ondes des choc ayant une incidence sur le bilan thermique. Ainsi donc, en considérant un fluide incompressible, on peut partir de l'expression de la variation d'énergie cinétique (qui est l'inverse du chauffage, les pertes cinétiques étant converties en chaleur par la viscosité) \citep[(16.3)]{landau1989mecanique} : 
 \begin{align}
 \dpd{E_c}{t} &= - \frac{1}{2}\int \eta(T_{ik})^2\dif V\\
@@ -508,7 +507,7 @@ La première hypothèse est de considérer une viscosité constante. Ce n'est ce
 
 Un autre modèle très répandu pour la viscosité du disque est la prescription $\alpha$.
 
-\subsubsection{Les disques alpha}\label{sec:viscosite-alpha}\index{prescription alpha}
+\subsubsection{Les disques alpha}\label{sec:viscosite-alpha}\index{prescription alpha}\index{viscosité!alpha}
 On peut introduire un paramètre adimensionné $\alpha$ \citep{shakura1973black}. Dans ce formalisme, plusieurs hypothèses sont faites : 
 \begin{itemize}
 \item On considère que la turbulence est subsonique.
@@ -624,10 +623,9 @@ tombant dans l'étoile, soit par éjection du système.
 
 Ce profil est malgré tout une base de travail, vu qu'il est extrêmement difficile de déduire ces informations des observations des disques. Malgré tout, les études semblent montrer que l'on s'attend à un profil moins abrupt que $\Sigma\propto r^{-\sfrac{3}{2}}$, plus proche de $\Sigma\propto r^{-1}$ \citep{bell1997structure}.
 
-%TODO rajouter discussion profils à l'équilibre. 
-À partir de l'équation \refeq{eq:diffusion_equation}, on peut considérer le cas particulier des disques à l'équilibre, c'est à dire que $\od{\Sigma}{t}=0$. Ces disques sont alors des disques avec un taux d'accrétion constant $\dot{M}=0$. 
+À partir de l'équation \refeq{eq:diffusion_equation}, on peut considérer le cas particulier des disques à l'équilibre, c'est à dire que $\od{\Sigma}{t}=0$. Ces disques sont alors des disques avec un taux d'accrétion $\dot{M}$ constant au cours du temps. 
 
-Ces disques à l'équilibre ont deux solutions possibles. Soit on a :
+Ces disques à l'équilibre ont deux solutions possibles\index{disque!equilibre@équilibre}. Soit on a :
 \begin{align*}
 \sqrt{R} \dpd{}{R}\left(\nu \Sigma R^\sfrac{1}{2}\right) &= 0
 \end{align*}
@@ -647,7 +645,7 @@ ce qui donne :
 \end{align}
 Ce qui donne un taux d'accrétion $\dot{M}\propto\inv{\sqrt{R}}$. 
 
-Les deux modèles possibles pour la viscosité, viscosité constante $\nu=\cte$ ou viscosité alpha $\alpha=\cte$ donnent donc 4 solutions différentes (deux chacune) pour les disques à l'équilibre. 
+Les deux modèles possibles pour la viscosité, viscosité constante $\nu=\cte$ ou viscosité alpha $\alpha=\cte$ donnent donc 4 solutions différentes (deux chacune) pour les disques à l'équilibre. \index{viscosité!alpha}\index{viscosité!constante}
 
 Dans le cas d'une viscosité constante, on a donc un disque avec une densité de surface $\Sigma(R)=\cte$ pour un taux d'accrétion constant, ou $\Sigma(R)\propto R^{-\sfrac12}$ pour avoir $\dot{M}\propto\inv{\sqrt{R}}$.
 
