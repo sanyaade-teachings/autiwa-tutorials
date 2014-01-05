@@ -2610,6 +2610,147 @@ aussi \emph{lbound}.
 \end{itemize}
 \end{description}
 
+\section{Documentation automatique}\index{doxygen}
+\textbf{Doxygen} permet de générer automatiquement une documentation pour un code informatique, pour peu que les commentaires utilisent une syntaxe un peu particulière qui pourra être lue et interprétée par le logiciel. 
+
+Cette section a pour but de présenter la base sur \textbf{Doxygen}, au fur et à mesure que je découvrirai des solutions pour les nombreuses plantages que j'ai pour l'instant.
+
+\subsection{Configuration}
+Afin de générer un fichier de configuration automatiquement, il faut utiliser la ligne suivante : 
+\begin{verbatim}
+doxygen -g doxygen.conf
+\end{verbatim}
+
+Dans ce fichier, vous pouvez personnaliser la configuration, notamment les points suivants : 
+\begin{verbatim}
+PROJECT_NAME           = "Mercury"
+PROJECT_BRIEF          = "N-body code that evolve planetary systems through time."
+OPTIMIZE_FOR_FORTRAN   = YES
+FILE_PATTERNS          = *.f90
+\end{verbatim}
+
+\subsection{Générer la documentation}
+En admettant que vous avez un fichier de configuration \textbf{doxygen.conf} dans le dossier courant du programme à documenter : 
+\begin{verbatim}
+doxygen doxygen.conf
+\end{verbatim}
+
+\subsection{Erreurs courantes}
+Doxygen n'arrivera pas à lire les fichiers fortran avec certains bouts de code. En particulier, il faut remplacer les chaînes suivantes par d'autres : 
+\begin{verbatim}
+end if -> endif (pas sur que ce soit obligatoire)
+end do -> enddo (pas sur que ce soit obligatoire)
+implicite NONE -> implicite none
+\end{verbatim}
+
+Certaines successions de caractères ne sont pas beaucoup aimées non plus. Par exemple : 
+\begin{verbatim}
+\" -> \ "
+enlever les '!' dans les commentaires qui ne sont pas des commentaires. un exemple : 
+! Pas bon ! -> ! Pas bon.
+\end{verbatim}
+
+\subsection{Documenter un module}
+Voici un exemple de commentaire en entête d'un module : 
+\begin{verbatim}
+!******************************************************************************
+! MODULE: Module Name
+!******************************************************************************
+!
+!> @author
+!> Module Author Name and Affiliation
+!
+! DESCRIPTION: 
+!> @brief Brief description of module.
+!
+!> @details
+!> Detailled description
+!> on several lines
+!
+!******************************************************************************
+\end{verbatim}
+
+\subsection{Documenter une routine}
+\begin{verbatim}
+   !%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   !> @author 
+   !> Routine Author Name and Affiliation.
+   !
+   ! DESCRIPTION: 
+   !> @brief Brief description of routine. 
+   !! Flow method (rate of change of position) used by integrator.
+   !! Compute \f$ \frac{d\lambda}{dt} , \frac{d\phi}{dt},  \frac{dz}{dt} \f$ }
+   !
+   !> @param[in] inParam  description of the parameter
+   !> @param[out] outParam  description of the parameter
+   !> @param[in,out] inOutParam  description of the parameter 
+   !%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\end{verbatim}
+
+J'ai tendance à préférer ne pas documenter les variables ici, mais directement là où elles sont déclarées, afin de ne pas dupliquer les données, et de maintenir la documentation à jour plus facilement.
+\begin{verbatim}
+  real(double_precision), intent(inout) :: time !< [in,out] Actual time of the simulation
+\end{verbatim}
+
+\subsection{Documenter une fonction}
+C'est exactement la même chose que pour une routine, à la différence près qu'une fonction retourne quelque chose, alors qu'une routine a des entrées/sorties. 
+
+On doit donc spécifier ce que retourne la fonction. On a ainsi : 
+\begin{verbatim}
+   !%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   !> @author 
+   !> Routine Author Name and Affiliation.
+   !
+   ! DESCRIPTION: 
+   !> @brief Brief description of routine. 
+   !! Flow method (rate of change of position) used by integrator.
+   !! Compute \f$ \frac{d\lambda}{dt} , \frac{d\phi}{dt},  \frac{dz}{dt} \f$ }
+   !
+   !> @return functionName description of the parameter
+   !%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\end{verbatim}
+
+\subsection{Commandes utile}
+Les commandes spéciales \textbf{Doxygen}, à part quelques rares exceptions, commencent avec le préfixe \verb|@| ou \verb|\|. Lors de la présentation de ces commandes, les arguments qu'elles peuvent avoir sont codifiés de la façon suivante : 
+\begin{itemize}
+\item[\texttt{<...>}] L'argument est un simple mot
+\item[\texttt{(...)}] L'argument va jusqu'à la fin de la ligne
+\item[\texttt{\{...\}}] L'argument va jusqu'au paragraphe suivant
+\end{itemize}
+
+Un paragraphe est délimité par une ligne blanche commentée (si je ne m'abuse). Comme en \LaTeX{} donc.
+
+\begin{verbatim}
+@author {...}
+@attention {...}
+@brief {...}
+@date {...}
+@details {...}
+@param <p> {...}
+@remarks {...}
+@return {...}
+@version {...}
+@warning {...}
+\end{verbatim}
+
+\subsection{Analyser un code non commenté}
+Dans un premier temps, on peut générer une documentation qui cherche à documenter tout, y compris ce qui n'est pas commenté : 
+\begin{verbatim}
+EXTRACT_ALL = YES
+EXTRACT_PRIVATE = YES
+SOURCE_BROWSER = YES
+\end{verbatim}
+
+Ensuite, on peut générer des graphes, à condition d'avoir \textbf{dot} installé : 
+\begin{verbatim}
+HAVE_DOT = YES
+CALL_GRAPH = YES
+CALLER_GRAPH = YES
+\end{verbatim}
+Pour chaque fonction, un graphe des appels est généré, et les sources sont accessibles à partir de là. 
+
+La deuxième option affiche le graphe des fonctions appelées par la fonction considérée, tandis que la troisième affiche le graphe des fonctions qui appellent la fonction considérée.
+
 \section{Avancé}
 \subsection{Les pointeurs}
 Un pointeur, ce n'est ni plus ni moins qu'une variable qui contient une adresse mémoire. 
