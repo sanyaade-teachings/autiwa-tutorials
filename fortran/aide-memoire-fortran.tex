@@ -2629,10 +2629,17 @@ OPTIMIZE_FOR_FORTRAN   = YES
 FILE_PATTERNS          = *.f90
 \end{verbatim}
 
+\bigskip
+
+On peut aussi mettre à jour un fichier de configuration déjà existant par rapport à une éventuelle mise à jour de Doxygen : 
+\begin{verbatim}
+doxygen -u doxygen.conf
+\end{verbatim}
+
 \subsection{Générer la documentation}
 En admettant que vous avez un fichier de configuration \textbf{doxygen.conf} dans le dossier courant du programme à documenter : 
 \begin{verbatim}
-doxygen doxygen.conf
+doxygen doxygen.conf 2>doxygen.log
 \end{verbatim}
 
 \subsection{Erreurs courantes}
@@ -2689,7 +2696,7 @@ Voici un exemple de commentaire en entête d'un module :
 
 J'ai tendance à préférer ne pas documenter les variables ici, mais directement là où elles sont déclarées, afin de ne pas dupliquer les données, et de maintenir la documentation à jour plus facilement.
 \begin{verbatim}
-  real(double_precision), intent(inout) :: time !< [in,out] Actual time of the simulation
+real(double_precision), intent(inout) :: time !< [in,out] description
 \end{verbatim}
 
 \subsection{Documenter une fonction}
@@ -2731,6 +2738,57 @@ Un paragraphe est délimité par une ligne blanche commentée (si je ne m'abuse)
 @return {...}
 @version {...}
 @warning {...}
+\end{verbatim}
+
+On peut aussi mettre en forme en mettant en gras ou en italique (\textbf{em} pour \textbf{emphasize} et \textbf{b} pour \textbf{bold}) : 
+\begin{verbatim}
+un texte en <b>gras</b> ou en <em>italique</em>.
+\end{verbatim}
+
+\bigskip
+
+On peut aussi afficher des portions de code avec : 
+\begin{verbatim}
+@code
+program hello
+  print *, "Hello World!"
+end program hello
+@endcode
+\end{verbatim}
+
+La même chose pour du texte non formaté avec : 
+\begin{verbatim}
+@verbatim
+blabla
+@endverbatim
+\end{verbatim}
+
+Et enfin, on peut faire des listes avec :
+\begin{verbatim}
+@li element 1
+@li element 2
+\end{verbatim}
+
+\subsection{Première page de documentation}
+Il suffit pour cela de modifier une ligne dans le fichier de paramètres \textbf{doxygen.conf} : 
+\begin{verbatim}
+FILE_PATTERNS          = *.f90 mainpage.txt
+\end{verbatim}
+et de créer le fichier suivant : 
+\begin{verbatim}
+/**
+
+@mainpage ProgramName documentation
+@tableofcontents
+
+@section section1 Introduction
+
+A description of the code.
+
+@section section_input Input files
+
+Description of input files.
+*/
 \end{verbatim}
 
 \subsection{Analyser un code non commenté}
