@@ -2697,6 +2697,7 @@ Voici un exemple de commentaire en entête d'un module :
 J'ai tendance à préférer ne pas documenter les variables ici, mais directement là où elles sont déclarées, afin de ne pas dupliquer les données, et de maintenir la documentation à jour plus facilement.
 \begin{verbatim}
 real(double_precision), intent(inout) :: time !< [in,out] description
+!! \n Continuation line. 
 \end{verbatim}
 
 \subsection{Documenter une fonction}
@@ -2739,6 +2740,14 @@ Un paragraphe est délimité par une ligne blanche commentée (si je ne m'abuse)
 @version {...}
 @warning {...}
 \end{verbatim}
+
+\begin{remarque}
+Pour continuer une ligne de description pour une fonction qui n'en laisse pas la possibilitÃ©, on peut faire : 
+\begin{verbatim}
+real(double_precision), intent(inout) :: time !< [in,out] Actual time of the simulation
+!! \n Continuation line. 
+\end{verbatim}
+\end{remarque}
 
 On peut aussi mettre en forme en mettant en gras ou en italique (\textbf{em} pour \textbf{emphasize} et \textbf{b} pour \textbf{bold}) : 
 \begin{verbatim}
