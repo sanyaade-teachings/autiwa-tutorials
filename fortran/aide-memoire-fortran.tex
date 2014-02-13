@@ -1881,6 +1881,27 @@ Dans la section \refsec{sec:initialisation_tableau}, une astuce est montrée pou
 angle = (/(i*0.5, i=0, 90, 10)/) ! boucle implicite
 \end{verbatim}
 
+\subsection{Réécrire la ligne précédente dans le terminal : progression}
+Il est possible, comme dans d'autres langages de réécrire la dernière ligne en faisant la chose suivante. D'une part on dit que l'on ne veut pas passer à la ligne suivante lors du premier affichage, à l'aide de : 
+\begin{verbatim}
+write(*,'(a)', advance='no') 'Reading unformatted outputs...'
+\end{verbatim}
+
+Puis on dit (ou pas) que l'on souhaite commencer l'écriture au début de la ligne en utilisant le retour chariot \verb|\r| qui se code en fortran \verb|achar(13)|. 
+
+Ainsi, on peut coder de deux manière équivalente l'ajout d'un 'Done' à la ligne du dessus, soit en la réécrivant : 
+\begin{verbatim}
+write(*,'(a)', advance='no') 'Reading unformatted outputs...'
+write(*,'(a,a)') achar(13), 'Reading unformatted outputs... Done'
+\end{verbatim}
+soit en ajoutant simplement à la suite de la ligne : 
+\begin{verbatim}
+write(*,'(a)', advance='no') 'Reading unformatted outputs...'
+write(*,'(a)') ' Done'
+\end{verbatim}
+
+Dans le cas présent, la dernière solution est la plus logique, mais pour afficher une barre de progression avec un pourcentage, il faut réécrire toute la ligne.
+
 \subsection{Remplissage d'un tableau dynamique de taille variable}
 Sous ce titre flou se cache une idée simple. On veut stocker des informations sur un nombre inconnu d'évènements. Par exemple, je veux stocker la valeur des pas de temps jusqu'à un temps final. Les pas de temps étant non constants, je ne connais pas \emph{a priori} leur nombre. Ainsi, je peux faire quelque chose comme ça : 
 \begin{lstlisting}[language=Fortran]
