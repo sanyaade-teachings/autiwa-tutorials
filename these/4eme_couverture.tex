@@ -1,84 +1,63 @@
-\documentclass[a4paper,12pt,twoside,openright]{report}
+\documentclass[a4paper, 12pt]{report}
 
 %twoside : mode recto-verso
 %openright : Pour que les chapitres apparaissent en page impaire
 
-\usepackage[applemac]{inputenc} %Reconnaissance des lettre du clavier
-\usepackage[frenchb]{babel}                        % Document en français
-\usepackage[T1]{fontenc}                             % Utilisation du codage de caractères T1, nouvelle norme LaTeX 
+\usepackage[utf8]{inputenc}
+\usepackage[frenchb, english]{babel}                        % Document en franÔøΩais
+\usepackage[T1]{fontenc}                             % Utilisation du codage de caractÔøΩres T1, nouvelle norme LaTeX 
 
-% Pour les graphiques
-\usepackage{graphics}				% Pour affichage des figures
-\usepackage{color}                                
-\usepackage{fancybox}                                % Pour affichage de jolies boites
-\usepackage{fancyhdr}                                 % Pour les en-tetes et pieds de page (voir Companion page 99)
-\usepackage{textcomp}                                % Pour commande \degre (suggestion du compilateur...)
-\usepackage{caption}                                   % Pour modifier le style de la légende des figures
-\captionsetup{margin=10pt,font=footnotesize,labelfont=bf}
-\usepackage{epsfig}
 
-% Pour les maths
-\usepackage{amscd} % amstex math
-\usepackage{amsfonts} % amstex math
-\usepackage{amssymb} % amstex math
-\usepackage{amsmath} % amstex math
-\usepackage{upgreek}
-
-% Définition d'une commande permettant de rendre complètement vierge la page avant chaque chapitre
-\newcommand{\clearemptydoublepage}{%
-	\newpage{\pagestyle{empty}\cleardoublepage}}
-
-% réglage des marges
-\setlength{\oddsidemargin}{0.46cm}
-\setlength{\evensidemargin}{-0.46cm}
-\setlength{\topmargin}{-0.6cm}
-\setlength{\textheight}{24cm}  % Hauteur de la page
-\setlength{\textwidth}{16cm}   % Largeur de la page
-
-%-----------------------------------------------------------------------------------------------------------------------------
-%---------------------------------------------- Début ---------------------------------------------------------
-%-----------------------------------------------------------------------------------------------------------------------------
+%% rÔøΩglage des marges
+%\setlength{\oddsidemargin}{0.46cm}
+%\setlength{\evensidemargin}{-0.46cm}
+%\setlength{\topmargin}{-0.6cm}
+%\setlength{\textheight}{24cm}  % Hauteur de la page
+%\setlength{\textwidth}{16cm}   % Largeur de la page
 
 \begin{document}
 
 \thispagestyle{empty}
 
+\vfill
 
-\normalsize{\textbf{Résumé}}\\
+\begin{center}
+\textsc{Effet de la structure du disque sur la formation et la migration des plan√®tes}
+\end{center}
 
-\scriptsize{La découverte de plus de 900 planètes autour d'autres étoiles que le Soleil rend notre époque excitante. Ces systèmes planétaires nous ont fait changer notre perception du monde qui était jusqu'alors basée sur nos connaissances du système solaire. Certains systèmes détectés sont beaucoup plus compacts que notre système solaire et les planètes se trouvent extrêmement proches de leur étoile. Pour comprendre la structure de ces systèmes et leur évolution, il est important d'étudier les effets de marée. 
+\begin{center}
+\textbf{R√©sum√©}
+\end{center}
 
-Dans cette thèse, les problématiques d'évolution dynamique de systèmes planétaires et de climats de planètes sont développées pour le cas de systèmes planétaires orbitant des naines brunes et des étoiles de faible masse dans le but futur de contraindre des paramètres des modèles de marée ou des observations. Premièrement, j'ai traité le cas de l'évolution par effet de marée d'une planète orbitant divers objets dont l'évolution du rayon est prise en compte. L'objectif était d'étudier l'influence de la contraction de l'étoile (ou naine brune) sur l'évolution orbitale des planètes. Deuxièmement, j'ai cherché à étudier l'influence des effets de marée sur l'évolution dynamique d'un système multiplanétaire orbitant une naine brune, une naine M ou une étoile de type solaire dont l'évolution du rayon est aussi prise en compte. 
+Au del√† du syst√®me Solaire et de ses plan√®tes, nous avons maintenant un catalogue de quasiment 1000 exoplan√®tes qui illustrent la grande diversit√© des plan√®tes et des syst√®mes qu'il est possible de former. Cette diversit√© est un d√©fi que les mod√®les de formation plan√©taire tentent de relever. La migration de type 1 est un des m√©canismes pour y parvenir. En fonction des propri√©t√©s du disque protoplan√©taire, les plan√®tes peuvent s'approcher ou s'√©loigner de leur √©toile. La grande vari√©t√© des mod√®les de disques protoplan√©taires permet d'obtenir une grande vari√©t√© de syst√®mes plan√©taires, en accord avec la grande diversit√© que nous observons d√©j√† pour l'√©chantillon limit√© qui nous est accessible. Gr√¢ce √† des simulations num√©riques, j'ai pu montrer qu'au sein d'un m√™me disque, il est possible de former des super-Terres ou des noyaux de plan√®tes g√©antes selon l'histoire de migration d'une population d'embryons.
 
-Ces deux projets permettent d'aborder le problème de l'habitabilité des planètes autour de ces objets, en particulier autour des naines brunes qui refroidissent avec le temps. En effet, une planète se trouvant dans la zone habitable d'une naine brune se situe suffisamment proche de la naine brune pour ressentir l'influence des effets de marée.\\
+\bigskip
 
-\textbf{Mots-clés}\\
+\noindent\textbf{Mots-clefs : } Formation plan√©taire, migration, Disques protoplan√©taires, Interactions Disque-Plan√®te, Syst√®mes Plan√©taires, Simulations num√©riques
 
-\begin{tabular}{lll}
-Exoplanètes & Effet de marée & Dissipation \\
-Naines brunes & Etoiles: rotation &  \\
-Astrobiologie & Evolution dynamique et stabilité & 
-\end{tabular}
-\\
-}
+\bigskip
 
-\vspace{2cm}
+%Horizontal rule
+\noindent\hspace*{0.25\textwidth}\hrulefill\hspace*{0.25\textwidth}
 
-\normalsize{\textbf{Abstract}}\\
+\vfill
 
-\scriptsize{The discovery of more than 900 planets orbiting other stars than our Sun makes this period very exciting. Our knowledge which was based on the Solar System has been challenged by new planetary systems which are very different from our system. Some of them are much more compact than the Solar System. Some planets are located extremely close-in from their star, within the orbital distance of Mercury, in a region where tidal effects are important. Understanding the structure of the known exoplanetary systems and the future ones requires to take into account the physics of tidal evolution.
+\selectlanguage{english}
 
-This thesis provides a study of the dynamical and tidal evolution of planetary systems orbiting evolving brown dwarfs and low mass stars in order to constrain some tidal parameters and in the case of planets around brown dwarfs put some constrains on observability. First, I studied the tidal evolution of single-planet systems orbiting a brown dwarf, a M-dwarf or a Sun-like star whose radius evolution is taken into account. The aim of this study was to study the influence of the contraction of the brown dwarf or star on the orbital evolution of the planets. Second, I endeavored to study the tidal evolution of multiple-planet systems orbiting a brown dwarf, a M-dwarf or a Sun-like star whose radius evolution is also taken into account.
+\begin{center}
+\textsc{Effect of the disc structure on planets formation and migration}
+\end{center}
 
-These two projects allow me to study the question of the habitability of planets orbiting those objects, in particular orbiting brown dwarfs which are known to cool down with time. A planet orbiting a brown dwarf in its habitable zone is sufficiently close to the brown dwarf to feel tidal effects. \\
+\begin{center}
+\textbf{Abstract}
+\end{center}
 
-\textbf{Keywords}\\
+In addition to the Solar System and its planets, we now have a database of nearly 1000 planets that emphasize the huge diversity of planets and systems that can be formed. This diversity is a challenge for planetary formation models. Type I migration is one of the mechanisms possible to explain this diversity. Depending on disc properties, planets can migrate inward or outward with respect to their host star. The huge parameter space of protoplanetary disc models can form a huge diversity of planetary systems, in agreement with the diversity observed in the nonetheless small sample accessible to us. Thanks to numerical simulations, I showed that within the same disc, it is possible to form super-Earths or giant planet cores, depending on the migration history of an initial population of embryos.
 
-\begin{tabular}{lll}
-Exoplanets & Tides & Dissipation \\
-Brown dwarfs & Stars: rotation &  \\
-Astrobiology & Dynamical evolution and stability & 
-\end{tabular}
-}
+\bigskip
+
+\noindent\textbf{Keywords: } Planets and satellites: formation, Protoplanetary disks, Planet-disk interactions, planetary systems, Methods: numerical
+
+\vfill
 
 \end{document}

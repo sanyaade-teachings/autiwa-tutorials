@@ -1,17 +1,14 @@
 % Fichier tex pour la tranche de la couverture. Elle doit contenir
-% l'annÈe de soutenance, le titre et l'auteur. 
-% Pour obtenir le postscript il faut faire : 
-%       dvips -t landscape tranche.dvi -o
+% l'annee de soutenance, le titre et l'auteur. 
 
-\documentclass[11pt,francais,a4paper]{report}
-\usepackage[applemac]{inputenc} %Reconnaissance des lettre du clavier
-\usepackage[francais]{babel}
+\documentclass[a4paper]{report}
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
 \usepackage{fullpage}
 
 % Si le titre est trop long pour tenir tel quel sur la ligne il faut
 % jouer sur les marges :
-
 
 \voffset 1.5cm
 \usepackage{array}
@@ -21,29 +18,16 @@
 
 \pagestyle{empty}
 
-%~
-
-%\vspace{3cm}
-
 \noindent
 \begin{landscape}
-\begin{flushleft}
-%\begin{center}
-\begin{tabular}{m{3cm} m{16cm} m{5.5cm} } 
-
-\begin{flushleft}
-Emeline BOLMONT 
-\end{flushleft}
-& 
-\begin{center}
-{\textsc{Evolution et habitabilité de systèmes planétaires autour d'étoiles de faible masse et de naines brunes.}} \end{center}
-& \begin{flushright} -- 2013 --\end{flushright}\\
-\end{tabular}
-\end{flushleft}
+Christophe \textsc{Cossou} \hfill %
+\begin{minipage}{0.5\linewidth}%
+\begin{center}%
+\textsc{Effet de la structure du disque sur la formation et la migration des plan√®tes.}
+\end{center}%
+\end{minipage}%
+\hfill -- 2013 --
 \end{landscape}
-%\large 
-%2005 \hfill \textsc{An Algorithmic And Computational Approach To Local Computations.} \hfill
-%Rodrigue Bertrand \textsc{OSSAMY}
  
 
 \end{document}
