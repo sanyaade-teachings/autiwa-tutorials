@@ -1,0 +1,84 @@
+\documentclass[a4paper,12pt,twoside,openright]{report}
+
+%twoside : mode recto-verso
+%openright : Pour que les chapitres apparaissent en page impaire
+
+\usepackage[applemac]{inputenc} %Reconnaissance des lettre du clavier
+\usepackage[frenchb]{babel}                        % Document en français
+\usepackage[T1]{fontenc}                             % Utilisation du codage de caractères T1, nouvelle norme LaTeX 
+
+% Pour les graphiques
+\usepackage{graphics}				% Pour affichage des figures
+\usepackage{color}                                
+\usepackage{fancybox}                                % Pour affichage de jolies boites
+\usepackage{fancyhdr}                                 % Pour les en-tetes et pieds de page (voir Companion page 99)
+\usepackage{textcomp}                                % Pour commande \degre (suggestion du compilateur...)
+\usepackage{caption}                                   % Pour modifier le style de la légende des figures
+\captionsetup{margin=10pt,font=footnotesize,labelfont=bf}
+\usepackage{epsfig}
+
+% Pour les maths
+\usepackage{amscd} % amstex math
+\usepackage{amsfonts} % amstex math
+\usepackage{amssymb} % amstex math
+\usepackage{amsmath} % amstex math
+\usepackage{upgreek}
+
+% Définition d'une commande permettant de rendre complètement vierge la page avant chaque chapitre
+\newcommand{\clearemptydoublepage}{%
+	\newpage{\pagestyle{empty}\cleardoublepage}}
+
+% réglage des marges
+\setlength{\oddsidemargin}{0.46cm}
+\setlength{\evensidemargin}{-0.46cm}
+\setlength{\topmargin}{-0.6cm}
+\setlength{\textheight}{24cm}  % Hauteur de la page
+\setlength{\textwidth}{16cm}   % Largeur de la page
+
+%-----------------------------------------------------------------------------------------------------------------------------
+%---------------------------------------------- Début ---------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------------------
+
+\begin{document}
+
+\thispagestyle{empty}
+
+
+\normalsize{\textbf{Résumé}}\\
+
+\scriptsize{La découverte de plus de 900 planètes autour d'autres étoiles que le Soleil rend notre époque excitante. Ces systèmes planétaires nous ont fait changer notre perception du monde qui était jusqu'alors basée sur nos connaissances du système solaire. Certains systèmes détectés sont beaucoup plus compacts que notre système solaire et les planètes se trouvent extrêmement proches de leur étoile. Pour comprendre la structure de ces systèmes et leur évolution, il est important d'étudier les effets de marée. 
+
+Dans cette thèse, les problématiques d'évolution dynamique de systèmes planétaires et de climats de planètes sont développées pour le cas de systèmes planétaires orbitant des naines brunes et des étoiles de faible masse dans le but futur de contraindre des paramètres des modèles de marée ou des observations. Premièrement, j'ai traité le cas de l'évolution par effet de marée d'une planète orbitant divers objets dont l'évolution du rayon est prise en compte. L'objectif était d'étudier l'influence de la contraction de l'étoile (ou naine brune) sur l'évolution orbitale des planètes. Deuxièmement, j'ai cherché à étudier l'influence des effets de marée sur l'évolution dynamique d'un système multiplanétaire orbitant une naine brune, une naine M ou une étoile de type solaire dont l'évolution du rayon est aussi prise en compte. 
+
+Ces deux projets permettent d'aborder le problème de l'habitabilité des planètes autour de ces objets, en particulier autour des naines brunes qui refroidissent avec le temps. En effet, une planète se trouvant dans la zone habitable d'une naine brune se situe suffisamment proche de la naine brune pour ressentir l'influence des effets de marée.\\
+
+\textbf{Mots-clés}\\
+
+\begin{tabular}{lll}
+Exoplanètes & Effet de marée & Dissipation \\
+Naines brunes & Etoiles: rotation &  \\
+Astrobiologie & Evolution dynamique et stabilité & 
+\end{tabular}
+\\
+}
+
+\vspace{2cm}
+
+\normalsize{\textbf{Abstract}}\\
+
+\scriptsize{The discovery of more than 900 planets orbiting other stars than our Sun makes this period very exciting. Our knowledge which was based on the Solar System has been challenged by new planetary systems which are very different from our system. Some of them are much more compact than the Solar System. Some planets are located extremely close-in from their star, within the orbital distance of Mercury, in a region where tidal effects are important. Understanding the structure of the known exoplanetary systems and the future ones requires to take into account the physics of tidal evolution.
+
+This thesis provides a study of the dynamical and tidal evolution of planetary systems orbiting evolving brown dwarfs and low mass stars in order to constrain some tidal parameters and in the case of planets around brown dwarfs put some constrains on observability. First, I studied the tidal evolution of single-planet systems orbiting a brown dwarf, a M-dwarf or a Sun-like star whose radius evolution is taken into account. The aim of this study was to study the influence of the contraction of the brown dwarf or star on the orbital evolution of the planets. Second, I endeavored to study the tidal evolution of multiple-planet systems orbiting a brown dwarf, a M-dwarf or a Sun-like star whose radius evolution is also taken into account.
+
+These two projects allow me to study the question of the habitability of planets orbiting those objects, in particular orbiting brown dwarfs which are known to cool down with time. A planet orbiting a brown dwarf in its habitable zone is sufficiently close to the brown dwarf to feel tidal effects. \\
+
+\textbf{Keywords}\\
+
+\begin{tabular}{lll}
+Exoplanets & Tides & Dissipation \\
+Brown dwarfs & Stars: rotation &  \\
+Astrobiology & Dynamical evolution and stability & 
+\end{tabular}
+}
+
+\end{document}
