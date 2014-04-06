@@ -1,0 +1,41 @@
+% Fichier tex pour la tranche de la couverture. Elle doit contenir
+% l'annee de soutenance, le titre et l'auteur. 
+
+\documentclass[a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{fullpage}
+
+% Si le titre est trop long pour tenir tel quel sur la ligne il faut
+% jouer sur les marges :
+
+\voffset 1.5cm
+\usepackage{array}
+\usepackage{lscape}
+%%%%%%%%%%%%%%%%
+\begin{document}
+
+\pagestyle{empty}
+
+\noindent
+\begin{landscape}
+Christophe \textsc{Cossou} \hfill %
+\begin{minipage}{0.5\linewidth}%
+\begin{center}%
+\textsc{Effet de la structure du disque sur la formation et la migration des planètes.}
+\end{center}%
+\end{minipage}%
+\hfill -- 2013 --
+\end{landscape}
+ 
+
+\end{document}
+
+
+
+
+
+
+
+
