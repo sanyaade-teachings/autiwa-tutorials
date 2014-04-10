@@ -1794,6 +1794,12 @@ Pour stocker le résultat dans une variable, on procède comme suit : \texttt{va
 
 Dans cet exemple, on recherche les fichiers de type \textbf{.db} (\verb|-name "*.db"|, ce qui permet, en pratique, de supprimer les fichiers \textbf{Thumbs.db}, en supprimant tout les fichiers avec cette extension --- pour palier les éventuels renommage ---) du répertoire courant (\verb|.|) que l'on va effacer. le \textbf{-f} permet d'enlever la confirmation de suppression. 
 
+\subsubsection{Extraire la première frame d'une vidéo (ou .gif)}
+Il suffit d'utiliser \gras[imagemagick]{ImageMagick} : 
+\begin{verbatim}
+convert 'dynamical_instabilities.mov[0]' dynamical_instabilities_00.png
+\end{verbatim}
+
 \subsubsection{Changer les droits des dossiers de manière récursive}
 La commande 
 \begin{verbatim}
@@ -1967,7 +1973,7 @@ Grâce à la commande \texttt{Rechercher/Remplacer} on peut manipuler très pré
 \verb|\>| & correspond à la fin d'un mot \\ \hline
 \verb|\x| & permet d'utiliser le caractère \textbf{x} (où \textbf{x} est un caractère non définit ici, mais qui correspond à un caractère \og protégé\fg, c'est à dire qui est utilisé pour des commandes) comme un caractère normal alors que celui-ci aurait été considéré comme une commande pour une expression régulière. Par exemple pour rechercher un crochet, il faut utiliser \verb|\[| \\ \hline
 \verb|[...]| &  permet de rechercher un caractère parmis une liste. Par exemple \verb|[abc]| recherchera l'un des trois caractères. \verb|[a-zA-Z]| recherchera une lettre majuscule ou minuscule.\\ \hline
-\verb|[^...]| & recherche un caractère parmi le complètement aux caractères dans les crochets. \verb|[^a-z]| recherche tout caractère qui n'est pas une lettre minuscule. \\ \hline
+\verb|[^...]| & recherche un caractère parmi le complément aux caractères dans les crochets. \verb|[^a-z]| recherche tout caractère qui n'est pas une lettre minuscule. \\ \hline
 \verb|^| &  recherche le début d'une ligne\\ \hline
 \verb|$| &  recherche la fin d'une ligne\\ \hline
 \verb|*| &  Permet de rechercher un nombre compris entre 0 et l'infini du caractère précédent immédiatement \textbf{*}. Par exemple \verb|Sa*m| permet de trouver Sm, Sam, Saam, Saaam et ainsi de suite. Si juste avant \textbf{*} on a une liste de caractère (via les crochets), alors ça s'appliquera à la liste complète des caractères. (\textbf{[ab]*} recherchera une séquence de \textbf{a} et \textbf{b} dont le nombre de caractère sera compris entre 0 et l'infini.\\ \hline
