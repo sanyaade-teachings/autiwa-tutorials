@@ -709,78 +709,105 @@ git bisect run script
 
 \subsection{Afficher la branche dans le prompt de la console}
 Avec Bash, il est possible d'afficher la branche active quand on arrive dans une partie sous gestionnaire de version GIT avec la commande suivante, rajoutée dans le \textbf{.bash\_profile} ou le \textbf{.bashrc} : 
-\begin{lstlisting}[language=bash]
+\begin{verbatim}
+#########################################
+# personnalisation du prompt avec la branche du projet git
+#########################################
+
 git_branch_name_prompt() {
-    git_status_output=$(git status 2> /dev/null) || return
+    # Only do this if the current directory is a git repository
+    if [ -e .git/config ]; then
+        # We keep only the first line, then the last word is our branch
+        git_status_output=$(git status 2> /dev/null|head -1) || return
 
-    branch_name() {
-        sed -n 's/# On branch //p' <<< "$git_status_output"
-    }
-
-    echo -e "($(branch_name))"
+        branch_name() {
+        # We get the last word with grep
+            echo "$git_status_output"|grep -oE '[^ ]+$' 
+        }
+    
+    
+        echo "($(branch_name))"
+    fi
 }
 
 git_branch_colour_prompt() {
-    git_status_output=$(git status 2> /dev/null) || return
+    # Only do this if the current directory is a git repository
+    if [ -e .git/config ]; then
+        git_status_output=$(git status 2> /dev/null) || return
 
-    find_pattern_in_status() {
-        local pattern="$1"
-        [[ "$git_status_output" =~ ${pattern} ]]
-    }
+        find_pattern_in_status() {
+            local pattern="$1"
+            [[ "$git_status_output" =~ ${pattern} ]]
+        }
 
-    is_clean() {
-        find_pattern_in_status '(working directory clean)'
-    }
+        is_clean() {
+            local clean_fr='(rien à valider, la copie de travail est propre)'
+            local clean_en='(working directory clean)'
+            find_pattern_in_status "($clean_fr|$clean_en)"
+        }
 
-    is_local_changes() {
-        local added='# Changes to be committed'
-        local not_added='# Changes not staged for commit'
-        find_pattern_in_status "($added|$not_added)"
-    }
+        is_local_changes() {
+            local added_fr='Modifications qui seront validées :'
+            local not_added_fr='Modifications qui ne seront pas validées :'
+            local added_en='# Changes to be committed'
+            local not_added_en='# Changes not staged for commit'
+            find_pattern_in_status "($added_fr|$not_added_fr|$added_en|$not_added_en)"
+        }
 
-    is_untracked() {
-        find_pattern_in_status '# Untracked files'
-    }
+        is_untracked() {
+            local untracked_fr='Fichiers non suivis:'
+            local untracked_en='# Untracked files'
+            find_pattern_in_status "($untracked_fr|$untracked_en)"
+        }
 
-    # local bold="\033[1m"
-    local no_colour="\033[0m"
+        # local bold="\033[1m"
+        local no_colour="\033[0m"
+        local red="\033[31m"
+        local green="\033[32m"
+        local yellow="\033[33m"
+        local branch_colour=""
 
-    local red="\033[31m"
-    local green="\033[32m"
-    local yellow="\033[33m"
-    local branch_colour=""
+        if is_untracked
+        then
+            branch_colour=$red
+        elif is_local_changes
+        then
+            branch_colour=$yellow
+        elif is_clean
+        then
+            branch_colour=$green
+        fi
 
-    if is_untracked
-    then
-        branch_colour=$red
-    elif is_local_changes
-    then
-        branch_colour=$yellow
-    elif is_clean
-    then
-        branch_colour=$green
+        echo -e "$branch_colour"
     fi
-    # echo -e "$branch_colour$(branch_name)$no_colour"
-    echo -e "$branch_colour"
 }
 
-PS1="\h.\u\[\$(git_branch_colour_prompt)\]\$(git_branch_name_prompt)\[\033[0m\]> "
-\end{lstlisting}
+PS1="\h.\u:\[\033[35m\]\W\[\033[0m\]\[\$(git_branch_colour_prompt)\]
+\$(git_branch_name_prompt)\[\033[0m\]\$ "
+\end{verbatim}
 
 Le résultat sera alors :
 \begin{verbatim}
-arguin.login(master)> 
+arguin.login:Formulaires(master)> 
 \end{verbatim}
 si on est dans un dossier GIT, \textbf{master} étant le nom de la branche active, et :
 \begin{verbatim}
-arguin.login> 
+arguin.login:~> 
 \end{verbatim}
 si le dossier courant n'est pas un dossier GIT.
 
 La couleur sera fonction du status du dépot. Si le dépot est à jour, ce sera vert, s'il y a eu des changements locaux, jaune, et s'il y a eu des commits locaux qui n'ont pas encore été propagés (push), ce sera orange. S'il y a des fichiers qui ne sont pas suivis, ce sera rouge (pour ignorer des fichiers il faut se servir du fichier .gitignore, voir \refsec{sec:gitignore}).
 
 \begin{remarque}
-La difficulté est ici d'afficher les couleurs. Il faut échapper ces caractères pour que le retour à la ligne et l'effacement de la ligne se fasse de manière correcte. On est ainsi obligé d'afficher et d'échapper les couleurs au tout dernier moment, dans PS1, et on ne peut donc pas encapsuler ces fonctions dans une grosse fonction qu'on appelerait par la suite.
+La difficulté est ici d'afficher les couleurs. Il faut échapper ces caractères pour que le retour à la ligne et l'effacement de 
+la ligne se fasse de manière correcte. On est ainsi obligé d'afficher et d'échapper les couleurs au tout dernier moment, dans 
+PS1, et on ne peut donc pas encapsuler ces fonctions dans une grosse fonction qu'on appelerait par la suite.
+
+L'autre difficulté est de ne pas afficher les parenthèses quand le dossier courant n'est pas un dossier Git. 
+
+Enfin, la dernière difficulté est que le bout de code fonctionne sur tous types d'ordinateurs, les versions du bash, de echo, 
+etc étant différents. Les différentes versions de Git peuvent afficher un status mis en page différemment, cette version essaie 
+d'en tenir compte pour être la plus robuste possible.
 \end{remarque}
 
 \subsection{branche (no branch), récupérer les commits}\label{sec:no-branch}
