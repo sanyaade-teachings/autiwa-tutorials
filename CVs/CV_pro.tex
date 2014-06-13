@@ -1,0 +1,189 @@
+%% start of file `template_en.tex'.
+%% Copyright 2006-1008 Xavier Danaux (xdanaux@gmail.com).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+
+\documentclass[11pt,a4paper,frenchb,roman]{moderncv}
+
+% moderncv themes
+%\moderncvtheme[grey]{casual}                 % optional argument are 'blue' (default), 'orange', 'red', 'green', 'grey' and 'roman' (for roman fonts, instead of sans serif fonts)
+\moderncvtheme[grey]{classic}                % idem
+
+% character encoding
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}                   % replace by the encoding you are using
+\usepackage[frenchb]{babel}
+\usepackage{xspace}
+
+% adjust the page margins
+\usepackage[scale=0.8]{geometry}
+%\setlength{\hintscolumnwidth}{3cm}						% if you want to change the width of the column with the dates
+\AtBeginDocument{\setlength{\maketitlenamewidth}{10cm}}  % only for the classic theme, if you want to change the width of your name placeholder (to leave more space for your address details
+\AtBeginDocument{\recomputelengths}                     % required when changes are made to page layout lengths
+
+% personal data
+\firstname{Christophe}
+\familyname{\textsc{Cossou}}
+% \title{}               % optional, remove the line if not wanted
+% \address{Lieu Dit : \og Le Verger \fg}{\textsc{47 200 Montpouillan}}    % optional, remove the line if not wanted
+\address{69, rue Anatole France}{\textsc{33 150 Cenon}}    % optional, remove the line if not wanted
+% \mobile{mobile (optional)}                    % optional, remove the line if not wanted
+\phone{06 02 26 97 63}                      % optional, remove the line if not wanted
+% \fax{fax (optional)}                          % optional, remove the line if not wanted
+\email{ccossou@gmail.com}                      % optional, remove the line if not wanted
+\extrainfo{28/06/1986} % optional, remove the line if not wanted
+% \photo{portrait}                         % '64pt' is the height the picture must be resized to and 'picture' is the name of the picture file; optional, remove the line if not wanted
+% \quote{Some quote (optional)}                 % optional, remove the line if not wanted
+
+%\nopagenumbers{}                             % uncomment to suppress automatic page numbering for CVs longer than one page
+\title{Modélisation numérique de \newline systèmes physiques}
+
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+\maketitle
+
+\section{Expérience Professionnelle}
+% \subsection{Professionnelles}
+\cventry{2014}{Contrat de 6 mois pour remanier, améliorer et documenter un code scientifique}{Évolution chimique hors équilibre 
+de nuages moléculaires. Code en fortran.}{CNRS}{}{}
+\cventry{2011--2013}{Doctorat}{Réalisation d'un code de simulation numérique. Maintenance, test et utilisation. Gestion de 
+projet (création, analyse, résolution et publication des résultats). }{}{}{}
+\cventry{2008--2010}{4 stages de recherche en science}{Apprentissage de divers langages (Matlab, IDL, Maple). Analyse de 
+problèmes scientifiques et mise en équation, modélisation de systèmes physiques}{}{}{}
+\cventry{2012--2013}{Présentation orale lors de colloques internationaux (anglais)}{Synthétisation, vulgarisation et 
+présentation d'un travail scientifique en anglais}{}{}{}
+%\cventry{Mai--Juillet 2008}{Stage : Estimation du nombre de transits d'exoplanètes \og habitables\fg détectables}{Sous la 
+%direction de Franck Selsis}{Laboratoire d'Astrophysique de Bordeaux}{}{}                % arguments 3 to 6 are optional
+
+\section{Expérience personnelle}
+\cventry{}{Gestion et automatisation d'un programme de simulations}{à l'aide de POO et de modules Python interdépendants}{}{}{}
+\cventry{}{Programme pour compter les points au jeu du Tarot}{Création d'un programme avec interface graphique à l'aide de 
+Java}{}{}{}
+\cventry{}{Rapport de bugs}{plusieurs projets open source, via Launchpad notamment}{}{}{}
+\cventry{}{Création et mise en ligne de tutoriels}{tous les langages de programmations, logiciels, cours de fac}{}{}{}
+\cventry{}{Développement, débug et maintenance d'un code informatique}{travail quotidien pendant 2 ans}{}{}{}
+\cventry{}{Codage et décodage de texte}{Création, en C, d'un algorithme de code/décodage afin de m'habituer au C}{}{}{}
+
+\section{Compétences Informatiques}
+% \cvcomputer{OS}{\textsc{gnu}/Linux}{}{}
+% \cvcomputer{Bureautique}{\LaTeX, tableurs, dessin vectoriel}{}{}
+% \cvcomputer{Programmation}{html, php, css, C, python, IDL, bash}{}{}
+% \cvcomputer{category 3}{XXX, YYY, ZZZ}{category 6}{XXX, YYY, ZZZ}
+
+\cvcomputer{Langages}{Python, Java, Fortran77, Fortran90, C (notions), IDL (notions), Matlab (notions)}{Langages 
+périphériques}{Gnuplot, Scripts Unix, \LaTeX}
+\cvcomputer{Systèmes}{GNU/Linux (principalement), Mac-OS X, Windows}{Outils}{Eclipse, vim, ligne de commande avancée, scripts 
+d'automatisation}
+\cvcomputer{Gestion de configuration}{SVN, Git}{Documentation de code}{Doxygen}
+
+\section{Formation}
+% \cventry{year--year}{Degree}{Institution}{City}{\textit{Grade}}{Description}  % arguments 3 to 6 are optional
+% \cventry{year--year}{Degree}{Institution}{City}{\textit{Grade}}{Description}  % arguments 3 to 6 are optional
+\cventry{2011--2013}{Doctorat}{Université Bordeaux 1}{Talence (33)}{Effet de la structure du disque sur la formation et la migration des planètes}{Obtenu avec mention Très Honorable}
+\cventry{2008--2010}{Master de physique fondamentale}{Université Bordeaux 1}{Talence (33)}{}{Obtenu avec mention Très Bien}
+\cventry{2005--2008}{Licence de physique fondamentale}{Université Bordeaux 1}{Talence (33)}{}{Obtenue avec mention Bien}
+\cventry{2004--2005}{Classe préparatoire}{Lycée Michel Montaigne}{Bordeaux (33)}{}{}
+\cventry{Juin 2004}{Baccalauréat scientifique mention Bien}{Lycée Val De Garonne}{Marmande (47)}{}{}
+
+\section{Formations complémentaires}
+%\cventry{}{HTML, CSS}{continue et autonome}{Réalisation d'un site web}{}{}
+%\cventry{}{\LaTeX}{continue et autonome}{création de paquets, correction de bugs, création de multiples tutoriels}{}{}
+\cventry{}{Python}{continue et autonome}{Création de modules, automatisation diverse, compilateur automatique de dépendances fortran, générateur de dessin vectoriel Inkscape, traitement automatisé d'une image avec Gimp}{}{}
+\cventry{}{Programmation Orienté Objet}{continue et autonome}{application à Python, Fortran et Java}{}{}
+\cventry{}{Java}{continue et autonome}{Réalisation d'un programme avec interface graphique}{}{}
+%\cventry{}{SVN}{Découverte de la gestion de projets}{}{}{}
+\cventry{}{Git}{continue et autonome}{Appliqué pour mes codes informatiques, tutoriels divers}{}{}
+
+
+
+% \section{Master thesis}
+% \cvline{title}{\emph{Title}}
+% \cvline{supervisors}{Supervisors}
+% \cvline{description}{\small Short thesis abstract}
+
+% \cventry{year--year}{Job title}{Employer}{City}{}{Description}                % arguments 3 to 6 are optional
+% \subsection{Miscellaneous}
+% \cventry{year--year}{Job title}{Employer}{City}{}{Description line 1\newline{}Description line 2}% arguments 3 to 6 are optional
+
+% \cventry{year--year}{Degree}{Institution}{City}{\textit{Grade}}{Description}  % arguments 3 to 6 are optional
+% \cventry{2007--2008}{Licence}{Université Bordeaux 1}{City}{\textit{Grade}}{Description}  % arguments 3 to 6 are optional
+%     \mitem{\mdate{2007--2008}}{
+%       Licence $3$\ieme{} année à l'université \important{Bordeaux 1} en physique\mvspace
+%     }
+%
+%     \mitem{\mdate{Juin 2007}}{
+%       Obtention avec  mention Bien  du \gras{DEUG} Sciences et technologies mention Physique et Ingéniérie.\mvspace
+%     }
+%
+%     \mitem{\mdate{2005--2007}}{
+%       Licence $1$\iere{} et $2$\ieme{} année à l'université \important{Bordeaux 1} en physique\mvspace
+%     }
+%
+%     \ifl{\mitem{\mdate{2004--2005}}{
+%       1\iere{} année de Classe Préparatoire au lycée \gras{Michel Montaigne} spécialité math-physique\mvspace
+%     }}
+%
+%     \mitem{\mdate{Juin 2004}}{
+%       Obtention avec  mention Bien  du \gras{Bac  Scientifique} option \gras{Science de l'ingénieur} spécialité \gras{mathématiques}\mvspace
+%     }
+%
+%     \ifl{\mitem{\mdate{2001--2004}}{
+%       Cycle secondaire au Lycée \gras{Val de Garonne} (Marmande, 47)\mvspace
+%     }}
+%
+%     \ifl{\mitem{\mdate{Juin 2001}}{
+%       Obtention   du   Brevet   des   Collèges   au   Collège \gras{Val de Garonne} (Marmande, 47)\mvspace
+%     }}
+
+\section{Langues Étrangères}
+\cvlanguage{Anglais}{Courant}{ \textsc{toeic} number : 860}
+\cvlanguage{Espagnol}{Niveau scolaire}{}
+% \cvlanguage{language 3}{Skill level}{Comment}
+
+
+%\cvcomputer{Langages}{Python, Java, Fortran77, Fortran90}{}{}
+%\cvcomputer{Systèmes}{Unix, GNU/Linux (principalement), Mac-OS X, Windows}{}{}
+%\cvcomputer{Internet}{HTML, PHP, Javascript (notions), CSS, XML}{}{}
+%\cvcomputer{Gestion de configuration}{SVN, puis Git}{}{}
+%\cvcomputer{Outils}{Eclipse, vim, ligne de commande avancée, scripts maison}{}{}
+%\cvcomputer{Outils périphériques}{Gimp (photo), Inkscape (vectoriel), Avidemux (vidéo), Semantik (mind map)}{}{}
+
+\bigskip
+
+\section{Autres Activités}
+\cvline{Photographie}{Paysage, macrophotographie, animaux, portraits}
+\cvline{Cuisine}{}
+% \cvline{hobby 3}{\small Description}
+%%
+%\cvline{Photographie}{\small macrophotographie, paysages, portraits}
+%\cvline{Musique}{}
+%\cvline{Cinéma}{}
+%\cvline{Informatique}{\small programmation, dessin vectoriel, \LaTeX}
+
+
+% \renewcommand{\listitemsymbol}{-} % change the symbol for lists
+%
+% \section{Extra 1}
+% \cvlistitem{Item 1}
+% \cvlistitem{Item 2}
+% \cvlistitem[+]{Item 3}            % optional other symbol
+%
+% \section{Extra 2}
+% \cvlistdoubleitem[\Neutral]{Item 1}{Item 4}
+% \cvlistdoubleitem[\Neutral]{Item 2}{Item 5}
+% \cvlistdoubleitem[\Neutral]{Item 3}{}
+%
+% Publications from a BibTeX file
+% \nocite{*}
+% \bibliographystyle{plain}
+% \bibliography{bibliographie}
+
+\end{document}
+
+
+%% end of file `template_en.tex'.
