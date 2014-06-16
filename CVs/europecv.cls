@@ -381,7 +381,7 @@
 \ifx\@empty\ecvdrawpicture\else
    &\ecv@beforepic\ecvdrawpicture\ecv@afterpic\tabularnewline
 \fi
-{\large\par\textbf{\ecv@infosectionkey}} & \tabularnewline
+{\large\par\ecvSectionStyle{\ecv@infosectionkey}} & \tabularnewline
 & \tabularnewline
 \ecv@namekey & \large\textbf{\ecv@name}\tabularnewline[5pt]
 \ifx\@empty\ecv@address\else
@@ -398,14 +398,15 @@
 \ifx\@empty\ecv@email\else
 \ecv@emailkey       &\ecv@email \tabularnewline[5pt]
 \fi
-\ifx\@empty\ecv@nationality\else
-\ecv@nationalitykey & \ecv@nationality \tabularnewline[5pt]
+& 
+\ifx\@empty\ecv@gender\else
+\textbf{\ecv@genderkey{}} \ecv@gender{} | 
 \fi
 \ifx\@empty\ecv@birth\else
-\ecv@birthkey       & \ecv@birth \tabularnewline[5pt]
+\textbf{\ecv@birthkey{}} \ecv@birth{} | 
 \fi
-\ifx\@empty\ecv@gender\else
-\ecv@genderkey      & \ecv@gender \tabularnewline[#1]
+\ifx\@empty\ecv@nationality\else
+\textbf{\ecv@nationalitykey{}} \ecv@nationality{} \tabularnewline[5pt]
 \fi
 }
 
@@ -494,6 +495,9 @@
 \newcommand*\ecvCOne{\ecvCEF{C1}{\ecv@cefprofkey}}
 \newcommand*\ecvCTwo{\ecvCEF{C2}{\ecv@cefprofkey}}
 
+\newcommand*{\ecvSectionStyle}[1]{\textbf{\textsc{#1}}}
+
+
 \def\ecv@kern{\kern0.5pt}
 %\def\ecv@kern{}
 \newcommand*{\ecvTitleKern}[1]{\def\ecv@kern{\kern#1}}
@@ -573,7 +577,7 @@
 {\end{longtable}}
 
 \newcommand{\ecvsection}[2][10pt]{%
-  {\large{\par\textbf{#2}}}\vspace{#1} & \tabularnewline\nopagebreak
+  {\large{\par\ecvSectionStyle{#2}}}\vspace{#1} & \tabularnewline\nopagebreak
 }
           
 \newif\if@ecvitemstar
