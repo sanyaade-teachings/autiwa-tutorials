@@ -716,7 +716,7 @@ Avec Bash, il est possible d'afficher la branche active quand on arrive dans une
 
 git_branch_name_prompt() {
     # Only do this if the current directory is a git repository
-    if [ -e .git/config ]; then
+    if git status 2>/dev/null 1>/dev/null ; then
         # We keep only the first line, then the last word is our branch
         git_status_output=$(git status 2> /dev/null|head -1) || return
 
@@ -732,7 +732,7 @@ git_branch_name_prompt() {
 
 git_branch_colour_prompt() {
     # Only do this if the current directory is a git repository
-    if [ -e .git/config ]; then
+    if git status 2>/dev/null 1>/dev/null ; then
         git_status_output=$(git status 2> /dev/null) || return
 
         find_pattern_in_status() {
@@ -782,8 +782,7 @@ git_branch_colour_prompt() {
     fi
 }
 
-PS1="\h.\u:\[\033[35m\]\W\[\033[0m\]\[\$(git_branch_colour_prompt)\]
-\$(git_branch_name_prompt)\[\033[0m\]\$ "
+PS1="\h.\u:\[\033[35m\]\W\[\033[0m\]\[\$(git_branch_colour_prompt)\]\$(git_branch_name_prompt)\[\033[0m\]\$ "
 \end{verbatim}
 
 Le résultat sera alors :
