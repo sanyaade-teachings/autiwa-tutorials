@@ -577,7 +577,7 @@
 {\end{longtable}}
 
 \newcommand{\ecvsection}[2][10pt]{%
-  {\par\ecvSectionStyle{#2}}\vspace{#1} & \tabularnewline\nopagebreak
+  {\par\ecvSectionStyle{#2}}\vspace{#1} & \begin{center}\rule{0.5\textwidth}{0.5pt}\end{center}\tabularnewline\nopagebreak
 }
           
 \newif\if@ecvitemstar
