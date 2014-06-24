@@ -553,6 +553,13 @@ Dans ce tableau, les lettres suivantes (en italique) ont une signification :
 
 Même si on peut afficher un nombre avec autant de positions qu'on veut, c'est juste une question d'affichage, ce nombre de positions n'a rien à voir avec la précision (i.e le nombre de chiffres significatifs). 
 
+\begin{remarque}
+Si on souhaite afficher, par exemple, un entier avec le moins de charactères possibles (quand on ne connait pas la longueur de l'entier), on peut utiliser : 
+\begin{verbatim}
+write(*,'(i0)') nb_sample
+\end{verbatim}
+\end{remarque}
+
 \begin{table}[htb]
 \centering
 \begin{tabular}{|l|l||l|l|}
