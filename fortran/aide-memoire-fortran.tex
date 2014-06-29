@@ -273,6 +273,24 @@ La variable $y$ est de type \texttt{logical}. Les parenthèses ne sont
 pas obligatoires mais facilitent la lecture (notez les points 
 obligatoires de part et d'autre de \texttt{not},\texttt{and} et \texttt{or}).
 
+\subsection{Les expressions logiques avancées}
+On peut aussi tester des choses plus compliquées, comme comparer deux à deux tous les éléments de deux listes. 
+
+À ce titre, les commandes \textbf{any()} et \textbf{all()} sont très puissantes.
+
+Par exemple :
+\begin{verbatim}
+if (any(my_array(:).eq.species)) then
+  write(*,*) "at least one is equal to species"
+endif
+\end{verbatim}
+
+\begin{verbatim}
+if (all(my_array(:).eq.my_other_array(:))) then
+  write(*,*) "at least one is equal to species"
+endif
+\end{verbatim}
+
 \subsection{Les expressions constantes}\label{sec:constantes}
 Lorsqu'une constante est utilisée plusieurs fois dans un programme (par exemple $\pi$), il est utile (et recommandé) de la définir une seule fois en début de programme pendant la déclaration des variables.
  
