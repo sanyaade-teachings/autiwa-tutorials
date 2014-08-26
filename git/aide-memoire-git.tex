@@ -477,7 +477,7 @@ git rebase master devel
 permet d'inclure dans \textbf{devel} les dernières modifications de \textbf{master} quelle que soit la branche courante.
 \bigskip
 
-En cas de conflits, on peut modifier les fichiers affectés et continuer via la commande 
+En cas de conflits, on peut modifier les fichiers affectés (voir \refsec{sec:mergetool}) et continuer via la commande 
 \begin{verbatim}
 git rebase --continue
 \end{verbatim}
@@ -485,6 +485,8 @@ ou annuler directement avec la commande
 \begin{verbatim}
 git rebase --abort
 \end{verbatim}
+
+
 
 \subsection{Supprimer une branche}
 Pour supprimer une branche dont vous avez déjà propagé les modifications dans la branche principale, faites : 
@@ -529,11 +531,11 @@ git add filename.c
 git commit -m "using theirs"
 \end{verbatim}
 
-\subsection{Regarder les différences et en tenir compte}
+\subsection{Regarder les différences et en tenir compte}\label{sec:mergetool}
 Si on veut voir le contenu des fichiers et créer notre futur fichier à partir des deux fichiers du conflit, on a :
 \begin{verbatim}
 git mergetool
-\end{verbatim}
+\end{verbatim}\index{git!mergetool}
 
 Mais ceci ne va fonctionner qu'avec des fichier ASCII. Dans mon cas, j'avais un conflit avec un fichier .pdf, et dans ce cas, mergetool ne fonctionne pas, il faut choisir si on veut le fichier distant ou le fichier local. Dans tous les cas ce sont normalement des fichiers qui sont aisément générable, le soucis majeur étant de ne plus être embêté par le conflit.
 
