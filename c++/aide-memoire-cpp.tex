@@ -1,0 +1,74 @@
+\documentclass[a4paper,twoside]{article}
+\usepackage{autiwa}
+\usepackage{listings}
+
+
+
+\title{Aide mémoire C++}
+\author{Autiwa}
+
+\newcommand{\raccourci}[1]{{\bfseries #1}}
+
+
+\makeindex
+\begin{document}
+
+\tableofcontents
+
+\clearpage
+
+\section{Pour commencer}
+Il est possible d'utiliser un IDE pour coder en C++. L'IDE multiplateforme que j'utilise est \textbf{code::blocks} que l'on 
+peut installer sous linux par :
+\begin{verbatim}
+sudo apt-get install codeblocks
+\end{verbatim}
+
+Pour compiler en ligne de commande, on peut utiliser \textbf{g++} sous linux (le gcc pour c++) :
+\begin{verbatim}
+g++ -o monprogramme monprogramme.cpp
+\end{verbatim}
+
+\subsection{Code de base}
+On appelle des librairies avec :
+\begin{verbatim}
+#include <iostream>
+\end{verbatim}
+
+\bigskip
+
+On déclare aussi l'espace de nom dans lequel on ira chercher les variables. Ceci est utile dans le cas où une fonction serait 
+déclarée dans plusieurs bibliothèques. 
+\begin{verbatim}
+using namespace std;
+\end{verbatim}
+
+\bigskip
+
+Tout programme possède (et doit posséder) une fonction \textbf{main}. Cette fonction sera exécutée automatiquement et c'est à 
+partir de cette dernière que tout le programme est lancé. 
+\begin{verbatim}
+int main()
+{
+
+  return 0;
+}
+
+\end{verbatim}
+
+\subsection{Affichage}
+La librairie \textbf{iostream} contient les fonctions pour les flux d'entrées/sorties. Les fonctions décritent ici sont donc 
+contenues dans \textbf{iostream}.
+
+Pour afficher du texte à l'écran, il faut faire :
+\begin{verbatim}
+cout << "Hello world!" << endl;
+\end{verbatim}
+ou de manière équivalente :
+\begin{verbatim}
+cout << "Hello world!\n";
+\end{verbatim}
+
+On a \verb|"\n"|$\Leftrightarrow$\verb|endl|. 
+
+\end{document}
