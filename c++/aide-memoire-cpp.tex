@@ -18,57 +18,512 @@
 \clearpage
 
 \section{Pour commencer}
-Il est possible d'utiliser un IDE pour coder en C++. L'IDE multiplateforme que j'utilise est \textbf{code::blocks} que l'on 
-peut installer sous linux par :
+Il est possible d'utiliser un IDE pour coder en C++. Personnellement, j'utilise \gras{code::blocks} car il est 
+multiplateforme et gratuit. Pour l'installer sous linux par :
 \begin{verbatim}
 sudo apt-get install codeblocks
 \end{verbatim}
+
+\begin{remarque}
+\textbf{Code::Blocks} met à disposition un outil. Ouvrez le menu \textbf{Plugins} puis sélectionnez \textbf{Source code 
+formatter 
+(AStyle)}. Votre code source se met alors en forme tout seul et devient automatiquement plus lisible !
+\end{remarque}
+
 
 Pour compiler en ligne de commande, on peut utiliser \textbf{g++} sous linux (le gcc pour c++) :
 \begin{verbatim}
 g++ -o monprogramme monprogramme.cpp
 \end{verbatim}
 
-\subsection{Code de base}
-On appelle des librairies avec :
-\begin{verbatim}
+\subsection{Liste de librairies}
+Entrée et sortie standard
+\begin{lstlisting}[language=C++]
 #include <iostream>
-\end{verbatim}
+using namespace std;
+\end{lstlisting}
+
+Pouvoir utiliser les chaines de caractères :
+\begin{lstlisting}[language=C++]
+#include <string>
+\end{lstlisting}
+
+Plus de maths :
+\begin{lstlisting}[language=C++]
+#include <cmath>
+\end{lstlisting}
+
+
+\subsection{Code de base}
+On appelle des librairies avec (respectivement pour les I/O et pour pouvoir utiliser des chaînes de caractères):
+\begin{lstlisting}[language=C++]
+#include <iostream>
+#include <string>
+\end{lstlisting}
 
 \bigskip
 
 On déclare aussi l'espace de nom dans lequel on ira chercher les variables. Ceci est utile dans le cas où une fonction serait 
 déclarée dans plusieurs bibliothèques. 
-\begin{verbatim}
+\begin{lstlisting}[language=C++]
 using namespace std;
-\end{verbatim}
+\end{lstlisting}
 
 \bigskip
 
 Tout programme possède (et doit posséder) une fonction \textbf{main}. Cette fonction sera exécutée automatiquement et c'est à 
 partir de cette dernière que tout le programme est lancé. 
-\begin{verbatim}
+\begin{lstlisting}[language=C++]
 int main()
 {
 
   return 0;
 }
 
-\end{verbatim}
+\end{lstlisting}
 
-\subsection{Affichage}
+Les commentaires se font à l'aide de :
+\begin{lstlisting}[language=C++]
+return 0; // inline comment
+
+/* Block comment
+on several lines
+*/
+\end{lstlisting}
+
+
+\subsection{Standard output / affichage}
 La librairie \textbf{iostream} contient les fonctions pour les flux d'entrées/sorties. Les fonctions décritent ici sont donc 
 contenues dans \textbf{iostream}.
 
 Pour afficher du texte à l'écran, il faut faire :
-\begin{verbatim}
+\begin{lstlisting}[language=C++]
 cout << "Hello world!" << endl;
-\end{verbatim}
+\end{lstlisting}
 ou de manière équivalente :
-\begin{verbatim}
+\begin{lstlisting}[language=C++]
 cout << "Hello world!\n";
-\end{verbatim}
+\end{lstlisting}
 
 On a \verb|"\n"|$\Leftrightarrow$\verb|endl|. 
+
+Et pour afficher une variable :
+\begin{lstlisting}[language=C++]
+cout << "Votre age est : " << ageUtilisateur << endl;
+\end{lstlisting}
+
+\subsection{Standard input}
+
+Pour demander à l'utilisateur de rentrer la valeur d'une variable :
+\begin{lstlisting}[language=C++]
+cout << "Quel age avez-vous ?" << endl;
+int ageUtilisateur(0); //On prepare une case memoire pour stocker un entier
+cin >> ageUtilisateur; //On fait entrer un nombre dans cette case
+//cin.ignore(); // Uncomment if getline() afterwards
+\end{lstlisting}
+
+Pour des chaînes de caractères toutefois, il faut utiliser une autre méthode (sous peine de n'avoir que le premier mot) : 
+\begin{lstlisting}[language=C++]
+cout << "Quel est votre nom ?" << endl;
+string nomUtilisateur("Sans nom");
+getline(cin, nomUtilisateur);
+\end{lstlisting}
+
+
+\subsection{Les variables}
+
+Les différents types de variables sont regroupés dans le tableau \reftab{tab:type_variables}.
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{|r|l|}
+\hline
+Nom du type & Ce qu'il peut contenir\\\hline
+bool & Une valeur parmi deux possibles, vrai (true) ou faux (false).\\\hline
+char & Un caractère.\\\hline
+int & Un nombre entier.\\\hline
+unsigned int & Un nombre entier positif ou nul.\\\hline
+double & Un nombre à virgule.\\\hline
+string & Une chaîne de caractères, c'est-à-dire un mot ou une phrase.\\\hline
+\end{tabular}
+\caption{Liste des types de variables en C++}\label{tab:type_variables}
+\end{table}
+
+Pour déclarer des variables, on procède ainsi :
+\begin{lstlisting}[language=C++]
+int ageUtilisateur(16);
+int nombreAmis(432);      //Le nombre d'amis de l'utilisateur
+double pi(3.14159);
+bool estMonAmi(true);    //Cet utilisateur est-il mon ami ?
+char lettre('a');
+\end{lstlisting}
+
+On peut aussi ne pas initialiser :
+\begin{lstlisting}[language=C++]
+int ageUtilisateur;
+int nombreAmis;      //Le nombre d'amis de l'utilisateur
+double pi;
+bool estMonAmi;    //Cet utilisateur est-il mon ami ?
+char lettre;
+\end{lstlisting}
+
+\bigskip
+
+Les chaînes de caractères sont un peu particulières. Tout d'abord il faut inclure une librairie pour pouvoir les utiliser, et 
+il faut les déclarer avec des doubles guillemets : 
+\begin{lstlisting}[language=C++]
+#include <string>
+string nomUtilisateur("Albert Einstein");
+\end{lstlisting}\index{string}
+
+\subsection{Les variables statiques : constantes}
+
+Pour déclarer une constante (qui ne peut donc pas changer dans la suite du programme, il suffit de rajouter le mot clé 
+\textbf{const} lors de la déclaration :
+\begin{lstlisting}[language=C++]
+int const nombreNiveaux(10);
+\end{lstlisting}
+
+\subsection{Incrémenter}
+\begin{lstlisting}[language=C++]
+int counter(1);
+counter++;// increment
+counter--;//decrement
+\end{lstlisting}
+
+\subsection{Les pointeurs}
+Pour déclarer un pointeur, il faut en même temps déclarer le type de ce vers quoi on pointe : 
+\begin{lstlisting}[language=C++]
+int ageUtilisateur(16);  //declaration
+int& maVariable(ageUtilisateur); //pointeur toward ageUtilisateur
+\end{lstlisting}
+
+\subsection{Structures de contrôle}
+\subsubsection{Conditions}
+Outre les tests classiques : 
+\begin{verbatim}
+==
+< ou >
+<= ou >=
+!=
+\end{verbatim}
+il y a aussi le ``ET'' : \&\&, le ``OU'' : || et le ``NON'' : !
+
+Exemples : 
+\begin{lstlisting}[language=C++]
+if (adulte && nbEnfants >= 1)
+if (nbEnfants == 1 || nbEnfants == 2)
+if (!adulte)
+\end{lstlisting}
+
+\subsubsection{if}
+\begin{lstlisting}[language=C++]
+int nbEnfants(0);
+if (nbEnfants > 0)
+{
+    cout << "Vous avez des enfants, bravo !" << endl;
+}
+\end{lstlisting}
+ou
+\begin{lstlisting}[language=C++]
+int nbEnfants(0);
+if (nbEnfants > 0)
+{
+    cout << "Vous avez des enfants, bravo !" << endl;
+}
+else
+{
+    cout << "Eh bien alors, vous n'avez pas d'enfant ?" << endl;
+}
+\end{lstlisting}
+ou encore 
+\begin{lstlisting}[language=C++]
+int nbEnfants(2);
+
+if (nbEnfants == 0)
+{
+    cout << "Eh bien alors, vous n'avez pas d'enfant ?" << endl;
+}
+else if (nbEnfants == 1)
+{
+    cout << "Alors, c'est pour quand le deuxieme ?" << endl;
+}
+else if (nbEnfants == 2)
+{
+    cout << "Quels beaux enfants vous avez la !" << endl;
+}
+else
+{
+    cout << "Bon, il faut arreter de faire des gosses maintenant !" << endl;
+}
+\end{lstlisting}
+
+\subsubsection{Switch}
+\begin{lstlisting}[language=C++]
+int nbEnfants(2);
+switch (nbEnfants)
+{
+    case 0:
+        cout << "Eh bien alors, vous n'avez pas d'enfant ?" << endl;
+        break;
+    case 1:
+        cout << "Alors, c'est pour quand le deuxieme ?" << endl;
+        break;
+    case 2:
+        cout << "Quels beaux enfants vous avez la !" << endl;
+        break;
+    default:
+        cout << "Bon, il faut arreter de faire des gosses maintenant !" << endl;
+        break;
+}
+\end{lstlisting}
+
+\begin{remarque}
+\textbf{Switch} ne fonctionne qu'avec des entiers (et \textbf{char}).
+\end{remarque}
+
+\subsubsection{While}
+\begin{lstlisting}[language=C++]
+while (condition)
+{
+    /* Instructions a repeter */
+}
+\end{lstlisting}
+
+\subsubsection{Do-While}
+\begin{lstlisting}[language=C++]
+do
+{
+    /* Instructions */
+} while (condition);
+\end{lstlisting}
+Exactement comme la boucle while, si ce n'est que la condition est testée à la fin, assurant que le contenu de la boucle est 
+exécuté au moins une fois.
+
+\subsubsection{For}
+\begin{lstlisting}[language=C++]
+int compteur(0);
+for (compteur = 0 ; compteur < 10 ; compteur++)
+{
+    cout << compteur << endl;
+}
+\end{lstlisting}
+
+On peut aussi initialiser le compteur directement :
+\begin{lstlisting}[language=C++]
+int main()
+{
+    for (int compteur(0) ; compteur < 10 ; compteur++)
+    {
+        cout << compteur << endl;
+    }
+    return 0;
+}
+\end{lstlisting}
+
+\section{Les tableaux}
+\subsection{Tableaux statiques}
+On doit connaître la taille à l'avance. 
+
+On déclare les tableaux :
+\begin{lstlisting}[language=C++]
+int meilleurScore[5];       //un tableau de 5 int 
+
+double anglesTriangle[3];   //un tableau de 3 double
+\end{lstlisting}
+
+On peut aussi utiliser une variable comme taille de tableau, mais elle doit impérativement être une constante :
+\begin{lstlisting}[language=C++]
+int const tailleTableau(20);   //La taille du tableau
+double anglesIcosagone[tailleTableau];
+\end{lstlisting}
+
+\bigskip
+
+On accède aux variables de la façon suivante :
+\begin{lstlisting}[language=C++]
+meilleurScore[2] = 5;
+\end{lstlisting}
+
+\begin{attention}
+Les indices comment à 0. Ainsi, l'indice 2 correspond à la 3\ieme valeur.
+\end{attention}
+
+\subsection{Tableaux et fonctions}\label{sec:tableaux_fonctions}
+Une fonction ne peut renvoyer qu'une seule valeur. Ainsi, une fonction ne peut pas renvoyer de tableau. De même qu'elle n'en 
+accepte pas en argument. La solution c'est d'utiliser des pointeurs. 
+
+Ainsi, en argument, une déclaration de tableau sera automatiquement un pointeur. Ça implique par exemple qu'on ne connait pas 
+la taille du tableau dans la fonction. Le plus simple est encore de passer la taille du tableau en argument de la fonction. 
+
+\begin{lstlisting}[language=C++]
+void fonction(double tableau[], int tailleTableau)
+{
+    //...
+}
+\end{lstlisting}
+
+\subsection{Tableaux dynamiques}
+
+\section{Les fonctions}
+\subsection{Bases}
+\begin{lstlisting}[language=C++]
+int ajouteDeux(int nombreRecu)
+{
+    int valeur(nombreRecu + 2);
+    return valeur;
+    // we create a new value and then return it.
+}
+
+int addition(int a, int b)
+{
+    return a+b;
+}
+
+void direBonjour()
+{
+    cout << "Bonjour !" << endl;
+    //Since nothing is returned, no need of a "return" statement.
+}
+\end{lstlisting}
+
+Afin de pouvoir modifier les valeurs passées en paramètres, on peut utiliser un pointeur, afin d'accéder directement à la 
+variable, et non à une copie de celle-ci : 
+\begin{lstlisting}[language=C++]
+void f1(string texte);  //Imply of copy of the variable "texte"
+{
+}
+
+void f2(string& texte);  //Nothing is copied, but 'texte' can be directly modified
+{
+}
+\end{lstlisting}
+
+On peut souhaiter éviter une copie d'argument, sans toutefois souhaiter autoriser la modification de la variable :
+\begin{lstlisting}[language=C++]
+void f1(string const& texte);  //No copy, but no modification possible
+{
+}
+\end{lstlisting}
+
+\subsection{Valeurs par défaut}
+Pour définir des valeurs par défaut pour certains paramètres, et donc les rendre facultatifs, il faut ajouter ces valeurs par 
+défaut dans le prototype (dans le .h). 
+
+Ainsi, dans le prototype : 
+\begin{lstlisting}[language=C++]
+// Prototype WITH default values
+int nombreDeSecondes(int heures, int minutes = 0, int secondes = 0);
+\end{lstlisting}
+
+et dans le fichier source :
+\begin{lstlisting}[language=C++]
+// Function definition WITHOUT default values
+int nombreDeSecondes(int heures, int minutes, int secondes)
+{
+    int total = 0;
+
+    total = heures * 60 * 60;
+    total += minutes * 60;
+    total += secondes;
+    return total;
+}
+\end{lstlisting}
+
+\begin{remarque}
+Les paramètres facultatifs doivent se trouver à la droite du prototype, précédés par tous les arguments obligatoires.
+\end{remarque}
+
+\subsection{Tableaux et fonctions}
+Voir \refsec{sec:tableaux_fonctions}.
+
+\section{Modules}
+\subsection{Example minimal}
+Supposons qu'on veut créer une fonction et la mettre dans un fichier à part. Pour cela, on va donc créer un fichier source 
+\textbf{*.cpp} qui contiendra la fonction. Mais il faut aussi créer le \textbf{header} correspondant, qui aura le même nom, 
+mais l'extension \textbf{*.h}. 
+
+Le contenu du fichier \textbf{math.cpp} :
+\begin{lstlisting}[language=C++]
+#include "math.h"
+
+int ajouteDeux(int nombreRecu)
+{
+    int valeur(nombreRecu + 2);
+
+    return valeur;
+}
+\end{lstlisting}
+Notez qu'on déclare en entête quel est le nom du header. 
+
+Le contenu du header correspondant \textbf{math.h} :
+\begin{lstlisting}[language=C++]
+#ifndef MATH_H_INCLUDED
+#define MATH_H_INCLUDED
+
+int ajouteDeux(int nombreRecu);
+
+#endif // MATH_H_INCLUDED
+\end{lstlisting}
+Le header ne contient que la structure des fonctions du fichier source correspondant. Les ligne 1, 2 et 4 ne doivent pas être 
+touchées, et sont par exemple générées automatiquement par \gras{code::blocks}.
+
+Et enfin son utilisation dans le fichier principal :
+\begin{lstlisting}[language=C++]
+#include <iostream>
+#include "math.h"
+
+using namespace std;
+
+int main()
+{
+    int a(2),b(2);
+    cout << "Valeur de a : " << a << endl;
+    cout << "Valeur de b : " << b << endl;
+    b = ajouteDeux(a);                     //Appel de la fonction
+    cout << "Valeur de a : " << a << endl;
+    cout << "Valeur de b : " << b << endl;
+
+    return 0;
+}
+\end{lstlisting}
+
+\begin{attention}
+On inclue toujours le fichier d'entête \textbf{*.h}, jamais le fichier source \textbf{*.cpp}.
+\end{attention}
+
+
+\subsection{Ajout de classes}
+On peut souhaiter utiliser en argument des types de variables non standard. Comme de strings par exemple. Auquel cas il faut 
+les inclure dans le header : 
+\begin{lstlisting}[language=C++]
+#ifndef MATH_H_INCLUDED
+#define MATH_H_INCLUDED
+
+#include <string>
+
+void afficherMessage(std::string message);
+
+#endif // MATH_H_INCLUDED
+\end{lstlisting}
+
+\section{Documentation}
+Je conseille Doxygen, étant donné que c'est multi language, et multi tout ce que vous voulez, en plus d'être libre. 
+
+Bref. Le principe reste le même quel que soit le language. 
+
+Ici cependant, la documentation pour les fonctions doit être placée dans le header \textbf{*.h} : 
+\begin{lstlisting}[language=C++]
+/**
+ * \brief Fonction qui ajoute 2 au nombre recu en argument
+ * \param nombreRecu  Le nombre auquel la fonction ajoute 2
+ * \return nombreRecu + 2
+ */
+int ajouteDeux(int nombreRecu);
+\end{lstlisting}
+
+
+
+
 
 \end{document}
