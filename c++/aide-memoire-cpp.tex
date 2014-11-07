@@ -191,7 +191,7 @@ counter++;// increment
 counter--;//decrement
 \end{lstlisting}
 
-\subsection{Les pointeurs}
+\subsection{Les pointeurs}\label{sec:pointeurs}
 Pour déclarer un pointeur, il faut en même temps déclarer le type de ce vers quoi on pointe : 
 \begin{lstlisting}[language=C++]
 int ageUtilisateur(16);  //declaration
@@ -349,10 +349,82 @@ meilleurScore[2] = 5;
 Les indices comment à 0. Ainsi, l'indice 2 correspond à la 3\ieme valeur.
 \end{attention}
 
+Pour déclarer et utiliser un tableau à plusieurs dimensions :
+\begin{lstlisting}[language=C++]
+int const tailleX(5);
+int const tailleY(4);
+int tableau[tailleX][tailleY];
+\end{lstlisting}
+
+\subsection{Tableaux dynamiques}
+Afin de pouvoir utiliser les tableaux dynamiques, il faut ajouter un module au début du fichier :
+\begin{lstlisting}[language=C++]
+#include <vector>
+\end{lstlisting}
+
+Pour déclarer un tableau dynamique, d'entier de 5 éléments :
+\begin{lstlisting}[language=C++]
+vector<int> tableau(5);
+\end{lstlisting}
+
+On peut aussi initialiser tous les éléments du tableaux à une valeur :
+\begin{lstlisting}[language=C++]
+vector<int> tableau(5, 3);  //Array of 5 integers, all equal to 3
+vector<string> listeNoms(12, "Sans nom");
+// Arrays of strings with "Sans nom" as default value.
+\end{lstlisting}
+
+\bigskip
+
+Et on peut enfin déclarer le tableau sans lui donner de taille :
+\begin{lstlisting}[language=C++]
+vector<double> tableau;
+\end{lstlisting}
+
+\subsubsection{Modifier la taille}
+Pour ajouter un élément à la fin :
+\begin{lstlisting}[language=C++]
+vector<int> tableau(3,2); //Un tableau de 3 entiers valant tous 2
+tableau.push_back(8);
+\end{lstlisting}
+
+Pour supprimer le dernier élément :
+\begin{lstlisting}[language=C++]
+vector<int> tableau(3,2); 
+tableau.pop_back(); //last item deleted
+\end{lstlisting}
+
+Pour connaître la taille actuelle d'un tableau :
+\begin{lstlisting}[language=C++]
+int const taille(tableau.size());
+\end{lstlisting}
+
+\subsubsection{Tableaux à plusieurs dimensions}
+Ce coup-ci, c'est un peu plus compliqué qu'avec un tableau statique. Car dans la pratique, ça revient à faire des lignes, puis 
+une liste de lignes. Rien ne nous empêche donc d'avoir des lignes de longueurs différentes. 
+
+\begin{lstlisting}[language=C++]
+vector<vector<int> > grille;
+\end{lstlisting}
+
+Pour initialiser, il faut donc d'abord ajouter une ligne, et enfin ajouter un élément à 
+cette ligne :
+\begin{lstlisting}[language=C++]
+grille.push_back(vector<int>(5));   //We add a line of size 5
+grille.push_back(vector<int>(3,4)); //We add a line of 3 elements, all equal to 4.
+grille[0].push_back(8); // We add a value to the first line
+\end{lstlisting}
+
+Pour accéder aux valeurs du tableau, c'est ensuite identique au cas statique :
+\begin{lstlisting}[language=C++]
+grille[2][3] = 9; // Change the value of one element
+\end{lstlisting}
+
 \subsection{Tableaux et fonctions}\label{sec:tableaux_fonctions}
 Une fonction ne peut renvoyer qu'une seule valeur. Ainsi, une fonction ne peut pas renvoyer de tableau. De même qu'elle n'en 
 accepte pas en argument. La solution c'est d'utiliser des pointeurs. 
 
+\subsubsection{Statiques}
 Ainsi, en argument, une déclaration de tableau sera automatiquement un pointeur. Ça implique par exemple qu'on ne connait pas 
 la taille du tableau dans la fonction. Le plus simple est encore de passer la taille du tableau en argument de la fonction. 
 
@@ -363,9 +435,27 @@ void fonction(double tableau[], int tailleTableau)
 }
 \end{lstlisting}
 
-\subsection{Tableaux dynamiques}
+\subsubsection{Dynamiques}
+\begin{lstlisting}[language=C++]
+void fonction(vector<int> a)
+{
+    //...
+}
+\end{lstlisting}
+Pas besoin de passer la taille en argument, puisqu'une méthode permet d'y accéder. 
+
+Et si on veut optimiser en ne copiant pas les données, et en empêcher la modification :
+\begin{lstlisting}[language=C++]
+void fonction(vector<int> const& a)
+{
+    //...
+}
+\end{lstlisting}
 
 \section{Les fonctions}
+\subsection{Avertissement}
+Les arguments des fonctions sont systématiquement copiés. Afin d'éviter cela, il faut utiliser des pointeurs (ou références) 
+dans les arguments (voir aussi \refsec{sec:pointeurs}).
 \subsection{Bases}
 \begin{lstlisting}[language=C++]
 int ajouteDeux(int nombreRecu)
