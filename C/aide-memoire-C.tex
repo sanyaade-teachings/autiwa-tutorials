@@ -1,0 +1,47 @@
+\documentclass[a4paper,twoside]{article}
+\usepackage{autiwa}
+\usepackage{listings}
+
+
+
+\title{Aide mémoire C}
+\author{Autiwa}
+
+\newcommand{\raccourci}[1]{{\bfseries #1}}
+
+
+\makeindex
+\begin{document}
+
+\tableofcontents
+
+\clearpage
+
+
+\section{Les pointeurs}\label{sec:pointeurs}
+Pour déclarer un pointeur, il faut en même temps déclarer le type de ce vers quoi on pointe : 
+\begin{lstlisting}[language=C++]
+int ageUtilisateur(16);  //declaration
+int& maVariable(ageUtilisateur); //pointeur toward ageUtilisateur
+\end{lstlisting}
+
+Pour une variable normale, on peut afficher l'adresse correspondante via :
+\begin{lstlisting}[language=C]
+printf("L'adresse de la variable age est : %p", &age);
+\end{lstlisting}
+
+\textbf{age} désigne la valeur de la variable ; \textbf{&age} désigne l'adresse de la variable.
+
+\subsection{Créer un pointeur}
+
+Pour créer une variable de type pointeur, on doit rajouter le symbole * devant le nom de la variable.
+\begin{lstlisting}[language=C]
+int age = 10;
+int *monPointeur=NULL;
+pointeurSurAge = &age;
+\end{lstlisting}
+
+
+
+
+\end{document}
